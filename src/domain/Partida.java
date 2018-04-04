@@ -1,3 +1,4 @@
+package domain;
 
 public class Partida {
 	private Dificultat dificultat;

@@ -1,3 +1,8 @@
+package domain;
+
+import domain.TipusAdjacencia;
+
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -18,12 +23,12 @@ public class Hidato {
         String line = reader.nextLine();
         String[] values = line .split(",");
 
-        if (values[0] == "Q") tipusCella = TipusCella.QUADRAT;
-        else if (values[0] == "T") tipusCella = TipusCella.TRIANGLE;
+        if (Objects.equals(values[0], "Q")) tipusCella = TipusCella.QUADRAT;
+        else if (Objects.equals(values[0], "T")) tipusCella = TipusCella.TRIANGLE;
         else tipusCella = TipusCella.HEXAGON;
 
-        if (values[1] == "C") tipusAdjacencia = tipusAdjacencia.COSTATS;
-        else if (values[1] == "V") tipusAdjacencia = TipusAdjacencia.VERTEXS;
+        if (values[1].equals("C")) tipusAdjacencia = tipusAdjacencia.COSTATS;
+        else if (Objects.equals(values[1], "V")) tipusAdjacencia = TipusAdjacencia.VERTEXS;
         else tipusAdjacencia = TipusAdjacencia.VERTEXS;
 
         nombreFiles = Integer.parseInt(values[2]);
@@ -31,7 +36,6 @@ public class Hidato {
 
 
         for (int i = 0; i < line.length(); ++i){
-
         }
     }
 
