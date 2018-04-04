@@ -1,6 +1,6 @@
 
 public class Partida {
-	private dificultat dif;
+	private Dificultat dificultat;
 	private int puntacio;
 	private int Date;
 	private String[][] estat;
