@@ -21,7 +21,7 @@ public class HidatoIO {
         else if (values[0] == "T") tipusCella = TipusCella.TRIANGLE;
         else tipusCella = TipusCella.HEXAGON;
 
-        if (values[1] == "C") tipusAdjacencia = tipusAdjacencia.COSTATS;
+        if (values[1] == "C") tipusAdjacencia = TipusAdjacencia.COSTATS;
         else if (values[1] == "V") tipusAdjacencia = TipusAdjacencia.VERTEXS;
         else tipusAdjacencia = TipusAdjacencia.VERTEXS;
 
@@ -39,6 +39,7 @@ public class HidatoIO {
             }
             matrix.add(fila);
         }
+        reader.close();
     }
 
     public void hidatoWriterToOutput(){

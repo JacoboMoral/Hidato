@@ -13,7 +13,7 @@ public class Tauler {
     		nombreColumnes = tauler.get(0).size();
     }
 
-	private ArrayList<Character> taulell = new ArrayList<Character>();
+	private ArrayList<String> taulell = new ArrayList<String>();
 
 
 	public int getNombreFiles() {
