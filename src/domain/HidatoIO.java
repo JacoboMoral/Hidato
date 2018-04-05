@@ -7,10 +7,6 @@ public class HidatoIO {
     private int nombreFiles;
     private int nombreColumnes;
     private ArrayList<ArrayList<String>> matrix = new ArrayList<ArrayList<String>>();
-
-    public HidatoIO() {
-    	
-    }
     
     public void hidatoReaderFromInput(){
         Scanner reader = new Scanner(System.in);

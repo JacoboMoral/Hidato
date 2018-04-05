@@ -21,15 +21,18 @@ public class Hidato {
     		for (int i = 0; i < nombreFiles; ++i) {
     			for (int j = 0; j < nombreColumnes; ++j) {
     				Casella c = new Casella(); 
-    				if (matriu.get(i).get(j) == "#");
+    				if (matriu.get(i).get(j) == "#") c.setTipus(TipusCasella.LIMIT);
+    				else if (matriu.get(i).get(j) == "*") c.setTipus(TipusCasella.FORAT);
+    				else if (matriu.get(i).get(j) == "?") c.setTipus(TipusCasella.BUIT);
+    				else {
+    					c.setTipus(TipusCasella.VALOR, Integer.parseInt(matriu.get(i).get(j)));
+    				}
 
     			}
     		}
     		
     }
     
-
-
     public int getNombreFiles(){
         return nombreFiles;
 
@@ -39,4 +42,5 @@ public class Hidato {
         return nombreColumnes;
 
     }
+
 }
