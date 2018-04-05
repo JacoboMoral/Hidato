@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class Main {
@@ -13,10 +14,7 @@ public class Main {
             if (n.equals("exit")) exit = true;
             if (n.equals("hidato")){
                 Hidato hidato = new Hidato();
-                hidato.hidatoReaderFromInput();
                 //hidato.hidatoWriterToOutput();
-                hidato.getColumnes();
-                hidato.getFiles();
             }
         }
         reader.close();
