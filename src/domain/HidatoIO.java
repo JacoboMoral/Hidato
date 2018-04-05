@@ -1,13 +1,17 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class hidatoIO {
+public class HidatoIO {
     private TipusAdjacencia tipusAdjacencia;
     private TipusCella tipusCella;
     private int nombreFiles;
     private int nombreColumnes;
     private ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>();
 
+    public HidatoIO() {
+    	
+    }
+    
     public void hidatoReaderFromInput(){
         Scanner reader = new Scanner(System.in);
         String line = reader.nextLine();
@@ -28,13 +32,35 @@ public class hidatoIO {
         for (int i = 0; i < nombreFiles; ++i) {
             line = reader.nextLine();
             values = line.split(",");
+    			ArrayList<Integer> fila = new ArrayList<Integer>();
             for (int ii = 0; ii < nombreColumnes; ++ii){
-            		
+            		fila.add(Integer.parseInt(values[ii]));
             }
+            matrix.add(fila);
         }
     }
 
     public void hidatoWriterToOutput(){
-        //System.out.print(line);
+        System.out.println(matrix);
+    }
+    
+    public int getNombreFiles() {
+    		return nombreFiles;
+    }
+    
+    public int getNombreColumnes() {
+    		return nombreColumnes;
+    }
+    
+    public TipusCella getTipusCella() {
+    		return tipusCella;
+    }
+    
+    public TipusAdjacencia getTipusAdjacencia() {
+    		return tipusAdjacencia;
+    }
+    
+    public ArrayList<ArrayList<Integer> > gethHdatoMatrix() {
+    		return matrix;
     }
 }

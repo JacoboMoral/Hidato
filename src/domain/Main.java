@@ -13,8 +13,11 @@ public class Main {
             String n = reader.next();
             if (n.equals("exit")) exit = true;
             if (n.equals("hidato")){
-                Hidato hidato = new Hidato();
-                //hidato.hidatoWriterToOutput();
+            		System.out.println("Hidato seleccionat");
+                HidatoIO hidatoIO = new HidatoIO();
+                hidatoIO.hidatoReaderFromInput();
+                hidatoIO.hidatoWriterToOutput();
+                //Hidato hidato = new Hidato(hidatoIO.get
             }
         }
         reader.close();
