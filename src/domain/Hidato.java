@@ -6,28 +6,29 @@ import java.util.Scanner;
 
 public class Hidato {
 
-    private ArrayList<ArrayList<Integer>> tauler = new ArrayList<ArrayList<Integer>>();
-    private int nombreFiles;
-    private int nombreColumnes;
+    private Tauler tauler;
     private TipusCella tipusCella;
     private TipusAdjacencia tipusAdjacencia;
 
-    public Hidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, ArrayList<ArrayList<Integer>> tauler){
-    		this.tauler = tauler;
+    public Hidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, ArrayList<ArrayList<String>> tauler){
+    		//this.tauler = tauler;
     		this.tipusAdjacencia = tipusAdjacencia;
     		this.tipusCella = tipusCella;
-    		nombreFiles = tauler.size();
-    		nombreColumnes = tauler.get(0).size();
+    		//tauler = new Tauler(tauler);
+    }
+    
+    public void addTauler(ArrayList<ArrayList<String>> tauler) {
+    		this.tauler = new Tauler (tauler);
     }
 
 
-    public void getNombreFiles(){
-        System.out.print(nombreFiles);
+    public int getNombreFiles(){
+        return tauler.getNombreFiles();
 
     }
 
-    public void getNombreColumnes(){
-        System.out.print(nombreColumnes);
+    public int getNombreColumnes(){
+        return tauler.getNombreColumnes();
 
     }
 }

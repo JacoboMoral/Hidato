@@ -10,14 +10,15 @@ public class Main {
         boolean exit = false;
         while (!exit){
 
-            String n = reader.next();
-            if (n.equals("exit")) exit = true;
-            if (n.equals("hidato")){
-            		System.out.println("Hidato seleccionat");
-                HidatoIO hidatoIO = new HidatoIO();
-                hidatoIO.hidatoReaderFromInput();
-                hidatoIO.hidatoWriterToOutput();
-                //Hidato hidato = new Hidato(hidatoIO.get
+        		String n = reader.next();
+        		if (n.equals("exit")) exit = true;
+        		if (n.equals("hidato")){
+        			System.out.println("Hidato seleccionat");
+        			HidatoIO hidatoIO = new HidatoIO();
+        			hidatoIO.hidatoReaderFromInput();
+        			hidatoIO.hidatoWriterToOutput();
+        			//Hidato hidato = new Hidato(hidatoIO.getTipusCella(), hidatoIO.getTipusAdjacencia(), hidatoIO.gethHdatoMatrix());
+        			//System.out.println(hidato.getNombreColumnes());
             }
         }
         reader.close();

@@ -6,7 +6,7 @@ public class HidatoIO {
     private TipusCella tipusCella;
     private int nombreFiles;
     private int nombreColumnes;
-    private ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>();
+    private ArrayList<ArrayList<String>> matrix = new ArrayList<ArrayList<String>>();
 
     public HidatoIO() {
     	
@@ -32,9 +32,10 @@ public class HidatoIO {
         for (int i = 0; i < nombreFiles; ++i) {
             line = reader.nextLine();
             values = line.split(",");
-    			ArrayList<Integer> fila = new ArrayList<Integer>();
+    			ArrayList<String> fila = new ArrayList<String>();
             for (int ii = 0; ii < nombreColumnes; ++ii){
-            		fila.add(Integer.parseInt(values[ii]));
+            	
+            		fila.add(values[ii]);            		
             }
             matrix.add(fila);
         }
@@ -60,7 +61,7 @@ public class HidatoIO {
     		return tipusAdjacencia;
     }
     
-    public ArrayList<ArrayList<Integer> > gethHdatoMatrix() {
+    public ArrayList<ArrayList<String> > gethHdatoMatrix() {
     		return matrix;
     }
 }
