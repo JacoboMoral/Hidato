@@ -3,7 +3,12 @@ public class Partida {
 	private Dificultat dificultat;
 	private int puntacio;
 	private int Date;
-	private String[][] estat;
+	private Hidato hidato;
+	boolean finalitzada;
+	
+	public Partida() {
+		finalitzada = false;
+	}
 	
 	public void checkCorrecte() {
 		
@@ -29,3 +34,20 @@ public class Partida {
 		
 	}
 }
+/*
+Q,CA,3,4
+#,1,?,#
+?,?,?,?
+7,?,9,#
+*/
+
+
+
+/*
+Q,CA,5,5
+#,#,1,#,#
+#,?,*,?,#
+8,?,?,?,3
+#,?,11,*,#
+#,#,?,#,#
+*/
