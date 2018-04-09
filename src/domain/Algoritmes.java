@@ -30,9 +30,12 @@ public class Algoritmes {
 		
         Collections.sort(list);
 		given = new int[list.size()];
+		if (given[0] != 1) return false; //comprova que sempre ens donin el primer numero (i.e. 1)
+		if (given[given.length-1] != given.length) return false; //comprova que sempre ens donin el ultimo numero
 		
         for (int i = 0; i < given.length; i++){
             given[i] = list.get(i);
+            if (i != 0 && given[i] == given[i-1]) return false; //comprova que no ens donin cap nombre repetit
         }
         
 		
@@ -46,27 +49,27 @@ public class Algoritmes {
 		return solucionador(row1, column1, 1, 0, given, matriu);
 	}
 	
-	public boolean solucionador(int r, int c, int n, int next, int[] given, int[][] Matriu_solucio) {
+	public boolean solucionador(int r, int c, int n, int next, int[] given, int[][] matriuSolucio) {
         if (n > given[given.length - 1])
-            return true;
+            return true; //s'ha arribat al final (ultim numero) sense trobar cap error
  
-        if (Matriu_solucio[r][c] != 0 && Matriu_solucio[r][c] != n)
+        if (matriuSolucio[r][c] != 0 && matriuSolucio[r][c] != n)
             return false;
  
-        if (Matriu_solucio[r][c] == 0 && given[next] == n)
+        if (matriuSolucio[r][c] == 0 && given[next] == n)
             return false;
  
-        int back = Matriu_solucio[r][c];
+        int back = matriuSolucio[r][c];
         if (back == n)
             next++;
      
-        Matriu_solucio[r][c] = n;
+        matriuSolucio[r][c] = n;
         for (int i = -1; i < 2; i++)
             for (int j = -1; j < 2; j++)
-                if (solucionador(r + i, c + j, n + 1, next, given, Matriu_solucio))
+                if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio))
                     return true;
  
-        Matriu_solucio[r][c] = back;
+        matriuSolucio[r][c] = back;
         return false;
     }
 }
