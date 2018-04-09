@@ -12,7 +12,7 @@ public class Main {
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
         boolean exit = false;
-		System.out.println("Benvingut a Hidato, per començar una nova partida, escriu [partida], per carregar una guardada, escriu [carregar], per sortir escriu [exit]");
+		System.out.println("Benvingut a Hidato, per comenï¿½ar una nova partida, escriu [partida], per carregar una guardada, escriu [carregar], per sortir escriu [exit]");
         while (!exit){
         	
 
@@ -41,7 +41,7 @@ public class Main {
         			
         		}
         		if (n.equals("partida")){
-        			System.out.println("Has seleccionat començar una nova partida, escull el tipus de partida:\n hidato autogenerat [auto] \n importar hidato [importar]");
+        			System.out.println("Has seleccionat comenÃ§ar una nova partida, escull el tipus de partida:\n hidato autogenerat [auto] \n importar hidato [importar]");
             		Partida p = new Partida();
         			n = reader.next();
             		if (n.equals("importar")){

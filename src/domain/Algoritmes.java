@@ -7,43 +7,72 @@ public class Algoritmes {
 	
 	public boolean solucionar(int[][] matriuOriginal) {
 		
-	
 		
-		int row1 = -1;
-		int column1 = -1;
+		
+		int row1 = -1; 
+		int column1 = -1; //fila i columna on es troba el numero 1
 		int [][] matriu = new int[matriuOriginal.length+2][matriuOriginal[0].length+2];
 		int[] given = null;
         List<Integer> list = new ArrayList<Integer>();		
+        int casellesNumeriques = 0;
 		
-		for (int i = 1; i < matriuOriginal.length-1; ++i) {
-			for (int j = 1; j < matriuOriginal[0].length-1; ++j) {
-				matriu[i][j] = matriuOriginal[i-1][j-1];
-				if (matriu[i][j] == 1) {
-					row1 = i;
-					column1 = j;
+		//System.out.println("Tamanys matriu original: " + matriuOriginal.length + " " + matriuOriginal[0].length);
+		//System.out.println("Tamanys matriu nova: " + matriu.length + " " + matriu[0].length);
+
+        
+		for (int i = 0; i < matriuOriginal.length; ++i) {
+			for (int j = 0; j < matriuOriginal[0].length; ++j) {
+				matriu[i+1][j+1] = matriuOriginal[i][j];
+				//System.out.println("vuelta: " + i + " " + j);
+				if (matriu[i+1][j+1] == 1) {
+					row1 = i+1;
+					column1 = j+1;
 				}
-				if (matriu[i][j] != -1 && matriu[i][j] != 0) {
-					list.add(matriu[i][j]);
+				if (matriu[i+1][j+1] != -1 && matriu[i+1][j+1] != 0) {
+					//System.out.println("Afegit a la llista el numero: " + matriu[i+1][j+1]);
+					list.add(matriu[i+1][j+1]);
+					//System.out.println("Numero afegit 100% real: " + matriu[i+1][j+1]);
+				}
+				if (matriu[i+1][j+1] != -1) {
+					casellesNumeriques++;
 				}
 			}
 		}
 		
         Collections.sort(list);
 		given = new int[list.size()];
-		if (given[0] != 1) return false; //comprova que sempre ens donin el primer numero (i.e. 1)
-		if (given[given.length-1] != given.length) return false; //comprova que sempre ens donin el ultimo numero
 		
+		//emplenar given a partir de la llista ordenada
         for (int i = 0; i < given.length; i++){
             given[i] = list.get(i);
-            if (i != 0 && given[i] == given[i-1]) return false; //comprova que no ens donin cap nombre repetit
+            if (i != 0 && given[i] == given[i-1]) {
+    				System.out.println("Hi ha repetits: " + given + "    " + given[i-1] + " " + given[i]);
+            		return false; //comprova que no ens donin cap nombre repetit
+            }
         }
+        
+        
+        /*System.out.println("given:");
+		for (int i = 0; i < given.length; ++i) {
+			System.out.println(given[i]);
+		}*/
+		
+		if (given[0] != 1) {
+			System.out.println("no ens donen el primer numero: " + given + "    " + given[0]);
+			return false; //comprova que sempre ens donin el primer numero (i.e. 1)		
+		}
+		if (given[given.length-1] != casellesNumeriques) {
+			System.out.println("no ens donen el ultimo numero: " + given[given.length-1] + "    " + casellesNumeriques);
+			return false; //comprova que sempre ens donin el ultimo numero
+		}
+        
         
 		
 		for (int x=0; x<matriu.length;  ++x){
-        	matriu[0][x] = -1;
-        	matriu[x][0] = -1;
-        	matriu[matriu.length-1][x] = -1;
-        	matriu[x][matriu.length-1] = -1;
+	        	matriu[0][x] = -1;
+	        	matriu[x][0] = -1;
+	        	matriu[matriu.length-1][x] = -1;
+	        	matriu[x][matriu.length-1] = -1;
         }
 	
 		return solucionador(row1, column1, 1, 0, given, matriu);
@@ -53,11 +82,15 @@ public class Algoritmes {
         if (n > given[given.length - 1])
             return true; //s'ha arribat al final (ultim numero) sense trobar cap error
  
-        if (matriuSolucio[r][c] != 0 && matriuSolucio[r][c] != n)
-            return false;
+        if (matriuSolucio[r][c] != 0 && matriuSolucio[r][c] != n) {
+        		System.out.println("diferent a 0 i diferent a n; value = " + matriuSolucio[r][c] + " i = " + r + " j = " + c + " n = " + n);
+            return false; 
+        }
  
-        if (matriuSolucio[r][c] == 0 && given[next] == n)
+        if (matriuSolucio[r][c] == 0 && given[next] == n) {
+        		System.out.println("diferent a 0 i given[next] = n");
             return false;
+        }
  
         int back = matriuSolucio[r][c];
         if (back == n)
