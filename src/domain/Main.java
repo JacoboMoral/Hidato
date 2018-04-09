@@ -9,7 +9,6 @@ public class Main {
     public static void main(String[] args) throws InterruptedException{
 
 
-
         Scanner reader = new Scanner(System.in);  // Reading from System.in
         boolean exit = false;
 		System.out.println("Benvingut a Hidato, per començar una nova partida, escriu [partida], per carregar una guardada, escriu [carregar], per sortir escriu [exit]");
@@ -18,6 +17,20 @@ public class Main {
 
         		String n = reader.next();
         		if (n.equals("exit")) exit = true;
+        		if (n.equals("ranking")) {
+        			Ranking r = new Ranking();
+        			Posicio pos0 = new Posicio("Jia Xiang", 10, 2018);
+        			Posicio pos1 = new Posicio("Jia Xiang2", 100, 2019);
+        			Posicio pos2 = new Posicio("Jia Xiang3", 1000, 2013);
+        			
+        			r.insertar_posicio(pos0);
+        			r.insertar_posicio(pos1);
+        			r.delete_by_nickname("Jia Xiang2");
+        			r.insertar_posicio(pos2);
+        			r.delete_by_position(0);
+        			r.print();
+        			
+        		}
         		if (n.equals("partida")){
         			System.out.println("Has seleccionat començar una nova partida, escull el tipus de partida:\n hidato autogenerat [auto] \n importar hidato [importar]");
             		Partida p = new Partida();
