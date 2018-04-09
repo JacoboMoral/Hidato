@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Ranking {
@@ -23,6 +24,17 @@ public class Ranking {
 	
 	public void delete_by_position(int index) {
 		llistaPosicions.remove(index);
+	}
+	
+	public void delete_by_date(LocalDate date) {
+		int i = 0;
+		while (i < llistaPosicions.size()) {
+			if (llistaPosicions.get(i).getDate().equals(date)) {
+				System.out.println(llistaPosicions.get(i).getDate());
+				llistaPosicions.remove(i);
+			}
+			i++;
+		}
 	}
 	
 	public void print() {

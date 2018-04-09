@@ -1,4 +1,5 @@
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -19,16 +20,24 @@ public class Main {
         		if (n.equals("exit")) exit = true;
         		if (n.equals("ranking")) {
         			Ranking r = new Ranking();
-        			Posicio pos0 = new Posicio("Jia Xiang", 10, 2018);
-        			Posicio pos1 = new Posicio("Jia Xiang2", 100, 2019);
-        			Posicio pos2 = new Posicio("Jia Xiang3", 1000, 2013);
+        			Posicio pos0 = new Posicio("Jia Xiang", 10, LocalDate.now());
+        			Posicio pos1 = new Posicio("Jia Xiang2", 100, LocalDate.now());
+        			Posicio pos2 = new Posicio("Jia Xiang3", 1000, LocalDate.now());
         			
         			r.insertar_posicio(pos0);
         			r.insertar_posicio(pos1);
-        			r.delete_by_nickname("Jia Xiang2");
         			r.insertar_posicio(pos2);
-        			r.delete_by_position(0);
+        			r.delete_by_nickname("Jia Xiang3");
+        			r.delete_by_position(1);
+        			
+        			//r.delete_by_date(LocalDate.now());
+        			
         			r.print();
+        			
+        			LocalDate date = LocalDate.now();
+        			System.out.println("Time: " + date);
+        			System.out.println("Year: " + date.getYear());
+        			
         			
         		}
         		if (n.equals("partida")){

@@ -1,15 +1,16 @@
+import java.time.LocalDate;
 
 public class Posicio {
 	private String nickname;
 	private int puntuacio;
-	private int Date;
+	private LocalDate Date;
 	
 	public Posicio() {}
 	
-	public Posicio(String nomJugador, int punts, int Date) {
+	public Posicio(String nomJugador, int punts, LocalDate date) {
 		this.nickname = nomJugador;
 		this.puntuacio = punts;
-		this.Date = Date;
+		this.Date = date;
 	}
 	
 	public String getNickname() {
@@ -19,11 +20,10 @@ public class Posicio {
 	public int getpuntacio() {
 		return puntuacio;
 	}
-	public int getDate() {
+	public LocalDate getDate() {
 		return Date;
-		
 	}
 	public void print() {
-		System.out.println("Nickname: " + this.nickname + " Puntuacio: " + this.puntuacio + " Temps: " + this.Date);
+		System.out.println("Nickname: " + this.nickname + " Puntuacio: " + this.puntuacio + " Data: " + this.Date);
 	}
 }
