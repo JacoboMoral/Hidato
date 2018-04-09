@@ -66,29 +66,38 @@ public class Algoritmes {
 			return false; //comprova que sempre ens donin el ultimo numero
 		}
         
-        
 		
 		for (int x=0; x<matriu.length;  ++x){
 	        	matriu[0][x] = -1;
 	        	matriu[x][0] = -1;
 	        	matriu[matriu.length-1][x] = -1;
-	        	matriu[x][matriu.length-1] = -1;
+	        	matriu[x][matriu[0].length-1] = -1;
         }
+		
+		/*for (int i = 0; i < matriu.length; ++i) {
+        	for (int j = 0; j < matriu[0].length; ++j) {
+        		System.out.print(matriu[i][j]+ " ");
+        	}
+        	System.out.println();
+        }*/
+		
 	
 		return solucionador(row1, column1, 1, 0, given, matriu);
+		//return false;
 	}
 	
 	public boolean solucionador(int r, int c, int n, int next, int[] given, int[][] matriuSolucio) {
-        if (n > given[given.length - 1])
-            return true; //s'ha arribat al final (ultim numero) sense trobar cap error
- 
+        if (n > given[given.length - 1]) {
+            return true; //s'ha arribat al final (ultim numero) sense trobar cap error    
+        }
+        
         if (matriuSolucio[r][c] != 0 && matriuSolucio[r][c] != n) {
         		System.out.println("diferent a 0 i diferent a n; value = " + matriuSolucio[r][c] + " i = " + r + " j = " + c + " n = " + n);
             return false; 
         }
  
         if (matriuSolucio[r][c] == 0 && given[next] == n) {
-        		System.out.println("diferent a 0 i given[next] = n");
+        		System.out.println("igual a 0 i a n");
             return false;
         }
  
@@ -103,6 +112,12 @@ public class Algoritmes {
                     return true;
  
         matriuSolucio[r][c] = back;
+        for (int i = 0; i < matriuSolucio.length; ++i) {
+        	for (int j = 0; j < matriuSolucio[0].length; ++j) {
+        		System.out.print(matriuSolucio[i][j]+ " ");
+        	}
+        	System.out.println();
+        }
         return false;
     }
 }
