@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Algoritmes {
 	
+	private int[][] matriuSolucio;
+	
 	public boolean solucionar(int[][] matriuOriginal) {
 		
 		
@@ -15,6 +17,7 @@ public class Algoritmes {
 		int[] given = null;
         List<Integer> list = new ArrayList<Integer>();		
         int casellesNumeriques = 0;
+        
 		
 		//System.out.println("Tamanys matriu original: " + matriuOriginal.length + " " + matriuOriginal[0].length);
 		//System.out.println("Tamanys matriu nova: " + matriu.length + " " + matriu[0].length);
@@ -28,12 +31,12 @@ public class Algoritmes {
 					row1 = i+1;
 					column1 = j+1;
 				}
-				if (matriu[i+1][j+1] != -1 && matriu[i+1][j+1] != 0) {
+				if (matriu[i+1][j+1] > 0) { //valor igual a un numero
 					//System.out.println("Afegit a la llista el numero: " + matriu[i+1][j+1]);
 					list.add(matriu[i+1][j+1]);
 					//System.out.println("Numero afegit 100% real: " + matriu[i+1][j+1]);
 				}
-				if (matriu[i+1][j+1] != -1) {
+				if (matriu[i+1][j+1] > -1) {
 					casellesNumeriques++;
 				}
 			}
@@ -116,7 +119,8 @@ public class Algoritmes {
 	                		}
 	                		System.out.println();
 	                }*/
-                    return true;
+                		tractarMatriuSolucio(matriuSolucio);
+                		return true;
                 }
             }
         }
@@ -130,4 +134,21 @@ public class Algoritmes {
         }*/
         return false;
     }
+	
+	private void tractarMatriuSolucio(int[][] matriu) {
+		matriuSolucio = new int[matriu.length-2][matriu[0].length-2];
+		for (int i = 1; i < matriu.length-1; ++i) {
+			for (int j = 1; j < matriu[0].length-1; ++j) {
+				matriuSolucio[i-1][j-1] = matriu[i][j];
+				
+				System.out.print(matriuSolucio[i-1][j-1]+ "   ");
+			}
+			System.out.println();
+		}
+
+	}
+
+	public int[][] getMatriuSolucio(){		
+		return this.matriuSolucio;
+	}
 }

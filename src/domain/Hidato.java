@@ -9,6 +9,7 @@ public class Hidato {
     private TipusCella tipusCella;
     private TipusAdjacencia tipusAdjacencia;
     private ArrayList<ArrayList<Casella>> matriuCaselles;
+    private int[][] matriuNumeros;
     private int nombreFiles;
     private int nombreColumnes;
     

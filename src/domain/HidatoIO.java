@@ -31,7 +31,8 @@ public class HidatoIO {
     			ArrayList<String> fila = new ArrayList<String>();
             for (int ii = 0; ii < nombreColumnes; ++ii){
             		fila.add(values[ii]);
-                	if (values[ii].equals("#") || values[ii].equals("*")) hidato[i][ii] = -1;
+                	if (values[ii].equals("#")) hidato[i][ii] = -2;
+                	else if (values[ii].equals("*")) hidato[i][ii] = -1;
                 	else if (values[ii].equals("?")) hidato[i][ii] = 0;
                 	else hidato[i][ii] = Integer.parseInt(values[ii]);        	
             }
