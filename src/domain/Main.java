@@ -18,7 +18,7 @@ public class Main {
 
         		String n = reader.next();
         		if (n.equals("exit")) exit = true;
-        		if (n.equals("ranking")) {
+        		else if (n.equals("ranking")) {
         			Ranking r = new Ranking();
         			Posicio pos0 = new Posicio("Jia Xiang", 10, LocalDate.now());
         			Posicio pos1 = new Posicio("Jia Xiang2", 100, LocalDate.now());
@@ -40,29 +40,59 @@ public class Main {
         			
         			
         		}
-        		if (n.equals("partida")){
-        			System.out.println("Has seleccionat comenÃ§ar una nova partida, escull el tipus de partida:\n hidato autogenerat [auto] \n importar hidato [importar]");
-            		Partida p = new Partida();
+        		if (n.equals("partida") && !n.equals("exit")){
+        			System.out.println("Has seleccionat començar una nova partida, escull el tipus de partida:\n hidato autogenerat [auto] \n importar hidato [importar]");
+            		//Partida p = new Partida();
         			n = reader.next();
-            		if (n.equals("importar")){
+            		if (n.equals("importar") && !n.equals("exit")){
             			HidatoIO hidatoInput = new HidatoIO();
             			System.out.println("Escriu el teu hidato amb el format estandar");
             			hidatoInput.hidatoReaderFromInput();
             			System.out.println("Hidato:");
             			int[][] hidato = hidatoInput.getHidatoMatrix();
-            			for (int i = 0; i < hidatoInput.getNombreFiles(); ++i) {
+            			/*for (int i = 0; i < hidatoInput.getNombreFiles(); ++i) {
             				for (int j = 0; j < hidatoInput.getNombreColumnes(); ++j) {
                     			System.out.print(hidato[i][j]+" ");
             				}
                 			System.out.println();
-            			}
-            			Algoritmes al = new Algoritmes();
+            			}*/
+            			/*Algoritmes al = new Algoritmes(hidato);
             			TimeUnit.MILLISECONDS.sleep(800);
-            			System.out.print(al.solucionar(hidato));
+            			System.out.print(al.solucionar()); //SHA DE COMPROVAR DINS DHIDATO*/
+            			
+            			Hidato h = new Hidato(hidatoInput.getTipusCella(), hidatoInput.getTipusAdjacencia(), hidato);
+            			Partida partida = new Partida(h);
+            			System.out.println();
+            			System.out.println();
+            			System.out.println("PARTIDA EN JOC");
+            			System.out.println("SOLUCIO DSDE PARTIDA");
+
+            			partida.demanarSolucio();
+            			
+            			System.out.println("FES MOVIMENT GOS");
+            			/*n = reader.nextLine();
+            			int i = Integer.parseInt(n);
+            			n = reader.nextLine();
+            			int j = Integer.parseInt(n);
+            			n = reader.next();
+            			int value = Integer.parseInt(n);*/
+            			
+            			Scanner scan = new Scanner(System.in);
+            			
+            			int i = scan.nextInt();
+            			int j = scan.nextInt();
+            			int value = scan.nextInt();
+            			partida.ferJugada(i, j, value);
+            			
+            			scan.close();
             			
             			while(true);
             		}
-            }
+            	
+            		else if (n.equals("autogenerar") && !n.equals("exit")) {
+            		}
+            		
+        		}    		
         		
         	
         }
