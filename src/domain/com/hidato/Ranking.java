@@ -1,8 +1,10 @@
+package com.hidato;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ranking {
-	private ArrayList<Posicio> llistaPosicions = new ArrayList<Posicio>();
+	private List<Posicio> llistaPosicions = new ArrayList<Posicio>();
 	
 	public void insertar_posicio(Posicio pos) {
 		llistaPosicions.add(pos);
@@ -42,6 +44,6 @@ public class Ranking {
 			llistaPosicions.get(i).print();
 		}
 	}
-	
+
 	
 }

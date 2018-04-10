@@ -1,9 +1,11 @@
+package com.hidato;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
@@ -23,16 +25,19 @@ public class Main {
         			Posicio pos0 = new Posicio("Jia Xiang", 10, LocalDate.now());
         			Posicio pos1 = new Posicio("Jia Xiang2", 100, LocalDate.now());
         			Posicio pos2 = new Posicio("Jia Xiang3", 1000, LocalDate.now());
+        			r.add(pos0);
+        			r.add(pos1);
+        			r.add(pos2);
+        			//r.delete_by_nickname("Jia Xiang3");
+        			//r.delete_by_position(1);
         			
-        			r.insertar_posicio(pos0);
-        			r.insertar_posicio(pos1);
-        			r.insertar_posicio(pos2);
-        			r.delete_by_nickname("Jia Xiang3");
-        			r.delete_by_position(1);
+        			Collections.sort(r, new CustomCompare().reversed());
         			
         			//r.delete_by_date(LocalDate.now());
         			
-        			r.print();
+        			r.get(0).print();
+        			r.get(1).print();
+        			r.get(2).print();
         			
         			LocalDate date = LocalDate.now();
         			System.out.println("Time: " + date);
@@ -98,6 +103,13 @@ public class Main {
         }
         reader.close();
     }
+    
+    public static class CustomCompare implements Comparator<Posicio> {
+	    @Override
+	    public int compare(Posicio p1, Posicio p2) {
+	        return Integer.compare(p1.getPuntacio(), p2.getPuntacio());
+	    }
+	}
     
 }
 

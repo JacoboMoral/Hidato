@@ -1,3 +1,4 @@
+package com.hidato;
 import java.util.Scanner;
 import java.util.ArrayList;
 

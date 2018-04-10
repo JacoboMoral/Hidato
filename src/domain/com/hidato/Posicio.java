@@ -1,3 +1,4 @@
+package com.hidato;
 import java.time.LocalDate;
 
 public class Posicio {
@@ -18,7 +19,7 @@ public class Posicio {
 		return nickname;
 		
 	}
-	public int getpuntacio() {
+	public int getPuntacio() {
 		return puntuacio;
 	}
 	public LocalDate getDate() {

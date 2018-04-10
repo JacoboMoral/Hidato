@@ -1,3 +1,4 @@
+package com.hidato;
 
 public class Partida {
 	private Dificultat dificultat;

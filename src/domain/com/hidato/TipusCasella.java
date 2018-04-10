@@ -1,3 +1,4 @@
+package com.hidato;
 
 public enum TipusCasella {
 	LIMIT,
