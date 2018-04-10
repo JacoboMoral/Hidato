@@ -25,19 +25,19 @@ public class Main {
         			Posicio pos0 = new Posicio("Jia Xiang", 10, LocalDate.now());
         			Posicio pos1 = new Posicio("Jia Xiang2", 100, LocalDate.now());
         			Posicio pos2 = new Posicio("Jia Xiang3", 1000, LocalDate.now());
-        			r.add(pos0);
+        			/*r.add(pos0);
         			r.add(pos1);
-        			r.add(pos2);
+        			r.add(pos2);*/
         			//r.delete_by_nickname("Jia Xiang3");
         			//r.delete_by_position(1);
         			
-        			Collections.sort(r, new CustomCompare().reversed());
+        			//Collections.sort(r, new CustomCompare().reversed());
         			
         			//r.delete_by_date(LocalDate.now());
         			
-        			r.get(0).print();
+        			/*r.get(0).print();
         			r.get(1).print();
-        			r.get(2).print();
+        			r.get(2).print();*/
         			
         			LocalDate date = LocalDate.now();
         			System.out.println("Time: " + date);
@@ -46,7 +46,7 @@ public class Main {
         			
         		}
         		if (n.equals("partida") && !n.equals("exit")){
-        			System.out.println("Has seleccionat començar una nova partida, escull el tipus de partida:\n hidato autogenerat [auto] \n importar hidato [importar]");
+        			System.out.println("Has seleccionat comenï¿½ar una nova partida, escull el tipus de partida:\n hidato autogenerat [auto] \n importar hidato [importar]");
             		//Partida p = new Partida();
         			n = reader.next();
             		if (n.equals("importar") && !n.equals("exit")){
@@ -82,14 +82,16 @@ public class Main {
             			n = reader.next();
             			int value = Integer.parseInt(n);*/
             			
-            			Scanner scan = new Scanner(System.in);
+            			/*Scanner scan = new Scanner(System.in);
+            			String i = scan.next();
+            			String j = scan.next();
+            			String value = scan.next();*/
             			
-            			int i = scan.nextInt();
-            			int j = scan.nextInt();
-            			int value = scan.nextInt();
-            			partida.ferJugada(i, j, value);
+            			//partida.ferJugada(i, j, value);
+            			partida.ferJugada(1, 3, 3);
+
             			
-            			scan.close();
+            			//scan.close();
             			
             			while(true);
             		}
