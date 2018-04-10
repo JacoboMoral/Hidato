@@ -10,6 +10,11 @@ public class Ranking {
 		llistaPosicions.add(pos);
 	}
 	
+	public List<Posicio> getList() {
+		return llistaPosicions;
+		
+	}
+	
 	public void delete_by_nickname(String nom) {
 		boolean trobat = false;
 		int i = 0;
@@ -39,11 +44,23 @@ public class Ranking {
 		}
 	}
 	
+	public void filter_by_nickname(String nom) {
+		int i = 0;
+		List<Posicio> aux = new ArrayList<Posicio>();
+		while (i < llistaPosicions.size()) {
+			if (llistaPosicions.get(i).getNickname().equals(nom)) {
+				aux.add(llistaPosicions.get(i));
+			}
+			i++;
+		}
+		for (int j = 0; j < aux.size(); j++) {
+			aux.get(j).print();
+		}
+	}
+	
 	public void print() {
 		for (int i = 0; i < llistaPosicions.size(); i++) {
 			llistaPosicions.get(i).print();
 		}
 	}
-
-	
 }

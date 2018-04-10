@@ -21,28 +21,34 @@ public class Main {
         		String n = reader.next();
         		if (n.equals("exit")) exit = true;
         		if (n.equals("ranking")) {
-        			List<Posicio> r = new ArrayList<Posicio>();
+        			Ranking r = new Ranking();
         			Posicio pos0 = new Posicio("Jia Xiang", 3, LocalDate.now());
         			Posicio pos1 = new Posicio("Jia Xiang2", 4, LocalDate.now());
         			Posicio pos2 = new Posicio("Jia Xiang3", 7, LocalDate.now());
+        			Posicio pos3 = new Posicio("Jia Xiang3", 213, LocalDate.now());
+        			Posicio pos4 = new Posicio("Jia Xiang3", 143, LocalDate.now());
+        			Posicio pos5 = new Posicio("Jia Xiang3", 743, LocalDate.now());
         			
-        			r.add(pos0);
-        			r.add(pos1);
-        			r.add(pos2);
+        			
+        			r.insertar_posicio(pos0);
+        			r.insertar_posicio(pos1);
+        			r.insertar_posicio(pos2); r.insertar_posicio(pos3); r.insertar_posicio(pos4); r.insertar_posicio(pos5);
+        			
         			//r.delete_by_nickname("Jia Xiang3");
         			//r.delete_by_position(1);
         			
-        			Collections.sort(r, new CustomCompare().reversed());
+        			Collections.sort(r.getList(), new CustomCompare().reversed());
         			
         			//r.delete_by_date(LocalDate.now());
         			
-        			r.get(0).print();
-        			r.get(1).print();
-        			r.get(2).print();
         			
-        			LocalDate date = LocalDate.now();
+        			r.print();
+        			
+        			r.filter_by_nickname("Jia Xiang3");
+        		
+        			/*LocalDate date = LocalDate.now();
         			System.out.println("Time: " + date);
-        			System.out.println("Year: " + date.getYear());
+        			System.out.println("Year: " + date.getYear());*/
         			
         			
         		}
@@ -83,15 +89,6 @@ public class Main {
 	}
     
 }
-
-
-
-
-
-
-
-
-
 
 
 
