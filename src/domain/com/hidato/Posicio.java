@@ -19,7 +19,7 @@ public class Posicio {
 		return nickname;
 		
 	}
-	public int getpuntacio() {
+	public int getPuntacio() {
 		return puntuacio;
 	}
 	public LocalDate getDate() {
