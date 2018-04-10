@@ -16,34 +16,41 @@ public class Main {
         boolean exit = false;
 		System.out.println("Benvingut a Hidato, per comen�ar una nova partida, escriu [partida], per carregar una guardada, escriu [carregar], per sortir escriu [exit]");
         while (!exit){
-        	
+
 
         		String n = reader.next();
         		if (n.equals("exit")) exit = true;
-        		else if (n.equals("ranking")) {
+        		if (n.equals("ranking")) {
         			Ranking r = new Ranking();
-        			Posicio pos0 = new Posicio("Jia Xiang", 10, LocalDate.now());
-        			Posicio pos1 = new Posicio("Jia Xiang2", 100, LocalDate.now());
-        			Posicio pos2 = new Posicio("Jia Xiang3", 1000, LocalDate.now());
-        			/*r.add(pos0);
-        			r.add(pos1);
-        			r.add(pos2);*/
+        			Posicio pos0 = new Posicio("Jia Xiang", 3, LocalDate.now());
+        			Posicio pos1 = new Posicio("Jia Xiang2", 4, LocalDate.now());
+        			Posicio pos2 = new Posicio("Jia Xiang3", 7, LocalDate.now());
+        			Posicio pos3 = new Posicio("Jia Xiang3", 213, LocalDate.now());
+        			Posicio pos4 = new Posicio("Jia Xiang3", 143, LocalDate.now());
+        			Posicio pos5 = new Posicio("Jia Xiang3", 743, LocalDate.now());
+
+
+        			r.insertar_posicio(pos0);
+        			r.insertar_posicio(pos1);
+        			r.insertar_posicio(pos2); r.insertar_posicio(pos3); r.insertar_posicio(pos4); r.insertar_posicio(pos5);
+
         			//r.delete_by_nickname("Jia Xiang3");
         			//r.delete_by_position(1);
-        			
-        			//Collections.sort(r, new CustomCompare().reversed());
-        			
+
+        			Collections.sort(r.getList(), new CustomCompare().reversed());
+
         			//r.delete_by_date(LocalDate.now());
-        			
-        			/*r.get(0).print();
-        			r.get(1).print();
-        			r.get(2).print();*/
-        			
-        			LocalDate date = LocalDate.now();
+
+
+        			r.print();
+
+        			r.filter_by_nickname("Jia Xiang3");
+
+        			/*LocalDate date = LocalDate.now();
         			System.out.println("Time: " + date);
-        			System.out.println("Year: " + date.getYear());
-        			
-        			
+        			System.out.println("Year: " + date.getYear());*/
+
+
         		}
         		if (n.equals("partida") && !n.equals("exit")){
         			System.out.println("Has seleccionat comen�ar una nova partida, escull el tipus de partida:\n hidato autogenerat [auto] \n importar hidato [importar]");
@@ -64,7 +71,7 @@ public class Main {
             			/*Algoritmes al = new Algoritmes(hidato);
             			TimeUnit.MILLISECONDS.sleep(800);
             			System.out.print(al.solucionar()); //SHA DE COMPROVAR DINS DHIDATO*/
-            			
+
             			Hidato h = new Hidato(hidatoInput.getTipusCella(), hidatoInput.getTipusAdjacencia(), hidato);
             			Partida partida = new Partida(h);
             			System.out.println();
@@ -73,7 +80,7 @@ public class Main {
             			System.out.println("SOLUCIO DSDE PARTIDA");
 
             			partida.demanarSolucio();
-            			
+
             			System.out.println("FES MOVIMENT GOS");
             			/*n = reader.nextLine();
             			int i = Integer.parseInt(n);
@@ -81,48 +88,39 @@ public class Main {
             			int j = Integer.parseInt(n);
             			n = reader.next();
             			int value = Integer.parseInt(n);*/
-            			
+
             			/*Scanner scan = new Scanner(System.in);
             			String i = scan.next();
             			String j = scan.next();
             			String value = scan.next();*/
-            			
+
             			//partida.ferJugada(i, j, value);
             			partida.ferJugada(1, 3, 3);
 
-            			
+
             			//scan.close();
-            			
+
             			while(true);
             		}
-            	
+
             		else if (n.equals("autogenerar") && !n.equals("exit")) {
             		}
-            		
-        		}    		
-        		
-        	
+
+        		}
+
+
         }
         reader.close();
     }
-    
+
     public static class CustomCompare implements Comparator<Posicio> {
 	    @Override
 	    public int compare(Posicio p1, Posicio p2) {
 	        return Integer.compare(p1.getPuntacio(), p2.getPuntacio());
 	    }
 	}
-    
+
 }
-
-
-
-
-
-
-
-
-
 
 
 

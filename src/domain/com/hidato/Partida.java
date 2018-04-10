@@ -26,7 +26,7 @@ public class Partida {
 	// i = 0 j = 0 es possible!!!!!!!!!!!!!!!!
 	public void ferJugada(int i, int j, int value) {
 		if (hidato.movimentAMatriuHidato(i, j, value)) hidato.imprimirMatriuHidato();
-		else System.out.println("Moviment no vàlid");
+		else System.out.println("Moviment no v¨¤lid");
 	}
 	
 	public void demanarPista() {
@@ -112,5 +112,5 @@ Q,CA,8,8
 #,#,#,#,?,7,?,?
 #,#,#,#,#,#,5,?
 
-FALSE
+TRUE
 */
