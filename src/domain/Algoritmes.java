@@ -106,18 +106,28 @@ public class Algoritmes {
             next++;
      
         matriuSolucio[r][c] = n;
-        for (int i = -1; i < 2; i++)
-            for (int j = -1; j < 2; j++)
-                if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio))
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio)) {
+                
+	                	/*for (int ii = 0; ii < matriuSolucio.length; ++ii) {
+	                		for (int jj = 0; jj < matriuSolucio[0].length; ++jj) {
+	                			System.out.print(matriuSolucio[ii][jj]+ " ");
+	                		}
+	                		System.out.println();
+	                }*/
                     return true;
+                }
+            }
+        }
  
         matriuSolucio[r][c] = back;
-        for (int i = 0; i < matriuSolucio.length; ++i) {
-        	for (int j = 0; j < matriuSolucio[0].length; ++j) {
-        		System.out.print(matriuSolucio[i][j]+ " ");
+        /*for (int i = 0; i < matriuSolucio.length; ++i) {
+        		for (int j = 0; j < matriuSolucio[0].length; ++j) {
+        			System.out.print(matriuSolucio[i][j]+ " ");
         	}
         	System.out.println();
-        }
+        }*/
         return false;
     }
 }
