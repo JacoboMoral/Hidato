@@ -14,7 +14,7 @@ public class Main {
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
         boolean exit = false;
-		System.out.println("Benvingut a Hidato, per comen�ar una nova partida, escriu [partida], per carregar una guardada, escriu [carregar], per sortir escriu [exit]");
+		System.out.println("Benvingut a Hidato, per comenï¿½ar una nova partida, escriu [partida], per carregar una guardada, escriu [carregar], per sortir escriu [exit]");
         while (!exit){
 
 
@@ -53,7 +53,7 @@ public class Main {
 
         		}
         		if (n.equals("partida") && !n.equals("exit")){
-        			System.out.println("Has seleccionat comen�ar una nova partida, escull el tipus de partida:\n hidato autogenerat [auto] \n importar hidato [importar]");
+        			System.out.println("Has seleccionat començar una nova partida, escull el tipus de partida:\n hidato autogenerat [auto] \n importar hidato [importar]");
             		//Partida p = new Partida();
         			n = reader.next();
             		if (n.equals("importar") && !n.equals("exit")){
@@ -77,7 +77,6 @@ public class Main {
             			System.out.println();
             			System.out.println();
             			System.out.println("PARTIDA EN JOC");
-            			System.out.println("SOLUCIO DSDE PARTIDA");
 
             			partida.demanarSolucio();
 
@@ -95,7 +94,7 @@ public class Main {
             			String value = scan.next();*/
 
             			//partida.ferJugada(i, j, value);
-            			partida.ferJugada(1, 3, 3);
+            			partida.ferJugada(1, 2, 2);
 
 
             			//scan.close();

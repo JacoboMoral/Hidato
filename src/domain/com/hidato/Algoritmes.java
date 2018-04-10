@@ -101,12 +101,12 @@ public class Algoritmes {
         }
         
         if (matriuSolucio[r][c] != 0 && matriuSolucio[r][c] != n) {
-        		System.out.println("diferent a 0 i diferent a n; value = " + matriuSolucio[r][c] + " i = " + r + " j = " + c + " n = " + n);
+        		//System.out.println("diferent a 0 i diferent a n; value = " + matriuSolucio[r][c] + " i = " + r + " j = " + c + " n = " + n);
             return false; 
         }
  
         if (matriuSolucio[r][c] == 0 && given[next] == n) {
-        		System.out.println("igual a 0 i a n");
+        		//System.out.println("igual a 0 i a n");
             return false;
         }
  
@@ -143,13 +143,15 @@ public class Algoritmes {
 	
 	private void tractarMatriuSolucio(int[][] matriu) {
 		matriuSolucio = new int[matriu.length-2][matriu[0].length-2];
+		System.out.println("solucio del hidato [algoritmes.tractarMatriuSolucio]:");
 		for (int i = 1; i < matriu.length-1; ++i) {
 			for (int j = 1; j < matriu[0].length-1; ++j) {
 				matriuSolucio[i-1][j-1] = matriu[i][j];
 				
 				System.out.print(matriuSolucio[i-1][j-1]+ "   ");
 			}
-			System.out.println("fins aqui matriu solucio desde algoritmes");
+			//System.out.println("fins aqui matriu solucio desde algoritmes");
+			System.out.println();
 		}
 
 	}

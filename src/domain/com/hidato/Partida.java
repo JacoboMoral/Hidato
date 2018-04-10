@@ -26,7 +26,7 @@ public class Partida {
 	// i = 0 j = 0 es possible!!!!!!!!!!!!!!!!
 	public void ferJugada(int i, int j, int value) {
 		if (hidato.movimentAMatriuHidato(i, j, value)) hidato.imprimirMatriuHidato();
-		else System.out.println("Moviment no v¨¤lid");
+		else System.out.println("Moviment no valid");
 	}
 	
 	public void demanarPista() {
@@ -35,15 +35,19 @@ public class Partida {
 	public void demanarSolucio() {
 
 		solucioHidato = hidato.getSolucioHidato();
-		System.out.println("hola");
-		System.out.println(hidato.getNombreFiles() + " " + hidato.getNombreColumnes());
-		for(int i = 0; i < hidato.getNombreFiles(); ++i) {
+		//System.out.println("hola");
+		//System.out.println(hidato.getNombreFiles() + " " + hidato.getNombreColumnes());
+		
+		
+		/*for(int i = 0; i < hidato.getNombreFiles(); ++i) {
 			System.out.println(i);
 			for(int j = 0; j < hidato.getNombreColumnes(); ++j) {
 				System.out.print(solucioHidato[i][j]);
 			}
 		}
-		System.out.println("fins aqui matriu solucio de partida");
+		System.out.println("fins aqui matriu solucio de partida");*/
+		
+		
 		finalitzada = true;
 	}
 	public void reprendrePartida() {
