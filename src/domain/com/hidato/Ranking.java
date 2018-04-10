@@ -11,8 +11,7 @@ public class Ranking {
 	}
 	
 	public List<Posicio> getList() {
-		return llistaPosicions;
-		
+		return llistaPosicions;	
 	}
 	
 	public void delete_by_nickname(String nom) {
@@ -57,6 +56,7 @@ public class Ranking {
 			aux.get(j).print();
 		}
 	}
+	
 	
 	public void print() {
 		for (int i = 0; i < llistaPosicions.size(); i++) {

@@ -9,6 +9,7 @@ public class HidatoIO {
     private int nombreColumnes;
     private ArrayList<ArrayList<String>> matrix = new ArrayList<ArrayList<String>>();
 	int[][] hidato;
+	
     public void hidatoReaderFromInput(){
         Scanner reader = new Scanner(System.in);
         String line = reader.nextLine();
@@ -42,8 +43,13 @@ public class HidatoIO {
         reader.close();
     }
 
-    public void hidatoWriterToOutput(){
-        System.out.println(matrix);
+    public void writeHidatoToOutput(int[][] matrix){
+    	for (int i = 0; i < matrix.length; ++i) {
+    		for (int j = 0; j < matrix[0].length; ++j) {
+    	        System.out.print(matrix[i][j]+ "  ");
+    		}
+    		System.out.println();
+    	}
     }
     
     public int getNombreFiles() {

@@ -7,8 +7,13 @@ import java.util.List;
 public class Algoritmes {
 	
 	private int[][] matriuSolucio;
+	private int[][] matriuOriginal;
 	
-	public boolean solucionar(int[][] matriuOriginal) {
+	public Algoritmes(int[][] matriuOriginal) {
+		this.matriuOriginal = matriuOriginal;
+	}
+	
+	public boolean solucionar() {
 		
 		
 		
@@ -120,7 +125,7 @@ public class Algoritmes {
 	                		}
 	                		System.out.println();
 	                }*/
-                		tractarMatriuSolucio(matriuSolucio);
+                		if(n == 1) tractarMatriuSolucio(matriuSolucio);
                 		return true;
                 }
             }
@@ -144,12 +149,16 @@ public class Algoritmes {
 				
 				System.out.print(matriuSolucio[i-1][j-1]+ "   ");
 			}
-			System.out.println();
+			System.out.println("fins aqui matriu solucio desde algoritmes");
 		}
 
 	}
 
 	public int[][] getMatriuSolucio(){		
 		return this.matriuSolucio;
+	}
+
+	public Dificultat obtenirDificultat() {
+		return null;
 	}
 }

@@ -6,14 +6,15 @@ public class Partida {
 	private int Date;
 	private Hidato hidato;
 	boolean finalitzada;
+	int[][] solucioHidato;
 	
-	public Partida() {
+	public Partida(Hidato hidato) {
+		this.hidato = hidato;
+		dificultat = hidato.getDificultat();
 		finalitzada = false;
 	}
 	
-	public void checkCorrecte() {
-		
-	}
+	
 	
 	public void acabarPartida() {
 			
@@ -22,14 +23,28 @@ public class Partida {
 	public void reset() {
 		
 	}
-	public void ferJugada() {
-			
+	// i = 0 j = 0 es possible!!!!!!!!!!!!!!!!
+	public void ferJugada(int i, int j, int value) {
+		if (hidato.movimentAMatriuHidato(i, j, value)) hidato.imprimirMatriuHidato();
+		else System.out.println("Moviment no v¨¤lid");
 	}
+	
 	public void demanarPista() {
 		
 	}
 	public void demanarSolucio() {
-		
+
+		solucioHidato = hidato.getSolucioHidato();
+		System.out.println("hola");
+		System.out.println(hidato.getNombreFiles() + " " + hidato.getNombreColumnes());
+		for(int i = 0; i < hidato.getNombreFiles(); ++i) {
+			System.out.println(i);
+			for(int j = 0; j < hidato.getNombreColumnes(); ++j) {
+				System.out.print(solucioHidato[i][j]);
+			}
+		}
+		System.out.println("fins aqui matriu solucio de partida");
+		finalitzada = true;
 	}
 	public void reprendrePartida() {
 		
