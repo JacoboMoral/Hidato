@@ -1,3 +1,4 @@
+package com.hidato;
 import java.time.LocalDate;
 
 public class Posicio {
