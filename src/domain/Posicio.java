@@ -5,6 +5,7 @@ public class Posicio {
 	private int puntuacio;
 	private LocalDate Date;
 	
+	
 	public Posicio() {}
 	
 	public Posicio(String nomJugador, int punts, LocalDate date) {
