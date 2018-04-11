@@ -40,7 +40,7 @@ public class Hidato {
     	
     	for(int ii = i - 1; ii < i + 2; ++ii) {
     		for(int jj = j - 1; jj < j + 2; ++jj) {
-    			if(estaDintreElsLimits(i, j)) {
+    			if(estaDintreElsLimits(ii, jj)) {
     				if (Math.abs(matriuHidato[ii][jj] - value) == 1 ) {
     					return true;
     				}
