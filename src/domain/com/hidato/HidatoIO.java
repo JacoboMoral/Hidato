@@ -1,74 +1,90 @@
 package com.hidato;
 import java.util.Scanner;
-import java.util.ArrayList;
 
-public class HidatoIO {
-    private TipusAdjacencia tipusAdjacencia;
-    private TipusCella tipusCella;
-    private int nombreFiles;
-    private int nombreColumnes;
-    private ArrayList<ArrayList<String>> matrix = new ArrayList<ArrayList<String>>();
-	int[][] hidato;
-	
-    public void hidatoReaderFromInput(){
+//"static" class
+public final class HidatoIO {
+
+    public static int[][] readHidatoFromInput(){
         Scanner reader = new Scanner(System.in);
         String line = reader.nextLine();
         String[] values = line.split(",");
+        
+        int nombreFiles = Integer.parseInt(values[2]);
+        int nombreColumnes = Integer.parseInt(values[3]);
+        int[][] hidato = new int[nombreFiles+1][nombreColumnes];
 
-        if (values[0] == "Q") tipusCella = TipusCella.QUADRAT;
-        else if (values[0] == "T") tipusCella = TipusCella.TRIANGLE;
-        else tipusCella = TipusCella.HEXAGON;
+        
+        if (values[0] == "Q") hidato[0][0] = 4;
+        else if (values[0] == "T") hidato[0][0] = 3;
+        else hidato[0][0] = 6;
 
-        if (values[1] == "C") tipusAdjacencia = TipusAdjacencia.COSTATS;
-        else if (values[1] == "V") tipusAdjacencia = TipusAdjacencia.VERTEXS;
-        else tipusAdjacencia = TipusAdjacencia.VERTEXS;
+        if (values[1] == "C") hidato[0][1] = 1;
+        else if (values[1] == "V") hidato[0][1] = 2;
+        else hidato[0][1] = 3;
 
-        nombreFiles = Integer.parseInt(values[2]);
-        nombreColumnes = Integer.parseInt(values[3]);
-        hidato = new int[nombreFiles][nombreColumnes];
-
-        for (int i = 0; i < nombreFiles; ++i) {
+        hidato[0][2] = nombreFiles;
+        hidato[0][3] = nombreColumnes;
+        
+        for (int i = 1; i < nombreFiles+1; ++i) {
             line = reader.nextLine();
             values = line.split(",");
-    			ArrayList<String> fila = new ArrayList<String>();
-            for (int ii = 0; ii < nombreColumnes; ++ii){
-            		fila.add(values[ii]);
-                	if (values[ii].equals("#")) hidato[i][ii] = -2;
-                	else if (values[ii].equals("*")) hidato[i][ii] = -1;
-                	else if (values[ii].equals("?")) hidato[i][ii] = 0;
-                	else hidato[i][ii] = Integer.parseInt(values[ii]);        	
+            for (int j = 0; j < nombreColumnes; ++j){
+                	if (values[j].equals("#")) hidato[i][j] = -2;
+                	else if (values[j].equals("*")) hidato[i][j] = -1;
+                	else if (values[j].equals("?")) hidato[i][j] = 0;
+                	else hidato[i][j] = Integer.parseInt(values[j]);        	
             }
-            matrix.add(fila);
         }
-        reader.close();
+        return hidato;
     }
 
-    public void writeHidatoToOutput(int[][] matrix){
+    
+    public static void writeHidatoMatrixToOutput(int[][] matrix){
+    	System.out.println();
     	for (int i = 0; i < matrix.length; ++i) {
     		for (int j = 0; j < matrix[0].length; ++j) {
-    	        System.out.print(matrix[i][j]+ "  ");
+    			if (matrix[i][j] > 9) System.out.print(matrix[i][j]);
+    			else if (matrix[i][j] > 0) System.out.print(" " + matrix[i][j]);
+    			else if (matrix[i][j] == 0) System.out.print("__");
+    			else if (matrix[i][j] == -1) System.out.print("**");
+    			else System.out.print("##");
+    			if (j != matrix[0].length - 1) System.out.print("  ");
     		}
     		System.out.println();
+    		System.out.println();
+
     	}
     }
     
-    public int getNombreFiles() {
-    		return nombreFiles;
-    }
-    
-    public int getNombreColumnes() {
-    		return nombreColumnes;
-    }
-    
-    public TipusCella getTipusCella() {
-    		return tipusCella;
-    }
-    
-    public TipusAdjacencia getTipusAdjacencia() {
-    		return tipusAdjacencia;
-    }
-    
-    public int[][] getHidatoMatrix() {
-    		return hidato;
+    public static void writeHidatoMatrixToOutputWithGrid(int[][] matrix){
+    	System.out.println();
+    	System.out.print("      ");
+    	if (matrix.length > 8) System.out.print(" ");
+    	for (int i = 0; i < matrix[0].length; ++i) {
+    		if (i == 0) System.out.print(" " + 1);
+    		else {
+    			if (i < 9) System.out.print("   "+(i+1));
+    			else System.out.print(i+1);
+    		}
+    		
+    	}
+    	
+    	System.out.println();
+    	System.out.println();
+    	System.out.println();
+
+    	for (int i = 0; i < matrix.length; ++i) {
+    		for (int j = 0; j < matrix[0].length; ++j) {
+    			if (j == 0) System.out.print((i+1) + "     ");
+    			if (matrix[i][j] > 9) System.out.print(matrix[i][j]);
+    			else if (matrix[i][j] > 0) System.out.print(" " + matrix[i][j]);
+    			else if (matrix[i][j] == 0) System.out.print("__");
+    			else if (matrix[i][j] == -1) System.out.print("**");
+    			else System.out.print("##");
+    			if (j != matrix[0].length - 1) System.out.print("  ");
+    		}
+    		System.out.println();
+    		System.out.println();
+    	}
     }
 }

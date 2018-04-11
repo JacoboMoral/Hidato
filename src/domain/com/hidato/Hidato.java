@@ -1,56 +1,46 @@
 package com.hidato;
-import java.util.ArrayList;
 
-
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.Vector;
 
 public class Hidato {
 
     private TipusCella tipusCella;
     private TipusAdjacencia tipusAdjacencia;
+    private Dificultat dificultat;
+    
     private int nombreFiles;
     private int nombreColumnes;
+    
     private int[][] matriuHidato;
-    private Dificultat dificultat;
+    private int[][] matriuOriginal;
+    private int[][] matriuSolucio;
+    
+    private Vector<Integer> nombresEscrits;
     private Algoritmes al;
-    private int[][] hidatoOriginal;
-    private int[][] solucioHidato;
     
 
-    public Hidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriu){
-    		this.tipusAdjacencia = tipusAdjacencia;
-    		this.tipusCella = tipusCella;
-    		nombreFiles = matriu.length;
-    		nombreColumnes = matriu[0].length;
-    		/*
-    		for (int i = 0; i < nombreFiles; ++i) {
-    			for (int j = 0; j < nombreColumnes; ++j) {
-    				/*Casella c = new Casella(); 
-    				if (matriu[i][j] == -2) c.setTipus(TipusCasella.LIMIT);
-    				else if (matriu[i][j] == -1) c.setTipus(TipusCasella.FORAT);
-    				else if (matriu[i][j] == 0) c.setTipus(TipusCasella.BUIT);
-    				else {
-    					c.setTipus(TipusCasella.VALOR, matriu[i][j]);
-    				}
-    			}
-    		}
-    		*/
-    		matriuHidato = hidatoOriginal = matriu;
-    		//HidatoIO io = new HidatoIO();
-    		//io.writeHidatoToOutput(matriuHidato);
-    		al = new Algoritmes(matriuHidato);
-    		System.out.println(al.solucionar()); //CANVIAR: SHA DE COMPROBAR QUE ES PUGUI SOLUCIONAR
-    		this.dificultat = al.obtenirDificultat();
+    public Hidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriu) throws Exception{
+		al = new Algoritmes(matriu);
+		if (!al.solucionar()) throw new Exception("El hidato escollit no es pot solucionar");
+		nombresEscrits = al.getGiven();
+		this.tipusAdjacencia = tipusAdjacencia;
+		this.tipusCella = tipusCella;
+		nombreFiles = matriu.length;
+		nombreColumnes = matriu[0].length;
+		matriuHidato = matriuOriginal = matriu;
+		matriuSolucio = al.getMatriuSolucio();
+		this.dificultat = al.obtenirDificultat();
     		
     }
     
     //NOMES EN CAS de moment
     private boolean comprovarMoviment(int i, int j, int value) {
+    	
+    	if (estaRepetit(value)) return false;
+    	
     	for(int ii = i - 1; ii < i + 2; ++ii) {
     		for(int jj = j - 1; jj < j + 2; ++jj) {
     			if(estaDintreElsLimits(i, j)) {
-    				System.out.println("i: " + i + "    j: " + j + "    ii: " + ii + "   jj: " + jj + "    value: " + matriuHidato[ii][jj]);
     				if (Math.abs(matriuHidato[ii][jj] - value) == 1 ) {
     					return true;
     				}
@@ -60,13 +50,18 @@ public class Hidato {
     	return false;
     }
 
+	private boolean estaRepetit(int value) {
+		return nombresEscrits.contains(value);
+	}
+
 	private boolean estaDintreElsLimits(int i, int j) {
 		return i >= 0 && i < matriuHidato.length && j >= 0 && j < matriuHidato[0].length;
 	}
     
-    public boolean movimentAMatriuHidato(int i, int j, int value) {
+    public boolean moviment(int i, int j, int value) {
     	if(comprovarMoviment(i, j, value)) {
     		matriuHidato[i][j] = value;
+    		nombresEscrits.add(value);
     		return true;
     	} 
     	else return false;
@@ -86,27 +81,23 @@ public class Hidato {
 		return dificultat;
 	}
 	
-	public int[][] getSolucioHidato(){
-		
-		//MEJORAR EFICIENCIA, GUARDAR LA PRIMERA VEZ
-		
-		solucioHidato = al.getMatriuSolucio();
-		/*for(int i = 0; i < matriuHidato.length; ++i) {
-			for(int j = 0; j < matriuHidato[0].length; ++j) {
-				System.out.print(matriuHidato[i][j] + " ");
-			}
-			System.out.println();
-		}*/
-		return solucioHidato;
+	
+	public int[][] getMatriu(){
+		return matriuHidato;
 	}
 	
-	public void imprimirMatriuHidato() {
-		for(int i = 0; i < matriuHidato.length; ++i) {
-			for(int j = 0; j < matriuHidato[0].length; ++j) {
-				System.out.print(matriuHidato[i][j] + " ");
-			}
-			System.out.println();
-		}
+	public int[][] getMatriuOriginal(){
+		return matriuOriginal;
 	}
+	
+	public void matriuOriginal() {
+		matriuHidato = matriuOriginal;
+	}
+
+	
+	public int[][] getSolucio(){
+		return matriuSolucio;
+	}
+
 
 }
