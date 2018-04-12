@@ -113,7 +113,9 @@ public class Algoritmes {
 		else if (tipusCella == TipusCella.HEXAGON) {											//H C
 			for (int i = -1; i < 2; i++) {
 				for (int j = -1; j < 2; j++) {
-					if ( (Math.abs(i + j) == 1) || ((Math.abs(j-i) == 2) && (i%2 != 0)) || ((Math.abs(j-i) == 0) && (i%2 == 0)) ) {
+					if ( (Math.abs(i + j) == 1) || (((j == -1 && i == 1) || (j==1 && i == -1)) && (r%2 == 0)) || (((j == -1 && i == -1) || (j==1 && i == 1)) && (r%2 != 0)) ) {
+						//HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
+						System.out.println(matriuSolucio[r][c]+ " " + " " + r + " " + c);
 						if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio)) {
 							if(n == 1) tractarMatriuSolucio(matriuSolucio);
 							return true;

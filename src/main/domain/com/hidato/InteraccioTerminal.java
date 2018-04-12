@@ -13,7 +13,7 @@ import main.domain.com.hidato.InteraccioTerminal.CustomCompare;
 public class InteraccioTerminal {
 	
 	private ControladorDomini controladorDomini;
-	String status;
+	String status = "start";
 	
 	public static class CustomCompare implements Comparator<Posicio> {
 	    @Override
@@ -29,7 +29,7 @@ public class InteraccioTerminal {
 	}
 
 	public void interactuar(String req) {
-		if (req.equals("partida")) {
+		if (req.equals("partida") && status.equals("start")) {
 			partida();
 			status = "partida";
 			interactuar(readLine());
@@ -104,12 +104,11 @@ public class InteraccioTerminal {
 
 	private void importar() {
 		System.out.println("\nEscriu el teu hidato per pantalla seguint el format estandar\n\n");
-		int[] capcaleraHidato = new int[4];
-		capcaleraHidato = HidatoIO.readCapcaleraHidatoFromInput();
-		int[][] entradaHidato = HidatoIO.readHidatoFromInput(capcaleraHidato[2], capcaleraHidato[3]);
+		ArrayList<ArrayList<Integer>> entradaHidato = HidatoIO.readHidatoFromInput();
 		int[][] matriuHidato = extreuMatriuHidato(entradaHidato);
-		TipusCella tipusCella = extreuTipusCella(capcaleraHidato);
-		TipusAdjacencia tipusAdjacencia = extreuTipusAdjacencia(capcaleraHidato);
+		HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
+		TipusCella tipusCella = extreuTipusCella(entradaHidato);
+		TipusAdjacencia tipusAdjacencia = extreuTipusAdjacencia(entradaHidato);
 		
 		if (tipusNoCompatible(tipusCella, tipusAdjacencia)) {
 			System.out.println("Tipus de cella i tipus de adjacencia no son compatibles, torna-ho a intentar");
@@ -167,25 +166,26 @@ public class InteraccioTerminal {
 		return req;
 	}
 	
-	private int[][] extreuMatriuHidato(int[][] matriu) {
-		int[][] matriuHidato = new int[matriu.length-1][matriu[1].length];
-		for (int i = 0; i < matriu.length-1; ++i) {
-			for (int j = 0; j < matriu[1].length; ++j) {
-				matriuHidato[i][j] = matriu[i+1][j];
+	private int[][] extreuMatriuHidato(ArrayList<ArrayList<Integer>> matriu) {
+		int[][] matriuHidato = new int[matriu.size()-1][matriu.get(1).size()];
+		for (int i = 0; i < matriuHidato.length; ++i) {
+			for (int j = 0; j < matriuHidato[1].length; ++j) {
+				matriuHidato[i][j] = matriu.get(i+1).get(j);
 			}
 		}
 		return matriuHidato;
 	}
 
-	private TipusAdjacencia extreuTipusAdjacencia(int[] array) {
-	        if (array[1] == 1) return TipusAdjacencia.COSTATS;
-	        return TipusAdjacencia.COSTATSIANGLES;
+	private TipusAdjacencia extreuTipusAdjacencia(ArrayList<ArrayList<Integer>> matriu) {
+		if (matriu.get(0).get(1) == 1) return TipusAdjacencia.COSTATS;
+		return TipusAdjacencia.COSTATSIANGLES;
 	}
 
-	private TipusCella extreuTipusCella(int[] array) {
-		 if (array[0] == 4) return TipusCella.QUADRAT;
-	     if (array[0] == 3) return TipusCella.TRIANGLE;
-	     return TipusCella.HEXAGON;
+	private TipusCella extreuTipusCella(ArrayList<ArrayList<Integer>> matriu) {
+		int aux = matriu.get(0).get(0);
+		if (aux == 4) return TipusCella.QUADRAT;
+		if (aux == 3) return TipusCella.TRIANGLE;
+		return TipusCella.HEXAGON;
 	}
 }
 

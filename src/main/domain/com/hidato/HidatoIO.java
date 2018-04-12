@@ -1,4 +1,5 @@
 package main.domain.com.hidato;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -6,45 +7,40 @@ import java.util.Vector;
 public final class HidatoIO {
 
 	
-	
-	public static int[] readCapcaleraHidatoFromInput() {
-		Scanner reader = new Scanner(System.in);
-        String line = reader.nextLine();
-        String[] values = line.split(",");
-        
-        int nombreFiles = Integer.parseInt(values[2]);
-        int nombreColumnes = Integer.parseInt(values[3]);
-        int[] array = new int[4];
-        
-        if (values[0].equals("Q")) array[0] = 4;
-        else if (values[0].equals("T")) array[0] = 3;
-        else array[0] = 6;
-
-        if (values[1].equals("C")) array[1] = 1;
-        else array[1] = 2;
-
-        array[2] = nombreFiles;
-        array[3] = nombreColumnes;
-        return array;
-	}
-	
-    public static int[][] readHidatoFromInput(int nombreFiles, int nombreColumnes){
+    public static ArrayList<ArrayList<Integer>> readHidatoFromInput(){
 
     	Scanner reader = new Scanner(System.in);
         String line = reader.nextLine();
         String[] values = line.split(",");
         
-        int[][] hidato = new int[nombreFiles][nombreColumnes];
+        int nombreFiles = Integer.parseInt(values[2]);
+        int nombreColumnes = Integer.parseInt(values[3]);
         
-        for (int i = 1; i < nombreFiles+1; ++i) {
+        ArrayList<ArrayList<Integer>> hidato = new ArrayList<ArrayList<Integer>>();
+        ArrayList<Integer> auxLine = new ArrayList<Integer>();
+        
+        if (values[0].equals("Q")) auxLine.add(4);
+        else if (values[0].equals("T")) auxLine.add(3);
+        else auxLine.add(6);
+
+        if (values[1].equals("C")) auxLine.add(1);
+        else auxLine.add(2);
+
+        auxLine.add(nombreFiles);
+        auxLine.add(nombreColumnes);
+        hidato.add(auxLine);
+        
+        for (int i = 0; i < nombreFiles; ++i) {
             line = reader.nextLine();
             values = line.split(",");
+            auxLine = new ArrayList<Integer>();
             for (int j = 0; j < nombreColumnes; ++j){
-                	if (values[j].equals("#")) hidato[i][j] = -2;
-                	else if (values[j].equals("*")) hidato[i][j] = -1;
-                	else if (values[j].equals("?")) hidato[i][j] = 0;
-                	else hidato[i][j] = Integer.parseInt(values[j]);        	
+                	if (values[j].equals("#")) auxLine.add(-2);
+                	else if (values[j].equals("*")) auxLine.add(-1);
+                	else if (values[j].equals("?")) auxLine.add(0);
+                	else auxLine.add(Integer.parseInt(values[j]));      	
             }
+            hidato.add(auxLine);
         }
         
         return hidato;
