@@ -22,7 +22,7 @@ public class Hidato {
 		matriuHidato = matriuOriginal = matriu;
 		this.tipusAdjacencia = tipusAdjacencia;
 		this.tipusCella = tipusCella;
-    	al = new Algoritmes(this);
+		al = new Algoritmes(this);
 		solucionable = al.solucionar();
 		nombresDonats = al.getGiven();
 		nombresEscrits = al.getGiven();
