@@ -11,7 +11,10 @@ import java.util.List;
 import main.domain.com.hidato.InteraccioTerminal.CustomCompare;
 
 public class InteraccioTerminal {
-
+	
+	private ControladorDomini controladorDomini;
+	String status;
+	
 	public static class CustomCompare implements Comparator<Posicio> {
 	    @Override
 	    public int compare(Posicio p1, Posicio p2) {
@@ -19,58 +22,102 @@ public class InteraccioTerminal {
 	    }
 	}
 	
-
-	public void interactuar() throws Exception {
-		ControladorDomini controladorDomini = new ControladorDomini();
+	public void start() {
+		controladorDomini = new ControladorDomini();
 		System.out.println("Benvinguts fills de puta");
-		
-		if (request("partida")) {
+		interactuar(readLine());
+	}
+
+	public void interactuar(String req) {
+
+		if (req.equals("partida")) {
 			System.out.println("Has seleccionat [partida], si us plau, escull entre una de les seguents opcions:");
 			System.out.println("* [carregar] Jugar a una partida anteriorment guardada");
 			System.out.println("* [importar] Jugar a una partida amb un hidato importat");
 			System.out.println("* [auto] Jugar a una partida amb un hidato autogenerat\n");
-	
-			//NO SE SI EL HIDATO ES CREA AQUI O MILLOR EL CREA CONTROLADOR DE DOMINI
-			if (request("importar")) {
-				int[][] entradaHidato = HidatoIO.readHidatoFromInput();
+			status = "partida";
+			interactuar(readLine());
+		}
 		
-				int[][] matriuHidato = extreuMatriuHidato(entradaHidato);
-				TipusCella tipusCella = extreuTipusCella(entradaHidato);
-				TipusAdjacencia tipusAdjacencia = extreuTipusAdjacencia(entradaHidato);
-				if (tipusNoCompatible(tipusCella, tipusAdjacencia)) System.out.println("Tipus de cella i tipus de adjacencia no son compatibles");
-				else { 
-					controladorDomini.jugarHidato(tipusCella, tipusAdjacencia, matriuHidato);
+		else if(req.equals("importar") && status.equals("partida")) {
+			System.out.println("\nEscriu el teu hidato per pantalla seguint el format estandar\n\n");
+			
+			int[][] entradaHidato = HidatoIO.readHidatoFromInput();
+			int[][] matriuHidato = extreuMatriuHidato(entradaHidato);
+			TipusCella tipusCella = extreuTipusCella(entradaHidato);
+			TipusAdjacencia tipusAdjacencia = extreuTipusAdjacencia(entradaHidato);
+			
+			if (tipusNoCompatible(tipusCella, tipusAdjacencia)) {
+				System.out.println("Tipus de cella i tipus de adjacencia no son compatibles, torna-ho a intentar");
+				interactuar(readLine());
+			}
+			
+			else { 
+				if (controladorDomini.jugarHidato(tipusCella, tipusAdjacencia, matriuHidato)) {
 					System.out.println("\n\nHidato importat i validad correctament. El teu hidato es el seguent: \n");
 					HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.getHidatoJugant());
+					status = "jugant";
+					interactuar(readLine());
 				}
-
-//				HidatoIO.writeHidatoMatrixToOutput(matriuHidato); 											//output sense graella
-//				HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.solucionarHidatoPartida()); 	//output amb graella
-				
-				while (controladorDomini.enPartida()) {
-					if (request("moviment")) {
-						System.out.println("\nFes un moviment, el format sera: [i j v], on:");
-						System.out.println("    i = posicio i (comencant per 1) de on es vol colocar el numero");
-						System.out.println("    j = posicio j (comencant per 1) de on es vol colocar el numero");
-						System.out.println("    v = nombre que es vol colocar al hidato \n");
-						int[] numbers = readNumbers(3);
-						boolean estatMoviment = controladorDomini.ferMoviment(numbers[0]-1,numbers[1]-1,numbers[2]); //peta amb 1 1 32, ja ho mirare
-						//boolean estatMoviment = controladorDomini.ferMoviment(9,6,2);
-						if (estatMoviment) {
-							System.out.println("\n\n Moviment valid, el hidato queda en el seguent estat:\n\n");
-							HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.getHidatoJugant());
-						}
-						
-						else {
-							System.out.println("Moviment no valid");
-						}
-					}
-					if (request("solucio")) {
-						System.out.println("\n\n La solucio del teu hidato es la seguent: \n \n");
-						HidatoIO.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoPartida());
-					}
+				else {
+					System.out.println("\n\nEl hidato importat no es vàlid i per tant no es pot resoldre. Si us plau, escolleix un altre");
+					interactuar("importar");
 				}
 			}
+		}
+		
+		else if (req.equals("moviment") && status.equals("jugant")) {
+			System.out.println("\nFes un moviment, el format sera: [i j v], on:");
+			System.out.println("    i = posicio i (comencant per 1) de on es vol colocar el numero");
+			System.out.println("    j = posicio j (comencant per 1) de on es vol colocar el numero");
+			System.out.println("    v = nombre que es vol colocar al hidato \n");
+			int[] numbers = readNumbers(3);
+			boolean estatMoviment = controladorDomini.ferMoviment(numbers[0]-1,numbers[1]-1,numbers[2]); //peta amb 1 1 32, ja ho mirare
+			//boolean estatMoviment = controladorDomini.ferMoviment(9,6,2);
+			if (estatMoviment) {
+				System.out.println("\n\n Moviment valid, el hidato queda en el seguent estat:\n\n");
+				HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.getHidatoJugant());
+				System.out.println("\nPots fer un altre moviment si ho dessitges\n");
+				status = "movimentFet";
+				interactuar(readLine());
+			}
+			
+			else {
+				System.out.println("Moviment no valid, intenta-ho de nou");
+				status = "movimentFet";
+				interactuar("moviment");
+			}
+		}
+		
+		else if (req.equals("moviment") && status.equals("movimentFet")) {
+			int[] numbers = readNumbers(3);
+			boolean estatMoviment = controladorDomini.ferMoviment(numbers[0]-1,numbers[1]-1,numbers[2]);
+			if (estatMoviment) {
+				System.out.println("\n\n Moviment valid, el hidato queda en el seguent estat:\n\n");
+				HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.getHidatoJugant());
+				System.out.println("\nPots fer un altre moviment si ho dessitges\n");
+				status = "movimentFet";
+				interactuar(readLine());
+			}
+			
+			else {
+				System.out.println("Moviment no valid, intenta-ho de nou");
+				status = "movimentFet";
+				interactuar("moviment");
+			}
+		}
+
+		else if (req.equals("solucio")){
+			if(status.equals("jugant")||status.equals("movimentFet")) {
+				System.out.println("\n\n La solucio del teu hidato es la seguent: \n \n");
+				HidatoIO.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoPartida());
+			}
+			else System.out.println("No es pot donar la solucio");
+			interactuar(readLine());
+		}
+
+		else {
+			interactuar(readLine());
 		}
 	}
 
@@ -100,6 +147,7 @@ public class InteraccioTerminal {
 		for (int i = 0; i < n; ++i) {
 			req[i] = input.nextInt();
 		}
+		input.nextLine();
 		return req;
 	}
 	

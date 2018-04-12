@@ -19,9 +19,9 @@ public class Hidato {
     private Algoritmes al;
     
 
-    public Hidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriu) throws Exception{
+    public Hidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriu){
 		al = new Algoritmes(matriu);
-		if (!al.solucionar()) throw new Exception("El hidato escollit no es pot solucionar");
+		al.solucionar();
 		nombresEscrits = al.getGiven();
 		this.tipusAdjacencia = tipusAdjacencia;
 		this.tipusCella = tipusCella;

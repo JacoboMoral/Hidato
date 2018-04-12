@@ -4,8 +4,13 @@ public class ControladorDomini {
 	Partida partidaEnCurs;
 	
 
-	public void jugarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) throws Exception {
-		partidaEnCurs = new Partida (new Hidato(tipusCella,tipusAdjacencia,matriuHidato));
+	public boolean jugarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
+		Algoritmes al = new Algoritmes(matriuHidato);
+		if (!al.solucionar()) return false;
+		if (tipusCella == TipusCella.QUADRAT) partidaEnCurs = new Partida (new HidatoQuadrat(tipusAdjacencia,matriuHidato));
+		else if (tipusCella == TipusCella.TRIANGLE) partidaEnCurs = new Partida (new HidatoQuadrat(tipusAdjacencia,matriuHidato));
+		else partidaEnCurs = new Partida (new HidatoQuadrat(tipusAdjacencia,matriuHidato));
+		return true;
 	}
 
 	public int[][] solucionarHidatoPartida() {

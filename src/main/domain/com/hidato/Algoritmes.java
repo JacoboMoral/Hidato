@@ -60,7 +60,7 @@ public class Algoritmes {
 		return solucionador(row1, column1, 1, 0, given, matriu);
 	}
 	
-	public boolean solucionador(int r, int c, int n, int next, Vector<Integer> given, int[][] matriuSolucio) {
+	private boolean solucionador(int r, int c, int n, int next, Vector<Integer> given, int[][] matriuSolucio) {
         if (n > given.get(given.size() - 1)) {
             return true;
         }
