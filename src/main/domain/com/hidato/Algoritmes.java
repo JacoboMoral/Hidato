@@ -14,9 +14,6 @@ public class Algoritmes {
 	
 	public Algoritmes(Hidato hidato) {
 		this.matriuOriginal = hidato.getMatriu();
-		System.out.println(hidato.getMatriu().length);
-		HidatoIO.writeHidatoMatrixToOutput(hidato.getMatriu());
-		HidatoIO.writeHidatoMatrixToOutput(hidato.getMatriuOriginal());
 
 		this.tipusAdjacencia = hidato.getTipusAdjacencia();
 		this.tipusCella = hidato.getTipusCella();
