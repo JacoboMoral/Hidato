@@ -69,7 +69,7 @@ public class Partida {
 	}
 
 
-	public boolean solucionable() {
+	public boolean esSolucionable() {
 		return hidato.teSolucio();
 	}
 }

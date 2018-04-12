@@ -1,7 +1,5 @@
 package main.domain.com.hidato;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Vector;
 
 
@@ -9,10 +7,19 @@ public class Algoritmes {
 	
 	private int[][] matriuSolucio;
 	private int[][] matriuOriginal;
+	TipusCella tipusCella;
+	TipusAdjacencia tipusAdjacencia;
+	
 	Vector<Integer> given = new Vector<Integer>();
 	
-	public Algoritmes(int[][] matriuOriginal) {
-		this.matriuOriginal = matriuOriginal;
+	public Algoritmes(Hidato hidato) {
+		this.matriuOriginal = hidato.getMatriu();
+		System.out.println(hidato.getMatriu().length);
+		HidatoIO.writeHidatoMatrixToOutput(hidato.getMatriu());
+		HidatoIO.writeHidatoMatrixToOutput(hidato.getMatriuOriginal());
+
+		this.tipusAdjacencia = hidato.getTipusAdjacencia();
+		this.tipusCella = hidato.getTipusCella();
 	}
 	
 	public boolean solucionar() {
@@ -78,14 +85,30 @@ public class Algoritmes {
             next++;
      
         matriuSolucio[r][c] = n;
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-                if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio)) {
-                		if(n == 1) tractarMatriuSolucio(matriuSolucio);
-                		return true;
+        
+        if (tipusAdjacencia == TipusAdjacencia.COSTATS && tipusCella == TipusCella.QUADRAT) { 	//Q C
+        	for (int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
+                	if (Math.abs(i + j) == 1) {
+	                    if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio)) {
+	                    		if(n == 1) tractarMatriuSolucio(matriuSolucio);
+	                    		return true;
+	                    }
+                	}
                 }
             }
         }
+        else if (tipusCella == TipusCella.QUADRAT) {        									//Q C
+        	for (int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
+                    if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio)) {
+                    		if(n == 1) tractarMatriuSolucio(matriuSolucio);
+                    		return true;
+                    }
+                }
+            }
+        }
+        
  
         matriuSolucio[r][c] = back;
         return false;

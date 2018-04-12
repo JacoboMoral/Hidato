@@ -18,12 +18,12 @@ public class Hidato {
     
 
     public Hidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriu){
-		al = new Algoritmes(matriu);
-		solucionable = al.solucionar();
-		nombresEscrits = al.getGiven();
+		matriuHidato = matriuOriginal = matriu;
 		this.tipusAdjacencia = tipusAdjacencia;
 		this.tipusCella = tipusCella;
-		matriuHidato = matriuOriginal = matriu;
+    	al = new Algoritmes(this);
+		solucionable = al.solucionar();
+		nombresEscrits = al.getGiven();
 		matriuSolucio = al.getMatriuSolucio();
 		this.dificultat = al.obtenirDificultat();
     }
@@ -97,5 +97,12 @@ public class Hidato {
 		return solucionable;
 	}
 
+	public TipusAdjacencia getTipusAdjacencia(){
+		return this.tipusAdjacencia;
+	}
+	
+	public TipusCella getTipusCella() {
+		return this.tipusCella;
+	}
 
 }

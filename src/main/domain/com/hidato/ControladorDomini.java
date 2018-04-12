@@ -5,10 +5,12 @@ public class ControladorDomini {
 	
 
 	public boolean jugarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
-		if (tipusCella == TipusCella.QUADRAT) partidaEnCurs = new Partida (new HidatoQuadrat(tipusAdjacencia,matriuHidato));
-		else if (tipusCella == TipusCella.TRIANGLE) partidaEnCurs = new Partida (new HidatoQuadrat(tipusAdjacencia,matriuHidato));
-		else partidaEnCurs = new Partida (new HidatoQuadrat(tipusAdjacencia,matriuHidato));
-		return partidaEnCurs.solucionable();
+		partidaEnCurs = new Partida (new Hidato(tipusCella,tipusAdjacencia,matriuHidato));
+		if (!partidaEnCurs.esSolucionable()) {
+			partidaEnCurs = null;
+			return false;
+		}
+		else return true;
 	}
 
 	public int[][] solucionarHidatoPartida() {
