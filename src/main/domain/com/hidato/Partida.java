@@ -67,4 +67,9 @@ public class Partida {
 	public int getPuntuacio() {
 		return puntuacio;
 	}
+
+
+	public boolean solucionable() {
+		return hidato.teSolucio();
+	}
 }

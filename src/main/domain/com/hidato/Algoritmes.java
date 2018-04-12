@@ -98,7 +98,6 @@ public class Algoritmes {
 				matriuSolucio[i-1][j-1] = matriu[i][j];
 			}
 		}
-
 	}
 
 	public int[][] getMatriuSolucio(){		

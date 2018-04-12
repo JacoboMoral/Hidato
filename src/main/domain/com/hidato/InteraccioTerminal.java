@@ -115,6 +115,10 @@ public class InteraccioTerminal {
 			else System.out.println("No es pot donar la solucio");
 			interactuar(readLine());
 		}
+		
+		else if (req.equals("exit") || req.equals("sortir") || req.equals("surt")) {
+			System.out.println("Sortint del programa, esperem que torni aviat ..............................................................");
+		}
 
 		else {
 			interactuar(readLine());
@@ -170,7 +174,6 @@ public class InteraccioTerminal {
 		 if (matriu[0][0] == 4) return TipusCella.QUADRAT;
 	     if (matriu[0][0] == 3) return TipusCella.TRIANGLE;
 	     return TipusCella.HEXAGON;
-
 	}
 }
 

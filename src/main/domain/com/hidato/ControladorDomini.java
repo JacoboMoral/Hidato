@@ -10,7 +10,7 @@ public class ControladorDomini {
 		if (tipusCella == TipusCella.QUADRAT) partidaEnCurs = new Partida (new HidatoQuadrat(tipusAdjacencia,matriuHidato));
 		else if (tipusCella == TipusCella.TRIANGLE) partidaEnCurs = new Partida (new HidatoQuadrat(tipusAdjacencia,matriuHidato));
 		else partidaEnCurs = new Partida (new HidatoQuadrat(tipusAdjacencia,matriuHidato));
-		return true;
+		return partidaEnCurs.solucionable();
 	}
 
 	public int[][] solucionarHidatoPartida() {

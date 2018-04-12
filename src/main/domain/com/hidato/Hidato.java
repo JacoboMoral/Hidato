@@ -7,30 +7,25 @@ public class Hidato {
     private TipusCella tipusCella;
     private TipusAdjacencia tipusAdjacencia;
     private Dificultat dificultat;
-    
-    private int nombreFiles;
-    private int nombreColumnes;
-    
+        
     private int[][] matriuHidato;
     private int[][] matriuOriginal;
     private int[][] matriuSolucio;
     
+    boolean solucionable;
     private Vector<Integer> nombresEscrits;
     private Algoritmes al;
     
 
     public Hidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriu){
 		al = new Algoritmes(matriu);
-		al.solucionar();
+		solucionable = al.solucionar();
 		nombresEscrits = al.getGiven();
 		this.tipusAdjacencia = tipusAdjacencia;
 		this.tipusCella = tipusCella;
-		nombreFiles = matriu.length;
-		nombreColumnes = matriu[0].length;
 		matriuHidato = matriuOriginal = matriu;
 		matriuSolucio = al.getMatriuSolucio();
 		this.dificultat = al.obtenirDificultat();
-    		
     }
     
     //NOMES EN CAS de moment
@@ -68,12 +63,11 @@ public class Hidato {
     }
     
     public int getNombreFiles(){
-        return nombreFiles;
-
+        return matriuHidato.length;
     }
 
     public int getNombreColumnes(){
-        return nombreColumnes;
+        return matriuHidato[0].length;
 
     }
 
@@ -97,6 +91,10 @@ public class Hidato {
 	
 	public int[][] getSolucio(){
 		return matriuSolucio;
+	}
+	
+	public boolean teSolucio() {
+		return solucionable;
 	}
 
 
