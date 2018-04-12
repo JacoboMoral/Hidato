@@ -14,6 +14,7 @@ public class Hidato {
     
     boolean solucionable;
     private Vector<Integer> nombresEscrits;
+    private Vector<Integer> nombresDonats;
     private Algoritmes al;
     
 
@@ -21,8 +22,9 @@ public class Hidato {
 		matriuHidato = matriuOriginal = matriu;
 		this.tipusAdjacencia = tipusAdjacencia;
 		this.tipusCella = tipusCella;
-    	al = new Algoritmes(this);
+		al = new Algoritmes(this);
 		solucionable = al.solucionar();
+		nombresDonats = al.getGiven();
 		nombresEscrits = al.getGiven();
 		matriuSolucio = al.getMatriuSolucio();
 		this.dificultat = al.obtenirDificultat();
@@ -60,6 +62,10 @@ public class Hidato {
     		return true;
     	} 
     	else return false;
+    }
+    
+    public Vector<Integer> getNombresPerDefecte(){
+    	return nombresDonats;
     }
     
     public int getNombreFiles(){

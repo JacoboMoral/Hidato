@@ -66,8 +66,11 @@ public class InteraccioTerminal {
 	
 	private void solucio() {
 		if(status.equals("jugant")||status.equals("movimentFet")) {
-			System.out.println("\n\n La solucio del teu hidato es la seguent: \n \n");
+			System.out.println("\n\n La solucio del teu hidato es la seguent: \n\n");
 			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoPartida());
+			/*HidatoIO.writeHidatoSolucioMatrixToOutput(controladorDomini.solucionarHidatoPartida(),
+					controladorDomini.obtenirHidatoOriginal(),
+					controladorDomini.obtenirNombresPerDefecte());*/
 		}
 		else System.out.println("No es pot donar la solucio");
 		interactuar(readLine());
