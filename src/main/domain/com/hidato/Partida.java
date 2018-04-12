@@ -1,4 +1,4 @@
-package com.hidato;
+package main.domain.com.hidato;
 
 import java.util.Date;
 

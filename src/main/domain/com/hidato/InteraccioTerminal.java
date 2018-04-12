@@ -1,4 +1,4 @@
-package com.hidato;
+package main.domain.com.hidato;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.List;
 
-import com.hidato.InteraccioTerminal.CustomCompare;
+import main.domain.com.hidato.InteraccioTerminal.CustomCompare;
 
 public class InteraccioTerminal {
 
@@ -33,27 +33,51 @@ public class InteraccioTerminal {
 			//NO SE SI EL HIDATO ES CREA AQUI O MILLOR EL CREA CONTROLADOR DE DOMINI
 			if (request("importar")) {
 				int[][] entradaHidato = HidatoIO.readHidatoFromInput();
+		
 				int[][] matriuHidato = extreuMatriuHidato(entradaHidato);
 				TipusCella tipusCella = extreuTipusCella(entradaHidato);
 				TipusAdjacencia tipusAdjacencia = extreuTipusAdjacencia(entradaHidato);
-				controladorDomini.jugarHidato(tipusCella, tipusAdjacencia, matriuHidato);
-				HidatoIO.writeHidatoMatrixToOutput(matriuHidato); 											//output sense graella
-				HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.solucionarHidatoPartida()); 	//output amb graella
+				if (tipusNoCompatible(tipusCella, tipusAdjacencia)) System.out.println("Tipus de cella i tipus de adjacencia no son compatibles");
+				else { 
+					controladorDomini.jugarHidato(tipusCella, tipusAdjacencia, matriuHidato);
+					System.out.println("\n\nHidato importat i validad correctament. El teu hidato es el seguent: \n");
+					HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.getHidatoJugant());
+				}
+
+//				HidatoIO.writeHidatoMatrixToOutput(matriuHidato); 											//output sense graella
+//				HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.solucionarHidatoPartida()); 	//output amb graella
 				
-				if (request("moviment")) {
-					int[] numbers = readNumbers(3);
-					boolean estatMoviment = controladorDomini.ferMoviment(numbers[0]-1,numbers[1]-1,numbers[2]); //peta amb 1 1 32, ja ho mirare
-					//boolean estatMoviment = controladorDomini.ferMoviment(9,6,2);
-					if (estatMoviment) {
-						System.out.println("\n\nMoviment valid, el hidato queda en el seguent estat:\n\n");
-						HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.getHidatoJugant());
+				while (controladorDomini.enPartida()) {
+					if (request("moviment")) {
+						System.out.println("\nFes un moviment, el format sera: [i j v], on:");
+						System.out.println("    i = posicio i (comencant per 1) de on es vol colocar el numero");
+						System.out.println("    j = posicio j (comencant per 1) de on es vol colocar el numero");
+						System.out.println("    v = nombre que es vol colocar al hidato \n");
+						int[] numbers = readNumbers(3);
+						boolean estatMoviment = controladorDomini.ferMoviment(numbers[0]-1,numbers[1]-1,numbers[2]); //peta amb 1 1 32, ja ho mirare
+						//boolean estatMoviment = controladorDomini.ferMoviment(9,6,2);
+						if (estatMoviment) {
+							System.out.println("\n\n Moviment valid, el hidato queda en el seguent estat:\n\n");
+							HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.getHidatoJugant());
+						}
+						
+						else {
+							System.out.println("Moviment no valid");
+						}
 					}
-					else {
-						System.out.println("Moviment no valid");
+					if (request("solucio")) {
+						System.out.println("\n\n La solucio del teu hidato es la seguent: \n \n");
+						HidatoIO.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoPartida());
 					}
 				}
 			}
 		}
+	}
+
+
+
+	private boolean tipusNoCompatible(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia) {
+		return (tipusCella == TipusCella.HEXAGON && tipusAdjacencia == TipusAdjacencia.COSTATSIANGLES);
 	}
 
 
@@ -91,14 +115,13 @@ public class InteraccioTerminal {
 
 	private TipusAdjacencia extreuTipusAdjacencia(int[][] matriu) {
 	        if (matriu[0][1] == 1) return TipusAdjacencia.COSTATS;
-	        else if (matriu[0][1] == 2) return TipusAdjacencia.VERTEXS;
-	        else return TipusAdjacencia.VERTEXS;
+	        return TipusAdjacencia.COSTATSIANGLES;
 	}
 
 	private TipusCella extreuTipusCella(int[][] matriu) {
 		 if (matriu[0][0] == 4) return TipusCella.QUADRAT;
-	        else if (matriu[0][0] == 3) return TipusCella.TRIANGLE;
-	        else return TipusCella.HEXAGON;
+	     if (matriu[0][0] == 3) return TipusCella.TRIANGLE;
+	     return TipusCella.HEXAGON;
 
 	}
 }

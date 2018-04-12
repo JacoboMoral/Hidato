@@ -1,4 +1,4 @@
-package com.hidato;
+package main.domain.com.hidato;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,9 +16,7 @@ public class Algoritmes {
 	}
 	
 	public boolean solucionar() {
-		
-		
-		
+
 		int row1 = -1; 
 		int column1 = -1; //fila i columna on es troba el numero 1
 		int [][] matriu = new int[matriuOriginal.length+2][matriuOriginal[0].length+2];
@@ -41,10 +39,6 @@ public class Algoritmes {
 		}
 		        
         Collections.sort(given);
-      
-        System.out.println(given.size());
-		for (int i = 0; i < given.size(); ++i) {
-		}
 		
 		if (given.get(0) != 1) {
 			System.out.println("no ens donen el primer numero: " + given + "    " + given.get(0));

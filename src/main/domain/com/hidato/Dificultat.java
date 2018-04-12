@@ -1,4 +1,4 @@
-package com.hidato;
+package main.domain.com.hidato;
 public enum Dificultat {
     FACIL,
     MIG,

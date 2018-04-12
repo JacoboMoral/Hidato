@@ -1,4 +1,4 @@
-package com.hidato;
+package main.domain.com.hidato;
 
 public class ControladorDomini {
 	Partida partidaEnCurs;
@@ -20,5 +20,9 @@ public class ControladorDomini {
 	public int[][] getHidatoJugant() {
 		return partidaEnCurs.getHidato();
 	}
-	
+
+	public boolean enPartida() {
+		return (partidaEnCurs != null);
+	}
+
 }

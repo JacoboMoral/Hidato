@@ -1,4 +1,4 @@
-package com.hidato;
+package main.domain.com.hidato;
 import java.util.Scanner;
 
 //"static" class
@@ -12,15 +12,13 @@ public final class HidatoIO {
         int nombreFiles = Integer.parseInt(values[2]);
         int nombreColumnes = Integer.parseInt(values[3]);
         int[][] hidato = new int[nombreFiles+1][nombreColumnes];
-
         
-        if (values[0] == "Q") hidato[0][0] = 4;
-        else if (values[0] == "T") hidato[0][0] = 3;
+        if (values[0].equals("Q")) hidato[0][0] = 4;
+        else if (values[0].equals("T")) hidato[0][0] = 3;
         else hidato[0][0] = 6;
 
-        if (values[1] == "C") hidato[0][1] = 1;
-        else if (values[1] == "V") hidato[0][1] = 2;
-        else hidato[0][1] = 3;
+        if (values[1].equals("C")) hidato[0][1] = 1;
+        else hidato[0][1] = 2;
 
         hidato[0][2] = nombreFiles;
         hidato[0][3] = nombreColumnes;
