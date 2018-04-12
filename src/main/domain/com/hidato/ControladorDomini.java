@@ -1,6 +1,9 @@
 package main.domain.com.hidato;
 
+import java.util.Vector;
+
 public class ControladorDomini {
+	
 	Partida partidaEnCurs;
 	
 
@@ -12,14 +15,30 @@ public class ControladorDomini {
 		}
 		else return true;
 	}
+	
+	public int[][] obtenirHidatoOriginal(){
+		return partidaEnCurs.getHidatoOriginal();
+	}
+	
+	public int[][] obtenirHidato() {
+		return partidaEnCurs.getHidato();
+	}
 
 	public int[][] solucionarHidatoPartida() {
 		return partidaEnCurs.getSolucio();
+	}
+	
+	public Vector<Integer> obtenirNombresPerDefecte(){
+		return partidaEnCurs.getNombresPerDefecte();
 	}
 
 	public boolean ferMoviment(int i, int j, int value) {
 		if (partidaEnCurs.ferJugada(i, j, value)) return true;
 		else return false;
+	}
+	
+	public int[][] getHidatoOriginal(){
+		return partidaEnCurs.getHidatoOriginal();
 	}
 
 	public int[][] getHidatoJugant() {

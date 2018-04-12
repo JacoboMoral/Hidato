@@ -1,6 +1,7 @@
 package main.domain.com.hidato;
 
 import java.util.Date;
+import java.util.Vector;
 
 public class Partida {
 	private Dificultat dificultat;
@@ -44,12 +45,20 @@ public class Partida {
 		
 	}
 	
+	public Vector<Integer> getNombresPerDefecte(){
+		return hidato.getNombresPerDefecte();
+	}
+	
 	public int[][] getSolucio() {
 		return hidato.getSolucio();
 	}
 	
 	public int[][] getHidato(){
 		return hidato.getMatriu();
+	}
+	
+	public int[][] getHidatoOriginal(){
+		return hidato.getMatriuOriginal();
 	}
 	
 	public void reprendrePartida() {
