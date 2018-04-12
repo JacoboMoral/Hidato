@@ -101,11 +101,12 @@ public class InteraccioTerminal {
 
 	private void importar() {
 		System.out.println("\nEscriu el teu hidato per pantalla seguint el format estandar\n\n");
-		
-		int[][] entradaHidato = HidatoIO.readHidatoFromInput();
+		int[] capcaleraHidato = new int[4];
+		capcaleraHidato = HidatoIO.readCapcaleraHidatoFromInput();
+		int[][] entradaHidato = HidatoIO.readHidatoFromInput(capcaleraHidato[2], capcaleraHidato[3]);
 		int[][] matriuHidato = extreuMatriuHidato(entradaHidato);
-		TipusCella tipusCella = extreuTipusCella(entradaHidato);
-		TipusAdjacencia tipusAdjacencia = extreuTipusAdjacencia(entradaHidato);
+		TipusCella tipusCella = extreuTipusCella(capcaleraHidato);
+		TipusAdjacencia tipusAdjacencia = extreuTipusAdjacencia(capcaleraHidato);
 		
 		if (tipusNoCompatible(tipusCella, tipusAdjacencia)) {
 			System.out.println("Tipus de cella i tipus de adjacencia no son compatibles, torna-ho a intentar");
@@ -173,14 +174,14 @@ public class InteraccioTerminal {
 		return matriuHidato;
 	}
 
-	private TipusAdjacencia extreuTipusAdjacencia(int[][] matriu) {
-	        if (matriu[0][1] == 1) return TipusAdjacencia.COSTATS;
+	private TipusAdjacencia extreuTipusAdjacencia(int[] array) {
+	        if (array[1] == 1) return TipusAdjacencia.COSTATS;
 	        return TipusAdjacencia.COSTATSIANGLES;
 	}
 
-	private TipusCella extreuTipusCella(int[][] matriu) {
-		 if (matriu[0][0] == 4) return TipusCella.QUADRAT;
-	     if (matriu[0][0] == 3) return TipusCella.TRIANGLE;
+	private TipusCella extreuTipusCella(int[] array) {
+		 if (array[0] == 4) return TipusCella.QUADRAT;
+	     if (array[0] == 3) return TipusCella.TRIANGLE;
 	     return TipusCella.HEXAGON;
 	}
 }

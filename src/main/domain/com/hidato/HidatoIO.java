@@ -4,24 +4,36 @@ import java.util.Scanner;
 //"static" class
 public final class HidatoIO {
 
-    public static int[][] readHidatoFromInput(){
-        Scanner reader = new Scanner(System.in);
+	
+	
+	public static int[] readCapcaleraHidatoFromInput() {
+		Scanner reader = new Scanner(System.in);
         String line = reader.nextLine();
         String[] values = line.split(",");
         
         int nombreFiles = Integer.parseInt(values[2]);
         int nombreColumnes = Integer.parseInt(values[3]);
-        int[][] hidato = new int[nombreFiles+1][nombreColumnes];
+        int[] array = new int[4];
         
-        if (values[0].equals("Q")) hidato[0][0] = 4;
-        else if (values[0].equals("T")) hidato[0][0] = 3;
-        else hidato[0][0] = 6;
+        if (values[0].equals("Q")) array[0] = 4;
+        else if (values[0].equals("T")) array[0] = 3;
+        else array[0] = 6;
 
-        if (values[1].equals("C")) hidato[0][1] = 1;
-        else hidato[0][1] = 2;
+        if (values[1].equals("C")) array[1] = 1;
+        else array[1] = 2;
 
-        hidato[0][2] = nombreFiles;
-        hidato[0][3] = nombreColumnes;
+        array[2] = nombreFiles;
+        array[3] = nombreColumnes;
+        return array;
+	}
+	
+    public static int[][] readHidatoFromInput(int nombreFiles, int nombreColumnes){
+
+    	Scanner reader = new Scanner(System.in);
+        String line = reader.nextLine();
+        String[] values = line.split(",");
+        
+        int[][] hidato = new int[nombreFiles][nombreColumnes];
         
         for (int i = 1; i < nombreFiles+1; ++i) {
             line = reader.nextLine();
@@ -85,4 +97,7 @@ public final class HidatoIO {
     		System.out.println();
     	}
     }
+
+
+	
 }
