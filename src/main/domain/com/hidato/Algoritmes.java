@@ -98,7 +98,7 @@ public class Algoritmes {
 				}
 			}
 		}
-		else if (tipusCella == TipusCella.QUADRAT) {        									//Q AC
+		else if (tipusAdjacencia == TipusAdjacencia.COSTATSIANGLES) {        									//Q AC
 			for (int i = -1; i < 2; i++) {
 				for (int j = -1; j < 2; j++) {
 					if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio)) {
