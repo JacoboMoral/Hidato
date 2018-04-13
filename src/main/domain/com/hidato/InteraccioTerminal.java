@@ -44,7 +44,7 @@ public class InteraccioTerminal {
 		else if (req.equals("moviment") && status.equals("movimentFet")) {
 			moviment();
 		}
-		else if (req.equals("solucio")){
+		else if (req.equals("solucio") && status.equals("jugant")){
 			solucio();
 		}
 		else if (req.equals("exit") || req.equals("sortir") || req.equals("surt")) {
@@ -111,8 +111,8 @@ public class InteraccioTerminal {
 		TipusAdjacencia tipusAdjacencia = extreuTipusAdjacencia(entradaHidato);
 		
 		if (tipusNoCompatible(tipusCella, tipusAdjacencia)) {
-			System.out.println("Tipus de cella i tipus de adjacencia no son compatibles, torna-ho a intentar");
-			interactuar(readLine());
+			System.out.println("Tipus de cella i tipus de adjacencia no son compatibles, torna a importar el hidato sencer");
+			interactuar("importar");
 		}
 		
 		else { 
@@ -188,5 +188,7 @@ public class InteraccioTerminal {
 		return TipusCella.HEXAGON;
 	}
 }
+
+
 
 
