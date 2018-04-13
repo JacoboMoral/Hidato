@@ -134,8 +134,6 @@ public final class HidatoIO {
 	    		System.out.println();
 	    	}
 			
-		}	
-		
-		
+		}		
 	}
 }
