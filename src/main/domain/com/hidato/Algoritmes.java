@@ -7,16 +7,13 @@ public class Algoritmes {
 
 	private int[][] matriuSolucio;
 	private int[][] matriuOriginal;
-	TipusCella tipusCella;
-	TipusAdjacencia tipusAdjacencia;
+	Hidato hidato;
 
 	Vector<Integer> given = new Vector<Integer>();
 
 	public Algoritmes(Hidato hidato) {
 		this.matriuOriginal = hidato.getMatriu();
-
-		this.tipusAdjacencia = hidato.getTipusAdjacencia();
-		this.tipusCella = hidato.getTipusCella();
+		this.hidato = hidato;
 	}
 
 	public boolean solucionar() {
@@ -86,10 +83,9 @@ public class Algoritmes {
 
 		matriuSolucio[r][c] = n;
 
-		if (tipusAdjacencia == TipusAdjacencia.COSTATS && tipusCella == TipusCella.QUADRAT) { 	//Q C
 			for (int i = -1; i < 2; i++) {
 				for (int j = -1; j < 2; j++) {
-					if (Math.abs(i + j) == 1) {
+					if (hidato.posicioValida(i, j, r, c)) {
 						if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio)) {
 							if(n == 1) tractarMatriuSolucio(matriuSolucio);
 							return true;
@@ -97,57 +93,9 @@ public class Algoritmes {
 					}
 				}
 			}
-		}
-		else if (tipusAdjacencia == TipusAdjacencia.COSTATSIANGLES) {        									//Q AC
-			for (int i = -1; i < 2; i++) {
-				for (int j = -1; j < 2; j++) {
-					if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio)) {
-						if(n == 1) tractarMatriuSolucio(matriuSolucio);
-						return true;
-					}
-				}
-			}
-		}
-		
-		//pre: hexagon no pot ser CA
-		else if (tipusCella == TipusCella.HEXAGON) {											//H C
-			for (int i = -1; i < 2; i++) {
-				for (int j = -1; j < 2; j++) {
-					if ( (Math.abs(i + j) == 1) || ((j == 1) && (r%2 == 0)) || ((j == -1) && (r%2 != 0)) ) {
-						if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio)) {
-							if(n == 1) tractarMatriuSolucio(matriuSolucio);
-							return true;
-						}
-					}
-				}
-			}
-		}
-		
-		//triangles: adjacencies a costats (esquerra i dreta)
-		//(if (paritat.fila = paritat.columna) -> s'afegeix paritat abaix;
-		// if (paritat.fila != paritat.columna) -> s'afegeix adjacencia arriba;
-		//tot al reves perque es fica una capa de relleno per fora
-		else if (tipusCella == TipusCella.TRIANGLE && tipusAdjacencia == TipusAdjacencia.COSTATS) {	//T C
-			for (int i = -1; i < 2; i++) {
-				for (int j = -1; j < 2; j++) {
-					if ( ((Math.abs(j) == 1) && i == 0) || ((i == -1) && (j == 0) && diferentParitat(r,c)) || ((i == 1) && (j == 0) && !diferentParitat(r,c)) ) {
-						if (solucionador(r + i, c + j, n + 1, next, given, matriuSolucio)) {
-							if(n == 1) tractarMatriuSolucio(matriuSolucio);
-							return true;
-						}
-					}
-				}
-			}
-		}
-
-
 
 		matriuSolucio[r][c] = back;
 		return false;
-	}
-
-	private boolean diferentParitat(int i, int j) {
-		return (i%2 != j%2);
 	}
 
 	private void tractarMatriuSolucio(int[][] matriu) {

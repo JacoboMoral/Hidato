@@ -8,7 +8,7 @@ public class ControladorDomini {
 	
 
 	public boolean jugarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
-		partidaEnCurs = new Partida (new Hidato(tipusCella,tipusAdjacencia,matriuHidato));
+		partidaEnCurs = new Partida (HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato));
 		if (!partidaEnCurs.esSolucionable()) {
 			partidaEnCurs = null;
 			return false;

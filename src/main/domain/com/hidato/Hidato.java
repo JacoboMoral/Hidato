@@ -2,32 +2,23 @@ package main.domain.com.hidato;
 
 import java.util.Vector;
 
-public class Hidato {
+public abstract class Hidato {
 
-    private TipusCella tipusCella;
-    private TipusAdjacencia tipusAdjacencia;
+    protected TipusAdjacencia tipusAdjacencia;
     private Dificultat dificultat;
         
     private int[][] matriuHidato;
     private int[][] matriuOriginal;
-    private int[][] matriuSolucio;
+    protected int[][] matriuSolucio;
     
-    boolean solucionable;
-    private Vector<Integer> nombresEscrits;
-    private Vector<Integer> nombresDonats;
-    private Algoritmes al;
+    protected boolean solucionable;
+    protected Vector<Integer> nombresEscrits;
+    protected Vector<Integer> nombresDonats;
+    protected Algoritmes al;
     
 
-    public Hidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriu){
+    public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
 		matriuHidato = matriuOriginal = matriu;
-		this.tipusAdjacencia = tipusAdjacencia;
-		this.tipusCella = tipusCella;
-		al = new Algoritmes(this);
-		solucionable = al.solucionar();
-		nombresDonats = al.getGiven();
-		nombresEscrits = al.getGiven();
-		matriuSolucio = al.getMatriuSolucio();
-		this.dificultat = al.obtenirDificultat();
     }
     
     //NOMES EN CAS de moment
@@ -107,8 +98,8 @@ public class Hidato {
 		return this.tipusAdjacencia;
 	}
 	
-	public TipusCella getTipusCella() {
-		return this.tipusCella;
-	}
+	public abstract TipusCella getTipusCella();
+
+	public abstract boolean posicioValida(int i, int j, int r, int c);
 
 }
