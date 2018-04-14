@@ -42,11 +42,9 @@ public class Algoritmes {
 		Collections.sort(given);
 
 		if (given.get(0) != 1) {
-			System.out.println("no ens donen el primer numero: " + given + "    " + given.get(0));
 			return false; //comprova que sempre ens donin el primer numero (i.e. 1)		
 		}
 		if (given.get(given.size()-1) != casellesNumeriques) {
-			System.out.println("no ens donen el ultimo numero: " + given.get(given.size()-1) + "    " + casellesNumeriques);
 			return false; //comprova que sempre ens donin el ultimo numero
 		}
 

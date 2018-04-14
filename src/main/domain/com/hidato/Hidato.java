@@ -9,11 +9,11 @@ public abstract class Hidato {
         
     private int[][] matriuHidato;
     private int[][] matriuOriginal;
-    protected int[][] matriuSolucio;
+    private int[][] matriuSolucio;
     
-    protected boolean solucionable;
-    protected Vector<Integer> nombresEscrits;
-    protected Vector<Integer> nombresDonats;
+    private Boolean solucionable;
+    private Vector<Integer> nombresEscrits;
+    private Vector<Integer> nombresDonats;
     protected Algoritmes al;
     
 
@@ -81,16 +81,24 @@ public abstract class Hidato {
 		return matriuOriginal;
 	}
 	
-	public void matriuOriginal() {
+	public void resetMatriu() {
 		matriuHidato = matriuOriginal;
 	}
 
 	
 	public int[][] getSolucio(){
-		return matriuSolucio;
+		if (teSolucio()) return matriuSolucio;
+		return null;
 	}
 	
 	public boolean teSolucio() {
+		if (solucionable == null){
+			solucionable = al.solucionar();
+			nombresDonats = al.getGiven();
+			nombresEscrits = al.getGiven();
+			matriuSolucio = al.getMatriuSolucio();
+		}
+		
 		return solucionable;
 	}
 

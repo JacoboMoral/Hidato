@@ -5,11 +5,6 @@ public class HidatoHexagon extends Hidato {
 	public HidatoHexagon(int[][] matrix) {
 		super(TipusAdjacencia.COSTATS, matrix);
 		al = new Algoritmes(this);
-		solucionable = al.solucionar();
-		nombresDonats = al.getGiven();
-		nombresEscrits = al.getGiven();
-		matriuSolucio = al.getMatriuSolucio();
-		
 	}
 	
 	public TipusCella getTipusCella() {

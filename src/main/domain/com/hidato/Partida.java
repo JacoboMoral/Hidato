@@ -31,7 +31,7 @@ public class Partida {
 	}
 	
 	public void reset() {
-		hidato.matriuOriginal();
+		hidato.resetMatriu();
 		start();
 	}
 	
