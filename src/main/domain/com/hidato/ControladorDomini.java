@@ -31,7 +31,7 @@ public class ControladorDomini {
 	public Vector<Integer> obtenirNombresPerDefecte(){
 		return partidaEnCurs.getNombresPerDefecte();
 	}
-
+ 
 	public boolean ferMoviment(int i, int j, int value) {
 		if (partidaEnCurs.ferJugada(i, j, value)) return true;
 		else return false;
@@ -47,6 +47,13 @@ public class ControladorDomini {
 
 	public boolean enPartida() {
 		return (partidaEnCurs != null);
+	}
+
+	public boolean autogenerar(TipusCella tipusCella, int celesBuides, int forats, Dificultat dificultat) {
+		//int[][] matriuHidato = Generador.generar((tipusCella, celesBuides, forats, dificultat));
+		//if (matriuHidato == null) return false;
+		//partidaEnCurs = new Partida (HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato);
+		return true;
 	}
 
 }

@@ -17,7 +17,7 @@ public class Algoritmes {
 	}
 
 	public boolean solucionar() {
-
+		
 		int row1 = -1; 
 		int column1 = -1; //fila i columna on es troba el numero 1
 		int [][] matriu = new int[matriuOriginal.length+2][matriuOriginal[0].length+2];
