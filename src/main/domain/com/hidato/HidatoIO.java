@@ -42,7 +42,6 @@ public final class HidatoIO {
             }
             hidato.add(auxLine);
         }
-        
         return hidato;
     }
 

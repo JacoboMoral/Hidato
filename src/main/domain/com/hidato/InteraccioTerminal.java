@@ -35,6 +35,9 @@ public class InteraccioTerminal {
 			interactuar(readLine());
 		}	
 		else if(req.equals("importar") && status.equals("partida")) {
+			autogenerar();
+		}		
+		else if(req.equals("importar") && status.equals("partida")) {
 			importar();
 		}
 		else if (req.equals("moviment") && status.equals("jugant")) {
@@ -47,6 +50,9 @@ public class InteraccioTerminal {
 		else if (req.equals("solucio") && status.equals("jugant")){
 			solucio();
 		}
+		else if (req.equals("auto") && status.equals("partida")){
+			autogenerar();
+		}
 		else if (req.equals("exit") || req.equals("sortir") || req.equals("surt")) {
 			System.out.println("Sortint del programa, esperem que torni aviat ..............................................................");
 		}
@@ -55,11 +61,6 @@ public class InteraccioTerminal {
 		}
 	}
 
-	
-	
-	
-	
-	
 	
 	
 	
@@ -94,12 +95,40 @@ public class InteraccioTerminal {
 			status = "movimentFet";
 			interactuar(readLine());
 		}
-		
 		else {
 			System.out.println("Moviment no valid, intenta-ho de nou");
 			status = "movimentFet";
 			interactuar("moviment");
 		}
+	}
+	private void autogenerar() {
+		System.out.println("\nEscriu de quin tipus vols l'hidato [Quadrat | Triangle | Hexagon]");
+		String tipus = readLine();
+		if (stringToTipusCella(tipus) == null) {
+			System.out.println("Escriu be el tipus de hidato");
+			autogenerar();
+		}
+ 		System.out.println("\nEscriu el nombre de cel·les buides");
+		String celesBuides = readLine();
+		System.out.println("\nEscriu el nombre de forats");
+		String forats = readLine();
+		//COMPROVAR CELESBBUIDDES I FORATS SIGUIN INTS
+		
+		System.out.println("\nEscriu la dificultat [Facil | Mig | Dificil]");
+		String dificultat = readLine();
+		if(stringToDificultat(dificultat) == null) {
+			System.out.println("Escriu be el tipus de dificultat");
+			autogenerar();
+		}
+		controladorDomini.autogenerar(stringToTipusCella(tipus), Integer.parseInt(celesBuides),
+				Integer.parseInt(forats), stringToDificultat(dificultat));
+	}
+
+	private Dificultat stringToDificultat(String dificultat) {
+		if (dificultat == "Facil") return Dificultat.FACIL;
+		if (dificultat == "Mig") return Dificultat.MIG;
+		if (dificultat == "Dificil") return Dificultat.DIFICIL;
+		return null;
 	}
 
 	private void importar() {
@@ -143,13 +172,11 @@ public class InteraccioTerminal {
 	}
 
 
-
 	private boolean request(String req) {
 		return readLine().equals(req);
 	}
 	
-	private String readLine() {
-		
+	private String readLine() {		
 		Scanner input = new Scanner(System.in);
 		String req = input.nextLine();
 		return req;
@@ -186,6 +213,13 @@ public class InteraccioTerminal {
 		if (aux == 4) return TipusCella.QUADRAT;
 		if (aux == 3) return TipusCella.TRIANGLE;
 		return TipusCella.HEXAGON;
+	}
+	
+	private TipusCella stringToTipusCella(String tc) {
+		if (tc.equalsIgnoreCase("Quadrat")) return TipusCella.QUADRAT;
+		if (tc.equalsIgnoreCase("Triangle")) return TipusCella.TRIANGLE;
+		if (tc.equalsIgnoreCase("Hexagon")) return TipusCella.HEXAGON;
+		return null;
 	}
 }
 
