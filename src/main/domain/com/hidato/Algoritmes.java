@@ -63,21 +63,14 @@ public class Algoritmes {
 	}
 
 	private boolean solucionador(int r, int c, int n, int next, Vector<Integer> given, int[][] matriuSolucio) {
-		if (n > given.get(given.size() - 1)) {
-			return true;
-		}
+		if (n > given.get(given.size() - 1)) return true;
 
-		if (matriuSolucio[r][c] != 0 && matriuSolucio[r][c] != n) {
-			return false; 
-		}
+		if (matriuSolucio[r][c] != 0 && matriuSolucio[r][c] != n) return false;
 
-		if (matriuSolucio[r][c] == 0 && given.get(next) == n) {
-			return false;
-		}
+		if (matriuSolucio[r][c] == 0 && given.get(next) == n) return false;
 
 		int back = matriuSolucio[r][c];
-		if (back == n)
-			next++;
+		if (back == n) next++;
 
 		matriuSolucio[r][c] = n;
 
