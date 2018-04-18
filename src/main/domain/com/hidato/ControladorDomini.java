@@ -49,10 +49,10 @@ public class ControladorDomini {
 		return (partidaEnCurs != null);
 	}
 
-	public boolean autogenerar(TipusCella tipusCella, int celesBuides, int forats, Dificultat dificultat) {
-		//int[][] matriuHidato = Generador.generar((tipusCella, celesBuides, forats, dificultat));
-		//if (matriuHidato == null) return false;
-		//partidaEnCurs = new Partida (HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato);
+	public boolean autogenerar(TipusCella tipusCella, int celesBuides, int forats, Dificultat dificultat, TipusAdjacencia tipusAdjacencia) {
+		int[][] matriuHidato = Algoritmes.generarHidato(tipusCella, tipusAdjacencia,  celesBuides, forats, dificultat);
+		if (matriuHidato == null) return false;
+		partidaEnCurs = new Partida (HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato));
 		return true;
 	}
 

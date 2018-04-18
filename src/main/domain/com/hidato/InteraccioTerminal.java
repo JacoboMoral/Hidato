@@ -120,7 +120,7 @@ public class InteraccioTerminal {
 			System.out.println("Escriu be el tipus de dificultat");
 			autogenerar();
 		}
-		if (controladorDomini.autogenerar(stringToTipusCella(tipus), Integer.parseInt(celesBuides),Integer.parseInt(forats), stringToDificultat(dificultat))) {
+		if (controladorDomini.autogenerar(stringToTipusCella(tipus), Integer.parseInt(celesBuides),Integer.parseInt(forats), stringToDificultat(dificultat), null)) {
 			System.out.println("Aquest es l'hidato que s'ha generat");
 			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getHidatoJugant());
 			System.out.println("Vols començar una nova partida amb aquest?\n [yes] \n [no]");
