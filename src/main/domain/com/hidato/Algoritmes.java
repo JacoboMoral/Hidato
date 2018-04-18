@@ -109,4 +109,8 @@ public class Algoritmes {
 	public Vector<Integer> getGiven() {
 		return given;
 	}
+	
+	public static void generator() {
+		
+	}
 }

@@ -34,7 +34,7 @@ public class InteraccioTerminal {
 			status = "partida";
 			interactuar(readLine());
 		}	
-		else if(req.equals("importar") && status.equals("partida")) {
+		else if(req.equals("auto") && status.equals("partida")) {
 			autogenerar();
 		}		
 		else if(req.equals("importar") && status.equals("partida")) {
@@ -108,7 +108,7 @@ public class InteraccioTerminal {
 			System.out.println("Escriu be el tipus de hidato");
 			autogenerar();
 		}
- 		System.out.println("\nEscriu el nombre de cel·les buides");
+ 		System.out.println("\nEscriu el nombre de celï¿½les buides");
 		String celesBuides = readLine();
 		System.out.println("\nEscriu el nombre de forats");
 		String forats = readLine();
@@ -120,14 +120,22 @@ public class InteraccioTerminal {
 			System.out.println("Escriu be el tipus de dificultat");
 			autogenerar();
 		}
-		controladorDomini.autogenerar(stringToTipusCella(tipus), Integer.parseInt(celesBuides),
-				Integer.parseInt(forats), stringToDificultat(dificultat));
+		if (controladorDomini.autogenerar(stringToTipusCella(tipus), Integer.parseInt(celesBuides),Integer.parseInt(forats), stringToDificultat(dificultat))) {
+			System.out.println("Aquest es l'hidato que s'ha generat");
+			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getHidatoJugant());
+			System.out.println("Vols comenÃ§ar una nova partida amb aquest?\n [yes] \n [no]");
+			//FALTA LEER YES/NO Y ACTUAR
+		}
+		else {
+			System.out.println("No s'ha pogut generar un hidato amb les condicions donades");
+		}
+		
 	}
 
 	private Dificultat stringToDificultat(String dificultat) {
-		if (dificultat == "Facil") return Dificultat.FACIL;
-		if (dificultat == "Mig") return Dificultat.MIG;
-		if (dificultat == "Dificil") return Dificultat.DIFICIL;
+		if (dificultat.equalsIgnoreCase("facil")) return Dificultat.FACIL;
+		if (dificultat.equalsIgnoreCase("mig")) return Dificultat.MIG;
+		if (dificultat.equalsIgnoreCase("dificil")) return Dificultat.DIFICIL;
 		return null;
 	}
 
@@ -222,7 +230,3 @@ public class InteraccioTerminal {
 		return null;
 	}
 }
-
-
-
-
