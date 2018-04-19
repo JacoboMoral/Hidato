@@ -22,20 +22,30 @@ public abstract class Hidato {
     }
     
     //NOMES EN CAS de moment
+    //
     private boolean comprovarMoviment(int i, int j, int value) {
     	
     	if (estaRepetit(value)) return false;
-    	
+    	boolean anterior = nombresEscrits.contains(value-1);
+    	boolean posterior = nombresEscrits.contains(value+1);
+    	boolean trobatAnterior = false;
+    	boolean trobatPosterior = false;
     	for(int ii = i - 1; ii < i + 2; ++ii) {
     		for(int jj = j - 1; jj < j + 2; ++jj) {
     			if(estaDintreElsLimits(ii, jj)) {
-    				if (Math.abs(matriuHidato[ii][jj] - value) == 1 ) {
-    					return true;
+    				if ((matriuHidato[ii][jj] - value) == 1 ) {
+    					trobatPosterior = true;
+    				}
+    				if ((value - matriuHidato[ii][jj]) == 1 ) {
+    					trobatAnterior = true;
     				}
     			}
     		}
     	}
-    	return false;
+	    	if (posterior && !trobatPosterior) return false; 		//si hi ha un posterior escrit pero no esta al voltant
+	    	if (anterior && !trobatAnterior) return false; 		//si hi ha un anterior escrit pero no esta al voltant
+	    	else if (!anterior || !posterior) return false; 		//si no hi ha escrits ni el anterior ni el posterior
+	    	return true; 										//else
     }
 
 	private boolean estaRepetit(int value) {

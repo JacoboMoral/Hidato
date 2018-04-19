@@ -2,8 +2,8 @@ package main.domain.com.hidato;
 
 public class HidatoTriangle extends Hidato {
 
-	public HidatoTriangle(TipusAdjacencia tipusAdjacencia, int[][] matrix) {
-		super(tipusAdjacencia, matrix);
+	public HidatoTriangle(TipusAdjacencia tipusAdjacencia, int[][] matriu) {
+		super(tipusAdjacencia, matriu);
 		al = new Algoritmes(this);
 	}
 	

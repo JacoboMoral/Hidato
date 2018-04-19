@@ -103,24 +103,41 @@ public class InteraccioTerminal {
 	}
 	private void autogenerar() {
 		System.out.println("\nEscriu de quin tipus vols l'hidato [Quadrat | Triangle | Hexagon]");
-		String tipus = readLine();
-		if (stringToTipusCella(tipus) == null) {
+		String cella = readLine();
+		TipusCella tc = stringToTipusCella(cella);
+		while (tc == null) {
 			System.out.println("Escriu be el tipus de hidato");
-			autogenerar();
+			cella = readLine();
+			tc = stringToTipusCella(cella);
 		}
- 		System.out.println("\nEscriu el nombre de cel�les buides");
-		String celesBuides = readLine();
-		System.out.println("\nEscriu el nombre de forats");
-		String forats = readLine();
-		//COMPROVAR CELESBBUIDDES I FORATS SIGUIN INTS
 		
-		System.out.println("\nEscriu la dificultat [Facil | Mig | Dificil]");
-		String dificultat = readLine();
-		if(stringToDificultat(dificultat) == null) {
-			System.out.println("Escriu be el tipus de dificultat");
-			autogenerar();
+		System.out.println("\nEscriu de quin tipus de adjacencia [Costats | Ambdos (costats i angles)]");
+		String adjacencia = readLine();
+		TipusAdjacencia ta = stringToTipusAdjacencia(adjacencia);
+		while (stringToTipusAdjacencia(adjacencia) == null) {
+			System.out.println("Escriu be el tipus d'adjacencia");
+			adjacencia = readLine();
+			ta = stringToTipusAdjacencia(adjacencia);
+
 		}
-		if (controladorDomini.autogenerar(stringToTipusCella(tipus), Integer.parseInt(celesBuides),Integer.parseInt(forats), stringToDificultat(dificultat), null)) {
+		
+		while (tipusNoCompatible(tc, ta)) {
+			System.out.println("El tipus d'adjacencia escollit no es compatible amb el tipus de cella, escriu-ho un altre cop");
+			adjacencia = readLine();
+			ta = stringToTipusAdjacencia(adjacencia);
+		}
+		
+		
+		
+		System.out.println("\nEscriu el tamany X (X x X)");
+		String tamanyString = readLine();
+		int tamany = Integer.parseInt(tamanyString);
+		while (tamany >= 0) {
+			System.out.println("Escriu un tamany més gran que 0");
+			tamanyString = readLine();
+			tamany = Integer.parseInt(tamanyString);
+		}		
+		if (controladorDomini.autogenerar(tc, ta,4 ,tamany)) {
 			System.out.println("Aquest es l'hidato que s'ha generat");
 			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getHidatoJugant());
 			System.out.println("Vols començar una nova partida amb aquest?\n [yes] \n [no]");
@@ -216,6 +233,7 @@ public class InteraccioTerminal {
 		return TipusAdjacencia.COSTATSIANGLES;
 	}
 
+	
 	private TipusCella extreuTipusCella(ArrayList<ArrayList<Integer>> matriu) {
 		int aux = matriu.get(0).get(0);
 		if (aux == 4) return TipusCella.QUADRAT;
@@ -229,4 +247,11 @@ public class InteraccioTerminal {
 		if (tc.equalsIgnoreCase("Hexagon")) return TipusCella.HEXAGON;
 		return null;
 	}
+
+	private TipusAdjacencia stringToTipusAdjacencia(String ta) {
+		if (ta.equalsIgnoreCase("Costats")) return TipusAdjacencia.COSTATS;
+		if (ta.equalsIgnoreCase("Ambdos")) return TipusAdjacencia.COSTATSIANGLES;
+		return null;
+	}
+	
 }

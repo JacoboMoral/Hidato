@@ -35,7 +35,6 @@ public class Partida {
 		start();
 	}
 	
-	// i = 0 j = 0 es possible!!!!!!!!!!!!!!!!
 	public boolean ferJugada(int i, int j, int value) {
 		if (hidato.moviment(i, j, value)) return true;
 		else return false;

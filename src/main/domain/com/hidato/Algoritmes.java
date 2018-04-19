@@ -110,7 +110,7 @@ public class Algoritmes {
 		return given;
 	}
 	
-	public static int[][] generarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int celesBuides, int forats, Dificultat dificultat) {
+	public static int[][] generarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int celesBuides, int forats) {
 		return null;
 	}
 }
