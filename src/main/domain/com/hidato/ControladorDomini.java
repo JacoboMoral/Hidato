@@ -55,4 +55,5 @@ public class ControladorDomini {
 		partidaEnCurs = new Partida (HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato));
 		return true;
 	}
+	
 }

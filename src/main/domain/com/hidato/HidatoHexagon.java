@@ -11,7 +11,8 @@ public class HidatoHexagon extends Hidato {
 		return TipusCella.HEXAGON;
 	}
 
+	@Override
 	public boolean posicioValida(int i, int j, int r, int c) {
-		return ((Math.abs(i + j) == 1) || ((j == 1) && (r%2 == 0)) || ((j == -1) && (r%2 != 0)));
+		return ((Math.abs(i + j) == 1) || ((j == 1) && (r%2 != 0)) || ((j == -1) && (r%2 == 0)));
 	}
 }

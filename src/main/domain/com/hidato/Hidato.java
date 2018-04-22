@@ -19,6 +19,7 @@ public abstract class Hidato {
 
     public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
 		matriuHidato = matriuOriginal = matriu;
+		this.tipusAdjacencia = tipusAdjacencia;
     }
     
     //NOMES EN CAS de moment

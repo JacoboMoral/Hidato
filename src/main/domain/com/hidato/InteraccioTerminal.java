@@ -136,19 +136,19 @@ public class InteraccioTerminal {
 			tamany = Integer.parseInt(tamanyString);
 		}
 		
-		System.out.println("\nEscriu el nombre de cel·les buides");
+		System.out.println("\nEscriu el nombre de celï¿½les buides");
 		String celesBuidesString = readLine();
 		int celesBuides = Integer.parseInt(celesBuidesString);
-		while (celesBuides > tamany*tamany/2) {
-			System.out.println("El numero de cel·les buides ha de ser més gran que el nombre total de cel·les entre dos");
-			tamanyString = readLine();
-			tamany = Integer.parseInt(celesBuidesString);
+		while (celesBuides < (tamany*tamany)/2) {
+			System.out.println("El numero de celÂ·les buides ha de ser mï¿½s gran que el nombre total de celï¿½les entre dos");
+			celesBuidesString = readLine();
+			celesBuides = Integer.parseInt(celesBuidesString);
 		}		
 		
 		if (controladorDomini.autogenerar(tc, ta, celesBuides, tamany)) {
 			System.out.println("Aquest es l'hidato que s'ha generat");
 			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getHidatoJugant());
-			System.out.println("Vols començar una nova partida amb aquest?\n [yes] \n [no]");
+			System.out.println("Vols comenï¿½ar una nova partida amb aquest?\n [yes] \n [no]");
 			//FALTA LEER YES/NO Y ACTUAR
 		}
 		else {
