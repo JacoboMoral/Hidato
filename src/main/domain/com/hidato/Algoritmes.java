@@ -110,7 +110,34 @@ public class Algoritmes {
 		return given;
 	}
 	
-	public static int[][] generarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int celesBuides, int forats) {
+	
+	
+	
+	
+	private static int random () {
+		return -1;	
+	}
+	
+	private static int[][] matriuAleatoria(int celesBuides, int tamany) {
+		int total = tamany * tamany;
+		int[][] matriu = new int[tamany][tamany];
+		for(int i = 0; i < matriu.length; ++i) {
+			for(int j = 0; i < matriu[0].length; ++j) {
+				if(celesBuides == tamany) {
+					matriu[i][j] = 0;
+					--celesBuides;
+				}
+				else{
+					matriu[i][j] = random();
+				}
+				--tamany;
+			}
+		}
+		return matriu;
+	}
+	
+	public static int[][] generarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int celesBuides, int tamany) {
+		int [][] matriu = matriuAleatoria(celesBuides, tamany);
 		return null;
 	}
 }
