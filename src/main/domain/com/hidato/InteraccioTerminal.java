@@ -132,7 +132,7 @@ public class InteraccioTerminal {
 		System.out.println("\nEscriu el tamany X (X x X)");
 		String tamanyString = readLine();
 		int tamany = Integer.parseInt(tamanyString);
-		while (tamany >= 0) {
+		while (tamany <= 0) {
 			System.out.println("Escriu un tamany més gran que 0");
 			tamanyString = readLine();
 			tamany = Integer.parseInt(tamanyString);
