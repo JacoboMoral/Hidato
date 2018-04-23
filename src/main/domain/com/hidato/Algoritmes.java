@@ -86,8 +86,6 @@ public class Algoritmes {
 
 	private void tractarMatriuSolucio(int[][] matriu) {
 		matriuSolucio = matriu;
-		System.out.println("holaaaa");
-		HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
 	}
 
 	public int[][] getMatriuSolucio(){		
@@ -125,11 +123,23 @@ public class Algoritmes {
 		matriu[r][c] = n;
 		escrits.add(n);
 		
-		for (int i = -1; i < 2; i++) {
-			for (int j = -1; j < 2; j++) {
-				
-				if (posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
-					if (generarComplet(r + i, c + j, celesBuides, n + 1, escrits, matriu)) {
+		//for randomness purposes
+		ArrayList<Integer> positionsi = new ArrayList<>(3);
+		ArrayList<Integer> positionsj = new ArrayList<>(3);
+		for (int i = -1; i < 2; i++){ //to generate from 0-10 inclusive  
+			positionsi.add(i);
+			positionsj.add(i);
+		}
+		Collections.shuffle(positionsi);
+		Collections.shuffle(positionsj);
+		
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				int ii = positionsi.get(i);
+				int jj = positionsj.get(j);
+				//System.out.println(ii + " " + jj); 
+				if (posicioValida(ii, jj, r, c) && dinsLimits(r+ii, c+jj, matriu.length, matriu[0].length)) {
+					if (generarComplet(r + ii, c + jj, celesBuides, n + 1, escrits, matriu)) {
 						return true;
 					}
 				}
@@ -187,8 +197,7 @@ public class Algoritmes {
 		//generem [tamany] nombres posicions aleatoris per començar a emplenar la matriu autogenerada
 		ArrayList<Integer> initialNumberi = new ArrayList<>(tamany);
 		ArrayList<Integer> initialNumberj = new ArrayList<>(tamany);
-		for (int i = 0; i < tamany; i++){ //to generate from 0-10 inclusive. 
-		                               //For 0-9 inclusive, remove the = on the <=
+		for (int i = 0; i < tamany; i++){ //to generate from 0-10 inclusive  
 			initialNumberi.add(i);
 			initialNumberj.add(i);
 		}
