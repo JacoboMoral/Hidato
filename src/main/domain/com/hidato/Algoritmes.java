@@ -17,6 +17,11 @@ public class Algoritmes {
 		this.matriuSolucio = hidato.getMatriu();
 		this.hidato = hidato;
 	}
+	
+	public void modificarHidato(Hidato hidato) {
+		this.matriuSolucio = hidato.getMatriu();
+		this.hidato = hidato;
+	}
 
 	public boolean solucionar() {
 		
@@ -100,20 +105,9 @@ public class Algoritmes {
 		return given;
 	}
 	
+
 	
-	private static void emplenarForats(int celesBuides, int[][] matriu) {
-		int tamany = matriu.length;
-		int forats = tamany*tamany - celesBuides;
-		Random rand = new Random();
-		for (int i = 0; i < forats; ++i) {
-			int posi = rand.nextInt(tamany);
-			int posj = rand.nextInt(tamany);
-			if (matriu[posi][posj] == -1) --i;
-			else matriu[posi][posj] = -1;
-		}
-	}
-	
-	private static boolean generarComplet(int r, int c, int celesBuides, int n, ArrayList<Integer> escrits, int[][] matriu) {
+	private boolean generarComplet(int r, int c, int celesBuides, int n, ArrayList<Integer> escrits, int[][] matriu) {
 		if (n > celesBuides) return true;
 
 		if (matriu[r][c] != 0) return false;
@@ -122,24 +116,11 @@ public class Algoritmes {
 		
 		matriu[r][c] = n;
 		escrits.add(n);
-		
-		//for randomness purposes
-		ArrayList<Integer> positionsi = new ArrayList<>(3);
-		ArrayList<Integer> positionsj = new ArrayList<>(3);
-		for (int i = -1; i < 2; i++){ //to generate from 0-10 inclusive  
-			positionsi.add(i);
-			positionsj.add(i);
-		}
-		Collections.shuffle(positionsi);
-		Collections.shuffle(positionsj);
-		
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				int ii = positionsi.get(i);
-				int jj = positionsj.get(j);
-				//System.out.println(ii + " " + jj); 
-				if (posicioValida(ii, jj, r, c) && dinsLimits(r+ii, c+jj, matriu.length, matriu[0].length)) {
-					if (generarComplet(r + ii, c + jj, celesBuides, n + 1, escrits, matriu)) {
+				
+		for (int i = -1; i < 2; i++) {
+			for (int j = -1; j < 2; j++) {
+				if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
+					if (generarComplet(r + i, c + j, celesBuides, n + 1, escrits, matriu)) {
 						return true;
 					}
 				}
@@ -150,7 +131,7 @@ public class Algoritmes {
 		return false;
 	}
 	
-	private static boolean dinsLimits(int i, int j, int tamanyi, int tamanyj) {
+	private boolean dinsLimits(int i, int j, int tamanyi, int tamanyj) {
 		if (i < 0) return false;
 		if (j < 0) return false;
 		if (i >= tamanyi) return false;
@@ -158,32 +139,42 @@ public class Algoritmes {
 		return true;
 	}
 
-	private static boolean posicioValida(int i, int j, int r, int c) {
-		return true;
-	}
+	public int[][] generarHidato(int forats, int tamanyi, int tamanyj) {
+		int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
+		boolean generat = false;
+		int intents = 0;
+		while (!generat && intents < 15) {
+			emplenarForats(forats, matriu);
+			generat = generarMatriuCompleta(forats, matriu);
+			++intents;
+			if (!generat) matriu = new int[tamanyi][tamanyj];
+			System.out.println("intent numero: " + intents);
 
-	public static int[][] generarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int celesBuides, int tamany) {
-		int[][] matriu = new int[tamany][tamany]; //per defecte esta emplenada amb 0
-		emplenarForats(celesBuides, matriu);
-		
-		
-		if (generarMatriuCompleta(celesBuides, matriu)) {
-			extreureNombres(celesBuides, matriu);
+		}
+		if (generat) {
+			extreureNombres(forats, matriu);
 			return matriu;
 		}
 		else return null;
 	}
-
-
-	private static boolean self(int ii, int jj) {
-		
-		return (ii == 0 && jj == 0);
+	
+	private static void emplenarForats(int forats, int[][] matriu) {
+		int tamanyi = matriu.length;
+		int tamanyj = matriu[0].length;
+		Random rand = new Random();
+		for (int i = 0; i < forats; ++i) {
+			int posi = rand.nextInt(tamanyi);
+			int posj = rand.nextInt(tamanyj);
+			if (matriu[posi][posj] == -1) --i;
+			else matriu[posi][posj] = -1;
+		}
 	}
 
-	private static void extreureNombres(int celesBuides, int[][] matriu) {
+	private void extreureNombres(int forats, int[][] matriu) {
 		Random rand = new Random();
+		int celesBuides = matriu.length * matriu[0].length - forats;
 		for (int i = 0; i < matriu.length; ++i) {
-			for (int j = 0; j < matriu.length; ++j) {
+			for (int j = 0; j < matriu[0].length; ++j) {
 				if (matriu[i][j] != 1 && matriu[i][j] != celesBuides && matriu[i][j] > -1) { //primer i ultim numero han d'estar, i tampoc s'han de treure els forats
 					 int treure = rand.nextInt(4); //         1/4 possibilitat de treure un numero = hi han ficats 1/4 dels numeros
 					 if (treure != 0) matriu[i][j] = 0;
@@ -192,23 +183,26 @@ public class Algoritmes {
 		}
 	}
 
-	private static boolean generarMatriuCompleta(int celesBuides, int[][] matriu) {
-		int tamany = matriu.length;
+	private boolean generarMatriuCompleta(int forats, int[][] matriu) {
+		int tamanyi = matriu.length;
+		int tamanyj = matriu[0].length;
 		//generem [tamany] nombres posicions aleatoris per començar a emplenar la matriu autogenerada
-		ArrayList<Integer> initialNumberi = new ArrayList<>(tamany);
-		ArrayList<Integer> initialNumberj = new ArrayList<>(tamany);
-		for (int i = 0; i < tamany; i++){ //to generate from 0-10 inclusive  
+		ArrayList<Integer> initialNumberi = new ArrayList<>(tamanyi);
+		ArrayList<Integer> initialNumberj = new ArrayList<>(tamanyj);
+		for (int i = 0; i < tamanyi; i++){ //to generate from 0-10 inclusive  
 			initialNumberi.add(i);
-			initialNumberj.add(i);
+		}
+		for (int j = 0; j < tamanyj; j++){ //to generate from 0-10 inclusive  
+			initialNumberj.add(j);
 		}
 		Collections.shuffle(initialNumberi);
 		Collections.shuffle(initialNumberj);
 		
 		ArrayList<Integer> escrits;
-		for (int i = 0; i < tamany; ++i) {
-			for (int j = 0; j < tamany; ++j) {
+		for (int i = 0; i < tamanyi; ++i) {
+			for (int j = 0; j < tamanyj; ++j) {
 				escrits = new ArrayList<>();
-				if (generarComplet(initialNumberi.get(i), initialNumberj.get(j), celesBuides, 1, escrits, matriu)) return true; //intentem generar una matriu amb l'1 a totes les posicions possibles
+				if (generarComplet(initialNumberi.get(i), initialNumberj.get(j), tamanyi*tamanyj - forats, 1, escrits, matriu)) return true; //intentem generar una matriu amb l'1 a totes les posicions possibles
 			}
 		}
 		return false;

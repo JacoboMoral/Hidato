@@ -19,8 +19,7 @@ public class Partida {
 		dataIni = new Date();
 		puntuacio = 0;
 	}
-	
-	
+		
 	public void acabarPartida() {
 		finalitzada = true;
 		dataFi = new Date();
@@ -75,7 +74,6 @@ public class Partida {
 	public int getPuntuacio() {
 		return puntuacio;
 	}
-
 
 	public boolean esSolucionable() {
 		return hidato.teSolucio();

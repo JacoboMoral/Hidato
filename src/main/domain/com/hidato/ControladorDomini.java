@@ -5,6 +5,7 @@ import java.util.Vector;
 public class ControladorDomini {
 	
 	Partida partidaEnCurs;
+	Hidato hidatoGenerat;
 	
 
 	public boolean jugarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
@@ -16,16 +17,20 @@ public class ControladorDomini {
 		else return true;
 	}
 	
-	public int[][] obtenirHidatoOriginal(){
+	public int[][] obtenirHidatoOriginalDePartida(){
 		return partidaEnCurs.getHidatoOriginal();
 	}
 	
-	public int[][] obtenirHidato() {
+	public int[][] obtenirHidatoDePartida() {
 		return partidaEnCurs.getHidato();
 	}
 
 	public int[][] solucionarHidatoPartida() {
 		return partidaEnCurs.getSolucio();
+	}
+	
+	public int[][] solucionarHidatoGenerat() {
+		return hidatoGenerat.getSolucio();
 	}
 	
 	public Vector<Integer> obtenirNombresPerDefecte(){
@@ -37,23 +42,21 @@ public class ControladorDomini {
 		else return false;
 	}
 	
-	public int[][] getHidatoOriginal(){
-		return partidaEnCurs.getHidatoOriginal();
-	}
-
-	public int[][] getHidatoJugant() {
-		return partidaEnCurs.getHidato();
+	public int[][] getHidatoGenerat(){
+		return hidatoGenerat.getMatriu();
 	}
 
 	public boolean enPartida() {
 		return (partidaEnCurs != null);
 	}
 
-	public boolean autogenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int celesBuides, int forats) {
-		int[][] matriuHidato = Algoritmes.generarHidato(tipusCella, tipusAdjacencia, celesBuides, forats);
-		if (matriuHidato == null) return false;
-		partidaEnCurs = new Partida (HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato));
-		return true;
+	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int forats, int tamanyi, int tamanyj) {
+		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia);
+		return hidatoGenerat.autogenerar(forats, tamanyi, tamanyj);
+	}
+	
+	public void jugarHidatoGenerat() {
+		partidaEnCurs = new Partida(hidatoGenerat);
 	}
 	
 }

@@ -7,6 +7,11 @@ public class HidatoTriangle extends Hidato {
 		al = new Algoritmes(this);
 	}
 	
+	public HidatoTriangle(TipusAdjacencia tipusAdjacencia) {
+		super(tipusAdjacencia);
+		al = new Algoritmes(this);
+	}
+
 	public TipusCella getTipusCella() {
 		return TipusCella.TRIANGLE;
 	}

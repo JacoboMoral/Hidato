@@ -22,8 +22,21 @@ public abstract class Hidato {
 		this.tipusAdjacencia = tipusAdjacencia;
     }
     
-    //NOMES EN CAS de moment
-    //
+    public Hidato(TipusAdjacencia tipusAdjacencia) {
+    	this.tipusAdjacencia = tipusAdjacencia;
+    }
+    
+    public boolean autogenerar(int forats, int tamanyi, int tamanyj) {
+		matriuHidato = al.generarHidato(forats, tamanyi, tamanyj);
+		if (matriuHidato != null){
+			matriuOriginal = matriuHidato;
+			al.modificarHidato(this);
+			return true;
+		}
+		matriuHidato = null;
+		return false;
+	}
+    
     private boolean comprovarMoviment(int i, int j, int value) {
     	
     	if (estaRepetit(value)) return false;
@@ -109,9 +122,9 @@ public abstract class Hidato {
 			nombresEscrits = al.getGiven();
 			matriuSolucio = al.getMatriuSolucio();
 		}
-		
 		return solucionable;
 	}
+	
 
 	public TipusAdjacencia getTipusAdjacencia(){
 		return this.tipusAdjacencia;
@@ -120,5 +133,7 @@ public abstract class Hidato {
 	public abstract TipusCella getTipusCella();
 
 	public abstract boolean posicioValida(int i, int j, int r, int c);
+
+	
 
 }

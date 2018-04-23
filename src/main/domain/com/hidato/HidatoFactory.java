@@ -8,4 +8,12 @@ public class HidatoFactory {
 		if (tipusCella == TipusCella.TRIANGLE) return new HidatoTriangle(tipusAdjacencia, matriu);
 		return new HidatoHexagon(matriu);
 	}
+	
+	public static Hidato createHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia) {
+		if (tipusCella == null) return null;
+		if (tipusCella == TipusCella.QUADRAT) return new HidatoQuadrat(tipusAdjacencia);
+		if (tipusCella == TipusCella.TRIANGLE) return new HidatoTriangle(tipusAdjacencia);
+		return new HidatoHexagon();
+	}
+	
 }

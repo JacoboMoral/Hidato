@@ -9,7 +9,7 @@ public final class HidatoIO {
 	
     public static ArrayList<ArrayList<Integer>> readHidatoFromInput(){
 
-    		Scanner reader = new Scanner(System.in);
+    	Scanner reader = new Scanner(System.in);
         String line = reader.nextLine();
         String[] values = line.split(",");
         

@@ -7,6 +7,11 @@ public class HidatoQuadrat extends Hidato {
 		al = new Algoritmes(this);
 	}
 	
+	public HidatoQuadrat(TipusAdjacencia tipusAdjacencia) {
+		super(tipusAdjacencia);
+		al = new Algoritmes(this);
+	}
+
 	public TipusCella getTipusCella() {
 		return TipusCella.QUADRAT;
 	}

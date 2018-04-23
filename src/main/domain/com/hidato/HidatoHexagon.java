@@ -7,6 +7,11 @@ public class HidatoHexagon extends Hidato {
 		al = new Algoritmes(this);
 	}
 	
+	public HidatoHexagon() {
+		super(TipusAdjacencia.COSTATS);
+		al = new Algoritmes(this);
+	}
+	
 	public TipusCella getTipusCella() {
 		return TipusCella.HEXAGON;
 	}

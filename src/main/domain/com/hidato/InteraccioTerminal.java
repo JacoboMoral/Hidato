@@ -29,31 +29,35 @@ public class InteraccioTerminal {
 	}
 
 	public void interactuar(String req) {
-		if (req.equals("partida") && status.equals("start")) {
+		if (req.equalsIgnoreCase("partida") && status.equals("start")) {
 			partida();
 			status = "partida";
 			interactuar(readLine());
 		}	
-		else if(req.equals("auto") && status.equals("partida")) {
+		else if(req.equalsIgnoreCase("auto") && status.equals("partida")) {
 			autogenerar();
 		}		
-		else if(req.equals("importar") && status.equals("partida")) {
+		else if(req.equalsIgnoreCase("importar") && status.equals("partida")) {
 			importar();
 		}
-		else if (req.equals("moviment") && status.equals("jugant")) {
+		else if (req.equalsIgnoreCase("moviment") && status.equals("jugant")) {
 			infoMoviment();
 			moviment();
 		}
-		else if (req.equals("moviment") && status.equals("movimentFet")) {
+		else if (req.equalsIgnoreCase("moviment") && status.equals("movimentFet")) {
 			moviment();
 		}
-		else if (req.equals("solucio") && status.equals("jugant")){
+		else if (req.equalsIgnoreCase("solucio") && status.equals("jugant")){
 			solucio();
 		}
-		else if (req.equals("auto") && status.equals("partida")){
-			autogenerar();
+		else if (req.equalsIgnoreCase("yes") && status.equals("generat")){
+			partidaGenerada();
 		}
-		else if (req.equals("exit") || req.equals("sortir") || req.equals("surt")) {
+		else if (req.equalsIgnoreCase("no") && status.equals("generat")){
+			System.out.println("\n\n Vols saber la solucio del hidato?");
+			noPartidaGenerada();
+		}
+		else if (req.equalsIgnoreCase("exit") || req.equals("sortir") || req.equals("surt")) {
 			System.out.println("Sortint del programa, esperem que torni aviat ..............................................................");
 		}
 		else {
@@ -61,17 +65,27 @@ public class InteraccioTerminal {
 		}
 	}
 
-	
-	
-	
-	
+	private void noPartidaGenerada() {
+		System.out.println("\n\n Respon [yes] o [no] \n\n");
+		String resposta = readLine();
+		if (resposta.equalsIgnoreCase("yes")) {
+			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoGenerat());
+		}
+		else if (resposta.equalsIgnoreCase("no"));
+		else noPartidaGenerada();
+	}
+
+	private void partidaGenerada() {
+		controladorDomini.jugarHidatoGenerat();
+		status = "jugant";
+		System.out.println("\n\n Acabas de comencar una nova partida \n\n");
+		interactuar(readLine());
+	}
+
 	private void solucio() {
 		if(status.equals("jugant")||status.equals("movimentFet")) {
 			System.out.println("\n\n La solucio del teu hidato es la seguent: \n\n");
 			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoPartida());
-			/*HidatoIO.writeHidatoSolucioMatrixToOutput(controladorDomini.solucionarHidatoPartida(),
-					controladorDomini.obtenirHidatoOriginal(),
-					controladorDomini.obtenirNombresPerDefecte());*/
 		}
 		else System.out.println("No es pot donar la solucio");
 		interactuar(readLine());
@@ -87,10 +101,9 @@ public class InteraccioTerminal {
 	private void moviment() {
 		int[] numbers = readNumbers(3);
 		boolean estatMoviment = controladorDomini.ferMoviment(numbers[0]-1,numbers[1]-1,numbers[2]); //peta amb 1 1 32, ja ho mirare
-		//boolean estatMoviment = controladorDomini.ferMoviment(9,6,2);
 		if (estatMoviment) {
 			System.out.println("\n\n Moviment valid, el hidato queda en el seguent estat:\n\n");
-			HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.getHidatoJugant());
+			HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.obtenirHidatoDePartida());
 			System.out.println("\nPots fer un altre moviment si ho dessitges\n");
 			status = "movimentFet";
 			interactuar(readLine());
@@ -127,30 +140,41 @@ public class InteraccioTerminal {
 			ta = stringToTipusAdjacencia(adjacencia);
 		}
 		
-		System.out.println("\nEscriu el tamany X (X x X)");
+		System.out.println("\nEscriu el tamany [X] x [Y], exemple: [10 12]");
 		String tamanyString = readLine();
-		int tamany = Integer.parseInt(tamanyString);
-		while (tamany <= 0) {
-			System.out.println("Escriu un tamany més gran que 0");
-			tamanyString = readLine();
-			tamany = Integer.parseInt(tamanyString);
+		String[] tamanysString = tamanyString.split("\\s+");
+		int tamanyi, tamanyj;
+		if (tamanysString.length == 1) {
+			tamanyi = tamanyj = Integer.parseInt(tamanysString[0]);
+		}
+		else {
+			tamanyi = Integer.parseInt(tamanysString[0]);
+			tamanyj= Integer.parseInt(tamanysString[1]);
 		}
 		
-		System.out.println("\nEscriu el nombre de cel�les buides");
+		while (tamanyi <= 0 || tamanyj <= 0) {
+			System.out.println("Escriu un tamany més gran que 0");
+			tamanyString = readLine();
+			tamanysString = tamanyString.split("\\s+");
+			tamanyi = Integer.parseInt(tamanysString[0]);
+			tamanyj = Integer.parseInt(tamanysString[1]);
+		}
+		
+		System.out.println("\nEscriu el nombre de forats inaccessibles");
 		String celesBuidesString = readLine();
-		int celesBuides = Integer.parseInt(celesBuidesString);
-		while (celesBuides < (tamany*tamany)/2) {
-			System.out.println("El numero de cel·les buides ha de ser m�s gran que el nombre total de cel�les entre dos");
+		int forats = Integer.parseInt(celesBuidesString);
+		while (forats > (tamanyi*tamanyj)/2) {
+			System.out.println("El numero de forats ha de ser mes petit que el nombre total de cel�les entre dos");
 			celesBuidesString = readLine();
-			celesBuides = Integer.parseInt(celesBuidesString);
+			forats = Integer.parseInt(celesBuidesString);
 		}		
 		
-		if (controladorDomini.autogenerar(tc, ta, celesBuides, tamany)) {
+		if (controladorDomini.autoGenerar(tc, ta, forats, tamanyi, tamanyj)) {
 			System.out.println("Aquest es l'hidato que s'ha generat");
-			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getHidatoJugant());
-			System.out.println("Vols comen�ar una nova partida amb aquest?\n [yes] \n [no]");
+			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getHidatoGenerat());
+			System.out.println("Vols comen�ar una nova partida amb aquest?\n [yes] \n [no]\n\n");
 			//FALTA DECIDIR YES/NO
-			status = "jugant";
+			status = "generat";
 			interactuar(readLine());
 			
 		}
@@ -183,7 +207,7 @@ public class InteraccioTerminal {
 		else { 
 			if (controladorDomini.jugarHidato(tipusCella, tipusAdjacencia, matriuHidato)) {
 				System.out.println("\n\nHidato importat i validad correctament. El teu hidato es el seguent: \n");
-				HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.getHidatoJugant());
+				HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.obtenirHidatoDePartida());
 				status = "jugant";
 				interactuar(readLine());
 			}
