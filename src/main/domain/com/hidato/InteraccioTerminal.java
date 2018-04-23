@@ -149,7 +149,10 @@ public class InteraccioTerminal {
 			System.out.println("Aquest es l'hidato que s'ha generat");
 			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getHidatoJugant());
 			System.out.println("Vols comen�ar una nova partida amb aquest?\n [yes] \n [no]");
-			//FALTA LEER YES/NO Y ACTUAR
+			//FALTA DECIDIR YES/NO
+			status = "jugant";
+			interactuar(readLine());
+			
 		}
 		else {
 			System.out.println("No s'ha pogut generar un hidato amb les condicions donades");
