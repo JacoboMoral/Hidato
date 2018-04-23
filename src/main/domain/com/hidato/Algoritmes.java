@@ -86,6 +86,8 @@ public class Algoritmes {
 
 	private void tractarMatriuSolucio(int[][] matriu) {
 		matriuSolucio = matriu;
+		System.out.println("holaaaa");
+		HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
 	}
 
 	public int[][] getMatriuSolucio(){		
@@ -123,11 +125,9 @@ public class Algoritmes {
 		matriu[r][c] = n;
 		escrits.add(n);
 		
-		//HidatoIO.writeHidatoMatrixToOutput(matriu);
-		//System.out.println(escrits);
-		
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
+				
 				if (posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
 					if (generarComplet(r + i, c + j, celesBuides, n + 1, escrits, matriu)) {
 						return true;
@@ -135,7 +135,6 @@ public class Algoritmes {
 				}
 			}
 		}
-		//System.out.println("generarComplet: " + n);
 		escrits.remove(escrits.size()-1);
 		matriu[r][c] = 0;
 		return false;
@@ -157,11 +156,18 @@ public class Algoritmes {
 		int[][] matriu = new int[tamany][tamany]; //per defecte esta emplenada amb 0
 		emplenarForats(celesBuides, matriu);
 		
+		
 		if (generarMatriuCompleta(celesBuides, matriu)) {
 			extreureNombres(celesBuides, matriu);
 			return matriu;
 		}
 		else return null;
+	}
+
+
+	private static boolean self(int ii, int jj) {
+		
+		return (ii == 0 && jj == 0);
 	}
 
 	private static void extreureNombres(int celesBuides, int[][] matriu) {
@@ -170,7 +176,7 @@ public class Algoritmes {
 			for (int j = 0; j < matriu.length; ++j) {
 				if (matriu[i][j] != 1 && matriu[i][j] != celesBuides && matriu[i][j] > -1) { //primer i ultim numero han d'estar, i tampoc s'han de treure els forats
 					 int treure = rand.nextInt(4); //         1/4 possibilitat de treure un numero = hi han ficats 1/4 dels numeros
-					 if (treure == 0) matriu[i][j] = 0;
+					 if (treure != 0) matriu[i][j] = 0;
 				}
 			}
 		}
@@ -192,7 +198,6 @@ public class Algoritmes {
 		ArrayList<Integer> escrits;
 		for (int i = 0; i < tamany; ++i) {
 			for (int j = 0; j < tamany; ++j) {
-				//System.out.println("Algoritmes.generarHidato: for "+ initialNumberi.get(i) + " " + initialNumberj.get(j));
 				escrits = new ArrayList<>();
 				if (generarComplet(initialNumberi.get(i), initialNumberj.get(j), celesBuides, 1, escrits, matriu)) return true; //intentem generar una matriu amb l'1 a totes les posicions possibles
 			}
