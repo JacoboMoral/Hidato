@@ -4,12 +4,12 @@ public class HidatoHexagon extends Hidato {
 
 	public HidatoHexagon(int[][] matrix) {
 		super(TipusAdjacencia.COSTATS, matrix);
-		al = new Algoritmes(this);
+		al = new Algorismes(this);
 	}
 	
 	public HidatoHexagon() {
 		super(TipusAdjacencia.COSTATS);
-		al = new Algoritmes(this);
+		al = new Algorismes(this);
 	}
 	
 	public TipusCella getTipusCella() {

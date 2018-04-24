@@ -1,19 +1,18 @@
 package main.domain.com.hidato;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Vector;
 
 
-public class Algoritmes {
+public class Algorismes {
 
 	private int[][] matriuSolucio;
 	Hidato hidato;
 
 	Vector<Integer> given = new Vector<Integer>();
 
-	public Algoritmes(Hidato hidato) {
+	public Algorismes(Hidato hidato) {
 		this.matriuSolucio = hidato.getMatriu();
 		this.hidato = hidato;
 	}
@@ -30,7 +29,6 @@ public class Algoritmes {
 		int casellesNumeriques = 0;
 				
 		int[][] matriu = new int[matriuSolucio.length][matriuSolucio[0].length];
-		
 		
 		//fem una copia de matriu solucio mentre cerquem el valor de row1 i column1
 		for (int i = 0; i < matriuSolucio.length; ++i) {
@@ -145,6 +143,7 @@ public class Algoritmes {
 		int intents = 0;
 		while (!generat && intents < 15) {
 			emplenarForats(forats, matriu);
+			HidatoIO.writeHidatoMatrixToOutput(matriu);
 			generat = generarMatriuCompleta(forats, matriu);
 			++intents;
 			if (!generat) matriu = new int[tamanyi][tamanyj];

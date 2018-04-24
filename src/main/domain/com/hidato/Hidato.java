@@ -14,7 +14,7 @@ public abstract class Hidato {
     private Boolean solucionable;
     private Vector<Integer> nombresEscrits;
     private Vector<Integer> nombresDonats;
-    protected Algoritmes al;
+    protected Algorismes al;
     
 
     public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){

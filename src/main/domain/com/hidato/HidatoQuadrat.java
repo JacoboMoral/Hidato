@@ -4,12 +4,12 @@ public class HidatoQuadrat extends Hidato {
 	
 	public HidatoQuadrat(TipusAdjacencia tipusAdjacencia, int[][] matrix) {
 		super(tipusAdjacencia, matrix);
-		al = new Algoritmes(this);
+		al = new Algorismes(this);
 	}
 	
 	public HidatoQuadrat(TipusAdjacencia tipusAdjacencia) {
 		super(tipusAdjacencia);
-		al = new Algoritmes(this);
+		al = new Algorismes(this);
 	}
 
 	public TipusCella getTipusCella() {

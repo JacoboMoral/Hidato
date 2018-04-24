@@ -1,14 +1,8 @@
 package main.domain.com.hidato;
 
-import java.time.LocalDate;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-import java.util.List;
-
-import main.domain.com.hidato.InteraccioTerminal.CustomCompare;
 
 public class InteraccioTerminal {
 	
@@ -229,11 +223,6 @@ public class InteraccioTerminal {
 
 	private boolean tipusNoCompatible(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia) {
 		return (tipusCella == TipusCella.HEXAGON && tipusAdjacencia == TipusAdjacencia.COSTATSIANGLES);
-	}
-
-
-	private boolean request(String req) {
-		return readLine().equals(req);
 	}
 	
 	private String readLine() {		
