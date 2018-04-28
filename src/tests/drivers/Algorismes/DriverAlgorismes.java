@@ -29,13 +29,6 @@ public class DriverAlgorismes {
 			case 5:
 			case 6:
 			case 7:
-			case 8:
-			case 9:
-			case 10:
-			case 11:
-			case 12:
-			case 13:
-			case 14:
 			default:
 		}
 	}
@@ -45,17 +38,10 @@ public class DriverAlgorismes {
 		System.out.println("1: Constructor");
 		System.out.println("2: Modificar hidato");
 		System.out.println("3: Solucionar");
-		System.out.println("4: Solucionador");
-		System.out.println("5: tractarMatriuSolucio");
-		System.out.println("6: getMatriuSolucio");
-		System.out.println("7: obtenirDificultat");
-		System.out.println("8: getGiven");
-		System.out.println("9: generarComplet");
-		System.out.println("10: dinsLimits");
-		System.out.println("11: generarHidato");
-		System.out.println("12: emplenarForats");
-		System.out.println("13: extreureNombres");
-		System.out.println("14: generarMatriuCompleta");
+		System.out.println("4: getMatriuSolucio");
+		System.out.println("5: obtenirDificultat");
+		System.out.println("6: getGiven");
+		System.out.println("7: generarHidato");
 	}
 	
 	private static String readLine() {		
@@ -67,7 +53,6 @@ public class DriverAlgorismes {
 	private static int getRequest() {
 		String req = readLine();
 		if (isNumber(req)) return Integer.parseInt(req);
-		
 		else return -1;
 	}
 

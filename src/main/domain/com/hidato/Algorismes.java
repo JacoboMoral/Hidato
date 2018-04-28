@@ -102,7 +102,6 @@ public class Algorismes {
 		return Dificultat.DIFICIL;
 	}
 
-
 	public Vector<Integer> getGiven() {
 		return given;
 	}
