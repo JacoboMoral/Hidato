@@ -1,4 +1,4 @@
-package Algorismes;
+package tests.drivers.Algorismes;
 import java.util.Scanner;
 
 import main.domain.com.hidato.Algorismes;
@@ -7,12 +7,8 @@ import main.domain.com.hidato.Algorismes;
 public class DriverAlgorismes {
 	private static int numeroTests = 14;
 	
-	public void testConstructor() {
-	}
-	
-	
     public static void main(String[] args) throws Exception{
-		System.out.println("Aquest es el driver de algorismes, indica quina funcio vols probar");
+		System.out.println("Aquest es el driver de algorismes, indica quina funcio vols provar");
 		llistaTests();
 		int req = -1;
 		req = getRequest();
@@ -22,8 +18,6 @@ public class DriverAlgorismes {
 			req = getRequest();
 		}
 		tractaRequest(req);
-		
-		
 	}
 	
 	private static void tractaRequest(int req) {

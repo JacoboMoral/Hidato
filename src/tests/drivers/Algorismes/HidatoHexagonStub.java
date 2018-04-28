@@ -1,16 +1,17 @@
-package main.domain.com.hidato;
+package tests.drivers.Algorismes;
 
-public class HidatoHexagon extends Hidato {
+import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.TipusCella;
 
-	public HidatoHexagon(int[][] matrix) {
+public class HidatoHexagonStub extends HidatoStub{
+	public HidatoHexagonStub(int[][] matrix) {
 		super(TipusAdjacencia.COSTATS, matrix);
-		al = new Algorismes(this);
-		dificultat = al.obtenirDificultat();
+		al = new AlgorismesStub(this);
 	}
 	
-	public HidatoHexagon() {
+	public HidatoHexagonStub() {
 		super(TipusAdjacencia.COSTATS);
-		al = new Algorismes(this);
+		al = new AlgorismesStub(this);
 	}
 	
 	public TipusCella getTipusCella() {

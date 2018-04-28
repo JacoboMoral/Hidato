@@ -27,7 +27,7 @@ public class InteraccioTerminal {
 			partida();
 			status = "partida";
 			interactuar(readLine());
-		}	
+		}
 		else if(req.equalsIgnoreCase("auto") && status.equals("partida")) {
 			autogenerar();
 		}		
@@ -97,7 +97,7 @@ public class InteraccioTerminal {
 		boolean estatMoviment = controladorDomini.ferMoviment(numbers[0]-1,numbers[1]-1,numbers[2]); //peta amb 1 1 32, ja ho mirare
 		if (estatMoviment) {
 			System.out.println("\n\n Moviment valid, el hidato queda en el seguent estat:\n\n");
-			HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.obtenirHidatoDePartida());
+			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.obtenirHidatoDePartida());
 			System.out.println("\nPots fer un altre moviment si ho dessitges\n");
 			status = "movimentFet";
 			interactuar(readLine());
@@ -201,7 +201,7 @@ public class InteraccioTerminal {
 		else { 
 			if (controladorDomini.jugarHidato(tipusCella, tipusAdjacencia, matriuHidato)) {
 				System.out.println("\n\nHidato importat i validad correctament. El teu hidato es el seguent: \n");
-				HidatoIO.writeHidatoMatrixToOutputWithGrid(controladorDomini.obtenirHidatoDePartida());
+				HidatoIO.writeHidatoMatrixToOutput(controladorDomini.obtenirHidatoDePartida());
 				status = "jugant";
 				interactuar(readLine());
 			}

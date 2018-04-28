@@ -1,11 +1,16 @@
-package main.domain.com.hidato;
+package tests.drivers.Algorismes;
 
 import java.util.Vector;
 
-public abstract class Hidato {
+import main.domain.com.hidato.Algorismes;
+import main.domain.com.hidato.Dificultat;
+import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.TipusCella;
 
-    protected TipusAdjacencia tipusAdjacencia;
-    protected Dificultat dificultat;
+public abstract class HidatoStub {
+
+	protected TipusAdjacencia tipusAdjacencia;
+    private Dificultat dificultat;
         
     private int[][] matriuHidato;
     private int[][] matriuOriginal;
@@ -14,15 +19,14 @@ public abstract class Hidato {
     private Boolean solucionable;
     private Vector<Integer> nombresEscrits;
     private Vector<Integer> nombresDonats;
-    protected Algorismes al;
-    
-
-    public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
+    protected AlgorismesStub al;
+	
+	public HidatoStub(TipusAdjacencia tipusAdjacencia, int[][] matriu){
 		matriuHidato = matriuOriginal = matriu;
 		this.tipusAdjacencia = tipusAdjacencia;
     }
     
-    public Hidato(TipusAdjacencia tipusAdjacencia) {
+    public HidatoStub(TipusAdjacencia tipusAdjacencia) {
     	this.tipusAdjacencia = tipusAdjacencia;
     }
     
@@ -31,7 +35,6 @@ public abstract class Hidato {
 		if (matriuHidato != null){
 			matriuOriginal = matriuHidato;
 			al.modificarHidato(this);
-			dificultat = al.obtenirDificultat();
 			return true;
 		}
 		matriuHidato = null;
@@ -39,28 +42,7 @@ public abstract class Hidato {
 	}
     
     private boolean comprovarMoviment(int i, int j, int value) {
-    	
-    	if (estaRepetit(value)) return false;
-    	boolean anterior = nombresEscrits.contains(value-1);
-    	boolean posterior = nombresEscrits.contains(value+1);
-    	boolean trobatAnterior = false;
-    	boolean trobatPosterior = false;
-    	for(int ii = i - 1; ii < i + 2; ++ii) {
-    		for(int jj = j - 1; jj < j + 2; ++jj) {
-    			if(estaDintreElsLimits(ii, jj)) {
-    				if ((matriuHidato[ii][jj] - value) == 1 ) {
-    					trobatPosterior = true;
-    				}
-    				if ((value - matriuHidato[ii][jj]) == 1 ) {
-    					trobatAnterior = true;
-    				}
-    			}
-    		}
-    	}
-	    	if (posterior && !trobatPosterior) return false; 		//si hi ha un posterior escrit pero no esta al voltant
-	    	if (anterior && !trobatAnterior) return false; 		//si hi ha un anterior escrit pero no esta al voltant
-	    	else if (!anterior || !posterior) return false; 		//si no hi ha escrits ni el anterior ni el posterior
-	    	return true; 										//else
+	    	return true;
     }
 
 	private boolean estaRepetit(int value) {
@@ -134,7 +116,7 @@ public abstract class Hidato {
 	public abstract TipusCella getTipusCella();
 
 	public abstract boolean posicioValida(int i, int j, int r, int c);
-
 	
-
+	
+	
 }

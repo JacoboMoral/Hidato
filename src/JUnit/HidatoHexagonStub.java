@@ -1,16 +1,16 @@
-package main.domain.com.hidato;
+package JUnit;
 
-public class HidatoHexagon extends Hidato {
+import main.domain.com.hidato.Hidato;
+import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.TipusCella;
 
-	public HidatoHexagon(int[][] matrix) {
+public class HidatoHexagonStub extends Hidato{
+	public HidatoHexagonStub(int[][] matrix) {
 		super(TipusAdjacencia.COSTATS, matrix);
-		al = new Algorismes(this);
-		dificultat = al.obtenirDificultat();
 	}
 	
-	public HidatoHexagon() {
+	public HidatoHexagonStub() {
 		super(TipusAdjacencia.COSTATS);
-		al = new Algorismes(this);
 	}
 	
 	public TipusCella getTipusCella() {

@@ -8,9 +8,9 @@ import java.util.Vector;
 public class Algorismes {
 
 	private int[][] matriuSolucio;
-	Hidato hidato;
+	private Hidato hidato;
 
-	Vector<Integer> given = new Vector<Integer>();
+	private Vector<Integer> given = new Vector<Integer>();
 
 	public Algorismes(Hidato hidato) {
 		this.matriuSolucio = hidato.getMatriu();
@@ -96,14 +96,16 @@ public class Algorismes {
 	}
 
 	public Dificultat obtenirDificultat() {
-		return null;
+		int tamany = matriuSolucio.length * matriuSolucio[0].length;
+		if (tamany < 18) return Dificultat.FACIL;
+		if (tamany < 50) return Dificultat.MIG;
+		return Dificultat.DIFICIL;
 	}
+
 
 	public Vector<Integer> getGiven() {
 		return given;
 	}
-	
-
 	
 	private boolean generarComplet(int r, int c, int celesBuides, int n, ArrayList<Integer> escrits, int[][] matriu) {
 		if (n > celesBuides) return true;
@@ -124,6 +126,7 @@ public class Algorismes {
 				}
 			}
 		}
+		//System.out.println(r + " " + c + " " + n);
 		escrits.remove(escrits.size()-1);
 		matriu[r][c] = 0;
 		return false;
@@ -143,11 +146,9 @@ public class Algorismes {
 		int intents = 0;
 		while (!generat && intents < 15) {
 			emplenarForats(forats, matriu);
-			HidatoIO.writeHidatoMatrixToOutput(matriu);
 			generat = generarMatriuCompleta(forats, matriu);
 			++intents;
 			if (!generat) matriu = new int[tamanyi][tamanyj];
-			System.out.println("intent numero: " + intents);
 
 		}
 		if (generat) {
