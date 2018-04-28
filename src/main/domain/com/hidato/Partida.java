@@ -9,8 +9,8 @@ public class Partida {
 	private Date dataIni;
 	private Date dataFi;
 	private Hidato hidato;
-	boolean finalitzada;
-	int[][] solucioHidato;
+	private boolean finalitzada;
+	private int[][] solucioHidato;
 	
 	public Partida(Hidato hidato) {
 		this.hidato = hidato;

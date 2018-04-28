@@ -8,9 +8,8 @@ import java.util.Vector;
 public class Algorismes {
 
 	private int[][] matriuSolucio;
-	Hidato hidato;
-
-	Vector<Integer> given = new Vector<Integer>();
+	private Hidato hidato;
+	private Vector<Integer> given = new Vector<Integer>();
 
 	public Algorismes(Hidato hidato) {
 		this.matriuSolucio = hidato.getMatriu();
@@ -71,17 +70,18 @@ public class Algorismes {
 		if (back == n) next++;
 
 		matriuSolucio[r][c] = n;
-
-			for (int i = -1; i < 2; i++) {
-				for (int j = -1; j < 2; j++) {
-					if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriuSolucio.length, matriuSolucio[0].length)) {
-						if (solucionador(r + i, c + j, n + 1, next, matriuSolucio)) {
-							if(n == 1) tractarMatriuSolucio(matriuSolucio);
-							return true;
-						}
+		
+		
+		for (int i = -1; i < 2; i++) {
+			for (int j = -1; j < 2; j++) {
+				if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriuSolucio.length, matriuSolucio[0].length)) {
+					if (solucionador(r + i, c + j, n + 1, next, matriuSolucio)) {
+						if(n == 1) tractarMatriuSolucio(matriuSolucio);
+						return true;
 					}
 				}
 			}
+		}
 
 		matriuSolucio[r][c] = back;
 		return false;
@@ -102,8 +102,6 @@ public class Algorismes {
 	public Vector<Integer> getGiven() {
 		return given;
 	}
-	
-
 	
 	private boolean generarComplet(int r, int c, int celesBuides, int n, ArrayList<Integer> escrits, int[][] matriu) {
 		if (n > celesBuides) return true;
@@ -156,7 +154,7 @@ public class Algorismes {
 		}
 		else return null;
 	}
-	
+
 	private static void emplenarForats(int forats, int[][] matriu) {
 		int tamanyi = matriu.length;
 		int tamanyj = matriu[0].length;

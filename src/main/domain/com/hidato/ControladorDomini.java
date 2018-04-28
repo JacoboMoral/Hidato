@@ -4,8 +4,8 @@ import java.util.Vector;
 
 public class ControladorDomini {
 	
-	Partida partidaEnCurs;
-	Hidato hidatoGenerat;
+	private Partida partidaEnCurs;
+	private Hidato hidatoGenerat;
 	
 
 	public boolean jugarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {

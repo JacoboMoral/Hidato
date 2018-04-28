@@ -12,7 +12,7 @@ public class DriverAlgorismes {
 	
 	
     public static void main(String[] args) throws Exception{
-		System.out.println("Aquest es el driver de algorismes, indica quina funcio vols probar");
+		System.out.println("Aquest es el driver de algorismes, indica quina funcio vols provar");
 		llistaTests();
 		int req = -1;
 		req = getRequest();

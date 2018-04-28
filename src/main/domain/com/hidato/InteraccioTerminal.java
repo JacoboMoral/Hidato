@@ -27,7 +27,7 @@ public class InteraccioTerminal {
 			partida();
 			status = "partida";
 			interactuar(readLine());
-		}	
+		}
 		else if(req.equalsIgnoreCase("auto") && status.equals("partida")) {
 			autogenerar();
 		}		
