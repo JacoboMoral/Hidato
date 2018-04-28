@@ -9,27 +9,26 @@ public class Algorismes {
 
 	private int[][] matriuSolucio;
 	private Hidato hidato;
-
 	private Vector<Integer> given = new Vector<Integer>();
 
 	public Algorismes(Hidato hidato) {
 		this.matriuSolucio = hidato.getMatriu();
 		this.hidato = hidato;
 	}
-	
+
 	public void modificarHidato(Hidato hidato) {
 		this.matriuSolucio = hidato.getMatriu();
 		this.hidato = hidato;
 	}
 
 	public boolean solucionar() {
-		
-		int row1 = -1; 
+
+		int row1 = -1;
 		int column1 = -1; //fila i columna on es troba el numero 1
 		int casellesNumeriques = 0;
-				
+
 		int[][] matriu = new int[matriuSolucio.length][matriuSolucio[0].length];
-		
+
 		//fem una copia de matriu solucio mentre cerquem el valor de row1 i column1
 		for (int i = 0; i < matriuSolucio.length; ++i) {
 			for (int j = 0; j < matriuSolucio[0].length; ++j) {
@@ -50,13 +49,13 @@ public class Algorismes {
 		Collections.sort(given);
 
 		if (given.get(0) != 1) {
-			return false; //comprova que sempre ens donin el primer numero (i.e. 1)		
+			return false; //comprova que sempre ens donin el primer numero (i.e. 1)
 		}
-		
+
 		if (given.get(given.size()-1) != casellesNumeriques) {
 			return false; //comprova que sempre ens donin el ultimo numero
 		}
-		
+
 		return solucionador(row1, column1, 1, 0, matriu);
 	}
 
@@ -72,16 +71,17 @@ public class Algorismes {
 
 		matriuSolucio[r][c] = n;
 
-			for (int i = -1; i < 2; i++) {
-				for (int j = -1; j < 2; j++) {
-					if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriuSolucio.length, matriuSolucio[0].length)) {
-						if (solucionador(r + i, c + j, n + 1, next, matriuSolucio)) {
-							if(n == 1) tractarMatriuSolucio(matriuSolucio);
-							return true;
-						}
+
+		for (int i = -1; i < 2; i++) {
+			for (int j = -1; j < 2; j++) {
+				if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriuSolucio.length, matriuSolucio[0].length)) {
+					if (solucionador(r + i, c + j, n + 1, next, matriuSolucio)) {
+						if(n == 1) tractarMatriuSolucio(matriuSolucio);
+						return true;
 					}
 				}
 			}
+		}
 
 		matriuSolucio[r][c] = back;
 		return false;
@@ -91,7 +91,7 @@ public class Algorismes {
 		matriuSolucio = matriu;
 	}
 
-	public int[][] getMatriuSolucio(){		
+	public int[][] getMatriuSolucio(){
 		return this.matriuSolucio;
 	}
 
@@ -106,17 +106,17 @@ public class Algorismes {
 	public Vector<Integer> getGiven() {
 		return given;
 	}
-	
+
 	private boolean generarComplet(int r, int c, int celesBuides, int n, ArrayList<Integer> escrits, int[][] matriu) {
 		if (n > celesBuides) return true;
 
 		if (matriu[r][c] != 0) return false;
-		
+
 		if (escrits.contains(n)) return false;
-		
+
 		matriu[r][c] = n;
 		escrits.add(n);
-				
+
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
 				if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
@@ -131,7 +131,7 @@ public class Algorismes {
 		matriu[r][c] = 0;
 		return false;
 	}
-	
+
 	private boolean dinsLimits(int i, int j, int tamanyi, int tamanyj) {
 		if (i < 0) return false;
 		if (j < 0) return false;
@@ -157,7 +157,7 @@ public class Algorismes {
 		}
 		else return null;
 	}
-	
+
 	private static void emplenarForats(int forats, int[][] matriu) {
 		int tamanyi = matriu.length;
 		int tamanyj = matriu[0].length;
@@ -189,15 +189,15 @@ public class Algorismes {
 		//generem [tamany] nombres posicions aleatoris per començar a emplenar la matriu autogenerada
 		ArrayList<Integer> initialNumberi = new ArrayList<>(tamanyi);
 		ArrayList<Integer> initialNumberj = new ArrayList<>(tamanyj);
-		for (int i = 0; i < tamanyi; i++){ //to generate from 0-10 inclusive  
+		for (int i = 0; i < tamanyi; i++){ //to generate from 0-10 inclusive
 			initialNumberi.add(i);
 		}
-		for (int j = 0; j < tamanyj; j++){ //to generate from 0-10 inclusive  
+		for (int j = 0; j < tamanyj; j++){ //to generate from 0-10 inclusive
 			initialNumberj.add(j);
 		}
 		Collections.shuffle(initialNumberi);
 		Collections.shuffle(initialNumberj);
-		
+
 		ArrayList<Integer> escrits;
 		for (int i = 0; i < tamanyi; ++i) {
 			for (int j = 0; j < tamanyj; ++j) {
