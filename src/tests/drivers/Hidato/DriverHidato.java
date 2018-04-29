@@ -36,7 +36,11 @@ public class DriverHidato {
 				constructoraAmbMatriu();
 				break;
 			case 3:
+				driverAutogenerar();
+				break;
 			case 4:
+				driverGetNombresPerDefecte();
+				break;
 			case 5:
 			case 6:
 			case 7:
@@ -44,17 +48,22 @@ public class DriverHidato {
 		}
 	}
 
-	public static void llistaTests() {
-		System.out.println("1: ConstructoraSenseMatriu");
-		System.out.println("2: ConstructoraAmbMatriu");
-		System.out.println("3: Solucionar");
-		System.out.println("4: getMatriuSolucio");
-		System.out.println("5: obtenirDificultat");
-		System.out.println("6: getGiven");
-		System.out.println("7: generarHidato");
+	private static void driverGetNombresPerDefecte() {
+		
 	}
-	
+
+	private static void driverAutogenerar() {
+		System.out.println("Has escollit provar el metode autogenerar");
+		System.out.println();
+		System.out.println("Per això creem un hidato de tipus quadrat amb adjacencia per costats sense matriu");
+		Hidato hidato = new HidatoQuadrat(TipusAdjacencia.COSTATS);
+		System.out.println("Hidato creat correctament");
+
+	}
+
 	private static void constructoraAmbMatriu() {
+		System.out.println("Has escollit provar el metode ConstructoraAmbMatriu");
+		System.out.println();
 		System.out.println("introdueix quin tipus d'hidato vols [Quadrat | Triangle | Hexagon]");
 		String tipusHidato = readLine();
 		TipusCella tc = stringToTipusCella(tipusHidato);
@@ -75,40 +84,83 @@ public class DriverHidato {
 		int[][] matriu = new int[][] {};
 		
 		Hidato hidato;
+		
 		if (tc == TipusCella.QUADRAT) hidato = new HidatoQuadrat(ta, matriu);
 		else if (tc == TipusCella.TRIANGLE) hidato = new HidatoTriangle(matriu);
-		if (tc == TipusCella.HEXAGON) hidato = new HidatoHexagon(matriu);		
-		
+		else if (tc == TipusCella.HEXAGON) hidato = new HidatoHexagon(matriu);
+		else {
+			System.out.println("Error desconegut, es torna a cridar constructoraAmbMatriu");
+			constructoraAmbMatriu();
+		}
+
+		System.out.println();
 		System.out.println("Hidato creat correctament, constructoraAmbMatriu acabat amb exit");
+		System.out.println();
+		System.out.println();
 		
 	}
 	
 	private static void constructoraSenseMatriu() {
-		
-		//PER FER PARTIDA NECESITEM UN HIDATO!!!!!!!!!!!!!!!!!!!!!
+		System.out.println("Has escollit provar el metode ConstructoraSenseMatriu");
+		System.out.println();
 		System.out.println("introdueix quin tipus d'hidato vols [Quadrat | Triangle | Hexagon]");
 		String tipusHidato = readLine();
 		TipusCella tc = stringToTipusCella(tipusHidato);
-		if(tc == null) constructoraSenseMatriu();
+		if(tc == null) {
+			System.out.println("Tipus de Cella incorrece, es torna a cridar driver constructora sense Matriu");
+			System.out.println();
+			System.out.println();
+			constructoraSenseMatriu();
+		} 
 		
 		System.out.println("introdueix quin tipus d'adjacencia vols [COSTATS | COSTATSIANGLES]");
 		String tipusAdjacencia = readLine();
 		TipusAdjacencia ta = stringToTipusAdjacencia(tipusAdjacencia);
 		if (ta == null) {
-			System.out.println("Tipus d'adjacencia incorrecte");
+			System.out.println("Tipus d'adjacencia incorrecte, es torna a cridar driver constructora sense Matriu");
+			System.out.println();
+			System.out.println();
 			constructoraSenseMatriu();
 		}
 		if(tipusNoCompatible(tc, ta)) {
-			System.out.println("Adjacencia no compatible amb el tipus d'hidato");
+			System.out.println("Adjacencia no compatible amb el tipus d'hidato, es torna a cridar driver constructora sense Matriu");
+			System.out.println();
+			System.out.println();
 			constructoraSenseMatriu();
 		}
+		Hidato hidato;
+		if (tc == TipusCella.QUADRAT) hidato = new HidatoQuadrat(ta);
+		else if (tc == TipusCella.TRIANGLE) hidato = new HidatoTriangle();
+		else if (tc == TipusCella.HEXAGON) hidato = new HidatoHexagon();
+		else {
+			System.out.println("Error desconegut, es torna a cridar constructoraAmbMatriu");
+			constructoraAmbMatriu();
+		}
 		
+		System.out.println();
+		System.out.println("Hidato creada correctament, constructoraSenseMatriu acabat amb exit");
+		System.out.println();
+		System.out.println();
+		
+	}
 	
-		
-		Hidato hidato = HidatoFactory.createHidato(tc, ta);
-			
-		System.out.println("Hidato creada correctament, constructoraSenseMatriu acabat amb ï¿½xit");
-		
+	
+	public static void llistaTests() {
+		System.out.println("1: ConstructoraSenseMatriu");
+		System.out.println("2: ConstructoraAmbMatriu");
+		System.out.println("3: autogenerar");
+		System.out.println("4: getNombresPerDefecte");
+		System.out.println("5: getNombreFiles");
+		System.out.println("6: getNombreColumnes");
+		System.out.println("7: getDificultat");
+		System.out.println("8: getMatriu");
+		System.out.println("9: getMatriuOriginal");
+		System.out.println("10: resetMatriu");
+		System.out.println("11: getSolucio");
+		System.out.println("12: teSolucio");
+		System.out.println("13: getTipusAdjacencia");
+		System.out.println("14: getTipusCella");
+		System.out.println("15: posicioValida");
 	}
 	
 	private static String readLine() {		

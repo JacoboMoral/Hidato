@@ -13,7 +13,7 @@ import main.domain.com.hidato.TipusCella;
 
 public class DriverPartida {
 	
-	private static int numeroTests = 15;
+	private static int numeroTests = 16;
 	private static int[][] matriuSolucio = new int[][] {
 		{1,-1,-1},
 		{2,11,-1},
@@ -416,22 +416,5 @@ public class DriverPartida {
 		}
 		return validNumber;
 	}
-	
-	private static TipusCella stringToTipusCella(String tc) {
-		if (tc.equalsIgnoreCase("Quadrat")) return TipusCella.QUADRAT;
-		if (tc.equalsIgnoreCase("Triangle")) return TipusCella.TRIANGLE;
-		if (tc.equalsIgnoreCase("Hexagon")) return TipusCella.HEXAGON;
-		return null;
-	}
-	private static TipusAdjacencia stringToTipusAdjacencia(String ta) {
-		if (ta.equalsIgnoreCase("Costats")) return TipusAdjacencia.COSTATS;
-		if (ta.equalsIgnoreCase("Ambdos")) return TipusAdjacencia.COSTATSIANGLES;
-		return null;
-	}
-	private static boolean tipusNoCompatible(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia) {
-		return ((tipusCella == TipusCella.HEXAGON && tipusAdjacencia == TipusAdjacencia.COSTATSIANGLES) ||
-				tipusCella == TipusCella.TRIANGLE && tipusAdjacencia == TipusAdjacencia.COSTATSIANGLES);
-	}
-
-	
+		
 }
