@@ -115,7 +115,7 @@ public class Algorismes {
 
 		matriu[r][c] = n;
 		escrits.add(n);
-
+		//HidatoIO.writeHidatoMatrixToOutput(matriu);
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
 				if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
@@ -125,7 +125,7 @@ public class Algorismes {
 				}
 			}
 		}
-		//System.out.println(r + " " + c + " " + n);
+
 		escrits.remove(escrits.size()-1);
 		matriu[r][c] = 0;
 		return false;
@@ -146,6 +146,7 @@ public class Algorismes {
 		while (!generat && intents < 15) {
 			emplenarForats(forats, matriu);
 			generat = generarMatriuCompleta(forats, matriu);
+			System.out.println("intent numero: " + (intents+1));
 			++intents;
 			if (!generat) matriu = new int[tamanyi][tamanyj];
 

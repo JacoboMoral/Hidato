@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.HidatoFactory;
+import main.domain.com.hidato.HidatoHexagon;
+import main.domain.com.hidato.HidatoQuadrat;
+import main.domain.com.hidato.HidatoTriangle;
 import main.domain.com.hidato.Partida;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
@@ -12,7 +15,7 @@ public class DriverHidato {
 	private static int numeroTests = 14;
 	
     public static void main(String[] args) throws Exception{
-		System.out.println("Aquest es el driver de algorismes, indica quina funcio vols provar");
+		System.out.println("Aquest es el driver de hidato, indica quina funcio vols provar");
 		llistaTests();
 		int req = -1;
 		req = getRequest();
@@ -52,8 +55,6 @@ public class DriverHidato {
 	}
 	
 	private static void constructoraAmbMatriu() {
-		
-		//PER FER PARTIDA NECESITEM UN HIDATO!!!!!!!!!!!!!!!!!!!!!
 		System.out.println("introdueix quin tipus d'hidato vols [Quadrat | Triangle | Hexagon]");
 		String tipusHidato = readLine();
 		TipusCella tc = stringToTipusCella(tipusHidato);
@@ -71,12 +72,14 @@ public class DriverHidato {
 			constructoraAmbMatriu();
 		}
 		
-	
+		int[][] matriu = new int[][] {};
 		
-		Hidato hidato = HidatoFactory.createHidato(tc, ta);
+		Hidato hidato;
+		if (tc == TipusCella.QUADRAT) hidato = new HidatoQuadrat(ta, matriu);
+		else if (tc == TipusCella.TRIANGLE) hidato = new HidatoTriangle(matriu);
+		if (tc == TipusCella.HEXAGON) hidato = new HidatoHexagon(matriu);		
 		
-		
-		System.out.println("Partida creada correctament, constructoraAmbMatriu acabat amb èxit");
+		System.out.println("Hidato creat correctament, constructoraAmbMatriu acabat amb exit");
 		
 	}
 	
@@ -104,7 +107,7 @@ public class DriverHidato {
 		
 		Hidato hidato = HidatoFactory.createHidato(tc, ta);
 			
-		System.out.println("Hidato creada correctament, constructoraSenseMatriu acabat amb èxit");
+		System.out.println("Hidato creada correctament, constructoraSenseMatriu acabat amb ï¿½xit");
 		
 	}
 	

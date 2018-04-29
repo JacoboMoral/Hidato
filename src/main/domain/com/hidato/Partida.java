@@ -9,29 +9,27 @@ public class Partida {
 	private Date dataIni;
 	private Date dataFi;
 	private Hidato hidato;
-	private boolean finalitzada;
-	private int[][] solucioHidato;
+	private int status; //0 = sense començar; 1 = jugant; -1 finalitzada
 	
 	public Partida(Hidato hidato) {
 		this.hidato = hidato;
 		dificultat = hidato.getDificultat();
-		finalitzada = false;
-		dataIni = new Date();
+		status = 0;
 		puntuacio = 0;
 	}
 		
 	public void acabarPartida() {
-		finalitzada = true;
+		status = -1;
 		dataFi = new Date();
 	}
 	
-	public void start() {
-		
+	public void iniciarPartida() {
+		dataIni = new Date();
+		status = 1;
 	}
 	
 	public void reset() {
 		hidato.resetMatriu();
-		start();
 	}
 	
 	public boolean ferJugada(int i, int j, int value) {
@@ -41,6 +39,14 @@ public class Partida {
 	
 	public void demanarPista() {
 		
+	}
+	
+	public int status() {  
+		return status;
+	}
+	
+	public Dificultat getDificultat() {
+		return dificultat;
 	}
 	
 	public Vector<Integer> getNombresPerDefecte(){
@@ -63,7 +69,7 @@ public class Partida {
 		
 	}
 	
-	public Date getDataIni() {
+	public Date getDataInici() {
 		return dataIni;
 	}
 	

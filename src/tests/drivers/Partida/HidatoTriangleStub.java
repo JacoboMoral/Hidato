@@ -1,17 +1,13 @@
-package tests.drivers.Algorismes;
+package tests.drivers.Partida;
 
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
 public class HidatoTriangleStub extends HidatoStub{
-	public HidatoTriangleStub(TipusAdjacencia tipusAdjacencia, int[][] matriu) {
-		super(tipusAdjacencia, matriu);
-		al = new AlgorismesStub(this);
-	}
 	
 	public HidatoTriangleStub(TipusAdjacencia tipusAdjacencia) {
 		super(tipusAdjacencia);
-		al = new AlgorismesStub(this);
+		// TODO Auto-generated constructor stub
 	}
 
 	public TipusCella getTipusCella() {

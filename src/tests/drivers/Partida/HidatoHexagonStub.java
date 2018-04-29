@@ -1,9 +1,11 @@
-package tests.drivers.Algorismes;
+package tests.drivers.Partida;
 
+import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
+import tests.drivers.Algorismes.AlgorismesStub;
 
-public class HidatoHexagonStub extends HidatoStub{
+public class HidatoHexagonStub extends Hidato{
 	public HidatoHexagonStub(int[][] matrix) {
 		super(TipusAdjacencia.COSTATS, matrix);
 		al = new AlgorismesStub(this);

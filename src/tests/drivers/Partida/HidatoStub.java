@@ -1,8 +1,7 @@
-package tests.drivers.Algorismes;
+package tests.drivers.Partida;
 
 import java.util.Vector;
 
-import main.domain.com.hidato.Algorismes;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.TipusAdjacencia;
@@ -56,19 +55,36 @@ public abstract class HidatoStub extends Hidato{
 	}
 	
 	public int[][] getMatriu(){
-		return new int[][] {};
+		return new int[][] {
+			{1,-1,-1},
+			{2,11,-1},
+			{3,0,0},
+			{0,-1,8},
+			{5,0,0}
+		};
 	}
 	
 	public int[][] getMatriuOriginal(){
-		return new int[][] {};
+		return new int[][] {
+			{1,-1,-1},
+			{0,11,-1},
+			{0,0,0},
+			{0,-1,8},
+			{5,0,0}
+		};
 	}
 	
 	public void resetMatriu() {
 	}
 	
 	public int[][] getSolucio(){
-		return new int[][] {};
-
+		return new int[][] {
+			{1,-1,-1},
+			{2,11,-1},
+			{3,10,9},
+			{4,-1,8},
+			{5,6,7}
+		};
 	}
 	
 	public boolean teSolucio() {

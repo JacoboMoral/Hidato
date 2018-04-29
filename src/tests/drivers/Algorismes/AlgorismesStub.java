@@ -2,10 +2,15 @@ package tests.drivers.Algorismes;
 
 import java.util.Vector;
 
-public class AlgorismesStub {
+import main.domain.com.hidato.Algorismes;
+import main.domain.com.hidato.Hidato;
+import tests.drivers.Partida.HidatoStub;
 
-	public AlgorismesStub(HidatoStub hidato) {
-		// TODO Auto-generated constructor stub
+//stub necessari per HidatoStub
+public class AlgorismesStub extends Algorismes{
+
+	public AlgorismesStub(Hidato hidato) {
+		super(hidato);
 	}
 
 	public int[][] generarHidato(int forats, int tamanyi, int tamanyj) {
@@ -18,9 +23,9 @@ public class AlgorismesStub {
 		
 	}
 
-	public Boolean solucionar() {
+	public boolean solucionar() {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	public Vector<Integer> getGiven() {
