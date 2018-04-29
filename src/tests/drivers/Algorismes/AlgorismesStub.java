@@ -2,24 +2,39 @@ package tests.drivers.Algorismes;
 
 import java.util.Vector;
 
-import main.domain.com.hidato.Algorismes;
 import main.domain.com.hidato.Hidato;
 import tests.drivers.Partida.HidatoStub;
 
 //stub necessari per HidatoStub
-public class AlgorismesStub extends Algorismes{
-
+public class AlgorismesStub{
+	
+	Hidato hidato;
+	
+	private int[][] matriuSolucio = new int[][] {
+		{1,-1,-1},
+		{2,11,-1},
+		{3,10,9},
+		{4,-1,8},
+		{5,6,7}
+	};
+	
+	private int[][] matriuGenerada = new int[][] {
+		{1,-1,-1},
+		{0,11,-1},
+		{0,0,0},
+		{0,-1,8},
+		{5,0,0}
+	};
+	
 	public AlgorismesStub(Hidato hidato) {
-		super(hidato);
+		this.hidato = hidato;
 	}
 
 	public int[][] generarHidato(int forats, int tamanyi, int tamanyj) {
-		// TODO Auto-generated method stub
-		return null;
+		return matriuGenerada;
 	}
 
-	public void modificarHidato(HidatoStub hidatoStub) {
-		// TODO Auto-generated method stub
+	public void modificarHidato(Hidato hidato) {
 		
 	}
 

@@ -8,12 +8,10 @@ import tests.drivers.Algorismes.AlgorismesStub;
 public class HidatoHexagonStub extends Hidato{
 	public HidatoHexagonStub(int[][] matrix) {
 		super(TipusAdjacencia.COSTATS, matrix);
-		al = new AlgorismesStub(this);
 	}
 	
 	public HidatoHexagonStub() {
 		super(TipusAdjacencia.COSTATS);
-		al = new AlgorismesStub(this);
 	}
 	
 	public TipusCella getTipusCella() {

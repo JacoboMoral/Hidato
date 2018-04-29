@@ -1,10 +1,16 @@
-package main.domain.com.hidato;
+package tests.drivers.Hidato;
 
 import java.util.Vector;
 
-public abstract class Hidato {
+import main.domain.com.hidato.Algorismes;
+import main.domain.com.hidato.Dificultat;
+import main.domain.com.hidato.Hidato;
+import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.TipusCella;
 
-    protected TipusAdjacencia tipusAdjacencia;
+public class HidatoStub extends Hidato {
+
+	protected TipusAdjacencia tipusAdjacencia;
     protected Dificultat dificultat;
         
     private int[][] matriuHidato;
@@ -14,17 +20,14 @@ public abstract class Hidato {
     private Boolean solucionable;
     private Vector<Integer> nombresEscrits;
     private Vector<Integer> nombresDonats;
-    protected Algorismes al;
+    protected AlgorismesStub al;
     
-
-    public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
-		matriuHidato = matriuOriginal = matriu;
-		this.tipusAdjacencia = tipusAdjacencia;
-    }
-    
-    public Hidato(TipusAdjacencia tipusAdjacencia) {
-    	this.tipusAdjacencia = tipusAdjacencia;
-    }
+    public HidatoStub(TipusAdjacencia tipusAdjacencia, int[][] matriu) {
+		super(tipusAdjacencia, matriu);
+		matriuHidato = matriu;
+		al = new AlgorismesStub(this);
+		dificultat = al.obtenirDificultat();
+	}
     
     public boolean autogenerar(int forats, int tamanyi, int tamanyj) {
 		matriuHidato = al.generarHidato(forats, tamanyi, tamanyj);
@@ -97,11 +100,6 @@ public abstract class Hidato {
 	public TipusAdjacencia getTipusAdjacencia(){
 		return this.tipusAdjacencia;
 	}
-	
-	public abstract TipusCella getTipusCella();
-
-	public abstract boolean posicioValida(int i, int j, int r, int c);
-
 
 	private boolean estaRepetit(int value) {
 		return nombresEscrits.contains(value);
@@ -117,7 +115,7 @@ public abstract class Hidato {
     	boolean anterior = nombresEscrits.contains(value-1);
     	boolean posterior = nombresEscrits.contains(value+1);
     	if (!anterior && !posterior) return false; 		//si no hi ha escrits ni el anterior ni el posterior
-    	
+    	System.out.println("Joder");
     	boolean trobatAnterior = false;
     	boolean trobatPosterior = false;
     	for(int ii = i - 1; ii < i + 2; ++ii) {
@@ -134,8 +132,18 @@ public abstract class Hidato {
     	}
     	if (posterior && !trobatPosterior) return false; 		//si hi ha un posterior escrit pero no esta al voltant
     	if (anterior && !trobatAnterior) return false; 		//si hi ha un anterior escrit pero no esta al voltant
-    	return true; 										//else
+    	return true; 									//else true
     }
+
+	@Override
+	public TipusCella getTipusCella() {
+		return null;
+	}
+
+	@Override
+	public boolean posicioValida(int i, int j, int r, int c) {
+		return false;
+	}
     
 	
 

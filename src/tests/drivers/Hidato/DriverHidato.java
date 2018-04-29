@@ -3,49 +3,167 @@ package tests.drivers.Hidato;
 import java.util.Scanner;
 
 import main.domain.com.hidato.Hidato;
-import main.domain.com.hidato.HidatoFactory;
-import main.domain.com.hidato.HidatoHexagon;
-import main.domain.com.hidato.HidatoQuadrat;
-import main.domain.com.hidato.HidatoTriangle;
-import main.domain.com.hidato.Partida;
+import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
+
+//hem fet servir una subclasse stub de hidato (HidatoStub), canviant la part on cridava
+//a la classe algorismes, i canviant aquesta per un stub d'algorismes, per
+//poder provar la classe sense dependÃ¨ncies
 public class DriverHidato {
 	private static int numeroTests = 14;
+	private static int[][] matriu = new int[][] {
+		{1,-1,-1},
+		{0,11,-1},
+		{0,0,0},
+		{0,-1,8},
+		{5,0,0}
+	};
 	
     public static void main(String[] args) throws Exception{
 		System.out.println("Aquest es el driver de hidato, indica quina funcio vols provar");
 		llistaTests();
-		int req = -1;
-		req = getRequest();
-		while (req == -1 || req > numeroTests) {
-			System.out.println("Si us plau, entra un dels nombres corresponents a la funcio que vols provar\n");
-			llistaTests();
+		int req = 0;
+		while (req != -1) {
 			req = getRequest();
+			while (req == 0 || req > numeroTests) {
+				System.out.println("Si us plau, entra un dels nombres corresponents a la funcio que vols provar\n");
+				llistaTests();
+				req = getRequest();
+			}
+			if (req != -1) tractaRequest(req);
 		}
-		tractaRequest(req);
+		System.out.println("Driver ha acabat amb exit");
 	}
 	
 	private static void tractaRequest(int req) {
 		switch (req) {
 			case 1:
-				constructoraSenseMatriu();
-				break;
-			case 2:
-				constructoraAmbMatriu();
-				break;
-			case 3:
 				driverAutogenerar();
 				break;
-			case 4:
+			case 2:
+				driverMoviment();
+				break;
+			case 3:
 				driverGetNombresPerDefecte();
 				break;
+			case 4:
+				driverGetNombreFiles();
+				break;
 			case 5:
+				driverGetNombreColumnes();
+				break;
 			case 6:
+				driverGetMatriu();
+				break;
 			case 7:
+				driverGetMatriuOriginal();
+				break;
+			case 8:
+				driverResetMatriu();
+				break;
+			case 9:
+				driverGetSolucio();
+				break;
+			case 10:
+				driverTeSolucio();
+				break;
+			case 11:
+				driverGetTipusAdjacencia();
+				break;
+			case 12:
+				driverGetDificultat();
+				break;
 			default:
 		}
+	}
+
+	private static void driverMoviment() {
+		System.out.println("Has escollit provar el metode moviment");
+		System.out.println();
+		Hidato hidato = new HidatoStub(TipusAdjacencia.COSTATS, matriu);
+		System.out.println("S'ha hagut de crear una instancia d'hidato amb la seguent matriu: ");
+		HidatoIO.writeHidatoMatrixToOutput(matriu);
+		System.out.println();
+		System.out.println("S'ha cridat el metode teSolucio, que es precondicio d'aquest metode");
+		hidato.teSolucio(); // aquesta funcio es precondicio, ja que es crida sempre quan es crea un hidato
+		boolean continua = true;
+		while (continua) {
+			System.out.println("Escriu -2 per acabat l'execucio d'aquest driver");
+			System.out.println("Escriu la coordenada y on vols fer el moviment (0..length-1)");
+			int i = getNumero();
+			while (i == -1) {
+				i = getNumero();
+			}
+			System.out.println("Escriu la coordenada x on vols fer el moviment (0..length-1)");
+			int j = getNumero();
+			while (j == -1) {
+				j = getNumero();
+			}
+			System.out.println("Escriu el valor x que vols introduir");
+			int x = getNumero();
+			while (x == -1) {
+				x = getNumero();
+			}
+			System.out.println("El moviment que has fet es correcte?: " + hidato.moviment(i, j, x));
+			System.out.println("La matriu queda aixi:");
+			HidatoIO.writeHidatoMatrixToOutput(hidato.getMatriu());
+			System.out.println("\n Vols ver un altre moviment? yes/no");
+			String s = readLine();
+			while (!s.equalsIgnoreCase("yes") && !s.equalsIgnoreCase("no")) {
+				s = readLine();
+			}
+			if (s.equals("no")) continua = false;
+		}
+		System.out.println("Driver moviment finalitzat");
+		System.out.println();
+		System.out.println();		
+	}
+
+	private static void driverGetNombreFiles() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void driverGetNombreColumnes() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void driverGetMatriu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void driverGetMatriuOriginal() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void driverResetMatriu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void driverGetSolucio() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void driverTeSolucio() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void driverGetTipusAdjacencia() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void driverGetDificultat() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private static void driverGetNombresPerDefecte() {
@@ -55,97 +173,14 @@ public class DriverHidato {
 	private static void driverAutogenerar() {
 		System.out.println("Has escollit provar el metode autogenerar");
 		System.out.println();
-		System.out.println("Per això creem un hidato de tipus quadrat amb adjacencia per costats sense matriu");
-		Hidato hidato = new HidatoQuadrat(TipusAdjacencia.COSTATS);
+		System.out.println("Per aixï¿½ creem un hidato de tipus quadrat amb adjacencia per costats sense matriu");
+		Hidato hidato = new HidatoStub(TipusAdjacencia.COSTATS, matriu);
 		System.out.println("Hidato creat correctament");
 
 	}
-
-	private static void constructoraAmbMatriu() {
-		System.out.println("Has escollit provar el metode ConstructoraAmbMatriu");
-		System.out.println();
-		System.out.println("introdueix quin tipus d'hidato vols [Quadrat | Triangle | Hexagon]");
-		String tipusHidato = readLine();
-		TipusCella tc = stringToTipusCella(tipusHidato);
-		if(tc == null) constructoraAmbMatriu();
-		
-		System.out.println("introdueix quin tipus d'adjacencia vols [COSTATS | COSTATSIANGLES]");
-		String tipusAdjacencia = readLine();
-		TipusAdjacencia ta = stringToTipusAdjacencia(tipusAdjacencia);
-		if (ta == null) {
-			System.out.println("Tipus d'adjacencia incorrecte");
-			constructoraAmbMatriu();
-		}
-		if(tipusNoCompatible(tc, ta)) {
-			System.out.println("Adjacencia no compatible amb el tipus d'hidato");
-			constructoraAmbMatriu();
-		}
-		
-		int[][] matriu = new int[][] {};
-		
-		Hidato hidato;
-		
-		if (tc == TipusCella.QUADRAT) hidato = new HidatoQuadrat(ta, matriu);
-		else if (tc == TipusCella.TRIANGLE) hidato = new HidatoTriangle(matriu);
-		else if (tc == TipusCella.HEXAGON) hidato = new HidatoHexagon(matriu);
-		else {
-			System.out.println("Error desconegut, es torna a cridar constructoraAmbMatriu");
-			constructoraAmbMatriu();
-		}
-
-		System.out.println();
-		System.out.println("Hidato creat correctament, constructoraAmbMatriu acabat amb exit");
-		System.out.println();
-		System.out.println();
-		
-	}
-	
-	private static void constructoraSenseMatriu() {
-		System.out.println("Has escollit provar el metode ConstructoraSenseMatriu");
-		System.out.println();
-		System.out.println("introdueix quin tipus d'hidato vols [Quadrat | Triangle | Hexagon]");
-		String tipusHidato = readLine();
-		TipusCella tc = stringToTipusCella(tipusHidato);
-		if(tc == null) {
-			System.out.println("Tipus de Cella incorrece, es torna a cridar driver constructora sense Matriu");
-			System.out.println();
-			System.out.println();
-			constructoraSenseMatriu();
-		} 
-		
-		System.out.println("introdueix quin tipus d'adjacencia vols [COSTATS | COSTATSIANGLES]");
-		String tipusAdjacencia = readLine();
-		TipusAdjacencia ta = stringToTipusAdjacencia(tipusAdjacencia);
-		if (ta == null) {
-			System.out.println("Tipus d'adjacencia incorrecte, es torna a cridar driver constructora sense Matriu");
-			System.out.println();
-			System.out.println();
-			constructoraSenseMatriu();
-		}
-		if(tipusNoCompatible(tc, ta)) {
-			System.out.println("Adjacencia no compatible amb el tipus d'hidato, es torna a cridar driver constructora sense Matriu");
-			System.out.println();
-			System.out.println();
-			constructoraSenseMatriu();
-		}
-		Hidato hidato;
-		if (tc == TipusCella.QUADRAT) hidato = new HidatoQuadrat(ta);
-		else if (tc == TipusCella.TRIANGLE) hidato = new HidatoTriangle();
-		else if (tc == TipusCella.HEXAGON) hidato = new HidatoHexagon();
-		else {
-			System.out.println("Error desconegut, es torna a cridar constructoraAmbMatriu");
-			constructoraAmbMatriu();
-		}
-		
-		System.out.println();
-		System.out.println("Hidato creada correctament, constructoraSenseMatriu acabat amb exit");
-		System.out.println();
-		System.out.println();
-		
-	}
-	
 	
 	public static void llistaTests() {
+		System.out.println("exit: Sortir del driver");
 		System.out.println("1: ConstructoraSenseMatriu");
 		System.out.println("2: ConstructoraAmbMatriu");
 		System.out.println("3: autogenerar");
@@ -170,6 +205,13 @@ public class DriverHidato {
 	}
 	
 	private static int getRequest() {
+		String req = readLine();
+		if (isNumber(req)) return Integer.parseInt(req);
+		else if (req.equalsIgnoreCase("exit")) return -1;
+		else return 0;
+	}
+	
+	private static int getNumero() {
 		String req = readLine();
 		if (isNumber(req)) return Integer.parseInt(req);
 		else return -1;
