@@ -231,7 +231,7 @@ public class DriverPartida {
 		System.out.println();
 	}
 
-	private static void driverGetNombresPerDefecte() { //COMPARAR VECTOR0RS MODIFICAR STUB 
+	private static void driverGetNombresPerDefecte() {
 		System.out.println("Has escollit provar el metode getNombresPerDefecte");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
@@ -246,10 +246,12 @@ public class DriverPartida {
 		System.out.println("S'espera obtenir el seguent vector: ");
 		System.out.println(v+"\n");
 		System.out.println("Vector obtingut: ");
-		System.out.println(partida.getNombresPerDefecte());
-		System.out.println("Comprovacio nombresPerDefecte retornat correctament: " + (4 == nombresPerDefecte.size()));
+		System.out.println(nombresPerDefecte);
+		boolean comprovacio = v.equals(nombresPerDefecte);
+		System.out.println("Comprovacio de igualtat dels dos: " + comprovacio);
 		System.out.println();
-		System.out.println("Driver GetNombresPerDefecte executat correctament!");
+		if (comprovacio) System.out.println("Driver GetNombresPerDefecte executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver getNombrePerDefecte executat sense exit.");
 		System.out.println();
 		System.out.println();
 

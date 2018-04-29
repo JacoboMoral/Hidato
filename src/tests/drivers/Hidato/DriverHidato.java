@@ -179,7 +179,7 @@ public class DriverHidato {
 
 	}
 	
-	public static void llistaTests() {
+	private static void llistaTests() {
 		System.out.println("exit: Sortir del driver");
 		System.out.println("1: ConstructoraSenseMatriu");
 		System.out.println("2: ConstructoraAmbMatriu");
