@@ -86,18 +86,18 @@ public class DriverHidato {
 		System.out.println("introdueix quin tipus d'hidato vols [Quadrat | Triangle | Hexagon]");
 		String tipusHidato = readLine();
 		TipusCella tc = stringToTipusCella(tipusHidato);
-		if(tc == null) constructora();
+		if(tc == null) constructoraSenseMatriu();
 		
 		System.out.println("introdueix quin tipus d'adjacencia vols [COSTATS | COSTATSIANGLES]");
 		String tipusAdjacencia = readLine();
 		TipusAdjacencia ta = stringToTipusAdjacencia(tipusAdjacencia);
 		if (ta == null) {
 			System.out.println("Tipus d'adjacencia incorrecte");
-			constructora();
+			constructoraSenseMatriu();
 		}
 		if(tipusNoCompatible(tc, ta)) {
 			System.out.println("Adjacencia no compatible amb el tipus d'hidato");
-			constructora();
+			constructoraSenseMatriu();
 		}
 		
 	
