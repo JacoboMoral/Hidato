@@ -106,16 +106,7 @@ public class DriverPartida {
 		}
 	}
 	private static void driverFerJugada() {
-		System.out.println("Has escollit provar el metode ferJugada");
-		System.out.println();
-		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
-		Partida partida = new Partida(hidato);
-		System.out.println("Comprovacio ferJugada retornada correctament: " + (true == partida.esSolucionable()));
-		System.out.println();
-		System.out.println("Driver EsSolucionable executat correctament!");
-		System.out.println();
-		System.out.println();
+
 	}
 
 	private static void driverEsSolucionable() {
@@ -128,7 +119,8 @@ public class DriverPartida {
 		System.out.println("Valor que se'ns ha retornat: " + partida.esSolucionable());
 		System.out.println("Comprovacio d'igualtat de resultats: " + (true == partida.esSolucionable()));
 		System.out.println();
-		System.out.println("Driver esSolucionable executat correctament!");
+		if((true == partida.esSolucionable()))System.out.println("Driver esSolucionable executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver EsSolucionable executat sense exit");  
 		System.out.println();
 		System.out.println();		
 	}
@@ -141,7 +133,8 @@ public class DriverPartida {
 		Partida partida = new Partida(hidato);
 		System.out.println("Comprovacio puntuacio retornada correctament: " + (0 == partida.getPuntuacio()));
 		System.out.println();
-		System.out.println("Driver GetPuntuacio executat correctament!");
+		if((0 == partida.getPuntuacio()))System.out.println("Driver GetPuntuacio executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver GetPuntuacio executat sense exit"); 
 		System.out.println();
 		System.out.println();
 	}
@@ -157,7 +150,7 @@ public class DriverPartida {
 		System.out.println("S'ha acabat la partida");
 		System.out.println("Data fi de la partida: " + partida.getDataFi());
 		System.out.println();
-		System.out.println("Driver GetDataInici executat correctament!");
+		System.out.println("Driver GetDataInici executat");
 		System.out.println();
 		System.out.println();
 	}
@@ -173,7 +166,7 @@ public class DriverPartida {
 		System.out.println("S'ha iniciat la partida");
 		System.out.println("Data d'inici de la partida: " + partida.getDataInici());
 		System.out.println();
-		System.out.println("Driver GetDataInici executat correctament!");
+		System.out.println("Driver GetDataInici executat");
 		System.out.println();
 		System.out.println();
 	}
@@ -192,7 +185,8 @@ public class DriverPartida {
 		HidatoIO.writeHidatoMatrixToOutput(matriuRetornada);
 		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(matriuSolucio, matriuRetornada));
 		System.out.println();
-		System.out.println("Driver GetSolucio executat correctament!");
+		if(java.util.Arrays.deepEquals(matriuSolucio, matriuRetornada))System.out.println("Driver GetSolucio executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver getSolucio executat sense exit");
 		System.out.println();
 		System.out.println();
 	}
@@ -211,7 +205,8 @@ public class DriverPartida {
 		HidatoIO.writeHidatoMatrixToOutput(matriuRetornada);
 		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(matriuOriginal, matriuRetornada));
 		System.out.println();
-		System.out.println("Driver GetMatriuOriginal executat correctament!");
+		if(java.util.Arrays.deepEquals(matriuOriginal, matriuRetornada)) System.out.println("Driver GetMatriuOriginal executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver GetMatriuOriginal executat sense exit");
 		System.out.println();
 		System.out.println();
 	}
@@ -230,12 +225,13 @@ public class DriverPartida {
 		HidatoIO.writeHidatoMatrixToOutput(matriuRetornada);
 		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(matriuHidato, matriuRetornada));
 		System.out.println();
-		System.out.println("Driver GetMatriu executat correctament!");
+		if(java.util.Arrays.deepEquals(matriuHidato, matriuRetornada)) System.out.println("Driver GetMatriu executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver GetMatriu executat sense exit");
 		System.out.println();
 		System.out.println();
 	}
 
-	private static void driverGetNombresPerDefecte() {
+	private static void driverGetNombresPerDefecte() { //COMPARAR VECTOR0RS MODIFICAR STUB 
 		System.out.println("Has escollit provar el metode getNombresPerDefecte");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
@@ -251,7 +247,7 @@ public class DriverPartida {
 		System.out.println(v+"\n");
 		System.out.println("Vector obtingut: ");
 		System.out.println(partida.getNombresPerDefecte());
-		System.out.println("Comprovacio nombresPerDefecte retornat correctament: " + (0 == nombresPerDefecte.size()));
+		System.out.println("Comprovacio nombresPerDefecte retornat correctament: " + (4 == nombresPerDefecte.size()));
 		System.out.println();
 		System.out.println("Driver GetNombresPerDefecte executat correctament!");
 		System.out.println();
@@ -269,13 +265,14 @@ public class DriverPartida {
 		System.out.println("Dificultat obtinguda: " + partida.getDificultat());
 		System.out.println("Comprovacio dificultat: " + (Dificultat.FACIL == partida.getDificultat()));
 		System.out.println();
-		System.out.println("Driver GetDificultat executat correctament!");
+		if((Dificultat.FACIL == partida.getDificultat()))System.out.println("Driver GetDificultat executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver GetDificultat executat sense exit.");
 		System.out.println();
 		System.out.println();
-
 	}
-
+	
 	private static void driverStatus() {
+		boolean error = false;
 		System.out.println("Has escollit provar el metode Status");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
@@ -283,19 +280,22 @@ public class DriverPartida {
 		Partida partida = new Partida(hidato);
 		System.out.println("L'estat actual de la partida es: " + partida.status());
 		System.out.println("Comprovacio status no comen�at: " + (0 == partida.status()));
+		if((0 != partida.status())) error = true;
 		System.out.println("Iniciem la partida i tornem a mirar l'estat d'aquesta");
 		partida.iniciarPartida();
 		System.out.println("S'ha iniciat la partida");
 		System.out.println("L'estat actual de la partida es: " + partida.status());
 		System.out.println("Comprovacio status comen�at: " + (1 == partida.status()));
-
+		if((1 != partida.status())) error = true;
 		System.out.println("finalitzem la partida i tornem a mirar l'estat d'aquesta");
 		partida.acabarPartida();
 		System.out.println("S'ha acabat la partida");
 		System.out.println("L'estat actual de la partida es: " + partida.status());
 		System.out.println("Comprovacio status finalitzat: " + (-1 == partida.status()));
+		if((-1 != partida.status())) error = true;
 		System.out.println();
-		System.out.println("Driver driverStatus executat correctament!");
+		if(!error) System.out.println("Driver driverStatus executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver status executat sense exit.");
 		System.out.println();
 		System.out.println();
 	}
@@ -318,14 +318,16 @@ public class DriverPartida {
 		HidatoIO.writeHidatoMatrixToOutput(partida.getHidato());
 		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(matriuOriginal, partida.getHidato()));
 		System.out.println();
-		System.out.println("Driver Reset executat correctament!");
+		if(java.util.Arrays.deepEquals(matriuOriginal, partida.getHidato()))System.out.println("Driver Reset executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver Reset executat sense exit.");
 		System.out.println();
 		System.out.println();
 	}
 
 	private static void driverAcabarPartidaIniciada() {
 		System.out.println("Has escollit provar el metode acabarPartidaIniciada");
-		
+		System.out.println();
+		boolean error = false;
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
 		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
@@ -335,6 +337,7 @@ public class DriverPartida {
 		System.out.println("S'ha hagut de cridar els metodes 'getStatus i getDataIni per comprovar que s'ha iniciat correctament");
 		System.out.println("Data d'inici de la partida: " + partida.getDataInici());
 		System.out.println("Status de la partida (1 = iniciada, 0 = no iniciada, -1 = finalitzada): " + partida.status());
+		if(partida.status() != 0) error = true;
 		System.out.println();
 		System.out.println();
 		partida.acabarPartida();
@@ -343,7 +346,8 @@ public class DriverPartida {
 		System.out.println("Data Fi de la partida: " + partida.getDataFi());
 		System.out.println("Status de la partida (1 = iniciada, 0 = no iniciada, -1 = finalitzada): " + partida.status());
 		System.out.println();
-		System.out.println("Driver AcabarPartidaIniciada executat correctament!");
+		if(partida.status() == -1 || error)System.out.println("Driver AcabarPartidaIniciada executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver IniciarPartida executat sense exit.");
 		System.out.println();
 		System.out.println();
 		
