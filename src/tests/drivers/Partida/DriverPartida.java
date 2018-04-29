@@ -70,6 +70,8 @@ public class DriverPartida {
 				driverReset();
 				break;
 			case 6:
+				driverFerJugada();
+				break;
 			case 7:
 				driverStatus();
 				break;
@@ -103,15 +105,30 @@ public class DriverPartida {
 			default:
 		}
 	}
-	private static void driverEsSolucionable() {
-		System.out.println("Has escollit provar el metode EsSolucionable");
+	private static void driverFerJugada() {
+		System.out.println("Has escollit provar el metode ferJugada");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
 		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
-		System.out.println("Comprovacio essolucionable retornada correctament: " + (true == partida.esSolucionable()));
+		System.out.println("Comprovacio ferJugada retornada correctament: " + (true == partida.esSolucionable()));
 		System.out.println();
 		System.out.println("Driver EsSolucionable executat correctament!");
+		System.out.println();
+		System.out.println();
+	}
+
+	private static void driverEsSolucionable() {
+		System.out.println("Has escollit provar el metode esSolucionable");
+		System.out.println();
+		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
+		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		Partida partida = new Partida(hidato);
+		System.out.println("Valor que s'espera: " + true);
+		System.out.println("Valor que se'ns ha retornat: " + partida.esSolucionable());
+		System.out.println("Comprovacio d'igualtat de resultats: " + (true == partida.esSolucionable()));
+		System.out.println();
+		System.out.println("Driver esSolucionable executat correctament!");
 		System.out.println();
 		System.out.println();		
 	}
