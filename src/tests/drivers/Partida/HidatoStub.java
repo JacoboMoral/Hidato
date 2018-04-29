@@ -13,6 +13,23 @@ public abstract class HidatoStub extends Hidato{
 
 	protected TipusAdjacencia tipusAdjacencia;
 	
+	private int[][] matriuHidato = new int[][] {
+		{1,-1,-1},
+		{2,11,-1},
+		{3,0,0},
+		{0,-1,8},
+		{5,0,0}
+	};
+	
+	
+	private int[][] matriuOriginal = new int[][] {
+		{1,-1,-1},
+		{0,11,-1},
+		{0,0,0},
+		{0,-1,8},
+		{5,0,0}
+	};
+	
     public HidatoStub(TipusAdjacencia tipusAdjacencia) {
 		super(tipusAdjacencia);
 	}
@@ -55,13 +72,7 @@ public abstract class HidatoStub extends Hidato{
 	}
 	
 	public int[][] getMatriu(){
-		return new int[][] {
-			{1,-1,-1},
-			{2,11,-1},
-			{3,0,0},
-			{0,-1,8},
-			{5,0,0}
-		};
+		return matriuHidato;
 	}
 	
 	public int[][] getMatriuOriginal(){
@@ -75,6 +86,7 @@ public abstract class HidatoStub extends Hidato{
 	}
 	
 	public void resetMatriu() {
+		matriuHidato = matriuOriginal;
 	}
 	
 	public int[][] getSolucio(){
