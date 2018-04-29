@@ -1,6 +1,5 @@
 package tests.drivers.Partida;
 
-import static org.junit.Assert.assertEquals;
 
 import java.util.Scanner;
 import java.util.Vector;
@@ -36,7 +35,7 @@ public class DriverPartida {
 		{0,-1,8},
 		{5,0,0}
 	};
-	
+	static Vector<Integer> v = new Vector<Integer>(4);
 	public static void main(String[] args) throws Exception{
 		System.out.println("Aquest es el driver de partida, indica quina funcio vols provar");
 		llistaTests();
@@ -110,7 +109,7 @@ public class DriverPartida {
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
 		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
-		System.out.println("Comprovacio essolucionable retornada correctament: " + assertEquals(true, partida.esSolucionable()));
+		System.out.println("Comprovacio essolucionable retornada correctament: " + (true == partida.esSolucionable()));
 		System.out.println();
 		System.out.println("Driver EsSolucionable executat correctament!");
 		System.out.println();
@@ -123,7 +122,7 @@ public class DriverPartida {
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
 		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
-		System.out.println("Comprovacio puntuacio retornada correctament: " + assertEquals(0, partida.getPuntuacio()));
+		System.out.println("Comprovacio puntuacio retornada correctament: " + (0 == partida.getPuntuacio()));
 		System.out.println();
 		System.out.println("Driver GetPuntuacio executat correctament!");
 		System.out.println();
@@ -225,8 +224,17 @@ public class DriverPartida {
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
 		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
+		v.add(1);
+    	v.add(2);
+    	v.add(3);
+    	v.add(4);
+  
 		Vector<Integer> nombresPerDefecte =  partida.getNombresPerDefecte();
-		System.out.println("Comprovacio nombresPerDefecte retornat correctament: " + assertEquals(0, nombresPerDefecte.size()));
+		System.out.println("S'espera obtenir el seguent vector: ");
+		System.out.println(v+"\n");
+		System.out.println("Vector obtingut: ");
+		System.out.println(partida.getNombresPerDefecte());
+		System.out.println("Comprovacio nombresPerDefecte retornat correctament: " + (0 == nombresPerDefecte.size()));
 		System.out.println();
 		System.out.println("Driver GetNombresPerDefecte executat correctament!");
 		System.out.println();
@@ -240,7 +248,9 @@ public class DriverPartida {
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
 		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
-		System.out.println("Comprovacio dificultat: " + assertEquals(Dificultat.FACIL, partida.getDificultat()));
+		System.out.println("Dificultat esperada: " + Dificultat.FACIL);
+		System.out.println("Dificultat obtinguda: " + partida.getDificultat());
+		System.out.println("Comprovacio dificultat: " + (Dificultat.FACIL == partida.getDificultat()));
 		System.out.println();
 		System.out.println("Driver GetDificultat executat correctament!");
 		System.out.println();
@@ -255,18 +265,18 @@ public class DriverPartida {
 		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		System.out.println("L'estat actual de la partida es: " + partida.status());
-		System.out.println("Comprovacio status no començat: " + assertEquals(0, partida.status()));
+		System.out.println("Comprovacio status no comenï¿½at: " + (0 == partida.status()));
 		System.out.println("Iniciem la partida i tornem a mirar l'estat d'aquesta");
 		partida.iniciarPartida();
 		System.out.println("S'ha iniciat la partida");
 		System.out.println("L'estat actual de la partida es: " + partida.status());
-		System.out.println("Comprovacio status començat: " + assertEquals(1, partida.status()));
+		System.out.println("Comprovacio status comenï¿½at: " + (1 == partida.status()));
 
 		System.out.println("finalitzem la partida i tornem a mirar l'estat d'aquesta");
 		partida.acabarPartida();
 		System.out.println("S'ha acabat la partida");
 		System.out.println("L'estat actual de la partida es: " + partida.status());
-		System.out.println("Comprovacio status finalitzat: " + assertEquals(-1, partida.status()));
+		System.out.println("Comprovacio status finalitzat: " + (-1 == partida.status()));
 		System.out.println();
 		System.out.println("Driver driverStatus executat correctament!");
 		System.out.println();
@@ -287,6 +297,8 @@ public class DriverPartida {
 		HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
 		System.out.println("Al fer reset la matriu hidato actual hauria de ser igual a la matriu Original");
 		partida.reset();
+		System.out.println("Despres de fer reset, la matriu hidato es:");
+		HidatoIO.writeHidatoMatrixToOutput(partida.getHidato());
 		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(matriuOriginal, partida.getHidato()));
 		System.out.println();
 		System.out.println("Driver Reset executat correctament!");
@@ -295,7 +307,7 @@ public class DriverPartida {
 	}
 
 	private static void driverAcabarPartidaIniciada() {
-		System.out.println("Has escollit provar el metode iniciarPartida");
+		System.out.println("Has escollit provar el metode acabarPartidaIniciada");
 		
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
 		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);

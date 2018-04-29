@@ -55,7 +55,12 @@ public abstract class HidatoStub extends Hidato{
     }
     
     public Vector<Integer> getNombresPerDefecte(){
-    	return new Vector<Integer>();
+    	Vector<Integer> v = new Vector<Integer>(4);
+    	v.add(1);
+    	v.add(2);
+    	v.add(3);
+    	v.add(4);
+    	return v;
     }
     
     public int getNombreFiles(){
@@ -76,13 +81,7 @@ public abstract class HidatoStub extends Hidato{
 	}
 	
 	public int[][] getMatriuOriginal(){
-		return new int[][] {
-			{1,-1,-1},
-			{0,11,-1},
-			{0,0,0},
-			{0,-1,8},
-			{5,0,0}
-		};
+		return matriuOriginal;
 	}
 	
 	public void resetMatriu() {
