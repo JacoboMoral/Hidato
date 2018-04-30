@@ -1,14 +1,13 @@
-package tests.drivers.HidatoQuadrat;
+package tests.drivers.HidatoTriangle;
 
 import java.util.Scanner;
 
 import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.HidatoIO;
-import main.domain.com.hidato.HidatoQuadrat;
-import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.HidatoTriangle;
 import main.domain.com.hidato.TipusCella;
 
-public class DriverHidatoQuadrat {
+public class DriverHidatoTriangle {
 	
 	private static int numeroTests = 2;
 	private static int[][] matriuTest = new int[][] {
@@ -20,7 +19,7 @@ public class DriverHidatoQuadrat {
 	};
 	
     public static void main(String[] args) throws Exception{
-		System.out.println("Aquest es el driver de de HidatoQuadrat, indica quina funcio vols provar");
+		System.out.println("Aquest es el driver de de HidatoTriangle, indica quina funcio vols provar");
 		llistaTests();
 		int req = 0;
 		while (req != -1) {
@@ -49,18 +48,13 @@ public class DriverHidatoQuadrat {
 
 	private static void driverGetTipusCella() {
 		System.out.println("Has escollit provar el metode getTipusCella");
-		int n = -1;
-		while (n != 1 && n != 2) {
-			System.out.println("Digues quin tipus d'adjacencia vols per l'hidato quadrat: [1 = Costats; 2 = Costats i angles]");
-			n = getNumero();
-		}
-		TipusAdjacencia ta = intToTipusAdjacencia(n);
-		Hidato hidato = new HidatoQuadrat(ta);
-		System.out.println("S'ha creat un hidato quadrat amb el tipus d'adjacencia escollit");
-		System.out.println("Ara es cridara el mètode getTipusCella, s'espera que es retorni el seguent tipus de cella: " + TipusCella.QUADRAT);
+		
+		Hidato hidato = new HidatoTriangle();
+		System.out.println("S'ha creat un hidato quadrat amb tipus d'adjacencia per costats");
+		System.out.println("Ara es cridara el mètode getTipusCella, s'espera que es retorni el seguent tipus d'adjacencia: " + TipusCella.TRIANGLE);
 		TipusCella retornat = hidato.getTipusCella();
 		System.out.println("El tipus d'adjacencia retornat es: " + retornat);
-		boolean correcte = (retornat == TipusCella.QUADRAT);
+		boolean correcte = (retornat == TipusCella.TRIANGLE);
 		System.out.println("Comprovacio de correctesa: " + correcte);
 		System.out.println();
 		if(correcte) System.out.println("Driver getTipusCella executat correctament!");
@@ -72,14 +66,8 @@ public class DriverHidatoQuadrat {
 
 	private static void driverPosicioValida() {
 		System.out.println("Has escollit provar el metode getTipusCella");
-		int n = -1;
-		while (n != 1 && n != 2) {
-			System.out.println("Digues quin tipus d'adjacencia vols per l'hidato quadrat: [1 = Costats; 2 = Costats i angles]");
-			n = getNumero();
-		}
-		TipusAdjacencia ta = intToTipusAdjacencia(n);
-		Hidato hidato = new HidatoQuadrat(ta);
-		System.out.println("S'ha creat un hidato quadrat amb el tipus d'adjacencia escollit\n");
+		Hidato hidato = new HidatoTriangle();
+		System.out.println("S'ha creat un hidato quadrat amb tipus d'adjacencia per costats\n");
 		boolean continua = true;
 		while (continua) {
 			System.out.println("Per provar el mètode posicioValida, has d'escollir una posicio de la seguent matriu,");
@@ -156,11 +144,5 @@ public class DriverHidatoQuadrat {
 			//si entra aqui, alhesores ha saltat l'excepcio de que no es pot convertir en numero
 		}
 		return validNumber;
-	}
-	
-	private static TipusAdjacencia intToTipusAdjacencia(int ta) {
-		if (ta == 1) return TipusAdjacencia.COSTATS;
-		if (ta == 2) return TipusAdjacencia.COSTATSIANGLES;
-		return null;
 	}
 }

@@ -156,7 +156,7 @@ public class Algorismes {
 		while (!generat && intents < 15) {
 			emplenarForats(forats, matriu);
 			generat = generarMatriuCompleta(forats, matriu);
-			System.out.println("intent numero: " + (intents+1));
+			//System.out.println("intent numero: " + (intents+1));
 			++intents;
 			if (!generat) matriu = new int[tamanyi][tamanyj];
 

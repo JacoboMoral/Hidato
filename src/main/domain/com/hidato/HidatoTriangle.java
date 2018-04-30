@@ -21,7 +21,7 @@ public class HidatoTriangle extends Hidato {
 	@Override
 	public boolean posicioValida(int i, int j, int r, int c) {
 		if (tipusAdjacencia == TipusAdjacencia.COSTATS) return ( ((Math.abs(j) == 1) && i == 0) || ((i == -1) && (j == 0) && diferentParitat(r,c)) || ((i == 1) && (j == 0) && !diferentParitat(r,c)) );
-		return true;
+		return false;
 	}
 	
 	private boolean diferentParitat(int i, int j) {
