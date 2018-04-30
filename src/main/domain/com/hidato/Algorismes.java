@@ -110,6 +110,9 @@ public class Algorismes {
 	}
 
 	public Vector<Integer> getGiven() {
+		if (!solucionat) {
+			this.solucionar();
+		}
 		return given;
 	}
 
@@ -179,15 +182,27 @@ public class Algorismes {
 
 	private void extreureNombres(int forats, int[][] matriu) {
 		Random rand = new Random();
-		int celesBuides = matriu.length * matriu[0].length - forats;
-		for (int i = 0; i < matriu.length; ++i) {
-			for (int j = 0; j < matriu[0].length; ++j) {
-				if (matriu[i][j] != 1 && matriu[i][j] != celesBuides && matriu[i][j] > -1) { //primer i ultim numero han d'estar, i tampoc s'han de treure els forats
-					 int treure = rand.nextInt(4); //         1/4 possibilitat de treure un numero = hi han ficats 1/4 dels numeros
-					 if (treure != 0) matriu[i][j] = 0;
+		int celesNumeriques = matriu.length * matriu[0].length - forats;
+		if (celesNumeriques <= 6) {
+			for (int i = 0; i < matriu.length; ++i) {
+				for (int j = 0; j < matriu[0].length; ++j) {
+					if (matriu[i][j] != 1 && matriu[i][j] != celesNumeriques && matriu[i][j] > -1) { //primer i ultim numero han d'estar, i tampoc s'han de treure els forats
+						matriu[i][j] = 0;
+					}
 				}
 			}
 		}
+		else {
+			for (int i = 0; i < matriu.length; ++i) {
+				for (int j = 0; j < matriu[0].length; ++j) {
+					if (matriu[i][j] != 1 && matriu[i][j] != celesNumeriques && matriu[i][j] > -1) { //primer i ultim numero han d'estar, i tampoc s'han de treure els forats
+						 int treure = rand.nextInt(4); //         1/4 possibilitat de treure un numero = hi han ficats 1/4 dels numeros
+						 if (treure != 0) matriu[i][j] = 0;
+					}
+				}
+			}
+		}
+		
 	}
 
 	private boolean generarMatriuCompleta(int forats, int[][] matriu) {

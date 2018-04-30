@@ -2,6 +2,7 @@ package tests.drivers.Algorismes;
 
 import java.util.Vector;
 
+import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
 import tests.drivers.Partida.HidatoStub;
 
@@ -33,7 +34,7 @@ public class AlgorismesStub{
 	public int[][] generarHidato(int forats, int tamanyi, int tamanyj) {
 		return matriuGenerada;
 	}
-
+	
 	public void modificarHidato(Hidato hidato) {
 		
 	}

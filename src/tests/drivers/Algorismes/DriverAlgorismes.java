@@ -1,7 +1,9 @@
 package tests.drivers.Algorismes;
 import java.util.Scanner;
+import java.util.Vector;
 
 import main.domain.com.hidato.Algorismes;
+import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 
@@ -39,24 +41,23 @@ public class DriverAlgorismes {
 		{8,0,-1},
 		{-1,0,11}
 	};
-	
-	
-	
-	
-	
+
 	
 	
     public static void main(String[] args) throws Exception{
 		System.out.println("Aquest es el driver de algorismes, indica quina funcio vols provar");
 		llistaTests();
-		int req = -1;
-		req = getRequest();
-		while (req < 1 || req > numeroTests) {
-			System.out.println("Si us plau, entra un dels nombres corresponents a la funcio que vols provar\n");
-			llistaTests();
+		int req = 0;
+		while (req != -1) {
 			req = getRequest();
+			while (req == 0 || req > numeroTests) {
+				System.out.println("Si us plau, entra un dels nombres corresponents al metode que vols provar\n");
+				llistaTests();
+				req = getRequest();
+			}
+			if (req != -1) tractaRequest(req);
 		}
-		tractaRequest(req);
+		System.out.println("Driver ha acabat amb exit");
 	}
 	
 	private static void tractaRequest(int req) {
@@ -88,18 +89,93 @@ public class DriverAlgorismes {
 
 
 	private static void driverGenerarHidato() {
-		// TODO Auto-generated method stub
+		System.out.println("Has escollit provar el metode generarHidato");
+		System.out.println();
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
+		Algorismes algorismes = new Algorismes(hidato);
+		System.out.println("S'ha creat una instancia algorismes amb un hidato sense matriu:");
 		
+		boolean continua = true;
+		while (continua) {
+			System.out.println("Escriu el nombre de files (minim 2) ");
+			int i = getNumero();
+			while (i < 2) {
+				i = getNumero();
+			}
+			System.out.println("Escriu el nombre de columnes (minim 2)");
+			int j = getNumero();
+			while (j < 2) {
+				j = getNumero();
+			}
+			System.out.println("Escriu el nombre de forats que vols introduir (no pot ser mes gran que la meitat de celles totals)");
+			int x = getNumero();
+			while (x > (i*j)/2) {
+				x = getNumero();
+			}
+			int[][] mat = algorismes.generarHidato(x,i,j);
+			if (mat != null) {
+				System.out.println("La matriu generada es la seguent:");
+				HidatoIO.writeHidatoMatrixToOutput(mat);
+			}
+			else {
+				System.out.println("No s'ha pogut generar un hidato amb les condicions anteriors:");
+			}
+			System.out.println("\n Vols generar un altre hidato? yes/no");
+			String s = readLine();
+			while (!s.equalsIgnoreCase("yes") && !s.equalsIgnoreCase("no")) {
+				s = readLine();
+			}
+			if (s.equals("no")) continua = false;
+		}
+		
+		System.out.println("Sortint del driver de generarHidato");
+		System.out.println();
+		System.out.println();			
 	}
 
 	private static void driverGetGiven() {
-		// TODO Auto-generated method stub
+		System.out.println("Has escollit provar el metode getGiven");
+		System.out.println();
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS,matriuHidato1);
+		Algorismes algorismes = new Algorismes(hidato);
+		System.out.println("S'ha creat una instancia algorismes amb un hidato amb la seguent matriu:");
+		HidatoIO.writeHidatoMatrixToOutput(matriuHidato1);
+		System.out.println("S'espera el seguent vector de nombres donats:");
+		Vector<Integer> v = new Vector<Integer>(4);
+		v.add(1);
+		v.add(5);
+		v.add(8);
+		v.add(11);
+		System.out.println(v);
 		
+		Vector<Integer> donats = algorismes.getGiven();
+		System.out.println("S'espera el seguent vector de nombres donats:");
+		System.out.println(donats);
+		
+		boolean correcte = donats.equals(v);
+		System.out.println("Comprovacio que els dos vectors siguin iguals: " + correcte);
+		if (correcte) System.out.println("Sortint amb exit del driver de getGiven");
+		else System.out.println("Hi ha hagut algun problema, sortint del driver de getGiven");
+		System.out.println();
+		System.out.println();	
 	}
 
 	private static void driverObtenirDificultat() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Has escollit provar el metode obtenirDificultat");
+		System.out.println();
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS,matriuHidato1);
+		Algorismes algorismes = new Algorismes(hidato);
+		System.out.println("S'ha creat una instancia algorismes amb un hidato amb la seguent matriu:");
+		HidatoIO.writeHidatoMatrixToOutput(matriuHidato1);
+		System.out.println("S'espera la seguent dificultat: " + Dificultat.FACIL);
+		Dificultat difObtinguda = algorismes.obtenirDificultat();
+		System.out.println("S'ha obtes la seguent dificultat amb el metode: " + difObtinguda);
+		boolean correcte = difObtinguda == Dificultat.FACIL;
+		System.out.println("Comprovacio que les dues dificultats siguin iguals: " + correcte);
+		if (correcte) System.out.println("Sortint amb exit del driver de obtenirDificultat");
+		else System.out.println("Hi ha hagut algun problema, sortint del driver de obtenirDificultat");
+		System.out.println();
+		System.out.println();			
 	}
 
 	private static void driverGetMatriuSolucio() {
@@ -185,6 +261,7 @@ public class DriverAlgorismes {
 	}
 
 	public static void llistaTests() {
+		System.out.println("exit: Sortir del driver");
 		System.out.println("1: Constructora");
 		System.out.println("2: Modificar hidato");
 		System.out.println("3: Solucionar");
@@ -203,7 +280,8 @@ public class DriverAlgorismes {
 	private static int getRequest() {
 		String req = readLine();
 		if (isNumber(req)) return Integer.parseInt(req);
-		else return -1;
+		else if (req.equalsIgnoreCase("exit")) return -1;
+		else return 0;
 	}
 
 	private static boolean isNumber(String s) {
@@ -215,7 +293,13 @@ public class DriverAlgorismes {
 		} catch (NumberFormatException e) {
 			//si entra aqui, alhesores ha saltat l'excepcio de que no es pot convertir en numero
 		}
-		return validNumber;
+		return validNumber;	
+	}
+	
+	private static int getNumero() {
+		String req = readLine();
+		if (isNumber(req)) return Integer.parseInt(req);
+		else return -1;
 	}
 	
 }

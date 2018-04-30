@@ -43,7 +43,7 @@ public class DriverPartida {
 		while (req != -1) {
 			req = getRequest();
 			while (req == 0 || req > numeroTests) {
-				System.out.println("Si us plau, entra un dels nombres corresponents a la funcio que vols provar\n");
+				System.out.println("Si us plau, entra un dels nombres corresponents al metode que vols provar\n");
 				llistaTests();
 				req = getRequest();
 			}
