@@ -11,7 +11,6 @@ import main.domain.com.hidato.TipusCella;
 
 public class HidatoStub extends Hidato {
 
-	protected TipusAdjacencia tipusAdjacencia;
     protected Dificultat dificultat;
         
     private int[][] matriuHidato;
