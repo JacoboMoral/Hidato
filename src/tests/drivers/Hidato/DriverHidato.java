@@ -148,7 +148,7 @@ public class DriverHidato {
 		System.out.println("S'espera que el numero de columnes sigui: " + matriu[0].length);
 		System.out.println("El numero de columnes al fer Columnes es: " + hidato.getNombreColumnes());
 		System.out.println();
-		if(matriu[0].length == hidato.getNombreFiles()) System.out.println("Driver getNombreColumnes executat correctament!");
+		if(matriu[0].length == hidato.getNombreColumnes()) System.out.println("Driver getNombreColumnes executat correctament!");
 		else System.out.println("Ha sorgit un problema. Driver getNombreColumnes executat sense exit.");
 		System.out.println();
 		System.out.println();		
@@ -222,25 +222,61 @@ public class DriverHidato {
 		
 		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(matriuOriginal, matriuAmbMoviment));
 		System.out.println();
-		if(java.util.Arrays.deepEquals(matriu, matriuAmbMoviment)) System.out.println("Driver hidato executat correctament!");
+		if(java.util.Arrays.deepEquals(matriuOriginal, matriuAmbMoviment)) System.out.println("Driver hidato executat correctament!");
 		else System.out.println("Ha sorgit un problema. Driver hidato executat sense exit");
 		System.out.println();
 		System.out.println();		
 	}
 
 	private static void driverGetSolucio() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Has escollit provar el metode getSolucio");
+		System.out.println();
+		Hidato hidato = new HidatoStub(TipusAdjacencia.COSTATS, matriu);
+		System.out.println("S'ha hagut de crear una instancia d'hidato amb la seguent matriu: ");
+		HidatoIO.writeHidatoMatrixToOutput(matriu);
+		System.out.println();
+		int[][] matriuRetornada = hidato.getSolucio();
+		System.out.println("La matriu obtinguda es:");
+		HidatoIO.writeHidatoMatrixToOutput(matriuRetornada);
+		System.out.println("Driver GetMatriuOriginal executat");
+		System.out.println();
+		System.out.println();	
 	}
 
 	private static void driverTeSolucio() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Has escollit provar el metode getSolucio");
+		System.out.println();
+		Hidato hidato = new HidatoStub(TipusAdjacencia.COSTATS, matriu);
+		System.out.println("S'ha hagut de crear una instancia d'hidato amb la seguent matriu: ");
+		HidatoIO.writeHidatoMatrixToOutput(matriu);
+		System.out.println();
+		System.out.println("El hidato es solucionable?: " + hidato.teSolucio());
+		System.out.println("Driver GetMatriuOriginal executat");
+		System.out.println();
+		System.out.println();			
 	}
 
 	private static void driverGetTipusAdjacencia() {
-		// TODO Auto-generated method stub
+		System.out.println("Has escollit provar el metode getTipusAdjacencia");
+		boolean error = false;
+		System.out.println();
+		Hidato hidato = new HidatoStub(TipusAdjacencia.COSTATS);
+		System.out.println("S'ha hagut de crear una instancia d'hidato amb tipusAdjacencia COSTATS ");
+		System.out.println();
+		System.out.println("El tipus d'Adjacencia es: " + hidato.getTipusAdjacencia());
+		if(hidato.getTipusAdjacencia() != TipusAdjacencia.COSTATS) error = true;
 		
+		System.out.println();
+		Hidato hidato2 = new HidatoStub(TipusAdjacencia.COSTATSIANGLES);
+		System.out.println("S'ha hagut de crear una instancia d'hidato amb tipusAdjacencia COSTATSIANGLES ");
+		System.out.println();
+		System.out.println("El tipus d'Adjacencia es: " + hidato2.getTipusAdjacencia());
+		if(hidato2.getTipusAdjacencia() != TipusAdjacencia.COSTATSIANGLES) error = true;
+		System.out.println();
+		if(!error)System.out.println("Driver getTipusAdjacencia executat correctament");
+		else System.out.println("Ha sorgit un problema. Driver getTipusAdjacencia executat sense exit");
+		System.out.println();
+		System.out.println();			
 	}
 
 	private static void driverGetDificultat() {
