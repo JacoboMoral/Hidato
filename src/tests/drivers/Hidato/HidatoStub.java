@@ -5,6 +5,7 @@ import java.util.Vector;
 import main.domain.com.hidato.Algorismes;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
+import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
@@ -24,7 +25,8 @@ public class HidatoStub extends Hidato {
     
     public HidatoStub(TipusAdjacencia tipusAdjacencia, int[][] matriu) {
 		super(tipusAdjacencia, matriu);
-		matriuHidato = matriuOriginal =  matriu;
+		matriuHidato =  matriu;
+		makeCopyOriginal(matriuHidato);
 		al = new AlgorismesStub(this);
 		dificultat = al.obtenirDificultat();
     }
@@ -120,7 +122,6 @@ public class HidatoStub extends Hidato {
     	boolean anterior = nombresEscrits.contains(value-1);
     	boolean posterior = nombresEscrits.contains(value+1);
     	if (!anterior && !posterior) return false; 		//si no hi ha escrits ni el anterior ni el posterior
-    	System.out.println("Joder");
     	boolean trobatAnterior = false;
     	boolean trobatPosterior = false;
     	for(int ii = i - 1; ii < i + 2; ++ii) {
@@ -140,6 +141,17 @@ public class HidatoStub extends Hidato {
     	return true; 									//else true
     }
 
+    private void makeCopyOriginal(int[][] matriuHidato) {
+    	int y = matriuHidato.length;
+    	int x = matriuHidato[0].length;
+    	matriuOriginal = new int[y][x];
+    	for (int i = 0; i < y; ++i) {
+    		for (int j = 0; j < x; ++j) {
+    			matriuOriginal[i][j] = matriuHidato[i][j];
+    		}
+    	}
+	}
+    
 	@Override
 	public TipusCella getTipusCella() {
 		return null;

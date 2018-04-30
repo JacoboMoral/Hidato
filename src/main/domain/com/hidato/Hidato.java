@@ -18,11 +18,12 @@ public abstract class Hidato {
     
 
     public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
-		matriuHidato = matriuOriginal = matriu;
+		matriuHidato = matriu;
+		makeCopyOriginal(matriuHidato);
 		this.tipusAdjacencia = tipusAdjacencia;
     }
-    
-    public Hidato(TipusAdjacencia tipusAdjacencia) {
+
+	public Hidato(TipusAdjacencia tipusAdjacencia) {
     	this.tipusAdjacencia = tipusAdjacencia;
     }
     
@@ -43,7 +44,8 @@ public abstract class Hidato {
     		matriuHidato[i][j] = value;
     		nombresEscrits.add(value);
     		return true;
-    	} 
+
+    	}
     	else return false;
     }
     
@@ -137,6 +139,15 @@ public abstract class Hidato {
     	return true; 										//else
     }
     
-	
+    private void makeCopyOriginal(int[][] matriuHidato) {
+    	int y = matriuHidato.length;
+    	int x = matriuHidato[0].length;
+    	matriuOriginal = new int[y][x];
+    	for (int i = 0; i < y; ++i) {
+    		for (int j = 0; j < x; ++j) {
+    			matriuOriginal[i][j] = matriuHidato[i][j];
+    		}
+    	}
+	}
 
 }

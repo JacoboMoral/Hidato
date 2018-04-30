@@ -201,20 +201,28 @@ public class DriverHidato {
 		System.out.println("S'ha hagut de crear una instancia d'hidato amb la seguent matriu: ");
 		HidatoIO.writeHidatoMatrixToOutput(matriu);
 		System.out.println();
+		System.out.println("S'ha hagut de cridar el metode teSolucio, que es precondicio d'aquest");
+		hidato.teSolucio();
+		
 		System.out.println("Per fer reset previament s'ha d'haver fet un moviment");
-		System.out.println("Cridem a la funcio fer moviment(0,1,2) on y = 0 x = 1 i col·loquem el nombre 2");
-		hidato.moviment(1, 1, 2);
+		System.out.println("Cridem a la funcio fer moviment(1,0,2) on y = 1 x = 0 i colï¿½loquem el nombre 2");
+		hidato.moviment(1, 0, 2);
 		System.out.println("Per saber com queda la matriu cridem a la funcio get matriu i en retorna la matriu:");
 		HidatoIO.writeHidatoMatrixToOutput(hidato.getMatriu());
+		
 		System.out.println("Ara fem reset");
 		hidato.resetMatriu();
-		System.out.println("Un cop fem reset la matriu ens queda així:");
-		HidatoIO.writeHidatoMatrixToOutput(hidato.getMatriu());
-		System.out.println("I ha de ser igual que la matriu original, cridem a getMatriuOriginal:");
-		HidatoIO.writeHidatoMatrixToOutput(hidato.getMatriu());
-		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(hidato.getMatriu(), hidato.getMatriuOriginal()));
+		System.out.println("Un cop fem reset la matriu ens queda aixï¿½:");
+		int[][] matriuAmbMoviment = hidato.getMatriu();
+		HidatoIO.writeHidatoMatrixToOutput(matriuAmbMoviment);
+
+		System.out.println("I ha de ser igual que la matriu amb que hem inicialitzat l'hidato:");
+		int[][] matriuOriginal = hidato.getMatriuOriginal();
+		HidatoIO.writeHidatoMatrixToOutput(matriuOriginal);
+		
+		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(matriuOriginal, matriuAmbMoviment));
 		System.out.println();
-		if(java.util.Arrays.deepEquals(hidato.getMatriu(), hidato.getMatriuOriginal())) System.out.println("Driver hidato executat correctament!");
+		if(java.util.Arrays.deepEquals(matriu, matriuAmbMoviment)) System.out.println("Driver hidato executat correctament!");
 		else System.out.println("Ha sorgit un problema. Driver hidato executat sense exit");
 		System.out.println();
 		System.out.println();		
@@ -243,7 +251,7 @@ public class DriverHidato {
 	private static void driverGetNombresPerDefecte() {
 		System.out.println("Has escollit provar el metode autogenerar");
 		System.out.println();
-		System.out.println("Per aixo creem un hidato de tipus quadrat amb adjacencia per costats amb la següent matriu:");
+		System.out.println("Per aixo creem un hidato de tipus quadrat amb adjacencia per costats amb la segï¿½ent matriu:");
 		Hidato hidato = new HidatoStub(TipusAdjacencia.COSTATS, matriu);
 		HidatoIO.writeHidatoMatrixToOutput(matriu);
 		v.add(1);
@@ -276,7 +284,7 @@ public class DriverHidato {
 		int tamanyi = 0;
 		int tamanyj = 0;
 		if(hidato.autogenerar(forats, tamanyi, tamanyj)) {
-			System.out.println("Autogenerat amb èxit");	
+			System.out.println("Autogenerat amb ï¿½xit");	
 			System.out.println();
 			System.out.println("Driver autogenerar finalitzat");
 		}
