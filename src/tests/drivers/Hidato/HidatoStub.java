@@ -110,7 +110,7 @@ public class HidatoStub extends Hidato {
 	}
 	
     private boolean comprovarMoviment(int i, int j, int value) {
-    	
+    	if (matriuHidato[i][j] != 0) return false;
     	if (estaRepetit(value)) return false;
     	boolean anterior = nombresEscrits.contains(value-1);
     	boolean posterior = nombresEscrits.contains(value+1);
