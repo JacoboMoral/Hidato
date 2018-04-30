@@ -13,6 +13,7 @@ public class HidatoHexagon extends Hidato {
 		al = new Algorismes(this);
 	}
 	
+	@Override
 	public TipusCella getTipusCella() {
 		return TipusCella.HEXAGON;
 	}

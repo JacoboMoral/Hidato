@@ -12,7 +12,8 @@ public class HidatoQuadrat extends Hidato {
 		super(tipusAdjacencia);
 		al = new Algorismes(this);
 	}
-
+	
+	@Override
 	public TipusCella getTipusCella() {
 		return TipusCella.QUADRAT;
 	}

@@ -199,7 +199,7 @@ public class InteraccioTerminal {
 		}
 		
 		else { 
-			if (controladorDomini.jugarHidato(tipusCella, tipusAdjacencia, matriuHidato)) {
+			if (controladorDomini.jugarHidatoImportat(tipusCella, tipusAdjacencia, matriuHidato)) {
 				System.out.println("\n\nHidato importat i validad correctament. El teu hidato es el seguent: \n");
 				HidatoIO.writeHidatoMatrixToOutput(controladorDomini.obtenirHidatoDePartida());
 				status = "jugant";

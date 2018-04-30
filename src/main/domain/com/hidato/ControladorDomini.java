@@ -8,7 +8,7 @@ public class ControladorDomini {
 	private Hidato hidatoGenerat;
 	
 
-	public boolean jugarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
+	public boolean jugarHidatoImportat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
 		partidaEnCurs = new Partida (HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato));
 		if (!partidaEnCurs.esSolucionable()) {
 			partidaEnCurs = null;
@@ -17,6 +17,16 @@ public class ControladorDomini {
 		else return true;
 	}
 	
+	public void jugarHidatoGenerat() {
+		partidaEnCurs = new Partida(hidatoGenerat);
+	}
+
+	
+	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int forats, int tamanyi, int tamanyj) {
+		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia);
+		return hidatoGenerat.autogenerar(forats, tamanyi, tamanyj);
+	}
+
 	public int[][] obtenirHidatoOriginalDePartida(){
 		return partidaEnCurs.getHidatoOriginal();
 	}
@@ -50,13 +60,4 @@ public class ControladorDomini {
 		return (partidaEnCurs != null);
 	}
 
-	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int forats, int tamanyi, int tamanyj) {
-		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia);
-		return hidatoGenerat.autogenerar(forats, tamanyi, tamanyj);
-	}
-	
-	public void jugarHidatoGenerat() {
-		partidaEnCurs = new Partida(hidatoGenerat);
-	}
-	
 }
