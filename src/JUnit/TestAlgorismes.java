@@ -250,7 +250,7 @@ class TestAlgorismes {
 	void testConstructor() {
 		setUpQuadratCostats(matriuQuadratCostats);
 		Algorismes algorismes = new Algorismes(hidato);
-		assertEquals(matriuQuadratCostats , algorismes.getMatriuSolucio() );
+		assertEquals(matriuQuadratCostats , algorismes.getMatriuSolucioForce() );
 	}
 	
 	@Test
@@ -259,7 +259,7 @@ class TestAlgorismes {
 		algorismes = new Algorismes(hidato);
 		hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS, matriuQuadratCostats);
 		algorismes.modificarHidato(hidato);
-		assertEquals(matriuQuadratCostats, algorismes.getMatriuSolucio() );
+		assertEquals(matriuQuadratCostats, algorismes.getMatriuSolucioForce() );
 	}
 	
 	@Test

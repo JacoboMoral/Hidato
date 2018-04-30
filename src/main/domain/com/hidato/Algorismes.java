@@ -101,6 +101,11 @@ public class Algorismes {
 		}
 		return this.matriuSolucio;
 	}
+	
+	//es igual que encara no s'hagi solucionat --> per tests
+	public int[][] getMatriuSolucioForce(){
+		return this.matriuSolucio;
+	}
 
 	public Dificultat obtenirDificultat() {
 		int tamany = matriuSolucio.length * matriuSolucio[0].length;
