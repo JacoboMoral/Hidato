@@ -8,6 +8,7 @@ import java.util.Vector;
 public class Algorismes {
 
 	private int[][] matriuSolucio;
+	boolean solucionat = false;
 	private Hidato hidato;
 	private Vector<Integer> given = new Vector<Integer>();
 
@@ -18,6 +19,7 @@ public class Algorismes {
 
 	public void modificarHidato(Hidato hidato) {
 		this.matriuSolucio = hidato.getMatriu();
+		solucionat = false;
 		this.hidato = hidato;
 	}
 
@@ -89,9 +91,14 @@ public class Algorismes {
 
 	private void tractarMatriuSolucio(int[][] matriu) {
 		matriuSolucio = matriu;
+		solucionat = true;
+
 	}
 
 	public int[][] getMatriuSolucio(){
+		if (!solucionat) {
+			this.solucionar();
+		}
 		return this.matriuSolucio;
 	}
 

@@ -8,7 +8,7 @@ import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
 
-//stub necessari per DriveAlgorismes
+//stub necessari per DriverPartida
 public class HidatoStub extends Hidato{
 
 	protected TipusAdjacencia tipusAdjacencia;

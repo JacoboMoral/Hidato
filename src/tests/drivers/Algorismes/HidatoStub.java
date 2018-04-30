@@ -1,21 +1,22 @@
 package tests.drivers.Algorismes;
 
 import java.util.Vector;
-
-import main.domain.com.hidato.Algorismes;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
 
-//stub necessari per DriveAlgorismes
-public abstract class HidatoStub extends Hidato{
+//stub necessari per DriverAlgorismes
+public class HidatoStub extends Hidato{
 
 	protected TipusAdjacencia tipusAdjacencia;
 	
-    public HidatoStub(TipusAdjacencia tipusAdjacencia) {
+	private int[][] matriuOriginal;
+	
+    public HidatoStub(TipusAdjacencia tipusAdjacencia, int[][] matriu) {
 		super(tipusAdjacencia);
+		matriuOriginal = matriu;
 	}
     
     public boolean autogenerar(int forats, int tamanyi, int tamanyj) {
@@ -39,7 +40,7 @@ public abstract class HidatoStub extends Hidato{
     }
     
     public Vector<Integer> getNombresPerDefecte(){
-    	return new Vector<Integer>();
+    	return new Vector<Integer>(0);
     }
     
     public int getNombreFiles(){
@@ -56,19 +57,19 @@ public abstract class HidatoStub extends Hidato{
 	}
 	
 	public int[][] getMatriu(){
-		return new int[][] {};
+		return matriuOriginal;
 	}
 	
 	public int[][] getMatriuOriginal(){
-		return new int[][] {};
+		return matriuOriginal;
 	}
 	
 	public void resetMatriu() {
+		
 	}
 	
 	public int[][] getSolucio(){
 		return new int[][] {};
-
 	}
 	
 	public boolean teSolucio() {
@@ -78,11 +79,16 @@ public abstract class HidatoStub extends Hidato{
 	public TipusAdjacencia getTipusAdjacencia(){
 		return TipusAdjacencia.COSTATS;
 	}
-	
-	public abstract TipusCella getTipusCella();
 
-	public abstract boolean posicioValida(int i, int j, int r, int c);
-	
-	
-	
+	//aquests dos mètodes es provaran a les subclasses corresponents
+	@Override
+	public TipusCella getTipusCella() {
+		return null;
+	}
+
+	//nomes valid per aquest stub i per hidatos quadrats amb adjacencia per costats
+	@Override
+	public boolean posicioValida(int i, int j, int r, int c) {
+		return (Math.abs(i + j) == 1);
+	}
 }
