@@ -21,6 +21,6 @@ public class HidatoQuadrat extends Hidato {
 	@Override
 	public boolean posicioValida(int i, int j, int r, int c) {
 		if (tipusAdjacencia == TipusAdjacencia.COSTATS) return (Math.abs(i + j) == 1);
-		return true;
+		return ((Math.abs(i) < 2) && Math.abs(j) < 2);
 	}
 }
