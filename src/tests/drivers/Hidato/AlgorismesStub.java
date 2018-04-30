@@ -15,7 +15,13 @@ public class AlgorismesStub extends Algorismes{
 
 	public int[][] generarHidato(int forats, int tamanyi, int tamanyj) {
 		// TODO Auto-generated method stub
-		return null;
+		return new int[][] {
+			{1,-1,-1},
+			{2,11,-1},
+			{3,0,0},
+			{4,-1,8},
+			{5,6,0}
+		};
 	}
 
 	public void modificarHidato(Hidato hidato) {

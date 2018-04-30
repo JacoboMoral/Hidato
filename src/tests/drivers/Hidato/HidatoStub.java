@@ -24,9 +24,14 @@ public class HidatoStub extends Hidato {
     
     public HidatoStub(TipusAdjacencia tipusAdjacencia, int[][] matriu) {
 		super(tipusAdjacencia, matriu);
-		matriuHidato = matriu;
+		matriuHidato = matriuOriginal =  matriu;
 		al = new AlgorismesStub(this);
 		dificultat = al.obtenirDificultat();
+    }
+    
+    public HidatoStub(TipusAdjacencia tipusAdjacencia) {
+		super(tipusAdjacencia);
+		al = new AlgorismesStub(this);
 	}
     
     public boolean autogenerar(int forats, int tamanyi, int tamanyj) {
