@@ -3,6 +3,7 @@ package tests.drivers.Hidato;
 import java.util.Scanner;
 import java.util.Vector;
 
+import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
@@ -280,8 +281,19 @@ public class DriverHidato {
 	}
 
 	private static void driverGetDificultat() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Has escollit provar el metode getDificultat");
+		System.out.println();
+		Hidato hidato = new HidatoStub(TipusAdjacencia.COSTATS, matriu);
+		System.out.println("S'ha hagut de crear una instancia d'hidato amb la seguent matriu: ");
+		HidatoIO.writeHidatoMatrixToOutput(matriu);
+		System.out.println();
+		System.out.println("La dificultat esperada d'aquesta Matriu es: " + Dificultat.FACIL);
+		System.out.println("La didficultat d'aquesta matriu es: " + hidato.getDificultat());
+		System.out.println();
+		if(Dificultat.FACIL == hidato.getDificultat()) System.out.println("Driver GetDificultat executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver getDificultat executat sense exit.");
+		System.out.println();
+		System.out.println();		
 	}
 
 	private static void driverGetNombresPerDefecte() {
@@ -320,7 +332,7 @@ public class DriverHidato {
 		int tamanyi = 0;
 		int tamanyj = 0;
 		if(hidato.autogenerar(forats, tamanyi, tamanyj)) {
-			System.out.println("Autogenerat amb �xit");	
+			System.out.println("Autogenerat amb exit");	
 			System.out.println();
 			System.out.println("Driver autogenerar finalitzat");
 		}
