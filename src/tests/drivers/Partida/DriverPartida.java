@@ -113,7 +113,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode esSolucionable");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		System.out.println("Valor que s'espera: " + true);
 		System.out.println("Valor que se'ns ha retornat: " + partida.esSolucionable());
@@ -129,7 +129,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode GetPuntuacio");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		System.out.println("Comprovacio puntuacio retornada correctament: " + (0 == partida.getPuntuacio()));
 		System.out.println();
@@ -143,7 +143,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode iniciarPartida");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		System.out.println("Per saber la dataFi s'ha de cridar la instancia acabarPartida");
 		partida.acabarPartida();
@@ -159,7 +159,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode getDataInici");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		System.out.println("Per saber la dataInici s'ha de cridar la instancia iniciarPartida");
 		partida.iniciarPartida();
@@ -175,7 +175,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode getMatriuSolucio");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		
 		int[][] matriuRetornada = partida.getSolucio();
@@ -195,7 +195,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode getMatriuOriginal");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		
 		int[][] matriuRetornada = partida.getHidatoOriginal();
@@ -215,7 +215,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode getMatriu");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		
 		int[][] matriuRetornada = partida.getHidato();
@@ -235,7 +235,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode getNombresPerDefecte");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		v.add(1);
     	v.add(2);
@@ -261,7 +261,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode GetDificultat");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		System.out.println("Dificultat esperada: " + Dificultat.FACIL);
 		System.out.println("Dificultat obtinguda: " + partida.getDificultat());
@@ -278,7 +278,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode Status");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		System.out.println("L'estat actual de la partida es: " + partida.status());
 		System.out.println("Comprovacio status no comen�at: " + (0 == partida.status()));
@@ -307,7 +307,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode Reset");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		
 		System.out.println("La matriu Original es:");
@@ -331,7 +331,7 @@ public class DriverPartida {
 		System.out.println();
 		boolean error = false;
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 
 		partida.iniciarPartida();
@@ -359,7 +359,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode acabarPartida");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 
 		partida.acabarPartida();
@@ -377,7 +377,7 @@ public class DriverPartida {
 	private static void driverConstructora() {
 		System.out.println("Has escollit provar el metode constructor");
 		System.out.println();
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		
 		Partida partida = new Partida(hidato);
 		
@@ -392,7 +392,7 @@ public class DriverPartida {
 		System.out.println("Has escollit provar el metode iniciarPartida");
 		System.out.println();
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
-		HidatoStub hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 
 		partida.iniciarPartida();

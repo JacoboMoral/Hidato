@@ -9,7 +9,7 @@ import main.domain.com.hidato.TipusCella;
 
 
 //stub necessari per DriveAlgorismes
-public abstract class HidatoStub extends Hidato{
+public class HidatoStub extends Hidato{
 
 	protected TipusAdjacencia tipusAdjacencia;
 	
@@ -105,11 +105,15 @@ public abstract class HidatoStub extends Hidato{
 	public TipusAdjacencia getTipusAdjacencia(){
 		return TipusAdjacencia.COSTATS;
 	}
-	
-	public abstract TipusCella getTipusCella();
 
-	public abstract boolean posicioValida(int i, int j, int r, int c);
-	
-	
-	
+	//aquests dos mètodes es provaran a les subclasses corresponents
+	@Override
+	public TipusCella getTipusCella() {
+		return null;
+	}
+
+	@Override
+	public boolean posicioValida(int i, int j, int r, int c) {
+		return false;
+	}
 }
