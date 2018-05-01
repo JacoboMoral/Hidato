@@ -18,7 +18,7 @@ public class InteraccioTerminal {
 	
 	public void start() {
 		controladorDomini = new ControladorDomini();
-		System.out.println("Benvinguts fills de puta");
+		System.out.println("Benvinguts");
 		interactuar(readLine());
 	}
 
