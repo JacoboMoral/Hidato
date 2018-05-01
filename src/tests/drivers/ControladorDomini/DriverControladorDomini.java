@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import main.domain.com.hidato.ControladorDomini;
+import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
-
+//no es ben be un driver. Esta fet a proposit per poder controlar totes les funcionalitats que te el nostre programa fins ara sense
+//utilitzar valors retornats trivialment
 public class DriverControladorDomini {
 	private static int numeroTests = 11;
 	private static ControladorDomini controladorDomini;
@@ -165,8 +167,28 @@ public class DriverControladorDomini {
 	}
 
 	private static void driverAutoGenerar() {
-		// TODO Auto-generated method stub
+		System.out.println("Has escollit provar el metode autoGenerar");
+		System.out.println("Si us plau, escull como vols generar un hidato, donant les seves caracteristiques o la seva dificultat\n");
+		int tipus = -1;
+		while (tipus < 1 || tipus > 2) {
+			System.out.println("[1 = caracteristiques; 2 = dificultat]\n");
+			tipus = getNumero();
+		}
+		if (tipus == 1) {
+			
+		}
 		
+		else if (tipus == 2) {
+			System.out.println("Digues la dificultat per l'hidato");
+			int dif = -1;
+			while (dif < 1 || dif > 3) {
+				System.out.println("[1 = FACIL; 2 = MIG, 3 = DIFICIL]\n");
+				dif = getNumero();
+			}
+			Dificultat dificultat = intToDificultat(dif);
+		}
+		
+		else; //unexpected, en principi no pot passar
 	}
 
 	private static void driverEnPartida() {
@@ -346,5 +368,12 @@ public class DriverControladorDomini {
 	private static boolean tipusNoCompatible(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia) {
 		return ((tipusCella == TipusCella.HEXAGON && tipusAdjacencia == TipusAdjacencia.COSTATSIANGLES) ||
 				tipusCella == TipusCella.TRIANGLE && tipusAdjacencia == TipusAdjacencia.COSTATSIANGLES);
+	}
+	
+	private static Dificultat intToDificultat(int i) {
+		if (i == 3) return Dificultat.DIFICIL;
+		if (i == 2) return Dificultat.MIG;
+		if (i == 1) return Dificultat.FACIL;
+		return null;
 	}
 }

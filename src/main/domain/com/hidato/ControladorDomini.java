@@ -22,9 +22,23 @@ public class ControladorDomini {
 	}
 
 	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int forats, int tamanyi, int tamanyj) {
+		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
 		boolean generat = hidatoGenerat.autogenerar(forats, tamanyi, tamanyj);
-		if (generat) hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia);
-		return generat;
+		if (generat) return true;
+		else{
+			hidatoGenerat = null;
+			return false;
+		}
+	}
+	
+	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
+		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
+		boolean generat = hidatoGenerat.autogenerar(dificultat);
+		if (generat) return true;
+		else{
+			hidatoGenerat = null;
+			return false;
+		}
 	}
 
 	public int[][] getMatriuHidatoOriginalDePartida(){
