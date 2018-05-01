@@ -11,7 +11,7 @@ public class Algorismes {
 	boolean solucionat = false;
 	private Hidato hidato;
 	private Vector<Integer> given = new Vector<Integer>();
-	Random randomSeed;
+	private Random randomSeed;
 	
 
 	public Algorismes(Hidato hidato) {
