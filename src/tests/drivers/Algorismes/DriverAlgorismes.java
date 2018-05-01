@@ -118,9 +118,9 @@ public class DriverAlgorismes {
 			while (j < 2) {
 				j = getNumero();
 			}
-			System.out.println("Escriu el nombre de forats que vols introduir (no pot ser mes gran que la meitat de celles totals)");
+			System.out.println("Escriu el nombre de forats que vols introduir (no pot ser mes gran o igual que la meitat de celles totals)");
 			int x = getNumero();
-			while (x > (i*j)/2) {
+			while (x >= (i*j)/2) {
 				x = getNumero();
 			}
 			int[][] mat = algorismes.generarHidato(x,i,j);
