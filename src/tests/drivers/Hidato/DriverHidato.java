@@ -44,6 +44,7 @@ public class DriverHidato {
 		switch (req) {
 			case 1:
 				driverAutogenerar();
+				llistaTests();
 				break;
 			case 2:
 				driverAutogenerarAmbDificultat();

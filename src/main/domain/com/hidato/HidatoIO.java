@@ -77,8 +77,8 @@ public final class HidatoIO {
         		System.out.println("No pots posar un forat aqui, ja hi havia un");
         		--i;
         	}
-        	
     	}
+    	
     	System.out.println("Ara hauras d'entrar els numeros un a un");
     	int numCaselles = tamanyi*tamanyj-numForats;
     	for (int i = 0; i < numCaselles; ++i) {

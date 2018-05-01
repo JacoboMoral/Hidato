@@ -83,8 +83,38 @@ public class DriverControladorDomini {
 	}
 
 	private static void driverFerMoviment() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Has escollit provar el metode ferMoviment");
+		boolean enPartida = controladorDomini.enPartida();
+		if (enPartida == false) {
+			System.out.println("Oops, es veu que no estas en partida, hauras de cridar els metodes jugarHidatoGenerat o jugarHidatoImportat");
+		}
+		else {	
+			boolean continua = true;
+			while (continua) {
+				System.out.println("Aquest es l'hidato actual de la partida:");
+				HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
+				int[] coords = null;
+				while (coords == null) {
+					System.out.println("Escriu la posicio on vols fer el moviment i el valor que vols ficar: [i j x]\n");
+					coords = getNumeros(3);
+				}
+				boolean correcte = controladorDomini.ferMoviment(coords[0], coords[1], coords[2]);
+				if (correcte) {
+					System.out.println("Moviment fet correctament, aixi queda la matriu:\n");
+					HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
+					
+				}
+				else {
+					System.out.println("El moviment no s'ha pogut fer\n");
+				}
+				System.out.println("\n Vols ver un altre moviment? yes/no");
+				String s = readLine();
+				while (!s.equalsIgnoreCase("yes") && !s.equalsIgnoreCase("no")) {
+					s = readLine();
+				}
+				if (s.equals("no")) continua = false;
+			}
+		}	
 	}
 
 	private static void driverGetMatriuHidatoDePartida() {
@@ -96,7 +126,7 @@ public class DriverControladorDomini {
 		else {
 			System.out.println("Aquest es l'hidato actual de la partida:");
 			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
-		}	
+		}
 	}
 
 	private static void drivergetMatriuHidatoOriginalDePartida() {
@@ -192,8 +222,8 @@ public class DriverControladorDomini {
 			while (req != 1 && req != 2 || (tipusNoCompatible(tipusCella, tipusAdjacencia))) {
 				System.out.println("[1 = Costats; 2 = Costats i angles (nomes quadrat)]");
 				req = getNumero();
+				tipusAdjacencia = intToTipusAdjacencia(req);
 			}
-			tipusAdjacencia = intToTipusAdjacencia(req);
 			
 			int caract[] = null;
 			while (caract == null || caract[0] < 2 || caract[1] < 2 || (caract[2] < 0 || caract[2] >= caract[0]*caract[1]/2)) {
@@ -307,8 +337,8 @@ public class DriverControladorDomini {
 			while ((req != 1 && req != 2) || tipusNoCompatible(tipusCella,tipusAdjacencia)) {
 				System.out.println("[1 = Costats; 2 = Costats i angles (nomes quadrat)]");
 				req = getNumero();
+				tipusAdjacencia = intToTipusAdjacencia(req);
 			}
-			tipusAdjacencia = intToTipusAdjacencia(req);
 			matriuHidato = HidatoIO.readHidatoFromInput1x1();
 		}
 		boolean resoluble = controladorDomini.jugarHidatoImportat(tipusCella, tipusAdjacencia, matriuHidato);
@@ -463,5 +493,4 @@ public class DriverControladorDomini {
 		if (i == 1) return Dificultat.FACIL;
 		return null;
 	}
-	
 }
