@@ -1,0 +1,14 @@
+
+Prova1
+
+Descripció:
+Objectius: 
+Altres Elements integrats:
+
+Stubs contruïts i integrats:
+
+Input:
+
+Output: 
+
+Resultat: ok
