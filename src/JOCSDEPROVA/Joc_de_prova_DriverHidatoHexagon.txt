@@ -1,0 +1,279 @@
+Al executar el driverHidatoHexagon lo primer que esperem per terminal serà aixo:
+
+Aquest es el driver de de HidatoHexagon, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: getTipusCella
+2: posicioValida
+
+
+------------------------------------------------------Prova1---------------------------------------------------------
+
+Descripció: Provarem el métode getTipusCella de la classe HidatoHexagon (subclasse d' Hidato).
+
+Objectius: Comprovar que el métode getTipusCella funciona correctament; retornant el TipusCella corresponent.
+
+Altres Elements integrats: -.
+
+Stubs contruïts i integrats: -.
+
+Input:
+1
+
+Output: 
+
+Aquest es el driver de de HidatoHexagon, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: getTipusCella
+2: posicioValida
+1
+Has escollit provar el metode getTipusCella
+S'ha creat un hidato quadrat amb tipus d'adjacencia per costats
+Ara es cridara el metode getTipusCella, s'espera que es retorni el seguent tipus d'adjacencia: HEXAGON
+El tipus d'adjacencia retornat es: HEXAGON
+Comprovacio de correctesa: true
+
+Driver getTipusCella executat correctament!
+
+
+
+exit: Sortir del driver
+1: getTipusCella
+2: posicioValida
+
+
+Resultat: ok
+
+
+
+------------------------------------------------------Prova2---------------------------------------------------------
+
+
+Descripció: Provarem el métode posicioValida de la classe HidatoHexagon (subclasse d'Hidato).
+
+Objectius: Comprovar que el métode getTipusCella funciona correctament; retornant el TipusCella corresponent.
+
+Altres Elements integrats: -.
+
+Stubs contruïts i integrats: -.
+
+Input:
+2
+1 1
+1 2
+yes
+3 3
+3 2
+yes
+4 4
+4 3
+yes
+1 4
+2 4
+yes
+4 4
+4 2
+yes
+2 1
+2 3
+no
+
+Output:
+Aquest es el driver de de HidatoHexagon, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: getTipusCella
+2: posicioValida
+2
+Has escollit provar el metode posicioValida
+S'ha creat un hidato quadrat amb tipus d'adjacencia per costats
+
+Per provar el metode posicioValida, has d'escollir una posicio de la seguent matriu,
+i despres una altra posicio, per comprovar si son adjacents segons l'hidato hexagon.
+Tingues en compte que han de ser diferents, ja que aquesta comprovacio es fa en una altra classe
+
+
+ 1   2   3   4   5
+
+ 6   7   8   9  10
+
+11  12  13  14  15
+
+16  17  18  19  20
+
+21  22  23  24  25
+
+Posa-ho de la seguent manera: [i j] (0..4)
+
+1 1
+Per a la posicio inicial, has escollit la coordenada: (1,1), que equival al valor: 7
+Escriu les coordenades de la posicio que vols comprovar si es adjacent a la primera
+Posa-ho de la seguent manera: [i j] (0..4)
+
+1 2
+Per a la segona posicio, has escollit la coordenada: (1,2), que equival al valor: 8
+
+La posicio inicial pot explorar la segona posicio?: true
+
+
+Vols fer una altra comprobacio? yes/no
+yes
+Per provar el metode posicioValida, has d'escollir una posicio de la seguent matriu,
+i despres una altra posicio, per comprovar si son adjacents segons l'hidato hexagon.
+Tingues en compte que han de ser diferents, ja que aquesta comprovacio es fa en una altra classe
+
+
+ 1   2   3   4   5
+
+ 6   7   8   9  10
+
+11  12  13  14  15
+
+16  17  18  19  20
+
+21  22  23  24  25
+
+Posa-ho de la seguent manera: [i j] (0..4)
+
+3 3
+Per a la posicio inicial, has escollit la coordenada: (3,3), que equival al valor: 19
+Escriu les coordenades de la posicio que vols comprovar si es adjacent a la primera
+Posa-ho de la seguent manera: [i j] (0..4)
+
+3 2
+Per a la segona posicio, has escollit la coordenada: (3,2), que equival al valor: 18
+
+La posicio inicial pot explorar la segona posicio?: true
+
+
+Vols fer una altra comprobacio? yes/no
+yes
+Per provar el metode posicioValida, has d'escollir una posicio de la seguent matriu,
+i despres una altra posicio, per comprovar si son adjacents segons l'hidato hexagon.
+Tingues en compte que han de ser diferents, ja que aquesta comprovacio es fa en una altra classe
+
+
+ 1   2   3   4   5
+
+ 6   7   8   9  10
+
+11  12  13  14  15
+
+16  17  18  19  20
+
+21  22  23  24  25
+
+Posa-ho de la seguent manera: [i j] (0..4)
+
+4 4
+Per a la posicio inicial, has escollit la coordenada: (4,4), que equival al valor: 25
+Escriu les coordenades de la posicio que vols comprovar si es adjacent a la primera
+Posa-ho de la seguent manera: [i j] (0..4)
+
+4 3
+Per a la segona posicio, has escollit la coordenada: (4,3), que equival al valor: 24
+
+La posicio inicial pot explorar la segona posicio?: true
+
+
+Vols fer una altra comprobacio? yes/no
+yes
+Per provar el metode posicioValida, has d'escollir una posicio de la seguent matriu,
+i despres una altra posicio, per comprovar si son adjacents segons l'hidato hexagon.
+Tingues en compte que han de ser diferents, ja que aquesta comprovacio es fa en una altra classe
+
+
+ 1   2   3   4   5
+
+ 6   7   8   9  10
+
+11  12  13  14  15
+
+16  17  18  19  20
+
+21  22  23  24  25
+
+Posa-ho de la seguent manera: [i j] (0..4)
+
+1 4
+Per a la posicio inicial, has escollit la coordenada: (1,4), que equival al valor: 10
+Escriu les coordenades de la posicio que vols comprovar si es adjacent a la primera
+Posa-ho de la seguent manera: [i j] (0..4)
+
+2 4
+Per a la segona posicio, has escollit la coordenada: (2,4), que equival al valor: 15
+
+La posicio inicial pot explorar la segona posicio?: true
+
+
+Vols fer una altra comprobacio? yes/no
+yes
+Per provar el metode posicioValida, has d'escollir una posicio de la seguent matriu,
+i despres una altra posicio, per comprovar si son adjacents segons l'hidato hexagon.
+Tingues en compte que han de ser diferents, ja que aquesta comprovacio es fa en una altra classe
+
+
+ 1   2   3   4   5
+
+ 6   7   8   9  10
+
+11  12  13  14  15
+
+16  17  18  19  20
+
+21  22  23  24  25
+
+Posa-ho de la seguent manera: [i j] (0..4)
+
+4 4
+Per a la posicio inicial, has escollit la coordenada: (4,4), que equival al valor: 25
+Escriu les coordenades de la posicio que vols comprovar si es adjacent a la primera
+Posa-ho de la seguent manera: [i j] (0..4)
+
+4 2
+Per a la segona posicio, has escollit la coordenada: (4,2), que equival al valor: 23
+
+La posicio inicial pot explorar la segona posicio?: false
+
+
+Vols fer una altra comprobacio? yes/no
+yes
+Per provar el metode posicioValida, has d'escollir una posicio de la seguent matriu,
+i despres una altra posicio, per comprovar si son adjacents segons l'hidato hexagon.
+Tingues en compte que han de ser diferents, ja que aquesta comprovacio es fa en una altra classe
+
+
+ 1   2   3   4   5
+
+ 6   7   8   9  10
+
+11  12  13  14  15
+
+16  17  18  19  20
+
+21  22  23  24  25
+
+Posa-ho de la seguent manera: [i j] (0..4)
+
+2 1
+Per a la posicio inicial, has escollit la coordenada: (2,1), que equival al valor: 12
+Escriu les coordenades de la posicio que vols comprovar si es adjacent a la primera
+Posa-ho de la seguent manera: [i j] (0..4)
+
+2 3
+Per a la segona posicio, has escollit la coordenada: (2,3), que equival al valor: 14
+
+La posicio inicial pot explorar la segona posicio?: false
+
+
+Vols fer una altra comprobacio? yes/no
+no
+
+exit: Sortir del driver
+1: getTipusCella
+2: posicioValida
+
+
+
+Resultat: ok
