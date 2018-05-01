@@ -1,0 +1,679 @@
+Al executa el DriverAlgorismes esperem una sortida per terminal tal que així:
+
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+
+
+A partir d'aqui interectuarem amb el terminal per probar les diferents funcions que té la classe algoritmes.
+En el cas de necesitar un hidato hem implementat una clase hidato stub, com també hem implementat algoritme stub.
+
+
+
+
+
+
+------------------------------------Prova1----------------------------------
+-Descripcio: driverGenerarHidato() s'executa amb exit perque l'usuari ha introduet
+correctement les condicions per generar l'hidato.
+
+-Objectiu: Comprovar que es pot generar correctament un hidato amb les condicions
+indicats pel usuari
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contruets i integrars: AlgorismeStub.java, HidatoStub.java
+
+-Input:
+7
+4
+3
+4
+no
+
+-Output:
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+7
+Has escollit provar el metode generarHidato
+
+S'ha creat una instancia algorismes amb un hidato sense matriu:
+Escriu el nombre de files (minim 2)
+4
+Escriu el nombre de columnes (minim 2)
+3
+Escriu el nombre de forats que vols introduir (no pot ser mes gran que la meitat de celles totals)
+4
+La matriu generada es la seguent:
+
+__  __  __
+
+__  **  __
+
+__  **   8
+
+ 1  **  **
+
+
+Vols generar un altre hidato? yes/no
+no
+Sortint del driver de generarHidato
+
+-Resultat de la prova: ok
+
+------------------------------------------Prova2--------------------------------------------------
+
+-Descripcio: driverGenerarHidato() falla perque l'usuari ha introduit un valor de
+forats mes gran que la meitat de celles totals.
+
+-Objectiu: Comprovar que no es pot crear un hidato quan l'usuari introdueix un valor
+incorrecte de numeros de forats.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contruets i integrars: AlgorismeStub.java, HidatoStub.java
+
+-Input:
+7
+4
+3
+10
+no
+
+-Output:
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+7
+Has escollit provar el metode generarHidato
+
+S'ha creat una instancia algorismes amb un hidato sense matriu:
+Escriu el nombre de files (minim 2)
+4
+Escriu el nombre de columnes (minim 2)
+3
+Escriu el nombre de forats que vols introduir (no pot ser mes gran que la meitat de celles totals)
+10
+
+No s'ha pogut generar un hidato amb les condicions anteriors:
+
+Vols generar un altre hidato? yes/no
+
+-Resultat de la prova: ok
+
+----------------------------------------------Prova3----------------------------------------------
+
+
+-Descripcio: Provarem driverGenerarHidato(), L'usuari intenta posa un valor de files o columnes menor que 2
+
+-Objectiu: Quan l'usuari intenta posa un valor de files o columnes menor que 2,
+el tornem a demanar el valor fins que siguin uns valors correctes.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contruets i integrars: AlgorismeStub.java, HidatoStub.java
+
+-Input:
+7
+1
+1
+4
+1
+3
+5
+no
+
+-Output:
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+7
+Has escollit provar el metode generarHidato
+
+S'ha creat una instancia algorismes amb un hidato sense matriu:
+Escriu el nombre de files (minim 2)
+1
+Escriu el nombre de files (minim 2)
+1
+Escriu el nombre de files (minim 2)
+4
+Escriu el nombre de columnes (minim 2)
+1
+Escriu el nombre de columnes (minim 2)
+3
+Escriu el nombre de forats que vols introduir (no pot ser mes gran que la meitat de celles totals)
+5
+La matriu generada es la seguent:
+
+__   1  **
+
+ 3  __  **
+
+**   5  **
+
+ 7  __  **
+
+
+Vols generar un altre hidato? yes/no
+no
+Sortint del driver de generarHidato
+
+-Resultat de la prova: ok
+
+---------------------------------------------Prova4-----------------------------------------------
+
+
+-Descripcio: driverGenerarHidatoAmbDificultat() genera hidatos diferetns segons
+quina dificultat vol l'usuari. 1 es FACIL, 2 es MIG i 3 es DIFICIL
+
+-Objectiu: Comprovar que es pot generar correctament un hidato amb les condicions
+indicats pel usuari
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contruets i integrars: AlgorismeStub.java, HidatoStub.java
+
+-Input:
+8
+1
+yes
+2
+yes
+3
+no
+
+-Output:
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+8
+Has escollit provar el metode generarHidato
+
+S'ha creat una instancia algorismes amb un hidato sense matriu:
+Escriu la dificultat pel teu hidato
+[1 = FACIL; 2 = MIG; 3 = DIFICIL]
+1
+La matriu generada es la seguent:
+
+__  __  __
+
+__  **  __
+
+__   1  __
+
+11  __  __
+
+
+ Vols generar un altre hidato? yes/no
+yes
+Escriu la dificultat pel teu hidato
+[1 = FACIL; 2 = MIG; 3 = DIFICIL]
+2
+La matriu generada es la seguent:
+
+__  __  28  __  __  __  __
+
+__   8  __   6   5  __  __
+
+__  __  __  __  __  35  __
+
+23  14  __  __  __  __  __
+
+22  __  __  17   2  __  __
+
+__  __  __  __   1  42  __
+
+
+ Vols generar un altre hidato? yes/no
+yes
+Escriu la dificultat pel teu hidato
+[1 = FACIL; 2 = MIG; 3 = DIFICIL]
+3
+La matriu generada es la seguent:
+
+ 1  __  __  __   5  __  __  __  __  10
+
+__  __  18  17  16  __  __  __  12  11
+
+21  __  __  __  __  __  __  __  29  __
+
+__  __  __  __  36  35  34  __  __  __
+
+41  __  __  44  __  __  __  __  __  __
+
+60  __  __  __  __  __  54  __  __  51
+
+__  __  63  64  __  66  __  __  __  __
+
+__  __  78  77  __  __  __  __  __  __
+
+__  __  83  __  __  __  __  __  __  90
+
+100  __  __  __  __  __  __  __  __  __
+
+
+ Vols generar un altre hidato? yes/no
+no
+Sortint del driver de generarHidato
+
+-Resultat de la prova: ok
+
+---------------------------------------------Prova5-----------------------------------------------
+
+
+-Descripcio: Provarem driverGenerarHidatoAmbDificultat(), quan l'usauri introdueix un
+numero diferent de 1, 2 o 3 o qualsevol caracters que no sigui aquests tres que predefinim,
+el sistema torna a preguntar fins quan l'usuari introdueix la correcte.
+
+-Objectiu: no permetre l'usuari crear un hidato que no tingui dificultat amb valors
+no iguals al 1, 2 o 3.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contruets i integrars: AlgorismeStub.java, HidatoStub.java
+
+-Input:
+8
+4
+5
+6
+1
+no
+
+-Output:
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+8
+Has escollit provar el metode generarHidato
+
+S'ha creat una instancia algorismes amb un hidato sense matriu:
+Escriu la dificultat pel teu hidato
+[1 = FACIL; 2 = MIG; 3 = DIFICIL]
+4
+[1 = FACIL; 2 = MIG; 3 = DIFICIL]
+5
+[1 = FACIL; 2 = MIG; 3 = DIFICIL]
+6
+[1 = FACIL; 2 = MIG; 3 = DIFICIL]
+1
+La matriu generada es la seguent:
+
+__  __  __
+
+__   1   6
+
+
+ Vols generar un altre hidato? yes/no
+no
+Sortint del driver de generarHidato
+
+-Resultat de la prova: ok
+
+------------------------------------------------Prova6--------------------------------------------
+
+
+-Descripcio: Provarem driverGetGiven() perque ens doni correctament els numeros
+predeterminats del hidato al moment de generar-lo.
+
+-Objectiu: obtenir correctament la llista de numeros que estan posats al hidato al generar-lo.
+
+-Altres elements integrats: class Hidato, enum TipusAdjacencia
+
+-Stubs contruets i integrars: AlgorismeStub.java, HidatoStub.java
+
+-Input:
+6
+
+-Output:
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+6
+Has escollit provar el metode getGiven
+
+S'ha creat una instancia algorismes amb un hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+S'espera el seguent vector de nombres donats:
+[1, 5, 8, 11]
+S'espera el seguent vector de nombres donats:
+[1, 5, 8, 11]
+Comprovacio que els dos vectors siguin iguals: true
+Sortint amb exit del driver de getGiven
+
+-Resultat de la prova: ok
+
+-------------------------------------------------Prova7-------------------------------------------
+
+
+-Descripcio: Provarem driverObtenirDificultat() perque ens doni la Dificultat
+corresponen al hidato.
+
+-Objectiu: obtenir correctament la dificultat d'un hidato.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contruets i integrars: AlgorismeStub.java, HidatoStub.java
+
+-Input:
+5
+
+-Output:
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+5
+Has escollit provar el metode obtenirDificultat
+
+S'ha creat una instancia algorismes amb un hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+S'espera la seguent dificultat: FACIL
+S'ha obtes la seguent dificultat amb el metode: FACIL
+Comprovacio que les dues dificultats siguin iguals: true
+Sortint amb exit del driver de obtenirDificultat
+
+-Resultat de la prova: ok
+
+--------------------------------------------Prova8------------------------------------------------
+
+
+-Descripcio: Provarem driverSolucionar() perque ens digui si l'hidato te solucio o no,
+en cas de que si te la solucio, comprovem la seva solucio sigui correcte.
+
+-Objectiu: obtenir una solucio correcte d'un hidato.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contruets i integrars: AlgorismeStub.java, HidatoStub.java
+
+-Input:
+3
+
+-Output:
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+3
+Has escollit provar el metode Solucionar
+
+S'ha creat una nova instancia hidato i algorismes amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+S'ha cridat el metode Solucionar. Te solucio?: true
+Comprovacio de correctesa (s'esperava true): true
+
+-Resultat de la prova: ok
+
+-------------------------------------------------Prova9-------------------------------------------
+
+
+-Descripcio: Provarem driverModificarHidato(), perque ens doni la solucio correcte d'un
+hidato despres de modificar-lo.
+
+-Objectiu: obtenir correctament la solucio d'un hidato despres de ser modificat.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contruets i integrars: AlgorismeStub.java, HidatoStub.java
+
+-Input:
+2
+
+-Output:
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+2
+Has escollit provar el metode ModificarHidato
+
+S'ha creat una nova instancia hidato i algorismes
+Abans de modificar el hidato, aquesta es la seva matriu solucionada:
+
+ 1  **  **
+
+ 2  11  **
+
+ 3  10   9
+
+ 4  **   8
+
+ 5   6   7
+
+
+Despres de modificar el hidato amb un nou amb diferent matriu, aquesta es la seva matriu solucionada:
+
+ 1  **  **
+
+ 2   3   4
+
+ 7   6   5
+
+ 8   9  **
+
+**  10  11
+
+Comprovacio que les dues matrius siguin diferents: true
+
+Sortint amb exit del driver de modificarHidato
+
+-Resultat de la prova: ok
+
+-----------------------------------------------Prova10---------------------------------------------
+
+
+-Descripcio: Provarem driverConstructora(), perque ens creii un hidato i el seu algorisme
+sense cap excepcio
+
+-Objectiu: crear un hidato i el seu algorisme sense cap error.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contruets i integrars: AlgorismeStub.java, HidatoStub.java
+
+-Input:
+1
+
+-Output:
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+1
+Has escollit provar el metode constructor
+
+Classe algorismes creada sense cap excepcio
+
+Sortint del driver de Constructora
+
+-Resultat de la prova: ok
+
+-----------------------------------------------Prova11---------------------------------------------
+
+
+-Descripcio: Provarem driverGetMatriuSolucio(), perque ens doni la solucio correcte d'un hidato.
+
+-Objectiu: obtenir una solucio correcte d'un hidato.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contruets i integrars: AlgorismeStub.java, HidatoStub.java
+
+-Input:
+4
+
+-Output:
+Aquest es el driver de algorismes, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Constructora
+2: Modificar hidato
+3: Solucionar
+4: getMatriuSolucio
+5: obtenirDificultat
+6: getGiven
+7: generarHidato
+8: generarHidatoAmbDificultat
+4
+Has escollit provar el metode getMatriuSolucio
+
+S'ha creat una nova instancia algorismes
+S'ha creat una nova instancia hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+Aquesta es la matriuSolucio esperada per l'hidato anterior:
+
+ 1  **  **
+
+ 2  11  **
+
+ 3  10   9
+
+ 4  **   8
+
+ 5   6   7
+
+Aquesta es la matriuSolucio obtinguda amb el metode:
+
+ 1  **  **
+
+ 2  11  **
+
+ 3  10   9
+
+ 4  **   8
+
+ 5   6   7
+
+Comprovacio que les dues matrius siguin iguals: true
+
+Sortint amb exit del driver de getMatriuSolucio
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
