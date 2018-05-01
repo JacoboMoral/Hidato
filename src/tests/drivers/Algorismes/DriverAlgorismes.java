@@ -254,23 +254,13 @@ public class DriverAlgorismes {
 		System.out.println();
 		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS, matriuHidato1);
 		Algorismes algorismes = new Algorismes(hidato);
-		System.out.println("S'ha creat una nova instancia hidato i algorismes");
-		int mat[][] = algorismes.getMatriuSolucio();
-		System.out.println("S'ha cridat el metode Solucionar. La matriu sense solucionar era:");
+		System.out.println("S'ha creat una nova instancia hidato i algorismes amb la seguent matriu:");
 		HidatoIO.writeHidatoMatrixToOutput(matriuHidato1);
-		System.out.println("\nDespres de solucionar-lo, la matriu que ens retorna getMatriuSolucio es:");
-		HidatoIO.writeHidatoMatrixToOutput(mat);
-		System.out.println("\nLa matriu que s'esperava obtenir es:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuSolucio1);
-		boolean correcte = java.util.Arrays.deepEquals(mat, matriuSolucio1);
-		System.out.println("Comprovacio que les dues matrius siguin iguals: " + correcte);
-		System.out.println();
-		if (correcte) System.out.println("Sortint amb exit del driver de Solucionar");
-		else System.out.println("Hi ha hagut algun problema, sortint del driver de Solucionar");
-		System.out.println();
-		System.out.println();			
+		boolean correcte = algorismes.solucionar();
+		System.out.println("S'ha cridat el metode Solucionar. Te solucio?: " + correcte);
+		System.out.println("Comprovació de correctesa (s'esperava true): " + (correcte == true));
 	}
-
+	
 	private static void driverModificarHidato() {
 		System.out.println("Has escollit provar el metode ModificarHidato");
 		System.out.println();

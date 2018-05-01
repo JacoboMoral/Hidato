@@ -56,51 +56,67 @@ public class DriverPartida {
 		switch (req) {
 			case 1:
 				driverConstructora();
+				llistaTests();
 				break;
 			case 2:
 				driverIniciarPartida();
+				llistaTests();
 				break;
 			case 3:
 				driverAcabarPartida();
+				llistaTests();
 				break;
 			case 4:
 				driverAcabarPartidaIniciada();
+				llistaTests();
 				break;
 			case 5:
 				driverReset();
+				llistaTests();
 				break;
 			case 6:
 				driverFerJugada();
+				llistaTests();
 				break;
 			case 7:
 				driverStatus();
+				llistaTests();
 				break;
 			case 8:
 				driverGetDificultat();
+				llistaTests();
 				break;
 			case 9:
 				driverGetNombresPerDefecte();
+				llistaTests();
 				break;
 			case 10:
 				driverGetSolucio();
+				llistaTests();
 				break;
 			case 11:
 				driverGetMatriu();
+				llistaTests();
 				break;
 			case 12:
 				driverGetMatriuOriginal();
+				llistaTests();
 				break;
 			case 13:
 				driverGetDataInici();
+				llistaTests();
 				break;
 			case 14:
 				driverGetDataFi();
+				llistaTests();
 				break;
 			case 15:
 				driverGetPuntuacio();
+				llistaTests();
 				break;
 			case 16:
 				driverEsSolucionable();
+				llistaTests();
 				break;
 			default:
 		}
@@ -252,9 +268,9 @@ public class DriverPartida {
 		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		v.add(1);
-    	v.add(2);
-    	v.add(3);
-    	v.add(4);
+	    	v.add(2);
+	    	v.add(3);
+	    	v.add(4);
   
 		Vector<Integer> nombresPerDefecte =  partida.getNombresPerDefecte();
 		System.out.println("S'espera obtenir el seguent vector: ");
@@ -295,13 +311,13 @@ public class DriverPartida {
 		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		System.out.println("L'estat actual de la partida es: " + partida.status());
-		System.out.println("Comprovacio status no comen�at: " + (0 == partida.status()));
+		System.out.println("Comprovacio status no comencat: " + (0 == partida.status()));
 		if((0 != partida.status())) error = true;
 		System.out.println("Iniciem la partida i tornem a mirar l'estat d'aquesta");
 		partida.iniciarPartida();
 		System.out.println("S'ha iniciat la partida");
 		System.out.println("L'estat actual de la partida es: " + partida.status());
-		System.out.println("Comprovacio status comen�at: " + (1 == partida.status()));
+		System.out.println("Comprovacio status comencat: " + (1 == partida.status()));
 		if((1 != partida.status())) error = true;
 		System.out.println("finalitzem la partida i tornem a mirar l'estat d'aquesta");
 		partida.acabarPartida();
@@ -422,6 +438,7 @@ public class DriverPartida {
 
 
 	public static void llistaTests() {
+		System.out.println();
 		System.out.println("exit: Sortir del driver");
 		System.out.println("1: Constructora");
 		System.out.println("2: iniciarPartida");

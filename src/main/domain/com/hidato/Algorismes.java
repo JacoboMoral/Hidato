@@ -130,6 +130,7 @@ public class Algorismes {
 
 		matriu[r][c] = n;
 		escrits.add(n);
+		
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
 				if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
@@ -182,10 +183,10 @@ public class Algorismes {
 			int forats = tamanys[2];
 			int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
 			int intents = 0;
+
 			while (!generat && intents < 10) {
 				emplenarForats(forats, matriu);
 				generat = generarMatriuCompleta(forats, matriu);
-				//System.out.println("intent numero: " + (intents+1));
 				++intents;
 				if (intents%3 == 0) {//cada 3 intents baixem el nombre de forats en un
 					if (forats > 0) --forats;
@@ -197,6 +198,7 @@ public class Algorismes {
 				extreureNombres(forats, matriu);
 				return matriu;
 			}
+
 		}
 		return null;
 	}
@@ -208,27 +210,22 @@ public class Algorismes {
 		int j;
 		int f;
 		if (dificultat == Dificultat.FACIL) {
-			i = rand.nextInt(7)+2; //[2,8]
-			j = rand.nextInt(7)+2;  //[2,8]
+			i = rand.nextInt(4)+2; //[2,6]
+			j = rand.nextInt(4)+2;  //[2,6]
 			while (i * j > 17) {
-				j = rand.nextInt(8)+2;
+				j = rand.nextInt(4)+2;
 			}
-			f = rand.nextInt(3);
+			if (i*j == 4) f = rand.nextInt(1);
+			else f = rand.nextInt(3);
 		}
 		else if (dificultat == Dificultat.MIG) {
-			i = rand.nextInt(9)+4; //[4,12]
-			j = rand.nextInt(9)+4;  //[4,12]
-			while (i * j > 49) {
-				j = rand.nextInt(9)+4;
-			}
+			i = rand.nextInt(2)+6; //[6,8]
+			j = rand.nextInt(2)+6;  //[6,8]
 			f = rand.nextInt((i*j)/20); //com a molt 5% forats
 		}
 		else { //DIFICIL
-			i = rand.nextInt(10)+6; 	//[6,15]
-			j = rand.nextInt(10)+6;  //[6,15]
-			while (i * j > 49) {
-				j = rand.nextInt(10)+6;
-			}
+			i = rand.nextInt(4)+8; 	//[8,12]
+			j = rand.nextInt(4)+8;  //[8,12]
 			f = rand.nextInt((i*j)/20); //com a molt 5% forats
 		}
 		tamanys[0] = i;

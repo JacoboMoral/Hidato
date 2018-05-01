@@ -48,6 +48,9 @@ public class DriverHidatoTriangle {
 		}
 	}
 
+	//Aquesta funcio prova el mètode posicioValida. Per provar-ho, s'ha de escollir una posicio inicial, i despres
+	//una posicio secundaria. La funcio et diu si es possible accedir a la segona posicio desde la primera, es a dir
+	// si les dues posicions son adjacents
 	private static void driverGetTipusCella() {
 		System.out.println("Has escollit provar el metode getTipusCella");
 		
