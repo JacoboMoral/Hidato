@@ -6,8 +6,8 @@ import java.util.Vector;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.HidatoIO;
+import main.domain.com.hidato.HidatoQuadrat;
 import main.domain.com.hidato.TipusAdjacencia;
-import main.domain.com.hidato.TipusCella;
 
 
 //hem fet servir una subclasse stub de hidato (HidatoStub), canviant la part on cridava
@@ -119,7 +119,7 @@ public class DriverHidato {
 			while (j == -1) {
 				j = getNumero();
 			}
-			System.out.println("Escriu el valor x que vols introduir");
+			System.out.println("Escriu el valor que vols introduir");
 			int x = getNumero();
 			while (x == -1) {
 				x = getNumero();

@@ -8,9 +8,9 @@ public abstract class Hidato {
     protected Dificultat dificultat;
         
     //els seguents son protected per tal que el driver pugui accedir (ja que esta fet com una subclasse)
-    protected int[][] matriuHidato;
-    protected int[][] matriuOriginal;
-    protected int[][] matriuSolucio;
+    private int[][] matriuHidato;
+    private int[][] matriuOriginal;
+    private int[][] matriuSolucio;
     
     protected Boolean solucionable = false;
     protected Vector<Integer> nombresEscrits;

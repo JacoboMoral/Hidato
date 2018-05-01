@@ -210,7 +210,7 @@ public class DriverControladorDomini {
 			System.out.println("Digues el tipus de cella:");
 			int req = -1;
 			TipusCella tipusCella = null;
-			while (req != 1 && req != 2) {
+			while (req != 1 && req != 2 && req != 3) {
 				System.out.println("[1 = Quadrat; 2 = Triangle; 3 = Hexagon]");
 				req = getNumero();
 			}
@@ -241,7 +241,7 @@ public class DriverControladorDomini {
 				dif = getNumero();
 			}
 			Dificultat dificultat = intToDificultat(dif);
-			System.out.println("Vols escollir el tipus de cella?");
+			System.out.println("Vols escollir el tipus de cella? (yes/no)");
 			String s = readLine();
 			while (!s.equalsIgnoreCase("yes") && !s.equalsIgnoreCase("no")) {
 				System.out.println("yes/no\n");
