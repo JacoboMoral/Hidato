@@ -4,6 +4,7 @@ import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
+//realment no es un stub, sino una copia de la classe original amb algunes linies menys que eren innecessaries per aquest test
 public class HidatoTriangleStub extends Hidato{
 	public HidatoTriangleStub(int[][] matriu) {
 		super(TipusAdjacencia.COSTATS, matriu);
