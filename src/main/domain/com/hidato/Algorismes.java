@@ -173,29 +173,32 @@ public class Algorismes {
 	}
 
 	public int[][] generarHidato(Dificultat dificultat) {
-		int[] tamanys = getTamanySegonsDificultat(dificultat);
-		int tamanyi = tamanys[0];
-		int tamanyj = tamanys[1];
-		int forats = tamanys[2];
-		int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
 		boolean generat = false;
-		int intents = 0;
-		while (!generat && intents < 15) {
-			emplenarForats(forats, matriu);
-			generat = generarMatriuCompleta(forats, matriu);
-			//System.out.println("intent numero: " + (intents+1));
-			++intents;
-			if (intents%3 == 0) {//cada 3 intents baixem el nombre de forats en un
-				if (forats > 0) --forats;
-			}
-			if (!generat) matriu = new int[tamanyi][tamanyj];
+		int intentsTamany = 0;
+		while (!generat && intentsTamany < 3 ) {
+			int[] tamanys = getTamanySegonsDificultat(dificultat);
+			int tamanyi = tamanys[0];
+			int tamanyj = tamanys[1];
+			int forats = tamanys[2];
+			int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
+			int intents = 0;
+			while (!generat && intents < 10) {
+				emplenarForats(forats, matriu);
+				generat = generarMatriuCompleta(forats, matriu);
+				//System.out.println("intent numero: " + (intents+1));
+				++intents;
+				if (intents%3 == 0) {//cada 3 intents baixem el nombre de forats en un
+					if (forats > 0) --forats;
+				}
+				if (!generat) matriu = new int[tamanyi][tamanyj];
 
+			}
+			if (generat) {
+				extreureNombres(forats, matriu);
+				return matriu;
+			}
 		}
-		if (generat) {
-			extreureNombres(forats, matriu);
-			return matriu;
-		}
-		else return null;
+		return null;
 	}
 	
 	private int[] getTamanySegonsDificultat(Dificultat dificultat) {
