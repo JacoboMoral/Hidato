@@ -110,12 +110,12 @@ public class DriverHidato {
 		boolean continua = true;
 		while (continua) {
 			int i = -1;
-			while (i == -1) {
+			while (i < 0 || i >= matriu.length) {
 				System.out.println("Escriu la coordenada y (numero de fila) on vols fer el moviment (0..length-1)");
 				i = getNumero();
 			}
 			int j = -1;
-			while (j == -1) {
+			while (j < 0 || j >= matriu[0].length) {
 				System.out.println("Escriu la coordenada x (numero de columna) on vols fer el moviment (0..length-1)");
 				j = getNumero();
 			}

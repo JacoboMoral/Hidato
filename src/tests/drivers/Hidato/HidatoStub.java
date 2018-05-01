@@ -8,7 +8,7 @@ import main.domain.com.hidato.TipusCella;
 public class HidatoStub extends Hidato{
 
     //els seguents son protected per tal que el driver pugui accedir (ja que esta fet com una subclasse)    
-
+	
     public HidatoStub(TipusAdjacencia tipusAdjacencia, int[][] matrix) {
 		super(tipusAdjacencia, matrix);
 		al = new AlgorismesStub(this);
