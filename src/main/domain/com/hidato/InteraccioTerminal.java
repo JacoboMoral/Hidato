@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+//classe que utilitzavem per provar el programa en general. No te cap tipus de formatlitat ni correctesa
 public class InteraccioTerminal {
 	
 	private ControladorDomini controladorDomini;

@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import main.domain.com.hidato.Algorismes;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
-import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 
 class TestAlgorismes {
