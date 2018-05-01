@@ -210,8 +210,8 @@ public class Algorismes {
 		int j;
 		int f;
 		if (dificultat == Dificultat.FACIL) {
-			i = rand.nextInt(4)+2; //[2,6]
-			j = rand.nextInt(4)+2;  //[2,6]
+			i = rand.nextInt(3)+2; //[2,5]
+			j = rand.nextInt(3)+2;  //[2,5]
 			while (i * j > 17) {
 				j = rand.nextInt(4)+2;
 			}
@@ -221,12 +221,12 @@ public class Algorismes {
 		else if (dificultat == Dificultat.MIG) {
 			i = rand.nextInt(2)+6; //[6,8]
 			j = rand.nextInt(2)+6;  //[6,8]
-			f = rand.nextInt((i*j)/20); //com a molt 5% forats
+			f = rand.nextInt((i*j)/30); //com a molt 5% forats
 		}
 		else { //DIFICIL
-			i = rand.nextInt(4)+8; 	//[8,12]
-			j = rand.nextInt(4)+8;  //[8,12]
-			f = rand.nextInt((i*j)/20); //com a molt 5% forats
+			i = rand.nextInt(2)+9; 	//[9,11]
+			j = rand.nextInt(2)+9;  //[9,11]
+			f = rand.nextInt((i*j)/40); //com a molt 5% forats
 		}
 		tamanys[0] = i;
 		tamanys[1] = j;
