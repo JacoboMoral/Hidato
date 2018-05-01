@@ -206,15 +206,54 @@ Altres Elements integrats: Partida.class, Hidato.class, Algoritmes.class
 Stubs contruïts i integrats:
 
 Input:
+*sha fet previament prova 3
 2
-yes
-1
-2
-1
-5 5 3
-fAlta algo
 Output:
 
+exit: Sortir del driver
+1: jugarHidatoImportat
+2: jugarHidatoGenerat
+3: autoGenerar
+4: getHidatoOriginalDePartida
+5: getHidatoDePartida
+6: solucionarHidatoPartida
+7: solucionarHidatoGenerat
+8: getMatriuHidatoGenerat
+9: getNombresPerDefecte
+10: ferMoviment
+11: enPartida
+2
+Has escollit provar el metode jugarHidatoGenerat
+Passem a obtenir l'hidato previament generat
+Aquest es l'hidato que havies generat:
+
+ 1   2   3   4   5
+
+12  11  **  **   6
+
+13  10   9   8   7
+
+14  17  18  19  20
+
+15  16  **  **  **
+
+
+S'ha creat una partida amb l'hidato generat
+
+Comprovarem mitjanÃ§ant el metode enPartida que tot hagi sortit be: true
+
+exit: Sortir del driver
+1: jugarHidatoImportat
+2: jugarHidatoGenerat
+3: autoGenerar
+4: getHidatoOriginalDePartida
+5: getHidatoDePartida
+6: solucionarHidatoPartida
+7: solucionarHidatoGenerat
+8: getMatriuHidatoGenerat
+9: getNombresPerDefecte
+10: ferMoviment
+11: enPartida
 
 
 -------------------------------------Prova3--------------------------------------
@@ -228,10 +267,70 @@ Altres Elements integrats: Partida.class, Hidato.class, Algoritmes.class
 Stubs contruïts i integrats:
 
 Input:
-
+3
+1
+1
+5 5 5
 
 Output:
+Aquest es el driver de de Controlador de Domini, indica quina funcio vols provar
 
+exit: Sortir del driver
+1: jugarHidatoImportat
+2: jugarHidatoGenerat
+3: autoGenerar
+4: getHidatoOriginalDePartida
+5: getHidatoDePartida
+6: solucionarHidatoPartida
+7: solucionarHidatoGenerat
+8: getMatriuHidatoGenerat
+9: getNombresPerDefecte
+10: ferMoviment
+11: enPartida
+3
+Has escollit provar el metode autoGenerar
+Si us plau, escull como vols generar un hidato, donant les seves caracteristiques o la seva dificultat
+
+[1 = caracteristiques; 2 = dificultat]
+
+1
+A continuacio digues les caracteristiques de l'hidato
+
+Digues el tipus de cella:
+[1 = Quadrat; 2 = Triangle; 3 = Hexagon]
+1
+
+Digues el tipus d'adjacencia:
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+1
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+5 5 5
+Molt be, aquest es l'hidato que s'ha generat
+
+20  __  18  17  16
+
+ 9  __  11  __  __
+
+ 8  **  __  __  **
+
+ 7  __  __   2   1
+
+ 6  __  **  **  **
+
+
+exit: Sortir del driver
+1: jugarHidatoImportat
+2: jugarHidatoGenerat
+3: autoGenerar
+4: getHidatoOriginalDePartida
+5: getHidatoDePartida
+6: solucionarHidatoPartida
+7: solucionarHidatoGenerat
+8: getMatriuHidatoGenerat
+9: getNombresPerDefecte
+10: ferMoviment
+11: enPartida
 
 
 -------------------------------------Prova4--------------------------------------
@@ -249,6 +348,31 @@ Input:
 4
 
 Output:
+exit: Sortir del driver
+1: jugarHidatoImportat
+2: jugarHidatoGenerat
+3: autoGenerar
+4: getHidatoOriginalDePartida
+5: getHidatoDePartida
+6: solucionarHidatoPartida
+7: solucionarHidatoGenerat
+8: getMatriuHidatoGenerat
+9: getNombresPerDefecte
+10: ferMoviment
+11: enPartida
+4
+Has escollit provar el metode getMatriuHidatoOriginalDePartida
+Aquest es l'hidato original de la partida:
+
+ 1  __  __  __   5
+
+12  __  **  **  __
+
+__  __  __  __  __
+
+__  __  __  __  20
+
+__  16  **  **  **
 
 
 -------------------------------------Prova5--------------------------------------
@@ -267,6 +391,31 @@ Input:
 
 Output:
 
+exit: Sortir del driver
+1: jugarHidatoImportat
+2: jugarHidatoGenerat
+3: autoGenerar
+4: getHidatoOriginalDePartida
+5: getHidatoDePartida
+6: solucionarHidatoPartida
+7: solucionarHidatoGenerat
+8: getMatriuHidatoGenerat
+9: getNombresPerDefecte
+10: ferMoviment
+11: enPartida
+5
+Has escollit provar el metode getMatriuHidatoDePartida
+Aquest es l'hidato actual de la partida:
+
+ 1  __  __  __   5
+
+12  __  **  **  __
+
+__  __  __  __  __
+
+__  __  __  __  20
+
+__  16  **  **  **
 
 -------------------------------------Prova6--------------------------------------
 
@@ -284,6 +433,31 @@ Input:
 
 Output:
 
+exit: Sortir del driver
+1: jugarHidatoImportat
+2: jugarHidatoGenerat
+3: autoGenerar
+4: getHidatoOriginalDePartida
+5: getHidatoDePartida
+6: solucionarHidatoPartida
+7: solucionarHidatoGenerat
+8: getMatriuHidatoGenerat
+9: getNombresPerDefecte
+10: ferMoviment
+11: enPartida
+6
+Has escollit provar el metode solucionarHidatoPartida
+Aquesta es la solucio de l'hidato de la partida en curs
+
+ 1   2   3   4   5
+
+12  11  **  **   6
+
+13  10   9   8   7
+
+14  17  18  19  20
+
+15  16  **  **  **
 
 -------------------------------------Prova7--------------------------------------
 
@@ -297,6 +471,63 @@ Stubs contruïts i integrats:
 
 Input:
 *Just després de haver fet la prova 3*
-6
+7
 
 Output:
+7
+Has escollit provar el metode solucionarHidatoGenerat
+Passem a obtenir l'hidato previament generat
+Aquesta es la solucio de l'hidato que havies generat:
+
+ 1   2   3   4   5
+
+12  11  **  **   6
+
+13  10   9   8   7
+
+14  17  18  19  20
+
+15  16  **  **  **
+
+
+-------------------------------------Prova8--------------------------------------
+
+Descripció: poder obtenir lhidato generat
+
+Objectius: obtenir lhidato generat
+
+Altres Elements integrats: Partida.class, Hidato.class, Algoritmes.class
+
+Stubs contruïts i integrats:
+
+Input:
+*Just després de haver fet la prova 3*
+8
+
+Output:
+exit: Sortir del driver
+1: jugarHidatoImportat
+2: jugarHidatoGenerat
+3: autoGenerar
+4: getHidatoOriginalDePartida
+5: getHidatoDePartida
+6: solucionarHidatoPartida
+7: solucionarHidatoGenerat
+8: getMatriuHidatoGenerat
+9: getNombresPerDefecte
+10: ferMoviment
+11: enPartida
+8
+Has escollit provar el metode getMatriuHidatoGenerat
+Passem a obtenir l'hidato previament generat
+Aquest es l'hidato que havies generat:
+
+ 1  __  __  __   5
+
+12  __  **  **  __
+
+__  __  __  __  __
+
+__  __  __  __  20
+
+__  16  **  **  **
