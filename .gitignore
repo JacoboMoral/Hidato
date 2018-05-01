@@ -12,3 +12,5 @@
 src/domain/com/hidato/Main.java
 *.class
 *.class
+*.class
+*.class

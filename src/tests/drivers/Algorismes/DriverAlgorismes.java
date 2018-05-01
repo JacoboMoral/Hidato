@@ -8,7 +8,7 @@ import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 
 public class DriverAlgorismes {
-	private static int numeroTests = 7;
+	private static int numeroTests = 8;
 	
 	private static int[][] matriuSolucio1 = new int[][] {
 		{1,-1,-1},
@@ -64,24 +64,35 @@ public class DriverAlgorismes {
 		switch (req) {
 			case 1:
 				driverConstructora();
+				llistaTests();
 				break;
 			case 2:
 				driverModificarHidato();
+				llistaTests();
 				break;
 			case 3:
 				driverSolucionar();
+				llistaTests();
 				break;
 			case 4:
 				driverGetMatriuSolucio();
+				llistaTests();
 				break;
 			case 5:
 				driverObtenirDificultat();
+				llistaTests();
 				break;
 			case 6:
 				driverGetGiven();
+				llistaTests();
 				break;
 			case 7:
 				driverGenerarHidato();
+				llistaTests();
+				break;
+			case 8:
+				driverGenerarHidatoAmbDificultat();
+				llistaTests();
 				break;
 			default:
 		}
@@ -131,6 +142,43 @@ public class DriverAlgorismes {
 		System.out.println("Sortint del driver de generarHidato");
 		System.out.println();
 		System.out.println();			
+	}
+	
+	private static void driverGenerarHidatoAmbDificultat() {
+		System.out.println("Has escollit provar el metode generarHidato");
+		System.out.println();
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
+		Algorismes algorismes = new Algorismes(hidato);
+		System.out.println("S'ha creat una instancia algorismes amb un hidato sense matriu:");
+		
+		boolean continua = true;
+		while (continua) {
+			System.out.println("Escriu la dificultat pel teu hidato");
+			int i = -1;
+			while (i < 1 || i > 3) {
+				System.out.println("[1 = FACIL; 2 = MIG; 3 = DIFICIL]");
+				i = getNumero();
+			}
+			Dificultat dificultat = intToDificultat(i);
+			int[][] mat = algorismes.generarHidato(dificultat);
+			if (mat != null) {
+				System.out.println("La matriu generada es la seguent:");
+				HidatoIO.writeHidatoMatrixToOutput(mat);
+			}
+			else {
+				System.out.println("No s'ha pogut generar un hidato amb les condicions anteriors:");
+			}
+			System.out.println("\n Vols generar un altre hidato? yes/no");
+			String s = readLine();
+			while (!s.equalsIgnoreCase("yes") && !s.equalsIgnoreCase("no")) {
+				s = readLine();
+			}
+			if (s.equals("no")) continua = false;
+		}
+		
+		System.out.println("Sortint del driver de generarHidato");
+		System.out.println();
+		System.out.println();
 	}
 
 	private static void driverGetGiven() {
@@ -261,6 +309,7 @@ public class DriverAlgorismes {
 	}
 
 	public static void llistaTests() {
+		System.out.println();
 		System.out.println("exit: Sortir del driver");
 		System.out.println("1: Constructora");
 		System.out.println("2: Modificar hidato");
@@ -269,6 +318,7 @@ public class DriverAlgorismes {
 		System.out.println("5: obtenirDificultat");
 		System.out.println("6: getGiven");
 		System.out.println("7: generarHidato");
+		System.out.println("8: generarHidatoAmbDificultat");
 	}
 	
 	private static String readLine() {		
@@ -302,4 +352,10 @@ public class DriverAlgorismes {
 		else return -1;
 	}
 	
+	private static Dificultat intToDificultat(int i) {
+		if (i == 3) return Dificultat.DIFICIL;
+		if (i == 2) return Dificultat.MIG;
+		if (i == 1) return Dificultat.FACIL;
+		return null;
+	}
 }

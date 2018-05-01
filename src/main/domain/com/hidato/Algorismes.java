@@ -109,7 +109,7 @@ public class Algorismes {
 
 	public Dificultat obtenirDificultat() {
 		int tamany = matriuSolucio.length * matriuSolucio[0].length;
-		if (tamany < 18) return Dificultat.FACIL;
+		if (tamany <= 18) return Dificultat.FACIL;
 		if (tamany < 50) return Dificultat.MIG;
 		return Dificultat.DIFICIL;
 	}
@@ -130,7 +130,6 @@ public class Algorismes {
 
 		matriu[r][c] = n;
 		escrits.add(n);
-		//HidatoIO.writeHidatoMatrixToOutput(matriu);
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
 				if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
@@ -173,7 +172,69 @@ public class Algorismes {
 		else return null;
 	}
 
-	private static void emplenarForats(int forats, int[][] matriu) {
+	public int[][] generarHidato(Dificultat dificultat) {
+		int[] tamanys = getTamanySegonsDificultat(dificultat);
+		int tamanyi = tamanys[0];
+		int tamanyj = tamanys[1];
+		int forats = tamanys[2];
+		int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
+		boolean generat = false;
+		int intents = 0;
+		while (!generat && intents < 15) {
+			emplenarForats(forats, matriu);
+			generat = generarMatriuCompleta(forats, matriu);
+			//System.out.println("intent numero: " + (intents+1));
+			++intents;
+			if (intents%3 == 0) {//cada 3 intents baixem el nombre de forats en un
+				if (forats > 0) --forats;
+			}
+			if (!generat) matriu = new int[tamanyi][tamanyj];
+
+		}
+		if (generat) {
+			extreureNombres(forats, matriu);
+			return matriu;
+		}
+		else return null;
+	}
+	
+	private int[] getTamanySegonsDificultat(Dificultat dificultat) {
+		Random rand = new Random();
+		int[] tamanys = new int[3];
+		int i;
+		int j;
+		int f;
+		if (dificultat == Dificultat.FACIL) {
+			i = rand.nextInt(7)+2; //[2,8]
+			j = rand.nextInt(7)+2;  //[2,8]
+			while (i * j > 17) {
+				j = rand.nextInt(8)+2;
+			}
+			f = rand.nextInt(3);
+		}
+		else if (dificultat == Dificultat.MIG) {
+			i = rand.nextInt(9)+4; //[4,12]
+			j = rand.nextInt(9)+4;  //[4,12]
+			while (i * j > 49) {
+				j = rand.nextInt(9)+4;
+			}
+			f = rand.nextInt((i*j)/20); //com a molt 5% forats
+		}
+		else { //DIFICIL
+			i = rand.nextInt(10)+6; 	//[6,15]
+			j = rand.nextInt(10)+6;  //[6,15]
+			while (i * j > 49) {
+				j = rand.nextInt(10)+6;
+			}
+			f = rand.nextInt((i*j)/20); //com a molt 5% forats
+		}
+		tamanys[0] = i;
+		tamanys[1] = j;
+		tamanys[2] = f;
+		return tamanys;
+	}
+
+	private void emplenarForats(int forats, int[][] matriu) {
 		int tamanyi = matriu.length;
 		int tamanyj = matriu[0].length;
 		Random rand = new Random();
