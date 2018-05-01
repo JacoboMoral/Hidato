@@ -195,6 +195,7 @@ public class Algorismes {
 			matriuSolucio = makeCopy(matriu);
 			solucionat = true;
 			extreureNombres(forats, matriu);
+			emplenarGiven(matriu);
 			return matriu;
 		}
 		else return null;
@@ -215,6 +216,7 @@ public class Algorismes {
 				matriuSolucio = makeCopy(matriu);
 				solucionat = true;
 				extreureNombres(forats, matriu);
+				emplenarGiven(matriu);
 				return matriu;
 			} 
 		}		
@@ -307,5 +309,16 @@ public class Algorismes {
     		}
     	}
     	return matriuNova;
+	}
+
+	private void emplenarGiven(int[][] matriu) {
+		for (int i = 0; i < matriu.length; ++i) {
+			for (int j = 0; j < matriu[0].length; ++j) {
+				if (matriu[i][j] > 0) { //valor igual a un numero
+					given.addElement(matriu[i][j]);
+				}
+			}
+		}
+		Collections.sort(given);
 	}
 }

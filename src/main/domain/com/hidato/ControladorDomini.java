@@ -19,7 +19,10 @@ public class ControladorDomini {
 	}
 	
 	public void jugarHidatoGenerat() {
-		if (hidatoGenerat != null) partidaEnCurs = new Partida(hidatoGenerat);
+		if (hidatoGenerat != null) {
+			partidaEnCurs = new Partida(hidatoGenerat);
+			partidaEnCurs.esSolucionable();
+		}
 	}
 
 	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int tamanyi, int tamanyj, int forats) {
