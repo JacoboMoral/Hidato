@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
-import tests.drivers.Partida.HidatoStub;
 
 //stub necessari per HidatoStub
 public class AlgorismesStub{
