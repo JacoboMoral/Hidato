@@ -7,20 +7,21 @@ public abstract class Hidato {
     protected TipusAdjacencia tipusAdjacencia;
     protected Dificultat dificultat;
         
-    private int[][] matriuHidato;
-    private int[][] matriuOriginal;
-    private int[][] matriuSolucio;
+    //els seguents son protected per tal que el driver pugui accedir (ja que esta fet com una subclasse)
+    protected int[][] matriuHidato;
+    protected int[][] matriuOriginal;
+    protected int[][] matriuSolucio;
     
-    private Boolean solucionable = false;
-    private Vector<Integer> nombresEscrits;
-    private Vector<Integer> nombresDonats;
+    protected Boolean solucionable = false;
+    protected Vector<Integer> nombresEscrits;
+    protected Vector<Integer> nombresDonats;
     protected Algorismes al;
     
 
     public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
+		this.tipusAdjacencia = tipusAdjacencia;
 		matriuHidato = matriu;
 		makeCopyOriginal(matriuHidato);
-		this.tipusAdjacencia = tipusAdjacencia;
     }
 
 	public Hidato(TipusAdjacencia tipusAdjacencia) {
@@ -33,6 +34,18 @@ public abstract class Hidato {
 			matriuOriginal = matriuHidato;
 			al.modificarHidato(this);
 			dificultat = al.obtenirDificultat();
+			return true;
+		}
+		matriuHidato = null;
+		return false;
+	}
+    
+	public boolean autogenerar(Dificultat dificultat) {
+		matriuHidato = al.generarHidato(dificultat);
+		if (matriuHidato != null){
+			matriuOriginal = matriuHidato;
+			al.modificarHidato(this);
+			this.dificultat = dificultat;
 			return true;
 		}
 		matriuHidato = null;

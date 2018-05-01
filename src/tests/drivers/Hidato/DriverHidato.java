@@ -46,37 +46,52 @@ public class DriverHidato {
 				driverAutogenerar();
 				break;
 			case 2:
-				driverMoviment();
+				driverAutogenerarAmbDificultat();
+				llistaTests();
 				break;
 			case 3:
-				driverGetNombresPerDefecte();
+				driverMoviment();
+				llistaTests();
 				break;
 			case 4:
-				driverGetNombreFiles();
+				driverGetNombresPerDefecte();
+				llistaTests();
 				break;
 			case 5:
-				driverGetNombreColumnes();
+				driverGetNombreFiles();
+				llistaTests();
 				break;
 			case 6:
-				driverGetMatriu();
+				driverGetNombreColumnes();
+				llistaTests();
 				break;
 			case 7:
-				driverGetMatriuOriginal();
+				driverGetMatriu();
+				llistaTests();
 				break;
 			case 8:
-				driverResetMatriu();
+				driverGetMatriuOriginal();
+				llistaTests();
 				break;
 			case 9:
-				driverGetSolucio();
+				driverResetMatriu();
+				llistaTests();
 				break;
 			case 10:
-				driverTeSolucio();
+				driverGetSolucio();
+				llistaTests();
 				break;
 			case 11:
-				driverGetTipusAdjacencia();
+				driverTeSolucio();
+				llistaTests();
 				break;
 			case 12:
+				driverGetTipusAdjacencia();
+				llistaTests();
+				break;
+			case 13:
 				driverGetDificultat();
+				llistaTests();
 				break;
 			default:
 		}
@@ -325,14 +340,69 @@ public class DriverHidato {
 	private static void driverAutogenerar() {
 		System.out.println("Has escollit provar el metode autogenerar");
 		System.out.println();
-		System.out.println("Per aixo creem un hidato de tipus quadrat amb adjacencia per costats sense matriu");
+		System.out.println("Per aixo haurem de crear un hidato sense matriu. Ens donara igual el tipus de casella, ja que no ho necessitarem");
 		System.out.println();
-		Hidato hidato = new HidatoStub(TipusAdjacencia.COSTATS);
-		int forats = 0;
-		int tamanyi = 0;
-		int tamanyj = 0;
-		if(hidato.autogenerar(forats, tamanyi, tamanyj)) {
+		System.out.println("Digues el tipus d'adjacencia:");
+		int req = -1;
+		TipusAdjacencia tipusAdjacencia = null;
+		while ((req != 1 && req != 2)) {
+			System.out.println("[1 = Costats; 2 = Costats i angles (nomes quadrat)]");
+			req = getNumero();
+		}
+		tipusAdjacencia = intToTipusAdjacencia(req);
+		
+		Hidato hidato = null;
+		if (tipusAdjacencia == TipusAdjacencia.COSTATS) hidato = new HidatoStub(TipusAdjacencia.COSTATS);
+		else hidato = new HidatoStub(TipusAdjacencia.COSTATSIANGLES);
+		System.out.println("\nJa s'ha creat l'hidato escollit buit (sense matriu), per crear-ne d'una, digues les caracteristiques de l'hidato\n");
+		int caract[] = null;
+		while (caract == null || caract[0] < 2 || caract[1] < 2 || (caract[2] < 0 || caract[2] >= caract[0]*caract[1]/2)) {
+			System.out.println("Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))\n");
+			caract = getNumeros(3);
+		}
+		if(hidato.autogenerar(caract[0], caract[1], caract[2])) {
 			System.out.println("Autogenerat amb exit");	
+			System.out.println("L'hidato generat es el seguent (tingues en compte que prove d'un stub)");
+			HidatoIO.writeHidatoMatrixToOutput(hidato.getMatriu());
+			System.out.println();
+			System.out.println("Driver autogenerar finalitzat");
+		}
+		else {
+			System.out.println("Ha sorgit un problema. Driver Autogenerar executat sense exit");
+		}
+		System.out.println();
+		System.out.println();
+	}
+	
+	private static void driverAutogenerarAmbDificultat() {
+		System.out.println("Has escollit provar el metode autogenerarAmbDificultat");
+		System.out.println();
+		System.out.println("Per aixo haurem de crear un hidato sense matriu. Ens donara igual el tipus de casella, ja que no ho necessitarem");
+		System.out.println();
+		
+		System.out.println("Digues el tipus d'adjacencia:");
+		int req = -1;
+		TipusAdjacencia tipusAdjacencia = null;
+		while ((req != 1 && req != 2)) {
+			System.out.println("[1 = Costats; 2 = Costats i angles (nomes quadrat)]");
+			req = getNumero();
+		}
+		tipusAdjacencia = intToTipusAdjacencia(req);
+		
+		Hidato hidato = null;
+		if (tipusAdjacencia == TipusAdjacencia.COSTATS) hidato = new HidatoStub(TipusAdjacencia.COSTATS);
+		else hidato = new HidatoStub(TipusAdjacencia.COSTATSIANGLES);
+		System.out.println("\nJa s'ha creat l'hidato escollit buit (sense matriu), per crear-ne d'una, digues la dificultat\n");
+		int dif = -1;
+		while (dif < 1 || dif > 3) {
+			System.out.println("[1 = FACIL; 2 = MIG, 3 = DIFICIL]\n");
+			dif = getNumero();
+		}
+		Dificultat dificultat = intToDificultat(dif);
+		if(hidato.autogenerar(dificultat)) {
+			System.out.println("Autogenerat amb exit");	
+			System.out.println("L'hidato generat es el seguent (tingues en compte que prove d'un stub)");
+			HidatoIO.writeHidatoMatrixToOutput(hidato.getMatriu());
 			System.out.println();
 			System.out.println("Driver autogenerar finalitzat");
 		}
@@ -344,19 +414,21 @@ public class DriverHidato {
 	}
 	
 	private static void llistaTests() {
+		System.out.println();
 		System.out.println("exit: Sortir del driver");
 		System.out.println("1: Autogenerar");
-		System.out.println("2: Moviment");
-		System.out.println("3: GetNombresPerDefecte");
-		System.out.println("4: getNombreFiles");
-		System.out.println("5: getNombreColumnes");
-		System.out.println("6: getMatriu");
-		System.out.println("7: getMatriuOriginal");
-		System.out.println("8: resetMatriu");
-		System.out.println("9: getSolucio");
-		System.out.println("10: teSolucio");
-		System.out.println("11: getTipusAdjacencia");
-		System.out.println("12: getDificultat");
+		System.out.println("2: Autogenerar amb dificultat");
+		System.out.println("3: Moviment");
+		System.out.println("4: GetNombresPerDefecte");
+		System.out.println("5: getNombreFiles");
+		System.out.println("6: getNombreColumnes");
+		System.out.println("7: getMatriu");
+		System.out.println("8: getMatriuOriginal");
+		System.out.println("9: resetMatriu");
+		System.out.println("10: getSolucio");
+		System.out.println("11: teSolucio");
+		System.out.println("12: getTipusAdjacencia");
+		System.out.println("13: getDificultat");
 	}
 	
 	private static String readLine() {		
@@ -377,7 +449,19 @@ public class DriverHidato {
 		if (isNumber(req)) return Integer.parseInt(req);
 		else return -1;
 	}
-
+	
+	private static int[] getNumeros(int n) {
+		//els numeros han d'estar separats per un espai
+		String req = readLine();
+		String[] nums = req.split(" ");
+		if (nums.length != n) return null;
+		int[] numeros = new int[n];
+		for (int i = 0; i < n; ++i) {
+			if (isNumber(nums[i])) numeros[i] = Integer.parseInt(nums[i]);
+		}
+		return numeros;
+	}
+	
 	private static boolean isNumber(String s) {
 		boolean validNumber = false;
 		try {
@@ -389,21 +473,17 @@ public class DriverHidato {
 		}
 		return validNumber;
 	}
-	
-	private static TipusCella stringToTipusCella(String tc) {
-		if (tc.equalsIgnoreCase("Quadrat")) return TipusCella.QUADRAT;
-		if (tc.equalsIgnoreCase("Triangle")) return TipusCella.TRIANGLE;
-		if (tc.equalsIgnoreCase("Hexagon")) return TipusCella.HEXAGON;
-		return null;
-	}
 
-	private static TipusAdjacencia stringToTipusAdjacencia(String ta) {
-		if (ta.equalsIgnoreCase("Costats")) return TipusAdjacencia.COSTATS;
-		if (ta.equalsIgnoreCase("Ambdos")) return TipusAdjacencia.COSTATSIANGLES;
+	private static Dificultat intToDificultat(int i) {
+		if (i == 3) return Dificultat.DIFICIL;
+		if (i == 2) return Dificultat.MIG;
+		if (i == 1) return Dificultat.FACIL;
 		return null;
 	}
-	private static boolean tipusNoCompatible(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia) {
-		return ((tipusCella == TipusCella.HEXAGON && tipusAdjacencia == TipusAdjacencia.COSTATSIANGLES) ||
-				tipusCella == TipusCella.TRIANGLE && tipusAdjacencia == TipusAdjacencia.COSTATSIANGLES);
+	
+	private static TipusAdjacencia intToTipusAdjacencia(int ta) {
+		if (ta == 1) return TipusAdjacencia.COSTATS;
+		if (ta == 2) return TipusAdjacencia.COSTATSIANGLES;
+		return null;
 	}
 }

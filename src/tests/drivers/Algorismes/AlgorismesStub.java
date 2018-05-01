@@ -35,6 +35,10 @@ public class AlgorismesStub{
 		return matriuGenerada;
 	}
 	
+	public int[][] generarHidato(Dificultat dificultat){
+		return matriuGenerada;
+	}
+	
 	public void modificarHidato(Hidato hidato) {
 		
 	}

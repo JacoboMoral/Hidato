@@ -13,17 +13,6 @@ import main.domain.com.hidato.TipusCella;
 //Aquesta classe no es un stub tradicional, sino que es una subclasse de la classe original,
 //implementant els mètodes excepte aquells que les subclasses originals implementen
 public class HidatoStub extends Hidato {
-
-    protected Dificultat dificultat;
-        
-    private int[][] matriuHidato;
-    private int[][] matriuOriginal;
-    private int[][] matriuSolucio;
-    
-    private Boolean solucionable;
-    private Vector<Integer> nombresEscrits;
-    private Vector<Integer> nombresDonats;
-    protected AlgorismesStub al;
     
     public HidatoStub(TipusAdjacencia tipusAdjacencia, int[][] matriu) {
 		super(tipusAdjacencia, matriu);
