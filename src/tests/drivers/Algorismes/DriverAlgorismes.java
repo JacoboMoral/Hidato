@@ -108,19 +108,21 @@ public class DriverAlgorismes {
 		
 		boolean continua = true;
 		while (continua) {
-			System.out.println("Escriu el nombre de files (minim 2) ");
-			int i = getNumero();
+			int i = -1;
 			while (i < 2) {
+				System.out.println("Escriu el nombre de files (minim 2) ");
 				i = getNumero();
 			}
-			System.out.println("Escriu el nombre de columnes (minim 2)");
-			int j = getNumero();
+			
+			int j = -1;
 			while (j < 2) {
+				System.out.println("Escriu el nombre de columnes (minim 2)");
 				j = getNumero();
 			}
-			System.out.println("Escriu el nombre de forats que vols introduir (no pot ser mes gran o igual que la meitat de celles totals)");
-			int x = getNumero();
-			while (x >= (i*j)/2) {
+			
+			int x = -1;
+			while (x > (i*j)/2 || x < 0) {
+				System.out.println("Escriu el nombre de forats que vols introduir (no pot ser mes gran que la meitat de celles totals)");
 				x = getNumero();
 			}
 			int[][] mat = algorismes.generarHidato(x,i,j);
