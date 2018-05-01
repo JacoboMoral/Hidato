@@ -95,14 +95,9 @@ public class Algorismes {
 
 	public int[][] getMatriuSolucio(){
 		if (!solucionat) {
-			System.out.println("hola222222222222a");
 			this.solucionar();
 		}
-		else {
-			System.out.println("hola11a43");
-		}
 		return matriuSolucio;
-		//return this.matriuSolucio;
 	}
 	
 	//es igual que encara no s'hagi solucionat --> per tests

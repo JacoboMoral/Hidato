@@ -15,6 +15,7 @@ import org.junit.Test;
 import main.domain.com.hidato.Algorismes;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
+import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 
 public class TestAlgorismes {
@@ -262,15 +263,6 @@ public class TestAlgorismes {
 	}
 	
 	@Test
-	public void testModificarHidato() {
-		setUpHidatoBuit();	
-		algorismes = new Algorismes(hidato);
-		hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS, matriuQuadratCostats);
-		algorismes.modificarHidato(hidato);
-		assertArrayEquals(matriuQuadratCostats, algorismes.getMatriuSolucioForce() );
-	}
-	
-	@Test
 	public void testSolucionarQuadratCostats() {
 		setUpQuadratCostats(matriuQuadratCostats);
 		algorismes = new Algorismes(hidato);
@@ -286,7 +278,7 @@ public class TestAlgorismes {
 	public void testSolucionarQuadratCostatsFalseNoUltim() {
 		setUpQuadratCostats(matriuQuadratCostatsFalseNoUltim);
 		algorismes = new Algorismes(hidato);
-		assertEquals(false , algorismes.solucionar() );
+		assertEquals(false , algorismes.solucionar());
 	}
 	@Test
 	public void testSolucionarQuadratCostatsFalseNoPrimer() {
@@ -427,7 +419,7 @@ public class TestAlgorismes {
 		int tamanyj = 5;
 		
 		//necessita que funcionin molts dels tests anteriors, pero aixi podem comprovar que certament genera un hidato solucionable
-		int[][] hidatoGenerat = algorismes.generarHidato(forats, tamanyi, tamanyj);
+		int[][] hidatoGenerat = algorismes.generarHidato(tamanyi, tamanyj, forats);
 		assertFalse(Arrays.equals(null, hidatoGenerat));
 		
 		hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS, hidatoGenerat);
@@ -444,7 +436,7 @@ public class TestAlgorismes {
 		int tamanyj = 5;
 		
 		//necessita que funcionin molts dels tests anteriors, pero aixi podem comprovar que certament genera un hidato solucionable
-		int[][] hidatoGenerat = algorismes.generarHidato(forats, tamanyi, tamanyj);
+		int[][] hidatoGenerat = algorismes.generarHidato(tamanyi, tamanyj,forats);
 		assertFalse(Arrays.equals(null, hidatoGenerat));
 		
 		hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATSIANGLES, hidatoGenerat);
@@ -457,11 +449,11 @@ public class TestAlgorismes {
 		hidato = new HidatoTriangleStub();
 		algorismes = new Algorismes(hidato);
 		int forats = 0; //no podem provar amb forats, o amb determinades combinacions perque no ens podem assegurar 100% que es pugui generar un hidato
-		int tamanyi = 6;
-		int tamanyj = 6;
+		int tamanyi = 2;
+		int tamanyj = 3;
 		
 		//necessita que funcionin molts dels tests anteriors, pero aixi podem comprovar que certament genera un hidato solucionable
-		int[][] hidatoGenerat = algorismes.generarHidato(forats, tamanyi, tamanyj);
+		int[][] hidatoGenerat = algorismes.generarHidato(tamanyi, tamanyj, forats);
 		assertFalse(Arrays.equals(null, hidatoGenerat));
 		hidato = new HidatoTriangleStub(hidatoGenerat);
 		algorismes = new Algorismes(hidato);
@@ -477,7 +469,7 @@ public class TestAlgorismes {
 		int tamanyj = 5;
 		
 		//necessita que funcionin molts dels tests anteriors, pero aixi podem comprovar que certament genera un hidato solucionable
-		int[][] hidatoGenerat = algorismes.generarHidato(forats, tamanyi, tamanyj);
+		int[][] hidatoGenerat = algorismes.generarHidato(tamanyi, tamanyj, forats);
 		assertFalse(Arrays.equals(null, hidatoGenerat));
 		
 		hidato = new HidatoHexagonStub(hidatoGenerat);
