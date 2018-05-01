@@ -39,9 +39,11 @@ public class DriverHidatoQuadrat {
 		switch (req) {
 			case 1:
 				driverGetTipusCella();
+				llistaTests();
 				break;
 			case 2:
 				driverPosicioValida();
+				llistaTests();
 				break;
 			default:
 		}
@@ -70,8 +72,11 @@ public class DriverHidatoQuadrat {
 		llistaTests();
 	}
 
+	//Aquesta funcio prova el mètode posicioValida. Per provar-ho, s'ha de escollir una posicio inicial, i despres
+	//una posicio secundaria. La funcio et diu si es possible accedir a la segona posicio desde la primera, es a dir
+	// si les dues posicions son adjacents
 	private static void driverPosicioValida() {
-		System.out.println("Has escollit provar el metode getTipusCella");
+		System.out.println("Has escollit provar el metode posicioValida");
 		int n = -1;
 		while (n != 1 && n != 2) {
 			System.out.println("Digues quin tipus d'adjacencia vols per l'hidato quadrat: [1 = Costats; 2 = Costats i angles]");
@@ -83,7 +88,7 @@ public class DriverHidatoQuadrat {
 		boolean continua = true;
 		while (continua) {
 			System.out.println("Per provar el mètode posicioValida, has d'escollir una posicio de la seguent matriu,");
-			System.out.println("i despres una altra posicio, per comprovar si es pot accedir a la segona des de la primera.");
+			System.out.println("i despres una altra posicio, per comprovar si son adjacents segons l'hidato hexagon.");
 			System.out.println("Tingues en compte que han de ser diferents, ja que aquesta comprovacio es fa en una altra classe\n");
 			HidatoIO.writeHidatoMatrixToOutput(matriuTest);
 			int r = -1;
@@ -110,7 +115,7 @@ public class DriverHidatoQuadrat {
 				j = getNumero();
 			}
 			System.out.println("Per a la segona posicio, has escollit la coordenada: (" + r + "," + c + "), que equival al valor: " + matriuTest[i][j] + "\n");
-			System.out.println("La posicio inicial pot explorar la segona posicio?: " + hidato.posicioValida(i-r, j-c, 0, 0) + "\n\n");
+			System.out.println("La posicio inicial pot explorar la segona posicio?: " + hidato.posicioValida(i-r, j-c, r, c) + "\n\n");
 			System.out.println("Vols fer una altra comprobacio? yes/no");
 			String s = readLine();
 			while (!s.equalsIgnoreCase("yes") && !s.equalsIgnoreCase("no")) {
@@ -122,6 +127,7 @@ public class DriverHidatoQuadrat {
 	}
 	
 	private static void llistaTests() {
+		System.out.println();
 		System.out.println("exit: Sortir del driver");
 		System.out.println("1: getTipusCella");
 		System.out.println("2: posicioValida");

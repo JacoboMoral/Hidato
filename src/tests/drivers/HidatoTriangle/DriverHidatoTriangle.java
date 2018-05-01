@@ -38,9 +38,11 @@ public class DriverHidatoTriangle {
 		switch (req) {
 			case 1:
 				driverGetTipusCella();
+				llistaTests();
 				break;
 			case 2:
 				driverPosicioValida();
+				llistaTests();
 				break;
 			default:
 		}
@@ -65,7 +67,7 @@ public class DriverHidatoTriangle {
 	}
 
 	private static void driverPosicioValida() {
-		System.out.println("Has escollit provar el metode getTipusCella");
+		System.out.println("Has escollit provar el metode posicioValida");
 		Hidato hidato = new HidatoTriangle();
 		System.out.println("S'ha creat un hidato quadrat amb tipus d'adjacencia per costats\n");
 		boolean continua = true;
@@ -98,7 +100,7 @@ public class DriverHidatoTriangle {
 				j = getNumero();
 			}
 			System.out.println("Per a la segona posicio, has escollit la coordenada: (" + r + "," + c + "), que equival al valor: " + matriuTest[i][j] + "\n");
-			System.out.println("La posicio inicial pot explorar la segona posicio?: " + hidato.posicioValida(i-r, j-c, 0, 0) + "\n\n");
+			System.out.println("La posicio inicial pot explorar la segona posicio?: " + hidato.posicioValida(i-r, j-c, r, c) + "\n\n");
 			System.out.println("Vols fer una altra comprobacio? yes/no");
 			String s = readLine();
 			while (!s.equalsIgnoreCase("yes") && !s.equalsIgnoreCase("no")) {
@@ -110,6 +112,7 @@ public class DriverHidatoTriangle {
 	}
 	
 	private static void llistaTests() {
+		System.out.println();
 		System.out.println("exit: Sortir del driver");
 		System.out.println("1: getTipusCella");
 		System.out.println("2: posicioValida");

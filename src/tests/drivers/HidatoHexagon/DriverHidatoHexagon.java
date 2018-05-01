@@ -38,9 +38,11 @@ public class DriverHidatoHexagon {
 		switch (req) {
 			case 1:
 				driverGetTipusCella();
+				llistaTests();
 				break;
 			case 2:
 				driverPosicioValida();
+				llistaTests();
 				break;
 			default:
 		}
@@ -64,14 +66,17 @@ public class DriverHidatoHexagon {
 		llistaTests();
 	}
 
+	//Aquesta funcio prova el mètode posicioValida. Per provar-ho, s'ha de escollir una posicio inicial, i despres
+	//una posicio secundaria. La funcio et diu si es possible accedir a la segona posicio desde la primera, es a dir
+	// si les dues posicions son adjacents
 	private static void driverPosicioValida() {
-		System.out.println("Has escollit provar el metode getTipusCella");
+		System.out.println("Has escollit provar el metode posicioValida");
 		Hidato hidato = new HidatoHexagon();
 		System.out.println("S'ha creat un hidato quadrat amb tipus d'adjacencia per costats\n");
 		boolean continua = true;
 		while (continua) {
 			System.out.println("Per provar el mètode posicioValida, has d'escollir una posicio de la seguent matriu,");
-			System.out.println("i despres una altra posicio, per comprovar si es pot accedir a la segona des de la primera.");
+			System.out.println("i despres una altra posicio, per comprovar si son adjacents segons l'hidato hexagon.");
 			System.out.println("Tingues en compte que han de ser diferents, ja que aquesta comprovacio es fa en una altra classe\n");
 			HidatoIO.writeHidatoMatrixToOutput(matriuTest);
 			int r = -1;
@@ -98,7 +103,7 @@ public class DriverHidatoHexagon {
 				j = getNumero();
 			}
 			System.out.println("Per a la segona posicio, has escollit la coordenada: (" + r + "," + c + "), que equival al valor: " + matriuTest[i][j] + "\n");
-			System.out.println("La posicio inicial pot explorar la segona posicio?: " + hidato.posicioValida(i-r, j-c, 0, 0) + "\n\n");
+			System.out.println("La posicio inicial pot explorar la segona posicio?: " + hidato.posicioValida(i-r, j-c, r, c) + "\n\n");
 			System.out.println("Vols fer una altra comprobacio? yes/no");
 			String s = readLine();
 			while (!s.equalsIgnoreCase("yes") && !s.equalsIgnoreCase("no")) {
@@ -110,6 +115,7 @@ public class DriverHidatoHexagon {
 	}
 	
 	private static void llistaTests() {
+		System.out.println();
 		System.out.println("exit: Sortir del driver");
 		System.out.println("1: getTipusCella");
 		System.out.println("2: posicioValida");
