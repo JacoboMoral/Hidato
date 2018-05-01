@@ -4,8 +4,8 @@ import java.util.Vector;
 
 public class ControladorDomini {
 	
-	private Partida partidaEnCurs;
-	private Hidato hidatoGenerat;
+	private Partida partidaEnCurs = null;
+	private Hidato hidatoGenerat = null;;
 	
 
 	public boolean jugarHidatoImportat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
@@ -18,20 +18,20 @@ public class ControladorDomini {
 	}
 	
 	public void jugarHidatoGenerat() {
-		partidaEnCurs = new Partida(hidatoGenerat);
+		if (hidatoGenerat != null) partidaEnCurs = new Partida(hidatoGenerat);
 	}
 
-	
 	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int forats, int tamanyi, int tamanyj) {
-		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia);
-		return hidatoGenerat.autogenerar(forats, tamanyi, tamanyj);
+		boolean generat = hidatoGenerat.autogenerar(forats, tamanyi, tamanyj);
+		if (generat) hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia);
+		return generat;
 	}
 
-	public int[][] obtenirHidatoOriginalDePartida(){
+	public int[][] getMatriuHidatoOriginalDePartida(){
 		return partidaEnCurs.getHidatoOriginal();
 	}
 	
-	public int[][] obtenirHidatoDePartida() {
+	public int[][] getMatriuHidatoDePartida() {
 		return partidaEnCurs.getHidato();
 	}
 
@@ -40,20 +40,22 @@ public class ControladorDomini {
 	}
 	
 	public int[][] solucionarHidatoGenerat() {
+		if (hidatoGenerat == null) return null;
 		return hidatoGenerat.getSolucio();
 	}
 	
-	public Vector<Integer> obtenirNombresPerDefecte(){
+	public int[][] getMatriuHidatoGenerat(){
+		if (hidatoGenerat == null) return null;
+		return hidatoGenerat.getMatriu();
+	}
+	
+	public Vector<Integer> getNombresPerDefecte(){
 		return partidaEnCurs.getNombresPerDefecte();
 	}
  
 	public boolean ferMoviment(int i, int j, int value) {
 		if (partidaEnCurs.ferJugada(i, j, value)) return true;
-		else return false;
-	}
-	
-	public int[][] getHidatoGenerat(){
-		return hidatoGenerat.getMatriu();
+		return false;
 	}
 
 	public boolean enPartida() {

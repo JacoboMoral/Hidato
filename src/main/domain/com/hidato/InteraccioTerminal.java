@@ -97,7 +97,7 @@ public class InteraccioTerminal {
 		boolean estatMoviment = controladorDomini.ferMoviment(numbers[0]-1,numbers[1]-1,numbers[2]); //peta amb 1 1 32, ja ho mirare
 		if (estatMoviment) {
 			System.out.println("\n\n Moviment valid, el hidato queda en el seguent estat:\n\n");
-			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.obtenirHidatoDePartida());
+			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
 			System.out.println("\nPots fer un altre moviment si ho dessitges\n");
 			status = "movimentFet";
 			interactuar(readLine());
@@ -165,7 +165,7 @@ public class InteraccioTerminal {
 		
 		if (controladorDomini.autoGenerar(tc, ta, forats, tamanyi, tamanyj)) {
 			System.out.println("Aquest es l'hidato que s'ha generat");
-			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getHidatoGenerat());
+			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoGenerat());
 			System.out.println("Vols comen�ar una nova partida amb aquest?\n [yes] \n [no]\n\n");
 			//FALTA DECIDIR YES/NO
 			status = "generat";
@@ -187,7 +187,7 @@ public class InteraccioTerminal {
 
 	private void importar() {
 		System.out.println("\nEscriu el teu hidato per pantalla seguint el format estandar\n\n");
-		ArrayList<ArrayList<Integer>> entradaHidato = HidatoIO.readHidatoFromInput();
+		ArrayList<ArrayList<Integer>> entradaHidato = HidatoIO.readHidatoFromInputClipboard();
 		int[][] matriuHidato = extreuMatriuHidato(entradaHidato);
 		HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
 		TipusCella tipusCella = extreuTipusCella(entradaHidato);
@@ -201,7 +201,7 @@ public class InteraccioTerminal {
 		else { 
 			if (controladorDomini.jugarHidatoImportat(tipusCella, tipusAdjacencia, matriuHidato)) {
 				System.out.println("\n\nHidato importat i validad correctament. El teu hidato es el seguent: \n");
-				HidatoIO.writeHidatoMatrixToOutput(controladorDomini.obtenirHidatoDePartida());
+				HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
 				status = "jugant";
 				interactuar(readLine());
 			}

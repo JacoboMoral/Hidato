@@ -11,7 +11,7 @@ public abstract class Hidato {
     private int[][] matriuOriginal;
     private int[][] matriuSolucio;
     
-    private Boolean solucionable;
+    private Boolean solucionable = false;
     private Vector<Integer> nombresEscrits;
     private Vector<Integer> nombresDonats;
     protected Algorismes al;
@@ -86,7 +86,7 @@ public abstract class Hidato {
 	}
 	
 	public boolean teSolucio() {
-		if (solucionable == null){
+		if (solucionable == false){
 			solucionable = al.solucionar();
 			nombresDonats = al.getGiven();
 			nombresEscrits = al.getGiven();

@@ -9,6 +9,9 @@ import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
+
+//Aquesta classe no es un stub tradicional, sino que es una subclasse de la classe original,
+//implementant els mètodes excepte aquells que les subclasses originals implementen
 public class HidatoStub extends Hidato {
 
     protected Dificultat dificultat;
