@@ -37,14 +37,6 @@ public class HidatoStub extends Hidato{
     public boolean autogenerar(int forats, int tamanyi, int tamanyj) {
 		return true;
 	}
-    
-    private boolean comprovarMoviment(int i, int j, int value) {
-	    	return true;
-    }
-
-	private boolean estaRepetit(int value) {
-		return true;
-	}
 
 	private boolean estaDintreElsLimits(int i, int j) {
 		return true;

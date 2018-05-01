@@ -105,8 +105,22 @@ public class DriverPartida {
 			default:
 		}
 	}
+	
 	private static void driverFerJugada() {
-
+		System.out.println("Has escollit provar el metode ferJugada");
+		System.out.println();
+		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
+		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
+		Partida partida = new Partida(hidato);
+		System.out.println("Valor que s'espera: " + true);
+		boolean correcte = partida.ferJugada(5, 9, 234);
+		System.out.println("Valor que se'ns ha retornat: " + correcte); //hidatoStub ens retorna true sempre
+		System.out.println("Comprovacio d'igualtat de resultats: " + (true == correcte));
+		System.out.println();
+		if(correcte) System.out.println("Driver ferJugada executat correctament!");
+		else System.out.println("Ha sorgit un problema. Driver ferJugada executat sense exit");  
+		System.out.println();
+		System.out.println();	
 	}
 
 	private static void driverEsSolucionable() {
