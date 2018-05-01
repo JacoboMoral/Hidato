@@ -22,9 +22,9 @@ public class ControladorDomini {
 		if (hidatoGenerat != null) partidaEnCurs = new Partida(hidatoGenerat);
 	}
 
-	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int forats, int tamanyi, int tamanyj) {
+	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int tamanyi, int tamanyj, int forats) {
 		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
-		boolean generat = hidatoGenerat.autogenerar(forats, tamanyi, tamanyj);
+		boolean generat = hidatoGenerat.autogenerar(tamanyi, tamanyj, forats);
 		if (generat) return true;
 		else{
 			hidatoGenerat = null;

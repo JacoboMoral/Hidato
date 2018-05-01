@@ -117,6 +117,33 @@ public final class HidatoIO {
     	}
     }
     
+    //per generar jocs de prova
+    public static void writeHidatoMatrixToOutputFormat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matrix){
+    	System.out.println();
+    	String primeraLinea = "";
+    	if (tipusCella == TipusCella.QUADRAT) primeraLinea += "Q,";
+    	else if(tipusCella == TipusCella.TRIANGLE) primeraLinea += "T,";
+    	else primeraLinea += "H,";
+    	if (tipusAdjacencia == TipusAdjacencia.COSTATS) primeraLinea += "C,";
+    	else primeraLinea += "CA,";
+    	primeraLinea += matrix.length + "," + matrix[0].length;
+    	System.out.println(primeraLinea);
+    	for (int i = 0; i < matrix.length; ++i) {
+    		for (int j = 0; j < matrix[0].length; ++j) {
+    			if (j < matrix[0].length-1) {
+    				if (matrix[i][j] == -1)  System.out.print("*,");
+    				else System.out.print(matrix[i][j] + ",");
+    			}
+    			else {
+    				if (matrix[i][j] == -1)  System.out.println("*");
+        			else if (matrix[i][j] == -2) System.out.println("#");
+        			else System.out.println(matrix[i][j]);
+    			}
+    			
+    		}
+    	}
+    }
+    
     private static String readLine() {		
 		Scanner input = new Scanner(System.in);
 		String req = input.nextLine();

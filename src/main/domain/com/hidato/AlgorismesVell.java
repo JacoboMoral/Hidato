@@ -5,21 +5,21 @@ import java.util.Random;
 import java.util.Vector;
 
 
-public class Algorismes {
+public class AlgorismesVell {
 
 	private int[][] matriuSolucio;
 	boolean solucionat = false;
 	private Hidato hidato;
 	private Vector<Integer> given = new Vector<Integer>();
-	Random randomSeed;
-	
 
-	public Algorismes(Hidato hidato) {
+	public AlgorismesVell(Hidato hidato) {
 		this.matriuSolucio = hidato.getMatriu();
 		this.hidato = hidato;
 	}
 
 	public void modificarHidato(Hidato hidato) {
+		this.matriuSolucio = hidato.getMatriu();
+		solucionat = false;
 		this.hidato = hidato;
 	}
 
@@ -57,6 +57,7 @@ public class Algorismes {
 		if (given.get(given.size()-1) != casellesNumeriques) {
 			return false; //comprova que sempre ens donin el ultimo numero
 		}
+
 		return solucionador(row1, column1, 1, 0, matriu);
 	}
 
@@ -71,6 +72,7 @@ public class Algorismes {
 		if (back == n) next++;
 
 		matriuSolucio[r][c] = n;
+
 
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
@@ -95,14 +97,9 @@ public class Algorismes {
 
 	public int[][] getMatriuSolucio(){
 		if (!solucionat) {
-			System.out.println("hola222222222222a");
 			this.solucionar();
 		}
-		else {
-			System.out.println("hola11a43");
-		}
-		return matriuSolucio;
-		//return this.matriuSolucio;
+		return this.matriuSolucio;
 	}
 	
 	//es igual que encara no s'hagi solucionat --> per tests
@@ -124,7 +121,7 @@ public class Algorismes {
 		return given;
 	}
 
-	private boolean generarComplet(int r, int c, int celesBuides, int n, ArrayList<Integer> escrits, int[][] matriu, int seed) {
+	private boolean generarComplet(int r, int c, int celesBuides, int n, ArrayList<Integer> escrits, int[][] matriu) {
 		if (n > celesBuides) return true;
 
 		if (matriu[r][c] != 0) return false;
@@ -134,50 +131,16 @@ public class Algorismes {
 		matriu[r][c] = n;
 		escrits.add(n);
 		
-		if (seed == 0) {
-			for (int i = -1; i < 2; i++) {
-				for (int j = -1; j < 2; j++) {
-					if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
-						if (generarComplet(r + i, c + j, celesBuides, n + 1, escrits, matriu, randomSeed.nextInt(4))) {
-							return true;
-						}
+		for (int i = -1; i < 2; i++) {
+			for (int j = -1; j < 2; j++) {
+				if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
+					if (generarComplet(r + i, c + j, celesBuides, n + 1, escrits, matriu)) {
+						return true;
 					}
 				}
 			}
 		}
-		else if (seed == 1) {
-			for (int i = -1; i < 2; i++) {
-				for (int j = 1; j > -2 ; j--) {
-					if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
-						if (generarComplet(r + i, c + j, celesBuides, n + 1, escrits, matriu, randomSeed.nextInt(4))) {
-							return true;
-						}
-					}
-				}
-			}
-		}
-		else if (seed == 2) {
-			for (int i = 1; i > -2; i--) {
-				for (int j = -1; j < 2; j++) {
-					if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
-						if (generarComplet(r + i, c + j, celesBuides, n + 1, escrits, matriu, randomSeed.nextInt(4))) {
-							return true;
-						}
-					}
-				}
-			}
-		}
-		else {
-			for (int i = 1; i > 2; i--) {
-				for (int j = 1; j > 2; j--) {
-					if (hidato.posicioValida(i, j, r, c) && dinsLimits(r+i, c+j, matriu.length, matriu[0].length)) {
-						if (generarComplet(r + i, c + j, celesBuides, n + 1, escrits, matriu, randomSeed.nextInt(4))) {
-							return true;
-						}
-					}
-				}
-			}
-		}
+
 		escrits.remove(escrits.size()-1);
 		matriu[r][c] = 0;
 		return false;
@@ -191,14 +154,19 @@ public class Algorismes {
 		return true;
 	}
 
-	public int[][] generarHidato(int tamanyi, int tamanyj, int forats) {
+	public int[][] generarHidato(int forats, int tamanyi, int tamanyj) {
 		int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
 		boolean generat = false;
-		generat = generarMatriuCompleta(forats, matriu);
+		int intents = 0;
+		while (!generat && intents < 15) {
+			emplenarForats(forats, matriu);
+			generat = generarMatriuCompleta(forats, matriu);
+			//System.out.println("intent numero: " + (intents+1));
+			++intents;
+			if (!generat) matriu = new int[tamanyi][tamanyj];
+
+		}
 		if (generat) {
-			emplenarForats(matriu);
-			matriuSolucio = makeCopy(matriu);
-			solucionat = true;
 			extreureNombres(forats, matriu);
 			return matriu;
 		}
@@ -207,22 +175,31 @@ public class Algorismes {
 
 	public int[][] generarHidato(Dificultat dificultat) {
 		boolean generat = false;
-		int[] tamanys = getTamanySegonsDificultat(dificultat);
-		int tamanyi = tamanys[0];
-		int tamanyj = tamanys[1];
-		int forats = tamanys[2];
-		int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
-		
-		for (int i = 0; i < 10; ++i) { //10 intents per generar un hidato, cadascun amb un forat mes (mes facil cada cop)
-			generat = generarMatriuCompleta(forats+i, matriu);
+		int intentsTamany = 0;
+		while (!generat && intentsTamany < 3 ) {
+			int[] tamanys = getTamanySegonsDificultat(dificultat);
+			int tamanyi = tamanys[0];
+			int tamanyj = tamanys[1];
+			int forats = tamanys[2];
+			int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
+			int intents = 0;
+
+			while (!generat && intents < 10) {
+				emplenarForats(forats, matriu);
+				generat = generarMatriuCompleta(forats, matriu);
+				++intents;
+				if (intents%3 == 0) {//cada 3 intents baixem el nombre de forats en un
+					if (forats > 0) --forats;
+				}
+				if (!generat) matriu = new int[tamanyi][tamanyj];
+
+			}
 			if (generat) {
-				emplenarForats(matriu);
-				matriuSolucio = makeCopy(matriu);
-				solucionat = true;
 				extreureNombres(forats, matriu);
 				return matriu;
-			} 
-		}		
+			}
+
+		}
 		return null;
 	}
 	
@@ -233,20 +210,23 @@ public class Algorismes {
 		int j;
 		int f;
 		if (dificultat == Dificultat.FACIL) {
-			i = rand.nextInt(4)+2; //[2,5]
-			j = rand.nextInt(4)+2;  //[2,5]
+			i = rand.nextInt(3)+2; //[2,5]
+			j = rand.nextInt(3)+2;  //[2,5]
+			while (i * j > 17) {
+				j = rand.nextInt(4)+2;
+			}
 			if (i*j == 4) f = rand.nextInt(1);
 			else f = rand.nextInt(3);
 		}
 		else if (dificultat == Dificultat.MIG) {
-			i = rand.nextInt(2)+6; //[6,7]
-			j = rand.nextInt(2)+6;  //[6,7]
-			f = rand.nextInt((i*j)/5) + (i*j)/20; //entre 5 i 20%
+			i = rand.nextInt(2)+6; //[6,8]
+			j = rand.nextInt(2)+6;  //[6,8]
+			f = rand.nextInt((i*j)/30); //com a molt 5% forats
 		}
 		else { //DIFICIL
-			i = rand.nextInt(3)+8; 	//[8,10]
-			j = rand.nextInt(3)+8;  //[8,10]
-			f = rand.nextInt((i*j)/5) + (i*j)/20; //entre 5 i 20%
+			i = rand.nextInt(2)+9; 	//[9,11]
+			j = rand.nextInt(2)+9;  //[9,11]
+			f = rand.nextInt((i*j)/40); //com a molt 5% forats
 		}
 		tamanys[0] = i;
 		tamanys[1] = j;
@@ -254,17 +234,41 @@ public class Algorismes {
 		return tamanys;
 	}
 
+	private void emplenarForats(int forats, int[][] matriu) {
+		int tamanyi = matriu.length;
+		int tamanyj = matriu[0].length;
+		Random rand = new Random();
+		for (int i = 0; i < forats; ++i) {
+			int posi = rand.nextInt(tamanyi);
+			int posj = rand.nextInt(tamanyj);
+			if (matriu[posi][posj] == -1) --i;
+			else matriu[posi][posj] = -1;
+		}
+	}
+
 	private void extreureNombres(int forats, int[][] matriu) {
 		Random rand = new Random();
 		int celesNumeriques = matriu.length * matriu[0].length - forats;
-		for (int i = 0; i < matriu.length; ++i) {
-			for (int j = 0; j < matriu[0].length; ++j) {
-				if (matriu[i][j] != 1 && matriu[i][j] != celesNumeriques && matriu[i][j] > -1) { //primer i ultim numero han d'estar, i tampoc s'han de treure els forats
-					 int treure = rand.nextInt(4); //         1/4 possibilitat de treure un numero = hi han ficats 1/4 dels numeros
-					 if (celesNumeriques > 6 && treure != 0) matriu[i][j] = 0;
+		if (celesNumeriques <= 6) {
+			for (int i = 0; i < matriu.length; ++i) {
+				for (int j = 0; j < matriu[0].length; ++j) {
+					if (matriu[i][j] != 1 && matriu[i][j] != celesNumeriques && matriu[i][j] > -1) { //primer i ultim numero han d'estar, i tampoc s'han de treure els forats
+						matriu[i][j] = 0;
+					}
 				}
 			}
 		}
+		else {
+			for (int i = 0; i < matriu.length; ++i) {
+				for (int j = 0; j < matriu[0].length; ++j) {
+					if (matriu[i][j] != 1 && matriu[i][j] != celesNumeriques && matriu[i][j] > -1) { //primer i ultim numero han d'estar, i tampoc s'han de treure els forats
+						 int treure = rand.nextInt(4); //         1/4 possibilitat de treure un numero = hi han ficats 1/4 dels numeros
+						 if (treure != 0) matriu[i][j] = 0;
+					}
+				}
+			}
+		}
+		
 	}
 
 	private boolean generarMatriuCompleta(int forats, int[][] matriu) {
@@ -273,44 +277,22 @@ public class Algorismes {
 		//generem [tamany] nombres posicions aleatoris per començar a emplenar la matriu autogenerada
 		ArrayList<Integer> initialNumberi = new ArrayList<>(tamanyi);
 		ArrayList<Integer> initialNumberj = new ArrayList<>(tamanyj);
-		for (int i = 0; i < tamanyi; i++){
+		for (int i = 0; i < tamanyi; i++){ //to generate from 0-10 inclusive
 			initialNumberi.add(i);
 		}
-		for (int j = 0; j < tamanyj; j++){
+		for (int j = 0; j < tamanyj; j++){ //to generate from 0-10 inclusive
 			initialNumberj.add(j);
 		}
 		Collections.shuffle(initialNumberi);
 		Collections.shuffle(initialNumberj);
 
 		ArrayList<Integer> escrits;
-		randomSeed = new Random();
-		
 		for (int i = 0; i < tamanyi; ++i) {
 			for (int j = 0; j < tamanyj; ++j) {
 				escrits = new ArrayList<>();
-				if (generarComplet(initialNumberi.get(i), initialNumberj.get(j), tamanyi*tamanyj - forats, 1, escrits, matriu, randomSeed.nextInt(4))) return true; //intentem generar una matriu amb l'1 a totes les posicions possibles
+				if (generarComplet(initialNumberi.get(i), initialNumberj.get(j), tamanyi*tamanyj - forats, 1, escrits, matriu)) return true; //intentem generar una matriu amb l'1 a totes les posicions possibles
 			}
 		}
 		return false;
-	}
-	
-	private void emplenarForats(int[][] matriu) {
-		for (int i = 0; i < matriu.length; ++i) {
-			for (int j = 0; j < matriu[0].length; ++j) {
-				if (matriu[i][j] == 0) matriu[i][j] = -1;
-			}
-		}
-	}
-
-	private int[][] makeCopy(int[][] matriuOriginal) {
-    	int y = matriuOriginal.length;
-    	int x = matriuOriginal[0].length;
-    	int[][] matriuNova = new int[y][x];
-    	for (int i = 0; i < y; ++i) {
-    		for (int j = 0; j < x; ++j) {
-    			matriuNova[i][j] = matriuOriginal[i][j];
-    		}
-    	}
-    	return matriuNova;
 	}
 }

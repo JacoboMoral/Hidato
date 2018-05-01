@@ -100,10 +100,19 @@ public abstract class Hidato {
 	
 	public boolean teSolucio() {
 		if (solucionable == false){
-			solucionable = al.solucionar();
-			nombresDonats = al.getGiven();
-			nombresEscrits = al.getGiven();
-			matriuSolucio = al.getMatriuSolucio();
+			System.out.println("hola11a");
+			if (al.getMatriuSolucio() != null) {
+				System.out.println("holaa222222222");
+				matriuSolucio = al.getMatriuSolucio();
+				solucionable = true;
+			}
+			else {
+				System.out.println("holaa1122");
+				solucionable = al.solucionar();
+				nombresDonats = al.getGiven();
+				nombresEscrits = al.getGiven();
+				matriuSolucio = al.getMatriuSolucio();
+			}
 		}
 		return solucionable;
 	}

@@ -109,19 +109,19 @@ public class DriverHidato {
 		hidato.teSolucio(); // aquesta funcio es precondicio, ja que es crida sempre quan es crea un hidato
 		boolean continua = true;
 		while (continua) {
-			System.out.println("Escriu la coordenada y (numero de fila) on vols fer el moviment (0..length-1)");
-			int i = getNumero();
+			int i = -1;
 			while (i == -1) {
+				System.out.println("Escriu la coordenada y (numero de fila) on vols fer el moviment (0..length-1)");
 				i = getNumero();
 			}
-			System.out.println("Escriu la coordenada x (numero de columna) on vols fer el moviment (0..length-1)");
-			int j = getNumero();
+			int j = -1;
 			while (j == -1) {
+				System.out.println("Escriu la coordenada x (numero de columna) on vols fer el moviment (0..length-1)");
 				j = getNumero();
 			}
-			System.out.println("Escriu el valor que vols introduir");
-			int x = getNumero();
+			int x = -1;
 			while (x == -1) {
+				System.out.println("Escriu el valor que vols introduir");
 				x = getNumero();
 			}
 			System.out.println("El moviment que has fet es correcte?: " + hidato.moviment(i, j, x));
