@@ -1,19 +1,23 @@
 package JUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.Vector;
 
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import main.domain.com.hidato.Algorismes;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.TipusAdjacencia;
 
-class TestAlgorismes {
+public class TestAlgorismes {
 	
 	Algorismes algorismes;
 	Hidato hidato;
@@ -240,6 +244,10 @@ class TestAlgorismes {
 
 	Vector<Integer> givenTest = new Vector<Integer>();
 	
+	public TestAlgorismes() {
+		
+	}
+	
 	@Before
 	public void setUp() {
 	    hidato = null;
@@ -247,116 +255,116 @@ class TestAlgorismes {
 	}
 	
 	@Test
-	void testConstructor() {
+	public void testConstructor() {
 		setUpQuadratCostats(matriuQuadratCostats);
 		Algorismes algorismes = new Algorismes(hidato);
-		assertEquals(matriuQuadratCostats , algorismes.getMatriuSolucioForce() );
+		assertArrayEquals(matriuQuadratCostats , algorismes.getMatriuSolucioForce() );
 	}
 	
 	@Test
-	void testModificarHidato() {
+	public void testModificarHidato() {
 		setUpHidatoBuit();	
 		algorismes = new Algorismes(hidato);
 		hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS, matriuQuadratCostats);
 		algorismes.modificarHidato(hidato);
-		assertEquals(matriuQuadratCostats, algorismes.getMatriuSolucioForce() );
+		assertArrayEquals(matriuQuadratCostats, algorismes.getMatriuSolucioForce() );
 	}
 	
 	@Test
-	void testSolucionarQuadratCostats() {
+	public void testSolucionarQuadratCostats() {
 		setUpQuadratCostats(matriuQuadratCostats);
 		algorismes = new Algorismes(hidato);
 		assertEquals(true , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarQuadratCostatsFalse() {
+	public void testSolucionarQuadratCostatsFalse() {
 		setUpQuadratCostats(matriuQuadratCostatsFalse);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarQuadratCostatsFalseNoUltim() {
+	public void testSolucionarQuadratCostatsFalseNoUltim() {
 		setUpQuadratCostats(matriuQuadratCostatsFalseNoUltim);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarQuadratCostatsFalseNoPrimer() {
+	public void testSolucionarQuadratCostatsFalseNoPrimer() {
 		setUpQuadratCostats(matriuQuadratCostatsFalseNoPrimer);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
 	}
 
 	@Test
-	void testSolucionarQuadratAmbdos() {
+	public void testSolucionarQuadratAmbdos() {
 		setUpQuadratAmbdos(matriuQuadratAmbdos);
 		algorismes = new Algorismes(hidato);
 		assertEquals(true , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarQuadratAmbdosFalse() {
+	public void testSolucionarQuadratAmbdosFalse() {
 		setUpQuadratAmbdos(matriuQuadratAmbdosFalse);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarQuadratAmbdosFalseNoUltim() {
+	public void testSolucionarQuadratAmbdosFalseNoUltim() {
 		setUpQuadratAmbdos(matriuQuadratAmbdosFalseNoUltim);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarQuadratAmbdosFalseNoPrimer() {
+	public void testSolucionarQuadratAmbdosFalseNoPrimer() {
 		setUpQuadratAmbdos(matriuQuadratAmbdosFalseNoPrimer);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
 	}
 
 	@Test
-	void testSolucionarTriangleCostats() {
+	public void testSolucionarTriangleCostats() {
 		setUpTriangleCostats(matriuTriangleCostats);
 		algorismes = new Algorismes(hidato);
 		assertEquals(true , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarTriangleCostatsFalse() {
+	public void testSolucionarTriangleCostatsFalse() {
 		setUpTriangleCostats(matriuTriangleCostatsFalse);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarTriangleCostatsFalseNoUltim() {
+	public void testSolucionarTriangleCostatsFalseNoUltim() {
 		setUpTriangleCostats(matriuTriangleCostatsFalseNoUltim);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarTriangleCostatsFalseNoPrimer() {
+	public void testSolucionarTriangleCostatsFalseNoPrimer() {
 		setUpTriangleCostats(matriuTriangleCostatsFalseNoPrimer);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
 	}
 	
 	@Test
-	void testSolucionarHexagon() {
+	public void testSolucionarHexagon() {
 		setUpHexagon(matriuHexagon);
 		algorismes = new Algorismes(hidato);
 		assertEquals(true , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarHexagonFalse() {
+	public void testSolucionarHexagonFalse() {
 		setUpHexagon(matriuHexagonFalse);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarHexagonFalseNoUltim() {
+	public void testSolucionarHexagonFalseNoUltim() {
 		setUpHexagon(matriuHexagonFalseNoUltim);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
 	}
 	@Test
-	void testSolucionarHexagonFalseNoPrimer() {
+	public void testSolucionarHexagonFalseNoPrimer() {
 		setUpHexagon(matriuHexagonFalseNoPrimer);
 		algorismes = new Algorismes(hidato);
 		assertEquals(false , algorismes.solucionar() );
@@ -364,14 +372,14 @@ class TestAlgorismes {
 
 	
 	@Test
-	void testGetMatriuSolucio() {
+	public void testGetMatriuSolucio() {
 		setUpQuadratCostats(matriuQuadratCostats);
 		algorismes = new Algorismes(hidato);
 		algorismes.solucionar();
 		assertArrayEquals(matriuQuadratCostatsSolucio , algorismes.getMatriuSolucio() );
 	}
 	@Test
-	void testGetMatriuSolucioFalse() {
+	public void testGetMatriuSolucioFalse() {
 		setUpQuadratCostats(matriuQuadratCostats);
 		algorismes = new Algorismes(hidato);
 		algorismes.solucionar();
@@ -380,21 +388,21 @@ class TestAlgorismes {
 	
 	
 	@Test
-	void testObtenirDificultatDificil() {
+	public void testObtenirDificultatDificil() {
 		setUpQuadratCostats(matriuQuadratCostats);
 		algorismes = new Algorismes(hidato);
 		algorismes.solucionar();
 		assertEquals(Dificultat.DIFICIL , algorismes.obtenirDificultat() );
 	}
 	@Test
-	void testObtenirDificultatMig() {
+	public void testObtenirDificultatMig() {
 		setUpHexagon(matriuHexagon);
 		algorismes = new Algorismes(hidato);
 		algorismes.solucionar();
 		assertEquals(Dificultat.MIG , algorismes.obtenirDificultat() );
 	}
 	@Test
-	void testObtenirDificultatFacil() {
+	public void testObtenirDificultatFacil() {
 		setUpQuadratCostats(matriuFacil);
 		algorismes = new Algorismes(hidato);
 		algorismes.solucionar();
@@ -402,7 +410,7 @@ class TestAlgorismes {
 	}
 
 	@Test
-	void testGetGiven() {
+	public void testGetGiven() {
 		setUpQuadratCostats(matriuFacil);
 		algorismes = new Algorismes(hidato);
 		algorismes.solucionar();
@@ -411,7 +419,7 @@ class TestAlgorismes {
 	}
 	
 	@Test
-	void testGenerarHidatoQuadratCostats() {
+	public void testGenerarHidatoQuadratCostats() {
 		hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATS);
 		algorismes = new Algorismes(hidato);
 		int forats = 0; //no podem provar amb forats, o amb determinades combinacions perque no ens podem assegurar 100% que es pugui generar un hidato
@@ -428,7 +436,7 @@ class TestAlgorismes {
 	}
 
 	@Test
-	void testGenerarHidatoQuadratCostatsIAngles() {
+	public void testGenerarHidatoQuadratCostatsIAngles() {
 		hidato = new HidatoQuadratStub(TipusAdjacencia.COSTATSIANGLES);
 		algorismes = new Algorismes(hidato);
 		int forats = 0; //no podem provar amb forats, o amb determinades combinacions perque no ens podem assegurar 100% que es pugui generar un hidato
@@ -445,7 +453,7 @@ class TestAlgorismes {
 	}
 	
 	@Test
-	void testGenerarHidatoTriangle() {
+	public void testGenerarHidatoTriangle() {
 		hidato = new HidatoTriangleStub();
 		algorismes = new Algorismes(hidato);
 		int forats = 0; //no podem provar amb forats, o amb determinades combinacions perque no ens podem assegurar 100% que es pugui generar un hidato
@@ -461,7 +469,7 @@ class TestAlgorismes {
 	}
 	
 	@Test
-	void testGenerarHidatoHexagon() {
+	public void testGenerarHidatoHexagon() {
 		hidato = new HidatoHexagonStub();
 		algorismes = new Algorismes(hidato);
 		int forats = 0; //no podem provar amb forats, o amb determinades combinacions perque no ens podem assegurar 100% que es pugui generar un hidato
