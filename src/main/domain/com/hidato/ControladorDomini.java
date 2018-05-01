@@ -1,5 +1,6 @@
 package main.domain.com.hidato;
 
+import java.util.Random;
 import java.util.Vector;
 
 public class ControladorDomini {
@@ -33,6 +34,34 @@ public class ControladorDomini {
 	
 	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
 		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
+		boolean generat = hidatoGenerat.autogenerar(dificultat);
+		if (generat) return true;
+		else{
+			hidatoGenerat = null;
+			return false;
+		}
+	}
+	
+	public boolean autoGenerar(Dificultat dificultat) {
+		TipusCella tipusCella = getRandomTipusCella();
+		TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia();
+		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
+		boolean generat = hidatoGenerat.autogenerar(dificultat);
+		if (generat) return true;
+		else{
+			hidatoGenerat = null;
+			return false;
+		}
+	}
+	
+	public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
+		if (tipusCella == TipusCella.QUADRAT) {
+			TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia();
+			hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
+		}
+		else {
+			hidatoGenerat = HidatoFactory.createHidato(tipusCella, TipusAdjacencia.COSTATS); //es crea hidato sense matriu
+		}
 		boolean generat = hidatoGenerat.autogenerar(dificultat);
 		if (generat) return true;
 		else{
@@ -75,5 +104,19 @@ public class ControladorDomini {
 	public boolean enPartida() {
 		return (partidaEnCurs != null);
 	}
+	
+	private TipusCella getRandomTipusCella() {
+		Random random = new Random();
+		int tc = random.nextInt(3);
+		if (tc == 0) return TipusCella.QUADRAT;
+		if (tc == 1) return TipusCella.TRIANGLE;
+		return TipusCella.HEXAGON;
+	}
 
+	private TipusAdjacencia getRandomTipusAdjacencia() {
+		Random random = new Random();
+		int ta = random.nextInt(2);
+		if (ta == 0) return TipusAdjacencia.COSTATS;
+		return TipusAdjacencia.COSTATSIANGLES;
+	}
 }

@@ -169,13 +169,38 @@ public class DriverControladorDomini {
 	private static void driverAutoGenerar() {
 		System.out.println("Has escollit provar el metode autoGenerar");
 		System.out.println("Si us plau, escull como vols generar un hidato, donant les seves caracteristiques o la seva dificultat\n");
+		boolean generatCorrectament = false;
 		int tipus = -1;
 		while (tipus < 1 || tipus > 2) {
 			System.out.println("[1 = caracteristiques; 2 = dificultat]\n");
 			tipus = getNumero();
 		}
 		if (tipus == 1) {
+			System.out.println("A continuacio digues les caracteristiques de l'hidato\n");
+			System.out.println("Digues el tipus de cella:");
+			int req = -1;
+			TipusCella tipusCella = null;
+			while (req != 1 && req != 2) {
+				System.out.println("[1 = Quadrat; 2 = Triangle; 3 = Hexagon]");
+				req = getNumero();
+			}
+			tipusCella = intToTipusCella(req);
 			
+			System.out.println("\nDigues el tipus d'adjacencia:");
+			req = -1;
+			TipusAdjacencia tipusAdjacencia = null;
+			while (req != 1 && req != 2 || (tipusNoCompatible(tipusCella, tipusAdjacencia))) {
+				System.out.println("[1 = Costats; 2 = Costats i angles (nomes quadrat)]");
+				req = getNumero();
+			}
+			tipusAdjacencia = intToTipusAdjacencia(req);
+			
+			int caract[] = null;
+			while (caract == null || caract[0] < 2 || caract[1] < 2 || (caract[2] < 0 || caract[2] >= caract[0]*caract[1]/2)) {
+				System.out.println("Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))\n");
+				caract = getNumeros(3);
+			}
+			generatCorrectament = controladorDomini.autoGenerar(tipusCella, tipusAdjacencia, caract[0], caract[1], caract[2]);
 		}
 		
 		else if (tipus == 2) {
@@ -186,9 +211,59 @@ public class DriverControladorDomini {
 				dif = getNumero();
 			}
 			Dificultat dificultat = intToDificultat(dif);
+			System.out.println("Vols escollir el tipus de cella?");
+			String s = readLine();
+			while (!s.equalsIgnoreCase("yes") && !s.equalsIgnoreCase("no")) {
+				System.out.println("yes/no\n");
+				s = readLine();
+			}
+			if (s.equalsIgnoreCase("yes")) {
+				System.out.println("Molt be, digues quin vols\n");
+				int tc = -1;
+				while (tc < 1 || tc > 3) {
+					System.out.println("[1 = Quadrat; 2 = Triangle, 3 = Hexagon]\n");
+					tc = getNumero();
+				}
+				TipusCella tipusCella = intToTipusCella(tc);
+				TipusAdjacencia tipusAdjacencia;
+				if (tc == 1) {
+					System.out.println("Vols escollir el tipus d'adjacencia?");
+					s = readLine();
+					while (!s.equalsIgnoreCase("yes") && !s.equalsIgnoreCase("no")) {
+						System.out.println("yes/no\n");
+						s = readLine();
+					}
+					if (s.equalsIgnoreCase("yes")) {
+						System.out.println("Molt be, digues quina vols\n");
+						int ta = -1;
+						while (ta < 1 || ta > 3) {
+							System.out.println("[1 = Costats; 2 = Costats i angles\n");
+							ta = getNumero();
+						}
+						tipusAdjacencia = intToTipusAdjacencia(ta);
+						generatCorrectament = controladorDomini.autoGenerar(tipusCella, tipusAdjacencia, dificultat); //quadrat
+					}
+					else {
+						generatCorrectament = controladorDomini.autoGenerar(tipusCella, dificultat); //quadrat random
+					}
+				}
+				else {
+					tipusAdjacencia = TipusAdjacencia.COSTATS;
+					controladorDomini.autoGenerar(tipusCella, tipusAdjacencia, dificultat); //triangle/hexagon
+				}
+			}
+			else {
+				generatCorrectament = controladorDomini.autoGenerar(dificultat); //random
+				
+			}
 		}
 		
 		else; //unexpected, en principi no pot passar
+		if (generatCorrectament) {
+			System.out.println("Molt be, aquest es l'hidato que s'ha generat");
+			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoGenerat());
+		}
+		else System.out.println("No s'ha pogut generar un hidato amb les condicions especificades");
 	}
 
 	private static void driverEnPartida() {
@@ -317,6 +392,18 @@ public class DriverControladorDomini {
 		else return -1;
 	}
 
+	private static int[] getNumeros(int n) {
+		//els numeros han d'estar separats per un espai
+		String req = readLine();
+		String[] nums = req.split(" ");
+		if (nums.length != n) return null;
+		int[] numeros = new int[n];
+		for (int i = 0; i < n; ++i) {
+			if (isNumber(nums[i])) numeros[i] = Integer.parseInt(nums[i]);
+		}
+		return numeros;
+	}
+	
 	private static boolean isNumber(String s) {
 		boolean validNumber = false;
 		try {
@@ -376,4 +463,5 @@ public class DriverControladorDomini {
 		if (i == 1) return Dificultat.FACIL;
 		return null;
 	}
+	
 }
