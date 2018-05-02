@@ -125,7 +125,7 @@ public class DriverAlgorismes {
 				System.out.println("Escriu el nombre de forats que vols introduir (no pot ser mes gran que la meitat de celles totals)");
 				x = getNumero();
 			}
-			int[][] mat = algorismes.generarHidato(x,i,j);
+			int[][] mat = algorismes.generarHidato(i,j,x);
 			if (mat != null) {
 				System.out.println("La matriu generada es la seguent:");
 				HidatoIO.writeHidatoMatrixToOutput(mat);
@@ -277,8 +277,7 @@ public class DriverAlgorismes {
 		System.out.println("\nDespres de modificar el hidato amb un nou amb diferent matriu, aquesta es la seva matriu solucionada:");
 		int mat2[][] = algorismes.getMatriuSolucio();
 		HidatoIO.writeHidatoMatrixToOutput(mat2);
-		
-		boolean correcte = !java.util.Arrays.deepEquals(mat1, mat2);
+		boolean correcte = java.util.Arrays.deepEquals(mat1, mat2);
 		System.out.println("Comprovacio que les dues matrius siguin diferents: " + correcte);
 		System.out.println();
 		if (correcte) System.out.println("Sortint amb exit del driver de modificarHidato");

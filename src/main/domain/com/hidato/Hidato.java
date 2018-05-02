@@ -104,7 +104,6 @@ public abstract class Hidato {
 				matriuSolucio = al.getMatriuSolucio();
 				nombresDonats = al.getGiven();
 				nombresEscrits = al.getGiven();
-		    	System.out.println(nombresEscrits);
 				solucionable = true;
 			}
 			else {
@@ -112,7 +111,6 @@ public abstract class Hidato {
 				nombresDonats = al.getGiven();
 				nombresEscrits = al.getGiven();
 				matriuSolucio = al.getMatriuSolucio();
-		    	System.out.println(nombresEscrits);
 			}
 		}
 		return solucionable;
@@ -137,16 +135,11 @@ public abstract class Hidato {
 	}
 	
     private boolean comprovarMoviment(int i, int j, int value) {
-    	System.out.println("hola");
     	if (matriuHidato[i][j] != 0) return false;
-    	System.out.println("hola");
     	if (estaRepetit(value)) return false;
-    	System.out.println(nombresEscrits);
     	boolean anterior = nombresEscrits.contains(value-1);
     	boolean posterior = nombresEscrits.contains(value+1);
-    	System.out.println("anterior: " + (value-1) + anterior + " posterior: " + (value+1) + posterior);
     	if (!anterior && !posterior) return false; 		//si no hi ha escrits ni el anterior ni el posterior
-    	System.out.println("hola");
     	boolean trobatAnterior = false;
     	boolean trobatPosterior = false;
     	for(int ii = i - 1; ii < i + 2; ++ii) {

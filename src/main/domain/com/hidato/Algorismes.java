@@ -24,7 +24,6 @@ public class Algorismes {
 	}
 
 	public boolean solucionar() {
-
 		int row1 = -1;
 		int column1 = -1; //fila i columna on es troba el numero 1
 		int casellesNumeriques = 0;
@@ -70,6 +69,7 @@ public class Algorismes {
 		int back = matriuSolucio[r][c];
 		if (back == n) next++;
 
+		
 		matriuSolucio[r][c] = n;
 
 		for (int i = -1; i < 2; i++) {
@@ -95,7 +95,8 @@ public class Algorismes {
 
 	public int[][] getMatriuSolucio(){
 		if (!solucionat) {
-			this.solucionar();
+			if (solucionar()) return matriuSolucio;
+			else return null;
 		}
 		return matriuSolucio;
 	}

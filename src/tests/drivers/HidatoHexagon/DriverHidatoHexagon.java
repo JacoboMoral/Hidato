@@ -19,7 +19,7 @@ public class DriverHidatoHexagon {
 	};
 	
     public static void main(String[] args) throws Exception{
-		System.out.println("Aquest es el driver de de HidatoTriangle, indica quina funcio vols provar");
+		System.out.println("Aquest es el driver de de HidatoHexagon, indica quina funcio vols provar");
 		llistaTests();
 		int req = 0;
 		while (req != -1) {
