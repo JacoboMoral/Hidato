@@ -14,7 +14,7 @@ import main.domain.com.hidato.TipusAdjacencia;
 //a la classe algorismes, i canviant aquesta per un stub d'algorismes, per
 //poder provar la classe sense dependències
 public class DriverHidato {
-	private static int numeroTests = 12;
+	private static int numeroTests = 13;
 	private static int[][] matriu = new int[][] {
 		{1,-1,-1},
 		{0,11,-1},
