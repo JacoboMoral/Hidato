@@ -1,0 +1,1341 @@
+Prova1
+-Descripcio: Provarem driverAutogenerar(), perque ens doni un hidato autogenerat
+amb unes condicions donats pel l'usuari.
+
+-Objectiu: crear un hidato autogenerat a partir de les condicions donats pel usuari.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+1
+1
+3 4 4
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+1
+Has escollit provar el metode autogenerar
+
+Per aixo haurem de crear un hidato sense matriu. Ens donara igual el tipus de casella, ja que no ho necessitarem
+
+Digues el tipus d'adjacencia:
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+1
+
+Ja s'ha creat l'hidato escollit buit (sense matriu), per crear-ne d'una, digues les caracteristiques de l'hidato
+
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+3 4 4
+Autogenerat amb exit
+L'hidato generat es el seguent (tingues en compte que prove d'un stub)
+
+ 1  **  **
+
+ 2  11  **
+
+ 3  __  __
+
+ 4  **   8
+
+ 5   6  __
+
+
+Driver autogenerar finalitzat
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova2
+-Descripcio: Provarem driverAutogenerar(), quan l'usuari introdueix un tipus d'adjacencia
+incorrecte, ja sigui introduint caracters estranys, valors de mes o sense esciure res,
+el sistema estara sempre preguntant per la mateixa cosa fins que l'usuari introdueix
+de forma correcte (1 = Costats; 2 = Costats i angles (nomes quadrat)).
+
+-Objectiu: no permetre al usuari crear hidatos que tinguin un tipus d'adjacencia no permes
+i evitar de que el programa deixi de funcionar
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+1
+23121321
+hfasdf$%^&*(
+
+5
+6
+1
+3 3 2
+
+-Output:Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+1
+Has escollit provar el metode autogenerar
+
+Per aixo haurem de crear un hidato sense matriu. Ens donara igual el tipus de casella, ja que no ho necessitarem
+
+Digues el tipus d'adjacencia:
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+23121321
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+hfasdf$%^&*(
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+5
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+6
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+1
+
+Ja s'ha creat l'hidato escollit buit (sense matriu), per crear-ne d'una, digues les caracteristiques de l'hidato
+
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+3 3 2
+Autogenerat amb exit
+L'hidato generat es el seguent (tingues en compte que prove d'un stub)
+
+ 1  **  **
+
+ 2  11  **
+
+ 3  __  __
+
+ 4  **   8
+
+ 5   6  __
+
+
+Driver autogenerar finalitzat
+
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova3
+-Descripcio: Provarem driverAutogenerar(), quan l'usuari introdueix un numero de forats
+mes de la meitat que el total de les caselles, el sistema continua preguntant al usuari
+fins que introdueixi un numero esperat.
+
+-Objectiu: evitar que l'usuari creii un hidato amb numeros de forats mes gran que la meitat
+de caselles en total i evitar de que el programa deixi de funcionar.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+1
+1
+3 4 14
+3 4 12
+3 4 5
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+1
+Has escollit provar el metode autogenerar
+
+Per aixo haurem de crear un hidato sense matriu. Ens donara igual el tipus de casella, ja que no ho necessitarem
+
+Digues el tipus d'adjacencia:
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+1
+
+Ja s'ha creat l'hidato escollit buit (sense matriu), per crear-ne d'una, digues les caracteristiques de l'hidato
+
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+3 4 14
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+3 4 12
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+3 4 5
+Autogenerat amb exit
+L'hidato generat es el seguent (tingues en compte que prove d'un stub)
+
+ 1  **  **
+
+ 2  11  **
+
+ 3  __  __
+
+ 4  **   8
+
+ 5   6  __
+
+
+Driver autogenerar finalitzat
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova4
+-Descripcio: Provarem driverAutogenerar(), quan l'usuari introdueix la condicio sense seguint
+el format [i j f] (i = altura (minim 2); j = amplada (minim 2), ja sigui faltant valors,
+introduint caracters estranys, valors de mes o sense esciure res, el sistema estara sempre preguntant
+per la mateixa cosa fins que l'usuari introdueix de forma correcte.
+
+-Objectiu: no permetre crear un hidato si no introdueix de forma correcte el format de les condicions
+i evitar de que el programa deixi de funcionar.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+1
+2
+1
+1 2
+1 1
+0 *
+@#$%^&*()
+jdhsfnl;kadf
+
+3 4 2
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+1
+Has escollit provar el metode autogenerar
+
+Per aixo haurem de crear un hidato sense matriu. Ens donara igual el tipus de casella, ja que no ho necessitarem
+
+Digues el tipus d'adjacencia:
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+2
+
+Ja s'ha creat l'hidato escollit buit (sense matriu), per crear-ne d'una, digues les caracteristiques de l'hidato
+
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+1
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+1 2
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+1 1
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+0 *
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+@#$%^&*()
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+jdhsfnl;kadf
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+
+Posa-ho de la seguent manera: [i j f] (i = altura (minim 2); j = amplada (minim 2), f = nombre de forats(no pot ser mes gran o igual que la meitat de caselles))
+
+3 4 2
+Autogenerat amb exit
+L'hidato generat es el seguent (tingues en compte que prove d'un stub)
+
+ 1  **  **
+
+ 2  11  **
+
+ 3  __  __
+
+ 4  **   8
+
+ 5   6  __
+
+
+Driver autogenerar finalitzat
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova5
+-Descripcio: Provarem driverAutogenerarAmbDificultat(), perque ens doni un hidato autogenerat
+amb un dificultat donat pel l'usuari.
+
+-Objectiu: crear un hidato autogenerat a partir del dificultat establert pel usuari.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+2
+1
+2
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+2
+Has escollit provar el metode autogenerarAmbDificultat
+
+Per aixo haurem de crear un hidato sense matriu. Ens donara igual el tipus de casella, ja que no ho necessitarem
+
+Digues el tipus d'adjacencia:
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+1
+
+Ja s'ha creat l'hidato escollit buit (sense matriu), per crear-ne d'una, digues la dificultat
+
+[1 = FACIL; 2 = MIG, 3 = DIFICIL]
+
+2
+Autogenerat amb exit
+L'hidato generat es el seguent (tingues en compte que prove d'un stub)
+
+ 1  **  **
+
+ 2  11  **
+
+ 3  __  __
+
+ 4  **   8
+
+ 5   6  __
+
+
+Driver autogenerar finalitzat
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova6
+-Descripcio: Provem driverAutogenerarAmbDificultat(), quan l'usuari introdueix un tipus d'adjacencia
+incorrecte, ja sigui introduint caracters estranys, valors de mes o sense esciure res,
+el sistema estara sempre preguntant per la mateixa cosa fins que l'usuari introdueix
+de forma correcte (1 = Costats; 2 = Costats i angles (nomes quadrat)).
+
+-Objectiu: no permetre al usuari crear hidatos que tinguin un tipus d'adjacencia no permes
+i evitar de que el programa deixi de funcionar.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+2
+Has escollit provar el metode autogenerarAmbDificultat
+
+Per aixo haurem de crear un hidato sense matriu. Ens donara igual el tipus de casella, ja que no ho necessitarem
+
+Digues el tipus d'adjacencia:
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+4
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+23
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+DKSLFJLK
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+$#^*%*
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+1
+
+Ja s'ha creat l'hidato escollit buit (sense matriu), per crear-ne d'una, digues la dificultat
+
+[1 = FACIL; 2 = MIG, 3 = DIFICIL]
+
+2
+Autogenerat amb exit
+L'hidato generat es el seguent (tingues en compte que prove d'un stub)
+
+ 1  **  **
+
+ 2  11  **
+
+ 3  __  __
+
+ 4  **   8
+
+ 5   6  __
+
+
+Driver autogenerar finalitzat
+
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova7
+-Descripcio: Provem driverAutogenerarAmbDificultat(), quan l'usauri introdueix ja sigui introduint
+caracters estranys, valors de mes o sense esciure res,
+el sistema estara sempre preguntant per la mateixa cosa fins que l'usuari introdueix
+de forma correcte [1 = FACIL; 2 = MIG, 3 = DIFICIL].
+
+-Objectiu: no permetre l'usuari crear un hidato que no tingui dificultat amb valors
+no iguals al 1, 2 o 3 i evitar de que el program deixi de funcionar.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+2
+1
+21321312
+&^^&*((*^^
+sadasdasdas
+
+2
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+2
+Has escollit provar el metode autogenerarAmbDificultat
+
+Per aixo haurem de crear un hidato sense matriu. Ens donara igual el tipus de casella, ja que no ho necessitarem
+
+Digues el tipus d'adjacencia:
+[1 = Costats; 2 = Costats i angles (nomes quadrat)]
+1
+
+Ja s'ha creat l'hidato escollit buit (sense matriu), per crear-ne d'una, digues la dificultat
+
+[1 = FACIL; 2 = MIG, 3 = DIFICIL]
+
+21321312
+[1 = FACIL; 2 = MIG, 3 = DIFICIL]
+
+&^^&*((*^^
+[1 = FACIL; 2 = MIG, 3 = DIFICIL]
+
+sadasdasdas
+[1 = FACIL; 2 = MIG, 3 = DIFICIL]
+
+
+[1 = FACIL; 2 = MIG, 3 = DIFICIL]
+
+2
+Autogenerat amb exit
+L'hidato generat es el seguent (tingues en compte que prove d'un stub)
+
+ 1  **  **
+
+ 2  11  **
+
+ 3  __  __
+
+ 4  **   8
+
+ 5   6  __
+
+
+Driver autogenerar finalitzat
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova8
+-Descripcio: Provarem driverMoviment(), quan l'usuari introdueix un numero correcte en una
+coordenada determinada, llavors el sistema ens deixa fer el moviment.
+
+-Objectiu: deixar posar un numero a un lloc quan es detecte al seu costat (depen de TipusAdjacencia
+el costat te un significat o un altre) un numero vei seu.
+
+-Altres elements integrats: class Hidato, enum TipusAdjacencia
+
+-Stubs contribuits i integrars: HidatoStub.java
+
+-Input:
+3
+1
+0
+2
+no
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+3
+Has escollit provar el metode moviment
+
+S'ha hagut de crear una instancia d'hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+S'ha cridat el metode teSolucio, que es precondicio d'aquest metode
+Escriu la coordenada y (numero de fila) on vols fer el moviment (0..length-1)
+1
+Escriu la coordenada x (numero de columna) on vols fer el moviment (0..length-1)
+0
+Escriu el valor que vols introduir
+2
+El moviment que has fet es correcte?: true
+La matriu queda aixi:
+
+ 1  **  **
+
+ 2  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+ Vols ver un altre moviment? yes/no
+no
+
+Driver moviment finalitzat
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova9
+-Descripcio: Provarem driverMoviment(), quan l'usuari introdueix ja sigui introduint
+caracters estranys, valors de mes o sense esciure res,
+el sistema estara sempre preguntant per la mateixa cosa fins que l'usuari introdueix
+de forma correcte, que seria un numero entre 0 i length-1 i que sigui una coordenada
+on l'usuari pot posar numeros. A mes a mes, si l'usuari despres d'introduir correctament
+les coordenades i posa un numero que no es correcte, el programa no el deixa posar el
+numero en el lloc.
+
+-Objectiu: evitar que l'usuari posi unes coordenades malaments i en el cas de que posi be
+les coordenandes no el deixa posar un numero que no estigui correcte.
+
+-Altres elements integrats: class Hidato, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+3
+asdasdasd
+2q3213123
+$%^&*()
+
+1
+sadsadasd
+213213213123
+#$%^&*
+0
+5
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+3
+Has escollit provar el metode moviment
+
+S'ha hagut de crear una instancia d'hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+S'ha cridat el metode teSolucio, que es precondicio d'aquest metode
+Escriu la coordenada y (numero de fila) on vols fer el moviment (0..length-1)
+asdasdasd
+Escriu la coordenada y (numero de fila) on vols fer el moviment (0..length-1)
+2q3213123
+Escriu la coordenada y (numero de fila) on vols fer el moviment (0..length-1)
+$%^&*()
+Escriu la coordenada y (numero de fila) on vols fer el moviment (0..length-1)
+
+Escriu la coordenada y (numero de fila) on vols fer el moviment (0..length-1)
+1
+Escriu la coordenada x (numero de columna) on vols fer el moviment (0..length-1)
+sadsadasd
+Escriu la coordenada x (numero de columna) on vols fer el moviment (0..length-1)
+213213213123
+Escriu la coordenada x (numero de columna) on vols fer el moviment (0..length-1)
+#$%^&*
+Escriu la coordenada x (numero de columna) on vols fer el moviment (0..length-1)
+0
+Escriu el valor que vols introduir
+5
+El moviment que has fet es correcte?: false
+La matriu queda aixi:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+ Vols ver un altre moviment? yes/no
+no
+Driver moviment finalitzat
+
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova10
+-Descripcio: Provarem driverGetNombresPerDefecte(), perque ens doni els nombres per
+defecte correctes.
+
+-Objectiu: obtenir els nombres per defecte correctes.
+
+-Altres elements integrats: class Hidato, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+
+-Output:
+4
+Has escollit provar el metode GetNombresPerDefecte
+
+Per aixo creem un hidato de tipus quadrat amb adjacencia per costats amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+S'ha cridat el metode teSolucio, que es precondicio d'aquest metode
+S'espera obtenir el seguent vector:
+[1, 5, 8, 11]
+
+Vector obtingut:
+[1, 5, 8, 11]
+Comprovacio de igualtat dels dos: true
+
+Driver GetNombresPerDefecte executat correctament!
+
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova11
+-Descripcio: Provarem driverGetNombreFiles(), perque ens donara els nombres
+de files correctes que te l'hidato.
+
+-Objectiu: obtenir el nombre correcte de files del hidato.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contribuits i integrars: HidatoStub.java
+
+-Input:
+5
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+5
+Has escollit provar el metode getNombreFiles
+
+S'ha hagut de crear una instancia d'hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+S'espera que el numero de files sigui: 5
+El numero de files al fer GetnombreFiles es: 5
+
+Driver GetNombreFiles executat correctament!
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova12
+-Descripcio: Provarem driverGetNombreColumnes(), perque ens donara els nombres
+de columnes correctes que te l'hidato.
+
+-Objectiu: obtenir el nombre correcte de comlunes del hidato.
+
+-Altres elements integrats: class Hidato, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+6
+
+-Output:
+6
+Has escollit provar el metode getNombreColumnes
+
+S'ha hagut de crear una instancia d'hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+S'espera que el numero de columnes sigui: 3
+El numero de columnes al fer Columnes es: 3
+
+Driver getNombreColumnes executat correctament!
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova13
+-Descripcio: Provarem driverGetMatriu(), perque ens retorni una matriu identica que
+l'hidato.
+
+-Objectiu: obtenir una matriu identica que l'hidato.
+
+-Altres elements integrats: class Hidato, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+7
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+7
+Has escollit provar el metode GetMatriu
+
+S'ha hagut de crear una instancia d'hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+La matriu esperada es:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+La matriu obtinguda es:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+Comprovacio de igualtat: true
+
+Driver GetMatriu executat correctament!
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova14
+-Descripcio: Provarem driverGetMatriuOriginal(), perque ens retorni una matiu que la matriu
+original (hidato original)
+
+-Objectiu: obenir una mariu original (hidato original).
+
+-Altres elements integrats: class Hidato, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+8
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+8
+Has escollit provar el metode GetMatriuOriginal
+
+S'ha hagut de crear una instancia d'hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+La matriu esperada es:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+La matriu obtinguda es:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+Comprovacio de igualtat: true
+
+Driver GetMatriuOriginal executat correctament!
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova15
+-Descripcio: Provarem driverResetMatriu(), perque ens torni a deixa el hidato
+tal com esta al pas anterior.
+
+-Objectiu: desfer el moviment en el hidato, i deixa com estava al pas anterior.
+
+-Altres elements integrats: class Hidato, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+9
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+9
+Has escollit provar el metode ResetMatriu
+
+S'ha hagut de crear una instancia d'hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+S'ha hagut de cridar el metode teSolucio, que es precondicio d'aquest
+Per fer reset previament s'ha d'haver fet un moviment
+Cridem a la funcio fer moviment(1,0,2) on y = 1 x = 0 i colï¿½loquem el nombre 2
+Per saber com queda la matriu cridem a la funcio get matriu i en retorna la matriu:
+
+ 1  **  **
+
+ 2  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+Ara fem reset
+Un cop fem reset la matriu ens queda aixï¿?:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+I ha de ser igual que la matriu amb que hem inicialitzat l'hidato:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+Comprovacio de igualtat: true
+
+Driver hidato executat correctament!
+
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova16
+-Descripcio: Provarem driverGetSolucio(), perque ens retorni una solucio del hidato.
+
+-Objectiu: obetnir una solucio correcte del hidato.
+
+-Altres elements integrats: class Hidato, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+10
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+10
+Has escollit provar el metode getSolucio
+
+S'ha hagut de crear una instancia d'hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+La matriu obtinguda es:
+
+ 1  **  **
+
+ 2  11  **
+
+ 3  10   9
+
+ 4  **   8
+
+ 5   6   7
+
+Driver GetMatriuOriginal executat
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova17
+-Descripcio: Provarem driverTeSolucio(), perque ens digui si un hidato te solucio o no.
+
+-Objectiu: verificar que si un hidato es soluble o no.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+11
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+11
+Has escollit provar el metode getSolucio
+
+S'ha hagut de crear una instancia d'hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+El hidato es solucionable?: true
+Driver GetMatriuOriginal executat
+
+-Resultat de la prova: ok
+
+--------------------------------------------------------------------------------------------
+
+Prova18
+-Descripcio: Provarem driverGetTipusAdjacencia(), perque ens retorni el TipusAdjacencia
+que es l'hidato.
+
+-Objectiu: obtenir el TipusAdjacencia correcte del hidato.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+12
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+12
+Has escollit provar el metode getTipusAdjacencia
+
+S'ha hagut de crear una instancia d'hidato amb tipusAdjacencia COSTATS
+
+El tipus d'Adjacencia es: COSTATS
+
+S'ha hagut de crear una instancia d'hidato amb tipusAdjacencia COSTATSIANGLES
+
+El tipus d'Adjacencia es: COSTATSIANGLES
+
+Driver getTipusAdjacencia executat correctament
+
+
+-Resultat de la prova: ok
+
+
+--------------------------------------------------------------------------------------------
+
+Prova19
+-Descripcio: Provarem driverGetDificultat(), que ens retorni la dificultat del hidato.
+
+-Objectiu: obtenir la dificultat correcte del hidato.
+
+-Altres elements integrats: class Hidato, enum Dificultat, enum TipusAdjacencia
+
+-Stubs contribuits i integrars:  HidatoStub.java
+
+-Input:
+13
+
+-Output:
+Aquest es el driver de hidato, indica quina funcio vols provar
+
+exit: Sortir del driver
+1: Autogenerar
+2: Autogenerar amb dificultat
+3: Moviment
+4: GetNombresPerDefecte
+5: getNombreFiles
+6: getNombreColumnes
+7: getMatriu
+8: getMatriuOriginal
+9: resetMatriu
+10: getSolucio
+11: teSolucio
+12: getTipusAdjacencia
+13: getDificultat
+13
+Has escollit provar el metode getDificultat
+
+S'ha hagut de crear una instancia d'hidato amb la seguent matriu:
+
+ 1  **  **
+
+__  11  **
+
+__  __  __
+
+__  **   8
+
+ 5  __  __
+
+
+La dificultat esperada d'aquesta Matriu es: FACIL
+La didficultat d'aquesta matriu es: FACIL
+
+Driver GetDificultat executat correctament!
+
+-Resultat de la prova: ok
