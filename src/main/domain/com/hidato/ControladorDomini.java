@@ -107,6 +107,14 @@ public class ControladorDomini {
 	public boolean enPartida() {
 		return (partidaEnCurs != null);
 	}
+        
+        public int[] demanarPista() {
+            return partidaEnCurs.seguentMoviment();
+        }
+        
+        public boolean esPotSolucionar(){
+            return partidaEnCurs.esSolucionable();
+        }
 	
 	private TipusCella getRandomTipusCella() {
 		Random random = new Random();

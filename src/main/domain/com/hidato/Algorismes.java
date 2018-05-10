@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Vector;
 
-
 public class Algorismes {
 
 	private int[][] matriuSolucio;
@@ -12,7 +11,7 @@ public class Algorismes {
 	private Hidato hidato;
 	private Vector<Integer> given = new Vector<Integer>();
 	private Random randomSeed;
-	
+
 
 	public Algorismes(Hidato hidato) {
 		this.matriuSolucio = hidato.getMatriu();
@@ -69,7 +68,7 @@ public class Algorismes {
 		int back = matriuSolucio[r][c];
 		if (back == n) next++;
 
-		
+
 		matriuSolucio[r][c] = n;
 
 		for (int i = -1; i < 2; i++) {
@@ -100,7 +99,7 @@ public class Algorismes {
 		}
 		return matriuSolucio;
 	}
-	
+
 	//es igual que encara no s'hagi solucionat --> per tests
 	public int[][] getMatriuSolucioForce(){
 		return this.matriuSolucio;
@@ -129,7 +128,7 @@ public class Algorismes {
 
 		matriu[r][c] = n;
 		escrits.add(n);
-		
+
 		if (seed == 0) {
 			for (int i = -1; i < 2; i++) {
 				for (int j = -1; j < 2; j++) {
@@ -209,7 +208,7 @@ public class Algorismes {
 		int tamanyj = tamanys[1];
 		int forats = tamanys[2];
 		int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
-		
+
 		for (int i = 0; i < 10; ++i) { //10 intents per generar un hidato, cadascun amb un forat mes (mes facil cada cop)
 			generat = generarMatriuCompleta(forats+i, matriu);
 			if (generat) {
@@ -219,11 +218,11 @@ public class Algorismes {
 				extreureNombres(forats, matriu);
 				emplenarGiven(matriu);
 				return matriu;
-			} 
-		}		
+			}
+		}
 		return null;
 	}
-	
+
 	private int[] getTamanySegonsDificultat(Dificultat dificultat) {
 		Random rand = new Random();
 		int[] tamanys = new int[3];
@@ -282,7 +281,7 @@ public class Algorismes {
 
 		ArrayList<Integer> escrits;
 		randomSeed = new Random();
-		
+
 		for (int i = 0; i < tamanyi; ++i) {
 			for (int j = 0; j < tamanyj; ++j) {
 				escrits = new ArrayList<>();
@@ -291,7 +290,7 @@ public class Algorismes {
 		}
 		return false;
 	}
-	
+
 	private void emplenarForats(int[][] matriu) {
 		for (int i = 0; i < matriu.length; ++i) {
 			for (int j = 0; j < matriu[0].length; ++j) {
