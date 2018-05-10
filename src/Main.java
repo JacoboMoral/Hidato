@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.presentation;
+
+
+import Vista.Inici;
 
 public class Main {
     public static void main(String args[]) {
