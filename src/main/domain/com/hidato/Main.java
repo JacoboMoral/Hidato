@@ -1,6 +1,6 @@
 package main.domain.com.hidato;
 
-import Vista.Inici;
+import Presentacio.Inici;
 
 
 

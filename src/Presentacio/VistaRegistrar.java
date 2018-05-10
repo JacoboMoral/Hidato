@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package Presentacio;
 import Usuari.CtrlUsr;
 import javax.swing.JOptionPane;
 /**
@@ -37,6 +37,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
         okRegistrar = new javax.swing.JButton();
         TextField_password = new javax.swing.JPasswordField();
         TextField_rpassword = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,7 +57,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
         jLabel3.setText("Repeat password:");
 
         okRegistrar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        okRegistrar.setText("Ok");
+        okRegistrar.setText("Create");
         okRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 okRegistrarMouseClicked(evt);
@@ -73,6 +74,10 @@ public class VistaRegistrar extends javax.swing.JFrame {
                 TextField_passwordActionPerformed(evt);
             }
         });
+
+        jLabel4.setFont(new java.awt.Font("STCaiyun", 0, 50)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Register");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,14 +101,19 @@ public class VistaRegistrar extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(TextField_rpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(270, 270, 270)
-                        .addComponent(okRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(okRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(212, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(182, 182, 182)
+                .addGap(65, 65, 65)
+                .addComponent(jLabel4)
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(TextField_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -204,6 +214,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton okRegistrar;
     // End of variables declaration//GEN-END:variables
 }
