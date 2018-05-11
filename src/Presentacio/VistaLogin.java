@@ -33,13 +33,14 @@ public class VistaLogin extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        TextField_username = new javax.swing.JTextField();
+        tf_username = new javax.swing.JTextField();
         b_Register = new javax.swing.JButton();
         b_Login = new javax.swing.JButton();
-        TextField_password = new javax.swing.JPasswordField();
+        tf_password = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hidato - Login");
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setText("Username:");
@@ -47,10 +48,10 @@ public class VistaLogin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("Password:");
 
-        TextField_username.setToolTipText("");
-        TextField_username.addActionListener(new java.awt.event.ActionListener() {
+        tf_username.setToolTipText("");
+        tf_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_usernameActionPerformed(evt);
+                tf_usernameActionPerformed(evt);
             }
         });
 
@@ -70,9 +71,9 @@ public class VistaLogin extends javax.swing.JFrame {
             }
         });
 
-        TextField_password.addActionListener(new java.awt.event.ActionListener() {
+        tf_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_passwordActionPerformed(evt);
+                tf_passwordActionPerformed(evt);
             }
         });
 
@@ -93,8 +94,8 @@ public class VistaLogin extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextField_username, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextField_password, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(b_Login, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(b_Register, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(192, 192, 192))
@@ -111,11 +112,11 @@ public class VistaLogin extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(TextField_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TextField_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addComponent(b_Login)
                 .addGap(18, 18, 18)
@@ -123,7 +124,7 @@ public class VistaLogin extends javax.swing.JFrame {
                 .addContainerGap(114, Short.MAX_VALUE))
         );
 
-        TextField_username.getAccessibleContext().setAccessibleName("");
+        tf_username.getAccessibleContext().setAccessibleName("");
 
         setSize(new java.awt.Dimension(644, 486));
         setLocationRelativeTo(null);
@@ -137,8 +138,8 @@ public class VistaLogin extends javax.swing.JFrame {
 
     private void b_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_LoginMouseClicked
         String name, password, rPassword;
-        name = TextField_username.getText();
-        password = TextField_password.getText();
+        name = tf_username.getText();
+        password = tf_password.getText();
         if (name.isEmpty()) JOptionPane.showMessageDialog(null, "Enter your name please!");
         else if (password.length() == 0) JOptionPane.showMessageDialog(null, "Enter your password please!");
         else {
@@ -153,19 +154,19 @@ public class VistaLogin extends javax.swing.JFrame {
                 int input = JOptionPane.showOptionDialog(null, "Name and Password doesn't match, please enter again.", "Error message", 
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                 if (input == JOptionPane.OK_OPTION) {
-                    TextField_password.setText("");   
+                    tf_password.setText("");   
                 }
             }
         }
     }//GEN-LAST:event_b_LoginMouseClicked
 
-    private void TextField_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_usernameActionPerformed
+    private void tf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_usernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_usernameActionPerformed
+    }//GEN-LAST:event_tf_usernameActionPerformed
 
-    private void TextField_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_passwordActionPerformed
+    private void tf_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_passwordActionPerformed
+    }//GEN-LAST:event_tf_passwordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,12 +204,12 @@ public class VistaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField TextField_password;
-    private javax.swing.JTextField TextField_username;
     private javax.swing.JButton b_Login;
     private javax.swing.JButton b_Register;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField tf_password;
+    private javax.swing.JTextField tf_username;
     // End of variables declaration//GEN-END:variables
 }

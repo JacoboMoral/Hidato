@@ -31,22 +31,23 @@ public class VistaRegistrar extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        TextField_username = new javax.swing.JTextField();
+        tf_username = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         okRegistrar = new javax.swing.JButton();
-        TextField_password = new javax.swing.JPasswordField();
-        TextField_rpassword = new javax.swing.JPasswordField();
+        tf_password = new javax.swing.JPasswordField();
+        tf_rpassword = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hidato - Register");
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setText("Username:");
 
-        TextField_username.addActionListener(new java.awt.event.ActionListener() {
+        tf_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_usernameActionPerformed(evt);
+                tf_usernameActionPerformed(evt);
             }
         });
 
@@ -69,9 +70,9 @@ public class VistaRegistrar extends javax.swing.JFrame {
             }
         });
 
-        TextField_password.addActionListener(new java.awt.event.ActionListener() {
+        tf_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField_passwordActionPerformed(evt);
+                tf_passwordActionPerformed(evt);
             }
         });
 
@@ -94,12 +95,12 @@ public class VistaRegistrar extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TextField_password)
-                                    .addComponent(TextField_username)))
+                                    .addComponent(tf_password)
+                                    .addComponent(tf_username)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(TextField_rpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(tf_rpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(206, 206, 206)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -116,15 +117,15 @@ public class VistaRegistrar extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(TextField_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TextField_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(TextField_rpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_rpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(okRegistrar)
                 .addContainerGap(133, Short.MAX_VALUE))
@@ -134,15 +135,15 @@ public class VistaRegistrar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextField_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_usernameActionPerformed
+    private void tf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_usernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_usernameActionPerformed
+    }//GEN-LAST:event_tf_usernameActionPerformed
 
     private void okRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okRegistrarMouseClicked
         String name, password, rPassword;
-        name = TextField_username.getText();
-        password = TextField_password.getText();
-        rPassword = TextField_rpassword.getText();
+        name = tf_username.getText();
+        password = tf_password.getText();
+        rPassword = tf_rpassword.getText();
         if (name.isEmpty()) JOptionPane.showMessageDialog(null, "Enter your name please!");
         if (password.length() == 0) JOptionPane.showMessageDialog(null, "Enter your password please!");
         if (rPassword.length() == 0) JOptionPane.showMessageDialog(null, "Enter again your password please!");
@@ -157,7 +158,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
             if (input == JOptionPane.OK_OPTION) {
-                TextField_rpassword.setText("");   
+                tf_rpassword.setText("");   
             }
             
         }
@@ -168,9 +169,9 @@ public class VistaRegistrar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_okRegistrarActionPerformed
 
-    private void TextField_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_passwordActionPerformed
+    private void tf_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextField_passwordActionPerformed
+    }//GEN-LAST:event_tf_passwordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,13 +209,13 @@ public class VistaRegistrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField TextField_password;
-    private javax.swing.JPasswordField TextField_rpassword;
-    private javax.swing.JTextField TextField_username;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton okRegistrar;
+    private javax.swing.JPasswordField tf_password;
+    private javax.swing.JPasswordField tf_rpassword;
+    private javax.swing.JTextField tf_username;
     // End of variables declaration//GEN-END:variables
 }

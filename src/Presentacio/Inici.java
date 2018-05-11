@@ -32,6 +32,7 @@ public class Inici extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hidato");
 
         b_exit.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         b_exit.setText("EXIT");
