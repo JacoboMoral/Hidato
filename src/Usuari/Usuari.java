@@ -5,6 +5,7 @@ package Usuari;
  * @author admin
  */
 public class Usuari {
+
     String username;
     String password;
 
@@ -13,20 +14,19 @@ public class Usuari {
         password = new String(p);
     }
 
-    public String getUsr(){
+    public String getUsr() {
         return username;
     }
 
-    public String getPass(){
-            return password;
+    public String getPass() {
+        return password;
     }
 
-    public void setUsr(String usr){
-            this.username = usr;
+    public void setUsr(String usr) {
+        this.username = usr;
     }
 
-    public void setPass(String pwd){
-            this.password = pwd;
+    public void setPass(String pwd) {
+        this.password = pwd;
     }
 }
-

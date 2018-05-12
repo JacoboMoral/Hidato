@@ -4,14 +4,18 @@
  * and open the template in the editor.
  */
 package Presentacio;
+
 import Usuari.CtrlUsr;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author admin
  */
 public class VistaRegistrar extends javax.swing.JFrame {
+
     CtrlVista vista;
+
     /**
      * Creates new form VistaRegistrar
      */
@@ -20,7 +24,6 @@ public class VistaRegistrar extends javax.swing.JFrame {
         vista = new CtrlVista();
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -144,23 +147,28 @@ public class VistaRegistrar extends javax.swing.JFrame {
         name = tf_username.getText();
         password = tf_password.getText();
         rPassword = tf_rpassword.getText();
-        if (name.isEmpty()) JOptionPane.showMessageDialog(null, "Enter your name please!");
-        if (password.length() == 0) JOptionPane.showMessageDialog(null, "Enter your password please!");
-        if (rPassword.length() == 0) JOptionPane.showMessageDialog(null, "Enter again your password please!");
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter your name please!");
+        }
+        if (password.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Enter your password please!");
+        }
+        if (rPassword.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Enter again your password please!");
+        }
         if (password.equals(rPassword) && !password.isEmpty() && !rPassword.isEmpty()) {
             vista.afegirUsr(name, password);
             VistaLogin v = new VistaLogin();
             v.setVisible(true);
             this.dispose();
-        }
-        else {
-            int input = JOptionPane.showOptionDialog(null, "The passwords not match! Correct it.", "Error message", 
+        } else {
+            int input = JOptionPane.showOptionDialog(null, "The passwords not match! Correct it.", "Error message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
             if (input == JOptionPane.OK_OPTION) {
-                tf_rpassword.setText("");   
+                tf_rpassword.setText("");
             }
-            
+
         }
         //System.out.printf(name);
     }//GEN-LAST:event_okRegistrarMouseClicked

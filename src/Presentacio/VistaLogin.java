@@ -13,7 +13,9 @@ import javax.swing.JOptionPane;
  * @author admin
  */
 public class VistaLogin extends javax.swing.JFrame {
+
     CtrlVista vista;
+
     /**
      * Creates new form VistaLogin
      */
@@ -140,21 +142,22 @@ public class VistaLogin extends javax.swing.JFrame {
         String name, password, rPassword;
         name = tf_username.getText();
         password = tf_password.getText();
-        if (name.isEmpty()) JOptionPane.showMessageDialog(null, "Enter your name please!");
-        else if (password.length() == 0) JOptionPane.showMessageDialog(null, "Enter your password please!");
-        else {
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter your name please!");
+        } else if (password.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Enter your password please!");
+        } else {
             boolean aux = vista.compUsr(name, password);
-            if (aux){
+            if (aux) {
                 JOptionPane.showMessageDialog(null, "Wellcome, " + name);
                 VistaMenuPrincipal v = new VistaMenuPrincipal();
                 v.setVisible(true);
                 this.dispose();
-            }
-            else {
-                int input = JOptionPane.showOptionDialog(null, "Name and Password doesn't match, please enter again.", "Error message", 
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+            } else {
+                int input = JOptionPane.showOptionDialog(null, "Name and Password doesn't match, please enter again.", "Error message",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                 if (input == JOptionPane.OK_OPTION) {
-                    tf_password.setText("");   
+                    tf_password.setText("");
                 }
             }
         }

@@ -6,35 +6,70 @@
 package Presentacio;
 
 import Usuari.CtrlUsr;
+import Ranking.CtrlRanking;
+import Ranking.Ranking;
+
 /**
  *
  * @author admin
  */
 public class CtrlVista {
-    private CtrlUsr cu;
 
-    public CtrlVista(){
+    private CtrlUsr cu;
+    private CtrlRanking cr;
+
+    public CtrlVista() {
         cu = new CtrlUsr();
+        cr = new CtrlRanking();
     }
 
     //Funcions Usuari
     public boolean afegirUsr(String usr, String pass) {
         return cu.afegirUsuari(usr, pass);
     }
-    
+
     public boolean compUsr(String u, String p) {
         return cu.logUsuari(u, p);
     }
-    
+
     public boolean modUsr(String usr1, String usr2) {
         return cu.modUsr(usr1, usr2);
     }
-    
+
     public boolean modPass(String pass1, String pass2) {
         return cu.modPass(pass1, pass2);
     }
-    
+
     public boolean esbUsr(String pass) {
         return cu.esbUsr(pass);
+    }
+
+    //Funcions Ranquing
+    public String[] getRankFacil() {
+        return cr.getRanking_easy();
+    }
+
+    public String[] getRankNormal() {
+        return cr.getRanking_inter();
+    }
+
+    public String[] getRankDificil() {
+        return cr.getRanking_hard();
+    }
+
+    public String[] getRankFacilUsr(String usr) {
+        return cr.getFacilUsr(usr);
+    }
+
+    public String[] getRankNormalUsr(String usr) {
+        return cr.getNormalUsr(usr);
+    }
+
+    public String[] getRankDificilUsr(String usr) {
+        return cr.getDificilUsr(usr);
+    }
+
+    public void saveResultat(int dificultat, String usr, int puntuacio) {
+        cr.saveScore(dificultat, puntuacio, usr);
     }
 }

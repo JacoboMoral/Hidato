@@ -5,17 +5,37 @@
  */
 package Presentacio;
 
+import Ranking.Ranking;
+import Ranking.Posicio;
+import java.time.LocalDate;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import java.util.Collections;
+import java.util.Comparator;
+
 /**
  *
  * @author admin
  */
 public class VistaRanking extends javax.swing.JFrame {
 
+    CtrlVista cv = new CtrlVista();
+
     /**
      * Creates new form VistaRanking
      */
     public VistaRanking() {
         initComponents();
+        cv.saveResultat(1, "Jia", 10);
+        cv.saveResultat(2, "Jia2", 10);
+        cv.saveResultat(3, "Jia3", 10);
+        cv.saveResultat(1, "Jia2", 12);
+        cv.saveResultat(2, "Jia3", 13);
+        cv.saveResultat(3, "Jia2", 15);
+        cv.saveResultat(1, "Jia3", 11);
+        cv.saveResultat(2, "Jia2", 12);
+        cv.saveResultat(3, "Jia3", 14);
+
     }
 
     /**
@@ -28,21 +48,22 @@ public class VistaRanking extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        b_back = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        b_back = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList<>();
+        mostrar_ranking = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 36)); // NOI18N
         jLabel1.setText("Ranking");
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
 
         b_back.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         b_back.setText("Back");
@@ -52,45 +73,137 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Easy");
+
+        jLabel3.setText("Intermmediate");
+
+        jLabel4.setText("Hard");
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList2);
+
+        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jList3);
+
+        mostrar_ranking.setText("Show ranking");
+        mostrar_ranking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mostrar_rankingMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(440, 440, 440)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(110, 110, 110)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(347, 347, 347)
-                        .addComponent(jLabel1))
+                        .addGap(54, 54, 54)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(233, 233, 233)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(267, Short.MAX_VALUE))
+                        .addGap(73, 73, 73)
+                        .addComponent(jLabel3)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(185, 185, 185))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(b_back)
-                .addGap(66, 66, 66))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(b_back)
+                        .addGap(69, 69, 69))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(mostrar_ranking)
+                        .addGap(374, 374, 374))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(57, 57, 57)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
+                .addComponent(mostrar_ranking)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(77, 77, 77)
                 .addComponent(b_back)
-                .addContainerGap())
+                .addGap(26, 26, 26))
         );
 
-        setSize(new java.awt.Dimension(870, 505));
+        setSize(new java.awt.Dimension(1065, 721));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private class RankListModel extends DefaultListModel<String> {
+
+        public RankListModel(String[] s) {
+            super();
+            for (int i = 0; i < s.length; ++i) {
+                this.addElement(s[i]);
+            }
+        }
+    }
 
     private void b_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_backMouseClicked
         VistaMenuPrincipal v = new VistaMenuPrincipal();
         v.setVisible(true);
         this.dispose();
+
     }//GEN-LAST:event_b_backMouseClicked
+
+    private void mostrar_rankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrar_rankingMouseClicked
+
+        RankListModel facil = new RankListModel(cv.getRankFacil());
+        RankListModel normal = new RankListModel(cv.getRankNormal());
+        RankListModel dificil = new RankListModel(cv.getRankDificil());
+
+        jList1.setModel(facil);
+        jList2.setModel(normal);
+        jList3.setModel(dificil);
+
+        repaint();
+    }//GEN-LAST:event_mostrar_rankingMouseClicked
 
     /**
      * @param args the command line arguments
@@ -123,14 +236,24 @@ public class VistaRanking extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VistaRanking().setVisible(true);
+
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_back;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
+    private javax.swing.JList<String> jList3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton mostrar_ranking;
     // End of variables declaration//GEN-END:variables
 }
