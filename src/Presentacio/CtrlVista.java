@@ -24,7 +24,7 @@ public class CtrlVista {
     }
 
     //Funcions Usuari
-    public boolean afegirUsr(String usr, String pass) {
+    public boolean registrarUsuari(String usr, String pass) {
         return cu.afegirUsuari(usr, pass);
     }
 
@@ -45,15 +45,15 @@ public class CtrlVista {
     }
 
     //Funcions Ranquing
-    public String[] getRankFacil() {
+    public String[] getRank_easy() {
         return cr.getRanking_easy();
     }
 
-    public String[] getRankNormal() {
+    public String[] getRank_inter() {
         return cr.getRanking_inter();
     }
 
-    public String[] getRankDificil() {
+    public String[] getRank_hard() {
         return cr.getRanking_hard();
     }
 
@@ -69,7 +69,15 @@ public class CtrlVista {
         return cr.getDificilUsr(usr);
     }
 
+    public void deleteUsr(String nom) {
+        cr.deleteUsr(nom);
+    }
+    
     public void saveResultat(int dificultat, String usr, int puntuacio) {
         cr.saveScore(dificultat, puntuacio, usr);
+    }
+
+    boolean existsUsr(String usr) {
+        return cr.existsUsuari(usr);
     }
 }

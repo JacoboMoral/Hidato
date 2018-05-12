@@ -30,7 +30,4 @@ public class Posicio {
         return Date;
     }
 
-    public void print() {
-        System.out.println("Nickname: " + this.nickname + " Puntuacio: " + this.puntuacio + " Data: " + this.Date);
-    }
 }

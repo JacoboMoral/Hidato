@@ -38,6 +38,7 @@ public class CtrlRanking {
 
         return s;
     }
+
     /*
     public ArrayList<Integer> getPos(String usr, int dif) {
         return r.getPos(usr, dif);
@@ -65,7 +66,7 @@ public class CtrlRanking {
 
         return s;
     }
-    */
+     */
 
     public String[] getRanking_easy() {
         ArrayList<Posicio> llista = r.getLlistaPosicio(1);
@@ -108,7 +109,7 @@ public class CtrlRanking {
         }
         return dif;
     }
-    
+
     public String[] getFacilUsr(String usr) {
         ArrayList<Posicio> facaux = r.getLlistaPosicio(1);
         String fac[] = new String[facaux.size()];
@@ -155,5 +156,16 @@ public class CtrlRanking {
             ++i;
         }
         return dif;
+    }
+
+    public void deleteUsr(String nom) {
+        r.deleteUsrRanking(nom);
+
+        GestorRanking gr = new GestorRanking();
+        gr.store(r);
+    }
+
+    public boolean existsUsuari(String nom) {
+        return r.exists(nom);
     }
 }

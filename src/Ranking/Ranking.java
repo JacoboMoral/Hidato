@@ -43,6 +43,26 @@ public class Ranking {
         }
     }
 
+    boolean exists(String nom) {
+        ListIterator<Posicio> it_easy = llistaPosicions_easy.listIterator();
+        ListIterator<Posicio> it_inter = llistaPosicions_inter.listIterator();
+        ListIterator<Posicio> it_hard = llistaPosicions_hard.listIterator();
+        boolean trobat = false;
+        while (it_easy.hasNext()) {
+            Posicio aux = it_easy.next();
+            if(aux.getNickname().equals(nom)) trobat = true;
+        }
+        while (it_inter.hasNext()) {
+            Posicio aux = it_inter.next();
+            if(aux.getNickname().equals(nom)) trobat = true;
+        }
+        while (it_hard.hasNext()) {
+            Posicio aux = it_hard.next();
+            if(aux.getNickname().equals(nom)) trobat = true;
+        }
+        return trobat;
+    }
+
     public static class CustomCompare implements Comparator<Posicio> {
 
         @Override
@@ -135,7 +155,6 @@ public class Ranking {
                     i++;
             }
     }*/
-
     public ArrayList<Posicio> filter_by_nickname(String nom, int dificultat) {
         int i = 0;
         ArrayList<Posicio> aux = new ArrayList<Posicio>();
@@ -255,10 +274,29 @@ public class Ranking {
         return ap;
     }
 
-    /*
-    public void print() {
-            for (int i = 0; i < llistaPosicions.size(); i++) {
-                    llistaPosicions.get(i).print();
+    public void deleteUsrRanking(String user) {
+        ListIterator<Posicio> it;
+
+        it = llistaPosicions_easy.listIterator();
+        while (it.hasNext()) {
+            if (it.next().getNickname().equals(user)) {
+                it.remove();
             }
-    }*/
+        }
+
+        it = llistaPosicions_inter.listIterator();
+        while (it.hasNext()) {
+            if (it.next().getNickname().equals(user)) {
+                it.remove();
+            }
+        }
+
+        it = llistaPosicions_hard.listIterator();
+        while (it.hasNext()) {
+            if (it.next().getNickname().equals(user)) {
+                it.remove();
+            }
+        }
+    }
+
 }

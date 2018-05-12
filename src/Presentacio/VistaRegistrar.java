@@ -157,7 +157,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter again your password please!");
         }
         if (password.equals(rPassword) && !password.isEmpty() && !rPassword.isEmpty()) {
-            vista.afegirUsr(name, password);
+            vista.registrarUsuari(name, password);
             VistaLogin v = new VistaLogin();
             v.setVisible(true);
             this.dispose();
