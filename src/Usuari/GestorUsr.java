@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Usuari;
 
 import java.io.BufferedReader;
@@ -16,23 +11,21 @@ import java.nio.file.Paths;
 
 public class GestorUsr {
 
-    /*Constructora*/
     public GestorUsr() {
 
     }
 
-    //Afegir Usuari
     public boolean afegirUsuari(Usuari u) {
         boolean x = false;
         try {
-            File aux = new File("Usuaris/" + u.getUsr());
+            File aux = new File("Usuaris/" + u.getUsername());
             if (!aux.exists()) {
                 aux.mkdirs();
-                File axu = new File("Usuaris/" + u.getUsr() + "/", "password.txt");
+                File axu = new File("Usuaris/" + u.getUsername() + "/", "password.txt");
                 axu.createNewFile();
-                FileWriter esc = new FileWriter("Usuaris/" + u.getUsr() + "/password.txt", true);
+                FileWriter esc = new FileWriter("Usuaris/" + u.getUsername() + "/password.txt", true);
                 BufferedWriter bw = new BufferedWriter(esc);
-                bw.write(u.getPass());
+                bw.write(u.getPassword());
                 bw.close();
                 esc.close();
                 x = true;
@@ -43,18 +36,17 @@ public class GestorUsr {
         return x;
     }
 
-    //Comprovar Usuari
     public boolean comprovarUsr(Usuari u) {
         boolean trobat = false;
         try {
-            File aux = new File("Usuaris/" + u.getUsr());
+            File aux = new File("Usuaris/" + u.getUsername());
             if (aux.exists()) {
-                FileReader fr = new FileReader("Usuaris/" + u.getUsr() + "/password.txt");
+                FileReader fr = new FileReader("Usuaris/" + u.getUsername() + "/password.txt");
                 BufferedReader bf = new BufferedReader(fr);
                 String cont = bf.readLine();
                 bf.close();
                 fr.close();
-                if (cont.equals(u.getPass())) {
+                if (cont.equals(u.getPassword())) {
                     trobat = true;
                 }
             }
@@ -75,7 +67,6 @@ public class GestorUsr {
         return trobat;
     }
 
-    //Modifica el nom d'un Usuari
     public boolean modUsr(String uact, String unou, String pass) {
         boolean trobat = false;
         File fitxer = new File("Usuaris/" + uact);
@@ -87,7 +78,6 @@ public class GestorUsr {
         return trobat;
     }
 
-    //Modificar contrasenya
     public boolean modPassword(String u, String pass) {
         boolean trobat = false;
         try {
@@ -101,7 +91,7 @@ public class GestorUsr {
                 trobat = true;
             }
         } catch (IOException ex) {
-            // S'ha de fer encara
+            
         }
         return trobat;
     }
@@ -115,4 +105,5 @@ public class GestorUsr {
         borr = true;
         return borr;
     }
+
 }

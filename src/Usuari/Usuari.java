@@ -14,19 +14,21 @@ public class Usuari {
         password = new String(p);
     }
 
-    public String getUsr() {
+    public String getUsername() {
         return username;
     }
 
-    public String getPass() {
+    public String getPassword() {
         return password;
     }
 
-    public void setUsr(String usr) {
+    public void setUsername(String usr) {
         this.username = usr;
     }
 
-    public void setPass(String pwd) {
+    public void setPassword(String pwd) {
         this.password = pwd;
     }
+    
+    
 }

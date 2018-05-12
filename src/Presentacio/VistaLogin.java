@@ -14,14 +14,13 @@ import javax.swing.JOptionPane;
  */
 public class VistaLogin extends javax.swing.JFrame {
 
-    CtrlVista vista;
+    CtrlVista vista = new CtrlVista();;
 
     /**
      * Creates new form VistaLogin
      */
     public VistaLogin() {
         initComponents();
-        vista = new CtrlVista();
     }
 
     /**
@@ -139,7 +138,7 @@ public class VistaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_b_RegisterMouseClicked
 
     private void b_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_LoginMouseClicked
-        String name, password, rPassword;
+        String name, password;
         name = tf_username.getText();
         password = tf_password.getText();
         if (name.isEmpty()) {
@@ -150,7 +149,8 @@ public class VistaLogin extends javax.swing.JFrame {
             boolean aux = vista.compUsr(name, password);
             if (aux) {
                 JOptionPane.showMessageDialog(null, "Wellcome, " + name);
-                VistaMenuPrincipal v = new VistaMenuPrincipal();
+                
+                VistaMenuPrincipal v = new VistaMenuPrincipal(vista);
                 v.setVisible(true);
                 this.dispose();
             } else {

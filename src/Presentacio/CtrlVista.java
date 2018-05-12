@@ -8,6 +8,7 @@ package Presentacio;
 import Usuari.CtrlUsr;
 import Ranking.CtrlRanking;
 import Ranking.Ranking;
+import Usuari.Usuari;
 
 /**
  *
@@ -23,7 +24,10 @@ public class CtrlVista {
         cr = new CtrlRanking();
     }
 
-    //Funcions Usuari
+    public Usuari getUsuari() {
+        return cu.getUser();
+    }
+    
     public boolean registrarUsuari(String usr, String pass) {
         return cu.afegirUsuari(usr, pass);
     }
@@ -43,8 +47,11 @@ public class CtrlVista {
     public boolean esbUsr(String pass) {
         return cu.esbUsr(pass);
     }
-
-    //Funcions Ranquing
+    
+    public String getCurrentUsername() {
+        return cu.getUsername();
+    }
+    
     public String[] getRank_easy() {
         return cr.getRanking_easy();
     }

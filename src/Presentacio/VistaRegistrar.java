@@ -157,10 +157,28 @@ public class VistaRegistrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter again your password please!");
         }
         if (password.equals(rPassword) && !password.isEmpty() && !rPassword.isEmpty()) {
-            vista.registrarUsuari(name, password);
-            VistaLogin v = new VistaLogin();
-            v.setVisible(true);
-            this.dispose();
+            boolean aux = vista.registrarUsuari(name, password);
+            if (aux) {
+                int input = JOptionPane.showOptionDialog(null, "Registration done!", "Message",
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+
+                if (input == JOptionPane.OK_OPTION) {
+                    VistaLogin v = new VistaLogin();
+                    v.setVisible(true);
+                    this.dispose();
+                }
+                
+            } else {
+                int input = JOptionPane.showOptionDialog(null, "The user is already exists, please try it again!", "Error message",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+
+                if (input == JOptionPane.OK_OPTION) {
+                    tf_username.setText("");
+                    tf_password.setText("");
+                    tf_rpassword.setText("");
+                }
+              
+            }
         } else {
             int input = JOptionPane.showOptionDialog(null, "The passwords not match! Correct it.", "Error message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
@@ -170,7 +188,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
             }
 
         }
-        //System.out.printf(name);
+        
     }//GEN-LAST:event_okRegistrarMouseClicked
 
     private void okRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okRegistrarActionPerformed

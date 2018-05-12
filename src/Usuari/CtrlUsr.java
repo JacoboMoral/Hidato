@@ -1,25 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Usuari;
-
-/**
- *
- * @author admin
- */
 public class CtrlUsr {
 
     private Usuari current;
     private GestorUsr gu;
 
-    /*Constructora*/
     public CtrlUsr() {
         gu = new GestorUsr();
     }
 
-    //Afegim un nou Usuari
     public boolean afegirUsuari(String u, String p) {
         boolean afegit = false;
         Usuari aux = new Usuari(u, p);
@@ -27,24 +15,23 @@ public class CtrlUsr {
         return afegit;
     }
 
-    //Quan passem false comprovem password i nom d'usuari.
-    //Quan passem true comprovarem el noms d'usuari.
     public boolean logUsuari(String u, String p) {
+        System.out.println("HOLA");
         boolean loguejat = false;
         Usuari newCurrent = new Usuari(u, p);
         loguejat = gu.comprovarUsr(newCurrent);
         if (loguejat) {
             current = new Usuari(u, p);
+            System.out.println("HOLA SOY " + current.getUsername());
         }
         return loguejat;
     }
 
-    //Ens modifica el nostre nom d'usuari
     public boolean modUsr(String uact, String unou) {
         boolean fet = false;
-        if (uact.equals(current.getUsr()) & !gu.comprovarUsrMod(unou)) {
-            Usuari newCurrent = new Usuari(unou, current.getPass());
-            fet = gu.modUsr(uact, unou, newCurrent.getPass());
+        if (uact.equals(current.getUsername()) & !gu.comprovarUsrMod(unou)) {
+            Usuari newCurrent = new Usuari(unou, current.getPassword());
+            fet = gu.modUsr(uact, unou, newCurrent.getPassword());
             if (fet) {
                 current = newCurrent;
             }
@@ -52,12 +39,11 @@ public class CtrlUsr {
         return fet;
     }
 
-    //Modifica la nostra password
     public boolean modPass(String pact, String pnov) {
         boolean fet = false;
-        if (pact.equals(current.getPass())) {
-            Usuari newCurrent = new Usuari(current.getUsr(), pnov);
-            fet = gu.modPassword(newCurrent.getUsr(), pnov);
+        if (pact.equals(current.getPassword())) {
+            Usuari newCurrent = new Usuari(current.getUsername(), pnov);
+            fet = gu.modPassword(newCurrent.getUsername(), pnov);
             if (fet) {
                 current = newCurrent;
             }
@@ -67,9 +53,17 @@ public class CtrlUsr {
 
     public boolean esbUsr(String pass) {
         boolean fet = false;
-        if (pass.equals(current.getPass())) {
-            fet = gu.esbUsuari(current.getUsr());
+        if (pass.equals(current.getPassword())) {
+            fet = gu.esbUsuari(current.getUsername());
         }
         return fet;
+    }
+
+    public String getUsername() {
+        return current.getUsername();
+    }
+
+    public Usuari getUser() {
+        return current;
     }
 }

@@ -7,6 +7,7 @@ package Presentacio;
 
 import Ranking.Ranking;
 import Ranking.Posicio;
+import Usuari.Usuari;
 import java.time.LocalDate;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -20,13 +21,15 @@ import javax.swing.JOptionPane;
  */
 public class VistaRanking extends javax.swing.JFrame {
 
-    CtrlVista cv = new CtrlVista();
-    
-    /**
-     * Creates new form VistaRanking
-     */
+    CtrlVista cv;
+
     public VistaRanking() {
         initComponents();
+    }
+
+    public VistaRanking(CtrlVista v) {
+        initComponents();
+        cv = v;
         cv.saveResultat(1, "Jia", 10);
         cv.saveResultat(2, "Jia2", 1450);
         cv.saveResultat(3, "Jia3", 14350);
@@ -46,7 +49,7 @@ public class VistaRanking extends javax.swing.JFrame {
         cv.saveResultat(2, "Jia", 143562);
         cv.saveResultat(3, "Jia3", 13454);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -356,7 +359,7 @@ public class VistaRanking extends javax.swing.JFrame {
     }
 
     private void b_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_backMouseClicked
-        VistaMenuPrincipal v = new VistaMenuPrincipal();
+        VistaMenuPrincipal v = new VistaMenuPrincipal(cv);
         v.setVisible(true);
         this.dispose();
 
