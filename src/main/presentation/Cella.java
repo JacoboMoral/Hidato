@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.Polygon;
 
 abstract class Cella {
-    abstract public void setTamany(int givenAltura);
+    abstract public void setTamany(double givenAltura);
     abstract public Polygon cella (int x0, int y0);
 
     abstract public void dibuixaCella(int i, int j, Graphics2D g2);

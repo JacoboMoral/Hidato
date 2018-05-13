@@ -11,15 +11,15 @@ public class CellaHexagon extends Cella{
     private static double primerx=0;   //primer vèrtex des de l'esquerra
     private static double segonx=0;    //segon vèrtex des de l'equerra (i.e. width)
 
-    public void setTamany(int givenAltura) {
+    public void setTamany(double givenAltura) {
         altura = givenAltura;
-        double height = (double)altura;
+        double height = altura;
         double radi = height/2;
         primery = altura/4;
         segony = height/4 * 3;
 
-        primerx = radi*0.86602540378;
-        segonx = radi*0.86602540378*2;
+        primerx = radi*Math.sqrt(3)/2;
+        segonx = radi*Math.sqrt(3);
 
     }
 
@@ -67,6 +67,7 @@ public class CellaHexagon extends Cella{
 
     public Point locationToMatriu(int posx, int posy) {
         Point p = new Point(-1,-1);
+        System.out.println("Posicio x: " + posx + ", Posicio y: " + posy);
 
         posx -= BORDER;
         posy -= BORDER;
