@@ -38,6 +38,11 @@ public class PanelHidato extends JPanel{
     
     public PanelHidato(Cella cella){
         this.cella = cella;
+        cella.setTamany(CELLAHEIGHT);
+        setBackground(new Color(239, 245, 255));
+
+        MyMouseListener ml = new MyMouseListener();            
+        addMouseListener(ml);
     }
 
     public void paintComponent(Graphics g){
