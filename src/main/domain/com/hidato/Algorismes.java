@@ -281,7 +281,9 @@ public class Algorismes {
 
 		ArrayList<Integer> escrits;
 		randomSeed = new Random();
-
+              
+                  
+          
 		for (int i = 0; i < tamanyi; ++i) {
 			for (int j = 0; j < tamanyj; ++j) {
 				escrits = new ArrayList<>();

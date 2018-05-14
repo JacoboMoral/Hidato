@@ -16,3 +16,6 @@ src/domain/com/hidato/Main.java
 *.class
 /nbproject/private/
 /build/
+nbproject/project.properties
+nbproject/project.properties
+*.properties

@@ -16,6 +16,7 @@ public class VistaSeleccio extends javax.swing.JFrame {
      */
     public VistaSeleccio() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
