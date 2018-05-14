@@ -19,3 +19,6 @@ src/domain/com/hidato/Main.java
 nbproject/project.properties
 nbproject/project.properties
 *.properties
+bin/domain/JOCSDEPROVA/Hidatos.txt
+bin/domain/JOCSDEPROVA/Joc_de_prova_DriverControladorDomini.txt
+bin/domain/JOCSDEPROVA/Joc_de_prova_DriverHidato.txt

@@ -8,7 +8,6 @@ import static java.lang.Math.sqrt;
 public class MatriuHidato{
   
     private MatriuHidato(){
-        calcCellaSize();
         createAndShowGUI();
     }
 
@@ -42,23 +41,14 @@ public class MatriuHidato{
     final static int boardWidth = board[0].length;
 
     final static int BORDER = 15;  
-    final static long SCRWIDTH = 600;
-    final static long SCRHEIGHT = 600;
-    static double CELLAHEIGHT= ((SCRHEIGHT - (3 * BORDER))/(boardHeight*0.75));
-
-    private void calcCellaSize(){
-        if ((double)SCRHEIGHT/(double)SCRWIDTH > ( ((3/4)*(double)boardHeight)/((sqrt(3)/2)*(double)boardWidth) )){ // si la relacio altura/amplada es mes gran que la relacio ocupa altura/ocupa amplada
-            if (SCRWIDTH < (CELLAHEIGHT*boardWidth*sqrt(3)/2)){
-                double width = (SCRWIDTH-2*BORDER)/(boardWidth+0.5);
-                CELLAHEIGHT = width*2/sqrt(3);
-            }
-        }
-    }
+    final static int SCRWIDTH = 600;
+    final static int SCRHEIGHT = 600;
+    //static double CELLAHEIGHT= ((SCRHEIGHT - (3 * BORDER))/(boardHeight*0.75));
     
     private void createAndShowGUI(){
-            PanelHidato panel = new PanelHidato(new CellaHexagon(), CELLAHEIGHT, BORDER, board);
-            Dimension dim = new Dimension((int)SCRWIDTH, (int) SCRHEIGHT);
-            panel.setPreferredSize(dim);
+            //PanelHidato panel = new PanelHidato(new CellaHexagon(), CELLAHEIGHT, BORDER, board);
+    		PanelHidato panel = new PanelHidato(new CellaHexagon(), SCRWIDTH, SCRHEIGHT , BORDER, board);
+            
 
             JFrame frame = new JFrame("Hidato Hexagon");
             frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );

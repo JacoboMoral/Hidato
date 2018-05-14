@@ -1,6 +1,7 @@
 package main.presentation;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,16 +17,46 @@ public class PanelHidato extends JPanel{
     Cella cella;
 
     private double cellaHeight;
-    private int border;  
+    private int border;
     
     int[][] board;
     
+    private int screenWidth;
+    private int screenHeight;
+    private int boardWidth;
+    private int boardHeight;
+    
+    
+    //necessita que el creador faci panel.setPreferredSize(dim)
     public PanelHidato(Cella cella, double cellaHeight, int border, int[][] board){
         this.cella = cella;
         this.board = board;
         
         this.cellaHeight = cellaHeight;
         this.border = border;
+        boardWidth = board[0].length;
+        boardHeight = board.length;
+        
+        System.out.println("PanelHidato: Height: " + cellaHeight);
+        
+        cella.setTamany(cellaHeight);
+        setBackground(new Color(239, 245, 255));
+        MyMouseListener ml = new MyMouseListener();            
+        addMouseListener(ml);
+    }
+    
+    public PanelHidato(Cella cella, int screenWidth, int screenHeight, int border, int[][] board){
+    	Dimension dim = new Dimension(screenWidth, screenHeight);
+        setPreferredSize(dim);
+        this.cella = cella;
+        this.board = board;
+        
+        this.border = border;
+        boardWidth = board[0].length;
+        boardHeight = board.length;
+        this.screenHeight = screenHeight;
+        this.screenWidth = screenWidth;
+        calcCellaSize();
         
         System.out.println("PanelHidato: Height: " + cellaHeight);
         
@@ -35,6 +66,15 @@ public class PanelHidato extends JPanel{
         addMouseListener(ml);
     }
 
+    private void calcCellaSize(){
+    	cellaHeight = ((screenHeight - (3 * border))/(boardHeight*0.75));
+        if ((double)screenHeight/(double)screenWidth > ( ((3/4)*(double)boardHeight)/((sqrt(3)/2)*(double)boardWidth) )){ // si la relacio altura/amplada es mes gran que la relacio ocupa altura/ocupa amplada
+            if (screenWidth < (cellaHeight*boardWidth*sqrt(3)/2)){
+                double width = (screenWidth-2*border)/(boardWidth+0.5);
+                cellaHeight = width*2/sqrt(3);
+            }
+        }
+    }
     
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D)g;

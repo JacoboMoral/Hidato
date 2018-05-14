@@ -1,27 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main.presentation;
 
 import Usuari.CtrlUsr;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author admin
- */
 public class VistaLogin extends javax.swing.JFrame {
 
     CtrlVista vista = new CtrlVista();;
 
-    /**
-     * Creates new form VistaLogin
-     */
     public VistaLogin() {
         initComponents();
     }
+    
+    public void run() {
+    	main(null);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
