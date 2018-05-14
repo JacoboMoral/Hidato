@@ -59,7 +59,7 @@ public class PanelHidato extends JPanel{
             Point p = new Point( cella.locationToMatriu(e.getX(),e.getY()) );
             if (p.x < 0 || p.y < 0 || p.x >= board[0].length || p.y >= board.length) return;
 
-            board[p.y][p.x] = 69;
+            if (board[p.y][p.x] >= 0) board[p.y][p.x] = 69;
             repaint();
         }		 
     } //end of MyMouseListener class 
