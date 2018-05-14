@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import static java.lang.Math.sqrt;
@@ -41,7 +43,8 @@ public class PanelHidato extends JPanel{
         
         cella.setTamany(cellaHeight);
         setBackground(new Color(239, 245, 255));
-        MyMouseListener ml = new MyMouseListener();            
+        
+        MouseListener ml = new MouseListener();            
         addMouseListener(ml);
     }
     
@@ -62,8 +65,11 @@ public class PanelHidato extends JPanel{
         
         cella.setTamany(cellaHeight);
         setBackground(new Color(239, 245, 255));
-        MyMouseListener ml = new MyMouseListener();            
+        MouseListener ml = new MouseListener();            
         addMouseListener(ml);
+        
+        ResizeListener m2 = new ResizeListener();            
+        addComponentListener(m2);
     }
 
     private void calcCellaSize(){
@@ -74,6 +80,8 @@ public class PanelHidato extends JPanel{
                 cellaHeight = width*2/sqrt(3);
             }
         }
+        cella.setTamany(cellaHeight);
+        System.out.println("calcCellaSize Height: " + cellaHeight);
     }
     
     public void paintComponent(Graphics g){
@@ -92,7 +100,7 @@ public class PanelHidato extends JPanel{
         }
     }
 
-    class MyMouseListener extends MouseAdapter {	//inner class inside DrawingPanel 
+    class MouseListener extends MouseAdapter {	//inner class inside DrawingPanel 
         public void mouseClicked(MouseEvent e){ 
             int x = e.getX(); 
             int y = e.getY(); 
@@ -103,4 +111,14 @@ public class PanelHidato extends JPanel{
             repaint();
         }		 
     } //end of MyMouseListener class 
+    
+    
+    class ResizeListener extends ComponentAdapter{
+    	public void componentResized(ComponentEvent componentEvent) {
+    		screenHeight = getHeight();
+            screenWidth = getWidth();
+    		calcCellaSize();
+    		repaint();
+    	}
+    }
 } // end of DrawingPanel class

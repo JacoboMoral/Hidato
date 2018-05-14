@@ -11,15 +11,16 @@ public class CellaHexagon extends Cella{
     private static double primerx=0;   //primer vèrtex des de l'esquerra
     private static double segonx=0;    //segon vèrtex des de l'equerra (i.e. width)
 
-    public void setTamany(double givenAltura) {
-        altura = givenAltura;
-        double height = altura;
-        double radi = height/2;
+    public void setTamany(double altura) {
+        this.altura = altura;
+        double radi = altura/2;
         primery = altura/4;
-        segony = height/4 * 3;
+        segony = altura/4 * 3;
 
         primerx = radi*Math.sqrt(3)/2;
         segonx = radi*Math.sqrt(3);
+        System.out.println("Cella hexagon altura: " + altura);
+        System.out.println("Cella hexagon amplada: " + segonx);
 
     }
 
@@ -73,7 +74,12 @@ public class CellaHexagon extends Cella{
         posy -= BORDER;
         
         int y = (int) (posy / segony);
-        int x = (int) ((posx - ((y%2)*primerx))/ (segonx));
+        
+        double xleft = ((posx - ((y%2)*primerx))/ (segonx));	//per controlar que si cliques a la esquerra de les filles parelles, no sigui x = 0;
+        int x = -1;
+        if (xleft >= 0) x = (int) xleft;
+        
+        System.out.println("CellaHexagon posicio (en decimal): " + xleft);
         
         double distxf = ((x+1)*segonx - posx + (y%2)*primerx);
         double distxi = (posx - x*segonx - (y%2)*primerx);
@@ -84,6 +90,11 @@ public class CellaHexagon extends Cella{
         double posiciox = (double) posx;
         double posicioy = (double) posy;
 
+        if (y%2 == 0) { //files parelles, on l'hexagon esta desplaçat cap a la dreta mig hexagon
+        	int aux = (int) (posx - primerx);
+        	
+        }
+        
         if (distyi <= primery){                 //quadrat de dalt de cada hexagon, incloent un triangle de cadascun dels hexagons adjacents per dalt
             if (Math.abs(distyi/distxc) < 0.5){
                 --y;

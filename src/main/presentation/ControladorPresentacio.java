@@ -40,7 +40,7 @@ public class ControladorPresentacio {
 
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
-		JPanel panel3 = new PanelHidato(new CellaHexagon(), (double)20, 15, board);
+		JPanel panel3 = new PanelHidato(new CellaHexagon(), 600, 600, 15, board);
 		panel1.setBackground(Color.ORANGE);
 		panel2.setBackground(Color.GREEN);
 
@@ -50,9 +50,9 @@ public class ControladorPresentacio {
 		panel1.add(button);
 		panel1.add(textField);
 
-		frame.add(panel1);
+		frame.add(panel3);
 
-		frame.setSize(600,400);
+		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Titulo del FRAME");
@@ -61,12 +61,13 @@ public class ControladorPresentacio {
     }
 
 	public void launchPartidaScreen(){
-
+		
 	}
 
 	public void launchLogin() {
-		Inici inici = new Inici();
-		inici.run();
+		VistaLogin vistaLogin = new VistaLogin();
+		//vistaLogin.run();
+		main(null);
 	}
 
 }

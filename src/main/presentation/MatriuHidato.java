@@ -3,6 +3,9 @@ package main.presentation;
 import java.awt.*;
 import javax.swing.*;
 import static java.lang.Math.sqrt;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 
 
 public class MatriuHidato{
@@ -46,18 +49,23 @@ public class MatriuHidato{
     //static double CELLAHEIGHT= ((SCRHEIGHT - (3 * BORDER))/(boardHeight*0.75));
     
     private void createAndShowGUI(){
-            //PanelHidato panel = new PanelHidato(new CellaHexagon(), CELLAHEIGHT, BORDER, board);
-    		PanelHidato panel = new PanelHidato(new CellaHexagon(), SCRWIDTH, SCRHEIGHT , BORDER, board);
             
 
             JFrame frame = new JFrame("Hidato Hexagon");
             frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-            Container content = frame.getContentPane();
-            
-            content.add(panel);
+
+    		
+            //PanelHidato panel = new PanelHidato(new CellaHexagon(), CELLAHEIGHT, BORDER, board);
+            System.out.println((int)(Math.round(SCRWIDTH*1.8)));
+            PanelHidato panelHidato = new PanelHidato(new CellaHexagon(), (int)(Math.round(SCRWIDTH*0.8)), (int)(Math.round(SCRHEIGHT*0.8)) , BORDER, board);
+    		//PanelHidato panel1 = new PanelHidato(new CellaHexagon(), (int)(Math.round(SCRWIDTH*0.2)), (int)(Math.round(SCRHEIGHT*0.2)) , BORDER, board);
+    		JPanel buttonsPanel = new JPanel();
+    		buttonsPanel.setPreferredSize(new Dimension(200,200));
+    		
+    		frame.add(panelHidato);
+    		
             frame.pack();
-            
-            frame.setLocationRelativeTo( null );
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
 
 
