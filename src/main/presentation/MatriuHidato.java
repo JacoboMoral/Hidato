@@ -42,8 +42,8 @@ public class MatriuHidato{
     final static int boardWidth = board[0].length;
 
     final static int BORDER = 15;  
-    final static long SCRWIDTH = 1000;
-    final static long SCRHEIGHT = 500;
+    final static long SCRWIDTH = 600;
+    final static long SCRHEIGHT = 600;
     static double CELLAHEIGHT= ((SCRHEIGHT - (3 * BORDER))/(boardHeight*0.75));
 
     private void calcCellaSize(){
@@ -57,17 +57,19 @@ public class MatriuHidato{
     
     private void createAndShowGUI(){
             PanelHidato panel = new PanelHidato(new CellaHexagon(), CELLAHEIGHT, BORDER, board);
+            Dimension dim = new Dimension((int)SCRWIDTH, (int) SCRHEIGHT);
+            panel.setPreferredSize(dim);
 
             JFrame frame = new JFrame("Hidato Hexagon");
             frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
             Container content = frame.getContentPane();
+            
             content.add(panel);
-            Dimension dim = new Dimension((int)SCRWIDTH+7, (int) SCRHEIGHT+30);
-            frame.setPreferredSize(dim);
             frame.pack();
-
-            frame.setResizable(false);
+            
             frame.setLocationRelativeTo( null );
             frame.setVisible(true);
+
+
     }
 }

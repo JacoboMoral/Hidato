@@ -8,7 +8,6 @@ package main.presentation;
 import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import static main.presentation.MatriuHidato.CELLAHEIGHT;
 
 /**
  *
