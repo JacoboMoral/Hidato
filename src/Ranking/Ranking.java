@@ -5,7 +5,7 @@
  */
 package Ranking;
 
-import Presentacio.VistaRanking;
+import main.presentation.VistaRanking;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
