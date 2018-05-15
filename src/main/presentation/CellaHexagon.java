@@ -1,6 +1,7 @@
 package main.presentation;
 
 import java.awt.*;
+import java.util.Vector;
 
 public class CellaHexagon extends Cella{
 
@@ -45,12 +46,12 @@ public class CellaHexagon extends Cella{
         g2.drawPolygon(cella(x,y));
     }
 
-    public void emplenaCella(int i, int j, int n, Graphics2D g2) {
+    public void emplenaCella(int i, int j, int n, int ultim, Graphics2D g2, Vector<Point> posicionsAdjacents) {
         String str;
         int x = j * (int)Math.round(segonx) + (i%2)*(int)Math.round(segonx/2);
         int y = i * (int)Math.round(segony);
         if (n == -1) {
-            g2.setColor(new Color(135, 135, 135));
+            g2.setColor(new Color(193, 192, 174));
             g2.fillPolygon(cella(x,y));
             g2.setColor(Color.BLACK);
             g2.drawPolygon(cella(x,y));
@@ -63,6 +64,31 @@ public class CellaHexagon extends Cella{
             g2.setColor(Color.BLACK);
             str = Integer.toString(n);
             g2.drawString(str, x+(int)Math.round(altura)/10+BORDER, y+(int)Math.round(altura)/2+BORDER+4);
+        }
+        
+        if (n == ultim || n == 1) {
+        	g2.setColor(new Color(255, 173, 105));
+            g2.fillPolygon(cella(x,y));
+            g2.setColor(Color.BLACK);
+            g2.drawPolygon(cella(x,y));
+            g2.setColor(Color.BLACK);
+            str = Integer.toString(n);
+            g2.drawString(str, x+(int)Math.round(altura)/10+BORDER, y+(int)Math.round(altura)/2+BORDER+4);
+        }
+        
+        if (n == 0) { 										//per provar possibles colors
+        	Point actual = new Point(j,i);
+        	if (posicionsAdjacents.contains(actual)) {
+        		g2.setColor(new Color(220, 255, 105)); //mes sutil: (235, 255, 105)
+                g2.fillPolygon(cella(x,y));
+                g2.setColor(Color.BLACK);
+                g2.drawPolygon(cella(x,y));
+                g2.setColor(Color.BLACK);
+                str = Integer.toString(n);
+                g2.drawString(str, x+(int)Math.round(altura)/10+BORDER, y+(int)Math.round(altura)/2+BORDER+4);
+        	}
+        	
+        	
         }
     }
 

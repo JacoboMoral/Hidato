@@ -3,12 +3,20 @@ package main.domain.com.hidato;
 import java.util.Random;
 import java.util.Vector;
 
+import main.presentation.ControladorPresentacio;
+
 public class ControladorDomini {
 	
+    private static final ControladorDomini instance = new ControladorDomini();
 	private Partida partidaEnCurs = null;
 	private Hidato hidatoGenerat = null;;
 	
 
+	
+	public static ControladorDomini getInstance() {
+    	return instance;
+    }
+	
 	public boolean jugarHidatoImportat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
 		partidaEnCurs = new Partida (HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato));
 		if (!partidaEnCurs.esSolucionable()) {
@@ -34,6 +42,8 @@ public class ControladorDomini {
 			return false;
 		}
 	}
+	
+	
 	
 	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
 		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
