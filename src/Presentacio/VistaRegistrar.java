@@ -145,8 +145,8 @@ public class VistaRegistrar extends javax.swing.JFrame {
     private void okRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okRegistrarMouseClicked
         String name, password, rPassword;
         name = tf_username.getText();
-        password = tf_password.getText();
-        rPassword = tf_rpassword.getText();
+        password = new String(tf_password.getPassword());
+        rPassword = new String(tf_rpassword.getPassword());
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter your name please!");
         }
@@ -157,7 +157,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter again your password please!");
         }
         if (password.equals(rPassword) && !password.isEmpty() && !rPassword.isEmpty()) {
-            boolean aux = vista.registrarUsuari(name, password);
+            boolean aux = vista.altaUsuari(name, password);
             if (aux) {
                 int input = JOptionPane.showOptionDialog(null, "Registration done!", "Message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);

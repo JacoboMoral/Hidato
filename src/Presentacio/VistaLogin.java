@@ -146,7 +146,7 @@ public class VistaLogin extends javax.swing.JFrame {
         } else if (password.length() == 0) {
             JOptionPane.showMessageDialog(null, "Enter your password please!");
         } else {
-            boolean aux = vista.compUsr(name, password);
+            boolean aux = vista.logUsr(name, password);
             if (aux) {
                 JOptionPane.showMessageDialog(null, "Wellcome, " + name);
                 

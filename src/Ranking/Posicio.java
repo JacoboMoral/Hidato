@@ -4,22 +4,18 @@ import java.time.LocalDate;
 
 public class Posicio {
 
-    private String nickname;
+    private String username;
     private int puntuacio;
     private LocalDate Date;
 
-    public Posicio() {
-    }
-
     public Posicio(String nomJugador, int punts, LocalDate date) {
-        this.nickname = nomJugador;
+        this.username = nomJugador;
         this.puntuacio = punts;
         this.Date = date;
     }
 
-    public String getNickname() {
-        return nickname;
-
+    public String getUsername() {
+        return username;
     }
 
     public int getPuntacio() {

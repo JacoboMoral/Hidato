@@ -46,9 +46,7 @@ public class GestorUsr {
                 String cont = bf.readLine();
                 bf.close();
                 fr.close();
-                if (cont.equals(u.getPassword())) {
-                    trobat = true;
-                }
+                if (cont.equals(u.getPassword())) trobat = true;
             }
         } catch (IOException ex) {
 
