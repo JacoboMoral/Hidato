@@ -17,6 +17,10 @@ public class Inici extends javax.swing.JFrame {
     public Inici() {
         initComponents();
     }
+    
+    public void run() {
+    	main(null);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
