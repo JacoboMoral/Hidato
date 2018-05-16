@@ -1,4 +1,4 @@
-package Presentacio;
+package main.presentation;
 
 import Usuari.CtrlUsr;
 import Ranking.CtrlRanking;

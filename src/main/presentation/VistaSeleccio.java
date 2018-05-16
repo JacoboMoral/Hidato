@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Presentacio;
+package main.presentation;
 
 /**
  *
@@ -18,6 +18,7 @@ public class VistaSeleccio extends javax.swing.JFrame {
      */
     public VistaSeleccio() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public VistaSeleccio(CtrlVista v) {
