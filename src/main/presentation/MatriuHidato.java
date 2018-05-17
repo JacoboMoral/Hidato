@@ -3,9 +3,6 @@ package main.presentation;
 import java.awt.*;
 import javax.swing.*;
 import static java.lang.Math.sqrt;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
@@ -19,9 +16,9 @@ public class MatriuHidato{
 	
     private MatriuHidato(){
         possiblesMoviments.add(2);
-    	possiblesMoviments.add(5);
-    	possiblesMoviments.add(6);
-    	possiblesMoviments.add(8);
+        possiblesMoviments.add(5);
+    		possiblesMoviments.add(6);
+    		possiblesMoviments.add(8);
         createAndShowGUI();
     }
 
@@ -71,7 +68,8 @@ public class MatriuHidato{
     		//creació de panel de Hidato
     		//hardcoded ultim
     		PanelHidato panelHidato = new PanelHidato(new CellaHexagon(), (int)(Math.round(SCRWIDTH*0.9)), (int)(Math.round(SCRHEIGHT*0.9)) , BORDER, board, 225);
-    		
+		panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
+
     		//panel infoPanel
     		JPanel moviments = new JPanel();
     		moviments.setLayout(new BoxLayout(moviments, BoxLayout.Y_AXIS));
@@ -90,6 +88,7 @@ public class MatriuHidato{
     					--movimentIterator;
     					proximMoviment.setText(Integer.toString(possiblesMoviments.get(movimentIterator)));
     					proximMoviment.repaint();
+    					panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
     				}
 
     			}
@@ -104,6 +103,8 @@ public class MatriuHidato{
     					++movimentIterator;
     					proximMoviment.setText(Integer.toString(possiblesMoviments.get(movimentIterator)));
     					proximMoviment.repaint();
+    					panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
+
     				}
     			}
     		});

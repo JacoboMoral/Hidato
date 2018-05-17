@@ -29,7 +29,7 @@ public class PanelHidato extends JPanel{
     private int screenHeight;
     private int boardWidth;
     private int boardHeight;
-    
+    private int proximMoviment = -1;
     private int ultim = 1;
     
     
@@ -100,21 +100,11 @@ public class PanelHidato extends JPanel{
         super.paintComponent(g2);
 
         
-        //hardcoded so far
-        Vector<Point> posicionsAdjacents = new Vector<Point>();
-        posicionsAdjacents.add(new Point(4,7));
-        posicionsAdjacents.add(new Point(5,7));
-        posicionsAdjacents.add(new Point(6,8));
-        posicionsAdjacents.add(new Point(5,9));
-        posicionsAdjacents.add(new Point(4,9));
-        posicionsAdjacents.add(new Point(4,8));        
-        
-        
         for (int i=0;i<board.length;i++) {
             for (int j=0;j<board[0].length;j++) {
                 if (board[i][j] > -2){
                     cella.dibuixaCella(i,j,g2);
-                    cella.emplenaCella(i,j,board[i][j], ultim, g2, posicionsAdjacents);
+                    cella.emplenaCella(i,j,board[i][j], ultim, g2);
                 }
             }
         }
@@ -137,7 +127,7 @@ public class PanelHidato extends JPanel{
             Point p = new Point( cella.locationToMatriu(e.getX(),e.getY()) );
             if (p.x < 0 || p.y < 0 || p.x >= board[0].length || p.y >= board.length) return;
 
-            if (board[p.y][p.x] >= 0) board[p.y][p.x] = 69;
+            if (board[p.y][p.x] == 0) board[p.y][p.x] = proximMoviment; 
             repaint();
         }		 
     } //end of MyMouseListener class 
@@ -151,4 +141,9 @@ public class PanelHidato extends JPanel{
     		repaint();
     	}
     }
+
+
+	public void setSeguentMoviment(int proximMoviment) {
+		this.proximMoviment = proximMoviment;
+	}
 } // end of DrawingPanel class

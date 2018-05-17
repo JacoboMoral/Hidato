@@ -46,7 +46,7 @@ public class CellaHexagon extends Cella{
         g2.drawPolygon(cella(x,y));
     }
 
-    public void emplenaCella(int i, int j, int n, int ultim, Graphics2D g2, Vector<Point> posicionsAdjacents) {
+    public void emplenaCella(int i, int j, int n, int ultim, Graphics2D g2) {
         String str;
         int x = j * (int)Math.round(segonx) + (i%2)*(int)Math.round(segonx/2);
         int y = i * (int)Math.round(segony);
@@ -74,21 +74,6 @@ public class CellaHexagon extends Cella{
             g2.setColor(Color.BLACK);
             str = Integer.toString(n);
             g2.drawString(str, x+(int)Math.round(altura)/10+BORDER, y+(int)Math.round(altura)/2+BORDER+4);
-        }
-        
-        if (n == 0) { 										//per provar possibles colors
-        	Point actual = new Point(j,i);
-        	if (posicionsAdjacents.contains(actual)) {
-        		g2.setColor(new Color(220, 255, 105)); //mes sutil: (235, 255, 105)
-                g2.fillPolygon(cella(x,y));
-                g2.setColor(Color.BLACK);
-                g2.drawPolygon(cella(x,y));
-                g2.setColor(Color.BLACK);
-                str = Integer.toString(n);
-                g2.drawString(str, x+(int)Math.round(altura)/10+BORDER, y+(int)Math.round(altura)/2+BORDER+4);
-        	}
-        	
-        	
         }
     }
 

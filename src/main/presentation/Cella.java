@@ -11,6 +11,6 @@ abstract class Cella {
 
     abstract public void dibuixaCella(int i, int j, Graphics2D g2);
 
-    abstract public void emplenaCella(int i, int j, int n, int ultim, Graphics2D g2, Vector<Point> posicionsAdjacents);
+    abstract public void emplenaCella(int i, int j, int n, int ultim, Graphics2D g2);
     abstract public Point locationToMatriu(int posx, int posy);
 }
