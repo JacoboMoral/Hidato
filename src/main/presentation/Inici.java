@@ -46,6 +46,7 @@ public class Inici extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hidato");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
@@ -59,7 +60,7 @@ public class Inici extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(187, Short.MAX_VALUE)
+                .addContainerGap(197, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(178, 178, 178))
         );
@@ -68,10 +69,10 @@ public class Inici extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(399, Short.MAX_VALUE))
+                .addContainerGap(409, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 500));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 510, 510));
 
         jPanel2.setBackground(new java.awt.Color(36, 67, 65));
 
@@ -117,6 +118,11 @@ public class Inici extends javax.swing.JFrame {
                 b_loginMouseClicked(evt);
             }
         });
+        b_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_loginActionPerformed(evt);
+            }
+        });
 
         tf_password.setBackground(new java.awt.Color(36, 67, 65));
         tf_password.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -141,7 +147,7 @@ public class Inici extends javax.swing.JFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(tf_username, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(tf_password, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,7 +158,7 @@ public class Inici extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,7 +177,7 @@ public class Inici extends javax.swing.JFrame {
                 .addGap(47, 47, 47))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 500, 500));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 510, 510));
 
         setSize(new java.awt.Dimension(1016, 539));
         setLocationRelativeTo(null);
@@ -192,7 +198,6 @@ public class Inici extends javax.swing.JFrame {
         } else {
             boolean aux = cv.logUsr(name, password);
             if (aux) {
-                JOptionPane.showMessageDialog(null, "Wellcome, " + name);
                 VistaMenuPrincipal v = new VistaMenuPrincipal(cv);
                 v.setVisible(true);
                 this.dispose();
@@ -211,6 +216,10 @@ public class Inici extends javax.swing.JFrame {
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_b_registerMouseClicked
+
+    private void b_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_loginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_loginActionPerformed
 
     /**
      * @param args the command line arguments
