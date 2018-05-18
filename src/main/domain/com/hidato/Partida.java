@@ -36,6 +36,11 @@ public class Partida {
             if (hidato.moviment(i, j, value)) return true;
             else return false;
     }
+    
+    public boolean esborrarNombre(int i, int j) {
+        if (hidato.desferMoviment(i, j)) return true;
+        else return false;
+}
 
     public void demanarPista() {
 
@@ -53,6 +58,10 @@ public class Partida {
             return hidato.getNombresPerDefecte();
     }
 
+	public Vector<Integer> getPossiblesMoviments() {
+        return hidato.getPossiblesMoviments();
+	}
+	
     public int[][] getSolucio() {
             return hidato.getSolucio();
     }

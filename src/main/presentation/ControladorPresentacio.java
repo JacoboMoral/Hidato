@@ -15,7 +15,7 @@ import main.domain.com.hidato.TipusCella;
 public class ControladorPresentacio {
 
     private static final ControladorPresentacio instance = new ControladorPresentacio();
-    private static final ControladorDomini controladorDomini = new ControladorDomini().getInstance();
+    private static final ControladorDomini domini = new ControladorDomini().getInstance();
     private static int[][] board;
 
     public static ControladorPresentacio getInstance() {
@@ -70,7 +70,15 @@ public class ControladorPresentacio {
 	public void launchPartidaScreen(){
 		
 	}
-
+	
+	public boolean ferMoviment(int i, int j, int value) {
+		return domini.ferMoviment(i, j, value);
+	}
+	
+	public boolean desferMoviment(int i, int j) {
+		return domini.desferMoviment(i, j);
+	}
+	
 	public void launchLogin() {
 		VistaLogin vistaLogin = new VistaLogin();
 		//vistaLogin.run();

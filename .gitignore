@@ -22,3 +22,9 @@ nbproject/project.properties
 bin/domain/JOCSDEPROVA/Hidatos.txt
 bin/domain/JOCSDEPROVA/Joc_de_prova_DriverControladorDomini.txt
 bin/domain/JOCSDEPROVA/Joc_de_prova_DriverHidato.txt
+*.class
+*.class
+*.class
+bin/domain/main/domain/com/hidato/Hidato.class
+bin/domain/main/domain/com/hidato/Partida.class
+bin/domain/main/domain/com/hidato/Partida.class

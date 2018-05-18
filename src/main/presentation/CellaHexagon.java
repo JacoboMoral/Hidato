@@ -5,12 +5,12 @@ import java.util.Vector;
 
 public class CellaHexagon extends Cella{
 
-    private static int BORDER=15;
-    private static double altura=0;	
-    private static double primery=0;   //primer vèrtex des de dalt
-    private static double segony=0;    //segon vèrtex des de dalt
-    private static double primerx=0;   //primer vèrtex des de l'esquerra
-    private static double segonx=0;    //segon vèrtex des de l'equerra (i.e. width)
+    private int border=0;
+    private double altura=0;	
+    private double primery=0;   //primer vèrtex des de dalt
+    private double segony=0;    //segon vèrtex des de dalt
+    private double primerx=0;   //primer vèrtex des de l'esquerra
+    private double segonx=0;    //segon vèrtex des de l'equerra (i.e. width)
 
     public void setTamany(double altura) {
         this.altura = altura;
@@ -26,8 +26,8 @@ public class CellaHexagon extends Cella{
     }
 
     public Polygon cella (int x0, int y0) {
-        int y = y0 + BORDER;
-        int x = x0 + BORDER;  
+        int y = y0 + border;
+        int x = x0 + border;  
 
         int[] cx,cy;
 
@@ -40,7 +40,7 @@ public class CellaHexagon extends Cella{
     public void dibuixaCella(int i, int j, Graphics2D g2) {
         int x = j * (int)Math.round(segonx) + (i%2)*(int)Math.round(segonx)/2;
         int y = i * (int)Math.round(segony);
-        g2.setColor(new Color(255, 230, 107));
+        g2.setColor(new Color(255, 236, 150));
         g2.fillPolygon(cella(x,y));
         g2.setColor(Color.BLACK);
         g2.drawPolygon(cella(x,y));
@@ -63,7 +63,7 @@ public class CellaHexagon extends Cella{
             g2.drawPolygon(cella(x,y));
             g2.setColor(Color.BLACK);
             str = Integer.toString(n);
-            g2.drawString(str, x+(int)Math.round(altura)/10+BORDER, y+(int)Math.round(altura)/2+BORDER+4);
+            g2.drawString(str, x+(int)Math.round(altura)/10+border, y+(int)Math.round(altura)/2+border+4);
         }
         
         if (n == ultim || n == 1) {
@@ -73,16 +73,31 @@ public class CellaHexagon extends Cella{
             g2.drawPolygon(cella(x,y));
             g2.setColor(Color.BLACK);
             str = Integer.toString(n);
-            g2.drawString(str, x+(int)Math.round(altura)/10+BORDER, y+(int)Math.round(altura)/2+BORDER+4);
+            g2.drawString(str, x+(int)Math.round(altura)/10+border, y+(int)Math.round(altura)/2+border+4);
         }
+    }
+    
+    public void emplenaCella(int i, int j, int n, int ultim, Graphics2D g2, Color color) {
+        String str;
+        int x = j * (int)Math.round(segonx) + (i%2)*(int)Math.round(segonx/2);
+        int y = i * (int)Math.round(segony);
+
+        g2.setColor(color);
+        g2.fillPolygon(cella(x,y));
+        g2.setColor(Color.BLACK);
+        g2.drawPolygon(cella(x,y));
+        g2.setColor(Color.BLACK);
+        str = Integer.toString(n);
+        g2.drawString(str, x+(int)Math.round(altura)/10+border, y+(int)Math.round(altura)/2+border+4);  
+        
     }
 
     public Point locationToMatriu(int posx, int posy) {
         Point p = new Point(-1,-1);
-        System.out.println("Posicio x: " + posx + ", Posicio y: " + posy);
+        //System.out.println("Posicio x: " + posx + ", Posicio y: " + posy);
 
-        posx -= BORDER;
-        posy -= BORDER;
+        posx -= border;
+        posy -= border;
         
         int y = (int) (posy / segony);
         
@@ -90,7 +105,7 @@ public class CellaHexagon extends Cella{
         int x = -1;
         if (xleft >= 0) x = (int) xleft;
         
-        System.out.println("CellaHexagon posicio (en decimal): " + xleft);
+        //System.out.println("CellaHexagon posicio (en decimal): " + xleft);
         
         double distxf = ((x+1)*segonx - posx + (y%2)*primerx);
         double distxi = (posx - x*segonx - (y%2)*primerx);
@@ -120,9 +135,15 @@ public class CellaHexagon extends Cella{
         
         p.x=x;
         p.y=y;
-        System.out.println("Posicio x: " + posx + ", Posicio y: " + posy);
-        System.out.println("Distancia final x: " + distxc + ", Distancia final y: " + distyi);
+        //System.out.println("Posicio x: " + posx + ", Posicio y: " + posy);
+        //System.out.println("Distancia final x: " + distxc + ", Distancia final y: " + distyi);
         System.out.println(p);
         return p;
     }
+
+	@Override
+	public void setBorder(int border) {
+		this.border = border;
+		
+	}
 }

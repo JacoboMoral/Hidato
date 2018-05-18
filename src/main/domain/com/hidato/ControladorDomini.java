@@ -108,9 +108,19 @@ public class ControladorDomini {
 	public Vector<Integer> getNombresPerDefecte(){
 		return partidaEnCurs.getNombresPerDefecte();
 	}
+	
+	public Vector<Integer> getPossiblesMoviments() { //Nombres que hi caben a la matriu - nombresPerDefecte - nombresEscrits
+		System.out.println("domini: " + partidaEnCurs.getPossiblesMoviments());
+		return partidaEnCurs.getPossiblesMoviments();
+	}
  
 	public boolean ferMoviment(int i, int j, int value) {
 		if (partidaEnCurs.ferJugada(i, j, value)) return true;
+		return false;
+	}
+	
+	public boolean desferMoviment(int i, int j) {
+		if (partidaEnCurs.esborrarNombre(i, j)) return true;
 		return false;
 	}
 
@@ -118,13 +128,13 @@ public class ControladorDomini {
 		return (partidaEnCurs != null);
 	}
         
-        public int[] demanarPista() {
-            return partidaEnCurs.seguentMoviment();
-        }
-        
-        public boolean esPotSolucionar(){
-            return partidaEnCurs.esSolucionable();
-        }
+    public int[] demanarPista() {
+        return partidaEnCurs.seguentMoviment();
+    }
+    
+    public boolean esPotSolucionar(){
+        return partidaEnCurs.esSolucionable();
+    }
 	
 	private TipusCella getRandomTipusCella() {
 		Random random = new Random();

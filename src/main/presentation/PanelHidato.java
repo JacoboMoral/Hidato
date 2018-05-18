@@ -18,18 +18,19 @@ import javax.swing.JPanel;
 
 public class PanelHidato extends JPanel{		
 
+	MatriuHidato controller;
     Cella cella;
 
     private double cellaHeight;
-    private int border;
-    
+    private int border = 0;
+    Vector<Integer> nombresPerDefecte;
     int[][] board;
     
     private int screenWidth;
     private int screenHeight;
     private int boardWidth;
     private int boardHeight;
-    private int proximMoviment = -1;
+    private int seguentMoviment = -1;
     private int ultim = 1;
     
     
@@ -69,11 +70,33 @@ public class PanelHidato extends JPanel{
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
         calcCellaSize();
-        
+
         System.out.println("PanelHidato: Height: " + cellaHeight);
         
         cella.setTamany(cellaHeight);
         setBackground(new Color(239, 245, 255));
+        MouseListener ml = new MouseListener();            
+        addMouseListener(ml);
+        
+        ResizeListener m2 = new ResizeListener();            
+        addComponentListener(m2);
+    }
+    
+    public PanelHidato(Cella cella, int[][] board, int ultim, Vector<Integer> nombresPerDefecte, MatriuHidato controller){
+        this.controller = controller;
+    	this.cella = cella;
+        this.board = board;
+        this.ultim = ultim;
+        this.nombresPerDefecte = nombresPerDefecte;
+
+        boardWidth = board[0].length;
+        boardHeight = board.length;
+        
+        System.out.println(screenHeight);
+        calcCellaSize();
+        
+        setBackground(new Color(239, 245, 255));
+        
         MouseListener ml = new MouseListener();            
         addMouseListener(ml);
         
@@ -90,7 +113,7 @@ public class PanelHidato extends JPanel{
             }
         }
         cella.setTamany(cellaHeight);
-        System.out.println("calcCellaSize Height: " + cellaHeight);
+        cella.setBorder(border);
     }
     
     public void paintComponent(Graphics g){    	
@@ -104,14 +127,18 @@ public class PanelHidato extends JPanel{
             for (int j=0;j<board[0].length;j++) {
                 if (board[i][j] > -2){
                     cella.dibuixaCella(i,j,g2);
-                    cella.emplenaCella(i,j,board[i][j], ultim, g2);
+                    int value = board[i][j];
+                    if (nombresPerDefecte.contains(value) || value < 1) cella.emplenaCella(i,j,value, ultim, g2);
+                    else cella.emplenaCella(i, j, value, ultim, g2, new Color(255, 229, 114));
                 }
             }
         }
     }
     
     
-    
+	public void setSeguentMoviment(int seguentMoviment) {
+		this.seguentMoviment = seguentMoviment;
+	}
     
     public void setUltim(int ultim) {
     	this.ultim = ultim;
@@ -127,7 +154,13 @@ public class PanelHidato extends JPanel{
             Point p = new Point( cella.locationToMatriu(e.getX(),e.getY()) );
             if (p.x < 0 || p.y < 0 || p.x >= board[0].length || p.y >= board.length) return;
 
-            if (board[p.y][p.x] == 0) board[p.y][p.x] = proximMoviment; 
+            boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);
+            if (movimentPossible) board[p.y][p.x] = seguentMoviment;
+            else {
+            	movimentPossible = controller.desferMoviment(p.y,p.x);
+                if (movimentPossible) board[p.y][p.x] = 0;
+            }
+            controller.updateSeguentMoviment();
             repaint();
         }		 
     } //end of MyMouseListener class 
@@ -142,8 +175,4 @@ public class PanelHidato extends JPanel{
     	}
     }
 
-
-	public void setSeguentMoviment(int proximMoviment) {
-		this.proximMoviment = proximMoviment;
-	}
 } // end of DrawingPanel class
