@@ -79,6 +79,10 @@ public class ControladorPresentacio {
 		return domini.desferMoviment(i, j);
 	}
 	
+	public boolean partidaCompletada() {
+		return domini.partidaCompletada();
+	}
+	
 	public void launchLogin() {
 		VistaLogin vistaLogin = new VistaLogin();
 		//vistaLogin.run();

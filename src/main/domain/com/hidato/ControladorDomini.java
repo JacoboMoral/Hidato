@@ -127,6 +127,10 @@ public class ControladorDomini {
 	public boolean enPartida() {
 		return (partidaEnCurs != null);
 	}
+	
+	public boolean partidaCompletada() {
+		return partidaEnCurs.completatHidato();
+	}
         
     public int[] demanarPista() {
         return partidaEnCurs.seguentMoviment();

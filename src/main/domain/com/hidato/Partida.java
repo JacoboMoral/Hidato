@@ -97,4 +97,8 @@ public class Partida {
     int[] seguentMoviment() {
         return null;
     }
+
+	public boolean completatHidato() {
+		return hidato.completat();
+	}
 }

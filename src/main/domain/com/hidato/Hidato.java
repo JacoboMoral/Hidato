@@ -227,6 +227,10 @@ public abstract class Hidato {
 		return (!nombresDonats.contains(matriuHidato[i][j]));  //return false if nombresDonats contains element at (i,j)
 	}
 
+	public boolean completat() {
+		return possiblesMoviments.size() == 0;
+	}
+
 
 
 }

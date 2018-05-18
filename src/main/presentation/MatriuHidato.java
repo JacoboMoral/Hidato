@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 
 import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
+import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusCella;
 
 
@@ -34,6 +35,7 @@ public class MatriuHidato{
 	
     private PanelHidato panelHidato;
     private JLabel proximMoviment;
+    private boolean completat = false;
     
 	
     public MatriuHidato(){
@@ -47,6 +49,7 @@ public class MatriuHidato{
 		boolean fet = controller.ferMoviment(y,x,proximMoviment);
 		if (fet) {
 			getPossiblesMoviments();
+			if (controller.partidaCompletada()) completat = true;
 			return true;
 		}
 		return false;
@@ -63,7 +66,8 @@ public class MatriuHidato{
 
 
 	private void generarHidato() {
-    	domini.autoGenerar(TipusCella.HEXAGON, Dificultat.MIG);
+    	domini.autoGenerar(TipusCella.HEXAGON, Dificultat.FACIL);
+    	HidatoIO.writeHidatoMatrixToOutput(domini.getMatriuHidatoGenerat());
     	domini.jugarHidatoGenerat();
     	matriuHidato = domini.getMatriuHidatoDePartida();
     	
@@ -162,8 +166,25 @@ public class MatriuHidato{
     }
 
 	public void updateSeguentMoviment() {
-		proximMoviment.setText(Integer.toString(possiblesMoviments.get(movimentIterator)));
-		panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
+		if (possiblesMoviments.size() > 0) {
+			proximMoviment.setText(Integer.toString(possiblesMoviments.get(movimentIterator)));
+			panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
+		}
+		else proximMoviment.setText(" ");
+		
+		if (completat) completat();
+	}
+	
+	public void completat() {
+		JFrame victoria = new JFrame("Enhorabona");
+		JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension(300,30));
+		panel.add(new JLabel("Enhorabona, has completat l'hidato correctament!"));
+		victoria.add(panel);
+		victoria.setResizable(false);
+		victoria.pack();
+		victoria.setLocationRelativeTo(null);
+		victoria.setVisible(true);
 	}
 
 	
