@@ -100,9 +100,12 @@ public class PanelPartida extends JPanel{
     		info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
     		
     		//panel Butons de infoPanel
-            JPanel movimentPanel = new JPanel();
+    		JPanel movimentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+
+            //JPanel movimentPanel = new JPanel();
+
     		//movimentPanel.setPreferredSize(new Dimension((int)(Math.round(SCRWIDTH*0)), (int)(Math.round(SCRHEIGHT*0.1))));
-    		movimentPanel.setLayout(new BoxLayout(movimentPanel, BoxLayout.X_AXIS));
+    		//movimentPanel.setLayout(new BoxLayout(movimentPanel, BoxLayout.X_AXIS));
     		
     		JButton left = new JButton("<");
     		left.setFocusable(false);
@@ -146,14 +149,38 @@ public class PanelPartida extends JPanel{
     		proximMovimentLabel.setFont(new Font("Dialog", Font.PLAIN, 26));
 
     		proximMoviment.add(proximMovimentLabel);
-    		//proximMoviment.setPreferredSize(new Dimension((int)(Math.round(SCRWIDTH*0.2)), (int)(Math.round(SCRHEIGHT*0.1))));
-    		
+    		proximMoviment.setPreferredSize(new Dimension((int)(Math.round(screenWidth*0.2)), (int)(Math.round(screenHeight*0.1))));
+
     		movimentPanel.add(right);
     		
     		//panel infoMoviment de infoPanel
     		
-    		JPanel accions = new JPanel();
-    		accions.setPreferredSize(new Dimension((int)(Math.round(screenWidth*0)), (int)(Math.round(screenHeight*0.08))));
+    		//JPanel accions = new JPanel();
+    		JPanel accions = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+
+  
+    		//accions.setLayout(new BoxLayout(accions, BoxLayout.X_AXIS));
+    		
+    		
+    		JButton ajuda = new JButton("Ajuda");
+    		ajuda.setFocusable(false);
+    		ajuda.setFocusTraversalKeysEnabled(false);
+    		ajuda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    		ajuda.setFont(new Font("Dialog", Font.PLAIN, 20));
+    		ajuda.setPreferredSize(new Dimension((int)(Math.round(screenWidth*0.5)), (int)(Math.round(screenHeight*0.1))));
+    		
+    		JButton reset = new JButton("Reset");
+    		reset.setFocusable(false);
+    		reset.setFocusTraversalKeysEnabled(false);
+    		reset.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    		reset.setFont(new Font("Dialog", Font.PLAIN, 20));
+    		reset.setPreferredSize(new Dimension((int)(Math.round(screenWidth*0.5)), (int)(Math.round(screenHeight*0.1))));
+    		
+    		accions.add(ajuda);
+    		accions.add(reset);
+    		
+    		
+    		
     		
     		info.add(movimentPanel);
     		info.add(accions);

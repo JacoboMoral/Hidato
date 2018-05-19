@@ -46,11 +46,11 @@ public class PanelHidato extends JPanel{
                 
         setBackground(new Color(239, 245, 255));
         
-        MouseListener ml = new MouseListener();            
-        addMouseListener(ml);
+        MouseListener mouseListener = new MouseListener();            
+        addMouseListener(mouseListener);
         
-        ResizeListener m2 = new ResizeListener();            
-        addComponentListener(m2);
+        ResizeListener resizeListener = new ResizeListener();            
+        addComponentListener(resizeListener);
     }
     
     
