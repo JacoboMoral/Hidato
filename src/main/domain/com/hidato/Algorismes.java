@@ -260,7 +260,6 @@ public class Algorismes {
 					int treureChance; 
 					if (celesNumeriques < 12) treureChance = rand.nextInt(6); //1/6 de treure si la matriu es petita. aixi ens assegurem que no hi hagi massa ficats
 					else treureChance = rand.nextInt(4); 		//3/4 possibilitat de treure un numero = hi han ficats 1/4 dels numeros
-					System.out.println(treureChance);
 					if (/*celesNumeriques > 6 && */treureChance != 0) {
 						 matriu[i][j] = 0;
 						 ++numerosTrets;
