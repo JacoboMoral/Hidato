@@ -50,7 +50,7 @@ public class ControladorPresentacio {
 		panel1.add(button);
 		panel1.add(textField);
 
-		frame.add(panel1);
+		frame.add(panel3);
 
 		frame.setSize(600,400);
 		frame.setLocationRelativeTo(null);

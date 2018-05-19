@@ -37,11 +37,21 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         b_userProfile = new javax.swing.JLabel();
         l_username = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
         parentPanel = new javax.swing.JPanel();
         menuPrincipalPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        b_play = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
+        b_create = new javax.swing.JButton();
+        b_play1 = new javax.swing.JButton();
+        createPanel = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jSpinner2 = new javax.swing.JSpinner();
         seleccioPanel = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -55,7 +65,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 50)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Menu Principal");
+        jLabel3.setText("Home page");
 
         b_userProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/userIcon.png"))); // NOI18N
         b_userProfile.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -67,6 +77,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         l_username.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         l_username.setForeground(new java.awt.Color(255, 255, 255));
 
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout topBarPanelLayout = new javax.swing.GroupLayout(topBarPanel);
         topBarPanel.setLayout(topBarPanelLayout);
         topBarPanelLayout.setHorizontalGroup(
@@ -74,11 +86,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             .addGroup(topBarPanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
                 .addComponent(b_userProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(l_username, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         topBarPanelLayout.setVerticalGroup(
             topBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,10 +102,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                         .addGroup(topBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(l_username, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(b_userProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43))
+                        .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topBarPanelLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(27, 27, 27))))
+                        .addGap(17, 17, 17)))
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(topBarPanel, java.awt.BorderLayout.PAGE_START);
@@ -112,48 +126,122 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_play.setBackground(new java.awt.Color(204, 204, 204));
-        b_play.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        b_play.setText("Play");
-        b_play.addMouseListener(new java.awt.event.MouseAdapter() {
+        b_create.setBackground(new java.awt.Color(204, 204, 204));
+        b_create.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        b_create.setText("Create Hidato");
+        b_create.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                b_playMouseClicked(evt);
+                b_createMouseClicked(evt);
             }
         });
-        b_play.addActionListener(new java.awt.event.ActionListener() {
+        b_create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_playActionPerformed(evt);
+                b_createActionPerformed(evt);
             }
         });
 
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        b_play1.setBackground(new java.awt.Color(204, 204, 204));
+        b_play1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        b_play1.setText("Play");
+        b_play1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_play1MouseClicked(evt);
+            }
+        });
+        b_play1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_play1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuPrincipalPanelLayout = new javax.swing.GroupLayout(menuPrincipalPanel);
         menuPrincipalPanel.setLayout(menuPrincipalPanelLayout);
         menuPrincipalPanelLayout.setHorizontalGroup(
             menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPrincipalPanelLayout.createSequentialGroup()
-                .addGap(706, 706, 706)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
             .addGroup(menuPrincipalPanelLayout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(267, 267, 267)
+                .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_play, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(b_create, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_play1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
         menuPrincipalPanelLayout.setVerticalGroup(
             menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPrincipalPanelLayout.createSequentialGroup()
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
-                .addComponent(b_play)
+                .addGap(142, 142, 142)
+                .addComponent(b_play1)
+                .addGap(26, 26, 26)
+                .addComponent(b_create)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(82, 82, 82))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         parentPanel.add(menuPrincipalPanel, "card4");
+
+        createPanel.setBackground(new java.awt.Color(0, 153, 153));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel2.setText("Tipologia");
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel4.setText("Adjacencia");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel5.setText("Amplada");
+
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel6.setText("Altuar");
+
+        javax.swing.GroupLayout createPanelLayout = new javax.swing.GroupLayout(createPanel);
+        createPanel.setLayout(createPanelLayout);
+        createPanelLayout.setHorizontalGroup(
+            createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createPanelLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGroup(createPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(19, 19, 19)))
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(548, Short.MAX_VALUE))
+        );
+        createPanelLayout.setVerticalGroup(
+            createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createPanelLayout.createSequentialGroup()
+                .addContainerGap(86, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addGap(7, 7, 7)
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
+        );
+
+        parentPanel.add(createPanel, "card4");
 
         seleccioPanel.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -179,42 +267,32 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         seleccioPanelLayout.setHorizontalGroup(
             seleccioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(seleccioPanelLayout.createSequentialGroup()
-                .addGap(262, 262, 262)
+                .addGap(287, 287, 287)
                 .addGroup(seleccioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(297, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(329, Short.MAX_VALUE))
         );
         seleccioPanelLayout.setVerticalGroup(
             seleccioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(seleccioPanelLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(125, 125, 125)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addGap(28, 28, 28)
                 .addComponent(jButton4)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         parentPanel.add(seleccioPanel, "card3");
 
         getContentPane().add(parentPanel, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(716, 539));
+        setSize(new java.awt.Dimension(773, 562));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void b_playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_playMouseClicked
-
-    }//GEN-LAST:event_b_playMouseClicked
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        VistaRanking v = new VistaRanking(cv);
-        v.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1MouseClicked
 
     private void b_userProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_userProfileMouseClicked
         VistaProfile v = new VistaProfile(cv);
@@ -222,16 +300,37 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_b_userProfileMouseClicked
 
-    private void b_playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_playActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void b_play1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_play1ActionPerformed
         parentPanel.removeAll();
         parentPanel.add(seleccioPanel);
         parentPanel.repaint();
         parentPanel.revalidate();
-    }//GEN-LAST:event_b_playActionPerformed
+    }//GEN-LAST:event_b_play1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void b_play1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_play1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_b_play1MouseClicked
+
+    private void b_createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_createActionPerformed
+        parentPanel.removeAll();
+        parentPanel.add(createPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_b_createActionPerformed
+
+    private void b_createMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_createMouseClicked
+
+    }//GEN-LAST:event_b_createMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        VistaRanking v = new VistaRanking(cv);
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -269,14 +368,24 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton b_play;
+    private javax.swing.JButton b_create;
+    private javax.swing.JButton b_play1;
     private javax.swing.JLabel b_userProfile;
+    private javax.swing.JPanel createPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JLabel l_username;
     private javax.swing.JPanel menuPrincipalPanel;
     private javax.swing.JPanel parentPanel;
