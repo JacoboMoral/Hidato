@@ -91,10 +91,7 @@ public class PanelHidato extends JPanel{
 
         boardWidth = board[0].length;
         boardHeight = board.length;
-        
-        System.out.println(screenHeight);
-        calcCellaSize();
-        
+                
         setBackground(new Color(239, 245, 255));
         
         MouseListener ml = new MouseListener();            
@@ -105,6 +102,8 @@ public class PanelHidato extends JPanel{
     }
 
     private void calcCellaSize(){
+    	
+    	
     	cellaHeight = ((screenHeight - (3 * border))/(boardHeight*0.75));
         if ((double)screenHeight/(double)screenWidth > ( ((3/4)*(double)boardHeight)/((sqrt(3)/2)*(double)boardWidth) )){ // si la relacio altura/amplada es mes gran que la relacio ocupa altura/ocupa amplada
             if (screenWidth < (cellaHeight*boardWidth*sqrt(3)/2)){

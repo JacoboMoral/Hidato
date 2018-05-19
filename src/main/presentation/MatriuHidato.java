@@ -167,6 +167,7 @@ public class MatriuHidato{
 
 	public void updateSeguentMoviment() {
 		if (possiblesMoviments.size() > 0) {
+			if (movimentIterator >= possiblesMoviments.size()) --movimentIterator;
 			proximMoviment.setText(Integer.toString(possiblesMoviments.get(movimentIterator)));
 			panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
 		}
