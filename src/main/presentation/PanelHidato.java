@@ -15,6 +15,8 @@ import java.util.Vector;
 
 import static java.lang.Math.sqrt;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
 
 public class PanelHidato extends JPanel{		
 
@@ -34,7 +36,8 @@ public class PanelHidato extends JPanel{
     private int ultim = 1;
     
     //necessita que el creador faci panel.setPreferredSize(dim)
-    public PanelHidato(Cella cella, int[][] board, int ultim, Vector<Integer> nombresPerDefecte, PanelPartida controller){
+    public PanelHidato(Cella cella, int[][] board, int ultim, Vector<Integer> nombresPerDefecte, PanelPartida controller, int screenWidth, int screenHeight){
+    	//setBorder(new LineBorder(new Color(0, 0, 0)));
         this.controller = controller;
     	this.cella = cella;
         this.board = board;
@@ -43,29 +46,75 @@ public class PanelHidato extends JPanel{
 
         boardWidth = board[0].length;
         boardHeight = board.length;
-                       
-        setBackground(new Color(239, 245, 255));
-        
+
+        setOpaque(false);
+
+
         MouseListener mouseListener = new MouseListener();            
         addMouseListener(mouseListener);
         
-        ResizeListener resizeListener = new ResizeListener();            
-        addComponentListener(resizeListener);
+        this.screenHeight = screenHeight;
+        this.screenWidth = screenWidth;
+        
+        calcCellaSize();
+        
+        //ResizeListener resizeListener = new ResizeListener();            
+        //addComponentListener(resizeListener);
     }
     
     
 
     private void calcCellaSize(){
     	        
-        double nombreRealCellesVerticals;
-        if (boardHeight%2 == 0) nombreRealCellesVerticals = (double)(3*boardHeight+1)/4;
-        else nombreRealCellesVerticals = (double)(1 + 3*boardHeight/4);
+        double nombreRealCellesVerticals; 
+        int verticalsSenceres = (int) Math.ceil((double)boardHeight/2);
+        double verticalsMitges = boardHeight - verticalsSenceres;
+        int paritat = 0;
+        if (boardHeight%2 == 0) paritat = 1;
+        nombreRealCellesVerticals = verticalsSenceres + verticalsMitges*0.5 + paritat*0.25;
+        nombreRealCellesVerticals+=0.05; //perque no es talli a vegades
         
-        //System.out.println(nombreRealCellesVerticals);
-        	
-        cellaHeight = ((screenHeight - (3 * border))/nombreRealCellesVerticals);
-        System.out.println("CellaHeight (PanelHidato.calcCellaSize: " + cellaHeight);
+        double nombreRealCellesHoritzontals;
+        nombreRealCellesHoritzontals = (double)(boardWidth+0.5) + 0.05;
+        
+        double tamanyHoritzontal = (sqrt(3)/2)*nombreRealCellesHoritzontals;
+        
+        
+        /*System.out.println(screenHeight);
+        System.out.println("Celles verticals" + nombreRealCellesVerticals);
+        System.out.println("tamany horitzontal" + tamanyHoritzontal);*/
 
+        double cellaWidth;
+        if (screenHeight/screenWidth >= nombreRealCellesVerticals/tamanyHoritzontal) { //relacio d'aspecte de la pantalla es mes alta que la del hidato
+        	System.out.println("relacio d'aspecte de la pantalla es mes alta o igual que la del hidato");
+        	cellaWidth = screenWidth/nombreRealCellesHoritzontals;
+        	cellaHeight = 2*cellaWidth/(sqrt(3));
+        	System.out.println(cellaHeight);
+        }
+        else { 
+        	System.out.println("relacio d'aspecte de la pantalla es mes baixa i gruixuda que la del hidato");
+        	cellaHeight = screenHeight/nombreRealCellesVerticals;
+        	cellaWidth = cellaHeight*sqrt(3)/2;
+        	System.out.println(cellaHeight);
+        }
+        
+        int borderTop = 0;
+        int borderLeft = 0;
+        
+        //if (screenWidth > nombreRealCellesHoritzontals*cellaWidth) {
+        	borderLeft = (int) (screenWidth - nombreRealCellesHoritzontals*cellaWidth)/2;
+        //}
+        
+       // if (screenHeight > nombreRealCellesVerticals*cellaHeight) {
+        	borderTop = (int) (screenHeight - nombreRealCellesVerticals*cellaHeight)/2;
+        //}
+        
+        
+        
+        /*cellaHeight = ((screenHeight - (3 * border))/nombreRealCellesVerticals);
+        System.out.println("CellaHeight (PanelHidato.calcCellaSize: " + cellaHeight);
+        
+        System.out.println(screenHeight);
         if ((double)screenHeight/(double)screenWidth > ( ((3/4)*(double)boardHeight)/((sqrt(3)/2)*(double)boardWidth) )){ // si la relacio altura/amplada es mes gran que la relacio ocupa altura/ocupa amplada
             if (screenWidth < (cellaHeight*boardWidth*sqrt(3)/2)){ //si l'amplada de la pantalla es mes petita que la de cada cella*numero de celles
                 double width = (screenWidth-2*border)/(boardWidth+0.5);
@@ -74,10 +123,12 @@ public class PanelHidato extends JPanel{
         }
         setPreferredSize(new Dimension((int)(boardWidth*cellaHeight*sqrt(3)/2),(int)(nombreRealCellesVerticals*cellaHeight)));
         System.out.println("getHeight (PanelHidato.calcCellaSize: " + getHeight());
-        System.out.println("getWidth (PanelHidato.calcCellaSize: " + getWidth());
+        System.out.println("getWidth (PanelHidato.calcCellaSize: " + getWidth());*/
         
+        cella.setBorderLeft(borderLeft);
+        cella.setBorderTop(borderTop);
         cella.setTamany(cellaHeight);
-        cella.setBorder(border);
+
     }
     
     public void paintComponent(Graphics g){    	

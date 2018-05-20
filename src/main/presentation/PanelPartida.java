@@ -99,12 +99,12 @@ public class PanelPartida extends JPanel{
             
             
             JPanel panelHidatoWithBorder = new JPanel();
-            panelHidatoWithBorder.setBackground(Color.WHITE);
+            panelHidatoWithBorder.setBackground(new Color(0, 153, 153));
             panelHidatoWithBorder.setBorder(
                 BorderFactory.createEmptyBorder(50, 50, 50, 50));
             panelHidatoWithBorder.setLayout(new BorderLayout(50, 50));
             
-    		panelHidato = new PanelHidato(cella, matriuHidato, 225, nombresPerDefecte, this);
+    		panelHidato = new PanelHidato(cella, matriuHidato, 225, nombresPerDefecte, this, 600, 540);
     		panelHidato.setPreferredSize(new Dimension(screenWidth,(int)(screenHeight*0.9)));
     		panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
 
@@ -155,6 +155,8 @@ public class PanelPartida extends JPanel{
     				}
     			}
     		});
+                
+                
     		right.setPreferredSize(new Dimension((int)(Math.round(screenWidth*0.4)), (int)(Math.round(screenHeight*0.1))));
 
     		

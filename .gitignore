@@ -11,9 +11,6 @@
 .project
 src/domain/com/hidato/Main.java
 *.class
-*.class
-*.class
-*.class
 /nbproject/private/
 /build/
 nbproject/project.properties
@@ -29,3 +26,7 @@ bin/domain/main/presentation/Inici.form
 bin/domain/main/presentation/VistaDificultat.form
 *.form
 
+bin/domain/Image/loginIcon.png
+bin/domain/Image/userIcon.png
+bin/domain/Image/wallpaper.jpg
+bin/domain/main/domain/com/hidato/Hidato.class
