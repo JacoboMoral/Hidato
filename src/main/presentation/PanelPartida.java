@@ -39,6 +39,7 @@ public class PanelPartida extends JPanel{
     	//this.setPreferredSize(dimension);
     	screenHeight = dimension.height;
     	screenWidth = dimension.width;
+
     	setMatriu();
         getPossiblesMoviments();
         createAndShowGUI();
@@ -104,8 +105,8 @@ public class PanelPartida extends JPanel{
                 BorderFactory.createEmptyBorder(50, 50, 50, 50));
             panelHidatoWithBorder.setLayout(new BorderLayout(50, 50));
             
-    		panelHidato = new PanelHidato(cella, matriuHidato, 225, nombresPerDefecte, this, 600, 540);
-    		panelHidato.setPreferredSize(new Dimension(screenWidth,(int)(screenHeight*0.9)));
+    		panelHidato = new PanelHidato(cella, matriuHidato, 225, nombresPerDefecte, this, screenWidth, screenHeight);
+    		panelHidato.setPreferredSize(new Dimension(screenWidth,(int)(screenHeight)));
     		panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
 
     		panelHidatoWithBorder.add(panelHidato);
