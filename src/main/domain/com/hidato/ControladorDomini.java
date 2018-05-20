@@ -3,12 +3,20 @@ package main.domain.com.hidato;
 import java.util.Random;
 import java.util.Vector;
 
+import main.presentation.ControladorPresentacio;
+
 public class ControladorDomini {
 	
+    private static final ControladorDomini instance = new ControladorDomini();
 	private Partida partidaEnCurs = null;
 	private Hidato hidatoGenerat = null;;
 	
 
+	
+	public static ControladorDomini getInstance() {
+    	return instance;
+    }
+	
 	public boolean jugarHidatoImportat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
 		partidaEnCurs = new Partida (HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato));
 		if (!partidaEnCurs.esSolucionable()) {
@@ -34,6 +42,8 @@ public class ControladorDomini {
 			return false;
 		}
 	}
+	
+	
 	
 	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
 		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
@@ -98,23 +108,37 @@ public class ControladorDomini {
 	public Vector<Integer> getNombresPerDefecte(){
 		return partidaEnCurs.getNombresPerDefecte();
 	}
+	
+	public Vector<Integer> getPossiblesMoviments() { //Nombres que hi caben a la matriu - nombresPerDefecte - nombresEscrits
+		System.out.println("domini: " + partidaEnCurs.getPossiblesMoviments());
+		return partidaEnCurs.getPossiblesMoviments();
+	}
  
 	public boolean ferMoviment(int i, int j, int value) {
 		if (partidaEnCurs.ferJugada(i, j, value)) return true;
+		return false;
+	}
+	
+	public boolean desferMoviment(int i, int j) {
+		if (partidaEnCurs.esborrarNombre(i, j)) return true;
 		return false;
 	}
 
 	public boolean enPartida() {
 		return (partidaEnCurs != null);
 	}
+	
+	public boolean partidaCompletada() {
+		return partidaEnCurs.completatHidato();
+	}
         
-        public int[] demanarPista() {
-            return partidaEnCurs.seguentMoviment();
-        }
-        
-        public boolean esPotSolucionar(){
-            return partidaEnCurs.esSolucionable();
-        }
+    public int[] demanarPista() {
+        return partidaEnCurs.seguentMoviment();
+    }
+    
+    public boolean esPotSolucionar(){
+        return partidaEnCurs.esSolucionable();
+    }
 	
 	private TipusCella getRandomTipusCella() {
 		Random random = new Random();

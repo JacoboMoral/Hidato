@@ -19,7 +19,7 @@ public class HidatoHexagon extends Hidato {
 	}
 
 	@Override
-	public boolean posicioValida(int i, int j, int r, int c) {
+	public boolean posicioValida(int i, int j, int r, int c) { //posicio a verificar: (r+i,c+j) des de (r, c)
 		return ((Math.abs(i + j) == 1) || ((j == 1) && (r%2 != 0)) || ((j == -1) && (r%2 == 0)));
 	}
 }

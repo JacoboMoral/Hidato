@@ -230,20 +230,19 @@ public class Algorismes {
 		int j;
 		int f;
 		if (dificultat == Dificultat.FACIL) {
-			i = rand.nextInt(4)+2; //[2,5]
-			j = rand.nextInt(4)+2;  //[2,5]
-			if (i*j == 4) f = rand.nextInt(1);
-			else f = rand.nextInt(3);
+			i = rand.nextInt(2)+3; //[3,4]
+			j = rand.nextInt(2)+3;  //[3,4]
+			f = rand.nextInt((i*j)/5) + (i*j)/5; //entre 20 i 40%
 		}
 		else if (dificultat == Dificultat.MIG) {
-			i = rand.nextInt(2)+6; //[6,7]
-			j = rand.nextInt(2)+6;  //[6,7]
-			f = rand.nextInt((i*j)/5) + (i*j)/20; //entre 5 i 20%
+			i = rand.nextInt(3)+5; //[5,7]
+			j = rand.nextInt(3)+5;  //[5,7]
+			f = rand.nextInt((i*j)/5) + (i*j)/10; //entre 10 i 30%
 		}
 		else { //DIFICIL
-			i = rand.nextInt(3)+8; 	//[8,10]
-			j = rand.nextInt(3)+8;  //[8,10]
-			f = rand.nextInt((i*j)/5) + (i*j)/20; //entre 5 i 20%
+			i = rand.nextInt(2)+8; 	//[8,9]
+			j = rand.nextInt(2)+8;  //[8,9]
+			f = rand.nextInt((i*j)/5) + (i*j)/10; //entre 10 i 30%
 		}
 		tamanys[0] = i;
 		tamanys[1] = j;
@@ -254,11 +253,17 @@ public class Algorismes {
 	private void extreureNombres(int forats, int[][] matriu) {
 		Random rand = new Random();
 		int celesNumeriques = matriu.length * matriu[0].length - forats;
+		int numerosTrets = 0;
 		for (int i = 0; i < matriu.length; ++i) {
 			for (int j = 0; j < matriu[0].length; ++j) {
-				if (matriu[i][j] != 1 && matriu[i][j] != celesNumeriques && matriu[i][j] > -1) { //primer i ultim numero han d'estar, i tampoc s'han de treure els forats
-					 int treure = rand.nextInt(4); //         1/4 possibilitat de treure un numero = hi han ficats 1/4 dels numeros
-					 if (celesNumeriques > 6 && treure != 0) matriu[i][j] = 0;
+				if (matriu[i][j] != 1 && matriu[i][j] != celesNumeriques && matriu[i][j] > 0) { //primer i ultim numero han d'estar, i tampoc s'han de treure els forats
+					int treureChance; 
+					if (celesNumeriques < 12) treureChance = rand.nextInt(6); //1/6 de treure si la matriu es petita. aixi ens assegurem que no hi hagi massa ficats
+					else treureChance = rand.nextInt(4); 		//3/4 possibilitat de treure un numero = hi han ficats 1/4 dels numeros
+					if (/*celesNumeriques > 6 && */treureChance != 0) {
+						 matriu[i][j] = 0;
+						 ++numerosTrets;
+					 }
 				}
 			}
 		}

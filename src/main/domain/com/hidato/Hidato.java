@@ -1,5 +1,6 @@
 package main.domain.com.hidato;
 
+import java.util.Collections;
 import java.util.Vector;
 
 public abstract class Hidato {
@@ -15,6 +16,7 @@ public abstract class Hidato {
     protected Boolean solucionable = false;
     protected Vector<Integer> nombresEscrits;
     protected Vector<Integer> nombresDonats;
+    protected Vector<Integer> possiblesMoviments = new Vector<Integer>();
     protected Algorismes al;
     
 
@@ -22,6 +24,7 @@ public abstract class Hidato {
 		this.tipusAdjacencia = tipusAdjacencia;
 		matriuHidato = matriu;
 		makeCopyOriginal(matriuHidato);
+		calcPossiblesMoviments();
     }
 
 	public Hidato(TipusAdjacencia tipusAdjacencia) {
@@ -55,17 +58,41 @@ public abstract class Hidato {
     public boolean moviment(int i, int j, int value) {
     	if(comprovarMoviment(i, j, value)) {
     		matriuHidato[i][j] = value;
+    		//System.out.print("nombresEscrits abans de fer moviment: " + nombresEscrits);
     		nombresEscrits.add(value);
+    		Collections.sort(nombresEscrits);
+    		//System.out.print("     nombresEscrits despres de fer moviment: " + nombresEscrits + "\n");
+    	    possiblesMoviments.remove((Integer)value);
     		return true;
-
     	}
     	else return false;
     }
     
-    public Vector<Integer> getNombresPerDefecte(){
+    public boolean desferMoviment(int i, int j) {
+    	int value = matriuHidato[i][j];
+    	//System.out.println("i: " + i + " j: " + j + " value: " + matriuHidato[i][j]);
+    	if(notPerDefecte(i, j) && matriuHidato[i][j] > 0) {
+    		//System.out.print("nombresEscrits abans de desfer moviment: " + nombresEscrits);
+    		nombresEscrits.remove((Integer)value);
+    		//System.out.print("     nombresEscrits despres de desfer moviment: " + nombresEscrits + "\n");
+    	    possiblesMoviments.add(value);
+    		Collections.sort(possiblesMoviments);
+    		matriuHidato[i][j] = 0;
+    	    //System.out.println(nombresDonats);
+    	    //System.out.println(nombresEscrits);
+    		return true;
+    	}
+    	else return false;
+    }
+
+	public Vector<Integer> getNombresPerDefecte(){
     	return nombresDonats;
     }
     
+	public Vector<Integer> getPossiblesMoviments() {
+		return possiblesMoviments;
+	}
+	
     public int getNombreFiles(){
         return matriuHidato.length;
     }
@@ -102,15 +129,17 @@ public abstract class Hidato {
 		if (solucionable == false){
 			if (al.getMatriuSolucio() != null) {
 				matriuSolucio = al.getMatriuSolucio();
-				nombresDonats = al.getGiven();
+				nombresDonats = new Vector<Integer> (al.getGiven());
 				nombresEscrits = al.getGiven();
+				calcPossiblesMoviments();
 				solucionable = true;
 			}
 			else {
 				solucionable = al.solucionar();
-				nombresDonats = al.getGiven();
+				nombresDonats = new Vector<Integer> (al.getGiven());
 				nombresEscrits = al.getGiven();
 				matriuSolucio = al.getMatriuSolucio();
+				calcPossiblesMoviments();
 			}
 		}
 		return solucionable;
@@ -135,27 +164,35 @@ public abstract class Hidato {
 	}
 	
     private boolean comprovarMoviment(int i, int j, int value) {
+		
     	if (matriuHidato[i][j] != 0) return false;
     	if (estaRepetit(value)) return false;
+
     	boolean anterior = nombresEscrits.contains(value-1);
     	boolean posterior = nombresEscrits.contains(value+1);
     	if (!anterior && !posterior) return false; 		//si no hi ha escrits ni el anterior ni el posterior
     	boolean trobatAnterior = false;
+
     	boolean trobatPosterior = false;
+
     	for(int ii = i - 1; ii < i + 2; ++ii) {
     		for(int jj = j - 1; jj < j + 2; ++jj) {
     			if(estaDintreElsLimits(ii, jj)) {
-    				if ((matriuHidato[ii][jj] - value) == 1 ) {
-    					trobatPosterior = true;
-    				}
-    				if ((value - matriuHidato[ii][jj]) == 1 ) {
-    					trobatAnterior = true;
+    				if (posicioValida(ii-i, jj-j, i, j)) {
+	    				if ((matriuHidato[ii][jj] - value) == 1 ) {
+	    					trobatPosterior = true;
+	    				}
+	    				if ((value - matriuHidato[ii][jj]) == 1 ) {
+	    					trobatAnterior = true;
+	    				}
     				}
     			}
     		}
     	}
     	if (posterior && !trobatPosterior) return false; 		//si hi ha un posterior escrit pero no esta al voltant
+
     	if (anterior && !trobatAnterior) return false; 		//si hi ha un anterior escrit pero no esta al voltant
+
     	return true; 										//else
     }
     
@@ -169,5 +206,31 @@ public abstract class Hidato {
     		}
     	}
 	}
+    
+    private void calcPossiblesMoviments() {
+    	for (int i = 0; i < matriuSolucio.length; ++i) {
+    		for (int j = 0; j < matriuSolucio[0].length; ++j) {
+    			int x = matriuSolucio[i][j];
+    			if (x > 0) {
+    				if (!nombresEscrits.contains(x)) {
+    					possiblesMoviments.add(x);
+    				}
+    			}
+    		}
+    	}
+		Collections.sort(possiblesMoviments);
+    }
+    
+    private boolean notPerDefecte(int i, int j) {
+    	//System.out.println("nombres donats true/false?" + !nombresDonats.contains(matriuHidato[i][j]));
+    	//System.out.println(matriuHidato[i][j]);
+		return (!nombresDonats.contains(matriuHidato[i][j]));  //return false if nombresDonats contains element at (i,j)
+	}
+
+	public boolean completat() {
+		return possiblesMoviments.size() == 0;
+	}
+
+
 
 }
