@@ -3,12 +3,15 @@ package main.domain.com.hidato;
 import java.util.Date;
 import java.util.Vector;
 
+import Usuari.Usuari;
+
 public class Partida {
     private Dificultat dificultat;
     private int puntuacio;
     private Date dataIni;
     private Date dataFi;
     private Hidato hidato;
+    private Usuari usuari;
     private int status; //0 = sense començar; 1 = jugant; -1 finalitzada
 
     public Partida(Hidato hidato) {
@@ -48,9 +51,16 @@ public class Partida {
     public Dificultat getDificultat() {
             return dificultat;
     }
+    
+    public TipusAdjacencia getTipusAdjacencia() {
+    		return hidato.getTipusAdjacencia();
+    }
 
     public Vector<Integer> getNombresPerDefecte(){
             return hidato.getNombresPerDefecte();
+    }
+    public Vector<Integer> getNombresEscrits(){
+    	return hidato.getNombresEscrits();
     }
 
     public int[][] getSolucio() {
@@ -80,6 +90,11 @@ public class Partida {
     public int getPuntuacio() {
             return puntuacio;
     }
+    
+    public String getNomUsuari() {
+    		return "aaa";
+    		//return usuari.getUsername();
+    }
 
     public boolean esSolucionable() {
             return hidato.teSolucio();
@@ -88,4 +103,9 @@ public class Partida {
     int[] seguentMoviment() {
         return null;
     }
+
+	public TipusCella getTipusCella() {
+		// TODO Auto-generated method stub
+		return hidato.getTipusCella();
+	}
 }

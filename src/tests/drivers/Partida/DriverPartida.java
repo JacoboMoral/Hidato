@@ -267,7 +267,7 @@ public class DriverPartida {
 		System.out.println("S'ha hagut de crear una instancia partida i una instancia d'hidato");
 		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
-		v.add(1);
+			v.add(1);
 	    	v.add(2);
 	    	v.add(3);
 	    	v.add(4);

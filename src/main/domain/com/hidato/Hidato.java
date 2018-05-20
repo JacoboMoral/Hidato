@@ -23,6 +23,14 @@ public abstract class Hidato {
 		matriuHidato = matriu;
 		makeCopyOriginal(matriuHidato);
     }
+    
+    public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats){
+		this.tipusAdjacencia = tipusAdjacencia;
+		matriuHidato = matriu;
+		this.matriuOriginal = matriuOriginal;
+		this.nombresEscrits = nombresEscrits;
+		this.nombresDonats = nombresDonats;
+    }
 
 	public Hidato(TipusAdjacencia tipusAdjacencia) {
     	this.tipusAdjacencia = tipusAdjacencia;
@@ -65,6 +73,9 @@ public abstract class Hidato {
     public Vector<Integer> getNombresPerDefecte(){
     	return nombresDonats;
     }
+    public Vector<Integer> getNombresEscrits(){
+    	return nombresEscrits;
+    }
     
     public int getNombreFiles(){
         return matriuHidato.length;
@@ -72,7 +83,6 @@ public abstract class Hidato {
 
     public int getNombreColumnes(){
         return matriuHidato[0].length;
-
     }
 
 	public Dificultat getDificultat() {
