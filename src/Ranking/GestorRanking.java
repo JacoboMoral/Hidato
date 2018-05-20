@@ -39,7 +39,7 @@ public class GestorRanking {
             BufferedWriter bweasy = new BufferedWriter(store_easy);
             String f = null;
             for (int i = 0; i < ranking_easy.size(); ++i) {
-                f = ranking_easy.get(i).getNickname() + " " + ranking_easy.get(i).getPuntacio() + " ";
+                f = ranking_easy.get(i).getUsername() + " " + ranking_easy.get(i).getPuntacio() + " ";
                 bweasy.write(f);
             }
             bweasy.close();
@@ -47,7 +47,7 @@ public class GestorRanking {
             FileWriter store_inter = new FileWriter("Ranking/normal.txt");
             BufferedWriter bwinter = new BufferedWriter(store_inter);
             for (int i = 0; i < ranking_inter.size(); ++i) {
-                f = ranking_inter.get(i).getNickname() + " " + ranking_inter.get(i).getPuntacio() + " ";
+                f = ranking_inter.get(i).getUsername() + " " + ranking_inter.get(i).getPuntacio() + " ";
                 bwinter.write(f);
             }
             bwinter.close();
@@ -55,7 +55,7 @@ public class GestorRanking {
             FileWriter store_hard = new FileWriter("Ranking/dificil.txt");
             BufferedWriter bwhard = new BufferedWriter(store_hard);
             for (int i = 0; i < ranking_hard.size(); ++i) {
-                f = ranking_hard.get(i).getNickname() + " " + ranking_hard.get(i).getPuntacio() + " ";
+                f = ranking_hard.get(i).getUsername() + " " + ranking_hard.get(i).getPuntacio() + " ";
                 bwhard.write(f);
             }
             bwhard.close();

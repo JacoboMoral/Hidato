@@ -30,7 +30,7 @@ public class CtrlRanking {
 
         while (it.hasNext()) {
             aux = it.next();
-            s += (it.previousIndex() + 1) + ": " + aux.getNickname() + " - " + aux.getPuntacio() + "\n"; // "pos,score,usuario<salto-de-linea>"
+            s += (it.previousIndex() + 1) + ": " + aux.getUsername() + " - " + aux.getPuntacio() + "\n"; // "pos,score,usuario<salto-de-linea>"
 
         }
 
@@ -76,7 +76,7 @@ public class CtrlRanking {
         ListIterator<Posicio> it = llista.listIterator();
         while (i < llista.size()) {
             aux = it.next();
-            fac[i] = (i + 1) + "     " + Integer.toString(aux.getPuntacio()) + "     " + aux.getNickname() + "    " + aux.getDate();
+            fac[i] = (i + 1) + "     " + Integer.toString(aux.getPuntacio()) + "     " + aux.getUsername() + "    " + aux.getDate();
             ++i;
         }
         return fac;
@@ -90,7 +90,7 @@ public class CtrlRanking {
         ListIterator<Posicio> it = llista.listIterator();
         while (i < llista.size()) {
             aux = it.next();
-            nor[i] = (i + 1) + "     " + Integer.toString(aux.getPuntacio()) + "     " + aux.getNickname() + "    " + aux.getDate();
+            nor[i] = (i + 1) + "     " + Integer.toString(aux.getPuntacio()) + "     " + aux.getUsername() + "    " + aux.getDate();
             ++i;
         }
         return nor;
@@ -104,7 +104,7 @@ public class CtrlRanking {
         ListIterator<Posicio> it = llista.listIterator();
         while (i < llista.size()) {
             aux = it.next();
-            dif[i] = (i + 1) + "     " + Integer.toString(aux.getPuntacio()) + "     " + aux.getNickname() + "    " + aux.getDate();
+            dif[i] = (i + 1) + "     " + Integer.toString(aux.getPuntacio()) + "     " + aux.getUsername() + "    " + aux.getDate();
             ++i;
         }
         return dif;
@@ -118,8 +118,8 @@ public class CtrlRanking {
         ListIterator<Posicio> it = facaux.listIterator();
         while (i < facaux.size()) {
             aux = it.next();
-            if ((aux.getNickname().equals(usr))) {
-                fac[i] = (i + 1) + " " + Integer.toString(aux.getPuntacio()) + " " + aux.getNickname();
+            if ((aux.getUsername().equals(usr))) {
+                fac[i] = (i + 1) + " " + Integer.toString(aux.getPuntacio()) + " " + aux.getUsername();
             }
             ++i;
         }
@@ -134,8 +134,8 @@ public class CtrlRanking {
         ListIterator<Posicio> it = noraux.listIterator();
         while (i < noraux.size()) {
             aux = it.next();
-            if ((aux.getNickname().equals(usr))) {
-                nor[i] = (i + 1) + " " + Integer.toString(aux.getPuntacio()) + " " + aux.getNickname();
+            if ((aux.getUsername().equals(usr))) {
+                nor[i] = (i + 1) + " " + Integer.toString(aux.getPuntacio()) + " " + aux.getUsername();
             }
             ++i;
         }
@@ -150,8 +150,8 @@ public class CtrlRanking {
         ListIterator<Posicio> it = difaux.listIterator();
         while (i < difaux.size()) {
             aux = it.next();
-            if ((aux.getNickname().equals(usr))) {
-                dif[i] = (i + 1) + " " + Integer.toString(aux.getPuntacio()) + " " + aux.getNickname();
+            if ((aux.getUsername().equals(usr))) {
+                dif[i] = (i + 1) + " " + Integer.toString(aux.getPuntacio()) + " " + aux.getUsername();
             }
             ++i;
         }

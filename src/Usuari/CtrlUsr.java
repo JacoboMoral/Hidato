@@ -1,7 +1,7 @@
 package Usuari;
 public class CtrlUsr {
 
-    private Usuari current;
+    private Usuari currentUsr;
     private GestorUsr gu;
 
     public CtrlUsr() {
@@ -15,55 +15,57 @@ public class CtrlUsr {
         return afegit;
     }
 
-    public boolean logUsuari(String u, String p) {
-        System.out.println("HOLA");
-        boolean loguejat = false;
+    public boolean logUsr(String u, String p) {
+        boolean exists = false;
         Usuari newCurrent = new Usuari(u, p);
-        loguejat = gu.comprovarUsr(newCurrent);
-        if (loguejat) {
-            current = new Usuari(u, p);
-            System.out.println("HOLA SOY " + current.getUsername());
+        exists = gu.comprovarUsr(newCurrent);
+        if (exists) {
+            currentUsr = new Usuari(u, p);
         }
-        return loguejat;
+        return exists;
     }
 
-    public boolean modUsr(String uact, String unou) {
-        boolean fet = false;
-        if (uact.equals(current.getUsername()) & !gu.comprovarUsrMod(unou)) {
-            Usuari newCurrent = new Usuari(unou, current.getPassword());
-            fet = gu.modUsr(uact, unou, newCurrent.getPassword());
-            if (fet) {
-                current = newCurrent;
+    public boolean editUsr(String currentU, String unou) {
+        boolean done = false;
+        if (currentU.equals(currentUsr.getUsername()) & !gu.comprovarUsrMod(unou)) {
+            Usuari newCurrent = new Usuari(unou, currentUsr.getPassword());
+            done = gu.modUsr(currentU, unou, newCurrent.getPassword());
+            if (done) {
+                currentUsr = newCurrent;
             }
         }
-        return fet;
+        return done;
     }
 
-    public boolean modPass(String pact, String pnov) {
+    public boolean changePass(String pact, String pnov) {
         boolean fet = false;
-        if (pact.equals(current.getPassword())) {
-            Usuari newCurrent = new Usuari(current.getUsername(), pnov);
+        if (pact.equals(currentUsr.getPassword())) {
+            Usuari newCurrent = new Usuari(currentUsr.getUsername(), pnov);
             fet = gu.modPassword(newCurrent.getUsername(), pnov);
             if (fet) {
-                current = newCurrent;
+                currentUsr = newCurrent;
             }
         }
         return fet;
     }
 
-    public boolean esbUsr(String pass) {
+    public boolean deleteUsr(String pass) {
         boolean fet = false;
-        if (pass.equals(current.getPassword())) {
-            fet = gu.esbUsuari(current.getUsername());
+        if (pass.equals(currentUsr.getPassword())) {
+            fet = gu.esbUsuari(currentUsr.getUsername());
         }
         return fet;
     }
 
     public String getUsername() {
-        return current.getUsername();
+        return currentUsr.getUsername();
     }
 
     public Usuari getUser() {
-        return current;
+        return currentUsr;
+    }
+
+    public String getPassword() {
+        return currentUsr.getPassword();
     }
 }

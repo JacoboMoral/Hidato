@@ -6,8 +6,8 @@ package Usuari;
  */
 public class Usuari {
 
-    String username;
-    String password;
+    private String username;
+    private String password;
 
     public Usuari(String u, String p) {
         username = new String(u);
