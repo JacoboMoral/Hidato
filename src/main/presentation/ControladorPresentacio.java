@@ -30,9 +30,9 @@ public class ControladorPresentacio {
     }
 
 	public static void main(String args[]){
-		JFrame frame = new JFrame();
+		final JFrame frame = new JFrame();
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-		ControladorPartida partida = new ControladorPartida().getInstance();
+		final ControladorPartida partida = new ControladorPartida().getInstance();
 		panelPartida = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.FACIL);
 		
 				

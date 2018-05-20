@@ -116,7 +116,7 @@ public class PanelPartida extends JPanel{
     		info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
     		
     		//panel Butons de infoPanel
-    		JPanel movimentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+    		final JPanel movimentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
             //JPanel movimentPanel = new JPanel();
 
