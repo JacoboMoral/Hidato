@@ -77,7 +77,7 @@ public abstract class Hidato {
     		//System.out.print("     nombresEscrits despres de desfer moviment: " + nombresEscrits + "\n");
     	    possiblesMoviments.add(value);
     		Collections.sort(possiblesMoviments);
-    	    
+    		matriuHidato[i][j] = 0;
     	    //System.out.println(nombresDonats);
     	    //System.out.println(nombresEscrits);
     		return true;

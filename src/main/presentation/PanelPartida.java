@@ -36,10 +36,10 @@ public class PanelPartida extends JPanel{
 	
     public PanelPartida(Cella cella, Dimension dimension){
     	this.cella = cella;
-    	this.setPreferredSize(dimension);
+    	//this.setPreferredSize(dimension);
     	screenHeight = dimension.height;
     	screenWidth = dimension.width;
-    	getMatriu();
+    	setMatriu();
         getPossiblesMoviments();
         createAndShowGUI();
     }
@@ -69,14 +69,19 @@ public class PanelPartida extends JPanel{
 		}
 		return false;
 	}
+	
+	public int[][] getMatriu() {
+		return controller.getMatriuHidato();
+	}
 
-	private void getMatriu() {
+	private void setMatriu() {
 
-    	matriuHidato = controller.getMatriuHidato();
+    	matriuHidato = controller.generarMatriuHidato();
 		nombresPerDefecte = controller.getNombresPerDefecte();
     	boardHeight = matriuHidato[0].length;
     	boardWidth = matriuHidato.length;
 	}
+	
 
 	private void getPossiblesMoviments() {
 		possiblesMoviments = controller.getPossiblesMoviments();
@@ -91,10 +96,21 @@ public class PanelPartida extends JPanel{
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     		//creació de panel de Hidato
     		//hardcoded ultim
+            
+            
+            JPanel panelHidatoWithBorder = new JPanel();
+            panelHidatoWithBorder.setBackground(Color.WHITE);
+            panelHidatoWithBorder.setBorder(
+                BorderFactory.createEmptyBorder(50, 50, 50, 50));
+            panelHidatoWithBorder.setLayout(new BorderLayout(50, 50));
+            
     		panelHidato = new PanelHidato(cella, matriuHidato, 225, nombresPerDefecte, this);
     		panelHidato.setPreferredSize(new Dimension(screenWidth,(int)(screenHeight*0.9)));
     		panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
 
+    		panelHidatoWithBorder.add(panelHidato);
+    		
+    		
     		//panel infoPanel
     		JPanel info = new JPanel();
     		info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
@@ -130,6 +146,8 @@ public class PanelPartida extends JPanel{
     		right.setFont(new Font("Dialog", Font.PLAIN, 26));
     		right.addActionListener(new ActionListener() {
     			public void actionPerformed(ActionEvent arg0) {
+					System.out.println(movimentPanel.getHeight());
+
     				if (movimentIterator < possiblesMoviments.size()-1) {
     					++movimentIterator;
     					System.out.println("iterator: " + movimentIterator + " possiblesMoviments: " + possiblesMoviments);
@@ -185,7 +203,7 @@ public class PanelPartida extends JPanel{
     		info.add(movimentPanel);
     		info.add(accions);
 
-    		this.add(panelHidato);
+    		this.add(panelHidatoWithBorder);
     		this.add(info);
     		
     		/*frame.getContentPane().add(panelHidato);
@@ -221,5 +239,7 @@ public class PanelPartida extends JPanel{
 		victoria.setVisible(true);
 	}
 
+	
+	
 	
 }

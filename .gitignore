@@ -28,3 +28,5 @@ bin/domain/JOCSDEPROVA/Joc_de_prova_DriverHidato.txt
 bin/domain/main/domain/com/hidato/Hidato.class
 bin/domain/main/domain/com/hidato/Partida.class
 bin/domain/main/domain/com/hidato/Partida.class
+*.class
+bin/domain/main/domain/com/hidato/Hidato.class

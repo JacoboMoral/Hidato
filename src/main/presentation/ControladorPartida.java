@@ -43,10 +43,14 @@ public class ControladorPartida {
 		return controller.desferMoviment(y,x);
 	}
 
-	public int[][] getMatriuHidato() {
+	public int[][] generarMatriuHidato() {
     	if (controller.autoGenerar(TipusCella.HEXAGON, dificultat));
     	controller.jugarHidatoGenerat();
     	return controller.getMatriuHidatoDePartida();
+	}
+	
+	public int[][] getMatriuHidato(){
+		return controller.getMatriuHidatoDePartida();
 	}
 
 	public Vector<Integer> getNombresPerDefecte() {

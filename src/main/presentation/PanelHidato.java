@@ -43,7 +43,7 @@ public class PanelHidato extends JPanel{
 
         boardWidth = board[0].length;
         boardHeight = board.length;
-                
+                       
         setBackground(new Color(239, 245, 255));
         
         MouseListener mouseListener = new MouseListener();            
@@ -118,12 +118,17 @@ public class PanelHidato extends JPanel{
             Point p = new Point( cella.locationToMatriu(e.getX(),e.getY()) );
             if (p.x < 0 || p.y < 0 || p.x >= board[0].length || p.y >= board.length) return;
 
-            boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);
+            /*boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);
             if (movimentPossible) board[p.y][p.x] = seguentMoviment;
             else {
             	movimentPossible = controller.desferMoviment(p.y,p.x);
                 if (movimentPossible) board[p.y][p.x] = 0;
-            }
+            }*/
+            
+            boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);
+            if (!movimentPossible) movimentPossible = controller.desferMoviment(p.y,p.x);
+            board = controller.getMatriu();
+            
             controller.updateSeguentMoviment();
             repaint();
         }		 
@@ -134,6 +139,10 @@ public class PanelHidato extends JPanel{
     	public void componentResized(ComponentEvent componentEvent) {
     		screenHeight = getHeight();
             screenWidth = getWidth();
+            
+            System.out.println("resize"+screenHeight);
+            System.out.println(screenWidth);
+
     		calcCellaSize();
     		repaint();
     	}
