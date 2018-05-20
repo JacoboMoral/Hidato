@@ -137,7 +137,7 @@ public class VistaEditUsername extends javax.swing.JFrame {
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
-                    jTextField1.setText("");
+                    jTextField2.setText("");
                 }
             }
         }
