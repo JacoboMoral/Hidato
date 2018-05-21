@@ -1,7 +1,10 @@
 package main.persistence;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -55,49 +58,69 @@ public class ControladorPersistence {
     	} catch(IOException ex){ex.printStackTrace();}
     	
     }
+    
+    public static void importarHidato(String file, String nom) throws IOException {
     	
-    	/*try {
-            File file = new File("Usuaris/" + u.getUsername());
-            if (!aux.exists()) {
-                aux.mkdirs();
-                File axu = new File("Usuaris/" + u.getUsername() + "/", "password.txt");
-                axu.createNewFile();
-                FileWriter esc = new FileWriter("Usuaris/" + u.getUsername() + "/password.txt", true);
-                BufferedWriter bw = new BufferedWriter(esc);
-                bw.write(u.getPassword());
-                bw.close();
-                esc.close();
-                x = true;
-            }
-        } catch (IOException ex) {
-    */
-    
+    	
+        FileReader fr = new FileReader(file);
+        BufferedReader b = new BufferedReader(fr);
+    	
+    	
+    	File carpeta = new File("HidatosImportats/" + nom);
+    	if(carpeta.exists()) {
+			System.out.println("Ja hi ha una hidato amb aquest nom. Es sobreescriurà");
+			carpeta.delete();
+		}
+    	carpeta.mkdirs();
+		File arxiu = new File("HidatosImportats/" + nom, "hidato.txt");
+		arxiu.delete();
+		arxiu.createNewFile();
+		FileWriter fileWriter = new FileWriter("HidatosImportats/" + nom + "/hidato.txt", true);
+		BufferedWriter bw = new BufferedWriter(fileWriter);
+		PrintStream console = System.out;
+		PrintStream o = new PrintStream(arxiu);
+		System.setOut(o);
+		
+		String cadena = b.readLine();
+		
+		while(cadena != null) {
+			System.out.println(cadena);
+			cadena = b.readLine();
+		}
+		System.setOut(console);
+		bw.close();
+		fileWriter.close();
+    	
+		//COMPROVAR QUE HIDATO ES VÀLID!!!!!!!!!!!!
+    	
+    }
+   
 
-public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
     
-    Vector<Integer> v = new Vector<Integer>(4);
-    v.add(1);
-	v.add(2);
-	v.add(3);
-	v.add(4);
-	
-    guardarPartida(1, 150, TipusCella.HEXAGON, TipusAdjacencia.COSTATS, new int[][] {
-		{1,2,3,4,5},
-		{6,7,8,9,10},
-		{11,12,13,14,15},
-		{16,17,18,19,20},
-		{21,22,23,24,25}
-	}, new int[][] {
-		{1,2,3,4,5},
-		{6,7,8,9,10},
-		{11,12,13,14,15},
-		{16,17,18,19,20},
-		{21,22,23,24,666666}
-	}, v, v, "asdsad");
-    
-    
-}
-
-
+	    /*Vector<Integer> v = new Vector<Integer>(4);
+	    v.add(1);
+		v.add(2);
+		v.add(3);
+		v.add(4);
+		
+	    guardarPartida(1, 150, TipusCella.HEXAGON, TipusAdjacencia.COSTATS, new int[][] {
+			{1,2,3,4,5},
+			{6,7,8,9,10},
+			{11,12,13,14,15},
+			{16,17,18,19,20},
+			{21,22,23,24,25}
+		}, new int[][] {
+			{1,2,3,4,5},
+			{6,7,8,9,10},
+			{11,12,13,14,15},
+			{16,17,18,19,20},
+			{21,22,23,24,666666}
+		}, v, v, "aaa"); */
+    	
+    	importarHidato("Hidatos.txt", "jacobillor");
+	    
+	    
+    }
 
 }
