@@ -79,19 +79,31 @@ public class ControladorPersistence {
 		BufferedWriter bw = new BufferedWriter(fileWriter);
 		PrintStream console = System.out;
 		PrintStream o = new PrintStream(arxiu);
-		System.setOut(o);
 		
 		String cadena = b.readLine();
-		
-		while(cadena != null) {
-			System.out.println(cadena);
-			cadena = b.readLine();
+		String[] cabecera = cadena.split(",");
+		if(cabecera.length != 4) {
+			System.out.println("error en el format");
+			//COMPROVAR CAPÇALERA
+			//SALTAR EXCEPCIO
 		}
-		System.setOut(console);
+		int altura = Integer.parseInt(cabecera[2]);
+		int anchura = Integer.parseInt(cabecera[3]);
+		
+		
+		o.println(cadena);
+		
+		for(int i = 0; i < altura; i++) {
+			cadena = b.readLine();
+			o.println(cadena);
+			if(cadena.split(",").length != anchura) System.out.println("Error");
+		}
+		
+	
 		bw.close();
 		fileWriter.close();
     	
-		//COMPROVAR QUE HIDATO ES VÀLID!!!!!!!!!!!!
+		
     	
     }
    
@@ -118,7 +130,7 @@ public class ControladorPersistence {
 			{21,22,23,24,666666}
 		}, v, v, "aaa"); */
     	
-    	importarHidato("Hidatos.txt", "jacobillor");
+    	importarHidato("hola.txt", "hola2");
 	    
 	    
     }
