@@ -4,6 +4,7 @@ import Usuari.CtrlUsr;
 import Ranking.CtrlRanking;
 import Ranking.Ranking;
 import Usuari.Usuari;
+import java.io.IOException;
 
 public class CtrlVista {
 
@@ -19,23 +20,23 @@ public class CtrlVista {
         return cu.getUser();
     }
     
-    public boolean altaUsuari(String usr, String pass) {
+    public boolean altaUsuari(String usr, String pass) throws IOException {
         return cu.afegirUsuari(usr, pass);
     }
 
-    public boolean logUsr(String u, String p) {
-        return cu.logUsr(u, p);
+    public boolean loginUsuari(String usr, String pass) throws IOException {
+        return cu.loginUsuari(usr, pass);
     }
 
     public boolean editUsr(String usr1, String usr2) {
-        return cu.editUsr(usr1, usr2);
+        return cu.editUsername(usr1, usr2);
     }
 
-    public boolean changePass(String pass1, String pass2) {
-        return cu.changePass(pass1, pass2);
+    public boolean changePass(String oldPass, String newPass) throws IOException {
+        return cu.changePass(oldPass, newPass);
     }
 
-    public boolean esbUsr(String pass) {
+    public boolean deleteUser(String pass) {
         return cu.deleteUsr(pass);
     }
     

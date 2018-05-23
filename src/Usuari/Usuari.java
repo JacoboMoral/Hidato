@@ -22,12 +22,12 @@ public class Usuari {
         return password;
     }
 
-    public void setUsername(String usr) {
-        this.username = usr;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
-    public void setPassword(String pwd) {
-        this.password = pwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     

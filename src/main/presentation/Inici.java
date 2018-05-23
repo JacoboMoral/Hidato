@@ -5,6 +5,9 @@
  */
 package main.presentation;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -190,19 +193,24 @@ public class Inici extends javax.swing.JFrame {
     private void b_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_loginMouseClicked
         String name, password;
         name = tf_username.getText();
-        password = tf_password.getText();
+        password = new String(tf_password.getPassword());
         if (name.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter your name please!");
+            JOptionPane.showMessageDialog(null, "Please, enter your name!");
         } else if (password.length() == 0) {
-            JOptionPane.showMessageDialog(null, "Enter your password please!");
+            JOptionPane.showMessageDialog(null, "Please, enter your password!");
         } else {
-            boolean aux = cv.logUsr(name, password);
-            if (aux) {
+            boolean userPassMatch = false;
+            try {
+                userPassMatch = cv.loginUsuari(name, password);
+            } catch (IOException ex) {
+                Logger.getLogger(Inici.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (userPassMatch) {
                 VistaMenuPrincipal v = new VistaMenuPrincipal(cv);
                 v.setVisible(true);
                 this.dispose();
             } else {
-                int input = JOptionPane.showOptionDialog(null, "Name and Password doesn't match, please enter again.", "Error message",
+                int input = JOptionPane.showOptionDialog(null, "Username and password doesn't match, please enter again.", "Error message",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                 if (input == JOptionPane.OK_OPTION) {
                     tf_password.setText("");

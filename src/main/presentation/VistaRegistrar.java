@@ -6,6 +6,9 @@
 package main.presentation;
 
 import Usuari.CtrlUsr;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -210,7 +213,12 @@ public class VistaRegistrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter again your password please!");
         }
         if (password.equals(rPassword) && !password.isEmpty() && !rPassword.isEmpty()) {
-            boolean aux = vista.altaUsuari(name, password);
+            boolean aux = false;
+            try {
+                aux = vista.altaUsuari(name, password);
+            } catch (IOException ex) {
+                Logger.getLogger(VistaRegistrar.class.getName()).log(Level.SEVERE, null, ex);
+            }
             if (aux) {
                 int input = JOptionPane.showOptionDialog(null, "Registration done!", "Message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);

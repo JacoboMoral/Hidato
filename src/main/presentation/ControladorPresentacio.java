@@ -30,7 +30,6 @@ public class ControladorPresentacio {
     }
 
 	public static void main(String args[]){
-
 		final JFrame frame = new JFrame();
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		final ControladorPartida partida = new ControladorPartida().getInstance();
@@ -73,11 +72,7 @@ public class ControladorPresentacio {
 		frame.add(panelPartida);
 		
 		
-		
-		
-		
 		frame.pack();
-
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Titulo del FRAME");
@@ -102,7 +97,7 @@ public class ControladorPresentacio {
 	}
 	
 	public void launchLogin() {
-		VistaLogin vistaLogin = new VistaLogin();
+               	//VistaLogin vistaLogin = new VistaLogin();
 		//vistaLogin.run();
 		main(null);
 	}
