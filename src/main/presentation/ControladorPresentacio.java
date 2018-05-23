@@ -21,10 +21,12 @@ import main.domain.com.hidato.TipusCella;
 public class ControladorPresentacio {
 
     private static final ControladorPresentacio instance = new ControladorPresentacio();
-    private static final ControladorDomini domini = new ControladorDomini().getInstance();
+    private static final ControladorDomini domini = ControladorDomini.getInstance();
 
     static JPanel panelPartida; //JPanel vs PanelPartida??? hi ha cap diferencia?'
     
+    private ControladorPresentacio() {
+    }
     public static ControladorPresentacio getInstance() {
     	return instance;
     }

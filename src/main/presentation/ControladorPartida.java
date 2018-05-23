@@ -13,8 +13,8 @@ import main.domain.com.hidato.TipusCella;
 
 public class ControladorPartida {
 	private static final ControladorPartida instance = new ControladorPartida();
-    private final ControladorPresentacio controller = new ControladorPresentacio().getInstance();
-    Dificultat dificultat;
+    private final ControladorPresentacio controller = ControladorPresentacio.getInstance();
+    Dificultat dificultat = Dificultat.FACIL;
     
     public ControladorPartida() {
     }

@@ -18,6 +18,7 @@ abstract class Cella {
 		
 	
     abstract public Point locationToMatriu(int posx, int posy);
-	abstract public void setBorder(int border);
+	abstract public void setBorderLeft(int border);
+	abstract public void setBorderTop(int border);
 	
 }
