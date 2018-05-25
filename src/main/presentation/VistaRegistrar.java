@@ -5,7 +5,7 @@
  */
 package main.presentation;
 
-import Usuari.CtrlUsr;
+import CtrlUser.CtrlUser;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

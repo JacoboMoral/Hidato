@@ -5,7 +5,7 @@
  */
 package main.presentation;
 
-import Usuari.Usuari;
+import main.domain.com.hidato.Usuari;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

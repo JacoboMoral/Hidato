@@ -13,7 +13,7 @@ public class InteraccioTerminal {
 	public static class CustomCompare implements Comparator<Posicio> {
 	    @Override
 	    public int compare(Posicio p1, Posicio p2) {
-	        return Integer.compare(p1.getPuntacio(), p2.getPuntacio());
+	        return Integer.compare(p1.getScore(), p2.getScore());
 	    }
 	}
 	

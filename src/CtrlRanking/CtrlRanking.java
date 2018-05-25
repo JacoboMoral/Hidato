@@ -1,5 +1,7 @@
-package Ranking;
+package CtrlRanking;
 
+import main.domain.com.hidato.Posicio;
+import main.domain.com.hidato.Ranking;
 import main.persistence.CtrlPersistence;
 import java.time.LocalDate;
 import java.util.ArrayList;

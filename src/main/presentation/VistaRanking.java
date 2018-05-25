@@ -5,9 +5,9 @@
  */
 package main.presentation;
 
-import Ranking.Ranking;
-import Ranking.Posicio;
-import Usuari.Usuari;
+import main.domain.com.hidato.Ranking;
+import main.domain.com.hidato.Posicio;
+import main.domain.com.hidato.Usuari;
 import java.time.LocalDate;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -48,6 +48,23 @@ public class VistaRanking extends javax.swing.JFrame {
         cv.saveResultat(1, "Jia3", 161);
         cv.saveResultat(2, "Jia", 143562);
         cv.saveResultat(3, "Jia3", 13454);
+        showRankingList();
+    }
+
+    private void showRankingList() {
+        DefaultListModel model = new DefaultListModel();
+        DefaultListModel model1 = new DefaultListModel();
+        DefaultListModel model2 = new DefaultListModel();
+        String[] rankEasy = cv.getRank_easy();
+        String[] rankInter = cv.getRank_inter();
+        String[] rankHard = cv.getRank_hard();
+        for (int i = 0; i < rankEasy.length; ++i) model.addElement(rankEasy[i]);
+        for (int i = 0; i < rankInter.length; ++i) model1.addElement(rankInter[i]);
+        for (int i = 0; i < rankHard.length; ++i) model2.addElement(rankHard[i]);
+
+        jList1.setModel(model);
+        jList2.setModel(model1);
+        jList3.setModel(model2);
     }
     
     /**
@@ -112,11 +129,6 @@ public class VistaRanking extends javax.swing.JFrame {
         title.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         title.setText("Ranking-Easy");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -186,11 +198,6 @@ public class VistaRanking extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel17.setText("Pos");
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(jList2);
 
         title2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
@@ -254,11 +261,6 @@ public class VistaRanking extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel16.setText("Date");
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane4.setViewportView(jList3);
 
         title1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
@@ -474,17 +476,6 @@ public class VistaRanking extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private class RankListModel extends DefaultListModel<String> {
-
-        public RankListModel(String[] s) {
-            super();
-            for (int i = 0; i < s.length; ++i) {
-                this.addElement(s[i]);
-            }
-        }
-       
-    }
-
     private void b_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_backMouseClicked
         VistaMenuPrincipal v = new VistaMenuPrincipal(cv);
         v.setVisible(true);
@@ -493,12 +484,7 @@ public class VistaRanking extends javax.swing.JFrame {
     }//GEN-LAST:event_b_backMouseClicked
 
     private void mostrar_rankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrar_rankingMouseClicked
-        RankListModel Rank_easy = new RankListModel(cv.getRank_easy());
-        RankListModel Rank_inter = new RankListModel(cv.getRank_inter());
-        RankListModel Rank_hard = new RankListModel(cv.getRank_hard());
-        jList1.setModel(Rank_easy);
-        jList2.setModel(Rank_inter);
-        jList3.setModel(Rank_hard);
+        showRankingList();
         repaint();
         
     }//GEN-LAST:event_mostrar_rankingMouseClicked
@@ -514,12 +500,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
             cv.deleteUsr(usr);
             user_to_delete.setText("");
-            RankListModel Rank_easy = new RankListModel(cv.getRank_easy());
-            RankListModel Rank_inter = new RankListModel(cv.getRank_inter());
-            RankListModel Rank_hard = new RankListModel(cv.getRank_hard());
-            jList1.setModel(Rank_easy);
-            jList2.setModel(Rank_inter);
-            jList3.setModel(Rank_hard);
+            showRankingList();
             repaint();
         }
     }//GEN-LAST:event_b_deleteUsrMouseClicked

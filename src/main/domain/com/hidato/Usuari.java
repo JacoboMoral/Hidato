@@ -1,4 +1,4 @@
-package Usuari;
+package main.domain.com.hidato;
 
 /**
  *

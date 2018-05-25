@@ -1,18 +1,18 @@
 package main.presentation;
 
-import Usuari.CtrlUsr;
-import Ranking.CtrlRanking;
-import Ranking.Ranking;
-import Usuari.Usuari;
+import CtrlUser.CtrlUser;
+import CtrlRanking.CtrlRanking;
+import main.domain.com.hidato.Ranking;
+import main.domain.com.hidato.Usuari;
 import java.io.IOException;
 
 public class CtrlVista {
 
-    private CtrlUsr cu;
+    private CtrlUser cu;
     private CtrlRanking cr;
 
     public CtrlVista() {
-        cu = new CtrlUsr();
+        cu = new CtrlUser();
         cr = new CtrlRanking();
     }
 

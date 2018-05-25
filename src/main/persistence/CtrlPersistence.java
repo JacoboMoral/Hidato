@@ -1,7 +1,7 @@
 package main.persistence;
 
-import Ranking.Posicio;
-import Ranking.Ranking;
+import main.domain.com.hidato.Posicio;
+import main.domain.com.hidato.Ranking;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
