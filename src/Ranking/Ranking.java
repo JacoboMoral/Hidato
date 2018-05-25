@@ -18,80 +18,89 @@ import java.util.ListIterator;
  */
 public class Ranking {
 
-    private static final int DIF_easy = 1;
-    private static final int DIF_inter = 2;
-    private static final int DIF_hard = 3;
+    private static final int levelEasy = 1;
+    private static final int levelInter = 2;
+    private static final int levelHard = 3;
 
-    private ArrayList<Posicio> llistaPosicions_easy = new ArrayList<Posicio>();
-    private ArrayList<Posicio> llistaPosicions_inter = new ArrayList<Posicio>();
-    private ArrayList<Posicio> llistaPosicions_hard = new ArrayList<Posicio>();
+    private ArrayList<Posicio> rankingEasy = new ArrayList<Posicio>();
+    private ArrayList<Posicio> rankingInter = new ArrayList<Posicio>();
+    private ArrayList<Posicio> rankingHard = new ArrayList<Posicio>();
 
-    public void insertar_posicio(Posicio pos, int dificultat) {
+        
+    public ArrayList<Posicio> getLlistaPosicio(int dificultat) {
         switch (dificultat) {
-            case DIF_easy:
-                llistaPosicions_easy.add(pos);
-                Collections.sort(llistaPosicions_easy, new CustomCompare().reversed());
-                break;
-            case DIF_inter:
-                llistaPosicions_inter.add(pos);
-                Collections.sort(llistaPosicions_inter, new CustomCompare().reversed());
-                break;
-            case DIF_hard:
-                llistaPosicions_hard.add(pos);
-                Collections.sort(llistaPosicions_hard, new CustomCompare().reversed());
-                break;
+            case levelEasy:
+                return rankingEasy;
+            case levelInter:
+                return rankingInter;
+            case levelHard:
+                return rankingHard;
         }
+        return null;
     }
 
-    public boolean exists(String nom) {
-        ListIterator<Posicio> it_easy = llistaPosicions_easy.listIterator();
-        ListIterator<Posicio> it_inter = llistaPosicions_inter.listIterator();
-        ListIterator<Posicio> it_hard = llistaPosicions_hard.listIterator();
-        boolean trobat = false;
-        while (it_easy.hasNext()) {
-            Posicio aux = it_easy.next();
-            if(aux.getUsername().equals(nom)) trobat = true;
+    public void insertPosition(Posicio pos, int dificultat) {
+        if (dificultat == levelEasy) {
+            rankingEasy.add(pos);
+            Collections.sort(rankingEasy, new CustomCompare().reversed());
         }
-        while (it_inter.hasNext()) {
-            Posicio aux = it_inter.next();
-            if(aux.getUsername().equals(nom)) trobat = true;
-        }
-        while (it_hard.hasNext()) {
-            Posicio aux = it_hard.next();
-            if(aux.getUsername().equals(nom)) trobat = true;
-        }
-        return trobat;
-    }
 
+        if (dificultat == levelInter) {
+            rankingInter.add(pos);
+            Collections.sort(rankingInter, new CustomCompare().reversed());
+        }
+
+        if (dificultat == levelHard) {
+            rankingHard.add(pos);
+            Collections.sort(rankingHard, new CustomCompare().reversed());
+        }
+    }
+    
     public static class CustomCompare implements Comparator<Posicio> {
 
         @Override
         public int compare(Posicio p1, Posicio p2) {
-            return Integer.compare(p1.getPuntacio(), p2.getPuntacio());
+            return Integer.compare(p1.getScore(), p2.getScore());
         }
     }
 
-    public ArrayList<Posicio> getLlistaPosicio(int dificultat) {
-        switch (dificultat) {
-            case DIF_easy:
-                return llistaPosicions_easy;
-            case DIF_inter:
-                return llistaPosicions_inter;
-            case DIF_hard:
-                return llistaPosicions_hard;
+    public boolean exists(String nom) {
+        ListIterator<Posicio> it_easy = rankingEasy.listIterator();
+        ListIterator<Posicio> it_inter = rankingInter.listIterator();
+        ListIterator<Posicio> it_hard = rankingHard.listIterator();
+        boolean trobat = false;
+        while (it_easy.hasNext()) {
+            Posicio aux = it_easy.next();
+            if (aux.getUsername().equals(nom)) {
+                trobat = true;
+            }
         }
-        return null;
+        while (it_inter.hasNext()) {
+            Posicio aux = it_inter.next();
+            if (aux.getUsername().equals(nom)) {
+                trobat = true;
+            }
+        }
+        while (it_hard.hasNext()) {
+            Posicio aux = it_hard.next();
+            if (aux.getUsername().equals(nom)) {
+                trobat = true;
+            }
+        }
+        return trobat;
     }
+
+    
 
     public void delete_by_username(int dificultat, String nom) {
         boolean trobat = false;
         int i = 0;
         switch (dificultat) {
-            case DIF_easy:
-                while (i < llistaPosicions_easy.size() && !trobat) {
-                    if (llistaPosicions_easy.get(i).getUsername().equals(nom)) {
-                        System.out.println(llistaPosicions_easy.get(i).getUsername());
-                        llistaPosicions_easy.remove(i);
+            case levelEasy:
+                while (i < rankingEasy.size() && !trobat) {
+                    if (rankingEasy.get(i).getUsername().equals(nom)) {
+                        System.out.println(rankingEasy.get(i).getUsername());
+                        rankingEasy.remove(i);
                         trobat = true;
                     }
                     i++;
@@ -100,11 +109,11 @@ public class Ranking {
                     System.out.println("No trobat");
                 }
                 break;
-            case DIF_inter:
-                while (i < llistaPosicions_inter.size() && !trobat) {
-                    if (llistaPosicions_inter.get(i).getUsername().equals(nom)) {
-                        System.out.println(llistaPosicions_inter.get(i).getUsername());
-                        llistaPosicions_inter.remove(i);
+            case levelInter:
+                while (i < rankingInter.size() && !trobat) {
+                    if (rankingInter.get(i).getUsername().equals(nom)) {
+                        System.out.println(rankingInter.get(i).getUsername());
+                        rankingInter.remove(i);
                         trobat = true;
                     }
                     i++;
@@ -113,11 +122,11 @@ public class Ranking {
                     System.out.println("No trobat");
                 }
                 break;
-            case DIF_hard:
-                while (i < llistaPosicions_hard.size() && !trobat) {
-                    if (llistaPosicions_hard.get(i).getUsername().equals(nom)) {
-                        System.out.println(llistaPosicions_hard.get(i).getUsername());
-                        llistaPosicions_hard.remove(i);
+            case levelHard:
+                while (i < rankingHard.size() && !trobat) {
+                    if (rankingHard.get(i).getUsername().equals(nom)) {
+                        System.out.println(rankingHard.get(i).getUsername());
+                        rankingHard.remove(i);
                         trobat = true;
                     }
                     i++;
@@ -131,14 +140,14 @@ public class Ranking {
 
     public void delete_by_position(int index, int dificultat) {
         switch (dificultat) {
-            case DIF_easy:
-                llistaPosicions_easy.remove(index);
+            case levelEasy:
+                rankingEasy.remove(index);
                 break;
-            case DIF_inter:
-                llistaPosicions_inter.remove(index);
+            case levelInter:
+                rankingInter.remove(index);
                 break;
-            case DIF_hard:
-                llistaPosicions_hard.remove(index);
+            case levelHard:
+                rankingHard.remove(index);
                 break;
         }
 
@@ -159,26 +168,26 @@ public class Ranking {
         int i = 0;
         ArrayList<Posicio> aux = new ArrayList<Posicio>();
         switch (dificultat) {
-            case DIF_easy:
-                while (i < llistaPosicions_easy.size()) {
-                    if (llistaPosicions_easy.get(i).getUsername().equals(nom)) {
-                        aux.add(llistaPosicions_easy.get(i));
+            case levelEasy:
+                while (i < rankingEasy.size()) {
+                    if (rankingEasy.get(i).getUsername().equals(nom)) {
+                        aux.add(rankingEasy.get(i));
                     }
                     i++;
                 }
                 return aux;
-            case DIF_inter:
-                while (i < llistaPosicions_inter.size()) {
-                    if (llistaPosicions_inter.get(i).getUsername().equals(nom)) {
-                        aux.add(llistaPosicions_inter.get(i));
+            case levelInter:
+                while (i < rankingInter.size()) {
+                    if (rankingInter.get(i).getUsername().equals(nom)) {
+                        aux.add(rankingInter.get(i));
                     }
                     i++;
                 }
                 return aux;
-            case DIF_hard:
-                while (i < llistaPosicions_hard.size()) {
-                    if (llistaPosicions_hard.get(i).getUsername().equals(nom)) {
-                        aux.add(llistaPosicions_hard.get(i));
+            case levelHard:
+                while (i < rankingHard.size()) {
+                    if (rankingHard.get(i).getUsername().equals(nom)) {
+                        aux.add(rankingHard.get(i));
                     }
                     i++;
                 }
@@ -198,8 +207,8 @@ public class Ranking {
         ListIterator<Posicio> it;
 
         switch (dificultat) {
-            case DIF_easy:
-                it = llistaPosicions_easy.listIterator();
+            case levelEasy:
+                it = rankingEasy.listIterator();
                 while (it.hasNext()) {
                     if (it.next().getUsername().equals(user)) {
                         ap.add(it.previousIndex());
@@ -207,8 +216,8 @@ public class Ranking {
                 }
                 break;
 
-            case DIF_inter:
-                it = llistaPosicions_inter.listIterator();
+            case levelInter:
+                it = rankingInter.listIterator();
                 while (it.hasNext()) {
                     if (it.next().getUsername().equals(user)) {
                         ap.add(it.previousIndex());
@@ -216,8 +225,8 @@ public class Ranking {
                 }
                 break;
 
-            case DIF_hard:
-                it = llistaPosicions_hard.listIterator();
+            case levelHard:
+                it = rankingHard.listIterator();
                 while (it.hasNext()) {
                     if (it.next().getUsername().equals(user)) {
                         ap.add(it.previousIndex());
@@ -238,32 +247,32 @@ public class Ranking {
         Posicio pis;
 
         switch (dificultat) {
-            case DIF_easy:
-                it = llistaPosicions_easy.listIterator();
+            case levelEasy:
+                it = rankingEasy.listIterator();
                 while (it.hasNext()) {
                     pis = it.next();
                     if (pis.getUsername().equals(user)) {
-                        ap.add(pis.getPuntacio());
+                        ap.add(pis.getScore());
                     }
                 }
                 break;
 
-            case DIF_inter:
-                it = llistaPosicions_inter.listIterator();
+            case levelInter:
+                it = rankingInter.listIterator();
                 while (it.hasNext()) {
                     pis = it.next();
                     if (pis.getUsername().equals(user)) {
-                        ap.add(pis.getPuntacio());
+                        ap.add(pis.getScore());
                     }
                 }
                 break;
 
-            case DIF_hard:
-                it = llistaPosicions_hard.listIterator();
+            case levelHard:
+                it = rankingHard.listIterator();
                 while (it.hasNext()) {
                     pis = it.next();
                     if (pis.getUsername().equals(user)) {
-                        ap.add(pis.getPuntacio());
+                        ap.add(pis.getScore());
                     }
                 }
                 break;
@@ -277,21 +286,21 @@ public class Ranking {
     public void deleteUsrRanking(String user) {
         ListIterator<Posicio> it;
 
-        it = llistaPosicions_easy.listIterator();
+        it = rankingEasy.listIterator();
         while (it.hasNext()) {
             if (it.next().getUsername().equals(user)) {
                 it.remove();
             }
         }
 
-        it = llistaPosicions_inter.listIterator();
+        it = rankingInter.listIterator();
         while (it.hasNext()) {
             if (it.next().getUsername().equals(user)) {
                 it.remove();
             }
         }
 
-        it = llistaPosicions_hard.listIterator();
+        it = rankingHard.listIterator();
         while (it.hasNext()) {
             if (it.next().getUsername().equals(user)) {
                 it.remove();

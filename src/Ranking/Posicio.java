@@ -18,7 +18,7 @@ public class Posicio {
         return username;
     }
 
-    public int getPuntacio() {
+    public int getScore() {
         return puntuacio;
     }
 

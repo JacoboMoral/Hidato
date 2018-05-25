@@ -6,10 +6,9 @@
             <name>Hidato</name>
             <source-roots>
                 <root id="src.dir" name="src"/>
+                <root id="Tests.dir"/>
             </source-roots>
-            <test-roots>
-                <root id="test.Tests.dir"/>
-            </test-roots>
+            <test-roots/>
         </data>
     </configuration>
 </project>

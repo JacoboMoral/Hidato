@@ -40,25 +40,8 @@
         </Constraint>
       </Constraints>
 
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="197" max="32767" attributes="0"/>
-                  <Component id="jLabel2" min="-2" pref="135" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace pref="409" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -71,6 +54,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="HIDATO"/>
           </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="197" y="67" width="135" height="34"/>
+            </Constraint>
+          </Constraints>
         </Component>
       </SubComponents>
     </Container>
