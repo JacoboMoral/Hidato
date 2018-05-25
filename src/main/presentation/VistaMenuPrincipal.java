@@ -17,6 +17,9 @@ import javax.swing.JOptionPane;
  */
 public class VistaMenuPrincipal extends javax.swing.JFrame {
     CtrlVista cv;
+    private static final int levelEasy = 1;
+    private static final int levelInter = 2;
+    private static final int levelHard = 3;
 
     public VistaMenuPrincipal() {
         initComponents();
@@ -102,6 +105,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         b_back_menu = new javax.swing.JButton();
+        quickLevelPanel = new javax.swing.JPanel();
+        quickEasy = new javax.swing.JButton();
+        quickInter = new javax.swing.JButton();
+        quickHard = new javax.swing.JButton();
+        b_back_menu1 = new javax.swing.JButton();
         createAutoPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -705,6 +713,72 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(seleccioPanel, "card3");
 
+        quickLevelPanel.setBackground(new java.awt.Color(0, 153, 153));
+
+        quickEasy.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        quickEasy.setText("Easy");
+        quickEasy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quickEasyActionPerformed(evt);
+            }
+        });
+
+        quickInter.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        quickInter.setText("Intermediate");
+        quickInter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quickInterActionPerformed(evt);
+            }
+        });
+
+        quickHard.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        quickHard.setText("Hard");
+        quickHard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quickHardActionPerformed(evt);
+            }
+        });
+
+        b_back_menu1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        b_back_menu1.setText("Back");
+        b_back_menu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_back_menu1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout quickLevelPanelLayout = new javax.swing.GroupLayout(quickLevelPanel);
+        quickLevelPanel.setLayout(quickLevelPanelLayout);
+        quickLevelPanelLayout.setHorizontalGroup(
+            quickLevelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(quickLevelPanelLayout.createSequentialGroup()
+                .addGap(281, 281, 281)
+                .addGroup(quickLevelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(quickInter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(quickEasy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(quickHard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(329, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quickLevelPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b_back_menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
+        );
+        quickLevelPanelLayout.setVerticalGroup(
+            quickLevelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(quickLevelPanelLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(quickEasy)
+                .addGap(55, 55, 55)
+                .addComponent(quickInter)
+                .addGap(70, 70, 70)
+                .addComponent(quickHard)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(b_back_menu1)
+                .addGap(35, 35, 35))
+        );
+
+        parentPanel.add(quickLevelPanel, "card11");
+
         createAutoPanel.setBackground(new java.awt.Color(0, 153, 153));
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -862,7 +936,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_b_userProfileMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        parentPanel.removeAll();
+        parentPanel.add(quickLevelPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void b_play2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_play2MouseClicked
@@ -1070,6 +1147,31 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.revalidate();
     }//GEN-LAST:event_jButton10MouseClicked
 
+    private void quickEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickEasyActionPerformed
+        VistaPartida v = new VistaPartida(cv, levelEasy);
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_quickEasyActionPerformed
+
+    private void b_back_menu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_back_menu1ActionPerformed
+        parentPanel.removeAll();
+        parentPanel.add(seleccioPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_b_back_menu1ActionPerformed
+
+    private void quickInterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickInterActionPerformed
+        VistaPartida v = new VistaPartida(cv, levelInter);
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_quickInterActionPerformed
+
+    private void quickHardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickHardActionPerformed
+        VistaPartida v = new VistaPartida(cv, levelHard);
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_quickHardActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1114,6 +1216,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton b_backTypeCreate;
     private javax.swing.JButton b_backTypeCreate1;
     private javax.swing.JButton b_back_menu;
+    private javax.swing.JButton b_back_menu1;
     private javax.swing.JButton b_cancel;
     private javax.swing.JButton b_cancel1;
     private javax.swing.JButton b_create1;
@@ -1167,6 +1270,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel menuPrincipalPanel;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JPanel profilePanel;
+    private javax.swing.JButton quickEasy;
+    private javax.swing.JButton quickHard;
+    private javax.swing.JButton quickInter;
+    private javax.swing.JPanel quickLevelPanel;
     private javax.swing.JPanel seleccioPanel;
     private javax.swing.JPasswordField t_newpass;
     private javax.swing.JPasswordField t_oldpass;

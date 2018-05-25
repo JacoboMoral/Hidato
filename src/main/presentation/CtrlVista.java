@@ -60,7 +60,7 @@ public class CtrlVista {
         return cr.getRanking_hard();
     }
 
-    public String[] getRankFacilUsr(String usr) {
+    /*public String[] getRankFacilUsr(String usr) {
         return cr.getFacilUsr(usr);
     }
 
@@ -70,7 +70,7 @@ public class CtrlVista {
 
     public String[] getRankDificilUsr(String usr) {
         return cr.getDificilUsr(usr);
-    }
+    }*/
 
     public void deleteUsr(String nom) {
         cr.deleteUsr(nom);
@@ -84,5 +84,6 @@ public class CtrlVista {
         return cr.existsUsuari(usr);
     }
 
+    
     
 }

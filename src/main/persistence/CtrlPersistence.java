@@ -27,51 +27,46 @@ public class CtrlPersistence {
             ArrayList<Posicio> rankingHard = r.getLlistaPosicio(levelHard);
 
             File temp = new File("DB/Ranking");
-            if (!temp.exists()) {
-                temp.mkdirs();
-            }
+            if (!temp.exists()) temp.mkdirs();
+            
             File easyFile = new File("DB/Ranking/", "easy.txt");
-            if (!easyFile.exists()) {
-                easyFile.createNewFile();
-            }
+            if (!easyFile.exists()) easyFile.createNewFile();
+            
             File interFile = new File("DB/Ranking/", "inter.txt");
-            if (!interFile.exists()) {
-                interFile.createNewFile();
-            }
+            if (!interFile.exists()) interFile.createNewFile();
+            
             File hardFIle = new File("DB/Ranking/", "hard.txt");
-            if (!hardFIle.exists()) {
-                hardFIle.createNewFile();
-            }
+            if (!hardFIle.exists()) hardFIle.createNewFile();
 
-            FileWriter createEasyFile = new FileWriter("DB/Ranking/easy.txt");
-            BufferedWriter bweasy = new BufferedWriter(createEasyFile);
+            FileWriter createFile = new FileWriter("DB/Ranking/easy.txt");
+            BufferedWriter bw = new BufferedWriter(createFile);
             String positionContent = null;
-
+            
             for (int i = 0; i < rankingEasy.size(); ++i) {
-                positionContent = rankingEasy.get(i).getUsername() + " " + rankingEasy.get(i).getScore() + " ";
-
-                bweasy.write(positionContent);
+                positionContent = rankingEasy.get(i).getUsername() + " " + rankingEasy.get(i).getScore() + " " + rankingEasy.get(i).getDate() + " ";
+                bw.write(positionContent);
             }
-            bweasy.close();
-            createEasyFile.close();
+            bw.close();
+            createFile.close();
 
-            FileWriter createInterFile = new FileWriter("DB/Ranking/inter.txt");
-            BufferedWriter bwinter = new BufferedWriter(createInterFile);
+            createFile = new FileWriter("DB/Ranking/inter.txt");
+            bw = new BufferedWriter(createFile);
             for (int i = 0; i < rankingInter.size(); ++i) {
-                positionContent = rankingInter.get(i).getUsername() + " " + rankingInter.get(i).getScore() + " ";
-                bwinter.write(positionContent);
+                positionContent = rankingInter.get(i).getUsername() + " " + rankingInter.get(i).getScore() + " " + rankingEasy.get(i).getDate() + " ";
+                bw.write(positionContent);
             }
-            bwinter.close();
-            createInterFile.close();
+            bw.close();
+            createFile.close();
 
-            FileWriter createHardFile = new FileWriter("DB/Ranking/hard.txt");
-            BufferedWriter bwhard = new BufferedWriter(createHardFile);
+            createFile = new FileWriter("DB/Ranking/hard.txt");
+            bw = new BufferedWriter(createFile);
             for (int i = 0; i < rankingHard.size(); ++i) {
-                positionContent = rankingHard.get(i).getUsername() + " " + rankingHard.get(i).getScore() + " ";
-                bwhard.write(positionContent);
+                positionContent = rankingHard.get(i).getUsername() + " " + rankingHard.get(i).getScore() + " " + rankingEasy.get(i).getDate() + " ";
+                bw.write(positionContent);
             }
-            bwhard.close();
-            createHardFile.close();
+            bw.close();
+            createFile.close();
+            
         } catch (IOException ex) {
 
         }
@@ -86,12 +81,12 @@ public class CtrlPersistence {
                 Scanner s = new Scanner(easyFile);
                 int points;
                 String username;
-                LocalDate currentDate;
+                LocalDate date;
                 while (s.hasNext()) {
                     username = s.next();
                     points = s.nextInt();
-                    currentDate = LocalDate.now();
-                    Posicio p = new Posicio(username, points, currentDate);
+                    date = LocalDate.parse(s.next());
+                    Posicio p = new Posicio(username, points, date);
                     r.insertPosition(p, levelEasy);
                 }
                 s.close();
@@ -105,7 +100,7 @@ public class CtrlPersistence {
                 while (s.hasNext()) {
                     nom = s.next();
                     puntuacio = s.nextInt();
-                    date = LocalDate.now();
+                    date = LocalDate.parse(s.next());
                     Posicio p = new Posicio(nom, puntuacio, date);
                     r.insertPosition(p, levelInter);
                 }
@@ -120,7 +115,7 @@ public class CtrlPersistence {
                 while (s.hasNext()) {
                     nom = s.next();
                     puntuacio = s.nextInt();
-                    date = LocalDate.now();
+                    date = LocalDate.parse(s.next());
                     Posicio p = new Posicio(nom, puntuacio, date);
                     r.insertPosition(p, levelHard);
                 }
