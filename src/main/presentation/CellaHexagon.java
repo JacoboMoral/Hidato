@@ -1,5 +1,7 @@
 package main.presentation;
 
+import static java.lang.Math.sqrt;
+
 import java.awt.*;
 import java.util.Vector;
 
@@ -12,7 +14,8 @@ public class CellaHexagon extends Cella{
     private double segony=0;    //segon vèrtex des de dalt
     private double primerx=0;   //primer vèrtex des de l'esquerra
     private double segonx=0;    //segon vèrtex des de l'equerra (i.e. width)
-
+    
+    @Override
     public void setTamany(double altura) {
         this.altura = altura;
         double radi = altura/2;
@@ -26,7 +29,7 @@ public class CellaHexagon extends Cella{
 
     }
 
-    public Polygon cella (int x0, int y0) {
+    private Polygon cella (int x0, int y0) {
         int y = y0 + borderTop;
         int x = x0 + borderLeft;  
 
@@ -38,6 +41,7 @@ public class CellaHexagon extends Cella{
         return new Polygon(cx,cy,6);
     }
 
+    @Override
     public void dibuixaCella(int i, int j, Graphics2D g2) {
         int x = j * (int)Math.round(segonx) + (i%2)*(int)Math.round(segonx)/2;
         int y = i * (int)Math.round(segony);
@@ -47,6 +51,7 @@ public class CellaHexagon extends Cella{
         g2.drawPolygon(cella(x,y));
     }
 
+    @Override
     public void emplenaCella(int i, int j, int n, int ultim, Graphics2D g2) {
         String str;
         int x = j * (int)Math.round(segonx) + (i%2)*(int)Math.round(segonx/2);
@@ -78,6 +83,7 @@ public class CellaHexagon extends Cella{
         }
     }
     
+    @Override
     public void emplenaCella(int i, int j, int n, int ultim, Graphics2D g2, Color color) {
         String str;
         int x = j * (int)Math.round(segonx) + (i%2)*(int)Math.round(segonx/2);
@@ -93,6 +99,7 @@ public class CellaHexagon extends Cella{
         
     }
 
+    @Override
     public Point locationToMatriu(int posx, int posy) {
         Point p = new Point(-1,-1);
         //System.out.println("Posicio x: " + posx + ", Posicio y: " + posy);
@@ -150,5 +157,49 @@ public class CellaHexagon extends Cella{
 	public void setBorderLeft(int border) {
 		this.borderLeft = border;
 		
+	}
+
+	@Override
+	public Vector<Double> screenProperties(int screenWidth, int screenHeight, int boardHeight, int boardWidth) {
+		double cellaHeight;
+		double nombreRealCellesVerticals; 
+        int verticalsSenceres = (int) Math.ceil((double)boardHeight/2);
+        double verticalsMitges = boardHeight - verticalsSenceres;
+        int paritat = 0;
+        if (boardHeight%2 == 0) paritat = 1;
+        nombreRealCellesVerticals = verticalsSenceres + verticalsMitges*0.5 + paritat*0.25;
+        nombreRealCellesVerticals+=0.05; //perque no es talli a vegades
+        
+        double nombreRealCellesHoritzontals;
+        nombreRealCellesHoritzontals = (double)(boardWidth+0.5) + 0.05;
+        
+        double tamanyHoritzontal = (sqrt(3)/2)*nombreRealCellesHoritzontals;
+        
+        double cellaWidth;
+        if (screenHeight/screenWidth >= nombreRealCellesVerticals/tamanyHoritzontal) { //relacio d'aspecte de la pantalla es mes alta que la del hidato
+        	System.out.println("relacio d'aspecte de la pantalla es mes alta o igual que la del hidato");
+        	cellaWidth = screenWidth/nombreRealCellesHoritzontals;
+        	cellaHeight = 2*cellaWidth/(sqrt(3));
+        	System.out.println(cellaHeight);
+        }
+        else { 
+        	System.out.println("relacio d'aspecte de la pantalla es mes baixa i gruixuda que la del hidato");
+        	cellaHeight = screenHeight/nombreRealCellesVerticals;
+        	cellaWidth = cellaHeight*sqrt(3)/2;
+        	System.out.println(cellaHeight);
+        }
+        
+        int borderTop = 0;
+        int borderLeft = 0;
+        
+    	borderLeft = (int) (screenWidth - nombreRealCellesHoritzontals*cellaWidth)/2;     
+    	borderTop = (int) (screenHeight - nombreRealCellesVerticals*cellaHeight)/2;
+
+    	Vector<Double> properties = new Vector<Double>();
+    	properties.add(cellaHeight);
+    	properties.add((double)borderTop);
+    	properties.add((double)borderLeft);
+    	
+    	return properties;
 	}
 }

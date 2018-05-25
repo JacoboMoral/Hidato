@@ -9,7 +9,6 @@ import java.util.Vector;
 abstract class Cella {
 	
     abstract public void setTamany(double givenAltura);
-    abstract public Polygon cella (int x0, int y0);
 
     abstract public void dibuixaCella(int i, int j, Graphics2D g2);
 
@@ -21,4 +20,10 @@ abstract class Cella {
 	abstract public void setBorderLeft(int border);
 	abstract public void setBorderTop(int border);
 	
+	abstract public Vector<Double> screenProperties(int screenWidth, int screenHeight, int boardHeight, int boardWidth); 
+	
+	protected int roundToInt(double x) {
+		int r = (int)Math.round(x);
+		return r;
+	}
 }
