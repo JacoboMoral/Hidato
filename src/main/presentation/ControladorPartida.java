@@ -1,12 +1,7 @@
 package main.presentation;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Vector;
-
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.TipusCella;
@@ -15,7 +10,8 @@ public class ControladorPartida {
 
     private static final ControladorPartida instance = new ControladorPartida();
     private final ControladorPresentacio controller = ControladorPresentacio.getInstance();
-    Dificultat dificultat = Dificultat.FACIL;
+    private Dificultat dificultat = Dificultat.FACIL;
+    private Cella cella;
 
     public ControladorPartida() {
     }
@@ -26,6 +22,7 @@ public class ControladorPartida {
 
     public PanelPartida partidaAutogenerada(Cella cella, Dificultat dificultat) {
         this.dificultat = dificultat;
+        this.cella = cella;
         PanelPartida panel;
         panel = new PanelPartida(cella, new Dimension(600, 600));
         //panel.setPreferredSize(new Dimension(600,600));
@@ -45,7 +42,7 @@ public class ControladorPartida {
     }
 
     public int[][] generarMatriuHidato() {
-        if (controller.autoGenerar(TipusCella.HEXAGON, dificultat));
+        if (controller.autoGenerar(cella.getTipusCella(), dificultat));
         controller.jugarHidatoGenerat();
         return controller.getMatriuHidatoDePartida();
     }
@@ -61,5 +58,5 @@ public class ControladorPartida {
     public Vector<Integer> getPossiblesMoviments() {
         return controller.getPossiblesMoviments();
     }
-
+    
 }

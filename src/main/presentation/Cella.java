@@ -6,6 +6,9 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.util.Vector;
 
+import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.TipusCella;
+
 abstract class Cella {
 	
     abstract public void setTamany(double givenAltura);
@@ -21,6 +24,8 @@ abstract class Cella {
 	abstract public void setBorderTop(int border);
 	
 	abstract public Vector<Double> screenProperties(int screenWidth, int screenHeight, int boardHeight, int boardWidth); 
+	
+	abstract public TipusCella getTipusCella();
 	
 	protected int roundToInt(double x) {
 		int r = (int)Math.round(x);

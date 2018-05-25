@@ -5,6 +5,8 @@ import static java.lang.Math.sqrt;
 import java.awt.*;
 import java.util.Vector;
 
+import main.domain.com.hidato.TipusCella;
+
 public class CellaHexagon extends Cella{
 
     private int borderLeft=0;
@@ -201,5 +203,10 @@ public class CellaHexagon extends Cella{
     	properties.add((double)borderLeft);
     	
     	return properties;
+	}
+
+	@Override
+	public TipusCella getTipusCella() {
+		return TipusCella.HEXAGON;
 	}
 }

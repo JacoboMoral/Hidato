@@ -8,6 +8,8 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.util.Vector;
 
+import main.domain.com.hidato.TipusCella;
+
 public class CellaQuadrat extends Cella{
     private int borderLeft=0;
     private int borderTop=0;
@@ -147,5 +149,10 @@ public class CellaQuadrat extends Cella{
     	properties.add((double)borderLeft);
     	
     	return properties;
+	}
+	
+	@Override
+	public TipusCella getTipusCella() {
+		return TipusCella.QUADRAT;
 	}
 }
