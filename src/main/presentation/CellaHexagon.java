@@ -176,9 +176,9 @@ public class CellaHexagon extends Cella{
         nombreRealCellesHoritzontals = (double)(boardWidth+0.5) + 0.05;
         
         double tamanyHoritzontal = (sqrt(3)/2)*nombreRealCellesHoritzontals;
-        
+                
         double cellaWidth;
-        if (screenHeight/screenWidth >= nombreRealCellesVerticals/tamanyHoritzontal) { //relacio d'aspecte de la pantalla es mes alta que la del hidato
+        if ((double)screenHeight/(double)screenWidth >= nombreRealCellesVerticals/tamanyHoritzontal) { //relacio d'aspecte de la pantalla es mes alta que la del hidato
         	System.out.println("relacio d'aspecte de la pantalla es mes alta o igual que la del hidato");
         	cellaWidth = screenWidth/nombreRealCellesHoritzontals;
         	cellaHeight = 2*cellaWidth/(sqrt(3));

@@ -190,15 +190,15 @@ public class CellaTriangle extends Cella{
         
 		double tamanyHoritzontal = cellesHoritzontals * 2/sqrt(3); //tamany horitzontal respecte al vertical
         
-        if (screenHeight/screenWidth >= cellesVerticals/tamanyHoritzontal) { //relacio d'aspecte de la pantalla es mes alta que la del hidato
+        if ((double)screenHeight/(double)screenWidth >= cellesVerticals/tamanyHoritzontal) { //relacio d'aspecte de la pantalla es mes alta que la del hidato
         	System.out.println("relacio d'aspecte de la pantalla es mes alta o igual que la del hidato");
-        	cellaWidth = screenWidth/cellesHoritzontals;
+        	cellaWidth = (double)screenWidth/cellesHoritzontals;
         	cellaHeight = sqrt(3)*cellaWidth/2;
         	System.out.println(cellaHeight);
         }
         else { 
         	System.out.println("relacio d'aspecte de la pantalla es mes baixa i gruixuda que la del hidato");
-        	cellaHeight = screenHeight/cellesVerticals;
+        	cellaHeight = (double)screenHeight/cellesVerticals;
         	cellaWidth = cellaHeight*2/sqrt(3);
         	System.out.println(cellaHeight);
         }
