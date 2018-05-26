@@ -36,8 +36,8 @@ public class ControladorPresentacio {
 	public static void main(String args[]){
 		final JFrame frame = new JFrame();
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-		final ControladorPartida partida = new ControladorPartida().getInstance();
-		panelPartida = partida.partidaAutogenerada(new CellaTriangle(), Dificultat.FACIL);
+		final ControladorPartida partida = ControladorPartida.getInstance();
+		panelPartida = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.FACIL);
 		
 				
 		JButton buttonFacil = new JButton("Facil");
@@ -45,9 +45,9 @@ public class ControladorPresentacio {
 		buttonFacil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(new CellaTriangle(), Dificultat.FACIL);
+				panelPartida = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.FACIL);
 				frame.add(panelPartida);
-				frame.validate();				
+				frame.validate();		
 			}
 		});
 		
@@ -67,7 +67,7 @@ public class ControladorPresentacio {
 		buttonDificil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(new CellaTriangle(), Dificultat.DIFICIL);
+				panelPartida = partida.partidaAutogenerada(new CellaQuadrat(), Dificultat.DIFICIL);
 				frame.add(panelPartida);
 				frame.validate();				
 			}

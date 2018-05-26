@@ -36,12 +36,12 @@ public class PanelHidato extends JPanel{
     private int ultim = 1;
     
     //necessita que el creador faci panel.setPreferredSize(dim)
-    public PanelHidato(Cella cella, int[][] board, int ultim, Vector<Integer> nombresPerDefecte, PanelPartida controller, int screenWidth, int screenHeight){
+    public PanelHidato(Cella cella, int[][] board, Vector<Integer> nombresPerDefecte, PanelPartida controller, int screenWidth, int screenHeight){
     	//setBorder(new LineBorder(new Color(0, 0, 0)));
         this.controller = controller;
     	this.cella = cella;
         this.board = board;
-        this.ultim = ultim;
+        this.ultim = nombresPerDefecte.get(nombresPerDefecte.size()-1);
         this.nombresPerDefecte = nombresPerDefecte;        
 
         boardWidth = board[0].length;
@@ -58,11 +58,16 @@ public class PanelHidato extends JPanel{
         
         calcCellaSize();
         
-        //ResizeListener resizeListener = new ResizeListener();            
-        //addComponentListener(resizeListener);
+        ResizeListener resizeListener = new ResizeListener();            
+        addComponentListener(resizeListener);
     }
     
-    
+    public void calcSizeAndRepaint(int screenWidth, int screenHeight) {
+    	this.screenWidth = screenWidth;
+    	this.screenHeight = screenHeight;
+    	
+    	calcCellaSize();
+    }
 
     private void calcCellaSize(){
  
@@ -108,19 +113,10 @@ public class PanelHidato extends JPanel{
     
     
 
-    class MouseListener extends MouseAdapter {	//inner class inside DrawingPanel 
+    class MouseListener extends MouseAdapter {
         public void mouseClicked(MouseEvent e){ 
-            int x = e.getX(); 
-            int y = e.getY(); 
             Point p = new Point( cella.pixelsToPosicioMatriu(e.getX(),e.getY()) );
             if (p.x < 0 || p.y < 0 || p.x >= board[0].length || p.y >= board.length) return;
-
-            /*boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);
-            if (movimentPossible) board[p.y][p.x] = seguentMoviment;
-            else {
-            	movimentPossible = controller.desferMoviment(p.y,p.x);
-                if (movimentPossible) board[p.y][p.x] = 0;
-            }*/
             
             boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);
             if (!movimentPossible) movimentPossible = controller.desferMoviment(p.y,p.x);
@@ -129,7 +125,7 @@ public class PanelHidato extends JPanel{
             controller.updateSeguentMoviment();
             repaint();
         }		 
-    } //end of MyMouseListener class 
+    }
     
     
     class ResizeListener extends ComponentAdapter{
@@ -145,4 +141,4 @@ public class PanelHidato extends JPanel{
     	}
     }
 
-} // end of DrawingPanel class
+}

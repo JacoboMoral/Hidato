@@ -8,6 +8,10 @@ package main.presentation;
 import main.domain.com.hidato.Dificultat;
 import static main.presentation.ControladorPresentacio.panelPartida;
 
+import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
 /**
  *
  * @author admin
@@ -22,19 +26,28 @@ public class VistaPartida extends javax.swing.JFrame {
      * Creates new form VistaPartida
      */
     public VistaPartida() {
-        initComponents();
+    	commonConstructorMethod();
     }
     
     public VistaPartida(CtrlVista v, int level) {
-        initComponents();
+    	commonConstructorMethod();
+
         cv = v;
-        final ControladorPartida partida = ControladorPartida.getInstance();
+        partida.setView(this);
         if (level == levelEasy) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.FACIL);
         if (level == levelInter) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.MIG);
         if (level == levelHard) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.DIFICIL);
-
         this.add(hidatoPanel);
+        seguentMoviment = Integer.toString(partida.getSeguentMoviment());
+        jLabel1.setText(seguentMoviment);
+        
         this.validate();   
+    }
+    
+    public void commonConstructorMethod() {
+        initComponents();
+        this.setMinimumSize(new Dimension(580, 570));
+
     }
 
     /**
@@ -61,7 +74,7 @@ public class VistaPartida extends javax.swing.JFrame {
         controlPanel.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setText("s");
+        jLabel1.setText(seguentMoviment);
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton1.setText(">");
@@ -72,6 +85,25 @@ public class VistaPartida extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton3.setText("Help");
 
+        
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                incrementarSeguentMoviment();
+            }
+        });
+        
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            	decrementarSeguentMoviment();
+            }
+        });
+        
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                help();
+            }
+        });
+        
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anterior.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -187,7 +219,28 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    
+    public void incrementarSeguentMoviment() {
+    	int seguentMov = partida.incrementarSeguentMoviment();
+    	if (seguentMov != -1) jLabel1.setText(Integer.toString(seguentMov));
+    }
+    
+    public void decrementarSeguentMoviment() {
+    	int seguentMov = partida.decrementarSeguentMoviment();
+    	if (seguentMov != -1) jLabel1.setText(Integer.toString(seguentMov));
+    }
 
+    public void help() {
+    	System.out.println("be3");
+
+    }
+    
+    public void updateSeguentMoviment(String moviment) {
+    	jLabel1.setText(moviment);
+	}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel controlPanel;
     private javax.swing.JPanel hidatoPanel;
@@ -198,5 +251,7 @@ public class VistaPartida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel saveGame;
-    // End of variables declaration//GEN-END:variables
+    final ControladorPartida partida = ControladorPartida.getInstance();
+    private String seguentMoviment = " ";
+	
 }
