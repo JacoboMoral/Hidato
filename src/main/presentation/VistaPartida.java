@@ -31,12 +31,10 @@ public class VistaPartida extends javax.swing.JFrame {
         final ControladorPartida partida = new ControladorPartida().getInstance();
         if (level == levelEasy) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.FACIL);
         if (level == levelInter) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.MIG);
-        else hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.DIFICIL);
+        if (level == levelHard) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.DIFICIL);
 
         this.add(hidatoPanel);
-        this.validate();
-        
-        
+        this.validate();   
     }
 
     /**
@@ -54,9 +52,13 @@ public class VistaPartida extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        saveGame = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         hidatoPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        controlPanel.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setText("s");
@@ -70,50 +72,63 @@ public class VistaPartida extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton3.setText("Help");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/backIcon.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anterior.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
 
+        saveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel2)
-                .addGap(298, 298, 298)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(saveGame)
+                .addGap(201, 201, 201)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(controlPanelLayout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addGap(42, 42, 42)
-                        .addComponent(jLabel1)
-                        .addGap(55, 55, 55)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
                         .addComponent(jButton1)))
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addContainerGap(341, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(controlPanelLayout.createSequentialGroup()
-                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1))
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)))
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addGap(23, 23, 23)
                 .addComponent(jButton3)
                 .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saveGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(45, 45, 45))
         );
 
         getContentPane().add(controlPanel, java.awt.BorderLayout.PAGE_END);
+
+        hidatoPanel.setBackground(new java.awt.Color(0, 204, 204));
 
         javax.swing.GroupLayout hidatoPanelLayout = new javax.swing.GroupLayout(hidatoPanel);
         hidatoPanel.setLayout(hidatoPanelLayout);
@@ -123,7 +138,7 @@ public class VistaPartida extends javax.swing.JFrame {
         );
         hidatoPanelLayout.setVerticalGroup(
             hidatoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 764, Short.MAX_VALUE)
+            .addGap(0, 769, Short.MAX_VALUE)
         );
 
         getContentPane().add(hidatoPanel, java.awt.BorderLayout.CENTER);
@@ -181,5 +196,7 @@ public class VistaPartida extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel saveGame;
     // End of variables declaration//GEN-END:variables
 }

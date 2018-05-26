@@ -49,15 +49,15 @@ public class CtrlVista {
     }
     
     public String[] getRank_easy() {
-        return cr.getRanking_easy();
+        return cr.getRankingEasy();
     }
 
     public String[] getRank_inter() {
-        return cr.getRanking_inter();
+        return cr.getRankingInter();
     }
 
     public String[] getRank_hard() {
-        return cr.getRanking_hard();
+        return cr.getRankingHard();
     }
 
     /*public String[] getRankFacilUsr(String usr) {

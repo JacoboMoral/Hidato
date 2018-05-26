@@ -28,43 +28,43 @@ public class CtrlRanking {
         cp.saveRanking(r);
     }
 
-    public String[] getRanking_easy() {
+    public String[] getRankingEasy() {
         ArrayList<Posicio> llista = r.getLlistaPosicio(levelEasy);
         String rankingList[] = new String[llista.size()];
         int i = 0;
-        Posicio aux = null;
+        Posicio temp = null;
         ListIterator<Posicio> it = llista.listIterator();
         while (i < llista.size()) {
-            aux = it.next();
-            rankingList[i] = (i + 1) + "     " + Integer.toString(aux.getScore()) + "     " + aux.getUsername() + "    " + aux.getDate();
+            temp = it.next();
+            rankingList[i] = (i + 1) + "     " + Integer.toString(temp.getScore()) + "     " + temp.getUsername() + "    " + temp.getDate();
             ++i;
         }
         return rankingList;
     }
 
-    public String[] getRanking_inter() {
+    public String[] getRankingInter() {
         ArrayList<Posicio> llista = r.getLlistaPosicio(levelInter);
         String rankingList[] = new String[llista.size()];
         int i = 0;
-        Posicio aux = null;
+        Posicio temp = null;
         ListIterator<Posicio> it = llista.listIterator();
         while (i < llista.size()) {
-            aux = it.next();
-            rankingList[i] = (i + 1) + "     " + Integer.toString(aux.getScore()) + "     " + aux.getUsername() + "    " + aux.getDate();
+            temp = it.next();
+            rankingList[i] = (i + 1) + "     " + Integer.toString(temp.getScore()) + "     " + temp.getUsername() + "    " + temp.getDate();
             ++i;
         }
         return rankingList;
     }
 
-    public String[] getRanking_hard() {
+    public String[] getRankingHard() {
         ArrayList<Posicio> llista = r.getLlistaPosicio(levelHard);
         String rankingList[] = new String[llista.size()];
         int i = 0;
-        Posicio aux = null;
+        Posicio temp = null;
         ListIterator<Posicio> it = llista.listIterator();
         while (i < llista.size()) {
-            aux = it.next();
-            rankingList[i] = (i + 1) + "     " + Integer.toString(aux.getScore()) + "     " + aux.getUsername() + "    " + aux.getDate();
+            temp = it.next();
+            rankingList[i] = (i + 1) + "     " + Integer.toString(temp.getScore()) + "     " + temp.getUsername() + "    " + temp.getDate();
             ++i;
         }
         return rankingList;

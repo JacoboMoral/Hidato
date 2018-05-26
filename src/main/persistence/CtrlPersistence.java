@@ -1,14 +1,21 @@
 package main.persistence;
 
+import java.io.BufferedReader;
 import main.domain.com.hidato.Posicio;
 import main.domain.com.hidato.Ranking;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.util.Vector;
+import main.domain.com.hidato.HidatoIO;
+import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.TipusCella;
 
 public class CtrlPersistence {
 
@@ -20,6 +27,13 @@ public class CtrlPersistence {
 
     }
 
+    /*
+    ---------------------------------------------------------
+    |                                                       |
+    |                   GESTIONAR RANKING                   |                        
+    |                                                       |
+    ---------------------------------------------------------
+    */
     public void saveRanking(Ranking r) {
         try {
             ArrayList<Posicio> rankingEasy = r.getLlistaPosicio(levelEasy);
@@ -127,6 +141,13 @@ public class CtrlPersistence {
         return r;
     }
     
+    /*
+    ---------------------------------------------------------
+    |                                                       |
+    |                   GESTIONAR USER                      |                        
+    |                                                       |
+    ---------------------------------------------------------
+    */
     public boolean usernameExists(String username) {
         File temp = new File("DB/Usuaris/" + username);
         return temp.exists();
@@ -162,5 +183,93 @@ public class CtrlPersistence {
         }
         return false;
     }
+    
+    /*
+    ---------------------------------------------------------
+    |                                                       |
+    |                   GESTIONAR PARTIDA                   |                        
+    |                                                       |
+    ---------------------------------------------------------
+    */
+    
+    public static void guardarPartida(int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari){
+    	
+    	try {
+    		File carpeta = new File("DB/Usuaris/" + nomUsuari + "/Partida");
+    		if(carpeta.exists()) {
+    			System.out.println("Ja hi ha una partida guardada es sobreescriurà");
+    			carpeta.delete();
+    		}
+    		carpeta.mkdirs();
+    		System.out.println("holi");
+    		File arxiu = new File("DB/Usuaris/" + nomUsuari + "/Partida/", "partida.txt");
+    		arxiu.delete();
+    		arxiu.createNewFile();
+    		FileWriter fileWriter = new FileWriter("DB/Usuaris/" + nomUsuari + "/Partida/partida.txt", true);
+    		BufferedWriter bw = new BufferedWriter(fileWriter);
+    		PrintStream console = System.out;
+    		PrintStream o = new PrintStream(arxiu);
+    		System.setOut(o);
+    		HidatoIO.writeHidatoMatrixToOutputFormat(cella, tipusAdj, matriu);
+    		System.out.print(";");
+    		HidatoIO.writeHidatoMatrixToOutputFormat(cella, tipusAdj, matriuOriginal);
+    		System.out.print(";");
+    		System.setOut(console);
+    		bw.write(status + ";" + puntuacio + ";" + tipusAdj + ";"+ nombresDonats + ";"+ nombresEscrits +";");
+    		bw.close();
+    		fileWriter.close();
+    		
+    	} catch(IOException ex){ex.printStackTrace();}
+    	
+    }
+    
+    public static void importarHidato(String file, String nom) throws IOException {
+    	
+    	
+        FileReader fr = new FileReader(file);
+        BufferedReader b = new BufferedReader(fr);
+    	
+    	
+    	File carpeta = new File("DB/HidatosImportats/" + nom);
+    	if(carpeta.exists()) {
+			System.out.println("Ja hi ha una hidato amb aquest nom. Es sobreescriurà");
+			carpeta.delete();
+		}
+    	carpeta.mkdirs();
+		File arxiu = new File("DB/HidatosImportats/" + nom, "hidato.txt");
+		arxiu.delete();
+		arxiu.createNewFile();
+		FileWriter fileWriter = new FileWriter("DB/HidatosImportats/" + nom + "/hidato.txt", true);
+		BufferedWriter bw = new BufferedWriter(fileWriter);
+		PrintStream console = System.out;
+		PrintStream o = new PrintStream(arxiu);
+		
+		String cadena = b.readLine();
+		String[] cabecera = cadena.split(",");
+		if(cabecera.length != 4) {
+			System.out.println("error en el format");
+			//COMPROVAR CAPÇALERA
+			//SALTAR EXCEPCIO
+		}
+		int altura = Integer.parseInt(cabecera[2]);
+		int anchura = Integer.parseInt(cabecera[3]);
+		
+		
+		o.println(cadena);
+		
+		for(int i = 0; i < altura; i++) {
+			cadena = b.readLine();
+			o.println(cadena);
+			if(cadena.split(",").length != anchura) System.out.println("Error");
+		}
+		
+	
+		bw.close();
+		fileWriter.close();
+    	
+		
+    	
+    }
+   
     
 }

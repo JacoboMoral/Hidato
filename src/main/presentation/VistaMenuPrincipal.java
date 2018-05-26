@@ -407,15 +407,15 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel7.setText("Username");
 
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel8.setText("Password");
 
-        l_username1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        l_username1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
 
-        l_password.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        l_password.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
 
         b_delete.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_delete.setText("DELETE ACCOUNT");
@@ -451,7 +451,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             .addGroup(profilePanelLayout.createSequentialGroup()
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(profilePanelLayout.createSequentialGroup()
-                        .addGap(291, 291, 291)
+                        .addGap(185, 185, 185)
+                        .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
                         .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                             .addComponent(jSeparator2)))
@@ -463,11 +467,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(240, Short.MAX_VALUE))
             .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(profilePanelLayout.createSequentialGroup()
-                    .addGap(200, 200, 200)
-                    .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel7))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addContainerGap(291, Short.MAX_VALUE)
                     .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(l_password, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                         .addComponent(l_username1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -480,9 +480,17 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         profilePanelLayout.setVerticalGroup(
             profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profilePanelLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(profilePanelLayout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profilePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7)
+                        .addGap(8, 8, 8)))
+                .addGap(45, 45, 45)
+                .addComponent(jLabel8)
+                .addGap(5, 5, 5)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76)
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -493,16 +501,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(profilePanelLayout.createSequentialGroup()
                     .addGap(90, 90, 90)
                     .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(l_username1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(l_username1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(53, 53, 53)
                     .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(l_password, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(l_password, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(224, Short.MAX_VALUE)))
         );
 
