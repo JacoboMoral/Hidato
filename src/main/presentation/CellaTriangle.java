@@ -125,7 +125,7 @@ public class CellaTriangle extends Cella{
         System.out.println(posicioYrelativa +  " " + posicioXrelativa);
         
         
-        if ( mateixaParitat(y,x)) {
+        /*if ( mateixaParitat(y,x)) {
 	        if ( (posicioYrelativa/posicioXrelativa > pendiente) ) { 	//si fas click a la meitat de dalt/esquerra
 	        	--x;
 	        }
@@ -134,12 +134,11 @@ public class CellaTriangle extends Cella{
 	        if ( !esParell(x) && (posicioYrelativa/posicioXrelativa < pendiente) ) { 	//si fas click a la meitat de dalt/dreta
 	        	--x;
 	        }
-        }
+        }*/
         
         
-        /* Deixar aquesta versio un temps fins assegurar-nos que la de dalt funciona
-         * 
-         * if ( esParell(y)) {
+        /* Deixar aquesta versio un temps fins assegurar-nos que la de dalt funciona*/
+        if ( esParell(y)) {
 	        if ( esParell(x) && (posicioYrelativa/posicioXrelativa > pendiente) ) { 	//si fas click a la meitat de dalt/esquerra
 	        	--x;
 	        }
@@ -157,7 +156,7 @@ public class CellaTriangle extends Cella{
 	        if ( esParell(x) && (posicioYrelativa/posicioXrelativa < pendiente) ) { 	//si fas click a la meitat de dalt/esquerra
 	        	--x;
 	        }
-        }*/
+        }
 
         
         p.x=x;
