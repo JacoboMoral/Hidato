@@ -8,7 +8,7 @@ import main.domain.com.hidato.TipusCella;
 
 public class ControladorPartida {
 
-    private static final ControladorPartida instance = new ControladorPartida();
+    private static ControladorPartida instance = null;
     private final ControladorPresentacio controller = ControladorPresentacio.getInstance();
     private Dificultat dificultat = Dificultat.FACIL;
     private Cella cella;
@@ -16,7 +16,8 @@ public class ControladorPartida {
     public ControladorPartida() {
     }
 
-    public ControladorPartida getInstance() {
+    public static ControladorPartida getInstance() {
+        if (instance == null) instance = new ControladorPartida();
         return instance;
     }
 

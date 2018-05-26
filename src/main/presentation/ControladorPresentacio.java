@@ -20,14 +20,16 @@ import main.domain.com.hidato.TipusCella;
 
 public class ControladorPresentacio {
 
-    private static final ControladorPresentacio instance = new ControladorPresentacio();
+    private static ControladorPresentacio instance = null;
     private static final ControladorDomini domini = ControladorDomini.getInstance();
 
     static JPanel panelPartida; //JPanel vs PanelPartida??? hi ha cap diferencia?'
     
     private ControladorPresentacio() {
     }
+    
     public static ControladorPresentacio getInstance() {
+        if (instance == null) instance = new ControladorPresentacio(); 
     	return instance;
     }
 
