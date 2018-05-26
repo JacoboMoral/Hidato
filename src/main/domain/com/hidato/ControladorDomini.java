@@ -7,13 +7,14 @@ import main.presentation.ControladorPresentacio;
 
 public class ControladorDomini {
 	
-    private static final ControladorDomini instance = new ControladorDomini();
+    private static ControladorDomini instance = null;
 	private Partida partidaEnCurs = null;
 	private Hidato hidatoGenerat = null;;
 	
 
 	
 	public static ControladorDomini getInstance() {
+		if (instance == null) instance = new ControladorDomini();
     	return instance;
     }
 	

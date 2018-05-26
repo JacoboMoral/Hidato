@@ -28,7 +28,7 @@ public class VistaPartida extends javax.swing.JFrame {
     public VistaPartida(CtrlVista v, int level) {
         initComponents();
         cv = v;
-        final ControladorPartida partida = new ControladorPartida().getInstance();
+        final ControladorPartida partida = ControladorPartida.getInstance();
         if (level == levelEasy) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.FACIL);
         if (level == levelInter) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.MIG);
         if (level == levelHard) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.DIFICIL);
