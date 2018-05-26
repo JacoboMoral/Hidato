@@ -58,10 +58,8 @@ public abstract class Hidato {
     public boolean moviment(int i, int j, int value) {
     	if(comprovarMoviment(i, j, value)) {
     		matriuHidato[i][j] = value;
-    		//System.out.print("nombresEscrits abans de fer moviment: " + nombresEscrits);
     		nombresEscrits.add(value);
     		Collections.sort(nombresEscrits);
-    		//System.out.print("     nombresEscrits despres de fer moviment: " + nombresEscrits + "\n");
     	    possiblesMoviments.remove((Integer)value);
     		return true;
     	}
@@ -70,16 +68,11 @@ public abstract class Hidato {
     
     public boolean desferMoviment(int i, int j) {
     	int value = matriuHidato[i][j];
-    	//System.out.println("i: " + i + " j: " + j + " value: " + matriuHidato[i][j]);
     	if(notPerDefecte(i, j) && matriuHidato[i][j] > 0) {
-    		//System.out.print("nombresEscrits abans de desfer moviment: " + nombresEscrits);
     		nombresEscrits.remove((Integer)value);
-    		//System.out.print("     nombresEscrits despres de desfer moviment: " + nombresEscrits + "\n");
     	    possiblesMoviments.add(value);
     		Collections.sort(possiblesMoviments);
     		matriuHidato[i][j] = 0;
-    	    //System.out.println(nombresDonats);
-    	    //System.out.println(nombresEscrits);
     		return true;
     	}
     	else return false;
@@ -222,8 +215,6 @@ public abstract class Hidato {
     }
     
     private boolean notPerDefecte(int i, int j) {
-    	//System.out.println("nombres donats true/false?" + !nombresDonats.contains(matriuHidato[i][j]));
-    	//System.out.println(matriuHidato[i][j]);
 		return (!nombresDonats.contains(matriuHidato[i][j]));  //return false if nombresDonats contains element at (i,j)
 	}
 

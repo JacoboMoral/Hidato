@@ -65,68 +65,14 @@ public class PanelHidato extends JPanel{
     
 
     private void calcCellaSize(){
-    	        
-        double nombreRealCellesVerticals; 
-        int verticalsSenceres = (int) Math.ceil((double)boardHeight/2);
-        double verticalsMitges = boardHeight - verticalsSenceres;
-        int paritat = 0;
-        if (boardHeight%2 == 0) paritat = 1;
-        nombreRealCellesVerticals = verticalsSenceres + verticalsMitges*0.5 + paritat*0.25;
-        nombreRealCellesVerticals+=0.05; //perque no es talli a vegades
-        
-        double nombreRealCellesHoritzontals;
-        nombreRealCellesHoritzontals = (double)(boardWidth+0.5) + 0.05;
-        
-        double tamanyHoritzontal = (sqrt(3)/2)*nombreRealCellesHoritzontals;
-        
-        
-        /*System.out.println(screenHeight);
-        System.out.println("Celles verticals" + nombreRealCellesVerticals);
-        System.out.println("tamany horitzontal" + tamanyHoritzontal);*/
+ 
+    	Vector<Double> properties = cella.screenProperties((int)screenWidth, (int)screenHeight, boardHeight, boardWidth);
+    	double borderLeft = properties.get(2);
+    	double borderTop = properties.get(1);
+    	cellaHeight = properties.get(0);
 
-        double cellaWidth;
-        if (screenHeight/screenWidth >= nombreRealCellesVerticals/tamanyHoritzontal) { //relacio d'aspecte de la pantalla es mes alta que la del hidato
-        	System.out.println("relacio d'aspecte de la pantalla es mes alta o igual que la del hidato");
-        	cellaWidth = screenWidth/nombreRealCellesHoritzontals;
-        	cellaHeight = 2*cellaWidth/(sqrt(3));
-        	System.out.println(cellaHeight);
-        }
-        else { 
-        	System.out.println("relacio d'aspecte de la pantalla es mes baixa i gruixuda que la del hidato");
-        	cellaHeight = screenHeight/nombreRealCellesVerticals;
-        	cellaWidth = cellaHeight*sqrt(3)/2;
-        	System.out.println(cellaHeight);
-        }
-        
-        int borderTop = 0;
-        int borderLeft = 0;
-        
-        //if (screenWidth > nombreRealCellesHoritzontals*cellaWidth) {
-        	borderLeft = (int) (screenWidth - nombreRealCellesHoritzontals*cellaWidth)/2;
-        //}
-        
-       // if (screenHeight > nombreRealCellesVerticals*cellaHeight) {
-        	borderTop = (int) (screenHeight - nombreRealCellesVerticals*cellaHeight)/2;
-        //}
-        
-        
-        
-        /*cellaHeight = ((screenHeight - (3 * border))/nombreRealCellesVerticals);
-        System.out.println("CellaHeight (PanelHidato.calcCellaSize: " + cellaHeight);
-        
-        System.out.println(screenHeight);
-        if ((double)screenHeight/(double)screenWidth > ( ((3/4)*(double)boardHeight)/((sqrt(3)/2)*(double)boardWidth) )){ // si la relacio altura/amplada es mes gran que la relacio ocupa altura/ocupa amplada
-            if (screenWidth < (cellaHeight*boardWidth*sqrt(3)/2)){ //si l'amplada de la pantalla es mes petita que la de cada cella*numero de celles
-                double width = (screenWidth-2*border)/(boardWidth+0.5);
-                cellaHeight = (width*2/sqrt(3));
-            }
-        }
-        setPreferredSize(new Dimension((int)(boardWidth*cellaHeight*sqrt(3)/2),(int)(nombreRealCellesVerticals*cellaHeight)));
-        System.out.println("getHeight (PanelHidato.calcCellaSize: " + getHeight());
-        System.out.println("getWidth (PanelHidato.calcCellaSize: " + getWidth());*/
-        
-        cella.setBorderLeft(borderLeft);
-        cella.setBorderTop(borderTop);
+        cella.setBorderLeft((int)borderLeft);
+        cella.setBorderTop((int)borderTop);
         cella.setTamany(cellaHeight);
 
     }
@@ -166,7 +112,7 @@ public class PanelHidato extends JPanel{
         public void mouseClicked(MouseEvent e){ 
             int x = e.getX(); 
             int y = e.getY(); 
-            Point p = new Point( cella.locationToMatriu(e.getX(),e.getY()) );
+            Point p = new Point( cella.pixelsToPosicioMatriu(e.getX(),e.getY()) );
             if (p.x < 0 || p.y < 0 || p.x >= board[0].length || p.y >= board.length) return;
 
             /*boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);

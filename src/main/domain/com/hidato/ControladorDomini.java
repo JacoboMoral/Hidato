@@ -110,7 +110,6 @@ public class ControladorDomini {
 	}
 	
 	public Vector<Integer> getPossiblesMoviments() { //Nombres que hi caben a la matriu - nombresPerDefecte - nombresEscrits
-		System.out.println("domini: " + partidaEnCurs.getPossiblesMoviments());
 		return partidaEnCurs.getPossiblesMoviments();
 	}
  
