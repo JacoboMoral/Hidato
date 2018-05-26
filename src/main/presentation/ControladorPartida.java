@@ -12,6 +12,8 @@ public class ControladorPartida {
     private final ControladorPresentacio controller = ControladorPresentacio.getInstance();
     private Dificultat dificultat = Dificultat.FACIL;
     private Cella cella;
+    private PanelPartida partida;
+    private VistaPartida view;
 
     public ControladorPartida() {
     }
@@ -24,10 +26,8 @@ public class ControladorPartida {
     public PanelPartida partidaAutogenerada(Cella cella, Dificultat dificultat) {
         this.dificultat = dificultat;
         this.cella = cella;
-        PanelPartida panel;
-        panel = new PanelPartida(cella, new Dimension(600, 600));
-        //panel.setPreferredSize(new Dimension(600,600));
-        return panel;
+        partida = new PanelPartida(cella, new Dimension(800, 665));
+        return partida;
     }
 
     public boolean ferMoviment(int y, int x, int value) {
@@ -58,6 +58,26 @@ public class ControladorPartida {
 
     public Vector<Integer> getPossiblesMoviments() {
         return controller.getPossiblesMoviments();
+    }
+    
+    public int incrementarSeguentMoviment() {
+    	return partida.incrementarMovimentIterator();
+    }
+    
+    public int decrementarSeguentMoviment() {
+    	return partida.decrementarMovimentIterator();
+    }
+    
+    public void updateSeguentMoviment(String moviment) {
+    	view.updateSeguentMoviment(moviment);
+    }
+    
+    public int getSeguentMoviment() {
+    	return partida.getSeguentMoviment();
+    }
+
+    public void setView(VistaPartida vistaPartida) {
+        view = vistaPartida;
     }
     
 }
