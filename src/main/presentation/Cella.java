@@ -19,7 +19,7 @@ abstract class Cella {
     abstract public void emplenaCella(int i, int j, int n, int ultim, Graphics2D g2, Color color);
 		
 	
-    abstract public Point locationToMatriu(int posx, int posy);
+    abstract public Point pixelsToPosicioMatriu(int posx, int posy);
 	abstract public void setBorderLeft(int border);
 	abstract public void setBorderTop(int border);
 	

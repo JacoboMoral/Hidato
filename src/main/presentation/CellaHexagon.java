@@ -102,7 +102,7 @@ public class CellaHexagon extends Cella{
     }
 
     @Override
-    public Point locationToMatriu(int posx, int posy) {
+    public Point pixelsToPosicioMatriu(int posx, int posy) {
         Point p = new Point(-1,-1);
         //System.out.println("Posicio x: " + posx + ", Posicio y: " + posy);
 

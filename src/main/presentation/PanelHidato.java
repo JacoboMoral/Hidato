@@ -112,7 +112,7 @@ public class PanelHidato extends JPanel{
         public void mouseClicked(MouseEvent e){ 
             int x = e.getX(); 
             int y = e.getY(); 
-            Point p = new Point( cella.locationToMatriu(e.getX(),e.getY()) );
+            Point p = new Point( cella.pixelsToPosicioMatriu(e.getX(),e.getY()) );
             if (p.x < 0 || p.y < 0 || p.x >= board[0].length || p.y >= board.length) return;
 
             /*boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);

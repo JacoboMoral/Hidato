@@ -91,7 +91,7 @@ public class CellaQuadrat extends Cella{
     }
 
     @Override
-    public Point locationToMatriu(int posx, int posy) {
+    public Point pixelsToPosicioMatriu(int posx, int posy) {
         Point p = new Point(-1,-1);
 
         posx -= borderLeft;
