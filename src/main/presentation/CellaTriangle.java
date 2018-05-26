@@ -143,7 +143,7 @@ public class CellaTriangle extends Cella{
 	        	--x;
 	        }
 	        
-	        if ( !esParell(x) && (posicioYrelativa/posicioXrelativa < pendiente) ) { 	//si fas click a la meitat de dalt/esquerra
+	        else if ( !esParell(x) && (posicioYrelativa/posicioXrelativa < pendiente) ) { 	//si fas click a la meitat de dalt/esquerra
 	        	--x;
 	        }
         }
@@ -153,7 +153,7 @@ public class CellaTriangle extends Cella{
 	        	--x;
 	        }
 	        
-	        if ( esParell(x) && (posicioYrelativa/posicioXrelativa < pendiente) ) { 	//si fas click a la meitat de dalt/esquerra
+        	else if ( esParell(x) && (posicioYrelativa/posicioXrelativa < pendiente) ) { 	//si fas click a la meitat de dalt/esquerra
 	        	--x;
 	        }
         }
