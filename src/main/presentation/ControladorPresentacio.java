@@ -35,7 +35,7 @@ public class ControladorPresentacio {
 		final JFrame frame = new JFrame();
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		final ControladorPartida partida = new ControladorPartida().getInstance();
-		panelPartida = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.FACIL);
+		panelPartida = partida.partidaAutogenerada(new CellaTriangle(), Dificultat.FACIL);
 		
 				
 		JButton buttonFacil = new JButton("Facil");
@@ -43,7 +43,7 @@ public class ControladorPresentacio {
 		buttonFacil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.FACIL);
+				panelPartida = partida.partidaAutogenerada(new CellaTriangle(), Dificultat.FACIL);
 				frame.add(panelPartida);
 				frame.validate();				
 			}
@@ -54,7 +54,7 @@ public class ControladorPresentacio {
 		buttonMig.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.MIG);
+				panelPartida = partida.partidaAutogenerada(new CellaTriangle(), Dificultat.MIG);
 				frame.add(panelPartida);
 				frame.validate();
 			}
@@ -65,7 +65,7 @@ public class ControladorPresentacio {
 		buttonDificil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.DIFICIL);
+				panelPartida = partida.partidaAutogenerada(new CellaTriangle(), Dificultat.DIFICIL);
 				frame.add(panelPartida);
 				frame.validate();				
 			}
