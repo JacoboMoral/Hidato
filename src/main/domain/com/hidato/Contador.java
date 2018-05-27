@@ -19,11 +19,11 @@ public class Contador {
 	
 	public Contador() {
 		segons = 0;
-		cronometro = new Timer();
 	}
 	
 	
 	public void iniciar() {
+		cronometro = new Timer();
 		cronometro.schedule(new Incrementador(), segons, 1000);
 	}
 	

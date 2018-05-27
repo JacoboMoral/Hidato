@@ -9,7 +9,7 @@ public class Partida {
     private Date dataIni;
     private Date dataFi;
     private Hidato hidato;
-    private int status; //0 = sense començar; 1 = jugant; -1 finalitzada
+    private int status; //0 = sense començar; 1 = jugant; 2 = aturada; -1 finalitzada
     private Contador contador;
     private int temps;
 
@@ -19,7 +19,7 @@ public class Partida {
             status = 0;
             puntuacio = 0;
             contador = new Contador();
-            temps = 0;
+            temps = -1;
     }
 
     private void acabarPartida() {
@@ -32,8 +32,7 @@ public class Partida {
     }
 
     public void iniciarPartida() {
-    	contador.detener();
-        temps = contador.getSegons();
+    	contador.iniciar();
         dataIni = new Date();
         status = 1;
     }
@@ -92,7 +91,13 @@ public class Partida {
     }
 
     public void reprendrePartida() {
-
+    	status = 1;
+    	contador.iniciar();
+    }
+    
+    public void pausarPartida() {
+    	status = 2;
+    	contador.iniciar();
     }
 
     public Date getDataInici() {
