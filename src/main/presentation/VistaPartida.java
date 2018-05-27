@@ -20,21 +20,21 @@ import java.awt.event.ComponentEvent;
  * @author admin
  */
 public class VistaPartida extends javax.swing.JFrame {
-
     CtrlVista cv;
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
-
+    ControladorPartida partida = ControladorPartida.getInstance();
+    private String seguentMoviment = " ";
     /**
-     * Creates new form VistaPartida
+     * Creates new form NewJFrame
      */
     public VistaPartida() {
-        commonConstructorMethod();
+        initComponents();
     }
 
     public VistaPartida(CtrlVista v, int level) {
-        commonConstructorMethod();
+        initComponents();
 
         cv = v;
         partida.setView(this);
@@ -52,12 +52,6 @@ public class VistaPartida extends javax.swing.JFrame {
         jLabel1.setText(seguentMoviment);
 
         this.validate();
-    }
-
-    public void commonConstructorMethod() {
-        initComponents();
-        this.setMinimumSize(new Dimension(580, 570));
-
     }
 
     /**
@@ -84,36 +78,27 @@ public class VistaPartida extends javax.swing.JFrame {
         controlPanel.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setText(seguentMoviment);
+        jLabel1.setText("s");
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton1.setText(">");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton2.setText("<");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton3.setText("Help");
 
-        
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                incrementarSeguentMoviment();
-            }
-        });
-        
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-            	decrementarSeguentMoviment();
-            }
-        });
-        
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                help();
-            }
-        });
-        
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anterior.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -126,10 +111,10 @@ public class VistaPartida extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                resetHidato();
+                jLabel3MouseClicked(evt);
             }
         });
-        
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
@@ -150,7 +135,7 @@ public class VistaPartida extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addComponent(jButton1)))
-                .addContainerGap(341, Short.MAX_VALUE))
+                .addContainerGap(345, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,17 +166,16 @@ public class VistaPartida extends javax.swing.JFrame {
         hidatoPanel.setLayout(hidatoPanelLayout);
         hidatoPanelLayout.setHorizontalGroup(
             hidatoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGap(0, 904, Short.MAX_VALUE)
         );
         hidatoPanelLayout.setVerticalGroup(
             hidatoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 769, Short.MAX_VALUE)
+            .addGap(0, 694, Short.MAX_VALUE)
         );
 
         getContentPane().add(hidatoPanel, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(916, 939));
-        setLocationRelativeTo(null);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -199,6 +183,24 @@ public class VistaPartida extends javax.swing.JFrame {
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        partida.reset();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        int seguentMov = partida.decrementarSeguentMoviment();
+        if (seguentMov != -1) {
+            jLabel1.setText(Integer.toString(seguentMov));
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        int seguentMov = partida.incrementarSeguentMoviment();
+        if (seguentMov != -1) {
+            jLabel1.setText(Integer.toString(seguentMov));
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -226,6 +228,7 @@ public class VistaPartida extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VistaPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -234,7 +237,7 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
     }
-
+    
     public void incrementarSeguentMoviment() {
         int seguentMov = partida.incrementarSeguentMoviment();
         if (seguentMov != -1) {
@@ -249,21 +252,11 @@ public class VistaPartida extends javax.swing.JFrame {
         }
     }
 
-    public void help() {
-        System.out.println("be3");
-    }
-
-    public void resetHidato() {
-        partida.reset();
-        System.out.println("reset");
-
-    }
-
     public void updateSeguentMoviment(String moviment) {
         jLabel1.setText(moviment);
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel controlPanel;
     private javax.swing.JPanel hidatoPanel;
     private javax.swing.JButton jButton1;
@@ -273,7 +266,5 @@ public class VistaPartida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel saveGame;
-    final ControladorPartida partida = ControladorPartida.getInstance();
-    private String seguentMoviment = " ";
-
+    // End of variables declaration//GEN-END:variables
 }
