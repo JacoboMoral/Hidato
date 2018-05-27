@@ -88,7 +88,6 @@ public abstract class Hidato {
     }
     
 	public Vector<Integer> getPossiblesMoviments() {
-		System.out.println(possiblesMoviments);
 		return possiblesMoviments;
 	}
 	
@@ -103,8 +102,8 @@ public abstract class Hidato {
 
 	public Dificultat getDificultat() {
 		return dificultat;
-	}
-	
+	}	
+
 	
 	public int[][] getMatriu(){
 		return matriuHidato;
@@ -118,11 +117,6 @@ public abstract class Hidato {
 		copy(matriuHidato,matriuOriginal);
 		nombresEscrits = new Vector<Integer>(nombresDonats);
 		calcPossiblesMoviments();
-		System.out.println(nombresDonats);
-		System.out.println(nombresEscrits);
-		System.out.println(possiblesMoviments);
-		HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
-
 	}
 
 	

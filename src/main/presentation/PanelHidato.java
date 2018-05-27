@@ -81,7 +81,6 @@ public class PanelHidato extends JPanel{
     
     public void updateMatriu(int[][] matriuHidato) {
     	this.matriuHidato = matriuHidato;
-        System.out.println("nova matriuHidato: " + this.matriuHidato[0][2]);
         repaint();
         
     }
@@ -137,10 +136,6 @@ public class PanelHidato extends JPanel{
     	public void componentResized(ComponentEvent componentEvent) {
     		screenHeight = getHeight();
             screenWidth = getWidth();
-            
-            System.out.println("PanelHidato. resize"+screenHeight);
-            System.out.println(screenWidth);
-
     		calcCellaSize();
     		repaint();
     	}
