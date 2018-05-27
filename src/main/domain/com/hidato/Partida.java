@@ -20,6 +20,9 @@ public class Partida {
             puntuacio = 0;
             contador = new Contador();
             temps = -1;
+            
+            //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
+            iniciarPartida();
     }
 
     private void acabarPartida() {
@@ -51,11 +54,14 @@ public class Partida {
     }
     
     public boolean esborrarNombre(int i, int j) {
-        if (hidato.desferMoviment(i, j)) {
-        	puntuacio -= 2;
-        	return true;
-        }
-        else return false;
+    	if (status != 2 && status != -1) {
+    		if (hidato.desferMoviment(i, j)) {
+            	puntuacio -= 2;
+            	return true;
+            }
+            else return false;
+    	}
+        return false;
 }
 
     public void demanarPista() {
