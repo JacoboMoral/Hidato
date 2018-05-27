@@ -246,7 +246,6 @@ public class VistaPartida extends javax.swing.JFrame {
     
     public void resetHidato() {
     	partida.reset();
-        System.out.println("reset");
     }
     
     public void updateSeguentMoviment(String moviment) {

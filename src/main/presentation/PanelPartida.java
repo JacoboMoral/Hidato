@@ -81,7 +81,6 @@ public class PanelPartida extends JPanel {
     	movimentIterator = 0;
     	panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
     	updateSeguentMoviment();
-    	System.out.println(possiblesMoviments);
     }
 
     private void setPossiblesMoviments() {
@@ -146,9 +145,7 @@ public class PanelPartida extends JPanel {
     }
     
     public int decrementarMovimentIterator(){
-    	System.out.println(possiblesMoviments);
     	if ((movimentIterator-1) >= 0) {
-        	System.out.println("Holaaa" + " " + movimentIterator);
     		--movimentIterator;
             panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
     		return possiblesMoviments.get(movimentIterator);
