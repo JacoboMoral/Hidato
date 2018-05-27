@@ -160,4 +160,9 @@ public class ControladorDomini {
 		
 		//guardar en la base de dades la partida en la carpeta: user/partides/finalitzades/idPartida
 	}
+
+	public void resetMatriuEnPartida() {
+		if (partidaEnCurs != null) partidaEnCurs.reset();
+	}
+
 }
