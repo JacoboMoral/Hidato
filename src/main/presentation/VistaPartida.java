@@ -25,28 +25,35 @@ public class VistaPartida extends javax.swing.JFrame {
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
+
     /**
      * Creates new form VistaPartida
      */
     public VistaPartida() {
-    	commonConstructorMethod();
+        commonConstructorMethod();
     }
-    
+
     public VistaPartida(CtrlVista v, int level) {
-    	commonConstructorMethod();
+        commonConstructorMethod();
 
         cv = v;
         partida.setView(this);
-        if (level == levelEasy) hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
-        if (level == levelInter) hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
-        if (level == levelHard) hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
+        if (level == levelEasy) {
+            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
+        }
+        if (level == levelInter) {
+            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
+        }
+        if (level == levelHard) {
+            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
+        }
         this.add(hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
         jLabel1.setText(seguentMoviment);
-        
-        this.validate();   
+
+        this.validate();
     }
-    
+
     public void commonConstructorMethod() {
         initComponents();
         this.setMinimumSize(new Dimension(580, 570));
@@ -227,33 +234,35 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    
+
     public void incrementarSeguentMoviment() {
-    	int seguentMov = partida.incrementarSeguentMoviment();
-    	if (seguentMov != -1) jLabel1.setText(Integer.toString(seguentMov));
+        int seguentMov = partida.incrementarSeguentMoviment();
+        if (seguentMov != -1) {
+            jLabel1.setText(Integer.toString(seguentMov));
+        }
     }
-    
+
     public void decrementarSeguentMoviment() {
-    	int seguentMov = partida.decrementarSeguentMoviment();
-    	if (seguentMov != -1) jLabel1.setText(Integer.toString(seguentMov));
+        int seguentMov = partida.decrementarSeguentMoviment();
+        if (seguentMov != -1) {
+            jLabel1.setText(Integer.toString(seguentMov));
+        }
     }
 
     public void help() {
-    	System.out.println("be3");
+        System.out.println("be3");
     }
-    
+
     public void resetHidato() {
-    	partida.reset();
+        partida.reset();
         System.out.println("reset");
     }
-    
+
     public void updateSeguentMoviment(String moviment) {
-    	jLabel1.setText(moviment);
-	}
-    
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+        jLabel1.setText(moviment);
+    }
+
+    // Variables declaration - do not modify                     
     private javax.swing.JPanel controlPanel;
     private javax.swing.JPanel hidatoPanel;
     private javax.swing.JButton jButton1;
@@ -265,5 +274,5 @@ public class VistaPartida extends javax.swing.JFrame {
     private javax.swing.JLabel saveGame;
     final ControladorPartida partida = ControladorPartida.getInstance();
     private String seguentMoviment = " ";
-	
+
 }
