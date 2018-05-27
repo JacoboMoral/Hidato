@@ -5,6 +5,7 @@ import CtrlRanking.CtrlRanking;
 import main.domain.com.hidato.Ranking;
 import main.domain.com.hidato.Usuari;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class CtrlVista {
 
@@ -48,29 +49,25 @@ public class CtrlVista {
         return cu.getPassword();
     }
     
-    public String[] getRank_easy() {
+    public String[] getRankEasy() {
         return cr.getRankingEasy();
     }
 
-    public String[] getRank_inter() {
+    public String[] getRankInter() {
         return cr.getRankingInter();
     }
 
-    public String[] getRank_hard() {
+    public String[] getRankHard() {
         return cr.getRankingHard();
     }
 
-    /*public String[] getRankFacilUsr(String usr) {
-        return cr.getFacilUsr(usr);
+    public String[] getFilterByUsername(String username, int level) {
+        return cr.getFilterByUsername(username, level);
     }
-
-    public String[] getRankNormalUsr(String usr) {
-        return cr.getNormalUsr(usr);
+    
+    public String[] getFilterByDate(String date, int level) {
+        return cr.getFilterByDate(date, level);
     }
-
-    public String[] getRankDificilUsr(String usr) {
-        return cr.getDificilUsr(usr);
-    }*/
 
     public void deleteUsr(String nom) {
         cr.deleteUsr(nom);
@@ -80,10 +77,12 @@ public class CtrlVista {
         cr.saveScore(dificultat, puntuacio, usr);
     }
 
-    boolean existsUsr(String usr) {
-        return cr.existsUsuari(usr);
+    boolean existsUser(String username) {
+        return cr.existsUser(username);
+    }
+    
+    boolean existsDate(String date) {
+        return cr.existsDate(date);
     }
 
-    
-    
 }

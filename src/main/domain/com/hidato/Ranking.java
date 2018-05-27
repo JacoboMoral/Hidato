@@ -64,41 +64,67 @@ public class Ranking {
         }
     }
 
-    public boolean exists(String nom) {
+    public boolean existsUser(String date) {
         ListIterator<Posicio> it_easy = rankingEasy.listIterator();
         ListIterator<Posicio> it_inter = rankingInter.listIterator();
         ListIterator<Posicio> it_hard = rankingHard.listIterator();
         boolean trobat = false;
         while (it_easy.hasNext()) {
-            Posicio aux = it_easy.next();
-            if (aux.getUsername().equals(nom)) {
+            Posicio temp = it_easy.next();
+            if (temp.getUsername().equals(date)) {
                 trobat = true;
             }
         }
         while (it_inter.hasNext()) {
-            Posicio aux = it_inter.next();
-            if (aux.getUsername().equals(nom)) {
+            Posicio temp = it_inter.next();
+            if (temp.getUsername().equals(date)) {
                 trobat = true;
             }
         }
         while (it_hard.hasNext()) {
-            Posicio aux = it_hard.next();
-            if (aux.getUsername().equals(nom)) {
+            Posicio temp = it_hard.next();
+            if (temp.getUsername().equals(date)) {
                 trobat = true;
             }
         }
         return trobat;
     }
-
+    
+    public boolean existsDate(String date) {
+        ListIterator<Posicio> it_easy = rankingEasy.listIterator();
+        ListIterator<Posicio> it_inter = rankingInter.listIterator();
+        ListIterator<Posicio> it_hard = rankingHard.listIterator();
+        boolean trobat = false;
+        LocalDate localDate = LocalDate.parse(date);
+        while (it_easy.hasNext()) {
+            Posicio temp = it_easy.next();
+            if (temp.getDate().equals(localDate)) {
+                trobat = true;
+            }
+        }
+        while (it_inter.hasNext()) {
+            Posicio temp = it_inter.next();
+            if (temp.getDate().equals(localDate)) {
+                trobat = true;
+            }
+        }
+        while (it_hard.hasNext()) {
+            Posicio temp = it_hard.next();
+            if (temp.getDate().equals(localDate)) {
+                trobat = true;
+            }
+        }
+        return trobat;
+    }
     
 
-    public void delete_by_username(int dificultat, String nom) {
+    public void deleteByUsername(int dificultat, String date) {
         boolean trobat = false;
         int i = 0;
         switch (dificultat) {
             case levelEasy:
                 while (i < rankingEasy.size() && !trobat) {
-                    if (rankingEasy.get(i).getUsername().equals(nom)) {
+                    if (rankingEasy.get(i).getUsername().equals(date)) {
                         System.out.println(rankingEasy.get(i).getUsername());
                         rankingEasy.remove(i);
                         trobat = true;
@@ -111,7 +137,7 @@ public class Ranking {
                 break;
             case levelInter:
                 while (i < rankingInter.size() && !trobat) {
-                    if (rankingInter.get(i).getUsername().equals(nom)) {
+                    if (rankingInter.get(i).getUsername().equals(date)) {
                         System.out.println(rankingInter.get(i).getUsername());
                         rankingInter.remove(i);
                         trobat = true;
@@ -124,7 +150,7 @@ public class Ranking {
                 break;
             case levelHard:
                 while (i < rankingHard.size() && !trobat) {
-                    if (rankingHard.get(i).getUsername().equals(nom)) {
+                    if (rankingHard.get(i).getUsername().equals(date)) {
                         System.out.println(rankingHard.get(i).getUsername());
                         rankingHard.remove(i);
                         trobat = true;
@@ -164,13 +190,14 @@ public class Ranking {
                     i++;
             }
     }*/
-    public ArrayList<Posicio> filter_by_username(String nom, int dificultat) {
+    
+    public ArrayList<Posicio> filterByUsername(String date, int dificultat) {
         int i = 0;
         ArrayList<Posicio> aux = new ArrayList<Posicio>();
         switch (dificultat) {
             case levelEasy:
                 while (i < rankingEasy.size()) {
-                    if (rankingEasy.get(i).getUsername().equals(nom)) {
+                    if (rankingEasy.get(i).getUsername().equals(date)) {
                         aux.add(rankingEasy.get(i));
                     }
                     i++;
@@ -178,7 +205,7 @@ public class Ranking {
                 return aux;
             case levelInter:
                 while (i < rankingInter.size()) {
-                    if (rankingInter.get(i).getUsername().equals(nom)) {
+                    if (rankingInter.get(i).getUsername().equals(date)) {
                         aux.add(rankingInter.get(i));
                     }
                     i++;
@@ -186,22 +213,16 @@ public class Ranking {
                 return aux;
             case levelHard:
                 while (i < rankingHard.size()) {
-                    if (rankingHard.get(i).getUsername().equals(nom)) {
+                    if (rankingHard.get(i).getUsername().equals(date)) {
                         aux.add(rankingHard.get(i));
                     }
                     i++;
                 }
                 return aux;
         }
-
-        /*
-            for (int j = 0; j < aux.size(); j++) {
-                    aux.get(j).print();
-            }*/
         return null;
     }
 
-    //dificultat=1 -> easy, dificultat=2 -> llistaPosicions_inter, dificultat=3 -> llistaPosicions_hard
     public ArrayList<Integer> getPos(String user, int dificultat) {
         ArrayList<Integer> ap = new ArrayList<Integer>();
         ListIterator<Posicio> it;
@@ -240,7 +261,7 @@ public class Ranking {
         return ap;
     }
 
-    //dificultat=1 -> easy, dificultat=2 -> llistaPosicions_inter, dificultat=3 -> llistaPosicions_hard
+    
     public ArrayList<Integer> getScore(String user, int dificultat) {
         ArrayList<Integer> ap = new ArrayList<Integer>();
         ListIterator<Posicio> it;

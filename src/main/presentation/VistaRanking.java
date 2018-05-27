@@ -23,6 +23,10 @@ public class VistaRanking extends javax.swing.JFrame {
 
     CtrlVista cv;
 
+    private static final int levelEasy = 1;
+    private static final int levelInter = 2;
+    private static final int levelHard = 3;
+
     public VistaRanking() {
         initComponents();
     }
@@ -30,6 +34,10 @@ public class VistaRanking extends javax.swing.JFrame {
     public VistaRanking(CtrlVista v) {
         initComponents();
         cv = v;
+
+        filterType.add(filterByDate);
+        filterType.add(filterByUsername);
+
         cv.saveResultat(1, "Jia", 10);
         cv.saveResultat(2, "Jia2", 1450);
         cv.saveResultat(3, "Jia3", 14350);
@@ -55,22 +63,79 @@ public class VistaRanking extends javax.swing.JFrame {
         DefaultListModel model = new DefaultListModel();
         DefaultListModel model1 = new DefaultListModel();
         DefaultListModel model2 = new DefaultListModel();
-        String[] rankEasy = cv.getRank_easy();
-        String[] rankInter = cv.getRank_inter();
-        String[] rankHard = cv.getRank_hard();
-        for (int i = 0; i < rankEasy.length; ++i) model.addElement(rankEasy[i]);
-        for (int i = 0; i < rankInter.length; ++i) model1.addElement(rankInter[i]);
-        for (int i = 0; i < rankHard.length; ++i) model2.addElement(rankHard[i]);
+        String[] rankEasy = cv.getRankEasy();
+        String[] rankInter = cv.getRankInter();
+        String[] rankHard = cv.getRankHard();
+        for (int i = 0; i < rankEasy.length; ++i) {
+            model.addElement(rankEasy[i]);
+        }
+        for (int i = 0; i < rankInter.length; ++i) {
+            model1.addElement(rankInter[i]);
+        }
+        for (int i = 0; i < rankHard.length; ++i) {
+            model2.addElement(rankHard[i]);
+        }
 
         jList1.setModel(model);
         jList2.setModel(model1);
         jList3.setModel(model2);
     }
-    
+
+    private void showFilteredRank(String input) {
+        DefaultListModel model = new DefaultListModel();
+        DefaultListModel model1 = new DefaultListModel();
+        DefaultListModel model2 = new DefaultListModel();
+
+        if (filterByUsername.isSelected()) {
+           if (!cv.existsUser(input)) {
+                int message = JOptionPane.showOptionDialog(null, "Username not exists in the Datebase", "Error message",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+            } else {
+                String[] rankEasy = cv.getFilterByUsername(input, levelEasy);
+                String[] rankInter = cv.getFilterByUsername(input, levelInter);
+                String[] rankHard = cv.getFilterByUsername(input, levelHard);
+                for (int i = 0; i < rankEasy.length; ++i) {
+                    model.addElement(rankEasy[i]);
+                }
+                for (int i = 0; i < rankInter.length; ++i) {
+                    model1.addElement(rankInter[i]);
+                }
+                for (int i = 0; i < rankHard.length; ++i) {
+                    model2.addElement(rankHard[i]);
+                }
+            }
+        }
+        if (filterByDate.isSelected()) {
+          if (!cv.existsDate(input)) {
+                int message = JOptionPane.showOptionDialog(null, "Date not exists in the Datebase", "Error message",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+            } else {
+                String[] rankEasy = cv.getFilterByDate(input, levelEasy);
+                String[] rankInter = cv.getFilterByDate(input, levelInter);
+                String[] rankHard = cv.getFilterByDate(input, levelHard);
+                for (int i = 0; i < rankEasy.length; ++i) {
+                    model.addElement(rankEasy[i]);
+                }
+                for (int i = 0; i < rankInter.length; ++i) {
+                    model1.addElement(rankInter[i]);
+                }
+                for (int i = 0; i < rankHard.length; ++i) {
+                    model2.addElement(rankHard[i]);
+                }
+            }
+
+        }
+
+        jList1.setModel(model);
+        jList2.setModel(model1);
+        jList3.setModel(model2);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        filterType = new javax.swing.ButtonGroup();
         rankingPanel = new javax.swing.JPanel();
         easyPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
@@ -102,7 +167,7 @@ public class VistaRanking extends javax.swing.JFrame {
         b_deleteUsr = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        user_to_filter = new javax.swing.JTextField();
+        t_input = new javax.swing.JTextField();
         b_filterByUsr = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -112,6 +177,9 @@ public class VistaRanking extends javax.swing.JFrame {
         showHardRanking = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        b_filterByUsr1 = new javax.swing.JButton();
+        filterByUsername = new javax.swing.JRadioButton();
+        filterByDate = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -318,14 +386,14 @@ public class VistaRanking extends javax.swing.JFrame {
         });
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel11.setText("Filter by username:");
+        jLabel11.setText("Filter by:");
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel12.setText("Username:");
+        jLabel12.setText("Input:");
 
-        user_to_filter.setBackground(new java.awt.Color(0, 153, 153));
-        user_to_filter.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        user_to_filter.setBorder(null);
+        t_input.setBackground(new java.awt.Color(0, 153, 153));
+        t_input.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        t_input.setBorder(null);
 
         b_filterByUsr.setBackground(new java.awt.Color(204, 204, 204));
         b_filterByUsr.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -383,6 +451,26 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
+        b_filterByUsr1.setBackground(new java.awt.Color(204, 204, 204));
+        b_filterByUsr1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        b_filterByUsr1.setText("Show all");
+        b_filterByUsr1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_filterByUsr1MouseClicked(evt);
+            }
+        });
+
+        filterByUsername.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        filterByUsername.setText("Username");
+        filterByUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterByUsernameActionPerformed(evt);
+            }
+        });
+
+        filterByDate.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        filterByDate.setText("Date (Format: YYYY-MM-DD)");
+
         javax.swing.GroupLayout optionsPanelLayout = new javax.swing.GroupLayout(optionsPanel);
         optionsPanel.setLayout(optionsPanelLayout);
         optionsPanelLayout.setHorizontalGroup(
@@ -390,6 +478,28 @@ public class VistaRanking extends javax.swing.JFrame {
             .addGroup(optionsPanelLayout.createSequentialGroup()
                 .addGap(111, 111, 111)
                 .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(optionsPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t_input, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(b_filterByUsr, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(b_filterByUsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(optionsPanelLayout.createSequentialGroup()
+                        .addComponent(filterByUsername)
+                        .addGap(18, 18, 18)
+                        .addComponent(filterByDate))
+                    .addGroup(optionsPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator1)
+                            .addComponent(user_to_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(b_deleteUsr))
                     .addComponent(jLabel9)
                     .addGroup(optionsPanelLayout.createSequentialGroup()
                         .addComponent(showEasyRanking)
@@ -400,53 +510,41 @@ public class VistaRanking extends javax.swing.JFrame {
                     .addGroup(optionsPanelLayout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addComponent(b_back, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel11)
-                    .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, optionsPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel12)
-                            .addGap(18, 18, 18)
-                            .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSeparator2)
-                                .addComponent(user_to_filter, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
-                            .addGap(18, 18, 18)
-                            .addComponent(b_filterByUsr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, optionsPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addGap(18, 18, 18)
-                            .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSeparator1)
-                                .addComponent(user_to_delete, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
-                            .addGap(18, 18, 18)
-                            .addComponent(b_deleteUsr))))
-                .addContainerGap(101, Short.MAX_VALUE))
+                    .addComponent(jLabel11))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         optionsPanelLayout.setVerticalGroup(
             optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(optionsPanelLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
                 .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(showInterRanking)
                     .addComponent(showHardRanking)
                     .addComponent(showEasyRanking))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(user_to_delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_deleteUsr))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(filterByUsername)
+                    .addComponent(filterByDate))
+                .addGap(15, 15, 15)
+                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(user_to_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_filterByUsr))
+                    .addComponent(t_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_filterByUsr)
+                    .addComponent(b_filterByUsr1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(35, 35, 35)
                 .addComponent(b_back)
                 .addGap(19, 19, 19))
         );
@@ -465,15 +563,14 @@ public class VistaRanking extends javax.swing.JFrame {
     }//GEN-LAST:event_b_backMouseClicked
 
     private void b_deleteUsrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_deleteUsrMouseClicked
-        String usr = user_to_delete.getText();
-        if (usr.equals("")) {
+        String username = user_to_delete.getText();
+        if (username.equals("")) {
             JOptionPane.showMessageDialog(null, "Enter the username that you want to delete");
-        }
-        else {
-            if (!cv.existsUsr(usr)) {
-                JOptionPane.showMessageDialog(null, "The user: " + usr + " not have any score in the Ranking!");
+        } else {
+            if (!cv.existsUser(username)) {
+                JOptionPane.showMessageDialog(null, "The user: " + username + " not exists in any ranking");
             }
-            cv.deleteUsr(usr);
+            cv.deleteUsr(username);
             user_to_delete.setText("");
             showRankingList();
             repaint();
@@ -481,8 +578,18 @@ public class VistaRanking extends javax.swing.JFrame {
     }//GEN-LAST:event_b_deleteUsrMouseClicked
 
     private void b_filterByUsrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_filterByUsrMouseClicked
-        String usr = user_to_filter.getText();
-        
+        String input = t_input.getText();
+        if (!filterByDate.isSelected() && !filterByUsername.isSelected()) {
+            int message = JOptionPane.showOptionDialog(null, "Choose the variable that you want to filter", "Error message",
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+        } 
+        else if ((filterByDate.isSelected() || filterByUsername.isSelected()) && input.equals("")) {
+            int message = JOptionPane.showOptionDialog(null, "Enter a input to filter!", "Error message",
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+        }
+        else {
+            showFilteredRank(input);
+        }
     }//GEN-LAST:event_b_filterByUsrMouseClicked
 
     private void b_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_backActionPerformed
@@ -509,6 +616,15 @@ public class VistaRanking extends javax.swing.JFrame {
         rankingPanel.repaint();
         rankingPanel.revalidate();
     }//GEN-LAST:event_showHardRankingActionPerformed
+
+    private void b_filterByUsr1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_filterByUsr1MouseClicked
+        showRankingList();
+        t_input.setText("");
+    }//GEN-LAST:event_b_filterByUsr1MouseClicked
+
+    private void filterByUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterByUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filterByUsernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -551,8 +667,12 @@ public class VistaRanking extends javax.swing.JFrame {
     private javax.swing.JButton b_back;
     private javax.swing.JButton b_deleteUsr;
     private javax.swing.JButton b_filterByUsr;
+    private javax.swing.JButton b_filterByUsr1;
     private javax.swing.JPanel easyPanel;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JRadioButton filterByDate;
+    private javax.swing.JRadioButton filterByUsername;
+    private javax.swing.ButtonGroup filterType;
     private javax.swing.JPanel hardPanel;
     private javax.swing.JPanel interPanel;
     private javax.swing.JLabel jLabel10;
@@ -584,10 +704,10 @@ public class VistaRanking extends javax.swing.JFrame {
     private javax.swing.JButton showEasyRanking;
     private javax.swing.JButton showHardRanking;
     private javax.swing.JButton showInterRanking;
+    private javax.swing.JTextField t_input;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
     private javax.swing.JLabel title2;
     private javax.swing.JTextField user_to_delete;
-    private javax.swing.JTextField user_to_filter;
     // End of variables declaration//GEN-END:variables
 }
