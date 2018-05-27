@@ -22,7 +22,10 @@ public abstract class Hidato {
 
     public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
 		this.tipusAdjacencia = tipusAdjacencia;
-		matriuHidato = matriu;
+		
+		matriuHidato = new int[matriu.length][matriu[0].length];
+		copy(matriu,matriu);
+
 		makeCopyOriginal(matriuHidato);
 		calcPossiblesMoviments();
     }
@@ -34,7 +37,8 @@ public abstract class Hidato {
     public boolean autogenerar(int forats, int tamanyi, int tamanyj) {
 		matriuHidato = al.generarHidato(forats, tamanyi, tamanyj);
 		if (matriuHidato != null){
-			matriuOriginal = matriuHidato;
+			matriuOriginal = new int[matriuHidato.length][matriuHidato[0].length];
+			copy(matriuOriginal,matriuHidato);
 			al.modificarHidato(this);
 			dificultat = al.obtenirDificultat();
 			return true;
@@ -46,7 +50,8 @@ public abstract class Hidato {
 	public boolean autogenerar(Dificultat dificultat) {
 		matriuHidato = al.generarHidato(dificultat);
 		if (matriuHidato != null){
-			matriuOriginal = matriuHidato;
+			matriuOriginal = new int[matriuHidato.length][matriuHidato[0].length];
+			copy(matriuOriginal,matriuHidato);
 			al.modificarHidato(this);
 			this.dificultat = dificultat;
 			return true;
@@ -83,6 +88,7 @@ public abstract class Hidato {
     }
     
 	public Vector<Integer> getPossiblesMoviments() {
+		System.out.println(possiblesMoviments);
 		return possiblesMoviments;
 	}
 	
@@ -110,6 +116,13 @@ public abstract class Hidato {
 	
 	public void resetMatriu() {
 		copy(matriuHidato,matriuOriginal);
+		nombresEscrits = new Vector<Integer>(nombresDonats);
+		calcPossiblesMoviments();
+		System.out.println(nombresDonats);
+		System.out.println(nombresEscrits);
+		System.out.println(possiblesMoviments);
+		HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
+
 	}
 
 	
@@ -201,6 +214,7 @@ public abstract class Hidato {
 	}
     
     private void calcPossiblesMoviments() {
+    	possiblesMoviments = new Vector<Integer>();
     	for (int i = 0; i < matriuSolucio.length; ++i) {
     		for (int j = 0; j < matriuSolucio[0].length; ++j) {
     			int x = matriuSolucio[i][j];
@@ -230,5 +244,4 @@ public abstract class Hidato {
 			}
 		}
 	}
-
 }

@@ -134,4 +134,8 @@ public class ControladorPresentacio {
 		return domini.getPossiblesMoviments();
 	}
 
+	public void reset() {
+		domini.resetMatriuEnPartida();
+	}
+
 }
