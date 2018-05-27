@@ -111,6 +111,11 @@ public class ControladorPartida {
         view = vistaPartida;
     }
     
+    public void reset() {
+    	controller.reset();
+    	partida.updateMatriu(controller.getMatriuHidatoDePartida());
+    }
+    
     private Cella tipusCellaToCella(TipusCella tipusCella) {
     	if (tipusCella == TipusCella.QUADRAT) return new CellaQuadrat();
     	if (tipusCella == TipusCella.TRIANGLE) return new CellaTriangle();

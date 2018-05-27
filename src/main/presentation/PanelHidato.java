@@ -26,26 +26,26 @@ public class PanelHidato extends JPanel{
     private double cellaHeight;
     private int border = 0;
     Vector<Integer> nombresPerDefecte;
-    int[][] board;
+    int[][] matriuHidato;
     
     private double screenWidth;
     private double screenHeight;
-    private int boardWidth;
-    private int boardHeight;
+    private int matriuHidatoWidth;
+    private int matriuHidatoHeight;
     private int seguentMoviment = -1;
     private int ultim = 1;
     
     //necessita que el creador faci panel.setPreferredSize(dim)
-    public PanelHidato(Cella cella, int[][] board, Vector<Integer> nombresPerDefecte, PanelPartida controller){
+    public PanelHidato(Cella cella, int[][] matriuHidato, Vector<Integer> nombresPerDefecte, PanelPartida controller){
     	//setBorder(new LineBorder(new Color(0, 0, 0)));
         this.controller = controller;
     	this.cella = cella;
-        this.board = board;
+        this.matriuHidato = matriuHidato;
         this.ultim = nombresPerDefecte.get(nombresPerDefecte.size()-1);
         this.nombresPerDefecte = nombresPerDefecte;        
 
-        boardWidth = board[0].length;
-        boardHeight = board.length;
+        matriuHidatoWidth = matriuHidato[0].length;
+        matriuHidatoHeight = matriuHidato.length;
 
         setOpaque(false);
 
@@ -65,10 +65,10 @@ public class PanelHidato extends JPanel{
     	
     	calcCellaSize();
     }
-
+    
     private void calcCellaSize(){
  
-    	Vector<Double> properties = cella.screenProperties((int)screenWidth, (int)screenHeight, boardHeight, boardWidth);
+    	Vector<Double> properties = cella.screenProperties((int)screenWidth, (int)screenHeight, matriuHidatoHeight, matriuHidatoWidth);
     	double borderLeft = properties.get(2);
     	double borderTop = properties.get(1);
     	cellaHeight = properties.get(0);
@@ -79,6 +79,14 @@ public class PanelHidato extends JPanel{
 
     }
     
+    public void updateMatriu(int[][] matriuHidato) {
+    	this.matriuHidato = matriuHidato;
+        System.out.println("nova matriuHidato: " + this.matriuHidato[0][2]);
+        repaint();
+        
+    }
+
+    
     public void paintComponent(Graphics g){    	
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); //millora linies diagonals dibuixades
@@ -86,11 +94,11 @@ public class PanelHidato extends JPanel{
         super.paintComponent(g2);
 
         
-        for (int i=0;i<board.length;i++) {
-            for (int j=0;j<board[0].length;j++) {
-                if (board[i][j] > -2){
+        for (int i=0;i<matriuHidato.length;i++) {
+            for (int j=0;j<matriuHidato[0].length;j++) {
+                if (matriuHidato[i][j] > -2){
                     cella.dibuixaCella(i,j,g2);
-                    int value = board[i][j];
+                    int value = matriuHidato[i][j];
                     if (nombresPerDefecte.contains(value) || value < 1) cella.emplenaCella(i,j,value, ultim, g2);
                     else cella.emplenaCella(i, j, value, ultim, g2, new Color(255, 229, 114));
                 }
@@ -113,11 +121,11 @@ public class PanelHidato extends JPanel{
     class MouseListener extends MouseAdapter {
         public void mouseClicked(MouseEvent e){ 
             Point p = new Point( cella.pixelsToPosicioMatriu(e.getX(),e.getY()) );
-            if (p.x < 0 || p.y < 0 || p.x >= board[0].length || p.y >= board.length) return;
+            if (p.x < 0 || p.y < 0 || p.x >= matriuHidato[0].length || p.y >= matriuHidato.length) return;
             
             boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);
             if (!movimentPossible) movimentPossible = controller.desferMoviment(p.y,p.x);
-            board = controller.getMatriu();
+            matriuHidato = controller.getMatriu();
             
             controller.updateSeguentMoviment();
             repaint();
@@ -130,7 +138,7 @@ public class PanelHidato extends JPanel{
     		screenHeight = getHeight();
             screenWidth = getWidth();
             
-            System.out.println("resize"+screenHeight);
+            System.out.println("PanelHidato. resize"+screenHeight);
             System.out.println(screenWidth);
 
     		calcCellaSize();

@@ -32,7 +32,7 @@ public class PanelPartida extends JPanel {
         this.matriuHidato = matriuHidato;
         
         setup();
-        getPossiblesMoviments();
+        setPossiblesMoviments();
         createAndShowGUI();
     }
 
@@ -53,7 +53,7 @@ public class PanelPartida extends JPanel {
     public boolean ferMoviment(int y, int x, int proximMoviment) {
         boolean fet = controller.ferMoviment(y, x, proximMoviment);
         if (fet) {
-            getPossiblesMoviments();
+            setPossiblesMoviments();
             if (controller.partidaCompletada()) {
                 completat = true;
             }
@@ -65,7 +65,7 @@ public class PanelPartida extends JPanel {
     public boolean desferMoviment(int y, int x) {
         boolean desfet = controller.desferMoviment(y, x);
         if (desfet) {
-            getPossiblesMoviments();
+            setPossiblesMoviments();
             return true;
         }
         return false;
@@ -74,8 +74,17 @@ public class PanelPartida extends JPanel {
     public int[][] getMatriu() {
         return controller.getMatriuHidato();
     }
+    
+    public void updateMatriu(int[][] matriu) {
+    	panelHidato.updateMatriu(matriu);
+    	setPossiblesMoviments();
+    	movimentIterator = 0;
+    	panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
+    	updateSeguentMoviment();
+    	System.out.println(possiblesMoviments);
+    }
 
-    private void getPossiblesMoviments() {
+    private void setPossiblesMoviments() {
         possiblesMoviments = controller.getPossiblesMoviments();
     }
 

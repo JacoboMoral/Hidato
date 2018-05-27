@@ -117,7 +117,12 @@ public class VistaPartida extends javax.swing.JFrame {
         saveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
-
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resetHidato();
+            }
+        });
+        
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
@@ -237,7 +242,11 @@ public class VistaPartida extends javax.swing.JFrame {
 
     public void help() {
     	System.out.println("be3");
-
+    }
+    
+    public void resetHidato() {
+    	partida.reset();
+        System.out.println("reset");
     }
     
     public void updateSeguentMoviment(String moviment) {

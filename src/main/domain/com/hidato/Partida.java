@@ -89,7 +89,7 @@ public class Partida {
     }
 
     public int[][] getHidato(){
-            return hidato.getMatriu();
+        return hidato.getMatriu();
     }
 
     public int[][] getHidatoOriginal(){
