@@ -175,8 +175,9 @@ public class VistaPartida extends javax.swing.JFrame {
 
         getContentPane().add(hidatoPanel, java.awt.BorderLayout.CENTER);
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+        setSize(new java.awt.Dimension(916, 939));
+        setLocationRelativeTo(null);
+}// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         VistaMenuPrincipal v = new VistaMenuPrincipal(cv);
