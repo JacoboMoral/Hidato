@@ -9,6 +9,7 @@ import main.domain.com.hidato.Ranking;
 import main.domain.com.hidato.Posicio;
 import main.domain.com.hidato.Usuari;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import java.util.Collections;
@@ -87,7 +88,7 @@ public class VistaRanking extends javax.swing.JFrame {
         DefaultListModel model2 = new DefaultListModel();
 
         if (filterByUsername.isSelected()) {
-           if (!cv.existsUser(input)) {
+            if (!cv.existsUser(input)) {
                 int message = JOptionPane.showOptionDialog(null, "Username not exists in the Datebase", "Error message",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
             } else {
@@ -106,24 +107,25 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         }
         if (filterByDate.isSelected()) {
-          if (!cv.existsDate(input)) {
-                int message = JOptionPane.showOptionDialog(null, "Date not exists in the Datebase", "Error message",
-                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-            } else {
-                String[] rankEasy = cv.getFilterByDate(input, levelEasy);
-                String[] rankInter = cv.getFilterByDate(input, levelInter);
-                String[] rankHard = cv.getFilterByDate(input, levelHard);
-                for (int i = 0; i < rankEasy.length; ++i) {
-                    model.addElement(rankEasy[i]);
-                }
-                for (int i = 0; i < rankInter.length; ++i) {
-                    model1.addElement(rankInter[i]);
-                }
-                for (int i = 0; i < rankHard.length; ++i) {
-                    model2.addElement(rankHard[i]);
+            if (validDate(input)) {
+                if (!cv.existsDate(input)) {
+                    int message = JOptionPane.showOptionDialog(null, "Date not exists in the Datebase", "Error message",
+                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                } else {
+                    String[] rankEasy = cv.getFilterByDate(input, levelEasy);
+                    String[] rankInter = cv.getFilterByDate(input, levelInter);
+                    String[] rankHard = cv.getFilterByDate(input, levelHard);
+                    for (int i = 0; i < rankEasy.length; ++i) {
+                        model.addElement(rankEasy[i]);
+                    }
+                    for (int i = 0; i < rankInter.length; ++i) {
+                        model1.addElement(rankInter[i]);
+                    }
+                    for (int i = 0; i < rankHard.length; ++i) {
+                        model2.addElement(rankHard[i]);
+                    }
                 }
             }
-
         }
 
         jList1.setModel(model);
@@ -168,7 +170,7 @@ public class VistaRanking extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         t_input = new javax.swing.JTextField();
-        b_filterByUsr = new javax.swing.JButton();
+        b_filter = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         b_back = new javax.swing.JButton();
@@ -395,12 +397,12 @@ public class VistaRanking extends javax.swing.JFrame {
         t_input.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         t_input.setBorder(null);
 
-        b_filterByUsr.setBackground(new java.awt.Color(204, 204, 204));
-        b_filterByUsr.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        b_filterByUsr.setText("Filter");
-        b_filterByUsr.addMouseListener(new java.awt.event.MouseAdapter() {
+        b_filter.setBackground(new java.awt.Color(204, 204, 204));
+        b_filter.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        b_filter.setText("Filter");
+        b_filter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                b_filterByUsrMouseClicked(evt);
+                b_filterMouseClicked(evt);
             }
         });
 
@@ -485,7 +487,7 @@ public class VistaRanking extends javax.swing.JFrame {
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(t_input, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(b_filterByUsr, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(b_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(b_filterByUsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(optionsPanelLayout.createSequentialGroup()
@@ -540,7 +542,7 @@ public class VistaRanking extends javax.swing.JFrame {
                 .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(t_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_filterByUsr)
+                    .addComponent(b_filter)
                     .addComponent(b_filterByUsr1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -577,20 +579,18 @@ public class VistaRanking extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_b_deleteUsrMouseClicked
 
-    private void b_filterByUsrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_filterByUsrMouseClicked
+    private void b_filterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_filterMouseClicked
         String input = t_input.getText();
         if (!filterByDate.isSelected() && !filterByUsername.isSelected()) {
             int message = JOptionPane.showOptionDialog(null, "Choose the variable that you want to filter", "Error message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-        } 
-        else if ((filterByDate.isSelected() || filterByUsername.isSelected()) && input.equals("")) {
+        } else if ((filterByDate.isSelected() || filterByUsername.isSelected()) && input.equals("")) {
             int message = JOptionPane.showOptionDialog(null, "Enter a input to filter!", "Error message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-        }
-        else {
+        } else {
             showFilteredRank(input);
         }
-    }//GEN-LAST:event_b_filterByUsrMouseClicked
+    }//GEN-LAST:event_b_filterMouseClicked
 
     private void b_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_backActionPerformed
         // TODO add your handling code here:
@@ -619,6 +619,7 @@ public class VistaRanking extends javax.swing.JFrame {
 
     private void b_filterByUsr1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_filterByUsr1MouseClicked
         showRankingList();
+
         t_input.setText("");
     }//GEN-LAST:event_b_filterByUsr1MouseClicked
 
@@ -666,7 +667,7 @@ public class VistaRanking extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_back;
     private javax.swing.JButton b_deleteUsr;
-    private javax.swing.JButton b_filterByUsr;
+    private javax.swing.JButton b_filter;
     private javax.swing.JButton b_filterByUsr1;
     private javax.swing.JPanel easyPanel;
     private javax.swing.Box.Filler filler1;
@@ -710,4 +711,16 @@ public class VistaRanking extends javax.swing.JFrame {
     private javax.swing.JLabel title2;
     private javax.swing.JTextField user_to_delete;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validDate(String input) {
+        try {
+             LocalDate localDate = LocalDate.parse(input);
+        }
+        catch (DateTimeParseException excepcion) {
+            int message = JOptionPane.showOptionDialog(null, "Invalid data form!", "Error message",
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+            return false;
+        }
+        return true;
+    }
 }

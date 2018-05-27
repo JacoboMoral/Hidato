@@ -449,7 +449,7 @@
                               <Component id="t_input" min="-2" pref="129" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="b_filterByUsr" min="-2" pref="77" max="-2" attributes="0"/>
+                          <Component id="b_filter" min="-2" pref="77" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="b_filterByUsr1" min="-2" pref="113" max="-2" attributes="0"/>
                       </Group>
@@ -516,7 +516,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="t_input" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="b_filterByUsr" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="b_filter" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="b_filterByUsr1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -585,7 +585,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="b_filterByUsr">
+        <Component class="javax.swing.JButton" name="b_filter">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -596,7 +596,7 @@
             <Property name="text" type="java.lang.String" value="Filter"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_filterByUsrMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_filterMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
