@@ -109,7 +109,7 @@ public abstract class Hidato {
 	}
 	
 	public void resetMatriu() {
-		matriuHidato = matriuOriginal;
+		copy(matriuHidato,matriuOriginal);
 	}
 
 	
@@ -222,6 +222,13 @@ public abstract class Hidato {
 		return possiblesMoviments.size() == 0;
 	}
 
-
+	private void copy(int[][] destination, int[][] source) {
+    	//assumeix que destination i source tenen la mateixa mida
+		for (int i = 0; i < destination.length; ++i) {
+			for (int j = 0; j < destination[0].length; ++j) {
+				destination[i][j] = source[i][j];
+			}
+		}
+	}
 
 }

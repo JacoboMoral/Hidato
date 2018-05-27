@@ -19,8 +19,6 @@ public class PanelPartida extends JPanel {
     int boardWidth = 0;
 
     private int BORDER = 0;
-    private int screenWidth;
-    private int screenHeight;
 
     private int ultim = 10;
 
@@ -29,16 +27,24 @@ public class PanelPartida extends JPanel {
 
     private Cella cella;
 
-    public PanelPartida(Cella cella, Dimension dimension) {
+    public PanelPartida(Cella cella, int[][] matriuHidato) {
         this.cella = cella;
-        screenHeight = dimension.height;
-        screenWidth = dimension.width;
-
-        setMatriu();
+        this.matriuHidato = matriuHidato;
+        
+        setup();
         getPossiblesMoviments();
         createAndShowGUI();
     }
 
+    private void setup() {
+
+        //matriuHidato = controller.generarMatriuHidato();
+        nombresPerDefecte = controller.getNombresPerDefecte();
+        boardHeight = matriuHidato[0].length;
+        boardWidth = matriuHidato.length;
+    }
+    
+    
     /*public PanelPartida(boolean viejo){
     	getMatriu();
         getPossiblesMoviments();
@@ -69,14 +75,6 @@ public class PanelPartida extends JPanel {
         return controller.getMatriuHidato();
     }
 
-    private void setMatriu() {
-
-        matriuHidato = controller.generarMatriuHidato();
-        nombresPerDefecte = controller.getNombresPerDefecte();
-        boardHeight = matriuHidato[0].length;
-        boardWidth = matriuHidato.length;
-    }
-
     private void getPossiblesMoviments() {
         possiblesMoviments = controller.getPossiblesMoviments();
     }
@@ -97,8 +95,8 @@ public class PanelPartida extends JPanel {
                 BorderFactory.createEmptyBorder(50, 50, 50, 50));
         this.setLayout(new BorderLayout(50, 50));
 
-        panelHidato = new PanelHidato(cella, matriuHidato, nombresPerDefecte, this, screenWidth, screenHeight);
-        panelHidato.setPreferredSize(new Dimension(screenWidth, (int) (screenHeight)));
+        panelHidato = new PanelHidato(cella, matriuHidato, nombresPerDefecte, this);
+        //panelHidato.setPreferredSize(new Dimension(screenWidth, (int) (screenHeight)));
         panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
 
         this.add(panelHidato);

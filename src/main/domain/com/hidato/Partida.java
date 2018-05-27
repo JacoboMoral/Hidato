@@ -9,37 +9,59 @@ public class Partida {
     private Date dataIni;
     private Date dataFi;
     private Hidato hidato;
-    private int status; //0 = sense començar; 1 = jugant; -1 finalitzada
+    private int status; //0 = sense començar; 1 = jugant; 2 = aturada; -1 finalitzada
+    private Contador contador;
+    private int temps;
 
     public Partida(Hidato hidato) {
             this.hidato = hidato;
             dificultat = hidato.getDificultat();
             status = 0;
             puntuacio = 0;
+            contador = new Contador();
+            temps = -1;
+            
+            //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
+            iniciarPartida();
     }
 
-    public void acabarPartida() {
-            status = -1;
-            dataFi = new Date();
+    private void acabarPartida() {
+        contador.detener();
+        temps = contador.getSegons();
+    	status = -1;
+        dataFi = new Date();
+        ControladorDomini.getInstance().finalitzarPartida();
+        
     }
 
     public void iniciarPartida() {
-            dataIni = new Date();
-            status = 1;
+    	contador.iniciar();
+        dataIni = new Date();
+        status = 1;
     }
 
     public void reset() {
-            hidato.resetMatriu();
+        hidato.resetMatriu();
     }
 
     public boolean ferJugada(int i, int j, int value) {
-            if (hidato.moviment(i, j, value)) return true;
-            else return false;
+        if (hidato.moviment(i, j, value)) {
+        	puntuacio += 10;
+        	if (hidato.getPossiblesMoviments().size() == 0) acabarPartida();
+        	return true;
+        }
+        else return false;
     }
     
     public boolean esborrarNombre(int i, int j) {
-        if (hidato.desferMoviment(i, j)) return true;
-        else return false;
+    	if (status != 2 && status != -1) {
+    		if (hidato.desferMoviment(i, j)) {
+            	puntuacio -= 2;
+            	return true;
+            }
+            else return false;
+    	}
+        return false;
 }
 
     public void demanarPista() {
@@ -47,7 +69,7 @@ public class Partida {
     }
 
     public int status() {  
-            return status;
+    	return status;
     }
 
     public Dificultat getDificultat() {
@@ -75,7 +97,13 @@ public class Partida {
     }
 
     public void reprendrePartida() {
-
+    	status = 1;
+    	contador.iniciar();
+    }
+    
+    public void pausarPartida() {
+    	status = 2;
+    	contador.iniciar();
     }
 
     public Date getDataInici() {
@@ -92,10 +120,6 @@ public class Partida {
 
     public boolean esSolucionable() {
             return hidato.teSolucio();
-    }
-
-    int[] seguentMoviment() {
-        return null;
     }
 
 	public boolean completatHidato() {

@@ -6,6 +6,9 @@
 package main.presentation;
 
 import main.domain.com.hidato.Dificultat;
+import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.TipusCella;
+
 import static main.presentation.ControladorPresentacio.panelPartida;
 
 import java.awt.Dimension;
@@ -34,9 +37,9 @@ public class VistaPartida extends javax.swing.JFrame {
 
         cv = v;
         partida.setView(this);
-        if (level == levelEasy) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.FACIL);
-        if (level == levelInter) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.MIG);
-        if (level == levelHard) hidatoPanel = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.DIFICIL);
+        if (level == levelEasy) hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
+        if (level == levelInter) hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
+        if (level == levelHard) hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
         this.add(hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
         jLabel1.setText(seguentMoviment);
