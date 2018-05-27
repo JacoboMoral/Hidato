@@ -37,7 +37,7 @@ public class ControladorPresentacio {
 		final JFrame frame = new JFrame();
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		final ControladorPartida partida = ControladorPartida.getInstance();
-		panelPartida = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.FACIL);
+		panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
 		
 				
 		JButton buttonFacil = new JButton("Facil");
@@ -45,7 +45,7 @@ public class ControladorPresentacio {
 		buttonFacil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(new CellaHexagon(), Dificultat.FACIL);
+				panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
 				frame.add(panelPartida);
 				frame.validate();		
 			}
@@ -56,7 +56,7 @@ public class ControladorPresentacio {
 		buttonMig.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(new CellaTriangle(), Dificultat.MIG);
+				panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
 				frame.add(panelPartida);
 				frame.validate();
 			}
@@ -67,7 +67,7 @@ public class ControladorPresentacio {
 		buttonDificil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(new CellaQuadrat(), Dificultat.DIFICIL);
+				panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
 				frame.add(panelPartida);
 				frame.validate();				
 			}
@@ -108,6 +108,14 @@ public class ControladorPresentacio {
 
 	public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
 		return domini.autoGenerar(tipusCella, dificultat);
+	}
+	
+	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
+		return domini.autoGenerar(tipusCella, tipusAdjacencia, dificultat);
+	}
+	
+	public boolean autoGenerar(Dificultat dificultat) {
+		return domini.autoGenerar(dificultat);
 	}
 
 	public void jugarHidatoGenerat() {

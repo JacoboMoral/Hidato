@@ -36,7 +36,7 @@ public class PanelHidato extends JPanel{
     private int ultim = 1;
     
     //necessita que el creador faci panel.setPreferredSize(dim)
-    public PanelHidato(Cella cella, int[][] board, Vector<Integer> nombresPerDefecte, PanelPartida controller, int screenWidth, int screenHeight){
+    public PanelHidato(Cella cella, int[][] board, Vector<Integer> nombresPerDefecte, PanelPartida controller){
     	//setBorder(new LineBorder(new Color(0, 0, 0)));
         this.controller = controller;
     	this.cella = cella;
@@ -52,9 +52,6 @@ public class PanelHidato extends JPanel{
 
         MouseListener mouseListener = new MouseListener();            
         addMouseListener(mouseListener);
-        
-        this.screenHeight = screenHeight;
-        this.screenWidth = screenWidth;
         
         calcCellaSize();
         
