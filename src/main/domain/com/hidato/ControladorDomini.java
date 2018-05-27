@@ -8,6 +8,7 @@ import main.presentation.ControladorPresentacio;
 public class ControladorDomini {
 	
     private static ControladorDomini instance = null;
+    private ControladorPresentacio presentacio = ControladorPresentacio.getInstance();
 	private Partida partidaEnCurs = null;
 	private Hidato hidatoGenerat = null;;
 	
@@ -132,8 +133,7 @@ public class ControladorDomini {
 		return partidaEnCurs.completatHidato();
 	}
         
-    public int[] demanarPista() {
-        return partidaEnCurs.seguentMoviment();
+    public void demanarPista() {
     }
     
     public boolean esPotSolucionar(){
@@ -153,5 +153,11 @@ public class ControladorDomini {
 		int ta = random.nextInt(2);
 		if (ta == 0) return TipusAdjacencia.COSTATS;
 		return TipusAdjacencia.COSTATSIANGLES;
+	}
+
+	public void finalitzarPartida() {
+		//presentacio.finalitzarPartida();
+		
+		//guardar en la base de dades la partida en la carpeta: user/partides/finalitzades/idPartida
 	}
 }

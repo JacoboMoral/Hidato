@@ -10,35 +10,52 @@ public class Partida {
     private Date dataFi;
     private Hidato hidato;
     private int status; //0 = sense començar; 1 = jugant; -1 finalitzada
+    private Contador contador;
+    private int temps;
 
     public Partida(Hidato hidato) {
             this.hidato = hidato;
             dificultat = hidato.getDificultat();
             status = 0;
             puntuacio = 0;
+            contador = new Contador();
+            temps = 0;
     }
 
-    public void acabarPartida() {
-            status = -1;
-            dataFi = new Date();
+    private void acabarPartida() {
+        contador.detener();
+        temps = contador.getSegons();
+    	status = -1;
+        dataFi = new Date();
+        ControladorDomini.getInstance().finalitzarPartida();
+        
     }
 
     public void iniciarPartida() {
-            dataIni = new Date();
-            status = 1;
+    	contador.detener();
+        temps = contador.getSegons();
+        dataIni = new Date();
+        status = 1;
     }
 
     public void reset() {
-            hidato.resetMatriu();
+        hidato.resetMatriu();
     }
 
     public boolean ferJugada(int i, int j, int value) {
-            if (hidato.moviment(i, j, value)) return true;
-            else return false;
+        if (hidato.moviment(i, j, value)) {
+        	puntuacio += 10;
+        	if (hidato.getPossiblesMoviments().size() == 0) acabarPartida();
+        	return true;
+        }
+        else return false;
     }
     
     public boolean esborrarNombre(int i, int j) {
-        if (hidato.desferMoviment(i, j)) return true;
+        if (hidato.desferMoviment(i, j)) {
+        	puntuacio -= 2;
+        	return true;
+        }
         else return false;
 }
 
@@ -47,7 +64,7 @@ public class Partida {
     }
 
     public int status() {  
-            return status;
+    	return status;
     }
 
     public Dificultat getDificultat() {
@@ -92,10 +109,6 @@ public class Partida {
 
     public boolean esSolucionable() {
             return hidato.teSolucio();
-    }
-
-    int[] seguentMoviment() {
-        return null;
     }
 
 	public boolean completatHidato() {
