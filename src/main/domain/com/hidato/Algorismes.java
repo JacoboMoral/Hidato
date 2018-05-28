@@ -5,12 +5,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Vector;
 
-public class Algorismes implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 597522597586289888L;
+public class Algorismes{
 	
 	private int[][] matriuSolucio;
 	boolean solucionat = false;

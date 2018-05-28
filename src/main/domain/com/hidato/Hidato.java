@@ -3,12 +3,8 @@ package main.domain.com.hidato;
 import java.io.Serializable;
 import java.util.Vector;
 
-public abstract class Hidato implements Serializable{
+public abstract class Hidato{
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 2665114510227751958L;
 	protected TipusAdjacencia tipusAdjacencia;
     protected Dificultat dificultat;
         

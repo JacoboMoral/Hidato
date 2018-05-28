@@ -6,11 +6,7 @@ import java.util.Vector;
 
 import Usuari.Usuari;
 
-public class Partida implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 8329220665972618748L;
+public class Partida{
 	private Dificultat dificultat;
     private int puntuacio;
     private Date dataIni;
