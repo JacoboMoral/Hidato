@@ -1,11 +1,17 @@
 package main.domain.com.hidato;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Vector;
 
-public class Algorismes {
+public class Algorismes implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 597522597586289888L;
+	
 	private int[][] matriuSolucio;
 	boolean solucionat = false;
 	private Hidato hidato;

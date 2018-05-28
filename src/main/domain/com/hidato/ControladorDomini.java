@@ -3,13 +3,13 @@ package main.domain.com.hidato;
 import java.util.Random;
 import java.util.Vector;
 
-import main.persistence.ControladorPersistence;
+import main.persistence.ControladorPersistencia;
 
 public class ControladorDomini {
 	
 	private Partida partidaEnCurs = null;
 	private Hidato hidatoGenerat = null;
-	private ControladorPersistence controladorPersistence = ControladorPersistence.getInstance();
+	private ControladorPersistencia controladorPersistence = ControladorPersistencia.getInstance();
 	
 
 	public boolean jugarHidatoImportat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {

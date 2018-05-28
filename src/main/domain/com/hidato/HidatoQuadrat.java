@@ -1,7 +1,14 @@
 package main.domain.com.hidato;
 
-public class HidatoQuadrat extends Hidato {
+import java.io.Serializable;
+
+public class HidatoQuadrat extends Hidato implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5013823874989881128L;
+
 	public HidatoQuadrat(TipusAdjacencia tipusAdjacencia, int[][] matrix) {
 		super(tipusAdjacencia, matrix);
 		al = new Algorismes(this);

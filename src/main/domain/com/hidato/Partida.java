@@ -1,12 +1,17 @@
 package main.domain.com.hidato;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Vector;
 
 import Usuari.Usuari;
 
-public class Partida {
-    private Dificultat dificultat;
+public class Partida implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8329220665972618748L;
+	private Dificultat dificultat;
     private int puntuacio;
     private Date dataIni;
     private Date dataFi;

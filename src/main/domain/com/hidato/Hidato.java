@@ -1,10 +1,15 @@
 package main.domain.com.hidato;
 
+import java.io.Serializable;
 import java.util.Vector;
 
-public abstract class Hidato {
+public abstract class Hidato implements Serializable{
 
-    protected TipusAdjacencia tipusAdjacencia;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2665114510227751958L;
+	protected TipusAdjacencia tipusAdjacencia;
     protected Dificultat dificultat;
         
     //els seguents son protected per tal que el driver pugui accedir (ja que esta fet com una subclasse)
@@ -113,6 +118,7 @@ public abstract class Hidato {
 			if (al.getMatriuSolucio() != null) {
 				matriuSolucio = al.getMatriuSolucio();
 				nombresDonats = al.getGiven();
+				System.out.println("hola");
 				nombresEscrits = al.getGiven();
 				solucionable = true;
 			}
