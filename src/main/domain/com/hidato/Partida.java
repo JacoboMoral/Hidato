@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Vector;
 
-import Usuari.Usuari;
-
 public class Partida{
 	private Dificultat dificultat;
     private int puntuacio;

@@ -3,8 +3,8 @@ package main.domain.com.hidato;
 import java.util.Random;
 import java.util.Vector;
 
-import main.persistence.ControladorPresentacio;
 import main.persistence.ControladorPersistencia;
+import main.presentation.ControladorPresentacio;
 
 public class ControladorDomini {
 
