@@ -3,26 +3,26 @@ package main.domain.com.hidato;
 import java.util.Collections;
 import java.util.Vector;
 
-public abstract class Hidato {
+public abstract class Hidato{
 
-    protected TipusAdjacencia tipusAdjacencia;
+	protected TipusAdjacencia tipusAdjacencia;
     protected Dificultat dificultat;
-        
+
     //els seguents son protected per tal que el driver pugui accedir (ja que esta fet com una subclasse)
     private int[][] matriuHidato;
     private int[][] matriuOriginal;
     private int[][] matriuSolucio;
-    
+
     protected Boolean solucionable = false;
     protected Vector<Integer> nombresEscrits;
     protected Vector<Integer> nombresDonats;
     protected Vector<Integer> possiblesMoviments = new Vector<Integer>();
     protected Algorismes al;
-    
+
 
     public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
 		this.tipusAdjacencia = tipusAdjacencia;
-		
+
 		matriuHidato = new int[matriu.length][matriu[0].length];
 		copy(matriu,matriu);
 
@@ -30,10 +30,18 @@ public abstract class Hidato {
 		calcPossiblesMoviments();
     }
 
+    public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats){
+		this.tipusAdjacencia = tipusAdjacencia;
+		matriuHidato = matriu;
+		this.matriuOriginal = matriuOriginal;
+		this.nombresEscrits = nombresEscrits;
+		this.nombresDonats = nombresDonats;
+    }
+
 	public Hidato(TipusAdjacencia tipusAdjacencia) {
     	this.tipusAdjacencia = tipusAdjacencia;
     }
-    
+
     public boolean autogenerar(int forats, int tamanyi, int tamanyj) {
 		matriuHidato = al.generarHidato(forats, tamanyi, tamanyj);
 		if (matriuHidato != null){
@@ -46,7 +54,7 @@ public abstract class Hidato {
 		matriuHidato = null;
 		return false;
 	}
-    
+
 	public boolean autogenerar(Dificultat dificultat) {
 		matriuHidato = al.generarHidato(dificultat);
 		if (matriuHidato != null){
@@ -59,7 +67,7 @@ public abstract class Hidato {
 		matriuHidato = null;
 		return false;
 	}
-    
+
     public boolean moviment(int i, int j, int value) {
     	if(comprovarMoviment(i, j, value)) {
     		matriuHidato[i][j] = value;
@@ -70,7 +78,7 @@ public abstract class Hidato {
     	}
     	else return false;
     }
-    
+
     public boolean desferMoviment(int i, int j) {
     	int value = matriuHidato[i][j];
     	if(notPerDefecte(i, j) && matriuHidato[i][j] > 0) {
@@ -86,70 +94,72 @@ public abstract class Hidato {
 	public Vector<Integer> getNombresPerDefecte(){
     	return nombresDonats;
     }
-    
+    public Vector<Integer> getNombresEscrits(){
+    	return nombresEscrits;
+    }
+
 	public Vector<Integer> getPossiblesMoviments() {
 		return possiblesMoviments;
 	}
-	
+
     public int getNombreFiles(){
         return matriuHidato.length;
     }
 
     public int getNombreColumnes(){
         return matriuHidato[0].length;
-
     }
 
 	public Dificultat getDificultat() {
 		return dificultat;
-	}	
+	}
 
-	
+
 	public int[][] getMatriu(){
 		return matriuHidato;
 	}
-	
+
 	public int[][] getMatriuOriginal(){
 		return matriuOriginal;
 	}
-	
+
 	public void resetMatriu() {
 		copy(matriuHidato,matriuOriginal);
 		nombresEscrits = new Vector<Integer>(nombresDonats);
 		calcPossiblesMoviments();
 	}
 
-	
+
 	public int[][] getSolucio(){
 		if (teSolucio()) return matriuSolucio;
 		return null;
 	}
-	
+
 	public boolean teSolucio() {
 		if (solucionable == false){
 			if (al.getMatriuSolucio() != null) {
 				matriuSolucio = al.getMatriuSolucio();
 				nombresDonats = new Vector<Integer> (al.getGiven());
-				nombresEscrits = al.getGiven();
+				nombresEscrits = new Vector<Integer> (al.getGiven());
 				calcPossiblesMoviments();
 				solucionable = true;
 			}
 			else {
 				solucionable = al.solucionar();
 				nombresDonats = new Vector<Integer> (al.getGiven());
-				nombresEscrits = al.getGiven();
+				nombresEscrits = new Vector<Integer> (al.getGiven());
 				matriuSolucio = al.getMatriuSolucio();
 				calcPossiblesMoviments();
 			}
 		}
 		return solucionable;
 	}
-	
+
 
 	public TipusAdjacencia getTipusAdjacencia(){
 		return this.tipusAdjacencia;
 	}
-	
+
 	public abstract TipusCella getTipusCella();
 
 	public abstract boolean posicioValida(int i, int j, int r, int c);
@@ -162,9 +172,9 @@ public abstract class Hidato {
 	private boolean estaDintreElsLimits(int i, int j) {
 		return i >= 0 && i < matriuHidato.length && j >= 0 && j < matriuHidato[0].length;
 	}
-	
+
     private boolean comprovarMoviment(int i, int j, int value) {
-		
+
     	if (matriuHidato[i][j] != 0) return false;
     	if (estaRepetit(value)) return false;
 
@@ -195,7 +205,7 @@ public abstract class Hidato {
 
     	return true; 										//else
     }
-    
+
     private void makeCopyOriginal(int[][] matriuHidato) {
     	int y = matriuHidato.length;
     	int x = matriuHidato[0].length;
@@ -206,7 +216,7 @@ public abstract class Hidato {
     		}
     	}
 	}
-    
+
     private void calcPossiblesMoviments() {
     	possiblesMoviments = new Vector<Integer>();
     	for (int i = 0; i < matriuSolucio.length; ++i) {
@@ -221,7 +231,7 @@ public abstract class Hidato {
     	}
 		Collections.sort(possiblesMoviments);
     }
-    
+
     private boolean notPerDefecte(int i, int j) {
 		return (!nombresDonats.contains(matriuHidato[i][j]));  //return false if nombresDonats contains element at (i,j)
 	}
