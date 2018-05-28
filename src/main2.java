@@ -56,13 +56,20 @@ public class main2 {
 		System.out.println(persistencia.getStatus());
 		System.out.println(persistencia.getTipusCella());
 		System.out.println(persistencia.getNombresDonats());*/
-		
+		/*
 		persistencia.carregarHidatoFitxer("hola.txt");
 		System.out.println(persistencia.getTipusCellaHidato());
 		System.out.println(persistencia.getTipusAdjacenciaHidato());
-		HidatoIO.writeHidatoMatrixToOutput(persistencia.getMatriuHidato());
+		HidatoIO.writeHidatoMatrixToOutput(persistencia.getMatriuHidato());*/
 		
 
+		persistencia.importarHidato(new int[][] {
+			{1,2,3,4,5},
+			{6,7,8,9,10},
+			{11,12,13,14,15},
+			{16,17,18,19,20},
+			{21,22,23,24,25}
+		}, TipusCella.HEXAGON,  TipusAdjacencia.COSTATS, "jacoboloco");
 	}
 
 }

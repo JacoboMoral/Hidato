@@ -24,12 +24,32 @@ public class ControladorPersistencia {
     	IOHidato.importarHidatoCreat(matriuHidato, TipusCella.QUADRAT, TipusAdjacencia.COSTATSIANGLES, destinationFileName);
     }
 
+	public void carregarHidatoFitxer(String file) throws Exception {
+		IOHidato.carregarHidatoFitxer(file);
+	}
+	
+	public int[][] getMatriuHidato(){
+		return IOHidato.getMatriu();
+	}
+	
+	public TipusCella getTipusCellaHidato() {
+		return IOHidato.getTipusCella();
+	}
+	
+	public TipusAdjacencia getTipusAdjacenciaHidato() {
+		return IOHidato.getTipusAdjacencia();
+	}
+
     public void guardarPartida(int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari) {
     	IOPartida.guardarPartida(status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
     }
     
     public void carregarPartida(String usuari) {
     	IOPartida.carregarPartida(usuari);
+    }
+    
+    public Vector<String> nomHidatos(){
+    	return IOHidato.nomHidatos();
     }
 
 	public int[][] getMatriuPartida() {
@@ -64,20 +84,5 @@ public class ControladorPersistencia {
 		return IOPartida.getNombresDonats();
 	}
 
-	public void carregarHidatoFitxer(String file) throws Exception {
-		IOHidato.carregarHidatoFitxer(file);
-	}
-	
-	public int[][] getMatriuHidato(){
-		return IOHidato.getMatriu();
-	}
-	
-	public TipusCella getTipusCellaHidato() {
-		return IOHidato.getTipusCella();
-	}
-	
-	public TipusAdjacencia getTipusAdjacenciaHidato() {
-		return IOHidato.getTipusAdjacencia();
-	}
     
 }

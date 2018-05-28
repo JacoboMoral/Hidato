@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Vector;
 
 import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
@@ -102,6 +103,11 @@ public class IOHidato {
     	fitxerOutput.close();
 	}
 	
+	public static Vector<String> nomHidatos() {
+		return null;
+	}
+	
+	
 	private static void writeMatriu(int[][] matriu, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, PrintStream output) {
 		String primeraLinea = "";
     	if (tipusCella == TipusCella.QUADRAT) primeraLinea += "Q,";
@@ -138,5 +144,6 @@ public class IOHidato {
 		 if (ta.equals("CA")) return TipusAdjacencia.COSTATSIANGLES;
 		 return null;
 	}
+
 	
 }
