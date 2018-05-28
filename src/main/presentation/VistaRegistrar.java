@@ -49,6 +49,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
+        okRegistrar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hidato - Register");
@@ -116,6 +117,20 @@ public class VistaRegistrar extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Register");
 
+        okRegistrar1.setBackground(new java.awt.Color(0, 204, 204));
+        okRegistrar1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        okRegistrar1.setText("Back");
+        okRegistrar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                okRegistrar1MouseClicked(evt);
+            }
+        });
+        okRegistrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okRegistrar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,6 +138,11 @@ public class VistaRegistrar extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(okRegistrar)
+                        .addGap(26, 26, 26)
+                        .addComponent(okRegistrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -144,10 +164,6 @@ public class VistaRegistrar extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(0, 78, Short.MAX_VALUE)))
                         .addGap(155, 155, 155))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(okRegistrar)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +189,9 @@ public class VistaRegistrar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(okRegistrar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(okRegistrar)
+                    .addComponent(okRegistrar1))
                 .addGap(57, 57, 57))
         );
 
@@ -260,6 +278,16 @@ public class VistaRegistrar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_passwordActionPerformed
 
+    private void okRegistrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okRegistrar1MouseClicked
+        Inici v = new Inici();
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_okRegistrar1MouseClicked
+
+    private void okRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okRegistrar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_okRegistrar1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,6 +334,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JButton okRegistrar;
+    private javax.swing.JButton okRegistrar1;
     private javax.swing.JPasswordField tf_password;
     private javax.swing.JPasswordField tf_rpassword;
     private javax.swing.JTextField tf_username;

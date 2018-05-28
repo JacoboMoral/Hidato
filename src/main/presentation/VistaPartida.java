@@ -33,19 +33,28 @@ public class VistaPartida extends javax.swing.JFrame {
         initComponents();
     }
 
-    public VistaPartida(CtrlVista v, int level) {
+    public VistaPartida(CtrlVista v, int level, int type) {
         initComponents();
 
         cv = v;
         partida.setView(this);
         if (level == levelEasy) {
-            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
+            if (type == 1) {
+                System.out.println("estoy en hexagon");
+                hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
+            }
+            if (type == 2) hidatoPanel = partida.partidaAutogenerada(TipusCella.TRIANGLE, Dificultat.FACIL);
+            else hidatoPanel = partida.partidaAutogenerada(TipusCella.QUADRAT, Dificultat.FACIL);
         }
         if (level == levelInter) {
-            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
+            if (type == 1) hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
+            if (type == 2) hidatoPanel = partida.partidaAutogenerada(TipusCella.TRIANGLE, Dificultat.MIG);
+            else hidatoPanel = partida.partidaAutogenerada(TipusCella.QUADRAT, Dificultat.MIG);
         }
         if (level == levelHard) {
-            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
+            if (type == 1) hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
+            if (type == 2) hidatoPanel = partida.partidaAutogenerada(TipusCella.TRIANGLE, Dificultat.DIFICIL);
+            else hidatoPanel = partida.partidaAutogenerada(TipusCella.QUADRAT, Dificultat.DIFICIL);
         }
         this.add(hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
@@ -175,9 +184,9 @@ public class VistaPartida extends javax.swing.JFrame {
 
         getContentPane().add(hidatoPanel, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(916, 939));
+        setSize(new java.awt.Dimension(920, 864));
         setLocationRelativeTo(null);
-}// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         VistaMenuPrincipal v = new VistaMenuPrincipal(cv);
