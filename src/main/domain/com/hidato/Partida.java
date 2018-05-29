@@ -14,7 +14,7 @@ public class Partida{
     private Contador contador;
     private int temps;
     private Usuari usuari;
-
+    
     public Partida(Hidato hidato) {
             this.hidato = hidato;
             dificultat = hidato.getDificultat();

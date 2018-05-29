@@ -1,6 +1,8 @@
 package main.persistence;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.Vector;
 
 import main.domain.com.hidato.TipusAdjacencia;
@@ -39,16 +41,16 @@ public class ControladorPersistencia {
 	public TipusAdjacencia getTipusAdjacenciaHidato() {
 		return IOHidato.getTipusAdjacencia();
 	}
-
-    public void guardarPartida(int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari) {
-    	IOPartida.guardarPartida(status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
+	
+    public void guardarPartida(Date dataIni, Date dataFi, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari) {
+    	IOPartida.guardarPartida(dataIni, dataFi, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
     }
     
     public boolean hiHaPartida(String usuari) {
     	return IOPartida.hiHaPartida(usuari);
     }
     
-    public void carregarPartida(String usuari) {
+    public void carregarPartida(String usuari) throws ParseException {
     	IOPartida.carregarPartida(usuari);
     }
     

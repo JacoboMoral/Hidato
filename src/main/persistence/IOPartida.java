@@ -7,6 +7,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import main.domain.com.hidato.HidatoIO;
@@ -15,7 +18,9 @@ import main.domain.com.hidato.TipusCella;
 
 public class IOPartida {
 
-
+	private static Date dataIni;
+	private static Date dataFi;
+	private static int temps;
 	private static int status;
 	private static int puntuacio;
 	private static TipusCella tipusCella;
@@ -24,7 +29,18 @@ public class IOPartida {
 	private static int[][] matriuOriginal;
 	private static Vector<Integer> nombresDonats;
 	private static Vector<Integer> nombresEscrits;
-
+	
+	public static Date getDataIni() {
+		return dataIni;
+	}
+	
+	public static Date getDataFi() {
+		return dataFi;
+	}
+	
+	public static int getTemps() {
+		return temps;
+	}
 
 	public static int getStatus() {
 		return status;
@@ -92,7 +108,7 @@ public class IOPartida {
 		else return false;
 	}
 
-	public static void guardarPartida(int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari){
+	public static void guardarPartida(Date dataIni, Date dataFi, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari){
 
 		try {
 			File arxiu = new File("DB/Usuaris/" + nomUsuari + "/partida.txt");
@@ -105,7 +121,7 @@ public class IOPartida {
 			output.println(";");
 			writeHidato(cella, tipusAdj, matriuOriginal, output);
 			output.println(";");
-			bw.write(status + ";" + puntuacio + ";" + nombresDonats + ";"+ nombresEscrits +";");
+			bw.write(status + ";" + puntuacio + ";" + nombresDonats + ";"+ nombresEscrits +";" + dataIni +";" + dataFi +";" + temps +";");
 			bw.close();
 			fileWriter.close();
 
@@ -113,7 +129,7 @@ public class IOPartida {
 
 	}
 
-	public static void carregarPartida(String usuari) {
+	public static void carregarPartida(String usuari) throws ParseException {
 		try {
 			FileReader fr = new FileReader("DB/Usuaris/" + usuari + "/partida.txt");
 			BufferedReader b = new BufferedReader(fr);
@@ -160,10 +176,15 @@ public class IOPartida {
 			cadena = b.readLine();
 			linea = cadena.split(";");
 			
+			
+		    
 			status = Integer.parseInt(linea[0]);
 			puntuacio = Integer.parseInt(linea[1]);
 			nombresDonats = stringToVector(linea[2]);
 			nombresEscrits = stringToVector(linea[3]);
+			dataIni = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(linea[4]);
+			dataFi = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(linea[5]);
+			temps = Integer.parseInt(linea[6]);
 
 			
 		} catch (IOException ex) {
