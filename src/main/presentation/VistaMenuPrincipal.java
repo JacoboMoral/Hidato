@@ -1103,6 +1103,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 b_saveMouseClicked(evt);
             }
         });
+        b_save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_saveActionPerformed(evt);
+            }
+        });
 
         b_cancel.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_cancel.setText("Cancel");
@@ -1354,7 +1359,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 parentPanel.revalidate();
             }
             else {
-                int input = JOptionPane.showOptionDialog(null, "The username exists or not correct", "Error message",
+                int input = JOptionPane.showOptionDialog(null, "Old username is not correct or the username not exisits in the DB", "Error message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
@@ -1541,6 +1546,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_b_custom1ActionPerformed
+
+    private void b_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_saveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_saveActionPerformed
 
     /**
      * @param args the command line arguments

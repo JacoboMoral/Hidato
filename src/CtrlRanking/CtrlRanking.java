@@ -2,23 +2,23 @@ package CtrlRanking;
 
 import main.domain.com.hidato.Posicio;
 import main.domain.com.hidato.Ranking;
-import main.persistence.CtrlPersistence;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import main.persistence.ControladorPersistencia;
 
 public class CtrlRanking {
 
     Ranking r;
-    CtrlPersistence cp = new CtrlPersistence();
+    ControladorPersistencia cp;
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
 
     public CtrlRanking() {
-        CtrlPersistence gr = new CtrlPersistence();
-        r = gr.readRanking();
+        cp = new ControladorPersistencia();
+        r = cp.readRanking();
     }
 
     public void saveScore(int dif, int score, String usr) {
