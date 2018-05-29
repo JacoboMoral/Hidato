@@ -69,10 +69,10 @@ public class IOHidato {
         BufferedReader b = new BufferedReader(fr);
         String cadena = b.readLine();
       	String[] cabecera = cadena.split(",");
-      	if(cabecera.length != 4) throw new Exception("Capçalera del fitxer" + file + " no es correcte (té més de 4 coses)");
+      	if(cabecera.length != 4) throw new Exception("Cabecera del fitxer" + file + " no es correcte (te mes de 4 coses)");
       	tipusCella = stringToTipusCella(cabecera[0]);
       	tipusAdjacencia = stringToTipusAdjacencia(cabecera[1]);
-      	if(tipusCella == null || tipusAdjacencia == null) throw new Exception("tipusCella o tipusAdjcacencia no válid");
+      	if(tipusCella == null || tipusAdjacencia == null) throw new Exception("tipusCella o tipusAdjcacencia no vï¿½lid");
       	
       	int altura = Integer.parseInt(cabecera[2]);
       	int anchura = Integer.parseInt(cabecera[3]);

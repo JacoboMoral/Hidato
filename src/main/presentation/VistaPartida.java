@@ -14,6 +14,7 @@ import static main.presentation.ControladorPresentacio.panelPartida;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -116,7 +117,13 @@ public class VistaPartida extends javax.swing.JFrame {
         });
 
         saveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
+        saveGame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            	saveGameMouseClicked(evt);
+            }
 
+        });
+        
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -247,6 +254,14 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void saveGameMouseClicked(MouseEvent evt) {
+    	System.out.println("guardar");
+    	
+    	partida.guardarPartida();
+    	
+    	
+	}
     
     public void incrementarSeguentMoviment() {
         int seguentMov = partida.incrementarSeguentMoviment();

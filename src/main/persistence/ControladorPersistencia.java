@@ -44,6 +44,10 @@ public class ControladorPersistencia {
     	IOPartida.guardarPartida(status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
     }
     
+    public boolean hiHaPartida(String usuari) {
+    	return IOPartida.hiHaPartida(usuari);
+    }
+    
     public void carregarPartida(String usuari) {
     	IOPartida.carregarPartida(usuari);
     }
@@ -84,5 +88,4 @@ public class ControladorPersistencia {
 		return IOPartida.getNombresDonats();
 	}
 
-    
 }

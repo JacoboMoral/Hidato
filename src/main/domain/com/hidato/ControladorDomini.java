@@ -129,22 +129,31 @@ public class ControladorDomini {
 
 	public void guardarPartida() {
 		if(partidaEnCurs != null) {
-
-			int status = partidaEnCurs.status();
-			int puntuacio = partidaEnCurs.getPuntuacio();
-			TipusAdjacencia tipusAdj = partidaEnCurs.getTipusAdjacencia();
-			int[][] matriu = partidaEnCurs.getHidato();
-			int[][] matriuOriginal = partidaEnCurs.getHidatoOriginal();
-			Vector<Integer> nombresDonats = partidaEnCurs.getNombresPerDefecte();
-			Vector<Integer> nombresEscrits = partidaEnCurs.getNombresEscrits();
-			String nomUsuari = partidaEnCurs.getNomUsuari();
-			TipusCella cella = partidaEnCurs.getTipusCella();
-
-			controladorPersistence.guardarPartida(status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
-
-			// status = 0; puntuacio = 0; TipusAdjacencia tipusAdjacencia, int[][] matriu, int[][] matriuOriginal Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats
-
+			
+			boolean guardar = false;
+			
+			if(!controladorPersistence.hiHaPartida(partidaEnCurs.getNomUsuari())) guardar = true;
+			
+			else guardar = presentacio.sobreesciure();
+				
+			if (guardar) {
+				
+				int status = partidaEnCurs.status();
+				int puntuacio = partidaEnCurs.getPuntuacio();
+				TipusAdjacencia tipusAdj = partidaEnCurs.getTipusAdjacencia();
+				int[][] matriu = partidaEnCurs.getHidato();
+				int[][] matriuOriginal = partidaEnCurs.getHidatoOriginal();
+				Vector<Integer> nombresDonats = partidaEnCurs.getNombresPerDefecte();
+				Vector<Integer> nombresEscrits = partidaEnCurs.getNombresEscrits();
+				String nomUsuari = partidaEnCurs.getNomUsuari();
+				TipusCella cella = partidaEnCurs.getTipusCella();
+				controladorPersistence.guardarPartida(status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);	
+				
+				presentacio.partidaGuardada();
+			}
+			
 		}
+			// status = 0; puntuacio = 0; TipusAdjacencia tipusAdjacencia, int[][] matriu, int[][] matriuOriginal Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats
 	}
 
 	public boolean enPartida() {

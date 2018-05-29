@@ -10,6 +10,7 @@ import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -136,6 +137,25 @@ public class ControladorPresentacio {
 
 	public void reset() {
 		domini.resetMatriuEnPartida();
+	}
+
+	public void guardarPartida() {
+		domini.guardarPartida();		
+	}
+
+	public boolean sobreesciure() {
+		int input = JOptionPane.showOptionDialog(null, "Ja hi ha una partida guardada. La vols sobreescriure?", "Ja hi ha una partida guardada",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+
+            if (input == JOptionPane.OK_OPTION) {
+                return true;          
+            } else return false;
+	}
+
+	public void partidaGuardada() {
+		
+		JOptionPane.showMessageDialog(null, "La seva partida s'ha guardat correctament");		
+		
 	}
 
 }

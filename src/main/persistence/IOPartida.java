@@ -85,15 +85,20 @@ public class IOPartida {
 			}
 		}
 	}
+	
+	public static boolean hiHaPartida(String usuari) {
+		File arxiu = new File("DB/Usuaris/" + usuari + "/partida.txt");
+		if(arxiu.exists()) return true;
+		else return false;
+	}
 
 	public static void guardarPartida(int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari){
 
 		try {
-			File arxiu = new File("Usuaris/" + nomUsuari + "/partida.txt");
-			// MIRAR SI HI HA UNA PARTIDA GUARDADA!!!!
+			File arxiu = new File("DB/Usuaris/" + nomUsuari + "/partida.txt");
 			arxiu.delete();
 			arxiu.createNewFile();
-			FileWriter fileWriter = new FileWriter("Usuaris/" + nomUsuari + "/partida.txt", true);
+			FileWriter fileWriter = new FileWriter("DB/Usuaris/" + nomUsuari + "/partida.txt", true);
 			BufferedWriter bw = new BufferedWriter(fileWriter);
 			PrintStream output = new PrintStream(arxiu);
 			writeHidato(cella, tipusAdj, matriu, output);
@@ -110,7 +115,7 @@ public class IOPartida {
 
 	public static void carregarPartida(String usuari) {
 		try {
-			FileReader fr = new FileReader("Usuaris/" + usuari + "/partida.txt");
+			FileReader fr = new FileReader("DB/Usuaris/" + usuari + "/partida.txt");
 			BufferedReader b = new BufferedReader(fr);
 			String cadena = b.readLine();
 			String[] cabecera = cadena.split(",");
