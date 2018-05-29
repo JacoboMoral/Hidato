@@ -1444,7 +1444,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private void quickEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickEasyActionPerformed
         randomType = (int) (Math.random() * 3) + 1;
         System.out.println("HOLAAAAAAAAAAAAAAAAa" + " "  + randomType);
-        VistaPartida v = new VistaPartida(cv, levelEasy, randomType);
+        VistaPartida v = new VistaPartida(cv, levelEasy, randomType, cv.getCurrentUsername());
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_quickEasyActionPerformed
@@ -1458,14 +1458,14 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private void quickInterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickInterActionPerformed
         randomType = (int) (Math.random() * 3) + 1;
-        VistaPartida v = new VistaPartida(cv, levelInter, randomType);
+        VistaPartida v = new VistaPartida(cv, levelInter, randomType, cv.getCurrentUsername());
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_quickInterActionPerformed
 
     private void quickHardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickHardActionPerformed
         randomType = (int) (Math.random() * 3) + 1;
-        VistaPartida v = new VistaPartida(cv, levelHard, randomType);
+        VistaPartida v = new VistaPartida(cv, levelHard, randomType, cv.getCurrentUsername());
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_quickHardActionPerformed
