@@ -1,10 +1,11 @@
 package main.domain.com.hidato;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Vector;
 
-public class Partida {
-    private Dificultat dificultat;
+public class Partida{
+	private Dificultat dificultat;
     private int puntuacio;
     private Date dataIni;
     private Date dataFi;
@@ -12,6 +13,7 @@ public class Partida {
     private int status; //0 = sense començar; 1 = jugant; 2 = aturada; -1 finalitzada
     private Contador contador;
     private int temps;
+    private Usuari usuari;
 
     public Partida(Hidato hidato) {
             this.hidato = hidato;
@@ -20,7 +22,7 @@ public class Partida {
             puntuacio = 0;
             contador = new Contador();
             temps = -1;
-            
+
             //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
             iniciarPartida();
     }
@@ -31,7 +33,7 @@ public class Partida {
     	status = -1;
         dataFi = new Date();
         ControladorDomini.getInstance().finalitzarPartida();
-        
+
     }
 
     public void iniciarPartida() {
@@ -52,7 +54,7 @@ public class Partida {
         }
         else return false;
     }
-    
+
     public boolean esborrarNombre(int i, int j) {
     	if (status != 2 && status != -1) {
     		if (hidato.desferMoviment(i, j)) {
@@ -68,7 +70,7 @@ public class Partida {
 
     }
 
-    public int status() {  
+    public int status() {
     	return status;
     }
 
@@ -76,14 +78,21 @@ public class Partida {
             return dificultat;
     }
 
+    public TipusAdjacencia getTipusAdjacencia() {
+    		return hidato.getTipusAdjacencia();
+    }
+
     public Vector<Integer> getNombresPerDefecte(){
             return hidato.getNombresPerDefecte();
+    }
+    public Vector<Integer> getNombresEscrits(){
+    	return hidato.getNombresEscrits();
     }
 
 	public Vector<Integer> getPossiblesMoviments() {
         return hidato.getPossiblesMoviments();
 	}
-	
+
     public int[][] getSolucio() {
             return hidato.getSolucio();
     }
@@ -100,7 +109,7 @@ public class Partida {
     	status = 1;
     	contador.iniciar();
     }
-    
+
     public void pausarPartida() {
     	status = 2;
     	contador.iniciar();
@@ -118,11 +127,25 @@ public class Partida {
             return puntuacio;
     }
 
+    public String getNomUsuari() {
+    		return "aaa";
+    		//return usuari.getUsername();
+    }
+
     public boolean esSolucionable() {
             return hidato.teSolucio();
     }
 
+
 	public boolean completatHidato() {
 		return hidato.completat();
+	}
+
+    int[] seguentMoviment() {
+        return null;
+    }
+
+	public TipusCella getTipusCella() {
+		return hidato.getTipusCella();
 	}
 }

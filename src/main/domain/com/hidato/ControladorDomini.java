@@ -3,22 +3,24 @@ package main.domain.com.hidato;
 import java.util.Random;
 import java.util.Vector;
 
+import main.persistence.ControladorPersistencia;
 import main.presentation.ControladorPresentacio;
 
 public class ControladorDomini {
-	
+
     private static ControladorDomini instance = null;
     private ControladorPresentacio presentacio = ControladorPresentacio.getInstance();
 	private Partida partidaEnCurs = null;
-	private Hidato hidatoGenerat = null;;
-	
+	private Hidato hidatoGenerat = null;
+	private ControladorPersistencia controladorPersistence = ControladorPersistencia.getInstance();
 
-	
+
+
 	public static ControladorDomini getInstance() {
 		if (instance == null) instance = new ControladorDomini();
     	return instance;
     }
-	
+
 	public boolean jugarHidatoImportat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
 		partidaEnCurs = new Partida (HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato));
 		if (!partidaEnCurs.esSolucionable()) {
@@ -27,7 +29,7 @@ public class ControladorDomini {
 		}
 		else return true;
 	}
-	
+
 	public void jugarHidatoGenerat() {
 		if (hidatoGenerat != null) {
 			partidaEnCurs = new Partida(hidatoGenerat);
@@ -44,9 +46,9 @@ public class ControladorDomini {
 			return false;
 		}
 	}
-	
-	
-	
+
+
+
 	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
 		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
 		boolean generat = hidatoGenerat.autogenerar(dificultat);
@@ -56,7 +58,7 @@ public class ControladorDomini {
 			return false;
 		}
 	}
-	
+
 	public boolean autoGenerar(Dificultat dificultat) {
 		TipusCella tipusCella = getRandomTipusCella();
 		TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia();
@@ -68,7 +70,7 @@ public class ControladorDomini {
 			return false;
 		}
 	}
-	
+
 	public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
 		if (tipusCella == TipusCella.QUADRAT) {
 			TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia();
@@ -88,7 +90,7 @@ public class ControladorDomini {
 	public int[][] getMatriuHidatoOriginalDePartida(){
 		return partidaEnCurs.getHidatoOriginal();
 	}
-	
+
 	public int[][] getMatriuHidatoDePartida() {
 		return partidaEnCurs.getHidato();
 	}
@@ -96,50 +98,70 @@ public class ControladorDomini {
 	public int[][] solucionarHidatoPartida() {
 		return partidaEnCurs.getSolucio();
 	}
-	
+
 	public int[][] solucionarHidatoGenerat() {
 		if (hidatoGenerat == null) return null;
 		return hidatoGenerat.getSolucio();
 	}
-	
+
 	public int[][] getMatriuHidatoGenerat(){
 		if (hidatoGenerat == null) return null;
 		return hidatoGenerat.getMatriu();
 	}
-	
+
 	public Vector<Integer> getNombresPerDefecte(){
 		return partidaEnCurs.getNombresPerDefecte();
 	}
-	
+
 	public Vector<Integer> getPossiblesMoviments() { //Nombres que hi caben a la matriu - nombresPerDefecte - nombresEscrits
 		return partidaEnCurs.getPossiblesMoviments();
 	}
- 
+
 	public boolean ferMoviment(int i, int j, int value) {
 		if (partidaEnCurs.ferJugada(i, j, value)) return true;
 		return false;
 	}
-	
+
 	public boolean desferMoviment(int i, int j) {
 		if (partidaEnCurs.esborrarNombre(i, j)) return true;
 		return false;
 	}
 
+	public void guardarPartida() {
+		if(partidaEnCurs != null) {
+
+			int status = partidaEnCurs.status();
+			int puntuacio = partidaEnCurs.getPuntuacio();
+			TipusAdjacencia tipusAdj = partidaEnCurs.getTipusAdjacencia();
+			int[][] matriu = partidaEnCurs.getHidato();
+			int[][] matriuOriginal = partidaEnCurs.getHidatoOriginal();
+			Vector<Integer> nombresDonats = partidaEnCurs.getNombresPerDefecte();
+			Vector<Integer> nombresEscrits = partidaEnCurs.getNombresEscrits();
+			String nomUsuari = partidaEnCurs.getNomUsuari();
+			TipusCella cella = partidaEnCurs.getTipusCella();
+
+			controladorPersistence.guardarPartida(status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
+
+			// status = 0; puntuacio = 0; TipusAdjacencia tipusAdjacencia, int[][] matriu, int[][] matriuOriginal Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats
+
+		}
+	}
+
 	public boolean enPartida() {
 		return (partidaEnCurs != null);
 	}
-	
+
 	public boolean partidaCompletada() {
 		return partidaEnCurs.completatHidato();
 	}
-        
+
     public void demanarPista() {
     }
-    
+
     public boolean esPotSolucionar(){
         return partidaEnCurs.esSolucionable();
     }
-	
+
 	private TipusCella getRandomTipusCella() {
 		Random random = new Random();
 		int tc = random.nextInt(3);
@@ -157,7 +179,7 @@ public class ControladorDomini {
 
 	public void finalitzarPartida() {
 		//presentacio.finalitzarPartida();
-		
+
 		//guardar en la base de dades la partida en la carpeta: user/partides/finalitzades/idPartida
 	}
 
