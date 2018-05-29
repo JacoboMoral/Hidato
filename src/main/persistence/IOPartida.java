@@ -7,19 +7,17 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.sql.Date;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
-
-import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
 public class IOPartida {
 
 	private static Date dataIni;
-	private static Date dataFi;
 	private static int temps;
 	private static int status;
 	private static int puntuacio;
@@ -34,9 +32,6 @@ public class IOPartida {
 		return dataIni;
 	}
 	
-	public static Date getDataFi() {
-		return dataFi;
-	}
 	
 	public static int getTemps() {
 		return temps;
@@ -108,9 +103,13 @@ public class IOPartida {
 		else return false;
 	}
 
-	public static void guardarPartida(Date dataIni, Date dataFi, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari){
+	public static void guardarPartida(Date dataIni, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari){
 
+        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String date = DATE_FORMAT.format(dataIni);
+		
 		try {
+					
 			File arxiu = new File("DB/Usuaris/" + nomUsuari + "/partida.txt");
 			arxiu.delete();
 			arxiu.createNewFile();
@@ -121,7 +120,7 @@ public class IOPartida {
 			output.println(";");
 			writeHidato(cella, tipusAdj, matriuOriginal, output);
 			output.println(";");
-			bw.write(status + ";" + puntuacio + ";" + nombresDonats + ";"+ nombresEscrits +";" + dataIni +";" + dataFi +";" + temps +";");
+			bw.write(status + ";" + puntuacio + ";" + nombresDonats + ";"+ nombresEscrits +";" + date + ";" + temps +";");
 			bw.close();
 			fileWriter.close();
 
@@ -182,9 +181,9 @@ public class IOPartida {
 			puntuacio = Integer.parseInt(linea[1]);
 			nombresDonats = stringToVector(linea[2]);
 			nombresEscrits = stringToVector(linea[3]);
-			dataIni = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(linea[4]);
-			dataFi = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(linea[5]);
-			temps = Integer.parseInt(linea[6]);
+			System.out.println(linea[4] + "hols");
+			dataIni = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(linea[4]);
+			temps = Integer.parseInt(linea[5]);
 
 			
 		} catch (IOException ex) {

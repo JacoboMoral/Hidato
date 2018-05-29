@@ -1,5 +1,6 @@
 package main.domain.com.hidato;
 
+import java.util.Date;
 import java.util.Random;
 import java.util.Vector;
 
@@ -46,8 +47,6 @@ public class ControladorDomini {
 			return false;
 		}
 	}
-
-
 
 	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
 		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
@@ -147,7 +146,9 @@ public class ControladorDomini {
 				Vector<Integer> nombresEscrits = partidaEnCurs.getNombresEscrits();
 				String nomUsuari = partidaEnCurs.getNomUsuari();
 				TipusCella cella = partidaEnCurs.getTipusCella();
-				controladorPersistence.guardarPartida(status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);	
+				Date dataIni = partidaEnCurs.getDataInici();
+				int temps = partidaEnCurs.getTemps();
+				controladorPersistence.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);	
 				
 				presentacio.partidaGuardada();
 			}

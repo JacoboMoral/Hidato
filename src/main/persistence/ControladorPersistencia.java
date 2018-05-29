@@ -1,8 +1,8 @@
 package main.persistence;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.Vector;
 
 import main.domain.com.hidato.TipusAdjacencia;
@@ -42,8 +42,8 @@ public class ControladorPersistencia {
 		return IOHidato.getTipusAdjacencia();
 	}
 	
-    public void guardarPartida(Date dataIni, Date dataFi, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari) {
-    	IOPartida.guardarPartida(dataIni, dataFi, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
+    public void guardarPartida(Date dataIni, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari) {
+    	IOPartida.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
     }
     
     public boolean hiHaPartida(String usuari) {
@@ -88,6 +88,15 @@ public class ControladorPersistencia {
 	
 	public Vector<Integer> getNombresEscritsPartida(){
 		return IOPartida.getNombresDonats();
+	}
+
+	public Date getDataIniPartida() {
+		return IOPartida.getDataIni();
+	}
+	
+	
+	public int getTempsPartida() {
+		return IOPartida.getTemps();
 	}
 
 }
