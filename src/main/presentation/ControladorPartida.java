@@ -110,8 +110,8 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     }
     
     public void reset() {
-    	controller.reset();
-    	partida.updateMatriu(controller.getMatriuHidatoDePartida());
+    		controller.reset();
+    		partida.updateMatriu(controller.getMatriuHidatoDePartida());
     }    
     
 }

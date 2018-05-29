@@ -106,7 +106,8 @@ public class PanelPartida extends JPanel {
 	}
 
     private void tractaMatriu(int i, int j, int value) {
-    	matriuHidato[i][j] = value;
+    		System.out.println("hola");
+    		matriuHidato[i][j] = value;
     }
     
     private void tractaMatriu(int i, int j, boolean esborra) {
@@ -118,11 +119,14 @@ public class PanelPartida extends JPanel {
     }
     
     public void updateMatriu(int[][] matriu) {
-    	panelHidato.updateMatriu(matriu);
-    	setPossiblesMoviments();
-    	movimentIterator = 0;
-    	panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
-    	updateSeguentMoviment();
+	    	panelHidato.updateMatriu(matriu);
+	    	setPossiblesMoviments();
+	    	movimentIterator = 0;
+	    	panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
+	    	updateSeguentMoviment();
+	    	
+	    	
+	    	System.out.println(possiblesMoviments);
     }
 
     private void setPossiblesMoviments() {

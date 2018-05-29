@@ -71,4 +71,7 @@ public abstract class ControladorHidatoGrafic {
 
 	public void setAsterisc() {	
 	}
+
+
+	abstract public void reset();
 }
