@@ -65,14 +65,11 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 		possiblesMoviments = new Vector<Integer>();
 		nombresPerDefecte = new Vector<Integer>();
 		int celesNumeriques = 0;
-		int celesNumeriquesLliures = 0;
 		for (int i = 0; i < matriuCreacio.length; ++i) {
 			for (int j = 0; j < matriuCreacio[0].length; ++j) {
 				if (matriuCreacio[i][j] >= 0) {
 					++celesNumeriques;
 					nombresPerDefecte.add(matriuCreacio[i][j]);
-					if (matriuCreacio[i][j] == 0) ++celesNumeriquesLliures;
-					//possiblesMoviments.add(count);
 				}
 			}
 		}
@@ -95,8 +92,33 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 		}	
 	}
 	
+	public void setSeguentMovimentVista(int seguentMoviment) {
+		if (seguentMoviment > 0) view.setSeguentMoviment(seguentMoviment);
+	}
+	
 	public void reset() {
 		matriuCreacio = new int[matriuCreacio.length][matriuCreacio[0].length];
 		partida.updateMatriu(matriuCreacio);
 	}
+
+	@Override
+	public int decrementarSeguentMoviment() {
+		return partida.decrementarMovimentIterator();
+	}
+
+	@Override
+	public int incrementarSeguentMoviment() {
+		return partida.incrementarMovimentIterator();
+	}
+	
+	@Override
+	public int getMaximMoviment() {
+		return possiblesMoviments.get(possiblesMoviments.size()-1);
+	}
+	
+	@Override
+	public int getMinimMoviment() {
+		return possiblesMoviments.get(0);
+	}
+	
 }

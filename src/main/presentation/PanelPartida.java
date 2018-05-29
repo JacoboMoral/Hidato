@@ -2,6 +2,9 @@ package main.presentation;
 
 import java.awt.*;
 import javax.swing.*;
+
+import main.domain.com.hidato.HidatoIO;
+
 import java.awt.event.ActionListener;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
@@ -38,7 +41,6 @@ public class PanelPartida extends JPanel {
         //controller = ControladorCreateHidato.getInstance();
         this.controller = controller;
         setup();
-        System.out.println(boardHeight + " " + boardWidth);
         //createAndShowGUI();
         
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -94,11 +96,13 @@ public class PanelPartida extends JPanel {
 			if (mouseButton == 0) {
 				tractaMatriu(i,j,possiblesMoviments.get(movimentIterator));
 				setPossiblesMoviments();
+				controller.setSeguentMovimentVista(possiblesMoviments.get(movimentIterator));
 				return true;
 			}
 			else if (mouseButton == 1) {
 				tractaMatriu(i,j, true);
 				setPossiblesMoviments();
+				controller.setSeguentMovimentVista(possiblesMoviments.get(movimentIterator));
 				return true;
 			}
 		}
@@ -106,8 +110,8 @@ public class PanelPartida extends JPanel {
 	}
 
     private void tractaMatriu(int i, int j, int value) {
-    		System.out.println("hola");
     		matriuHidato[i][j] = value;
+            HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
     }
     
     private void tractaMatriu(int i, int j, boolean esborra) {
@@ -115,7 +119,8 @@ public class PanelPartida extends JPanel {
     }
     
     public int[][] getMatriu() {
-        return controller.getMatriuHidato();
+    	matriuHidato = controller.getMatriuHidato();
+        return matriuHidato;
     }
     
     public void updateMatriu(int[][] matriu) {

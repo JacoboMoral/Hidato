@@ -74,4 +74,25 @@ public abstract class ControladorHidatoGrafic {
 
 
 	abstract public void reset();
+
+
+	public int getMaximMoviment() {
+		return 0;
+	}
+	
+	public int getMinimMoviment() {
+		return 0;
+	}
+
+	public abstract int decrementarSeguentMoviment();
+
+	public abstract int incrementarSeguentMoviment();
+
+
+	public void setSeguentMovimentVista(int integer) {
+	}
+
+
+	public void setView(VistaCreateHidato vistaCreateHidato) {		
+	}
 }

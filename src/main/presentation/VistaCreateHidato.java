@@ -27,7 +27,8 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     private static final int levelHard = 3;
     //ControladorHidatoGrafic creacio = ControladorCreateHidato.getInstance();
     ControladorHidatoGrafic creacio;
-    private String seguentMoviment = " ";
+    private int seguentMoviment = 1;
+    private int mostrant = 0;
 
     /**
      * Creates new form NewJFrame
@@ -43,6 +44,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         //partida.setView(this);
 
         creacio = new ControladorCreateHidato();
+        creacio.setView(this);
         hidatoPanel = creacio.createHidato(TipusCella.HEXAGON, TipusAdjacencia.COSTATS, 5 , 5);
         this.add(hidatoPanel);
         this.validate();
@@ -75,7 +77,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         controlPanel.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setText("s");
+        jLabel1.setText("1");
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton1.setText(">");
@@ -242,31 +244,33 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        /*int seguentMov = partida.decrementarSeguentMoviment();
-        if (seguentMov != -1) {
-            jLabel1.setText(Integer.toString(seguentMov));
-        }*/
+        if (seguentMoviment > creacio.getMinimMoviment()) {
+        	seguentMoviment = creacio.decrementarSeguentMoviment();
+            jLabel1.setText(Integer.toString(seguentMoviment));
+        }
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        /*int seguentMov = partida.incrementarSeguentMoviment();
-        if (seguentMov != -1) {
-            jLabel1.setText(Integer.toString(seguentMov));
-        }*/
+    	if (seguentMoviment < creacio.getMaximMoviment()) {
+        	seguentMoviment = creacio.incrementarSeguentMoviment();
+            jLabel1.setText(Integer.toString(seguentMoviment));
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void b_almoadillaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_almoadillaMouseClicked
     	creacio.setAlmoadilla();
+    	mostrant = -2;
     }//GEN-LAST:event_b_almoadillaMouseClicked
 
     private void b_estrellaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_estrellaMouseClicked
     	creacio.setAsterisc();
+    	mostrant = -1;
 
     }//GEN-LAST:event_b_estrellaMouseClicked
 
     private void b_numMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_numMouseClicked
     	creacio.setNumero();
-
+    	mostrant = 0;
     }//GEN-LAST:event_b_numMouseClicked
 
     private void b_numActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_numActionPerformed
@@ -332,10 +336,11 @@ public class VistaCreateHidato extends javax.swing.JFrame {
             jLabel1.setText(Integer.toString(seguentMov));
         }*/
     }
-
-    public void updateSeguentMoviment(String moviment) {
-        jLabel1.setText(moviment);
-    }
+    
+    public void setSeguentMoviment(int seguentMoviment) {
+		this.seguentMoviment = seguentMoviment;
+        jLabel1.setText(Integer.toString(seguentMoviment));
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_almoadilla;
@@ -351,4 +356,5 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel saveGame;
     // End of variables declaration//GEN-END:variables
+    
 }
