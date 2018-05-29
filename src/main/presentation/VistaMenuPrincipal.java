@@ -132,12 +132,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         b_back_menu = new javax.swing.JButton();
-        resumePanel = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
         quickLevelPanel = new javax.swing.JPanel();
         quickEasy = new javax.swing.JButton();
         quickInter = new javax.swing.JButton();
@@ -813,6 +807,15 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(204, 204, 204));
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton4.setText("Resume");
+        jButton4.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jButton4AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -858,60 +861,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         );
 
         parentPanel.add(seleccioPanel, "card3");
-
-        resumePanel.setBackground(new java.awt.Color(0, 153, 153));
-
-        jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel22.setText("Select a gameplay:");
-
-        jScrollPane2.setViewportView(jList2);
-
-        jButton11.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jButton11.setText("Play");
-
-        jButton12.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jButton12.setText("Back");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout resumePanelLayout = new javax.swing.GroupLayout(resumePanel);
-        resumePanel.setLayout(resumePanelLayout);
-        resumePanelLayout.setHorizontalGroup(
-            resumePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 814, Short.MAX_VALUE)
-            .addGroup(resumePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(resumePanelLayout.createSequentialGroup()
-                    .addGap(64, 64, 64)
-                    .addGroup(resumePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel22)
-                        .addGroup(resumePanelLayout.createSequentialGroup()
-                            .addGap(470, 470, 470)
-                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(64, Short.MAX_VALUE)))
-        );
-        resumePanelLayout.setVerticalGroup(
-            resumePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
-            .addGroup(resumePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(resumePanelLayout.createSequentialGroup()
-                    .addGap(26, 26, 26)
-                    .addComponent(jLabel22)
-                    .addGap(18, 18, 18)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(107, 107, 107)
-                    .addGroup(resumePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(26, 26, 26)))
-        );
-
-        parentPanel.add(resumePanel, "card14");
 
         quickLevelPanel.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -1527,20 +1476,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.revalidate();
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        parentPanel.removeAll();
-        parentPanel.add(seleccioPanel);
-        parentPanel.repaint();
-        parentPanel.revalidate();
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        parentPanel.removeAll();
-        parentPanel.add(resumePanel);
-        parentPanel.repaint();
-        parentPanel.revalidate();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void b_custom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_custom1ActionPerformed
         VistaCreateHidato v = new VistaCreateHidato(cv, levelEasy);
         v.setVisible(true);
@@ -1550,6 +1485,16 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private void b_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_saveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_saveActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        VistaPartida v = new VistaPartida(cv, levelEasy, randomType, cv.getCurrentUsername());
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton4AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jButton4AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4AncestorAdded
 
     /**
      * @param args the command line arguments
@@ -1621,8 +1566,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JRadioButton interButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1645,7 +1588,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1654,9 +1596,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1676,7 +1616,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton quickHard;
     private javax.swing.JButton quickInter;
     private javax.swing.JPanel quickLevelPanel;
-    private javax.swing.JPanel resumePanel;
     private javax.swing.JLabel saveGame;
     private javax.swing.JLabel saveGame1;
     private javax.swing.JPanel seleccioPanel;
