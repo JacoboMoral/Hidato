@@ -37,15 +37,12 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         initComponents();
     }
 
-    public VistaCreateHidato(CtrlVista v, int level) {
+    public VistaCreateHidato(CtrlVista cv, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int altura, int amplada) {
         initComponents();
-
-        cv = v;
-        //partida.setView(this);
-
+        this.cv = cv;
         creacio = new ControladorCreateHidato();
         creacio.setView(this);
-        hidatoPanel = creacio.createHidato(TipusCella.HEXAGON, TipusAdjacencia.COSTATS, 5 , 5);
+        hidatoPanel = creacio.createHidato(tipusCella, tipusAdjacencia, altura , amplada);
         this.add(hidatoPanel);
         this.validate();
     }

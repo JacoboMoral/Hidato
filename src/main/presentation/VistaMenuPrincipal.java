@@ -5,6 +5,8 @@
  */
 package main.presentation;
 
+import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.TipusCella;
 import main.domain.com.hidato.Usuari;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -37,8 +39,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         tipologia.addItem("Hexagon");
         tipologia.addItem("Quadrat");
         tipologia.addItem("Triangle");
-        adjacencia.addItem("Costat");
-        adjacencia.addItem("Costat i angles");
+        adjacencia.addItem("Costats");
+        adjacencia.addItem("Costats i angles");
         adjacencia.setSelectedItem("Costat");
         tipologia.setSelectedItem("Hexagon");
         
@@ -1467,13 +1469,30 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private void b_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_CreateActionPerformed
         esCustom = true;
-        parentPanel.removeAll();
-        parentPanel.add(previewHidatoPanel);
-        parentPanel.repaint();
-        parentPanel.revalidate();
+       
+        TipusCella tipusCella = stringToTipusCella((String)tipologia.getSelectedItem());
+        TipusAdjacencia tipusAdjacencia = stringToTipusAdjacencia((String)tipologia.getSelectedItem());
+        int alturaHidato = (int) altura.getValue();
+        int ampladaHidato = (int) amplada.getValue();
+        
+        VistaCreateHidato v = new VistaCreateHidato(cv, tipusCella, tipusAdjacencia, alturaHidato, ampladaHidato);
+        v.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_b_CreateActionPerformed
 
-    private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
+    private TipusCella stringToTipusCella(String selectedItem) {
+        if (selectedItem.equalsIgnoreCase("HEXAGON")) return TipusCella.HEXAGON;
+        if (selectedItem.equalsIgnoreCase("TRIANGLE")) return TipusCella.TRIANGLE;
+        return TipusCella.QUADRAT;
+	}
+    
+    private TipusAdjacencia stringToTipusAdjacencia(String selectedItem) {
+        if (selectedItem.equalsIgnoreCase("COSTATS I ANGLES")) return TipusAdjacencia.COSTATSIANGLES;
+        return TipusAdjacencia.COSTATS;
+	}
+
+	private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
         esAuto = true;
         parentPanel.removeAll();
         parentPanel.add(previewHidatoPanel);
@@ -1537,8 +1556,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void b_custom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_custom1ActionPerformed
-        VistaCreateHidato v = new VistaCreateHidato(cv, levelEasy);
-        v.setVisible(true);
+        //VistaCreateHidato v = new VistaCreateHidato(cv, levelEasy);
+        //v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_b_custom1ActionPerformed
 

@@ -3,11 +3,8 @@ package main.presentation;
 import java.awt.*;
 import javax.swing.*;
 
-import main.domain.com.hidato.HidatoIO;
 
-import java.awt.event.ActionListener;
 import java.util.Vector;
-import java.awt.event.ActionEvent;
 
 public class PanelPartida extends JPanel {
 
@@ -111,7 +108,6 @@ public class PanelPartida extends JPanel {
 
     private void tractaMatriu(int i, int j, int value) {
     		matriuHidato[i][j] = value;
-            HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
     }
     
     private void tractaMatriu(int i, int j, boolean esborra) {
@@ -129,9 +125,6 @@ public class PanelPartida extends JPanel {
 	    	movimentIterator = 0;
 	    	panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
 	    	updateSeguentMoviment();
-	    	
-	    	
-	    	System.out.println(possiblesMoviments);
     }
 
     private void setPossiblesMoviments() {
