@@ -25,7 +25,8 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
-    ControladorPartida partida = ControladorPartida.getInstance();
+    //ControladorHidatoGrafic creacio = ControladorCreateHidato.getInstance();
+    ControladorHidatoGrafic creacio;
     private String seguentMoviment = " ";
 
     /**
@@ -40,23 +41,10 @@ public class VistaCreateHidato extends javax.swing.JFrame {
 
         cv = v;
         //partida.setView(this);
-        if (level == levelEasy) {
 
-            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
-
-        }
-        if (level == levelInter) {
-            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
-
-        }
-        if (level == levelHard) {
-            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
-
-        }
+        creacio = new ControladorCreateHidato();
+        hidatoPanel = creacio.createHidato(TipusCella.HEXAGON, TipusAdjacencia.COSTATS, 5 , 5);
         this.add(hidatoPanel);
-        seguentMoviment = Integer.toString(partida.getSeguentMoviment());
-        jLabel1.setText(seguentMoviment);
-
         this.validate();
     }
 
@@ -92,7 +80,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton1.setText(">");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
@@ -100,14 +88,14 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton2.setText("<");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anterior.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
@@ -116,7 +104,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
         });
@@ -124,7 +112,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         b_almoadilla.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         b_almoadilla.setText("#");
         b_almoadilla.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 b_almoadillaMouseClicked(evt);
             }
         });
@@ -137,7 +125,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         b_estrella.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         b_estrella.setText("*");
         b_estrella.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 b_estrellaMouseClicked(evt);
             }
         });
@@ -150,7 +138,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         b_num.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         b_num.setText("Num");
         b_num.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 b_numMouseClicked(evt);
             }
         });
@@ -250,32 +238,34 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        partida.reset();
+        //partida.reset();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        int seguentMov = partida.decrementarSeguentMoviment();
+        /*int seguentMov = partida.decrementarSeguentMoviment();
         if (seguentMov != -1) {
             jLabel1.setText(Integer.toString(seguentMov));
-        }
+        }*/
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        int seguentMov = partida.incrementarSeguentMoviment();
+        /*int seguentMov = partida.incrementarSeguentMoviment();
         if (seguentMov != -1) {
             jLabel1.setText(Integer.toString(seguentMov));
-        }
+        }*/
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void b_almoadillaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_almoadillaMouseClicked
-
+    	creacio.setAlmoadilla();
     }//GEN-LAST:event_b_almoadillaMouseClicked
 
     private void b_estrellaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_estrellaMouseClicked
+    	creacio.setAsterisc();
 
     }//GEN-LAST:event_b_estrellaMouseClicked
 
     private void b_numMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_numMouseClicked
+    	creacio.setNumero();
 
     }//GEN-LAST:event_b_numMouseClicked
 
@@ -330,17 +320,17 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     }
 
     public void incrementarSeguentMoviment() {
-        int seguentMov = partida.incrementarSeguentMoviment();
+        /*int seguentMov = partida.incrementarSeguentMoviment();
         if (seguentMov != -1) {
             jLabel1.setText(Integer.toString(seguentMov));
-        }
+        }*/
     }
 
     public void decrementarSeguentMoviment() {
-        int seguentMov = partida.decrementarSeguentMoviment();
+      /*  int seguentMov = partida.decrementarSeguentMoviment();
         if (seguentMov != -1) {
             jLabel1.setText(Integer.toString(seguentMov));
-        }
+        }*/
     }
 
     public void updateSeguentMoviment(String moviment) {

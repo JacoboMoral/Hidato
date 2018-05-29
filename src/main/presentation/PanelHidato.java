@@ -15,8 +15,11 @@ import java.util.Vector;
 
 import static java.lang.Math.sqrt;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+
+import main.domain.com.hidato.HidatoIO;
 
 public class PanelHidato extends JPanel{		
 
@@ -53,7 +56,7 @@ public class PanelHidato extends JPanel{
 
         MouseListener mouseListener = new MouseListener();            
         addMouseListener(mouseListener);
-        
+        System.out.println("cridat per panelHidato normal");
         calcCellaSize();
         
         ResizeListener resizeListener = new ResizeListener();            
@@ -71,11 +74,15 @@ public class PanelHidato extends JPanel{
         matriuHidatoWidth = matriuHidato[0].length;
         matriuHidatoHeight = matriuHidato.length;
 
+        
+        
         setOpaque(false);
 
         MouseListener mouseListener = new MouseListener();            
         addMouseListener(mouseListener);
         
+        
+        System.out.println("cridat per panelHidato create");
         calcCellaSize();
         
         ResizeListener resizeListener = new ResizeListener();            
@@ -86,11 +93,15 @@ public class PanelHidato extends JPanel{
     	this.screenWidth = screenWidth;
     	this.screenHeight = screenHeight;
     	
+    	
+        System.out.println("cridat per calcsizeandrepaint");
     	calcCellaSize();
     }
     
     private void calcCellaSize(){
  
+    	System.out.println("calcCellaSize");
+    	
     	Vector<Double> properties = cella.screenProperties((int)screenWidth, (int)screenHeight, matriuHidatoHeight, matriuHidatoWidth);
     	double borderLeft = properties.get(2);
     	double borderTop = properties.get(1);
@@ -104,6 +115,7 @@ public class PanelHidato extends JPanel{
     
     public void updateMatriu(int[][] matriuHidato) {
     	this.matriuHidato = matriuHidato;
+    	System.out.println("jodeer");
         repaint();
         
     }
@@ -113,8 +125,8 @@ public class PanelHidato extends JPanel{
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); //millora linies diagonals dibuixades
         g.setFont(new Font("Arial", Font.BOLD, (int)cellaHeight/3));
         super.paintComponent(g2);
+        System.out.println(matriuHidato == null);
 
-        
         for (int i=0;i<matriuHidato.length;i++) {
             for (int j=0;j<matriuHidato[0].length;j++) {
                 if (matriuHidato[i][j] > -2){
@@ -143,19 +155,16 @@ public class PanelHidato extends JPanel{
     
     
     class MouseListener extends MouseAdapter {
-        public void mouseClicked(MouseEvent e){ 
+        public void mousePressed(MouseEvent e){ 
             Point p = new Point( cella.pixelsToPosicioMatriu(e.getX(),e.getY()) );
             if (p.x < 0 || p.y < 0 || p.x >= matriuHidato[0].length || p.y >= matriuHidato.length) return;
-            
+            if (SwingUtilities.isLeftMouseButton(e)) if (controller.tractaClick(p.y,p.x, 0)) matriuHidato = controller.getMatriu();
+            if (SwingUtilities.isRightMouseButton(e)) if (controller.tractaClick(p.y,p.x, 1)) matriuHidato = controller.getMatriu();
             /*boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);
             if (!movimentPossible) movimentPossible = controller.desferMoviment(p.y,p.x);
             matriuHidato = controller.getMatriu();
             
             controller.updateSeguentMoviment();*/
-            
-            if (controller.tractaClick(p.y,p.x)) matriuHidato = controller.getMatriu();
-            
-
             
             repaint();
         }		 
@@ -164,8 +173,10 @@ public class PanelHidato extends JPanel{
     
     class ResizeListener extends ComponentAdapter{
     	public void componentResized(ComponentEvent componentEvent) {
+    		System.out.println("componentResized");
     		screenHeight = getHeight();
             screenWidth = getWidth();
+            System.out.println("cridat per resize");
     		calcCellaSize();
     		repaint();
     	}
