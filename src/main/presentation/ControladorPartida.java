@@ -113,5 +113,16 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     		controller.reset();
     		partida.updateMatriu(controller.getMatriuHidatoDePartida());
     }    
+
     
+    private Cella tipusCellaToCella(TipusCella tipusCella) {
+    	if (tipusCella == TipusCella.QUADRAT) return new CellaQuadrat();
+    	if (tipusCella == TipusCella.TRIANGLE) return new CellaTriangle();
+    	if (tipusCella == TipusCella.HEXAGON) return new CellaHexagon();
+    	return null;
+    }
+
+	public void guardarPartida() {
+		controller.guardarPartida();
+	}    
 }

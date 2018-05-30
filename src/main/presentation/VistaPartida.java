@@ -14,6 +14,7 @@ import static main.presentation.ControladorPresentacio.panelPartida;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -25,6 +26,7 @@ public class VistaPartida extends javax.swing.JFrame {
     private static final int levelInter = 2;
     private static final int levelHard = 3;
     ControladorPartida partida = ControladorPartida.getInstance();
+    private String currentUsername;
     private String seguentMoviment = " ";
     /**
      * Creates new form NewJFrame
@@ -33,10 +35,10 @@ public class VistaPartida extends javax.swing.JFrame {
         initComponents();
     }
 
-    public VistaPartida(CtrlVista v, int level, int type) {
+    public VistaPartida(CtrlVista v, int level, int type, String username) {
         initComponents();
-
         cv = v;
+        this.currentUsername = username;
         partida.setView(this);
         if (level == levelEasy) {
             if (type == 1) {
@@ -63,6 +65,7 @@ public class VistaPartida extends javax.swing.JFrame {
         this.validate();
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,7 +119,13 @@ public class VistaPartida extends javax.swing.JFrame {
         });
 
         saveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
+        saveGame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            	saveGameMouseClicked(evt);
+            }
 
+        });
+        
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -212,6 +221,10 @@ public class VistaPartida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private String getCurrentUsername() {
+        return currentUsername;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -247,6 +260,14 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void saveGameMouseClicked(MouseEvent evt) {
+    	System.out.println("guardar");
+    	
+    	partida.guardarPartida();
+    	
+    	
+	}
     
     public void incrementarSeguentMoviment() {
         int seguentMov = partida.incrementarSeguentMoviment();

@@ -38,6 +38,8 @@ public class VistaRanking extends javax.swing.JFrame {
 
         filterType.add(filterByDate);
         filterType.add(filterByUsername);
+        titleInter.setLocation(300, 400);
+        
 
         cv.saveResultat(1, "Jia", 10);
         cv.saveResultat(2, "Jia2", 1450);
@@ -138,32 +140,6 @@ public class VistaRanking extends javax.swing.JFrame {
     private void initComponents() {
 
         filterType = new javax.swing.ButtonGroup();
-        rankingPanel = new javax.swing.JPanel();
-        easyPanel = new javax.swing.JPanel();
-        title = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
-        interPanel = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        title2 = new javax.swing.JLabel();
-        hardPanel = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        title1 = new javax.swing.JLabel();
         optionsPanel = new javax.swing.JPanel();
         user_to_delete = new javax.swing.JTextField();
         b_deleteUsr = new javax.swing.JButton();
@@ -182,195 +158,34 @@ public class VistaRanking extends javax.swing.JFrame {
         b_filterByUsr1 = new javax.swing.JButton();
         filterByUsername = new javax.swing.JRadioButton();
         filterByDate = new javax.swing.JRadioButton();
+        rankingPanel = new javax.swing.JPanel();
+        easyPanel = new javax.swing.JPanel();
+        title = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        hardPanel = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        title1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList<>();
+        interPanel = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        titleInter = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-
-        rankingPanel.setLayout(new java.awt.CardLayout());
-
-        easyPanel.setBackground(new java.awt.Color(0, 204, 204));
-        easyPanel.setPreferredSize(new java.awt.Dimension(524, 450));
-
-        title.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        title.setText("Ranking-Easy");
-
-        jScrollPane1.setViewportView(jList1);
-
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel5.setText("Pos");
-
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel8.setText("Score");
-
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel6.setText("Username");
-
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel7.setText("Date");
-
-        javax.swing.GroupLayout easyPanelLayout = new javax.swing.GroupLayout(easyPanel);
-        easyPanel.setLayout(easyPanelLayout);
-        easyPanelLayout.setHorizontalGroup(
-            easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(easyPanelLayout.createSequentialGroup()
-                .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(easyPanelLayout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(easyPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel6)
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel7)
-                                .addGap(14, 14, 14))))
-                    .addGroup(easyPanelLayout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(title))))
-                .addGap(148, 148, 148))
-        );
-        easyPanelLayout.setVerticalGroup(
-            easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(easyPanelLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel5))
-                    .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        rankingPanel.add(easyPanel, "card4");
-
-        interPanel.setBackground(new java.awt.Color(0, 204, 204));
-        interPanel.setPreferredSize(new java.awt.Dimension(522, 450));
-
-        jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel20.setText("Date");
-
-        jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel19.setText("Username");
-
-        jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel18.setText("Score");
-
-        jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel17.setText("Pos");
-
-        jScrollPane2.setViewportView(jList2);
-
-        title2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        title2.setText("Ranking-Intermediate");
-
-        javax.swing.GroupLayout interPanelLayout = new javax.swing.GroupLayout(interPanel);
-        interPanel.setLayout(interPanelLayout);
-        interPanelLayout.setHorizontalGroup(
-            interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(interPanelLayout.createSequentialGroup()
-                .addGroup(interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(interPanelLayout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(title2))
-                    .addGroup(interPanelLayout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addGroup(interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(interPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel18)
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel20))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(85, Short.MAX_VALUE))
-        );
-        interPanelLayout.setVerticalGroup(
-            interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(interPanelLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(title2)
-                .addGap(18, 18, 18)
-                .addGroup(interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        rankingPanel.add(interPanel, "card3");
-
-        hardPanel.setBackground(new java.awt.Color(0, 204, 204));
-
-        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel13.setText("Pos");
-
-        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel14.setText("Score");
-
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel15.setText("Username");
-
-        jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel16.setText("Date");
-
-        jScrollPane4.setViewportView(jList3);
-
-        title1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        title1.setText("Ranking-Hard");
-
-        javax.swing.GroupLayout hardPanelLayout = new javax.swing.GroupLayout(hardPanel);
-        hardPanel.setLayout(hardPanelLayout);
-        hardPanelLayout.setHorizontalGroup(
-            hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hardPanelLayout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(title1)
-                    .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(hardPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel13)
-                            .addGap(37, 37, 37)
-                            .addComponent(jLabel14)
-                            .addGap(29, 29, 29)
-                            .addComponent(jLabel15)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel16))))
-                .addContainerGap(156, Short.MAX_VALUE))
-        );
-        hardPanelLayout.setVerticalGroup(
-            hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hardPanelLayout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addComponent(title1)
-                .addGap(18, 18, 18)
-                .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        rankingPanel.add(hardPanel, "card2");
-
-        getContentPane().add(rankingPanel, java.awt.BorderLayout.PAGE_START);
 
         optionsPanel.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -477,83 +292,281 @@ public class VistaRanking extends javax.swing.JFrame {
         optionsPanel.setLayout(optionsPanelLayout);
         optionsPanelLayout.setHorizontalGroup(
             optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(optionsPanelLayout.createSequentialGroup()
-                .addGap(111, 111, 111)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionsPanelLayout.createSequentialGroup()
+                .addContainerGap(108, Short.MAX_VALUE)
                 .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(optionsPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t_input, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(b_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_filterByUsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(optionsPanelLayout.createSequentialGroup()
-                        .addComponent(filterByUsername)
-                        .addGap(18, 18, 18)
-                        .addComponent(filterByDate))
+                        .addComponent(showEasyRanking)
+                        .addGap(61, 61, 61)
+                        .addComponent(showInterRanking)
+                        .addGap(59, 59, 59)
+                        .addComponent(showHardRanking))
+                    .addComponent(jLabel9)
                     .addGroup(optionsPanelLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1)
-                            .addComponent(user_to_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addComponent(user_to_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
                         .addComponent(b_deleteUsr))
-                    .addComponent(jLabel9)
                     .addGroup(optionsPanelLayout.createSequentialGroup()
-                        .addComponent(showEasyRanking)
-                        .addGap(34, 34, 34)
-                        .addComponent(showInterRanking)
-                        .addGap(51, 51, 51)
-                        .addComponent(showHardRanking))
+                        .addGap(90, 90, 90)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11)
                     .addGroup(optionsPanelLayout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(b_back, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel11))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addComponent(filterByUsername)
+                        .addGap(39, 39, 39)
+                        .addComponent(filterByDate))
+                    .addGroup(optionsPanelLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(optionsPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(t_input, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(b_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(b_filterByUsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35))
+            .addGroup(optionsPanelLayout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(b_back, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         optionsPanelLayout.setVerticalGroup(
             optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(optionsPanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(showInterRanking)
-                    .addComponent(showHardRanking)
-                    .addComponent(showEasyRanking))
+                .addGap(21, 21, 21)
+                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(showEasyRanking)
+                    .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(showHardRanking)
+                        .addComponent(showInterRanking)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(user_to_delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_deleteUsr))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
+                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(b_deleteUsr)
+                    .addGroup(optionsPanelLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(user_to_delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(6, 6, 6)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(2, 2, 2)
+                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(filterByUsername)
                     .addComponent(filterByDate))
                 .addGap(15, 15, 15)
-                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(t_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_filter)
-                    .addComponent(b_filterByUsr1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(b_filterByUsr1)
+                        .addComponent(b_filter))
+                    .addGroup(optionsPanelLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(t_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(6, 6, 6)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(33, 33, 33)
                 .addComponent(b_back)
-                .addGap(19, 19, 19))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(optionsPanel, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(optionsPanel, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(564, 846));
+        rankingPanel.setLayout(new java.awt.CardLayout());
+
+        easyPanel.setBackground(new java.awt.Color(0, 204, 204));
+        easyPanel.setPreferredSize(new java.awt.Dimension(600, 470));
+
+        title.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        title.setText("Ranking-Easy");
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel5.setText("Pos");
+
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel8.setText("Score");
+
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel6.setText("Username");
+
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel7.setText("Date");
+
+        jScrollPane1.setViewportView(jList1);
+
+        javax.swing.GroupLayout easyPanelLayout = new javax.swing.GroupLayout(easyPanel);
+        easyPanel.setLayout(easyPanelLayout);
+        easyPanelLayout.setHorizontalGroup(
+            easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(easyPanelLayout.createSequentialGroup()
+                .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(easyPanelLayout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addComponent(jLabel5)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel8)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel6))
+                    .addGroup(easyPanelLayout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(title)))
+                    .addGroup(easyPanelLayout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(153, 167, Short.MAX_VALUE))
+        );
+        easyPanelLayout.setVerticalGroup(
+            easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(easyPanelLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(title)
+                .addGap(20, 20, 20)
+                .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        rankingPanel.add(easyPanel, "card4");
+
+        hardPanel.setBackground(new java.awt.Color(0, 204, 204));
+
+        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel13.setText("Pos");
+
+        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel14.setText("Score");
+
+        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel15.setText("Username");
+
+        jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel16.setText("Date");
+
+        title1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        title1.setText("Ranking-Hard");
+
+        jScrollPane4.setViewportView(jList3);
+
+        javax.swing.GroupLayout hardPanelLayout = new javax.swing.GroupLayout(hardPanel);
+        hardPanel.setLayout(hardPanelLayout);
+        hardPanelLayout.setHorizontalGroup(
+            hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hardPanelLayout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(hardPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel14)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel15)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel16))
+                    .addGroup(hardPanelLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(title1))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+        hardPanelLayout.setVerticalGroup(
+            hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hardPanelLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(title1)
+                .addGap(18, 18, 18)
+                .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(jLabel14))
+                    .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel16)
+                        .addComponent(jLabel15)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        rankingPanel.add(hardPanel, "card2");
+
+        interPanel.setBackground(new java.awt.Color(0, 204, 204));
+        interPanel.setPreferredSize(new java.awt.Dimension(600, 470));
+
+        jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel20.setText("Date");
+
+        jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel19.setText("Username");
+
+        jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel18.setText("Score");
+
+        jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel17.setText("Pos");
+
+        titleInter.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        titleInter.setText("Ranking-Intermediate");
+
+        jScrollPane2.setViewportView(jList2);
+
+        javax.swing.GroupLayout interPanelLayout = new javax.swing.GroupLayout(interPanel);
+        interPanel.setLayout(interPanelLayout);
+        interPanelLayout.setHorizontalGroup(
+            interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(interPanelLayout.createSequentialGroup()
+                .addGroup(interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(interPanelLayout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(titleInter))
+                    .addGroup(interPanelLayout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addGroup(interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(interPanelLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel17)
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel18)
+                                .addGap(42, 42, 42)
+                                .addComponent(jLabel19)
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel20))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(111, Short.MAX_VALUE))
+        );
+        interPanelLayout.setVerticalGroup(
+            interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(interPanelLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(titleInter)
+                .addGap(30, 30, 30)
+                .addGroup(interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel20))
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        rankingPanel.add(interPanel, "card3");
+
+        getContentPane().add(rankingPanel, java.awt.BorderLayout.PAGE_START);
+
+        setSize(new java.awt.Dimension(616, 839));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -670,7 +683,6 @@ public class VistaRanking extends javax.swing.JFrame {
     private javax.swing.JButton b_filter;
     private javax.swing.JButton b_filterByUsr1;
     private javax.swing.JPanel easyPanel;
-    private javax.swing.Box.Filler filler1;
     private javax.swing.JRadioButton filterByDate;
     private javax.swing.JRadioButton filterByUsername;
     private javax.swing.ButtonGroup filterType;
@@ -708,7 +720,7 @@ public class VistaRanking extends javax.swing.JFrame {
     private javax.swing.JTextField t_input;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
-    private javax.swing.JLabel title2;
+    private javax.swing.JLabel titleInter;
     private javax.swing.JTextField user_to_delete;
     // End of variables declaration//GEN-END:variables
 

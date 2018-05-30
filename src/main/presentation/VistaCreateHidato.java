@@ -63,7 +63,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         b_almoadilla = new javax.swing.JButton();
         b_estrella = new javax.swing.JButton();
         b_num = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        b_play = new javax.swing.JButton();
         hidatoPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -144,8 +144,13 @@ public class VistaCreateHidato extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jButton3.setText("PLAY");
+        b_play.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        b_play.setText("PLAY");
+        b_play.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_playActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
@@ -174,7 +179,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(b_estrella))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(b_play)
                 .addGap(85, 85, 85))
         );
         controlPanelLayout.setVerticalGroup(
@@ -202,7 +207,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
                             .addComponent(b_num)))
                     .addGroup(controlPanelLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(jButton3)))
+                        .addComponent(b_play)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -279,6 +284,10 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_b_estrellaActionPerformed
 
+    private void b_playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_playActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_playActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -340,11 +349,11 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     private javax.swing.JButton b_almoadilla;
     private javax.swing.JButton b_estrella;
     private javax.swing.JButton b_num;
+    private javax.swing.JButton b_play;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JPanel hidatoPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
