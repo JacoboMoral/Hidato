@@ -46,6 +46,10 @@ public class ControladorPersistencia {
 		IOHidato.carregarHidatoFitxer(file);
 	}
 	
+	public void carregarHidatoImportat(String nomHidato) throws Exception {
+		IOHidato.carregarHidatoImportat(nomHidato);
+	}
+	
 	public int[][] getMatriuHidato(){
 		return IOHidato.getMatriu();
 	}
@@ -70,8 +74,8 @@ public class ControladorPersistencia {
     	IOPartida.carregarPartida(usuari);
     }
 
-    public Vector<String> nomHidatos() {
-        return IOHidato.nomHidatos();
+    public String[] nomHidatosImportats() {
+        return IOHidato.nomHidatosImportats();
     }
 
 	public Date getDataIniPartida() {

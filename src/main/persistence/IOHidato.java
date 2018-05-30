@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import main.domain.com.hidato.HidatoIO;
@@ -37,10 +38,10 @@ public class IOHidato {
         FileReader fr = new FileReader(file);
         BufferedReader b = new BufferedReader(fr);
           
-		File arxiu = new File("HidatosImportats/", nom +".txt");
+		File arxiu = new File("DB/HidatosImportats/", nom +".txt");
 		arxiu.delete();
 		arxiu.createNewFile();
-		FileWriter fileWriter = new FileWriter("HidatosImportats/" + nom + ".txt", true);
+		FileWriter fileWriter = new FileWriter("DB/HidatosImportats/" + nom + ".txt", true);
 		BufferedWriter bw = new BufferedWriter(fileWriter);
 		PrintStream console = System.out;
 		PrintStream o = new PrintStream(arxiu);
@@ -60,6 +61,7 @@ public class IOHidato {
 		}
 		
 		bw.close();
+		b.close();
 		fileWriter.close();
 	}
 	 
@@ -91,10 +93,36 @@ public class IOHidato {
       		
       	}
 	}
+	
+public static void carregarHidatoImportat(String nomHidato) throws Exception {
+		
+		FileReader fr = new FileReader("DB/HidatosImportats/"+ nomHidato +".txt");
+        BufferedReader b = new BufferedReader(fr);
+        String cadena = b.readLine();
+      	String[] cabecera = cadena.split(",");
+      	tipusCella = stringToTipusCella(cabecera[0]);
+      	tipusAdjacencia = stringToTipusAdjacencia(cabecera[1]);
+      	
+      	int altura = Integer.parseInt(cabecera[2]);
+      	int anchura = Integer.parseInt(cabecera[3]);
+      	
+      	matriu = new int[altura][anchura];
+      	     	
+      	for(int i = 0; i < altura; i++) {
+      		cadena = b.readLine();
+          	String[] linea = cadena.split(",");
+      		for(int j = 0; j < linea.length; j++) {
+      			if(linea[j].equals("#")) matriu[i][j] = -2;
+      			else if(linea[j].equals("*")) matriu[i][j] = -1;
+      			else if(linea[j].equals("?")) matriu[i][j] = 0;
+      			else matriu[i][j] = Integer.parseInt(linea[j]);
+      		}
+      	}
+	}
 
 
-	public static void importarHidatoCreat(int[][] matriu, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, String nomFitxer) throws IOException {
-		File arxiu = new File("HidatosImportats/", nomFitxer +".txt");
+	public static void importarHidatoCreat(int[][] matriu, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, String nomHidato) throws IOException {
+		File arxiu = new File("DB/HidatosImportats/", nomHidato +".txt");
 		arxiu.createNewFile();
 		PrintStream fitxerOutput = new PrintStream(arxiu);
 		
@@ -103,8 +131,12 @@ public class IOHidato {
     	fitxerOutput.close();
 	}
 	
-	public static Vector<String> nomHidatos() {
-		return null;
+	public static String[] nomHidatosImportats() {
+		File carpeta=new File("DB/HidatosImportats");
+		   ArrayList<String> listaArchivos=new ArrayList<String>();
+		   for(File archivo:carpeta.listFiles())
+			   listaArchivos.add(archivo.getName());
+		   return(listaArchivos.toArray(new String[0]));
 	}
 	
 	
