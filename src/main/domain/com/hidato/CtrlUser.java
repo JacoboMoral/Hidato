@@ -1,4 +1,4 @@
-package CtrlUser;
+package main.domain.com.hidato;
 
 import main.domain.com.hidato.Usuari;
 import java.io.BufferedReader;

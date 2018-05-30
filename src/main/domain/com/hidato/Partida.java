@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Vector;
 
-public class Partida{
-	private Dificultat dificultat;
+public class Partida {
+
+    private Dificultat dificultat;
     private int puntuacio;
     private Date dataIni;
     private Date dataFi;
@@ -16,28 +17,28 @@ public class Partida{
     private Usuari usuari;
 
     public Partida(Hidato hidato) {
-            this.hidato = hidato;
-            dificultat = hidato.getDificultat();
-            status = 0;
-            puntuacio = 0;
-            contador = new Contador();
-            temps = -1;
+        this.hidato = hidato;
+        dificultat = hidato.getDificultat();
+        status = 0;
+        puntuacio = 0;
+        contador = new Contador();
+        temps = -1;
 
-            //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
-            iniciarPartida();
+        //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
+        iniciarPartida();
     }
 
     private void acabarPartida() {
         contador.detener();
         temps = contador.getSegons();
-    	status = -1;
+        status = -1;
         dataFi = new Date();
         ControladorDomini.getInstance().finalitzarPartida();
 
     }
 
     public void iniciarPartida() {
-    	contador.iniciar();
+        contador.iniciar();
         dataIni = new Date();
         status = 1;
     }
@@ -48,104 +49,108 @@ public class Partida{
 
     public boolean ferJugada(int i, int j, int value) {
         if (hidato.moviment(i, j, value)) {
-        	puntuacio += 10;
-        	if (hidato.getPossiblesMoviments().size() == 0) acabarPartida();
-        	return true;
+            puntuacio += 10;
+            if (hidato.getPossiblesMoviments().size() == 0) {
+                acabarPartida();
+            }
+            return true;
+        } else {
+            return false;
         }
-        else return false;
     }
 
     public boolean esborrarNombre(int i, int j) {
-    	if (status != 2 && status != -1) {
-    		if (hidato.desferMoviment(i, j)) {
-            	puntuacio -= 2;
-            	return true;
+        if (status != 2 && status != -1) {
+            if (hidato.desferMoviment(i, j)) {
+                puntuacio -= 2;
+                return true;
+            } else {
+                return false;
             }
-            else return false;
-    	}
+        }
         return false;
-}
+    }
 
     public void demanarPista() {
 
     }
 
     public int status() {
-    	return status;
+        return status;
     }
 
     public Dificultat getDificultat() {
-            return dificultat;
+        return dificultat;
     }
 
     public TipusAdjacencia getTipusAdjacencia() {
-    		return hidato.getTipusAdjacencia();
+        return hidato.getTipusAdjacencia();
     }
 
-    public Vector<Integer> getNombresPerDefecte(){
-            return hidato.getNombresPerDefecte();
-    }
-    public Vector<Integer> getNombresEscrits(){
-    	return hidato.getNombresEscrits();
+    public Vector<Integer> getNombresPerDefecte() {
+        return hidato.getNombresPerDefecte();
     }
 
-	public Vector<Integer> getPossiblesMoviments() {
+    public Vector<Integer> getNombresEscrits() {
+        return hidato.getNombresEscrits();
+    }
+
+    public Vector<Integer> getPossiblesMoviments() {
         return hidato.getPossiblesMoviments();
-	}
+    }
 
     public int[][] getSolucio() {
-            return hidato.getSolucio();
+        return hidato.getSolucio();
     }
 
-    public int[][] getHidato(){
+    public int[][] getHidato() {
         return hidato.getMatriu();
     }
 
-    public int[][] getHidatoOriginal(){
-            return hidato.getMatriuOriginal();
+    public int[][] getHidatoOriginal() {
+        return hidato.getMatriuOriginal();
     }
 
     public void reprendrePartida() {
-    	status = 1;
-    	contador.iniciar();
+        status = 1;
+        contador.iniciar();
     }
 
     public void pausarPartida() {
-    	status = 2;
-    	contador.iniciar();
+        status = 2;
+        contador.iniciar();
     }
 
     public Date getDataInici() {
-            return dataIni;
+        return dataIni;
     }
 
     public Date getDataFi() {
-            return dataFi;
+        return dataFi;
     }
 
     public int getPuntuacio() {
-            return puntuacio;
+        return puntuacio;
     }
 
     public String getNomUsuari() {
-    		return "aaa";
-    		//return usuari.getUsername();
+        return "aaa";
+        //return usuari.getUsername();
     }
 
     public boolean esSolucionable() {
-            return hidato.teSolucio();
+        return hidato.teSolucio();
     }
 
-
-	public boolean completatHidato() {
-		return hidato.completat();
-	}
+    public boolean completatHidato() {
+        return hidato.completat();
+    }
 
     int[] seguentMoviment() {
         return null;
     }
 
-	public TipusCella getTipusCella() {
-		return hidato.getTipusCella();
-	}
+    public TipusCella getTipusCella() {
+        return hidato.getTipusCella();
+    }
 }

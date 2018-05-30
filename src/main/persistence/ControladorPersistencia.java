@@ -19,9 +19,6 @@ import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
 public class ControladorPersistencia {
-    
-    
-    
 
     private static ControladorPersistencia instance = null;
 
@@ -99,31 +96,29 @@ public class ControladorPersistencia {
     public Vector<Integer> getNombresEscritsPartida() {
         return IOPartida.getNombresDonats();
     }
-    
-    /*---------------------------------------------------------------------------------------------------*/
 
+    /*---------------------------------------------------------------------------------------------------*/
     public boolean usernameExists(String username) {
         return IOUsuari.usernameExists(username);
     }
-    
+
     public boolean changeUsername(String currentUsername, String newUsername) {
         return IOUsuari.changeUsername(currentUsername, newUsername);
     }
-    
+
     public boolean deleteUser(String username) {
         return IOUsuari.deleteUser(username);
     }
-    
+
     public boolean changePassword(String currentUsername, String newPassword) throws IOException {
         return IOUsuari.changePassword(currentUsername, newPassword);
     }
-    
+
     public static void saveRanking(Ranking r) {
         IORanking.saveRanking(r);
     }
-    
+
     public static Ranking readRanking() {
         return IORanking.readRanking();
     }
 }
-    

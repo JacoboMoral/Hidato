@@ -1,26 +1,28 @@
 package main.domain.com.hidato;
 
 public class HidatoQuadrat extends Hidato {
-	
-	public HidatoQuadrat(TipusAdjacencia tipusAdjacencia, int[][] matrix) {
-		super(tipusAdjacencia, matrix);
-		al = new Algorismes(this);
-		dificultat = al.obtenirDificultat();
-	}
-	
-	public HidatoQuadrat(TipusAdjacencia tipusAdjacencia) {
-		super(tipusAdjacencia);
-		al = new Algorismes(this);
-	}
-	
-	@Override
-	public TipusCella getTipusCella() {
-		return TipusCella.QUADRAT;
-	}
-	
-	@Override
-	public boolean posicioValida(int i, int j, int r, int c) {
-		if (tipusAdjacencia == TipusAdjacencia.COSTATS) return (Math.abs(i + j) == 1);
-		return ((Math.abs(i) < 2) && Math.abs(j) < 2);
-	}
+
+    public HidatoQuadrat(TipusAdjacencia tipusAdjacencia, int[][] matrix) {
+        super(tipusAdjacencia, matrix);
+        al = new Algorismes(this);
+        dificultat = al.obtenirDificultat();
+    }
+
+    public HidatoQuadrat(TipusAdjacencia tipusAdjacencia) {
+        super(tipusAdjacencia);
+        al = new Algorismes(this);
+    }
+
+    @Override
+    public TipusCella getTipusCella() {
+        return TipusCella.QUADRAT;
+    }
+
+    @Override
+    public boolean posicioValida(int i, int j, int r, int c) {
+        if (tipusAdjacencia == TipusAdjacencia.COSTATS) {
+            return (Math.abs(i + j) == 1);
+        }
+        return ((Math.abs(i) < 2) && Math.abs(j) < 2);
+    }
 }

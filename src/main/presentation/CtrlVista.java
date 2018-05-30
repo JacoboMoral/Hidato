@@ -1,7 +1,7 @@
 package main.presentation;
 
-import CtrlUser.CtrlUser;
-import CtrlRanking.CtrlRanking;
+import main.domain.com.hidato.CtrlUser;
+import main.domain.com.hidato.CtrlRanking;
 import main.domain.com.hidato.Ranking;
 import main.domain.com.hidato.Usuari;
 import java.io.IOException;

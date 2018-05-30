@@ -5,7 +5,7 @@
  */
 package main.presentation;
 
-import CtrlUser.CtrlUser;
+import main.domain.com.hidato.CtrlUser;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

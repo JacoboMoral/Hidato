@@ -1,4 +1,4 @@
-package CtrlRanking;
+package main.domain.com.hidato;
 
 import main.domain.com.hidato.Posicio;
 import main.domain.com.hidato.Ranking;
