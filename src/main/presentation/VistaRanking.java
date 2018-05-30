@@ -153,8 +153,6 @@ public class VistaRanking extends javax.swing.JFrame {
         showInterRanking = new javax.swing.JButton();
         showEasyRanking = new javax.swing.JButton();
         showHardRanking = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         b_filterByUsr1 = new javax.swing.JButton();
         filterByUsername = new javax.swing.JRadioButton();
         filterByDate = new javax.swing.JRadioButton();
@@ -191,9 +189,9 @@ public class VistaRanking extends javax.swing.JFrame {
 
         user_to_delete.setBackground(new java.awt.Color(0, 153, 153));
         user_to_delete.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        user_to_delete.setBorder(null);
+        user_to_delete.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        b_deleteUsr.setBackground(new java.awt.Color(204, 204, 204));
+        b_deleteUsr.setBackground(new java.awt.Color(0, 204, 204));
         b_deleteUsr.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         b_deleteUsr.setText("Delete");
         b_deleteUsr.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -210,9 +208,9 @@ public class VistaRanking extends javax.swing.JFrame {
 
         t_input.setBackground(new java.awt.Color(0, 153, 153));
         t_input.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        t_input.setBorder(null);
+        t_input.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        b_filter.setBackground(new java.awt.Color(204, 204, 204));
+        b_filter.setBackground(new java.awt.Color(0, 204, 204));
         b_filter.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         b_filter.setText("Filter");
         b_filter.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -227,7 +225,7 @@ public class VistaRanking extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel10.setText("Username:");
 
-        b_back.setBackground(new java.awt.Color(204, 204, 204));
+        b_back.setBackground(new java.awt.Color(0, 204, 204));
         b_back.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         b_back.setText("Back");
         b_back.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -241,7 +239,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
-        showInterRanking.setBackground(new java.awt.Color(204, 204, 204));
+        showInterRanking.setBackground(new java.awt.Color(0, 204, 204));
         showInterRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         showInterRanking.setText("Intermediate");
         showInterRanking.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +248,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
-        showEasyRanking.setBackground(new java.awt.Color(204, 204, 204));
+        showEasyRanking.setBackground(new java.awt.Color(0, 204, 204));
         showEasyRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         showEasyRanking.setText("Easy");
         showEasyRanking.addActionListener(new java.awt.event.ActionListener() {
@@ -259,7 +257,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
-        showHardRanking.setBackground(new java.awt.Color(204, 204, 204));
+        showHardRanking.setBackground(new java.awt.Color(0, 204, 204));
         showHardRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         showHardRanking.setText("Hard");
         showHardRanking.addActionListener(new java.awt.event.ActionListener() {
@@ -268,7 +266,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
-        b_filterByUsr1.setBackground(new java.awt.Color(204, 204, 204));
+        b_filterByUsr1.setBackground(new java.awt.Color(0, 204, 204));
         b_filterByUsr1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         b_filterByUsr1.setText("Show all");
         b_filterByUsr1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -277,6 +275,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
+        filterByUsername.setBackground(new java.awt.Color(0, 153, 153));
         filterByUsername.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         filterByUsername.setText("Username");
         filterByUsername.addActionListener(new java.awt.event.ActionListener() {
@@ -285,6 +284,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
+        filterByDate.setBackground(new java.awt.Color(0, 153, 153));
         filterByDate.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         filterByDate.setText("Date (Format: YYYY-MM-DD)");
 
@@ -308,17 +308,11 @@ public class VistaRanking extends javax.swing.JFrame {
                         .addComponent(user_to_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(59, 59, 59)
                         .addComponent(b_deleteUsr))
-                    .addGroup(optionsPanelLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel11)
                     .addGroup(optionsPanelLayout.createSequentialGroup()
                         .addComponent(filterByUsername)
                         .addGap(39, 39, 39)
                         .addComponent(filterByDate))
-                    .addGroup(optionsPanelLayout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(optionsPanelLayout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
@@ -329,7 +323,7 @@ public class VistaRanking extends javax.swing.JFrame {
                         .addComponent(b_filterByUsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35))
             .addGroup(optionsPanelLayout.createSequentialGroup()
-                .addGap(220, 220, 220)
+                .addGap(224, 224, 224)
                 .addComponent(b_back, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -352,9 +346,7 @@ public class VistaRanking extends javax.swing.JFrame {
                         .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addComponent(user_to_delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(6, 6, 6)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel11)
                 .addGap(2, 2, 2)
                 .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,11 +362,9 @@ public class VistaRanking extends javax.swing.JFrame {
                         .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(t_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(6, 6, 6)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(b_back)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         getContentPane().add(optionsPanel, java.awt.BorderLayout.CENTER);
@@ -710,8 +700,6 @@ public class VistaRanking extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel optionsPanel;
     private javax.swing.JPanel rankingPanel;
     private javax.swing.JButton showEasyRanking;

@@ -100,15 +100,8 @@ public class ControladorPersistencia {
         return IOPartida.getNombresDonats();
     }
     
-   
-    
-    /*
-    ---------------------------------------------------------
-    |                                                       |
-    |                   GESTIONAR USER                      |                        
-    |                                                       |
-    ---------------------------------------------------------
-    */
+    /*---------------------------------------------------------------------------------------------------*/
+
     public boolean usernameExists(String username) {
         return IOUsuari.usernameExists(username);
     }
