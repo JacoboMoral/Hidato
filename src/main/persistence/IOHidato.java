@@ -96,7 +96,7 @@ public class IOHidato {
 	
 public static void carregarHidatoImportat(String nomHidato) throws Exception {
 		
-		FileReader fr = new FileReader("DB/HidatosImportats/"+ nomHidato +".txt");
+		FileReader fr = new FileReader("DB/HidatosImportats/"+ nomHidato);
         BufferedReader b = new BufferedReader(fr);
         String cadena = b.readLine();
       	String[] cabecera = cadena.split(",");
@@ -133,10 +133,10 @@ public static void carregarHidatoImportat(String nomHidato) throws Exception {
 	
 	public static String[] nomHidatosImportats() {
 		File carpeta=new File("DB/HidatosImportats");
-		   ArrayList<String> listaArchivos=new ArrayList<String>();
-		   for(File archivo:carpeta.listFiles())
-			   listaArchivos.add(archivo.getName());
-		   return(listaArchivos.toArray(new String[0]));
+		ArrayList<String> listaArchivos=new ArrayList<String>();
+		for(File archivo:carpeta.listFiles())
+		   listaArchivos.add(archivo.getName());
+		return(listaArchivos.toArray(new String[0]));
 	}
 	
 	
@@ -176,6 +176,19 @@ public static void carregarHidatoImportat(String nomHidato) throws Exception {
 		 if (ta.equals("CA")) return TipusAdjacencia.COSTATSIANGLES;
 		 return null;
 	}
-
+	
+	/*public static void main(String[] args) throws Exception {
+		
+		String[] hidatos = nomHidatosImportats();
+		for(int i = 0; i < hidatos.length; ++i) {
+			System.out.println(hidatos[i]);
+		}
+		
+		carregarHidatoImportat(hidatos[0]);
+		
+		System.out.println(getTipusCella());
+		System.out.println(getTipusAdjacencia());
+		HidatoIO.writeHidatoMatrixToOutput(getMatriu());
+	}*/
 	
 }
