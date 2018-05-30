@@ -1,4 +1,4 @@
-package main.domain.com.hidato;
+package main.presentation;
 
 import main.domain.com.hidato.Usuari;
 import java.io.BufferedReader;
@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import main.domain.com.hidato.Usuari;
 import main.persistence.ControladorPersistencia;
 
 public class CtrlUser {

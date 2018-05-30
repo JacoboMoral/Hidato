@@ -25,6 +25,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private boolean esAuto = false;
     private boolean esCustom = false;
     private int randomType = (int) (Math.random() * 3) + 1;
+    private ControladorMenuPrincipal cmp;
 
     public VistaMenuPrincipal() {
         initComponents();
@@ -32,6 +33,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     public VistaMenuPrincipal(CtrlVista v) {
         initComponents();
+        cmp = new ControladorMenuPrincipal();
+        
         cv = v;
         l_username.setText(cv.getCurrentUsername());
         l_username1.setText(cv.getCurrentUsername());
@@ -56,21 +59,19 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         adjacenciaAuto.addItem("Costat i angles");
         adjacenciaAuto.setSelectedItem("Costat");
         tipologiaAuto.setSelectedItem("Hexagon");
+        showHidatoList();
 
     }
 
     private void showHidatoList() {
         DefaultListModel model = new DefaultListModel();
-        String[] rankEasy = cv.getRankEasy();
+        model.addElement("Hidato1");
+        /*String[] rankEasy = cmp.getHidatosGuardats();
         
         for (int i = 0; i < rankEasy.length; ++i) {
             model.addElement(rankEasy[i]);
-        }
-
-        
-        /*for (int i = 0; i < hidatos.length; ++i) {
-            System.out.println(hidatos[i]);
         }*/
+
 
         hidatoList.setModel(model);
     }
@@ -123,7 +124,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         b_autogenerar = new javax.swing.JButton();
         b_custom = new javax.swing.JButton();
         b_back = new javax.swing.JButton();
-        b_custom1 = new javax.swing.JButton();
         createCustomPanel = new javax.swing.JPanel();
         tipologia = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -626,15 +626,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_custom1.setBackground(new java.awt.Color(0, 204, 204));
-        b_custom1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        b_custom1.setText("Custom (Draw)");
-        b_custom1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_custom1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout typeCreatePanelLayout = new javax.swing.GroupLayout(typeCreatePanel);
         typeCreatePanel.setLayout(typeCreatePanelLayout);
         typeCreatePanelLayout.setHorizontalGroup(
@@ -647,8 +638,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGap(262, 262, 262)
                 .addGroup(typeCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(b_custom, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_autogenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_custom1))
+                    .addComponent(b_autogenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(275, Short.MAX_VALUE))
         );
         typeCreatePanelLayout.setVerticalGroup(
@@ -658,9 +648,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(b_autogenerar)
                 .addGap(18, 18, 18)
                 .addComponent(b_custom)
-                .addGap(18, 18, 18)
-                .addComponent(b_custom1)
-                .addGap(99, 99, 99)
+                .addGap(148, 148, 148)
                 .addComponent(b_back)
                 .addGap(19, 19, 19))
         );
@@ -1449,10 +1437,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private void b_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_CreateActionPerformed
         esCustom = true;
-        parentPanel.removeAll();
-        parentPanel.add(previewHidatoPanel);
-        parentPanel.repaint();
-        parentPanel.revalidate();
+        VistaCreateHidato v = new VistaCreateHidato(cv);
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_b_CreateActionPerformed
 
     private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
@@ -1479,23 +1466,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tipologiaCheckBoxActionPerformed
 
-    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
-        if (esAuto) {
-            esAuto = false;
-            parentPanel.removeAll();
-            parentPanel.add(createAutoPanel);
-            parentPanel.repaint();
-            parentPanel.revalidate();
-        }
-        if (esCustom) {
-            esCustom = false;
-            parentPanel.removeAll();
-            parentPanel.add(createCustomPanel);
-            parentPanel.repaint();
-            parentPanel.revalidate();
-        }
-    }//GEN-LAST:event_jLabel19MouseClicked
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         parentPanel.removeAll();
         parentPanel.add(importPanel);
@@ -1509,12 +1479,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.repaint();
         parentPanel.revalidate();
     }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void b_custom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_custom1ActionPerformed
-        VistaCreateHidato v = new VistaCreateHidato(cv, levelEasy);
-        v.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_b_custom1ActionPerformed
 
     private void b_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_saveActionPerformed
         // TODO add your handling code here:
@@ -1576,6 +1540,23 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.revalidate();
     }//GEN-LAST:event_jButton8MouseClicked
 
+    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+        if (esAuto) {
+            esAuto = false;
+            parentPanel.removeAll();
+            parentPanel.add(createAutoPanel);
+            parentPanel.repaint();
+            parentPanel.revalidate();
+        }
+        if (esCustom) {
+            esCustom = false;
+            parentPanel.removeAll();
+            parentPanel.add(createCustomPanel);
+            parentPanel.repaint();
+            parentPanel.revalidate();
+        }
+    }//GEN-LAST:event_jLabel19MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1628,7 +1609,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton b_cancel1;
     private javax.swing.JButton b_create;
     private javax.swing.JButton b_custom;
-    private javax.swing.JButton b_custom1;
     private javax.swing.JButton b_delete;
     private javax.swing.JButton b_generate;
     private javax.swing.JButton b_play;

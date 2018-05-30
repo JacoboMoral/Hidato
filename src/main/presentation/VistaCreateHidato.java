@@ -35,24 +35,14 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         initComponents();
     }
 
-    public VistaCreateHidato(CtrlVista v, int level) {
+    public VistaCreateHidato(CtrlVista v) {
         initComponents();
 
         cv = v;
         //partida.setView(this);
-        if (level == levelEasy) {
+    
+         hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
 
-            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
-
-        }
-        if (level == levelInter) {
-            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
-
-        }
-        if (level == levelHard) {
-            hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
-
-        }
         this.add(hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
         jLabel1.setText(seguentMoviment);

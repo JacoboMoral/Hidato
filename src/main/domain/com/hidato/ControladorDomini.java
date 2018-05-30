@@ -219,4 +219,13 @@ public class ControladorDomini {
         }
     }
 
+    public String[] getHidatos() throws Exception {
+        controladorPersistence.carregarHidatoFitxer("hidato1");
+        int[][] matriu = controladorPersistence.getMatriuHidato();
+        
+        
+        
+        return null;
+    }
+
 }

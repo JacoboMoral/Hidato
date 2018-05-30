@@ -30,133 +30,138 @@ public class ControladorPresentacio {
     }
 
     public static ControladorPresentacio getInstance() {
-        if (instance == null) instance = new ControladorPresentacio(); 
-    	return instance;
+        if (instance == null) {
+            instance = new ControladorPresentacio();
+        }
+        return instance;
     }
 
-	public static void main(String args[]){
-		final JFrame frame = new JFrame();
-		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-		final ControladorPartida partida = ControladorPartida.getInstance();
-		panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
-		
-				
-		JButton buttonFacil = new JButton("Facil");
-		frame.add(buttonFacil);
-		buttonFacil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
-				frame.add(panelPartida);
-				frame.validate();		
-			}
-		});
-		
-		JButton buttonMig = new JButton("Mig");
-		frame.add(buttonMig);
-		buttonMig.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
-				frame.add(panelPartida);
-				frame.validate();
-			}
-		});
-		
-		JButton buttonDificil = new JButton("Dificil");
-		frame.add(buttonDificil);
-		buttonDificil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
-				frame.add(panelPartida);
-				frame.validate();				
-			}
-		});
-		
-		frame.add(panelPartida);
-		
-		
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Titulo del FRAME");
-		frame.getContentPane().setBackground(Color.BLACK);
-		frame.setVisible(true);
+    public static void main(String args[]) {
+        final JFrame frame = new JFrame();
+        frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        final ControladorPartida partida = ControladorPartida.getInstance();
+        panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
+
+        JButton buttonFacil = new JButton("Facil");
+        frame.add(buttonFacil);
+        buttonFacil.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.getContentPane().remove(panelPartida);
+                panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
+                frame.add(panelPartida);
+                frame.validate();
+            }
+        });
+
+        JButton buttonMig = new JButton("Mig");
+        frame.add(buttonMig);
+        buttonMig.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.getContentPane().remove(panelPartida);
+                panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
+                frame.add(panelPartida);
+                frame.validate();
+            }
+        });
+
+        JButton buttonDificil = new JButton("Dificil");
+        frame.add(buttonDificil);
+        buttonDificil.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.getContentPane().remove(panelPartida);
+                panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
+                frame.add(panelPartida);
+                frame.validate();
+            }
+        });
+
+        frame.add(panelPartida);
+
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Titulo del FRAME");
+        frame.getContentPane().setBackground(Color.BLACK);
+        frame.setVisible(true);
     }
 
-	public void launchPartidaScreen(){
-		
-	}
-	
-	public boolean ferMoviment(int i, int j, int value) {
-		return domini.ferMoviment(i, j, value);
-	}
-	
-	public boolean desferMoviment(int i, int j) {
-		return domini.desferMoviment(i, j);
-	}
-	
-	public boolean partidaCompletada() {
-		return domini.partidaCompletada();
-	}
-	
-	public void launchLogin() {
-               	//VistaLogin vistaLogin = new VistaLogin();
-		//vistaLogin.run();
-		main(null);
-	}
+    public void launchPartidaScreen() {
 
-	public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
-		return domini.autoGenerar(tipusCella, dificultat);
-	}
-	
-	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
-		return domini.autoGenerar(tipusCella, tipusAdjacencia, dificultat);
-	}
-	
-	public boolean autoGenerar(Dificultat dificultat) {
-		return domini.autoGenerar(dificultat);
-	}
+    }
 
-	public void jugarHidatoGenerat() {
-		domini.jugarHidatoGenerat();
-	}
+    public boolean ferMoviment(int i, int j, int value) {
+        return domini.ferMoviment(i, j, value);
+    }
 
-	public int[][] getMatriuHidatoDePartida() {
-		return domini.getMatriuHidatoDePartida();
-	}
+    public boolean desferMoviment(int i, int j) {
+        return domini.desferMoviment(i, j);
+    }
 
-	public Vector<Integer> getNombresPerDefecte() {
-		return domini.getNombresPerDefecte();
-	}
+    public boolean partidaCompletada() {
+        return domini.partidaCompletada();
+    }
 
-	public Vector<Integer> getPossiblesMoviments() {
-		return domini.getPossiblesMoviments();
-	}
+    public void launchLogin() {
+        //VistaLogin vistaLogin = new VistaLogin();
+        //vistaLogin.run();
+        main(null);
+    }
 
-	public void reset() {
-		domini.resetMatriuEnPartida();
-	}
+    public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
+        return domini.autoGenerar(tipusCella, dificultat);
+    }
 
-	public void guardarPartida() {
-		domini.guardarPartida();		
-	}
+    public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
+        return domini.autoGenerar(tipusCella, tipusAdjacencia, dificultat);
+    }
 
-	public boolean sobreesciure() {
-		int input = JOptionPane.showOptionDialog(null, "Ja hi ha una partida guardada. La vols sobreescriure?", "Ja hi ha una partida guardada",
+    public boolean autoGenerar(Dificultat dificultat) {
+        return domini.autoGenerar(dificultat);
+    }
+
+    public void jugarHidatoGenerat() {
+        domini.jugarHidatoGenerat();
+    }
+
+    public int[][] getMatriuHidatoDePartida() {
+        return domini.getMatriuHidatoDePartida();
+    }
+
+    public Vector<Integer> getNombresPerDefecte() {
+        return domini.getNombresPerDefecte();
+    }
+
+    public Vector<Integer> getPossiblesMoviments() {
+        return domini.getPossiblesMoviments();
+    }
+
+    public void reset() {
+        domini.resetMatriuEnPartida();
+    }
+
+    public void guardarPartida() {
+        domini.guardarPartida();
+    }
+
+    public boolean sobreesciure() {
+        int input = JOptionPane.showOptionDialog(null, "Ja hi ha una partida guardada. La vols sobreescriure?", "Ja hi ha una partida guardada",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
-            if (input == JOptionPane.OK_OPTION) {
-                return true;          
-            } else return false;
-	}
+        if (input == JOptionPane.OK_OPTION) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	public void partidaGuardada() {
-		
-		JOptionPane.showMessageDialog(null, "La seva partida s'ha guardat correctament");		
-		
-	}
+    public void partidaGuardada() {
+
+        JOptionPane.showMessageDialog(null, "La seva partida s'ha guardat correctament");
+
+    }
+
+    public String[] getHidatos() {
+        return domini.getHidatos();
+    }
 
 }
-

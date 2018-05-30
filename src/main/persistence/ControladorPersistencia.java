@@ -36,49 +36,49 @@ public class ControladorPersistencia {
     }
 
     public void importarHidato(int[][] matriuHidato, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, String nomHidato) throws IOException {
-    	IOHidato.importarHidatoCreat(matriuHidato, tipusCella, tipusAdjacencia, nomHidato);
+        IOHidato.importarHidatoCreat(matriuHidato, tipusCella, tipusAdjacencia, nomHidato);
     }
 
-	public void carregarHidatoFitxer(String file) throws Exception {
-		IOHidato.carregarHidatoFitxer(file);
-	}
-	
-	public int[][] getMatriuHidato(){
-		return IOHidato.getMatriu();
-	}
-	
-	public TipusCella getTipusCellaHidato() {
-		return IOHidato.getTipusCella();
-	}
-	
-	public TipusAdjacencia getTipusAdjacenciaHidato() {
-		return IOHidato.getTipusAdjacencia();
-	}
-	
+    public void carregarHidatoFitxer(String file) throws Exception {
+        IOHidato.carregarHidatoFitxer(file);
+    }
+
+    public int[][] getMatriuHidato() {
+        return IOHidato.getMatriu();
+    }
+
+    public TipusCella getTipusCellaHidato() {
+        return IOHidato.getTipusCella();
+    }
+
+    public TipusAdjacencia getTipusAdjacenciaHidato() {
+        return IOHidato.getTipusAdjacencia();
+    }
+
     public void guardarPartida(Date dataIni, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari) {
-    	IOPartida.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
+        IOPartida.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
     }
-    
+
     public boolean hiHaPartida(String usuari) {
-    	return IOPartida.hiHaPartida(usuari);
+        return IOPartida.hiHaPartida(usuari);
     }
-    
+
     public void carregarPartida(String usuari) throws ParseException {
-    	IOPartida.carregarPartida(usuari);
+        IOPartida.carregarPartida(usuari);
     }
 
     public Vector<String> nomHidatos() {
         return IOHidato.nomHidatos();
     }
 
-	public Date getDataIniPartida() {
-		return IOPartida.getDataIni();
-	}
-	
-	
-	public int getTempsPartida() {
-		return IOPartida.getTemps();
-  }
+    public Date getDataIniPartida() {
+        return IOPartida.getDataIni();
+    }
+
+    public int getTempsPartida() {
+        return IOPartida.getTemps();
+    }
+
     public int[][] getMatriuPartida() {
         return IOPartida.getMatriu();
     }
@@ -134,5 +134,9 @@ public class ControladorPersistencia {
 
     public static Ranking readRanking() {
         return IORanking.readRanking();
+    }
+
+    public String[] getHidatos() {
+        return null;
     }
 }

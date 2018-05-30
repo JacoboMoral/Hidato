@@ -1,4 +1,4 @@
-package main.domain.com.hidato;
+package main.presentation;
 
 import main.domain.com.hidato.Posicio;
 import main.domain.com.hidato.Ranking;
@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import main.domain.com.hidato.Posicio;
+import main.domain.com.hidato.Ranking;
 import main.persistence.ControladorPersistencia;
 
 public class CtrlRanking {

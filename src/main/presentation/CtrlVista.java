@@ -1,7 +1,5 @@
 package main.presentation;
 
-import main.domain.com.hidato.CtrlUser;
-import main.domain.com.hidato.CtrlRanking;
 import main.domain.com.hidato.Ranking;
 import main.domain.com.hidato.Usuari;
 import java.io.IOException;
@@ -20,10 +18,7 @@ public class CtrlVista {
         cp = new ControladorPersistencia();
     }
 
-    public Usuari getUsuari() {
-        return cu.getUser();
-    }
-    
+       
     public boolean altaUsuari(String usr, String pass) throws IOException {
         return cu.afegirUsuari(usr, pass);
     }
