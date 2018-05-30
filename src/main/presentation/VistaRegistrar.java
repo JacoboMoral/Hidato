@@ -223,42 +223,48 @@ public class VistaRegistrar extends javax.swing.JFrame {
         rPassword = new String(tf_rpassword.getPassword());
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter your name please!");
-        }
-        if (password.length() == 0) {
+        } 
+        else if (password.length() == 0) {
             JOptionPane.showMessageDialog(null, "Enter your password please!");
-        }
-        if (rPassword.length() == 0) {
+        } 
+        else if (rPassword.length() == 0) {
             JOptionPane.showMessageDialog(null, "Enter again your password please!");
-        }
-        if (password.equals(rPassword) && !password.isEmpty() && !rPassword.isEmpty()) {
-            boolean aux = false;
+        } 
+        else if (password.equals(rPassword) && !password.isEmpty() && !rPassword.isEmpty()) {
+            boolean successful = false;
             try {
-                aux = vista.altaUsuari(name, password);
+                successful = vista.altaUsuari(name, password);
             } catch (IOException ex) {
                 Logger.getLogger(VistaRegistrar.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (aux) {
+            if (successful) {
                 int input = JOptionPane.showOptionDialog(null, "Registration done!", "Message",
-                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
                     Inici v = new Inici();
                     v.setVisible(true);
                     this.dispose();
                 }
-                
+                else {
+                    Inici v = new Inici();
+                    v.setVisible(true);
+                    this.dispose();
+                }
+
             } else {
                 int input = JOptionPane.showOptionDialog(null, "The user is already exists, please try it again!", "Error message",
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
                     tf_username.setText("");
                     tf_password.setText("");
                     tf_rpassword.setText("");
                 }
-              
+
             }
-        } else {
+        } 
+        else {
             int input = JOptionPane.showOptionDialog(null, "The passwords not match! Correct it.", "Error message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
@@ -267,7 +273,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
             }
 
         }
-        
+
     }//GEN-LAST:event_okRegistrarMouseClicked
 
     private void okRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okRegistrarActionPerformed

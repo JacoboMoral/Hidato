@@ -1,7 +1,6 @@
 package CtrlUser;
 
 import main.domain.com.hidato.Usuari;
-import main.persistence.CtrlPersistence;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,11 +8,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import main.persistence.ControladorPersistencia;
 
 public class CtrlUser {
 
     private Usuari currentUser;
-    CtrlPersistence cp = new CtrlPersistence();
+    ControladorPersistencia cp = new ControladorPersistencia();
 
     public CtrlUser() {
 

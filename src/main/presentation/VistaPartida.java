@@ -26,6 +26,7 @@ public class VistaPartida extends javax.swing.JFrame {
     private static final int levelInter = 2;
     private static final int levelHard = 3;
     ControladorPartida partida = ControladorPartida.getInstance();
+    private String currentUsername;
     private String seguentMoviment = " ";
     /**
      * Creates new form NewJFrame
@@ -34,10 +35,10 @@ public class VistaPartida extends javax.swing.JFrame {
         initComponents();
     }
 
-    public VistaPartida(CtrlVista v, int level, int type) {
+    public VistaPartida(CtrlVista v, int level, int type, String username) {
         initComponents();
-
         cv = v;
+        this.currentUsername = username;
         partida.setView(this);
         if (level == levelEasy) {
             if (type == 1) {
@@ -64,6 +65,7 @@ public class VistaPartida extends javax.swing.JFrame {
         this.validate();
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -219,6 +221,10 @@ public class VistaPartida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private String getCurrentUsername() {
+        return currentUsername;
+    }
+    
     /**
      * @param args the command line arguments
      */
