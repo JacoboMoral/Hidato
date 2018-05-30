@@ -642,8 +642,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel6.setText("Altuar");
 
         altura.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        altura.setModel(new javax.swing.SpinnerNumberModel(5, 3, 15, 1));
 
         amplada.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        amplada.setModel(new javax.swing.SpinnerNumberModel(5, 3, 15, 1));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setText("Create your hidato:");
@@ -1471,16 +1473,23 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         esCustom = true;
        
         TipusCella tipusCella = stringToTipusCella((String)tipologia.getSelectedItem());
-        TipusAdjacencia tipusAdjacencia = stringToTipusAdjacencia((String)tipologia.getSelectedItem());
+        TipusAdjacencia tipusAdjacencia = stringToTipusAdjacencia((String)adjacencia.getSelectedItem());
         int alturaHidato = (int) altura.getValue();
         int ampladaHidato = (int) amplada.getValue();
         
-        VistaCreateHidato v = new VistaCreateHidato(cv, tipusCella, tipusAdjacencia, alturaHidato, ampladaHidato);
-        v.setVisible(true);
-        this.dispose();
-        
+        if (!compatibles(tipusCella, tipusAdjacencia)) JOptionPane.showMessageDialog(null, "El tipus de cella i el tipus d'adjacencia no son compatibles");
+        else {
+        	VistaCreateHidato v = new VistaCreateHidato(cv, tipusCella, tipusAdjacencia, alturaHidato, ampladaHidato);
+            v.setVisible(true);
+            this.dispose();
+        }  
     }//GEN-LAST:event_b_CreateActionPerformed
 
+    private boolean compatibles(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia) {
+    	if (tipusCella == TipusCella.QUADRAT) return true;
+    	else return (tipusAdjacencia == TipusAdjacencia.COSTATS);
+    }
+    
     private TipusCella stringToTipusCella(String selectedItem) {
         if (selectedItem.equalsIgnoreCase("HEXAGON")) return TipusCella.HEXAGON;
         if (selectedItem.equalsIgnoreCase("TRIANGLE")) return TipusCella.TRIANGLE;
@@ -1541,13 +1550,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.revalidate();
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        parentPanel.removeAll();
-        parentPanel.add(seleccioPanel);
-        parentPanel.repaint();
-        parentPanel.revalidate();
-    }//GEN-LAST:event_jButton12ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         parentPanel.removeAll();
         parentPanel.add(resumePanel);
@@ -1560,6 +1562,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         //v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_b_custom1ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        parentPanel.removeAll();
+        parentPanel.add(seleccioPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments

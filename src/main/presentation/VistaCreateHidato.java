@@ -22,10 +22,7 @@ import java.awt.event.ComponentEvent;
 public class VistaCreateHidato extends javax.swing.JFrame {
 
     CtrlVista cv;
-    private static final int levelEasy = 1;
-    private static final int levelInter = 2;
-    private static final int levelHard = 3;
-    //ControladorHidatoGrafic creacio = ControladorCreateHidato.getInstance();
+    
     ControladorHidatoGrafic creacio;
     private int seguentMoviment = 1;
     private int mostrant = 0;
