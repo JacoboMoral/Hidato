@@ -37,7 +37,7 @@ public class CtrlRanking {
         ListIterator<Posicio> it = llista.listIterator();
         while (i < llista.size()) {
             currentPosition = it.next();
-            rankingList[i] = (i + 1) + "     " + Integer.toString(currentPosition.getScore()) + "     " + currentPosition.getUsername() + "    " + currentPosition.getDate();
+            rankingList[i] = (i + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "         " + currentPosition.getDate();
             ++i;
         }
         return rankingList;
@@ -51,7 +51,7 @@ public class CtrlRanking {
         ListIterator<Posicio> it = llista.listIterator();
         while (i < llista.size()) {
             currentPosition = it.next();
-            rankingList[i] = (i + 1) + "     " + Integer.toString(currentPosition.getScore()) + "     " + currentPosition.getUsername() + "    " + currentPosition.getDate();
+            rankingList[i] = (i + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "         " + currentPosition.getDate();
             ++i;
         }
         return rankingList;
@@ -65,7 +65,7 @@ public class CtrlRanking {
         ListIterator<Posicio> it = llista.listIterator();
         while (i < llista.size()) {
             currentPosition = it.next();
-            rankingList[i] = (i + 1) + "     " + Integer.toString(currentPosition.getScore()) + "     " + currentPosition.getUsername() + "    " + currentPosition.getDate();
+            rankingList[i] = (i + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "         " + currentPosition.getDate();
             ++i;
         }
         return rankingList;
@@ -82,7 +82,7 @@ public class CtrlRanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getUsername().equals(username))) {
-                    rankingList.add((j + 1) + "     " + Integer.toString(currentPosition.getScore()) + "     " + currentPosition.getUsername() + "     " + currentPosition.getDate());
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
                     ++j;
                 }
                 ++i;
@@ -94,7 +94,7 @@ public class CtrlRanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getUsername().equals(username))) {
-                    rankingList.add((j + 1) + "     " + Integer.toString(currentPosition.getScore()) + "     " + currentPosition.getUsername() + "     " + currentPosition.getDate());
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
                     ++j;
                 }
                 ++i;
@@ -106,7 +106,7 @@ public class CtrlRanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getUsername().equals(username))) {
-                    rankingList.add((j + 1) + "     " + Integer.toString(currentPosition.getScore()) + "     " + currentPosition.getUsername() + "     " + currentPosition.getDate());
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
                     ++j;
                 }
                 ++i;
@@ -138,7 +138,7 @@ public class CtrlRanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getDate().equals(localDate))) {
-                    rankingList.add((j + 1) + "     " + Integer.toString(currentPosition.getScore()) + "     " + currentPosition.getUsername() + "     " + currentPosition.getDate());
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
                     ++j;
                 }
                 ++i;
@@ -150,7 +150,7 @@ public class CtrlRanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getDate().equals(localDate))) {
-                    rankingList.add((j + 1) + "     " + Integer.toString(currentPosition.getScore()) + "     " + currentPosition.getUsername() + "     " + currentPosition.getDate());
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
                     ++j;
                 }
                 ++i;
@@ -162,7 +162,7 @@ public class CtrlRanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getDate().equals(localDate))) {
-                    rankingList.add((j + 1) + "     " + Integer.toString(currentPosition.getScore()) + "     " + currentPosition.getUsername() + "     " + currentPosition.getDate());
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
                     ++j;
                 }
                 ++i;
