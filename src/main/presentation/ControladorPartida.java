@@ -122,5 +122,9 @@ public class ControladorPartida {
     	if (tipusCella == TipusCella.HEXAGON) return new CellaHexagon();
     	return null;
     }
+
+	public void guardarPartida() {
+		controller.guardarPartida();
+	}
     
 }

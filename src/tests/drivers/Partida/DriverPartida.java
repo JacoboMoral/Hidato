@@ -176,7 +176,6 @@ public class DriverPartida {
 		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 		System.out.println("Per saber la dataFi s'ha de cridar la instancia acabarPartida");
-		partida.acabarPartida();
 		System.out.println("S'ha acabat la partida");
 		System.out.println("Data fi de la partida: " + partida.getDataFi());
 		System.out.println();
@@ -320,7 +319,6 @@ public class DriverPartida {
 		System.out.println("Comprovacio status comencat: " + (1 == partida.status()));
 		if((1 != partida.status())) error = true;
 		System.out.println("finalitzem la partida i tornem a mirar l'estat d'aquesta");
-		partida.acabarPartida();
 		System.out.println("S'ha acabat la partida");
 		System.out.println("L'estat actual de la partida es: " + partida.status());
 		System.out.println("Comprovacio status finalitzat: " + (-1 == partida.status()));
@@ -372,7 +370,6 @@ public class DriverPartida {
 		if(partida.status() != 0) error = true;
 		System.out.println();
 		System.out.println();
-		partida.acabarPartida();
 		System.out.println("S'ha acabat la partida");
 		System.out.println("S'ha hagut de cridar els metodes 'getStatus i getDataFi per comprovar que s'ha acabat correctament");
 		System.out.println("Data Fi de la partida: " + partida.getDataFi());
@@ -392,7 +389,6 @@ public class DriverPartida {
 		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS);
 		Partida partida = new Partida(hidato);
 
-		partida.acabarPartida();
 		System.out.println("S'ha acabat la partida");
 		System.out.println("S'ha hagut de cridar els metodes 'getStatus i getDataFi per comprovar que s'ha acabat correctament");
 		System.out.println("Data Fi de la partida: " + partida.getDataFi());

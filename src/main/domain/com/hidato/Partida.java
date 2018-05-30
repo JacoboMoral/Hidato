@@ -14,7 +14,7 @@ public class Partida{
     private Contador contador;
     private int temps;
     private Usuari usuari;
-
+    
     public Partida(Hidato hidato) {
             this.hidato = hidato;
             dificultat = hidato.getDificultat();
@@ -22,7 +22,7 @@ public class Partida{
             puntuacio = 0;
             contador = new Contador();
             temps = -1;
-
+      
             //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
             iniciarPartida();
     }
@@ -33,7 +33,6 @@ public class Partida{
     	status = -1;
         dataFi = new Date();
         ControladorDomini.getInstance().finalitzarPartida();
-
     }
 
     public void iniciarPartida() {
@@ -92,9 +91,13 @@ public class Partida{
 	public Vector<Integer> getPossiblesMoviments() {
         return hidato.getPossiblesMoviments();
 	}
+	
+	public int getTemps() {
+		return temps;
+	}
 
     public int[][] getSolucio() {
-            return hidato.getSolucio();
+        return hidato.getSolucio();
     }
 
     public int[][] getHidato(){

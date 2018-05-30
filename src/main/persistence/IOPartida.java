@@ -7,15 +7,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Vector;
 
-import main.domain.com.hidato.HidatoIO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
 public class IOPartida {
 
-
+	private static Date dataIni;
+	private static int temps;
 	private static int status;
 	private static int puntuacio;
 	private static TipusCella tipusCella;
@@ -24,7 +27,15 @@ public class IOPartida {
 	private static int[][] matriuOriginal;
 	private static Vector<Integer> nombresDonats;
 	private static Vector<Integer> nombresEscrits;
-
+	
+	public static Date getDataIni() {
+		return dataIni;
+	}
+	
+	
+	public static int getTemps() {
+		return temps;
+	}
 
 	public static int getStatus() {
 		return status;
@@ -85,22 +96,31 @@ public class IOPartida {
 			}
 		}
 	}
+	
+	public static boolean hiHaPartida(String usuari) {
+		File arxiu = new File("DB/Usuaris/" + usuari + "/partida.txt");
+		if(arxiu.exists()) return true;
+		else return false;
+	}
 
-	public static void guardarPartida(int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari){
+	public static void guardarPartida(Date dataIni, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari){
 
+        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String date = DATE_FORMAT.format(dataIni);
+		
 		try {
-			File arxiu = new File("Usuaris/" + nomUsuari + "/partida.txt");
-			// MIRAR SI HI HA UNA PARTIDA GUARDADA!!!!
+					
+			File arxiu = new File("DB/Usuaris/" + nomUsuari + "/partida.txt");
 			arxiu.delete();
 			arxiu.createNewFile();
-			FileWriter fileWriter = new FileWriter("Usuaris/" + nomUsuari + "/partida.txt", true);
+			FileWriter fileWriter = new FileWriter("DB/Usuaris/" + nomUsuari + "/partida.txt", true);
 			BufferedWriter bw = new BufferedWriter(fileWriter);
 			PrintStream output = new PrintStream(arxiu);
 			writeHidato(cella, tipusAdj, matriu, output);
 			output.println(";");
 			writeHidato(cella, tipusAdj, matriuOriginal, output);
 			output.println(";");
-			bw.write(status + ";" + puntuacio + ";" + nombresDonats + ";"+ nombresEscrits +";");
+			bw.write(status + ";" + puntuacio + ";" + nombresDonats + ";"+ nombresEscrits +";" + date + ";" + temps +";");
 			bw.close();
 			fileWriter.close();
 
@@ -108,9 +128,9 @@ public class IOPartida {
 
 	}
 
-	public static void carregarPartida(String usuari) {
+	public static void carregarPartida(String usuari) throws ParseException {
 		try {
-			FileReader fr = new FileReader("Usuaris/" + usuari + "/partida.txt");
+			FileReader fr = new FileReader("DB/Usuaris/" + usuari + "/partida.txt");
 			BufferedReader b = new BufferedReader(fr);
 			String cadena = b.readLine();
 			String[] cabecera = cadena.split(",");
@@ -155,10 +175,15 @@ public class IOPartida {
 			cadena = b.readLine();
 			linea = cadena.split(";");
 			
+			
+		    
 			status = Integer.parseInt(linea[0]);
 			puntuacio = Integer.parseInt(linea[1]);
 			nombresDonats = stringToVector(linea[2]);
 			nombresEscrits = stringToVector(linea[3]);
+			System.out.println(linea[4] + "hols");
+			dataIni = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(linea[4]);
+			temps = Integer.parseInt(linea[5]);
 
 			
 		} catch (IOException ex) {
