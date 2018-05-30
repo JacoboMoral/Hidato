@@ -15,8 +15,11 @@ import java.util.Vector;
 
 import static java.lang.Math.sqrt;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+
+import main.domain.com.hidato.HidatoIO;
 
 public class PanelHidato extends JPanel{		
 
@@ -35,7 +38,8 @@ public class PanelHidato extends JPanel{
     private int seguentMoviment = -1;
     private int ultim = 1;
     
-    //necessita que el creador faci panel.setPreferredSize(dim)
+    //necessita que el creador faci panel.setPreferredSize(dim);
+    //Aquesta constructora es fa servir per jugar una nova partida
     public PanelHidato(Cella cella, int[][] matriuHidato, Vector<Integer> nombresPerDefecte, PanelPartida controller){
     	//setBorder(new LineBorder(new Color(0, 0, 0)));
         this.controller = controller;
@@ -49,9 +53,32 @@ public class PanelHidato extends JPanel{
 
         setOpaque(false);
 
+        MouseListener mouseListener = new MouseListener();            
+        addMouseListener(mouseListener);
+        calcCellaSize();
+        
+        ResizeListener resizeListener = new ResizeListener();            
+        addComponentListener(resizeListener);
+    }
+    
+    //Aquesta constructora es fa servir per crear un nou Hidato
+    public PanelHidato(Cella cella, int[][] matriuHidato, PanelPartida controller){
+        this.controller = controller;
+    	this.cella = cella;
+        this.matriuHidato = matriuHidato;
+        this.nombresPerDefecte = new Vector<Integer>();
+        this.ultim = -3;
+        
+        matriuHidatoWidth = matriuHidato[0].length;
+        matriuHidatoHeight = matriuHidato.length;
+
+        
+        
+        setOpaque(false);
 
         MouseListener mouseListener = new MouseListener();            
         addMouseListener(mouseListener);
+        
         
         calcCellaSize();
         
@@ -63,11 +90,11 @@ public class PanelHidato extends JPanel{
     	this.screenWidth = screenWidth;
     	this.screenHeight = screenHeight;
     	
+    	
     	calcCellaSize();
     }
     
     private void calcCellaSize(){
- 
     	Vector<Double> properties = cella.screenProperties((int)screenWidth, (int)screenHeight, matriuHidatoHeight, matriuHidatoWidth);
     	double borderLeft = properties.get(2);
     	double borderTop = properties.get(1);
@@ -84,7 +111,6 @@ public class PanelHidato extends JPanel{
         repaint();
         
     }
-
     
     public void paintComponent(Graphics g){    	
         Graphics2D g2 = (Graphics2D)g;
@@ -92,7 +118,6 @@ public class PanelHidato extends JPanel{
         g.setFont(new Font("Arial", Font.BOLD, (int)cellaHeight/3));
         super.paintComponent(g2);
 
-        
         for (int i=0;i<matriuHidato.length;i++) {
             for (int j=0;j<matriuHidato[0].length;j++) {
                 if (matriuHidato[i][j] > -2){
@@ -103,8 +128,7 @@ public class PanelHidato extends JPanel{
                 }
             }
         }
-    }
-    
+    } 
     
 	public void setSeguentMoviment(int seguentMoviment) {
 		this.seguentMoviment = seguentMoviment;
@@ -115,22 +139,25 @@ public class PanelHidato extends JPanel{
     	repaint();
     }
     
+    public void setPossiblesMoviments(Vector<Integer> nombresPerDefecte) {
+    	this.nombresPerDefecte = nombresPerDefecte;
+    }
     
-
     class MouseListener extends MouseAdapter {
-        public void mouseClicked(MouseEvent e){ 
+        public void mousePressed(MouseEvent e){ 
             Point p = new Point( cella.pixelsToPosicioMatriu(e.getX(),e.getY()) );
             if (p.x < 0 || p.y < 0 || p.x >= matriuHidato[0].length || p.y >= matriuHidato.length) return;
-            
-            boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);
+            if (SwingUtilities.isLeftMouseButton(e)) if (controller.tractaClick(p.y,p.x, 0)) matriuHidato = controller.getMatriu();
+            if (SwingUtilities.isRightMouseButton(e)) if (controller.tractaClick(p.y,p.x, 1)) matriuHidato = controller.getMatriu();
+            /*boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);
             if (!movimentPossible) movimentPossible = controller.desferMoviment(p.y,p.x);
             matriuHidato = controller.getMatriu();
             
-            controller.updateSeguentMoviment();
+            controller.updateSeguentMoviment();*/
+
             repaint();
         }		 
     }
-    
     
     class ResizeListener extends ComponentAdapter{
     	public void componentResized(ComponentEvent componentEvent) {
@@ -140,5 +167,4 @@ public class PanelHidato extends JPanel{
     		repaint();
     	}
     }
-
 }

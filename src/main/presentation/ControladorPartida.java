@@ -3,21 +3,17 @@ package main.presentation;
 import java.awt.Dimension;
 import java.util.Vector;
 
+import javax.swing.JPanel;
+
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
-public class ControladorPartida {
+public class ControladorPartida extends ControladorHidatoGrafic{
 
-    private static ControladorPartida instance = null;
-    private final ControladorPresentacio controller = ControladorPresentacio.getInstance();
-    private Dificultat dificultat = Dificultat.FACIL;
-    private Cella cella;
-    private PanelPartida partida;
+	private static ControladorPartida instance = null;
     private VistaPartida view;
-
-    public ControladorPartida() {
-    }
+    private PanelPartida partida;
 
     public static ControladorPartida getInstance() {
         if (instance == null) {
@@ -37,6 +33,7 @@ public class ControladorPartida {
     public PanelPartida partidaAutogenerada(Dificultat dificultat) {
         this.dificultat = dificultat;
         int[][] matriuHidato = generarMatriuHidato(dificultat);
+        //falta generar cella random
         this.cella = cella;
         partida = new PanelPartida(cella, matriuHidato);
         return partida;
@@ -49,8 +46,9 @@ public class ControladorPartida {
         partida = new PanelPartida(cella, matriuHidato);
         return partida;
     }
-
-    public boolean ferMoviment(int y, int x, int value) {
+	
+	
+	public boolean ferMoviment(int y, int x, int value) {
         return controller.ferMoviment(y, x, value);
     }
 
@@ -113,11 +111,13 @@ public class ControladorPartida {
     }
 
     public void reset() {
-        controller.reset();
-        partida.updateMatriu(controller.getMatriuHidatoDePartida());
-    }
 
-    private Cella tipusCellaToCella(TipusCella tipusCella) {
+    		controller.reset();
+    		partida.updateMatriu(controller.getMatriuHidatoDePartida());
+    }    
+
+
+    protected Cella tipusCellaToCella(TipusCella tipusCella) {
         if (tipusCella == TipusCella.QUADRAT) {
             return new CellaQuadrat();
         }
