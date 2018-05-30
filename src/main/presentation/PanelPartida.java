@@ -2,9 +2,9 @@ package main.presentation;
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.ActionListener;
+
+
 import java.util.Vector;
-import java.awt.event.ActionEvent;
 
 public class PanelPartida extends JPanel {
 
@@ -13,74 +13,118 @@ public class PanelPartida extends JPanel {
 
     private int movimentIterator = 0;
     private int[][] matriuHidato = null;
-    private final ControladorPartida controller = ControladorPartida.getInstance();
+    private final ControladorHidatoGrafic controller;
 
     int boardHeight = 0;
     int boardWidth = 0;
 
-    private int BORDER = 0;
-
-    private int ultim = 10;
-
     private PanelHidato panelHidato;
-    private boolean completat = false;
-
     private Cella cella;
+    
+    private int tipusHidato = 0; // 0 = partida normal; 1 = creacio de hidato 
 
     public PanelPartida(Cella cella, int[][] matriuHidato) {
         this.cella = cella;
         this.matriuHidato = matriuHidato;
-        
+        controller = ControladorPartida.getInstance();
         setup();
-        setPossiblesMoviments();
         createAndShowGUI();
+    }
+    
+    public PanelPartida(Cella cella, int[][] matriuHidato, boolean creacio, ControladorHidatoGrafic controller) {
+        this.cella = cella;
+        this.matriuHidato = matriuHidato;
+        tipusHidato = 1;
+        //controller = ControladorCreateHidato.getInstance();
+        this.controller = controller;
+        setup();
+        //createAndShowGUI();
+        
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setBackground(new Color(0, 153, 153));
+        this.setBorder(
+                BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        this.setLayout(new BorderLayout(50, 50));
+
+        panelHidato = new PanelHidato(cella, matriuHidato, this);
+        panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
+
+        this.add(panelHidato);
+
     }
 
     private void setup() {
 
-        //matriuHidato = controller.generarMatriuHidato();
         nombresPerDefecte = controller.getNombresPerDefecte();
         boardHeight = matriuHidato[0].length;
         boardWidth = matriuHidato.length;
+        setPossiblesMoviments();
+
     }
-    
-    
-    /*public PanelPartida(boolean viejo){
-    	getMatriu();
-        getPossiblesMoviments();
-        createAndShowGUI();
-    }*/
-    public boolean ferMoviment(int y, int x, int proximMoviment) {
+
+    private boolean ferMoviment(int y, int x, int proximMoviment) {
         boolean fet = controller.ferMoviment(y, x, proximMoviment);
         if (fet) {
             setPossiblesMoviments();
-            if (controller.partidaCompletada()) {
-                completat = true;
-            }
             return true;
         }
         return false;
     }
 
-    public boolean desferMoviment(int y, int x) {
-        boolean desfet = controller.desferMoviment(y, x);
+    private boolean desferMoviment(int i, int j) {
+        boolean desfet = controller.desferMoviment(i, j);
         if (desfet) {
             setPossiblesMoviments();
             return true;
         }
         return false;
     }
+    
+    public boolean tractaClick(int i, int j, int mouseButton) {
+    	setPossiblesMoviments();
+    	if (movimentIterator >= possiblesMoviments.size()) return false;
+		if (tipusHidato == 0 && mouseButton == 0) { //partida i boto esquerre
+			boolean possible = ferMoviment(i,j,possiblesMoviments.get(movimentIterator));
+			if (!possible) possible = desferMoviment(i,j);
+			if (possible) updateSeguentMoviment();
+			return possible;
+		}
+		else if (tipusHidato == 1) {
+			if (mouseButton == 0) {
+				tractaMatriu(i,j,possiblesMoviments.get(movimentIterator));
+				setPossiblesMoviments();
+				controller.setSeguentMovimentVista(possiblesMoviments.get(movimentIterator));
+				return true;
+			}
+			else if (mouseButton == 1) {
+				tractaMatriu(i,j, true);
+				setPossiblesMoviments();
+				controller.setSeguentMovimentVista(possiblesMoviments.get(movimentIterator));
+				return true;
+			}
+		}
+		return false;
+	}
 
+    private void tractaMatriu(int i, int j, int value) {
+    		matriuHidato[i][j] = value;
+    }
+    
+    private void tractaMatriu(int i, int j, boolean esborra) {
+    	matriuHidato[i][j] = 0;
+    }
+    
     public int[][] getMatriu() {
-        return controller.getMatriuHidato();
+    	matriuHidato = controller.getMatriuHidato();
+        return matriuHidato;
     }
     
     public void updateMatriu(int[][] matriu) {
-    	panelHidato.updateMatriu(matriu);
-    	setPossiblesMoviments();
-    	movimentIterator = 0;
-    	panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
-    	updateSeguentMoviment();
+	    	panelHidato.updateMatriu(matriu);
+	    	setPossiblesMoviments();
+	    	movimentIterator = 0;
+	    	panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
+	    	updateSeguentMoviment();
     }
 
     private void setPossiblesMoviments() {
@@ -89,41 +133,20 @@ public class PanelPartida extends JPanel {
 
     private void createAndShowGUI() {
 
-        //creació del frame i set de Box Layout
-        /*JFrame frame = new JFrame("Hidato Hexagon");
-            frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-    		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));*/
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        //creació de panel de Hidato
-        //hardcoded ultim
-
-        //JPanel panelHidatoWithBorder = new JPanel();
         this.setBackground(new Color(0, 153, 153));
         this.setBorder(
                 BorderFactory.createEmptyBorder(50, 50, 50, 50));
         this.setLayout(new BorderLayout(50, 50));
 
         panelHidato = new PanelHidato(cella, matriuHidato, nombresPerDefecte, this);
-        //panelHidato.setPreferredSize(new Dimension(screenWidth, (int) (screenHeight)));
         panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
 
         this.add(panelHidato);
 
-        
-
-        //this.add(panelHidatoWithBorder);
-
-        /*frame.getContentPane().add(panelHidato);
-    		frame.getContentPane().add(info);
-    		
-    		
-    		frame.setResizable(false);
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);*/
     }
 
-    public void updateSeguentMoviment() {
+    private void updateSeguentMoviment() {
         if (possiblesMoviments.size() > 0) {
             if (movimentIterator >= possiblesMoviments.size()) {
                 --movimentIterator;
@@ -153,20 +176,11 @@ public class PanelPartida extends JPanel {
     	return -1;
     }
 
-    public void completat() {
-        JFrame victoria = new JFrame("Enhorabona");
-        JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(300, 30));
-        panel.add(new JLabel("Enhorabona, has completat l'hidato correctament!"));
-        victoria.getContentPane().add(panel);
-        victoria.setResizable(false);
-        victoria.pack();
-        victoria.setLocationRelativeTo(null);
-        victoria.setVisible(true);
-    }
 
 	public int getSeguentMoviment() {
 		return possiblesMoviments.get(movimentIterator);
 	}
+
+	
 
 }

@@ -5,6 +5,8 @@
  */
 package main.presentation;
 
+import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.TipusCella;
 import main.domain.com.hidato.Usuari;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -37,8 +39,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         tipologia.addItem("Hexagon");
         tipologia.addItem("Quadrat");
         tipologia.addItem("Triangle");
-        adjacencia.addItem("Costat");
-        adjacencia.addItem("Costat i angles");
+        adjacencia.addItem("Costats");
+        adjacencia.addItem("Costats i angles");
         adjacencia.setSelectedItem("Costat");
         tipologia.setSelectedItem("Hexagon");
         
@@ -654,8 +656,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel6.setText("Altuar");
 
         altura.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        altura.setModel(new javax.swing.SpinnerNumberModel(5, 3, 15, 1));
 
         amplada.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        amplada.setModel(new javax.swing.SpinnerNumberModel(5, 3, 15, 1));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setText("Create your hidato:");
@@ -1440,13 +1444,37 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private void b_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_CreateActionPerformed
         esCustom = true;
-        parentPanel.removeAll();
-        parentPanel.add(previewHidatoPanel);
-        parentPanel.repaint();
-        parentPanel.revalidate();
+       
+        TipusCella tipusCella = stringToTipusCella((String)tipologia.getSelectedItem());
+        TipusAdjacencia tipusAdjacencia = stringToTipusAdjacencia((String)adjacencia.getSelectedItem());
+        int alturaHidato = (int) altura.getValue();
+        int ampladaHidato = (int) amplada.getValue();
+        
+        if (!compatibles(tipusCella, tipusAdjacencia)) JOptionPane.showMessageDialog(null, "El tipus de cella i el tipus d'adjacencia no son compatibles");
+        else {
+        	VistaCreateHidato v = new VistaCreateHidato(cv, tipusCella, tipusAdjacencia, alturaHidato, ampladaHidato);
+            v.setVisible(true);
+            this.dispose();
+        }  
     }//GEN-LAST:event_b_CreateActionPerformed
 
-    private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
+    private boolean compatibles(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia) {
+    	if (tipusCella == TipusCella.QUADRAT) return true;
+    	else return (tipusAdjacencia == TipusAdjacencia.COSTATS);
+    }
+    
+    private TipusCella stringToTipusCella(String selectedItem) {
+        if (selectedItem.equalsIgnoreCase("HEXAGON")) return TipusCella.HEXAGON;
+        if (selectedItem.equalsIgnoreCase("TRIANGLE")) return TipusCella.TRIANGLE;
+        return TipusCella.QUADRAT;
+	}
+    
+    private TipusAdjacencia stringToTipusAdjacencia(String selectedItem) {
+        if (selectedItem.equalsIgnoreCase("COSTATS I ANGLES")) return TipusAdjacencia.COSTATSIANGLES;
+        return TipusAdjacencia.COSTATS;
+	}
+
+	private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
         esAuto = true;
         parentPanel.removeAll();
         parentPanel.add(previewHidatoPanel);
@@ -1495,12 +1523,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.revalidate();
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void b_custom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_custom1ActionPerformed
-        VistaCreateHidato v = new VistaCreateHidato(cv, levelEasy);
-        v.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_b_custom1ActionPerformed
-
     private void b_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_saveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_saveActionPerformed
@@ -1511,6 +1533,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void b_custom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_custom1ActionPerformed
+        //VistaCreateHidato v = new VistaCreateHidato(cv, levelEasy);
+        //v.setVisible(true);
+    }
+  
     private void jButton4AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jButton4AncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4AncestorAdded
@@ -1524,6 +1551,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private void b_signoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_signoutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_signoutActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        parentPanel.removeAll();
+        parentPanel.add(seleccioPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments

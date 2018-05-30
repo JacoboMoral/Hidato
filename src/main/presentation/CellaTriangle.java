@@ -21,12 +21,7 @@ public class CellaTriangle extends Cella{
     public void setTamany(double altura) {
         this.altura = altura;
         this.amplada = altura*2/sqrt(3);
-        this.primerx = amplada/2;
-        
-
-        System.out.println("Cella hexagon altura: " + altura);
-        System.out.println("Cella hexagon amplada: " + amplada);
-
+        this.primerx = amplada/2;  
     }
 
     private Polygon cella (int x0, int y0, int i, int j) {
@@ -122,7 +117,6 @@ public class CellaTriangle extends Cella{
         if (mateixaParitat(y,x)) posicioXrelativa = posx - ((x) * primerx);
         else posicioXrelativa = ((x+1) * primerx) - posx;
         double posicioYrelativa = ((y+1) * altura) - posy;
-        System.out.println(posicioYrelativa +  " " + posicioXrelativa);
         
         
         /*if ( mateixaParitat(y,x)) {
@@ -161,8 +155,6 @@ public class CellaTriangle extends Cella{
         
         p.x=x;
         p.y=y;
-        System.out.println("Posicio x: " + posx + ", Posicio y: " + posy);
-        System.out.println(p);
         return p;
     }
 
@@ -183,7 +175,6 @@ public class CellaTriangle extends Cella{
         int paritat = 0;
 		if (boardWidth%2 == 0) paritat = 1;
 		double cellesHoritzontals = Math.ceil((double)boardWidth/2) + paritat*0.5 + 0.05;
-		System.out.println(cellesHoritzontals);
 		double cellesVerticals = boardHeight + 0.05; //per que no es talli per poc, degut a l'arrossegament de decimals
 		double cellaHeight;
 		double cellaWidth;
@@ -191,16 +182,12 @@ public class CellaTriangle extends Cella{
 		double tamanyHoritzontal = cellesHoritzontals * 2/sqrt(3); //tamany horitzontal respecte al vertical
         
         if ((double)screenHeight/(double)screenWidth >= cellesVerticals/tamanyHoritzontal) { //relacio d'aspecte de la pantalla es mes alta que la del hidato
-        	System.out.println("relacio d'aspecte de la pantalla es mes alta o igual que la del hidato");
         	cellaWidth = (double)screenWidth/cellesHoritzontals;
         	cellaHeight = sqrt(3)*cellaWidth/2;
-        	System.out.println(cellaHeight);
         }
         else { 
-        	System.out.println("relacio d'aspecte de la pantalla es mes baixa i gruixuda que la del hidato");
         	cellaHeight = (double)screenHeight/cellesVerticals;
         	cellaWidth = cellaHeight*2/sqrt(3);
-        	System.out.println(cellaHeight);
         }
         
         int borderTop = 0;

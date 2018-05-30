@@ -102,8 +102,6 @@ public class CellaQuadrat extends Cella{
 
         p.x=x;
         p.y=y;
-        System.out.println("Posicio x: " + posx + ", Posicio y: " + posy);
-        System.out.println(p);
         return p;
     }
 
@@ -127,14 +125,10 @@ public class CellaQuadrat extends Cella{
 		double cellaHeight;
 		
         if ((double)screenHeight/(double)screenWidth >= cellesVerticals/cellesHoritzontals) { //relacio d'aspecte de la pantalla es mes alta que la del hidato
-        	System.out.println("relacio d'aspecte de la pantalla es mes alta o igual que la del hidato");
         	cellaHeight = (double)screenWidth/cellesHoritzontals;
-        	System.out.println(cellaHeight);
         }
         else { 
-        	System.out.println("relacio d'aspecte de la pantalla es mes baixa i gruixuda que la del hidato");
         	cellaHeight = (double)screenHeight/cellesVerticals;
-        	System.out.println(cellaHeight);
         }
         
         int borderTop = 0;

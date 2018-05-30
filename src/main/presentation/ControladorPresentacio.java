@@ -34,57 +34,6 @@ public class ControladorPresentacio {
     	return instance;
     }
 
-	public static void main(String args[]){
-		final JFrame frame = new JFrame();
-		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-		final ControladorPartida partida = ControladorPartida.getInstance();
-		panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
-		
-				
-		JButton buttonFacil = new JButton("Facil");
-		frame.add(buttonFacil);
-		buttonFacil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
-				frame.add(panelPartida);
-				frame.validate();		
-			}
-		});
-		
-		JButton buttonMig = new JButton("Mig");
-		frame.add(buttonMig);
-		buttonMig.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
-				frame.add(panelPartida);
-				frame.validate();
-			}
-		});
-		
-		JButton buttonDificil = new JButton("Dificil");
-		frame.add(buttonDificil);
-		buttonDificil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().remove(panelPartida);
-				panelPartida = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
-				frame.add(panelPartida);
-				frame.validate();				
-			}
-		});
-		
-		frame.add(panelPartida);
-		
-		
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Titulo del FRAME");
-		frame.getContentPane().setBackground(Color.BLACK);
-		frame.setVisible(true);
-    }
-
 	public void launchPartidaScreen(){
 		
 	}
@@ -102,9 +51,8 @@ public class ControladorPresentacio {
 	}
 	
 	public void launchLogin() {
-               	//VistaLogin vistaLogin = new VistaLogin();
-		//vistaLogin.run();
-		main(null);
+        Inici inici = new Inici();
+		inici.run();
 	}
 
 	public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
