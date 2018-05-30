@@ -3,6 +3,7 @@ package main.presentation;
 import java.awt.*;
 import javax.swing.*;
 
+import main.domain.com.hidato.HidatoIO;
 
 import java.util.Vector;
 
@@ -29,6 +30,7 @@ public class PanelPartida extends JPanel {
         controller = ControladorPartida.getInstance();
         setup();
         createAndShowGUI();
+
     }
     
     public PanelPartida(Cella cella, int[][] matriuHidato, boolean creacio, ControladorHidatoGrafic controller) {
@@ -140,9 +142,12 @@ public class PanelPartida extends JPanel {
         this.setLayout(new BorderLayout(50, 50));
 
         panelHidato = new PanelHidato(cella, matriuHidato, nombresPerDefecte, this);
+
         panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
 
+        
         this.add(panelHidato);
+
 
     }
 

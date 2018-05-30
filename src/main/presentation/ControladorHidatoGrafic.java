@@ -15,7 +15,7 @@ public abstract class ControladorHidatoGrafic {
     protected Cella cella;
 	
     
-	protected Cella tipusCellaToCella(TipusCella tipusCella) {
+	public Cella tipusCellaToCella(TipusCella tipusCella) {
     	if (tipusCella == TipusCella.QUADRAT) return new CellaQuadrat();
     	if (tipusCella == TipusCella.TRIANGLE) return new CellaTriangle();
     	if (tipusCella == TipusCella.HEXAGON) return new CellaHexagon();
@@ -87,7 +87,6 @@ public abstract class ControladorHidatoGrafic {
 	public abstract int decrementarSeguentMoviment();
 
 	public abstract int incrementarSeguentMoviment();
-
 
 	public void setSeguentMovimentVista(int integer) {
 	}
