@@ -9,8 +9,6 @@ import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
-import static main.presentation.ControladorPresentacio.panelPartida;
-
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;

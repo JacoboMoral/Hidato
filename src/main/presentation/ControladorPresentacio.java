@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -16,6 +17,7 @@ import javax.swing.JTextField;
 
 import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
+import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
@@ -23,8 +25,8 @@ public class ControladorPresentacio {
 
     private static ControladorPresentacio instance = null;
     private static final ControladorDomini domini = ControladorDomini.getInstance();
-
-    static JPanel panelPartida; //JPanel vs PanelPartida??? hi ha cap diferencia?'
+    private static final ControladorPartida controladorPartida = ControladorPartida.getInstance();
+    private VistaPartida v;
     
     private ControladorPresentacio() {
     }
@@ -100,10 +102,29 @@ public class ControladorPresentacio {
             } else return false;
 	}
 
-	public void partidaGuardada() {
+	public void mostraPartidaGuardada() {
 		
 		JOptionPane.showMessageDialog(null, "La seva partida s'ha guardat correctament");		
 		
+	}
+	
+	public boolean hiHaPartidaGuardada() {
+		return domini.hiHaPartidaGuardada();
+	}
+
+	public void cargarPartidaGuardada(CtrlVista cv, VistaMenuPrincipal vistaAnterior) {
+		if (hiHaPartidaGuardada()) {
+			domini.carregarPartida("aaa");
+			TipusCella tipusCella = domini.getTipusCellaPartida();
+			int[][] matriuHidato = domini.getMatriuHidatoDePartida();
+			JPanel hidatoPanel = controladorPartida.partidaCarregada(tipusCella, matriuHidato);
+			
+			v = new VistaPartida(cv,hidatoPanel);
+	        v.setVisible(true);
+	        vistaAnterior.dispose();
+			
+		}
+        else JOptionPane.showMessageDialog(null, "Actualment no disposes de cap partida en curs");
 	}
 
 }

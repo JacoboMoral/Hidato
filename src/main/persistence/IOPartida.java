@@ -128,7 +128,7 @@ public class IOPartida {
 
 	}
 
-	public static void carregarPartida(String usuari) throws ParseException {
+	public static void carregarPartida(String usuari) {
 		try {
 			FileReader fr = new FileReader("DB/Usuaris/" + usuari + "/partida.txt");
 			BufferedReader b = new BufferedReader(fr);
@@ -148,7 +148,10 @@ public class IOPartida {
 			String[] linea = cadena.split(",");
 			while (cadena != null && linea.length == Integer.parseInt(cabecera[3])) {
 				for (int j = 0; j < linea.length; ++j) {
-					matriu[i][j] = Integer.parseInt(linea[j]);
+					if (linea[j].equals("*")) matriu[i][j] = -1;
+					else if (linea[j].equals("#")) matriu[i][j] = -2;
+					else if (linea[j].equals("?")) matriu[i][j] = 0;
+					else matriu[i][j] = Integer.parseInt(linea[j]);
 				}
 				++i;
 				cadena = b.readLine();
@@ -165,7 +168,10 @@ public class IOPartida {
 			i = 0;
 			while (cadena != null && linea.length == Integer.parseInt(cabecera[3])) {
 				for (int j = 0; j < linea.length; ++j) {
-					matriuOriginal[i][j] = Integer.parseInt(linea[j]);
+					if (linea[j].equals("*")) matriuOriginal[i][j] = -1;
+					else if (linea[j].equals("#")) matriuOriginal[i][j] = -2;
+					else if (linea[j].equals("?")) matriuOriginal[i][j] = 0;
+					else matriuOriginal[i][j] = Integer.parseInt(linea[j]);
 				}
 				++i;
 				cadena = b.readLine();
@@ -181,14 +187,15 @@ public class IOPartida {
 			puntuacio = Integer.parseInt(linea[1]);
 			nombresDonats = stringToVector(linea[2]);
 			nombresEscrits = stringToVector(linea[3]);
-			System.out.println(linea[4] + "hols");
 			dataIni = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(linea[4]);
 			temps = Integer.parseInt(linea[5]);
 
 			
-		} catch (IOException ex) {
-			System.out.println(ex.getMessage());
+		} catch (IOException e) {
+			e.printStackTrace();
 			//ex.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -205,7 +212,7 @@ public class IOPartida {
 	}
 
 	private static TipusCella stringToTipusCella(String tc) {
-		if (tc.equals("C")) return TipusCella.QUADRAT;
+		if (tc.equals("Q")) return TipusCella.QUADRAT;
 		if (tc.equals("T")) return TipusCella.TRIANGLE;
 		if (tc.equals("H")) return TipusCella.HEXAGON;
 		return null;

@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.swing.JPanel;
 
 import main.domain.com.hidato.Dificultat;
+import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
@@ -41,6 +42,12 @@ public class ControladorPartida extends ControladorHidatoGrafic{
         this.dificultat = dificultat;
         this.cella = tipusCellaToCella(tipusCella);
         int[][] matriuHidato = generarMatriuHidato(tipusCella, tipusAdjacencia, dificultat);
+        partida = new PanelPartida(cella, matriuHidato);
+        return partida;
+    }
+	
+	public PanelPartida partidaCarregada(TipusCella tipusCella, int[][] matriuHidato) {
+        this.cella = tipusCellaToCella(tipusCella);
         partida = new PanelPartida(cella, matriuHidato);
         return partida;
     }
@@ -113,9 +120,8 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     		controller.reset();
     		partida.updateMatriu(controller.getMatriuHidatoDePartida());
     }    
-
     
-    private Cella tipusCellaToCella(TipusCella tipusCella) {
+    public Cella tipusCellaToCella(TipusCella tipusCella) {
     	if (tipusCella == TipusCella.QUADRAT) return new CellaQuadrat();
     	if (tipusCella == TipusCella.TRIANGLE) return new CellaTriangle();
     	if (tipusCella == TipusCella.HEXAGON) return new CellaHexagon();

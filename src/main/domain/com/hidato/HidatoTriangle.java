@@ -1,5 +1,7 @@
 package main.domain.com.hidato;
 
+import java.util.Vector;
+
 public class HidatoTriangle extends Hidato {
 
 	public HidatoTriangle(int[][] matriu) {
@@ -11,6 +13,12 @@ public class HidatoTriangle extends Hidato {
 	public HidatoTriangle() {
 		super(TipusAdjacencia.COSTATS);
 		al = new Algorismes(this);
+	}
+
+	public HidatoTriangle(int[][] matriuOriginal, int[][] matriuHidato, Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats) {
+		super(TipusAdjacencia.COSTATS, matriuHidato, matriuOriginal, nombresEscrits, nombresDonats);
+		al = new Algorismes(this);
+		dificultat = al.obtenirDificultat();
 	}
 
 	@Override

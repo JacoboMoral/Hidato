@@ -1,5 +1,6 @@
 package main.domain.com.hidato;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Random;
 import java.util.Vector;
@@ -13,7 +14,7 @@ public class ControladorDomini {
     private ControladorPresentacio presentacio = ControladorPresentacio.getInstance();
 	private Partida partidaEnCurs = null;
 	private Hidato hidatoGenerat = null;
-	private ControladorPersistencia controladorPersistence = ControladorPersistencia.getInstance();
+	private ControladorPersistencia controladorPersistencia = ControladorPersistencia.getInstance();
 
 
 
@@ -131,7 +132,7 @@ public class ControladorDomini {
 			
 			boolean guardar = false;
 			
-			if(!controladorPersistence.hiHaPartida(partidaEnCurs.getNomUsuari())) guardar = true;
+			if(!controladorPersistencia.hiHaPartida(partidaEnCurs.getNomUsuari())) guardar = true;
 			
 			else guardar = presentacio.sobreesciure();
 				
@@ -148,9 +149,9 @@ public class ControladorDomini {
 				TipusCella cella = partidaEnCurs.getTipusCella();
 				Date dataIni = partidaEnCurs.getDataInici();
 				int temps = partidaEnCurs.getTemps();
-				controladorPersistence.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);	
-				
-				presentacio.partidaGuardada();
+				controladorPersistencia.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);	
+
+				presentacio.mostraPartidaGuardada();
 			}
 			
 		}
@@ -195,6 +196,49 @@ public class ControladorDomini {
 
 	public void resetMatriuEnPartida() {
 		if (partidaEnCurs != null) partidaEnCurs.reset();
+	}
+
+	public boolean hiHaPartidaGuardada() {
+		return controladorPersistencia.hiHaPartida("aaa");
+	}
+	
+	public TipusCella getTipusCellaPartida() {
+		return partidaEnCurs.getTipusCella();
+	}
+
+	public void carregarPartida(String nomUsuari){
+		controladorPersistencia.carregarPartida(nomUsuari);
+				
+		Hidato hidato = HidatoFactory.carregarHidato(controladorPersistencia.getTipusCellaPartida(),
+				controladorPersistencia.getTipusAdjacenciaPartida(),
+				controladorPersistencia.getMatriuOriginalPartida(),
+				controladorPersistencia.getMatriuPartida(),
+				controladorPersistencia.getNombresDonatsPartida(),
+				controladorPersistencia.getNombresEscritsPartida()
+				);
+
+		partidaEnCurs = new Partida(hidato);
+		partidaEnCurs.setStatus(controladorPersistencia.getStatusPartida());
+		partidaEnCurs.setPuntuacio(controladorPersistencia.getPuntuacioPartida());
+		partidaEnCurs.setDataInici(controladorPersistencia.getDataIniPartida());
+		partidaEnCurs.setTemps(controladorPersistencia.getTempsPartida());
+		
+		
+		/*System.out.println(partidaEnCurs.getNomUsuari());
+		System.out.println(partidaEnCurs.getPuntuacio());
+		System.out.println(partidaEnCurs.getTemps());
+		System.out.println(partidaEnCurs.getDataInici());
+		System.out.println(partidaEnCurs.getNombresEscrits());
+		System.out.println(partidaEnCurs.getNombresPerDefecte());
+		System.out.println(partidaEnCurs.getTipusAdjacencia());
+		System.out.println(partidaEnCurs.getTipusCella());
+		HidatoIO.writeHidatoMatrixToOutput(partidaEnCurs.getHidato());
+		HidatoIO.writeHidatoMatrixToOutput(partidaEnCurs.getHidatoOriginal());*/
+
+		System.out.println(partidaEnCurs.getNombresEscrits());
+		System.out.println(partidaEnCurs.getNombresPerDefecte());
+
+		
 	}
 
 }

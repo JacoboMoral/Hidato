@@ -70,8 +70,9 @@ public class ControladorPersistencia {
     	return IOPartida.hiHaPartida(usuari);
     }
     
-    public void carregarPartida(String usuari) throws ParseException {
+    public void carregarPartida(String usuari){
     	IOPartida.carregarPartida(usuari);
+    	
     }
 
     public String[] nomHidatosImportats() {
@@ -115,7 +116,7 @@ public class ControladorPersistencia {
     }
 
     public Vector<Integer> getNombresEscritsPartida() {
-        return IOPartida.getNombresDonats();
+        return IOPartida.getNombresEscrits();
     }
     
    

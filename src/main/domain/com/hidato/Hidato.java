@@ -20,7 +20,7 @@ public abstract class Hidato{
     protected Algorismes al;
 
 
-    public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
+    protected Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
 		this.tipusAdjacencia = tipusAdjacencia;
 
 		matriuHidato = new int[matriu.length][matriu[0].length];
@@ -30,18 +30,20 @@ public abstract class Hidato{
 		calcPossiblesMoviments();
     }
 
-    public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats){
+    protected Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats){
 		this.tipusAdjacencia = tipusAdjacencia;
 		matriuHidato = matriu;
 		this.matriuOriginal = matriuOriginal;
 		this.nombresEscrits = nombresEscrits;
 		this.nombresDonats = nombresDonats;
+		calcPossiblesMoviments();
+
     }
 
-	public Hidato(TipusAdjacencia tipusAdjacencia) {
+    protected Hidato(TipusAdjacencia tipusAdjacencia) {
     	this.tipusAdjacencia = tipusAdjacencia;
     }
-
+    
     public boolean autogenerar(int forats, int tamanyi, int tamanyj) {
 		matriuHidato = al.generarHidato(forats, tamanyi, tamanyj);
 		if (matriuHidato != null){
@@ -219,16 +221,20 @@ public abstract class Hidato{
 
     private void calcPossiblesMoviments() {
     	possiblesMoviments = new Vector<Integer>();
-    	for (int i = 0; i < matriuSolucio.length; ++i) {
-    		for (int j = 0; j < matriuSolucio[0].length; ++j) {
-    			int x = matriuSolucio[i][j];
-    			if (x > 0) {
-    				if (!nombresEscrits.contains(x)) {
-    					possiblesMoviments.add(x);
-    				}
+    	int cellesNumeriques = matriuHidato.length * matriuHidato[0].length;
+    	for (int i = 0; i < matriuHidato.length; ++i) {
+    		for (int j = 0; j < matriuHidato[0].length; ++j) {
+    			int value = matriuHidato[i][j];
+    			if (value < 0) {
+    				--cellesNumeriques;
     			}
     		}
     	}
+    	
+    	for (int i = 1; i <= cellesNumeriques; ++i) {
+    		if (!nombresEscrits.contains(i)) possiblesMoviments.add(i);
+    	}
+    	
 		Collections.sort(possiblesMoviments);
     }
 

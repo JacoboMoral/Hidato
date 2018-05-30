@@ -9,8 +9,6 @@ import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
-import static main.presentation.ControladorPresentacio.panelPartida;
-
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -59,6 +57,18 @@ public class VistaPartida extends javax.swing.JFrame {
             else hidatoPanel = partida.partidaAutogenerada(TipusCella.QUADRAT, Dificultat.DIFICIL);
         }
         this.add(hidatoPanel);
+        seguentMoviment = Integer.toString(partida.getSeguentMoviment());
+        jLabel1.setText(seguentMoviment);
+
+        this.validate();
+    }
+    
+    public VistaPartida(CtrlVista v, javax.swing.JPanel hidatoPanel) {
+    	cv = v;
+    	initComponents();
+        partida.setView(this);
+        this.hidatoPanel = hidatoPanel;
+        this.add(this.hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
         jLabel1.setText(seguentMoviment);
 
@@ -261,12 +271,8 @@ public class VistaPartida extends javax.swing.JFrame {
         });
     }
     
-    private void saveGameMouseClicked(MouseEvent evt) {
-    	System.out.println("guardar");
-    	
+    private void saveGameMouseClicked(MouseEvent evt) {  	
     	partida.guardarPartida();
-    	
-    	
 	}
     
     public void incrementarSeguentMoviment() {

@@ -1,5 +1,7 @@
 package main.domain.com.hidato;
 
+import java.util.Vector;
+
 public class HidatoHexagon extends Hidato {
 
 	public HidatoHexagon(int[][] matrix) {
@@ -13,6 +15,13 @@ public class HidatoHexagon extends Hidato {
 		al = new Algorismes(this);
 	}
 	
+	public HidatoHexagon(int[][] matriuOriginal, int[][] matriuHidato, Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats) {
+		super(TipusAdjacencia.COSTATS, matriuHidato, matriuOriginal, nombresEscrits, nombresDonats);
+		al = new Algorismes(this);
+		dificultat = al.obtenirDificultat();
+	}
+
+
 	@Override
 	public TipusCella getTipusCella() {
 		return TipusCella.HEXAGON;
