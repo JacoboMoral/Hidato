@@ -15,17 +15,18 @@ public class Partida {
     private Contador contador;
     private int temps;
     private Usuari usuari;
-
+    
     public Partida(Hidato hidato) {
-        this.hidato = hidato;
-        dificultat = hidato.getDificultat();
-        status = 0;
-        puntuacio = 0;
-        contador = new Contador();
-        temps = -1;
 
-        //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
-        iniciarPartida();
+            this.hidato = hidato;
+            dificultat = hidato.getDificultat();
+            status = 0;
+            puntuacio = 0;
+            contador = new Contador();
+            temps = -1;
+      
+            //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
+            iniciarPartida();
     }
 
     private void acabarPartida() {
@@ -34,7 +35,6 @@ public class Partida {
         status = -1;
         dataFi = new Date();
         ControladorDomini.getInstance().finalitzarPartida();
-
     }
 
     public void iniciarPartida() {

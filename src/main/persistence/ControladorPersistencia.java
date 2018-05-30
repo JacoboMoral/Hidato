@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
 import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -33,38 +35,50 @@ public class ControladorPersistencia {
         IOHidato.importarHidatoDeFitxer(sourceFileName, destinationFileName);
     }
 
-    public void importarHidato(int[][] matriuHidato, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, String destinationFileName) throws IOException {
-        IOHidato.importarHidatoCreat(matriuHidato, TipusCella.QUADRAT, TipusAdjacencia.COSTATSIANGLES, destinationFileName);
+    public void importarHidato(int[][] matriuHidato, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, String nomHidato) throws IOException {
+    	IOHidato.importarHidatoCreat(matriuHidato, tipusCella, tipusAdjacencia, nomHidato);
     }
 
-    public void carregarHidatoFitxer(String file) throws Exception {
-        IOHidato.carregarHidatoFitxer(file);
+	public void carregarHidatoFitxer(String file) throws Exception {
+		IOHidato.carregarHidatoFitxer(file);
+	}
+	
+	public int[][] getMatriuHidato(){
+		return IOHidato.getMatriu();
+	}
+	
+	public TipusCella getTipusCellaHidato() {
+		return IOHidato.getTipusCella();
+	}
+	
+	public TipusAdjacencia getTipusAdjacenciaHidato() {
+		return IOHidato.getTipusAdjacencia();
+	}
+	
+    public void guardarPartida(Date dataIni, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari) {
+    	IOPartida.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
     }
-
-    public int[][] getMatriuHidato() {
-        return IOHidato.getMatriu();
+    
+    public boolean hiHaPartida(String usuari) {
+    	return IOPartida.hiHaPartida(usuari);
     }
-
-    public TipusCella getTipusCellaHidato() {
-        return IOHidato.getTipusCella();
-    }
-
-    public TipusAdjacencia getTipusAdjacenciaHidato() {
-        return IOHidato.getTipusAdjacencia();
-    }
-
-    public void guardarPartida(int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari) {
-        IOPartida.guardarPartida(status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
-    }
-
-    public void carregarPartida(String usuari) {
-        IOPartida.carregarPartida(usuari);
+    
+    public void carregarPartida(String usuari) throws ParseException {
+    	IOPartida.carregarPartida(usuari);
     }
 
     public Vector<String> nomHidatos() {
         return IOHidato.nomHidatos();
     }
 
+	public Date getDataIniPartida() {
+		return IOPartida.getDataIni();
+	}
+	
+	
+	public int getTempsPartida() {
+		return IOPartida.getTemps();
+  }
     public int[][] getMatriuPartida() {
         return IOPartida.getMatriu();
     }

@@ -1,5 +1,6 @@
 package main.domain.com.hidato;
 
+import java.util.Date;
 import java.util.Random;
 import java.util.Vector;
 
@@ -140,20 +141,34 @@ public class ControladorDomini {
     public void guardarPartida() {
         if (partidaEnCurs != null) {
 
-            int status = partidaEnCurs.status();
-            int puntuacio = partidaEnCurs.getPuntuacio();
-            TipusAdjacencia tipusAdj = partidaEnCurs.getTipusAdjacencia();
-            int[][] matriu = partidaEnCurs.getHidato();
-            int[][] matriuOriginal = partidaEnCurs.getHidatoOriginal();
-            Vector<Integer> nombresDonats = partidaEnCurs.getNombresPerDefecte();
-            Vector<Integer> nombresEscrits = partidaEnCurs.getNombresEscrits();
-            String nomUsuari = partidaEnCurs.getNomUsuari();
-            TipusCella cella = partidaEnCurs.getTipusCella();
+            boolean guardar = false;
 
-            controladorPersistence.guardarPartida(status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
+            if (!controladorPersistence.hiHaPartida(partidaEnCurs.getNomUsuari())) {
+                guardar = true;
+            } else {
+                guardar = presentacio.sobreesciure();
+            }
 
-            // status = 0; puntuacio = 0; TipusAdjacencia tipusAdjacencia, int[][] matriu, int[][] matriuOriginal Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats
+            if (guardar) {
+
+                int status = partidaEnCurs.status();
+                int puntuacio = partidaEnCurs.getPuntuacio();
+                TipusAdjacencia tipusAdj = partidaEnCurs.getTipusAdjacencia();
+                int[][] matriu = partidaEnCurs.getHidato();
+                int[][] matriuOriginal = partidaEnCurs.getHidatoOriginal();
+                Vector<Integer> nombresDonats = partidaEnCurs.getNombresPerDefecte();
+                Vector<Integer> nombresEscrits = partidaEnCurs.getNombresEscrits();
+                String nomUsuari = partidaEnCurs.getNomUsuari();
+                TipusCella cella = partidaEnCurs.getTipusCella();
+                Date dataIni = partidaEnCurs.getDataInici();
+                int temps = partidaEnCurs.getTemps();
+                controladorPersistence.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
+
+                presentacio.partidaGuardada();
+            }
+
         }
+        // status = 0; puntuacio = 0; TipusAdjacencia tipusAdjacencia, int[][] matriu, int[][] matriuOriginal Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats
     }
 
     public boolean enPartida() {
