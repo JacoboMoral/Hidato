@@ -208,27 +208,24 @@ public class ControladorDomini {
     }
 
     public String[] getHidatos() throws Exception {
-        controladorPersistence.carregarHidatoFitxer("hidato1");
-        int[][] matriu = controladorPersistence.getMatriuHidato();
-        
-        
-        
+    	controladorPersistencia.carregarHidatoFitxer("hidato1");
+        int[][] matriu = controladorPersistencia.getMatriuHidato();
         return null;
     }
 
     public int[][] getMatiu(String nomHidato) throws Exception {
-        controladorPersistence.carregarHidatoImportat(nomHidato);
-        return controladorPersistence.getMatriuHidato();
+    	controladorPersistencia.carregarHidatoImportat(nomHidato);
+        return controladorPersistencia.getMatriuHidato();
     }
 
     public TipusAdjacencia getTipusAdjacencia(String nomHidato) throws Exception {
-        controladorPersistence.carregarHidatoImportat(nomHidato);
-        return controladorPersistence.getTipusAdjacenciaHidato();
+    	controladorPersistencia.carregarHidatoImportat(nomHidato);
+        return controladorPersistencia.getTipusAdjacenciaHidato();
     }
 
     public TipusCella getTipusCella(String nomHidato) throws Exception {
-        controladorPersistence.carregarHidatoImportat(nomHidato);
-        return controladorPersistence.getTipusCellaHidato();
+    	controladorPersistencia.carregarHidatoImportat(nomHidato);
+        return controladorPersistencia.getTipusCellaHidato();
     }
 
 	public boolean hiHaPartidaGuardada() {
@@ -275,6 +272,6 @@ public class ControladorDomini {
 	}
 
     public String[] getAllHidatoNames() {
-        return controladorPersistence.getAllHidatoFileNames();
+        return controladorPersistencia.getAllHidatoFileNames();
     }
 }

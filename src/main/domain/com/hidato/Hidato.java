@@ -19,15 +19,13 @@ public abstract class Hidato {
     protected Vector<Integer> possiblesMoviments = new Vector<Integer>();
     protected Algorismes al;
 
-    public Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu) {
-        this.tipusAdjacencia = tipusAdjacencia;
 
     protected Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
 		this.tipusAdjacencia = tipusAdjacencia;
 
         matriuHidato = new int[matriu.length][matriu[0].length];
         copy(matriu, matriu);
-
+        
         makeCopyOriginal(matriuHidato);
         calcPossiblesMoviments();
     }
