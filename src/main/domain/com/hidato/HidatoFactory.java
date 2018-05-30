@@ -24,5 +24,5 @@ public class HidatoFactory {
 		if (tipusCella == TipusCella.TRIANGLE) return new HidatoTriangle(matriuOriginal, matriuHidato, nombresEscrits, nombresDonats);
 		return new HidatoHexagon(matriuOriginal, matriuHidato, nombresEscrits, nombresDonats);
 	}
-		
+	
 }

@@ -6,7 +6,6 @@ public class HidatoQuadrat extends Hidato {
 	
 	public HidatoQuadrat(TipusAdjacencia tipusAdjacencia, int[][] matriu) {
 		super(tipusAdjacencia, matriu);
-		System.out.println("woola");
 
 		al = new Algorismes(this);
 		dificultat = al.obtenirDificultat();

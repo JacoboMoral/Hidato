@@ -32,6 +32,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         initComponents();
     }
 
+
     public VistaCreateHidato(CtrlVista cv, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int altura, int amplada) {
         initComponents();
         this.cv = cv;

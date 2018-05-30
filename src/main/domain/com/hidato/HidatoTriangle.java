@@ -4,16 +4,11 @@ import java.util.Vector;
 
 public class HidatoTriangle extends Hidato {
 
-	public HidatoTriangle(int[][] matriu) {
-		super(TipusAdjacencia.COSTATS, matriu);
-		al = new Algorismes(this);
-		dificultat = al.obtenirDificultat();
-	}
-	
-	public HidatoTriangle() {
-		super(TipusAdjacencia.COSTATS);
-		al = new Algorismes(this);
-	}
+    public HidatoTriangle(int[][] matriu) {
+        super(TipusAdjacencia.COSTATS, matriu);
+        al = new Algorismes(this);
+        dificultat = al.obtenirDificultat();
+    }
 
 	public HidatoTriangle(int[][] matriuOriginal, int[][] matriuHidato, Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats) {
 		super(TipusAdjacencia.COSTATS, matriuHidato, matriuOriginal, nombresEscrits, nombresDonats);

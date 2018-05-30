@@ -5,7 +5,6 @@
  */
 package main.presentation;
 
-import CtrlUser.CtrlUser;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,9 +45,6 @@ public class VistaRegistrar extends javax.swing.JFrame {
         tf_password = new javax.swing.JPasswordField();
         tf_rpassword = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
         okRegistrar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,7 +61,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
         tf_username.setBackground(new java.awt.Color(36, 67, 65));
         tf_username.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         tf_username.setForeground(new java.awt.Color(255, 255, 255));
-        tf_username.setBorder(null);
+        tf_username.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tf_username.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         tf_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +94,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
         tf_password.setBackground(new java.awt.Color(36, 67, 65));
         tf_password.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         tf_password.setForeground(new java.awt.Color(255, 255, 255));
-        tf_password.setBorder(null);
+        tf_password.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tf_password.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         tf_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +105,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
         tf_rpassword.setBackground(new java.awt.Color(36, 67, 65));
         tf_rpassword.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         tf_rpassword.setForeground(new java.awt.Color(255, 255, 255));
-        tf_rpassword.setBorder(null);
+        tf_rpassword.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tf_rpassword.setDisabledTextColor(new java.awt.Color(204, 204, 204));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
@@ -150,11 +146,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tf_username, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jSeparator2)
-                                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_rpassword, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(tf_rpassword)
                                 .addGap(6, 6, 6))
                             .addComponent(tf_password, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -174,21 +166,15 @@ public class VistaRegistrar extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tf_rpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okRegistrar)
                     .addComponent(okRegistrar1))
@@ -212,9 +198,23 @@ public class VistaRegistrar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_usernameActionPerformed
+    private void okRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okRegistrar1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_usernameActionPerformed
+    }//GEN-LAST:event_okRegistrar1ActionPerformed
+
+    private void okRegistrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okRegistrar1MouseClicked
+        Inici v = new Inici();
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_okRegistrar1MouseClicked
+
+    private void tf_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_passwordActionPerformed
+
+    private void okRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okRegistrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_okRegistrarActionPerformed
 
     private void okRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okRegistrarMouseClicked
         String name, password, rPassword;
@@ -223,13 +223,13 @@ public class VistaRegistrar extends javax.swing.JFrame {
         rPassword = new String(tf_rpassword.getPassword());
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter your name please!");
-        } 
+        }
         else if (password.length() == 0) {
             JOptionPane.showMessageDialog(null, "Enter your password please!");
-        } 
+        }
         else if (rPassword.length() == 0) {
             JOptionPane.showMessageDialog(null, "Enter again your password please!");
-        } 
+        }
         else if (password.equals(rPassword) && !password.isEmpty() && !rPassword.isEmpty()) {
             boolean successful = false;
             try {
@@ -239,7 +239,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
             }
             if (successful) {
                 int input = JOptionPane.showOptionDialog(null, "Registration done!", "Message",
-                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
                     Inici v = new Inici();
@@ -254,7 +254,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
 
             } else {
                 int input = JOptionPane.showOptionDialog(null, "The user is already exists, please try it again!", "Error message",
-                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
                     tf_username.setText("");
@@ -263,36 +263,21 @@ public class VistaRegistrar extends javax.swing.JFrame {
                 }
 
             }
-        } 
+        }
         else {
             int input = JOptionPane.showOptionDialog(null, "The passwords not match! Correct it.", "Error message",
-                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
             if (input == JOptionPane.OK_OPTION) {
                 tf_rpassword.setText("");
             }
 
         }
-
     }//GEN-LAST:event_okRegistrarMouseClicked
 
-    private void okRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okRegistrarActionPerformed
+    private void tf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_usernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_okRegistrarActionPerformed
-
-    private void tf_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_passwordActionPerformed
-
-    private void okRegistrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okRegistrar1MouseClicked
-        Inici v = new Inici();
-        v.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_okRegistrar1MouseClicked
-
-    private void okRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okRegistrar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_okRegistrar1ActionPerformed
+    }//GEN-LAST:event_tf_usernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,10 +320,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JButton okRegistrar;
     private javax.swing.JButton okRegistrar1;
     private javax.swing.JPasswordField tf_password;

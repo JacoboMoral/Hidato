@@ -17,93 +17,108 @@ import main.domain.com.hidato.TipusCella;
 
 public class IOPartida {
 
-	private static Date dataIni;
-	private static int temps;
-	private static int status;
-	private static int puntuacio;
-	private static TipusCella tipusCella;
-	private static TipusAdjacencia tipusAdjacencia;
-	private static int[][] matriu;
-	private static int[][] matriuOriginal;
-	private static Vector<Integer> nombresDonats;
-	private static Vector<Integer> nombresEscrits;
-	
-	public static Date getDataIni() {
-		return dataIni;
-	}
-	
-	
-	public static int getTemps() {
-		return temps;
-	}
+    private static Date dataIni;
+    private static int temps;
+    private static int status;
+    private static int puntuacio;
+    private static TipusCella tipusCella;
+    private static TipusAdjacencia tipusAdjacencia;
+    private static int[][] matriu;
+    private static int[][] matriuOriginal;
+    private static Vector<Integer> nombresDonats;
+    private static Vector<Integer> nombresEscrits;
 
-	public static int getStatus() {
-		return status;
-	}
+    public static Date getDataIni() {
+        return dataIni;
+    }
 
-	public static int getPuntuacio() {
-		return puntuacio;
-	}
+    public static int getTemps() {
+        return temps;
+    }
 
-	public static TipusCella getTipusCella() {
-		return tipusCella;
-	}
+    public static int getStatus() {
+        return status;
+    }
 
-	public static TipusAdjacencia getTipusAdjcacencia() {
-		return tipusAdjacencia;
-	}
+    public static int getPuntuacio() {
+        return puntuacio;
+    }
 
-	public static int[][] getMatriu(){
-		return matriu;
-	}
+    public static TipusCella getTipusCella() {
+        return tipusCella;
+    }
 
-	public static int[][] getMatriuOriginal(){
-		return matriuOriginal;
-	}
+    public static TipusAdjacencia getTipusAdjcacencia() {
+        return tipusAdjacencia;
+    }
 
-	public static Vector<Integer> getNombresDonats(){
-		return nombresDonats;
-	}
+    public static int[][] getMatriu() {
+        return matriu;
+    }
 
-	public static Vector<Integer> getNombresEscrits(){
-		return nombresEscrits;
-	}
+    public static int[][] getMatriuOriginal() {
+        return matriuOriginal;
+    }
 
-	private static void writeHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato, PrintStream output) {
-		
-		String primeraLinea = "";
-		
-		if (tipusCella == TipusCella.QUADRAT) primeraLinea += "Q,";
-		else if(tipusCella == TipusCella.TRIANGLE) primeraLinea += "T,";
-		else primeraLinea += "H,";
-		
-		if (tipusAdjacencia == TipusAdjacencia.COSTATS) primeraLinea += "C,";
-		else primeraLinea += "CA,";
-		
-		primeraLinea += matriuHidato.length + "," + matriuHidato[0].length;
-		output.println(primeraLinea);
-		for (int i = 0; i < matriuHidato.length; ++i) {
-			for (int j = 0; j < matriuHidato[0].length; ++j) {
-				if (j < matriuHidato[0].length-1) {
-					if (matriuHidato[i][j] == -1)  output.print("*,");
-					else output.print(matriuHidato[i][j] + ",");
-				}
-				else {
-					if (matriuHidato[i][j] == -1)  output.println("*");
-					else if (matriuHidato[i][j] == -2) output.println("#");
-					else output.println(matriuHidato[i][j]);
-				}
-			}
-		}
-	}
-	
-	public static boolean hiHaPartida(String usuari) {
-		File arxiu = new File("DB/Usuaris/" + usuari + "/partida.txt");
-		if(arxiu.exists()) return true;
-		else return false;
-	}
+    public static Vector<Integer> getNombresDonats() {
+        return nombresDonats;
+    }
 
-	public static void guardarPartida(Date dataIni, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari){
+    public static Vector<Integer> getNombresEscrits() {
+        return nombresEscrits;
+    }
+
+    private static void writeHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato, PrintStream output) {
+
+        String primeraLinea = "";
+
+        if (tipusCella == TipusCella.QUADRAT) {
+            primeraLinea += "Q,";
+        } else if (tipusCella == TipusCella.TRIANGLE) {
+            primeraLinea += "T,";
+        } else {
+            primeraLinea += "H,";
+        }
+
+        if (tipusAdjacencia == TipusAdjacencia.COSTATS) {
+            primeraLinea += "C,";
+        } else {
+            primeraLinea += "CA,";
+        }
+
+        primeraLinea += matriuHidato.length + "," + matriuHidato[0].length;
+        output.println(primeraLinea);
+        for (int i = 0; i < matriuHidato.length; ++i) {
+            for (int j = 0; j < matriuHidato[0].length; ++j) {
+                if (j < matriuHidato[0].length - 1) {
+                    if (matriuHidato[i][j] == -1) {
+                        output.print("*,");
+                    } else {
+                        output.print(matriuHidato[i][j] + ",");
+                    }
+                } else {
+                    if (matriuHidato[i][j] == -1) {
+                        output.println("*");
+                    } else if (matriuHidato[i][j] == -2) {
+                        output.println("#");
+                    } else {
+                        output.println(matriuHidato[i][j]);
+                    }
+                }
+            }
+        }
+    }
+
+    public static boolean hiHaPartida(String usuari) {
+        File arxiu = new File("DB/Usuaris/" + usuari + "/partida.txt");
+        if (arxiu.exists()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void guardarPartida(Date dataIni, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari) {
 
         SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String date = DATE_FORMAT.format(dataIni);
@@ -223,6 +238,4 @@ public class IOPartida {
 		 if (ta.equals("CA")) return TipusAdjacencia.COSTATSIANGLES;
 		 return null;
 	}
-
-
 }

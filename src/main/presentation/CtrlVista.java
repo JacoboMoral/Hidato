@@ -1,26 +1,24 @@
 package main.presentation;
 
-import CtrlUser.CtrlUser;
-import CtrlRanking.CtrlRanking;
 import main.domain.com.hidato.Ranking;
 import main.domain.com.hidato.Usuari;
 import java.io.IOException;
 import java.time.LocalDate;
+import main.persistence.ControladorPersistencia;
 
 public class CtrlVista {
 
     private CtrlUser cu;
     private CtrlRanking cr;
-
+    private ControladorPersistencia cp;
+    
     public CtrlVista() {
         cu = new CtrlUser();
         cr = new CtrlRanking();
+        cp = new ControladorPersistencia();
     }
 
-    public Usuari getUsuari() {
-        return cu.getUser();
-    }
-    
+       
     public boolean altaUsuari(String usr, String pass) throws IOException {
         return cu.afegirUsuari(usr, pass);
     }
@@ -85,4 +83,7 @@ public class CtrlVista {
         return cr.existsDate(date);
     }
 
+    public String[] getHidatoList() {
+        return null;
+    }
 }

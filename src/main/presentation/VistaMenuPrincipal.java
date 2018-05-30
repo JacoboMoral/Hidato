@@ -12,13 +12,17 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import main.domain.com.hidato.Hidato;
+import main.domain.com.hidato.HidatoIO;
 
 /**
  *
  * @author admin
  */
 public class VistaMenuPrincipal extends javax.swing.JFrame {
+
     CtrlVista cv;
     ControladorPresentacio controller = ControladorPresentacio.getInstance();
     private static final int levelEasy = 1;
@@ -27,6 +31,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private boolean esAuto = false;
     private boolean esCustom = false;
     private int randomType = (int) (Math.random() * 3) + 1;
+    
+    
+    private ControladorMenuPrincipal cmp;
+    private static TipusCella tipusCella;
+    private static TipusAdjacencia tipusAdjacencia;
+    private static int[][] matriu;
 
     public VistaMenuPrincipal() {
         initComponents();
@@ -34,6 +44,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     public VistaMenuPrincipal(CtrlVista v) {
         initComponents();
+        cmp = new ControladorMenuPrincipal();
+        
         cv = v;
         l_username.setText(cv.getCurrentUsername());
         l_username1.setText(cv.getCurrentUsername());
@@ -45,7 +57,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         adjacencia.addItem("Costats i angles");
         adjacencia.setSelectedItem("Costat");
         tipologia.setSelectedItem("Hexagon");
-        
+
         levelsButtons.add(easyButton);
         levelsButtons.add(interButton);
         levelsButtons.add(hardButton);
@@ -58,7 +70,18 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         adjacenciaAuto.addItem("Costat i angles");
         adjacenciaAuto.setSelectedItem("Costat");
         tipologiaAuto.setSelectedItem("Hexagon");
-       
+        showHidatoList();
+
+    }
+
+    private void showHidatoList() {
+        DefaultListModel model = new DefaultListModel();
+        String[] fitxers = cmp.getAllHidatoNames();
+
+        for (int i = 0; i < fitxers.length; ++i) {
+            model.addElement(fitxers[i]);
+        }
+        hidatoList.setModel(model);
     }
 
     /**
@@ -104,14 +127,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         b_delete = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         b_signout = new javax.swing.JButton();
         typeCreatePanel = new javax.swing.JPanel();
         b_autogenerar = new javax.swing.JButton();
         b_custom = new javax.swing.JButton();
         b_back = new javax.swing.JButton();
-        b_custom1 = new javax.swing.JButton();
         createCustomPanel = new javax.swing.JPanel();
         tipologia = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -126,10 +146,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         b_Create = new javax.swing.JButton();
         importPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        hidatoList = new javax.swing.JList<>();
         jLabel20 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        viewHidato = new javax.swing.JButton();
+        selectedHidato = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -160,8 +180,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         b_save = new javax.swing.JButton();
         b_cancel = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
         previewHidatoPanel = new javax.swing.JPanel();
         saveGame = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -225,7 +243,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         menuPrincipalPanel.setBackground(new java.awt.Color(0, 153, 153));
 
-        b_play.setBackground(new java.awt.Color(204, 204, 204));
+        b_play.setBackground(new java.awt.Color(0, 204, 204));
         b_play.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_play.setText("Play");
         b_play.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -239,7 +257,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_create.setBackground(new java.awt.Color(204, 204, 204));
+        b_create.setBackground(new java.awt.Color(0, 204, 204));
         b_create.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_create.setText("Create Hidato");
         b_create.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -253,7 +271,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_ranking.setBackground(new java.awt.Color(204, 204, 204));
+        b_ranking.setBackground(new java.awt.Color(0, 204, 204));
         b_ranking.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_ranking.setText("Ranking");
         b_ranking.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -293,9 +311,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel13.setText("Old password");
 
+        t_oldpass.setBackground(new java.awt.Color(0, 153, 153));
         t_oldpass.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        t_oldpass.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        t_newpass.setBackground(new java.awt.Color(0, 153, 153));
         t_newpass.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        t_newpass.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel14.setText("New password");
@@ -303,8 +325,16 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel15.setText("Confirm new password");
 
+        t_rpass.setBackground(new java.awt.Color(0, 153, 153));
         t_rpass.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        t_rpass.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        t_rpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_rpassActionPerformed(evt);
+            }
+        });
 
+        b_cancel1.setBackground(new java.awt.Color(0, 204, 204));
         b_cancel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_cancel1.setText("Cancel");
         b_cancel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -313,6 +343,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        b_save1.setBackground(new java.awt.Color(0, 204, 204));
         b_save1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_save1.setText("Save");
         b_save1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -333,42 +364,40 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                         .addGap(108, 108, 108)
                         .addComponent(t_oldpass, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(editPasswordPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(102, 102, 102)
-                        .addComponent(t_newpass, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(editPasswordPanelLayout.createSequentialGroup()
                         .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(b_save1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15))
                         .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(editPasswordPanelLayout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(t_rpass, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(editPasswordPanelLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(b_cancel1)))))
+                                .addComponent(b_cancel1))
+                            .addGroup(editPasswordPanelLayout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(t_rpass, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editPasswordPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(102, 102, 102)
+                        .addComponent(t_newpass, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(175, 175, 175))
         );
         editPasswordPanelLayout.setVerticalGroup(
             editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editPasswordPanelLayout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addGroup(editPasswordPanelLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(t_oldpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
                     .addComponent(t_newpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(editPasswordPanelLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel15))
+                .addGap(21, 21, 21)
+                .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
                     .addComponent(t_rpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addGap(61, 61, 61)
                 .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_save1)
                     .addComponent(b_cancel1))
@@ -379,14 +408,17 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         deleteAccountPanel.setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel16.setText("Enter your password to delete your account!");
 
         jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel17.setText("Password:");
 
+        t_password.setBackground(new java.awt.Color(0, 153, 153));
         t_password.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        t_password.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jButton9.setBackground(new java.awt.Color(0, 204, 204));
         jButton9.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton9.setText("Delete account");
         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -395,6 +427,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton10.setBackground(new java.awt.Color(0, 204, 204));
         jButton10.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton10.setText("Cancel");
         jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -408,27 +441,30 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         deleteAccountPanelLayout.setHorizontalGroup(
             deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deleteAccountPanelLayout.createSequentialGroup()
-                .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel16)
-                    .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(deleteAccountPanelLayout.createSequentialGroup()
-                            .addGap(215, 215, 215)
-                            .addComponent(jButton9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton10))
-                        .addGroup(deleteAccountPanelLayout.createSequentialGroup()
-                            .addGap(196, 196, 196)
-                            .addComponent(jLabel17)
-                            .addGap(26, 26, 26)
-                            .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(237, 237, 237))
+                .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deleteAccountPanelLayout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(jLabel16))
+                    .addGroup(deleteAccountPanelLayout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(deleteAccountPanelLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jButton9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton10))
+                            .addGroup(deleteAccountPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addGap(26, 26, 26)
+                                .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(190, 190, 190))
         );
         deleteAccountPanelLayout.setVerticalGroup(
             deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deleteAccountPanelLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(64, 64, 64)
                 .addComponent(jLabel16)
-                .addGap(30, 30, 30)
+                .addGap(26, 26, 26)
                 .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(deleteAccountPanelLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -445,6 +481,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         profilePanel.setBackground(new java.awt.Color(0, 153, 153));
 
+        jButton8.setBackground(new java.awt.Color(0, 204, 204));
         jButton8.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton8.setText("BACK");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -460,9 +497,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel8.setText("Password");
 
         l_username1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        l_username1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         l_password.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        l_password.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        b_delete.setBackground(new java.awt.Color(0, 204, 204));
         b_delete.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_delete.setText("DELETE ACCOUNT");
         b_delete.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -490,6 +530,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        b_signout.setBackground(new java.awt.Color(0, 204, 204));
         b_signout.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_signout.setText("Sign out");
         b_signout.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -519,18 +560,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                             .addGroup(profilePanelLayout.createSequentialGroup()
                                 .addComponent(l_username1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(129, 129, 129))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(l_password, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))))
+                            .addComponent(l_password, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(profilePanelLayout.createSequentialGroup()
                         .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(b_signout, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(b_delete, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton8))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profilePanelLayout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(129, 129, 129)))
+                        .addComponent(jButton8)))
                 .addContainerGap(157, Short.MAX_VALUE))
             .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(profilePanelLayout.createSequentialGroup()
@@ -547,15 +583,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(l_username1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(53, 53, 53)
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(l_password, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
+                .addGap(92, 92, 92)
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton8)
                     .addComponent(b_delete))
@@ -575,6 +607,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         typeCreatePanel.setBackground(new java.awt.Color(0, 153, 153));
 
+        b_autogenerar.setBackground(new java.awt.Color(0, 204, 204));
         b_autogenerar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_autogenerar.setText("Autogenerar");
         b_autogenerar.addActionListener(new java.awt.event.ActionListener() {
@@ -583,6 +616,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        b_custom.setBackground(new java.awt.Color(0, 204, 204));
         b_custom.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_custom.setText("Custom ");
         b_custom.addActionListener(new java.awt.event.ActionListener() {
@@ -591,19 +625,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        b_back.setBackground(new java.awt.Color(0, 204, 204));
         b_back.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_back.setText("Back");
         b_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_backActionPerformed(evt);
-            }
-        });
-
-        b_custom1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        b_custom1.setText("Custom (Draw)");
-        b_custom1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_custom1ActionPerformed(evt);
             }
         });
 
@@ -619,8 +646,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGap(262, 262, 262)
                 .addGroup(typeCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(b_custom, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_autogenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_custom1))
+                    .addComponent(b_autogenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(275, Short.MAX_VALUE))
         );
         typeCreatePanelLayout.setVerticalGroup(
@@ -630,9 +656,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(b_autogenerar)
                 .addGap(18, 18, 18)
                 .addComponent(b_custom)
-                .addGap(18, 18, 18)
-                .addComponent(b_custom1)
-                .addGap(99, 99, 99)
+                .addGap(148, 148, 148)
                 .addComponent(b_back)
                 .addGap(19, 19, 19))
         );
@@ -641,6 +665,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         createCustomPanel.setBackground(new java.awt.Color(0, 153, 153));
 
+        tipologia.setBackground(new java.awt.Color(0, 153, 153));
         tipologia.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -649,6 +674,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setText("Adjacencia");
 
+        adjacencia.setBackground(new java.awt.Color(0, 153, 153));
         adjacencia.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -666,6 +692,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setText("Create your hidato:");
 
+        b_backTypeCreate.setBackground(new java.awt.Color(0, 204, 204));
         b_backTypeCreate.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_backTypeCreate.setText("Back");
         b_backTypeCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -674,6 +701,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        b_Create.setBackground(new java.awt.Color(0, 204, 204));
         b_Create.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_Create.setText("Create");
         b_Create.addActionListener(new java.awt.event.ActionListener() {
@@ -745,22 +773,32 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         importPanel.setBackground(new java.awt.Color(0, 153, 153));
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(hidatoList);
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel20.setText("Select a Hidato:");
 
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jButton1.setText("View Hidato");
+        viewHidato.setBackground(new java.awt.Color(0, 204, 204));
+        viewHidato.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        viewHidato.setText("View Hidato");
+        viewHidato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewHidatoActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        selectedHidato.setBackground(new java.awt.Color(0, 153, 153));
+        selectedHidato.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        selectedHidato.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel21.setText("Enter the name of the hidato:");
 
+        jButton6.setBackground(new java.awt.Color(0, 204, 204));
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton6.setText("Play");
 
+        jButton7.setBackground(new java.awt.Color(0, 204, 204));
         jButton7.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton7.setText("Back");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -778,10 +816,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(importPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectedHidato, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(importPanelLayout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(viewHidato)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10)
@@ -795,15 +833,15 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(selectedHidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addGroup(importPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewHidato))
                 .addGap(22, 22, 22))
         );
 
@@ -811,7 +849,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         seleccioPanel.setBackground(new java.awt.Color(0, 153, 153));
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setBackground(new java.awt.Color(0, 204, 204));
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton2.setText("Quick game");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -820,7 +858,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(204, 204, 204));
+        jButton3.setBackground(new java.awt.Color(0, 204, 204));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton3.setText("Import");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -829,7 +867,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(204, 204, 204));
+        jButton4.setBackground(new java.awt.Color(0, 204, 204));
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton4.setText("Resume");
         jButton4.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -847,6 +885,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        b_back_menu.setBackground(new java.awt.Color(0, 204, 204));
         b_back_menu.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_back_menu.setText("Back");
         b_back_menu.addActionListener(new java.awt.event.ActionListener() {
@@ -889,6 +928,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         quickLevelPanel.setBackground(new java.awt.Color(0, 153, 153));
 
+        quickEasy.setBackground(new java.awt.Color(0, 204, 204));
         quickEasy.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         quickEasy.setText("Easy");
         quickEasy.addActionListener(new java.awt.event.ActionListener() {
@@ -897,6 +937,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        quickInter.setBackground(new java.awt.Color(0, 204, 204));
         quickInter.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         quickInter.setText("Intermediate");
         quickInter.addActionListener(new java.awt.event.ActionListener() {
@@ -905,6 +946,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        quickHard.setBackground(new java.awt.Color(0, 204, 204));
         quickHard.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         quickHard.setText("Hard");
         quickHard.addActionListener(new java.awt.event.ActionListener() {
@@ -913,6 +955,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        b_back_menu1.setBackground(new java.awt.Color(0, 204, 204));
         b_back_menu1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_back_menu1.setText("Back");
         b_back_menu1.addActionListener(new java.awt.event.ActionListener() {
@@ -940,13 +983,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         quickLevelPanelLayout.setVerticalGroup(
             quickLevelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(quickLevelPanelLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(127, 127, 127)
                 .addComponent(quickEasy)
-                .addGap(55, 55, 55)
+                .addGap(18, 18, 18)
                 .addComponent(quickInter)
-                .addGap(70, 70, 70)
+                .addGap(18, 18, 18)
                 .addComponent(quickHard)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(b_back_menu1)
                 .addGap(35, 35, 35))
         );
@@ -955,6 +998,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         createAutoPanel.setBackground(new java.awt.Color(0, 153, 153));
 
+        b_backTypeCreate1.setBackground(new java.awt.Color(0, 204, 204));
         b_backTypeCreate1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_backTypeCreate1.setText("Back");
         b_backTypeCreate1.addActionListener(new java.awt.event.ActionListener() {
@@ -963,6 +1007,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        tipologiaCheckBox.setBackground(new java.awt.Color(0, 153, 153));
         tipologiaCheckBox.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         tipologiaCheckBox.setText("Tipologia (Optional)");
         tipologiaCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -971,6 +1016,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        adjacenciaCheckBox.setBackground(new java.awt.Color(0, 153, 153));
         adjacenciaCheckBox.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         adjacenciaCheckBox.setText("Adjacencia (Optional)");
         adjacenciaCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -979,19 +1025,25 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        adjacenciaAuto.setBackground(new java.awt.Color(0, 153, 153));
         adjacenciaAuto.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
 
+        tipologiaAuto.setBackground(new java.awt.Color(0, 153, 153));
         tipologiaAuto.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
 
+        interButton.setBackground(new java.awt.Color(0, 153, 153));
         interButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         interButton.setText("Intermediate");
 
+        hardButton.setBackground(new java.awt.Color(0, 153, 153));
         hardButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         hardButton.setText("Hard");
 
+        easyButton.setBackground(new java.awt.Color(0, 153, 153));
         easyButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         easyButton.setText("Easy");
 
+        b_generate.setBackground(new java.awt.Color(0, 204, 204));
         b_generate.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_generate.setText("Generate");
         b_generate.addActionListener(new java.awt.event.ActionListener() {
@@ -1056,20 +1108,21 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         editUsernamePanel.setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel11.setText("Old username");
 
         jTextField1.setBackground(new java.awt.Color(0, 153, 153));
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField1.setBorder(null);
+        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jTextField2.setBackground(new java.awt.Color(0, 153, 153));
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField2.setBorder(null);
+        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel12.setText("New username");
 
+        b_save.setBackground(new java.awt.Color(0, 204, 204));
         b_save.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_save.setText("Save");
         b_save.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1083,6 +1136,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        b_cancel.setBackground(new java.awt.Color(0, 204, 204));
         b_cancel.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_cancel.setText("Cancel");
         b_cancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1095,29 +1149,19 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         editUsernamePanel.setLayout(editUsernamePanelLayout);
         editUsernamePanelLayout.setHorizontalGroup(
             editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editUsernamePanelLayout.createSequentialGroup()
-                .addContainerGap(171, Short.MAX_VALUE)
-                .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11))
+            .addGroup(editUsernamePanelLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(b_save)
+                    .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel12)
+                        .addComponent(jLabel11)))
                 .addGap(58, 58, 58)
                 .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(editUsernamePanelLayout.createSequentialGroup()
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editUsernamePanelLayout.createSequentialGroup()
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(222, 222, 222)))))
-            .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(editUsernamePanelLayout.createSequentialGroup()
-                    .addGap(266, 266, 266)
-                    .addComponent(b_save)
-                    .addGap(46, 46, 46)
-                    .addComponent(b_cancel)
-                    .addContainerGap(214, Short.MAX_VALUE)))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_cancel))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         editUsernamePanelLayout.setVerticalGroup(
             editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1126,22 +1170,15 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
-            .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(editUsernamePanelLayout.createSequentialGroup()
-                    .addGap(278, 278, 278)
-                    .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(b_save)
-                        .addComponent(b_cancel))
-                    .addContainerGap(81, Short.MAX_VALUE)))
+                .addGap(73, 73, 73)
+                .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(b_save)
+                    .addComponent(b_cancel))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         parentPanel.add(editUsernamePanel, "card8");
@@ -1284,46 +1321,14 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.revalidate();
     }//GEN-LAST:event_b_backTypeCreate1ActionPerformed
 
-    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-        parentPanel.removeAll();
-        parentPanel.add(menuPrincipalPanel);
-        parentPanel.repaint();
-        parentPanel.revalidate();
-    }//GEN-LAST:event_jButton8MouseClicked
-
-    private void b_deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_deleteMouseClicked
-        parentPanel.removeAll();
-        parentPanel.add(deleteAccountPanel);
-        parentPanel.repaint();
-        parentPanel.revalidate();
-    }//GEN-LAST:event_b_deleteMouseClicked
-
-    private void b_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_deleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_deleteActionPerformed
-
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        parentPanel.removeAll();
-        parentPanel.add(editPasswordPanel);
-        parentPanel.repaint();
-        parentPanel.revalidate();
-    }//GEN-LAST:event_jLabel9MouseClicked
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        parentPanel.removeAll();
-        parentPanel.add(editUsernamePanel);
-        parentPanel.repaint();
-        parentPanel.revalidate();
-    }//GEN-LAST:event_jLabel10MouseClicked
-
     private void b_saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_saveMouseClicked
         String oldname = jTextField1.getText();
         String newname = jTextField2.getText();
-        if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty())
-        JOptionPane.showMessageDialog(null, "Enter your name");
-        else {
+        if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter your name");
+        } else {
             boolean successful = cv.editUsr(oldname, newname);
-            if (successful){
+            if (successful) {
                 JOptionPane.showMessageDialog(null, "Your username has changed correctly");
                 l_username.setText(cv.getCurrentUsername());
                 l_username1.setText(cv.getCurrentUsername());
@@ -1331,10 +1336,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 parentPanel.add(profilePanel);
                 parentPanel.repaint();
                 parentPanel.revalidate();
-            }
-            else {
+            } else {
                 int input = JOptionPane.showOptionDialog(null, "Old username is not correct or the username not exisits in the DB", "Error message",
-                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
                     jTextField2.setText("");
@@ -1361,45 +1365,47 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         String oldPassword = new String(t_oldpass.getPassword());
         String newPassword = new String(t_newpass.getPassword());
         String rnewPassword = new String(t_rpass.getPassword());
-        if (oldPassword.length() == 0 || newPassword.length() == 0 || rnewPassword.length() == 0) 
+        if (oldPassword.length() == 0 || newPassword.length() == 0 || rnewPassword.length() == 0) {
             JOptionPane.showMessageDialog(null, "Enter your password please!");
-        else {
+        } else {
             if (!newPassword.equals(rnewPassword)) {
                 int input = JOptionPane.showOptionDialog(null, "Password not equals, try it again!", "Error message",
-                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
                     t_rpass.setText("");
                 }
-            }
-            else {
+            } else {
                 boolean successful = false;
                 try {
                     successful = cv.changePass(oldPassword, rnewPassword);
                 } catch (IOException ex) {
                     Logger.getLogger(VistaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                if (successful){
+                if (successful) {
                     JOptionPane.showMessageDialog(null, "Your password has changed correctly!");
                     l_password.setText(cv.getCurrentPassword());
                     parentPanel.removeAll();
                     parentPanel.add(profilePanel);
                     parentPanel.repaint();
                     parentPanel.revalidate();
-                    
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Your password hasn't changed correctly");
                 }
-                else JOptionPane.showMessageDialog(null, "Your password hasn't changed correctly");
             }
         }
     }//GEN-LAST:event_b_save1MouseClicked
 
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
         String pass1 = new String(t_password.getPassword());
-        if (pass1.length() == 0) JOptionPane.showMessageDialog(null, "Enter your password please");
-        else {
+        if (pass1.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Enter your password please");
+        } else {
             boolean ok = cv.deleteUser(pass1);
-            if (!ok) JOptionPane.showMessageDialog(null, "Wrong password!");
-            else {
+            if (!ok) {
+                JOptionPane.showMessageDialog(null, "Wrong password!");
+            } else {
                 JOptionPane.showMessageDialog(null, "Account deleted");
                 Inici v = new Inici();
                 v.setVisible(true);
@@ -1417,7 +1423,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private void quickEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickEasyActionPerformed
         randomType = (int) (Math.random() * 3) + 1;
-        System.out.println("HOLAAAAAAAAAAAAAAAAa" + " "  + randomType);
         VistaPartida v = new VistaPartida(cv, levelEasy, randomType, cv.getCurrentUsername());
         v.setVisible(true);
         this.dispose();
@@ -1446,7 +1451,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private void b_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_CreateActionPerformed
         esCustom = true;
-       
         TipusCella tipusCella = stringToTipusCella((String)tipologia.getSelectedItem());
         TipusAdjacencia tipusAdjacencia = stringToTipusAdjacencia((String)adjacencia.getSelectedItem());
         int alturaHidato = (int) altura.getValue();
@@ -1485,31 +1489,20 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_b_generateActionPerformed
 
     private void adjacenciaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjacenciaCheckBoxActionPerformed
-        if (adjacenciaCheckBox.isSelected()) adjacenciaAuto.setEnabled(true);
-        else adjacenciaAuto.setEnabled(false);
+        if (adjacenciaCheckBox.isSelected()) {
+            adjacenciaAuto.setEnabled(true);
+        } else {
+            adjacenciaAuto.setEnabled(false);
+        }
     }//GEN-LAST:event_adjacenciaCheckBoxActionPerformed
 
     private void tipologiaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipologiaCheckBoxActionPerformed
-        if (tipologiaCheckBox.isSelected()) tipologiaAuto.setEnabled(true);
-        else tipologiaAuto.setEnabled(false);
-    }//GEN-LAST:event_tipologiaCheckBoxActionPerformed
-
-    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
-        if (esAuto) { 
-            esAuto = false;
-            parentPanel.removeAll();
-            parentPanel.add(createAutoPanel);
-            parentPanel.repaint();
-            parentPanel.revalidate();
+        if (tipologiaCheckBox.isSelected()) {
+            tipologiaAuto.setEnabled(true);
+        } else {
+            tipologiaAuto.setEnabled(false);
         }
-        if (esCustom) {
-            esCustom = false;
-            parentPanel.removeAll();
-            parentPanel.add(createCustomPanel);
-            parentPanel.repaint();
-            parentPanel.revalidate();
-        }        
-    }//GEN-LAST:event_jLabel19MouseClicked
+    }//GEN-LAST:event_tipologiaCheckBoxActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         parentPanel.removeAll();
@@ -1542,15 +1535,68 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4AncestorAdded
 
+    private void t_rpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_rpassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_rpassActionPerformed
+
+    private void b_signoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_signoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_signoutActionPerformed
+
     private void b_signoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_signoutMouseClicked
         Inici v = new Inici();
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_b_signoutMouseClicked
 
-    private void b_signoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_signoutActionPerformed
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        parentPanel.removeAll();
+        parentPanel.add(editUsernamePanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        parentPanel.removeAll();
+        parentPanel.add(editPasswordPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void b_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_deleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_b_signoutActionPerformed
+    }//GEN-LAST:event_b_deleteActionPerformed
+
+    private void b_deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_deleteMouseClicked
+        parentPanel.removeAll();
+        parentPanel.add(deleteAccountPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_b_deleteMouseClicked
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        parentPanel.removeAll();
+        parentPanel.add(menuPrincipalPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+        if (esAuto) {
+            esAuto = false;
+            parentPanel.removeAll();
+            parentPanel.add(createAutoPanel);
+            parentPanel.repaint();
+            parentPanel.revalidate();
+        }
+        if (esCustom) {
+            esCustom = false;
+            parentPanel.removeAll();
+            parentPanel.add(createCustomPanel);
+            parentPanel.repaint();
+            parentPanel.revalidate();
+        }
+    }//GEN-LAST:event_jLabel19MouseClicked
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         parentPanel.removeAll();
@@ -1558,6 +1604,30 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.repaint();
         parentPanel.revalidate();
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void viewHidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewHidatoActionPerformed
+        String nomHidato = selectedHidato.getText();
+        System.out.println("Estic llegint: " + nomHidato);
+        try {
+            tipusCella = cmp.getTipusCellaHidatoSeleccionat(nomHidato);
+        } catch (Exception ex) {
+            Logger.getLogger(VistaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            tipusAdjacencia = cmp.getTipusAdjacenciaHidatoSeleccionat(nomHidato);
+        } catch (Exception ex) {
+            Logger.getLogger(VistaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            matriu = cmp.getMatriuHidatoSeleccionat(nomHidato);
+        } catch (Exception ex) {
+            Logger.getLogger(VistaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.out.println(tipusCella);
+        System.out.println(tipusAdjacencia);
+        HidatoIO.writeHidatoMatrixToOutput(matriu);
+    }//GEN-LAST:event_viewHidatoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1611,7 +1681,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton b_cancel1;
     private javax.swing.JButton b_create;
     private javax.swing.JButton b_custom;
-    private javax.swing.JButton b_custom1;
     private javax.swing.JButton b_delete;
     private javax.swing.JButton b_generate;
     private javax.swing.JButton b_play;
@@ -1627,9 +1696,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel editPasswordPanel;
     private javax.swing.JPanel editUsernamePanel;
     private javax.swing.JRadioButton hardButton;
+    private javax.swing.JList<String> hidatoList;
     private javax.swing.JPanel importPanel;
     private javax.swing.JRadioButton interButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1659,15 +1728,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel l_password;
     private javax.swing.JLabel l_username;
     private javax.swing.JLabel l_username1;
@@ -1683,6 +1746,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel saveGame;
     private javax.swing.JLabel saveGame1;
     private javax.swing.JPanel seleccioPanel;
+    private javax.swing.JTextField selectedHidato;
     private javax.swing.JPasswordField t_newpass;
     private javax.swing.JPasswordField t_oldpass;
     private javax.swing.JPasswordField t_password;
@@ -1692,5 +1756,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox tipologiaCheckBox;
     private javax.swing.JPanel topBarPanel;
     private javax.swing.JPanel typeCreatePanel;
+    private javax.swing.JButton viewHidato;
     // End of variables declaration//GEN-END:variables
 }

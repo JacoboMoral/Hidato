@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.HidatoIO;
+import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
@@ -28,9 +29,12 @@ public class ControladorPresentacio {
     private static final ControladorPartida controladorPartida = ControladorPartida.getInstance();
     private VistaPartida v;
     
+    static JPanel panelPartida; //JPanel vs PanelPartida??? hi ha cap diferencia?'
+
+
     private ControladorPresentacio() {
     }
-    
+
     public static ControladorPresentacio getInstance() {
         if (instance == null) instance = new ControladorPresentacio(); 
     	return instance;
@@ -97,10 +101,39 @@ public class ControladorPresentacio {
 		int input = JOptionPane.showOptionDialog(null, "Ja hi ha una partida guardada. La vols sobreescriure?", "Ja hi ha una partida guardada",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
-            if (input == JOptionPane.OK_OPTION) {
-                return true;          
-            } else return false;
-	}
+        if (input == JOptionPane.OK_OPTION) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void partidaGuardada() {
+
+        JOptionPane.showMessageDialog(null, "La seva partida s'ha guardat correctament");
+
+    }
+
+    public String[] getHidatos() {
+        return null;
+        //return domini.getHidatos();
+    }
+
+    public int[][] getMatriu(String nomHidato) throws Exception {
+        return domini.getMatiu(nomHidato);
+    }
+
+    public TipusAdjacencia getTipusAdjacencia(String nomHidato) throws Exception {
+        return domini.getTipusAdjacencia(nomHidato);
+    }
+
+    public TipusCella getTipusCella(String nomHidato) throws Exception {
+        return domini.getTipusCella(nomHidato);
+    }
+
+    public String[] getAllHidatoNames() {
+        return domini.getAllHidatoNames();
+    }
 
 	public void mostraPartidaGuardada() {
 		

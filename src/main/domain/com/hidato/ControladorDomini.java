@@ -166,37 +166,70 @@ public class ControladorDomini {
 		return partidaEnCurs.completatHidato();
 	}
 
+
     public void demanarPista() {
     }
 
-    public boolean esPotSolucionar(){
+    public boolean esPotSolucionar() {
         return partidaEnCurs.esSolucionable();
     }
 
-	private TipusCella getRandomTipusCella() {
-		Random random = new Random();
-		int tc = random.nextInt(3);
-		if (tc == 0) return TipusCella.QUADRAT;
-		if (tc == 1) return TipusCella.TRIANGLE;
-		return TipusCella.HEXAGON;
-	}
+    private TipusCella getRandomTipusCella() {
+        Random random = new Random();
+        int tc = random.nextInt(3);
+        if (tc == 0) {
+            return TipusCella.QUADRAT;
+        }
+        if (tc == 1) {
+            return TipusCella.TRIANGLE;
+        }
+        return TipusCella.HEXAGON;
+    }
 
-	private TipusAdjacencia getRandomTipusAdjacencia() {
-		Random random = new Random();
-		int ta = random.nextInt(2);
-		if (ta == 0) return TipusAdjacencia.COSTATS;
-		return TipusAdjacencia.COSTATSIANGLES;
-	}
+    private TipusAdjacencia getRandomTipusAdjacencia() {
+        Random random = new Random();
+        int ta = random.nextInt(2);
+        if (ta == 0) {
+            return TipusAdjacencia.COSTATS;
+        }
+        return TipusAdjacencia.COSTATSIANGLES;
+    }
 
-	public void finalitzarPartida() {
-		//presentacio.finalitzarPartida();
+    public void finalitzarPartida() {
+        //presentacio.finalitzarPartida();
 
-		//guardar en la base de dades la partida en la carpeta: user/partides/finalitzades/idPartida
-	}
+        //guardar en la base de dades la partida en la carpeta: user/partides/finalitzades/idPartida
+    }
 
-	public void resetMatriuEnPartida() {
-		if (partidaEnCurs != null) partidaEnCurs.reset();
-	}
+    public void resetMatriuEnPartida() {
+        if (partidaEnCurs != null) {
+            partidaEnCurs.reset();
+        }
+    }
+
+    public String[] getHidatos() throws Exception {
+        controladorPersistence.carregarHidatoFitxer("hidato1");
+        int[][] matriu = controladorPersistence.getMatriuHidato();
+        
+        
+        
+        return null;
+    }
+
+    public int[][] getMatiu(String nomHidato) throws Exception {
+        controladorPersistence.carregarHidatoImportat(nomHidato);
+        return controladorPersistence.getMatriuHidato();
+    }
+
+    public TipusAdjacencia getTipusAdjacencia(String nomHidato) throws Exception {
+        controladorPersistence.carregarHidatoImportat(nomHidato);
+        return controladorPersistence.getTipusAdjacenciaHidato();
+    }
+
+    public TipusCella getTipusCella(String nomHidato) throws Exception {
+        controladorPersistence.carregarHidatoImportat(nomHidato);
+        return controladorPersistence.getTipusCellaHidato();
+    }
 
 	public boolean hiHaPartidaGuardada() {
 		return controladorPersistencia.hiHaPartida("aaa");
@@ -241,4 +274,7 @@ public class ControladorDomini {
 		
 	}
 
+    public String[] getAllHidatoNames() {
+        return controladorPersistence.getAllHidatoFileNames();
+    }
 }

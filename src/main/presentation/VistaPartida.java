@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
  * @author admin
  */
 public class VistaPartida extends javax.swing.JFrame {
+
     CtrlVista cv;
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
@@ -26,6 +27,7 @@ public class VistaPartida extends javax.swing.JFrame {
     ControladorPartida partida = ControladorPartida.getInstance();
     private String currentUsername;
     private String seguentMoviment = " ";
+
     /**
      * Creates new form NewJFrame
      */
@@ -43,23 +45,36 @@ public class VistaPartida extends javax.swing.JFrame {
                 System.out.println("estoy en hexagon");
                 hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
             }
-            if (type == 2) hidatoPanel = partida.partidaAutogenerada(TipusCella.TRIANGLE, Dificultat.FACIL);
-            else hidatoPanel = partida.partidaAutogenerada(TipusCella.QUADRAT, Dificultat.FACIL);
+            if (type == 2) {
+                hidatoPanel = partida.partidaAutogenerada(TipusCella.TRIANGLE, Dificultat.FACIL);
+            } else {
+                hidatoPanel = partida.partidaAutogenerada(TipusCella.QUADRAT, Dificultat.FACIL);
+            }
         }
         if (level == levelInter) {
-            if (type == 1) hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
-            if (type == 2) hidatoPanel = partida.partidaAutogenerada(TipusCella.TRIANGLE, Dificultat.MIG);
-            else hidatoPanel = partida.partidaAutogenerada(TipusCella.QUADRAT, Dificultat.MIG);
+            if (type == 1) {
+                hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.MIG);
+            }
+            if (type == 2) {
+                hidatoPanel = partida.partidaAutogenerada(TipusCella.TRIANGLE, Dificultat.MIG);
+            } else {
+                hidatoPanel = partida.partidaAutogenerada(TipusCella.QUADRAT, Dificultat.MIG);
+            }
         }
         if (level == levelHard) {
-            if (type == 1) hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
-            if (type == 2) hidatoPanel = partida.partidaAutogenerada(TipusCella.TRIANGLE, Dificultat.DIFICIL);
-            else hidatoPanel = partida.partidaAutogenerada(TipusCella.QUADRAT, Dificultat.DIFICIL);
+            if (type == 1) {
+                hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.DIFICIL);
+            }
+            if (type == 2) {
+                hidatoPanel = partida.partidaAutogenerada(TipusCella.TRIANGLE, Dificultat.DIFICIL);
+            } else {
+                hidatoPanel = partida.partidaAutogenerada(TipusCella.QUADRAT, Dificultat.DIFICIL);
+            }
         }
         this.add(hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
         jLabel1.setText(seguentMoviment);
-
+        
         this.validate();
     }
     
@@ -75,7 +90,6 @@ public class VistaPartida extends javax.swing.JFrame {
         this.validate();
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -234,7 +248,7 @@ public class VistaPartida extends javax.swing.JFrame {
     private String getCurrentUsername() {
         return currentUsername;
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -274,7 +288,7 @@ public class VistaPartida extends javax.swing.JFrame {
     private void saveGameMouseClicked(MouseEvent evt) {  	
     	partida.guardarPartida();
 	}
-    
+   
     public void incrementarSeguentMoviment() {
         int seguentMov = partida.incrementarSeguentMoviment();
         if (seguentMov != -1) {
