@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
+import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.Posicio;
 import main.domain.com.hidato.Ranking;
@@ -36,29 +37,29 @@ public class ControladorPersistencia {
     }
 
     public void importarHidato(int[][] matriuHidato, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, String nomHidato) throws IOException {
-    	IOHidato.importarHidatoCreat(matriuHidato, tipusCella, tipusAdjacencia, nomHidato);
+        IOHidato.importarHidatoCreat(matriuHidato, tipusCella, tipusAdjacencia, nomHidato);
     }
 
-	public void carregarHidatoFitxer(String file) throws Exception {
-		IOHidato.carregarHidatoFitxer(file);
-	}
-	
-	public void carregarHidatoImportat(String nomHidato) throws Exception {
-		IOHidato.carregarHidatoImportat(nomHidato);
-	}
-	
-	public int[][] getMatriuHidato(){
-		return IOHidato.getMatriu();
-	}
-	
-	public TipusCella getTipusCellaHidato() {
-		return IOHidato.getTipusCella();
-	}
-	
-	public TipusAdjacencia getTipusAdjacenciaHidato() {
-		return IOHidato.getTipusAdjacencia();
-	}
-	
+    public void carregarHidatoFitxer(String file) throws Exception {
+        IOHidato.carregarHidatoFitxer(file);
+    }
+
+    public void carregarHidatoImportat(String nomHidato) throws Exception {
+        IOHidato.carregarHidatoImportat(nomHidato);
+    }
+
+    public int[][] getMatriuHidato() {
+        return IOHidato.getMatriu();
+    }
+
+    public TipusCella getTipusCellaHidato() {
+        return IOHidato.getTipusCella();
+    }
+
+    public TipusAdjacencia getTipusAdjacenciaHidato() {
+        return IOHidato.getTipusAdjacencia();
+    }
+
     public void guardarPartida(Date dataIni, int temps, int status, int puntuacio, TipusCella cella, TipusAdjacencia tipusAdj, int[][] matriu, int[][] matriuOriginal, Vector<Integer> nombresDonats, Vector<Integer> nombresEscrits, String nomUsuari) {
         IOPartida.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
     }
@@ -143,4 +144,9 @@ public class ControladorPersistencia {
     public String[] getHidatos() {
         return null;
     }
+
+    public String[] getAllHidatoFileNames() {
+        return IOHidato.getAllHidatoFileNames();
+    }
+
 }

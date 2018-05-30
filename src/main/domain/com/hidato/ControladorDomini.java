@@ -228,4 +228,22 @@ public class ControladorDomini {
         return null;
     }
 
+    public int[][] getMatiu(String nomHidato) throws Exception {
+        controladorPersistence.carregarHidatoImportat(nomHidato);
+        return controladorPersistence.getMatriuHidato();
+    }
+
+    public TipusAdjacencia getTipusAdjacencia(String nomHidato) throws Exception {
+        controladorPersistence.carregarHidatoImportat(nomHidato);
+        return controladorPersistence.getTipusAdjacenciaHidato();
+    }
+
+    public TipusCella getTipusCella(String nomHidato) throws Exception {
+        controladorPersistence.carregarHidatoImportat(nomHidato);
+        return controladorPersistence.getTipusCellaHidato();
+    }
+
+    public String[] getAllHidatoNames() {
+        return controladorPersistence.getAllHidatoFileNames();
+    }
 }

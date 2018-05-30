@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
+import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
@@ -112,5 +113,22 @@ public class ControladorPresentacio {
         return null;
         //return domini.getHidatos();
     }
+
+    public int[][] getMatriu(String nomHidato) throws Exception {
+        return domini.getMatiu(nomHidato);
+    }
+
+    public TipusAdjacencia getTipusAdjacencia(String nomHidato) throws Exception {
+        return domini.getTipusAdjacencia(nomHidato);
+    }
+
+    public TipusCella getTipusCella(String nomHidato) throws Exception {
+        return domini.getTipusCella(nomHidato);
+    }
+
+    public String[] getAllHidatoNames() {
+        return domini.getAllHidatoNames();
+    }
+
 
 }

@@ -13,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import main.domain.com.hidato.Hidato;
+import main.domain.com.hidato.HidatoIO;
 
 /**
  *
@@ -27,7 +29,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private boolean esAuto = false;
     private boolean esCustom = false;
     private int randomType = (int) (Math.random() * 3) + 1;
+    
+    
     private ControladorMenuPrincipal cmp;
+    private static TipusCella tipusCella;
+    private static TipusAdjacencia tipusAdjacencia;
+    private static int[][] matriu;
 
     public VistaMenuPrincipal() {
         initComponents();
@@ -67,14 +74,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private void showHidatoList() {
         DefaultListModel model = new DefaultListModel();
-        model.addElement("Hidato1");
-        /*String[] rankEasy = cmp.getHidatosGuardats();
-        
-        for (int i = 0; i < rankEasy.length; ++i) {
-            model.addElement(rankEasy[i]);
-        }*/
+        String[] fitxers = cmp.getAllHidatoNames();
 
-
+        for (int i = 0; i < fitxers.length; ++i) {
+            model.addElement(fitxers[i]);
+        }
         hidatoList.setModel(model);
     }
 
@@ -142,8 +146,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         hidatoList = new javax.swing.JList<>();
         jLabel20 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        viewHidato = new javax.swing.JButton();
+        selectedHidato = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -772,13 +776,18 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel20.setText("Select a Hidato:");
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 204));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jButton1.setText("View Hidato");
+        viewHidato.setBackground(new java.awt.Color(0, 204, 204));
+        viewHidato.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        viewHidato.setText("View Hidato");
+        viewHidato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewHidatoActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setBackground(new java.awt.Color(0, 153, 153));
-        jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jTextField3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        selectedHidato.setBackground(new java.awt.Color(0, 153, 153));
+        selectedHidato.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        selectedHidato.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel21.setText("Enter the name of the hidato:");
@@ -805,10 +814,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(importPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectedHidato, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(importPanelLayout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(viewHidato)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10)
@@ -825,12 +834,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectedHidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addGroup(importPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(viewHidato))
                 .addGap(22, 22, 22))
         );
 
@@ -1412,7 +1421,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private void quickEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickEasyActionPerformed
         randomType = (int) (Math.random() * 3) + 1;
-        System.out.println("HOLAAAAAAAAAAAAAAAAa" + " " + randomType);
         VistaPartida v = new VistaPartida(cv, levelEasy, randomType, cv.getCurrentUsername());
         v.setVisible(true);
         this.dispose();
@@ -1597,6 +1605,30 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.revalidate();
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    private void viewHidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewHidatoActionPerformed
+        String nomHidato = selectedHidato.getText();
+        System.out.println("Estic llegint: " + nomHidato);
+        try {
+            tipusCella = cmp.getTipusCellaHidatoSeleccionat(nomHidato);
+        } catch (Exception ex) {
+            Logger.getLogger(VistaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            tipusAdjacencia = cmp.getTipusAdjacenciaHidatoSeleccionat(nomHidato);
+        } catch (Exception ex) {
+            Logger.getLogger(VistaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            matriu = cmp.getMatriuHidatoSeleccionat(nomHidato);
+        } catch (Exception ex) {
+            Logger.getLogger(VistaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.out.println(tipusCella);
+        System.out.println(tipusAdjacencia);
+        HidatoIO.writeHidatoMatrixToOutput(matriu);
+    }//GEN-LAST:event_viewHidatoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1667,7 +1699,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JList<String> hidatoList;
     private javax.swing.JPanel importPanel;
     private javax.swing.JRadioButton interButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1700,7 +1731,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel l_password;
     private javax.swing.JLabel l_username;
     private javax.swing.JLabel l_username1;
@@ -1716,6 +1746,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel saveGame;
     private javax.swing.JLabel saveGame1;
     private javax.swing.JPanel seleccioPanel;
+    private javax.swing.JTextField selectedHidato;
     private javax.swing.JPasswordField t_newpass;
     private javax.swing.JPasswordField t_oldpass;
     private javax.swing.JPasswordField t_password;
@@ -1725,5 +1756,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox tipologiaCheckBox;
     private javax.swing.JPanel topBarPanel;
     private javax.swing.JPanel typeCreatePanel;
+    private javax.swing.JButton viewHidato;
     // End of variables declaration//GEN-END:variables
 }

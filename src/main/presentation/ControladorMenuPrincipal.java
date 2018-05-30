@@ -5,6 +5,10 @@
  */
 package main.presentation;
 
+import main.domain.com.hidato.Hidato;
+import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.TipusCella;
+
 /**
  *
  * @author admin
@@ -26,5 +30,22 @@ public class ControladorMenuPrincipal {
     public String[] getHidatosGuardats() {
         return controller.getHidatos();
     }
+
+    public int[][] getMatriuHidatoSeleccionat(String nomHidato) throws Exception {
+        return controller.getMatriu(nomHidato);
+    }
+
+    public TipusAdjacencia getTipusAdjacenciaHidatoSeleccionat(String nomHidato) throws Exception {
+        return controller.getTipusAdjacencia(nomHidato);
+    }
+
+    public TipusCella getTipusCellaHidatoSeleccionat(String nomHidato) throws Exception {
+        return controller.getTipusCella(nomHidato);
+    }
+
+    public String[] getAllHidatoNames() {
+        return controller.getAllHidatoNames();
+    }
+    
     
 }
