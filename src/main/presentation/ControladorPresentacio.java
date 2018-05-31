@@ -249,9 +249,13 @@ public class ControladorPresentacio {
 	public void importarHidatotxt(String ruta) throws Exception {
 		if (domini.comprovarHidatotxt(ruta)) {
 			JOptionPane.showMessageDialog(null, "Format correcte");
-			String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
-			domini.guardarHidatotxt(hidatoName);
-			JOptionPane.showMessageDialog(null, "Hidato guardat amb el nom: " + hidatoName);
+			if(domini.comprovarHidatotxtResoluble()) {
+				String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
+				domini.guardarHidatotxt(hidatoName);
+				JOptionPane.showMessageDialog(null, "Hidato guardat amb el nom: " + hidatoName);				
+			}
+			else JOptionPane.showMessageDialog(null, "Hidato proposat no es resoluble");
+			
 		} else JOptionPane.showMessageDialog(null, "Format no vàlid");
 	}
 

@@ -398,5 +398,8 @@ public class ControladorDomini {
 		controladorPersistencia.importarHidato(nom);
 	}
 
+	public boolean comprovarHidatotxtResoluble() {
+		return esResoluble(controladorPersistencia.getTipusCellaHidato(), controladorPersistencia.getTipusAdjacenciaHidato(), controladorPersistencia.getMatriuHidato());
+	}
 
 }
