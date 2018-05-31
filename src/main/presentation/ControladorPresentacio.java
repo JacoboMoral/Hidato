@@ -3,6 +3,7 @@ package main.presentation;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -244,5 +245,14 @@ public class ControladorPresentacio {
     public String getPassword() {
         return domini.getPassword();
     }
+
+	public void importarHidatotxt(String ruta) throws Exception {
+		if (domini.comprovarHidatotxt(ruta)) {
+			JOptionPane.showMessageDialog(null, "Format correcte");
+			String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
+			domini.guardarHidatotxt(hidatoName);
+			JOptionPane.showMessageDialog(null, "Hidato guardat amb el nom: " + hidatoName);
+		} else JOptionPane.showMessageDialog(null, "Format no vàlid");
+	}
 
 }

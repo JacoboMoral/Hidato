@@ -40,6 +40,10 @@ public class ControladorPersistencia {
     public void importarHidato(int[][] matriuHidato, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, String nomHidato) throws IOException {
         IOHidato.importarHidatoCreat(matriuHidato, tipusCella, tipusAdjacencia, nomHidato);
     }
+    
+    public void importarHidato(String nomHidato) throws IOException {
+        IOHidato.importarHidatoCreat(nomHidato);
+    }
 
     public void carregarHidatoFitxer(String file) throws Exception {
         IOHidato.carregarHidatoFitxer(file);

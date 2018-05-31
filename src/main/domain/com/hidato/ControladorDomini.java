@@ -385,4 +385,18 @@ public class ControladorDomini {
         return currentUser.getPassword();
     }
 
+	public boolean comprovarHidatotxt(String ruta) throws Exception {
+		controladorPersistencia.carregarHidatoFitxer(ruta);
+		if(controladorPersistencia.getTipusCellaHidato() == null) return false;
+		if(controladorPersistencia.getTipusAdjacenciaHidato() == null) return false;
+		if(controladorPersistencia.getMatriuHidato() == null) return false;
+		return true;
+	}
+	
+	
+	public void guardarHidatotxt(String nom) throws IOException {
+		controladorPersistencia.importarHidato(nom);
+	}
+
+
 }

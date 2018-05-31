@@ -5,6 +5,7 @@
  */
 package main.presentation;
 
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import main.domain.com.hidato.TipusAdjacencia;
@@ -1296,8 +1297,14 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jf.showOpenDialog(this);
         File archivo = jf.getSelectedFile();
         if(archivo != null){
-            String nom = archivo.getAbsolutePath();
-            System.out.println(nom);
+            String ruta = archivo.getAbsolutePath();
+            System.out.println(ruta);
+            try {
+				controller.importarHidatotxt(ruta);
+            }catch (Exception e) {
+				// TODO Auto-generated catch block
+            	JOptionPane.showMessageDialog(null, "hi ha hagut un error: " +e.getMessage());
+			}
         }
     }//GEN-LAST:event_b_fromtxtActionPerformed
 

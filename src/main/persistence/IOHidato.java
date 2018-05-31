@@ -38,7 +38,7 @@ public class IOHidato {
         //ABANS FER CARREGAR HIDATO  I SOLUCIONARLO PER COMPROVAR QUE ES CORRECTA
         FileReader fr = new FileReader(file);
         BufferedReader b = new BufferedReader(fr);
-        File arxiu = new File("DB/HidatosImportats/", nom + ".txt");
+        File arxiu = new File("DB/HidatosImportats/"+ nom + ".txt");
         arxiu.delete();
         arxiu.createNewFile();
         FileWriter fileWriter = new FileWriter("DB/HidatosImportats/" + nom + ".txt", true);
@@ -79,8 +79,9 @@ public class IOHidato {
         tipusCella = stringToTipusCella(cabecera[0]);
         tipusAdjacencia = stringToTipusAdjacencia(cabecera[1]);
         if (tipusCella == null || tipusAdjacencia == null) {
-            throw new Exception("tipusCella o tipusAdjcacencia no v�lid");
+            throw new Exception("tipusCella o tipusAdjcacencia no valid");
         }
+        if(!compatibles(tipusCella,tipusAdjacencia)) throw new Exception("tipusCella i tipusAdjcacencia no compatible");
 
         int altura = Integer.parseInt(cabecera[2]);
         int anchura = Integer.parseInt(cabecera[3]);
@@ -136,7 +137,7 @@ public class IOHidato {
     }
 
     public static void importarHidatoCreat(int[][] matriu, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, String nomHidato) throws IOException {
-        File arxiu = new File("DB/HidatosImportats/", nomHidato + ".txt");
+        File arxiu = new File("DB/HidatosImportats/"+ nomHidato + ".txt");
         arxiu.createNewFile();
         PrintStream fitxerOutput = new PrintStream(arxiu);
 
@@ -174,22 +175,17 @@ public class IOHidato {
         }
         primeraLinea += matriu.length + "," + matriu[0].length;
         output.println(primeraLinea);
+        HidatoIO.writeHidatoMatrixToOutput(matriu);
         for (int i = 0; i < matriu.length; ++i) {
             for (int j = 0; j < matriu[0].length; ++j) {
                 if (j < matriu[0].length - 1) {
-                    if (matriu[i][j] == -1) {
-                        output.print("*,");
-                    } else {
-                        output.print(matriu[i][j] + ",");
-                    }
+                    if (matriu[i][j] == -1)output.print("*,");
+                    else if (matriu[i][j] == -2) output.print("#,");
+                    else output.print(matriu[i][j] + ",");
                 } else {
-                    if (matriu[i][j] == -1) {
-                        System.out.println("*");
-                    } else if (matriu[i][j] == -2) {
-                        System.out.println("#");
-                    } else {
-                        output.println(matriu[i][j]);
-                    }
+                    if (matriu[i][j] == -1) output.println("*");
+                    else if (matriu[i][j] == -2) output.println("#");
+                    else output.println(matriu[i][j]);
                 }
             }
         }
@@ -217,6 +213,20 @@ public class IOHidato {
         }
         return null;
     }
+    
+    private static boolean compatibles(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia) {
+        if (tipusCella == TipusCella.QUADRAT) return true;
+        else return (tipusAdjacencia == TipusAdjacencia.COSTATS);
+    }
+
+	public static void importarHidatoCreat(String nomHidato) throws IOException {
+		File arxiu = new File("DB/HidatosImportats/"+ nomHidato + ".txt");
+        arxiu.createNewFile();
+        PrintStream fitxerOutput = new PrintStream(arxiu);
+        
+        writeMatriu(matriu, tipusCella, tipusAdjacencia, fitxerOutput);
+        fitxerOutput.close();
+	}
 
     /*public static void main(String[] args) throws Exception {
 		
