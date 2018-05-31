@@ -16,7 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class Inici extends javax.swing.JFrame {
 
-    CtrlVista cv = new CtrlVista();
+    ControladorPresentacio cp = ControladorPresentacio.getInstance();
+    
     public Inici() {
         initComponents();
     }
@@ -196,12 +197,12 @@ public class Inici extends javax.swing.JFrame {
         } else {
             boolean userPassMatch = false;
             try {
-                userPassMatch = cv.loginUsuari(name, password);
+                userPassMatch = cp.loginUsuari(name, password);
             } catch (IOException ex) {
                 Logger.getLogger(Inici.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (userPassMatch) {
-                VistaMenuPrincipal v = new VistaMenuPrincipal(cv);
+                VistaMenuPrincipal v = new VistaMenuPrincipal();
                 v.setVisible(true);
                 this.dispose();
             } else {

@@ -21,44 +21,40 @@ import javax.swing.JOptionPane;
  * @author admin
  */
 public class VistaRanking extends javax.swing.JFrame {
-
-    CtrlVista cv;
-
+    
+    private Ranking r;
+    private ControladorPresentacio cp = ControladorPresentacio.getInstance();
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
 
     public VistaRanking() {
         initComponents();
-    }
-
-    public VistaRanking(CtrlVista v) {
-        initComponents();
-        cv = v;
-
+        r = cp.getRanking();
+        
         filterType.add(filterByDate);
         filterType.add(filterByUsername);
-        titleInter.setLocation(300, 400);
+
         
 
-        cv.saveResultat(1, "Jia", 10);
-        cv.saveResultat(2, "Jia2", 1450);
-        cv.saveResultat(3, "Jia3", 14350);
-        cv.saveResultat(1, "Jia2", 13242);
-        cv.saveResultat(2, "Jia3", 11233);
-        cv.saveResultat(3, "Jia2", 11235);
-        cv.saveResultat(1, "Jia", 131);
-        cv.saveResultat(2, "Jia2", 112);
-        cv.saveResultat(3, "Jia3", 14234);
-        cv.saveResultat(1, "Jia", 10235);
-        cv.saveResultat(2, "Jia2", 110);
-        cv.saveResultat(3, "Jia3", 1120);
-        cv.saveResultat(1, "Jia2", 16212);
-        cv.saveResultat(2, "Jia", 14563);
-        cv.saveResultat(3, "Jia2", 14564356);
-        cv.saveResultat(1, "Jia3", 161);
-        cv.saveResultat(2, "Jia", 143562);
-        cv.saveResultat(3, "Jia3", 13454);
+        cp.saveScore(1, "Jia", 10);
+        cp.saveScore(2, "Jia2", 1450);
+        cp.saveScore(3, "Jia3", 14350);
+        cp.saveScore(1, "Jia2", 13242);
+        cp.saveScore(2, "Jia3", 11233);
+        cp.saveScore(3, "Jia2", 11235);
+        cp.saveScore(1, "Jia", 131);
+        cp.saveScore(2, "Jia2", 112);
+        cp.saveScore(3, "Jia3", 14234);
+        cp.saveScore(1, "Jia", 10235);
+        cp.saveScore(2, "Jia2", 110);
+        cp.saveScore(3, "Jia3", 1120);
+        cp.saveScore(1, "Jia2", 16212);
+        cp.saveScore(2, "Jia", 14563);
+        cp.saveScore(3, "Jia2", 14564356);
+        cp.saveScore(1, "Jia3", 161);
+        cp.saveScore(2, "Jia", 143562);
+        cp.saveScore(3, "Jia3", 13454);
         showRankingList();
     }
 
@@ -66,9 +62,9 @@ public class VistaRanking extends javax.swing.JFrame {
         DefaultListModel model = new DefaultListModel();
         DefaultListModel model1 = new DefaultListModel();
         DefaultListModel model2 = new DefaultListModel();
-        String[] rankEasy = cv.getRankEasy();
-        String[] rankInter = cv.getRankInter();
-        String[] rankHard = cv.getRankHard();
+        String[] rankEasy = cp.getRankingEasy();
+        String[] rankInter = cp.getRankingInter();
+        String[] rankHard = cp.getRankingHard();
         for (int i = 0; i < rankEasy.length; ++i) {
             model.addElement(rankEasy[i]);
         }
@@ -90,13 +86,13 @@ public class VistaRanking extends javax.swing.JFrame {
         DefaultListModel model2 = new DefaultListModel();
 
         if (filterByUsername.isSelected()) {
-            if (!cv.existsUser(input)) {
+            if (!cp.existsUser(input)) {
                 int message = JOptionPane.showOptionDialog(null, "Username not exists in the Datebase", "Error message",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
             } else {
-                String[] rankEasy = cv.getFilterByUsername(input, levelEasy);
-                String[] rankInter = cv.getFilterByUsername(input, levelInter);
-                String[] rankHard = cv.getFilterByUsername(input, levelHard);
+                String[] rankEasy = cp.getFilterByUsername(input, levelEasy);
+                String[] rankInter = cp.getFilterByUsername(input, levelInter);
+                String[] rankHard = cp.getFilterByUsername(input, levelHard);
                 for (int i = 0; i < rankEasy.length; ++i) {
                     model.addElement(rankEasy[i]);
                 }
@@ -110,13 +106,13 @@ public class VistaRanking extends javax.swing.JFrame {
         }
         if (filterByDate.isSelected()) {
             if (validDate(input)) {
-                if (!cv.existsDate(input)) {
+                if (!cp.existsDate(input)) {
                     int message = JOptionPane.showOptionDialog(null, "Date not exists in the Datebase", "Error message",
                             JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                 } else {
-                    String[] rankEasy = cv.getFilterByDate(input, levelEasy);
-                    String[] rankInter = cv.getFilterByDate(input, levelInter);
-                    String[] rankHard = cv.getFilterByDate(input, levelHard);
+                    String[] rankEasy = cp.getFilterByDate(input, levelEasy);
+                    String[] rankInter = cp.getFilterByDate(input, levelInter);
+                    String[] rankHard = cp.getFilterByDate(input, levelHard);
                     for (int i = 0; i < rankEasy.length; ++i) {
                         model.addElement(rankEasy[i]);
                     }
@@ -561,7 +557,7 @@ public class VistaRanking extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_backMouseClicked
-        VistaMenuPrincipal v = new VistaMenuPrincipal(cv);
+        VistaMenuPrincipal v = new VistaMenuPrincipal();
         v.setVisible(true);
         this.dispose();
 
@@ -572,10 +568,10 @@ public class VistaRanking extends javax.swing.JFrame {
         if (username.equals("")) {
             JOptionPane.showMessageDialog(null, "Enter the username that you want to delete");
         } else {
-            if (!cv.existsUser(username)) {
+            if (!cp.existsUser(username)) {
                 JOptionPane.showMessageDialog(null, "The user: " + username + " not exists in any ranking");
             }
-            cv.deleteUsr(username);
+            cp.deteleUserRanking(username);
             user_to_delete.setText("");
             showRankingList();
             repaint();

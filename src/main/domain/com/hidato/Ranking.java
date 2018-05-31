@@ -304,7 +304,7 @@ public class Ranking {
         return ap;
     }
 
-    public void deleteUsrRanking(String user) {
+    public void deleteUserRanking(String user) {
         ListIterator<Posicio> it;
 
         it = rankingEasy.listIterator();

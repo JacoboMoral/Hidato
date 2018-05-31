@@ -147,11 +147,15 @@ public class IOHidato {
 
     public static String[] nomHidatosImportats() {
         File carpeta = new File("DB/HidatosImportats");
-        ArrayList<String> listaArchivos = new ArrayList<String>();
-        for (File archivo : carpeta.listFiles()) {
-            listaArchivos.add(archivo.getName());
+        ArrayList<String> llistaFitxers = new ArrayList<String>();
+        for (File fitxer : carpeta.listFiles()) {
+            System.out.println(fitxer.getName());
+            
+            String[] aux = fitxer.getName().split("\\.");
+            
+            llistaFitxers.add(aux[0]);
         }
-        return (listaArchivos.toArray(new String[0]));
+        return (llistaFitxers.toArray(new String[0]));
     }
 
     private static void writeMatriu(int[][] matriu, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, PrintStream output) {
@@ -228,15 +232,4 @@ public class IOHidato {
 		HidatoIO.writeHidatoMatrixToOutput(getMatriu());
 	}*/
     
-    public static String[] getAllHidatoFileNames() {
-        List<String> result = new ArrayList<String>();
-        File arxiu = new File("DB/HidatosImportats");
-        if (arxiu.exists()) {
-            File[] f = arxiu.listFiles();
-            for (int i = 0; i < f.length; i++) {
-                result.add(f[i].getName());
-            }
-        }
-        return result.toArray(new String[0]);
-    }
 }

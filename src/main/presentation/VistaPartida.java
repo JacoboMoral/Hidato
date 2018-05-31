@@ -22,7 +22,7 @@ import java.awt.event.MouseEvent;
  */
 public class VistaPartida extends javax.swing.JFrame {
 
-    CtrlVista cv;
+    private ControladorPresentacio cp = ControladorPresentacio.getInstance();
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
@@ -37,9 +37,8 @@ public class VistaPartida extends javax.swing.JFrame {
         initComponents();
     }
 
-    public VistaPartida(CtrlVista v, int level, int type, String username) {
+    public VistaPartida(int level, int type, String username) {
         initComponents();
-        cv = v;
         this.currentUsername = username;
         partida.setView(this);
         if (level == levelEasy) {
@@ -212,7 +211,7 @@ public class VistaPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        VistaMenuPrincipal v = new VistaMenuPrincipal(cv);
+        VistaMenuPrincipal v = new VistaMenuPrincipal();
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked

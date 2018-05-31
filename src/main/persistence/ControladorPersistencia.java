@@ -20,6 +20,7 @@ import main.domain.com.hidato.Ranking;
 
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
+import main.domain.com.hidato.Usuari;
 
 public class ControladorPersistencia {
 
@@ -116,37 +117,89 @@ public class ControladorPersistencia {
         return IOPartida.getNombresDonats();
     }
 
-    /*---------------------------------------------------------------------------------------------------*/
-    public boolean usernameExists(String username) {
-        return IOUsuari.usernameExists(username);
-    }
-
-    public boolean changeUsername(String currentUsername, String newUsername) {
-        return IOUsuari.changeUsername(currentUsername, newUsername);
-    }
-
-    public boolean deleteUser(String username) {
-        return IOUsuari.deleteUser(username);
-    }
-
-    public boolean changePassword(String currentUsername, String newPassword) throws IOException {
-        return IOUsuari.changePassword(currentUsername, newPassword);
-    }
-
-    public static void saveRanking(Ranking r) {
-        IORanking.saveRanking(r);
-    }
-
-    public static Ranking readRanking() {
-        return IORanking.readRanking();
-    }
 
     public String[] getHidatos() {
         return null;
     }
 
     public String[] getAllHidatoFileNames() {
-        return IOHidato.getAllHidatoFileNames();
+        return IOHidato.nomHidatosImportats();
     }
 
+    public void saveScoreDB(int dif, int score, String username) {
+        IORanking.saveScoreDB(dif, score, username);
+    }
+
+    public String[] getRankingEasy() {
+        return IORanking.getRankingEasy();
+    }
+
+    public String[] getRankingInter() {
+        return IORanking.getRankingInter();
+    }
+
+    public String[] getRankingHard() {
+        return IORanking.getRankingHard();
+    }
+
+    public void loadRanking() {
+        IORanking.readRanking();
+    }
+
+    public Ranking getRanking() {
+        return IORanking.getRanking();
+    }
+
+    public String[] getFilterByUsername(String username, int level) {
+        return IORanking.getFilterByUsername(username, level);
+    }
+
+    public void deteleUserRanking(String nom) {
+        IORanking.deteleUserRanking(nom);
+    }
+
+    public boolean existsUser(String nom) {
+        return IORanking.existsUser(nom);
+    }
+
+    public String[] getFilterByDate(String date, int level) {
+        return IORanking.getFilterByDate(date, level);
+    }
+
+    public boolean existsDate(String date) {
+        return IORanking.existsDate(date);
+    }
+
+    public boolean loginUsuari(String username, String password) throws IOException {
+        return IOUsuari.loginUsuari(username, password);
+    }
+
+    public boolean afegirUsuari(String username, String password) throws IOException {
+        return IOUsuari.afegirUsuari(username, password);
+    }
+
+    public boolean editUseranme(String currentUsername, String newUsername) {
+        return IOUsuari.editUseranme(currentUsername, newUsername);
+    }
+
+    public boolean changePass(String currentPass, String newPass) throws IOException {
+        return IOUsuari.changePass(currentPass, newPass);
+    }
+
+    public boolean deleteUer(String pass) {
+        System.out.println("estic a Persistencia");
+        return IOUsuari.deleteUer(pass);
+    }
+
+    public String getUsername() {
+        return IOUsuari.getUsername();
+
+    }
+    public Usuari getUser() {
+        return IOUsuari.getUser();
+    }
+
+    public String getPassword() {
+        return IOUsuari.getPassword();
+    }
 }

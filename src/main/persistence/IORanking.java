@@ -11,6 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Scanner;
 import main.domain.com.hidato.Posicio;
 import main.domain.com.hidato.Ranking;
@@ -24,13 +26,19 @@ public class IORanking {
     private static final int levelInter = 2;
     private static final int levelHard = 3;
     
-     /*
-    ---------------------------------------------------------
-    |                                                       |
-    |                   GESTIONAR RANKING                   |                        
-    |                                                       |
-    ---------------------------------------------------------
-    */
+    private static Ranking r;
+    
+    
+    public static Ranking getRanking() {
+        return r = IORanking.readRanking();
+    }
+    
+    static void saveScoreDB(int dif, int score, String username) {
+        LocalDate date = LocalDate.now();
+        Posicio p = new Posicio(username, score, date);
+        r.insertPosition(p, dif);
+        saveRanking(r);
+    }
     
     public static void saveRanking(Ranking r) {
         try {
@@ -138,4 +146,152 @@ public class IORanking {
         }
         return r;
     }
+
+    public static String[] getRankingEasy() {
+        ArrayList<Posicio> llista = r.getLlistaPosicio(levelEasy);
+        String rankingList[] = new String[llista.size()];
+        int i = 0;
+        Posicio currentPosition = null;
+        ListIterator<Posicio> it = llista.listIterator();
+        while (i < llista.size()) {
+            currentPosition = it.next();
+            rankingList[i] = (i + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "         " + currentPosition.getDate();
+            ++i;
+        }
+        return rankingList;
+    }
+
+    public static String[] getRankingInter() {
+        ArrayList<Posicio> llista = r.getLlistaPosicio(levelInter);
+        String rankingList[] = new String[llista.size()];
+        int i = 0;
+        Posicio currentPosition = null;
+        ListIterator<Posicio> it = llista.listIterator();
+        while (i < llista.size()) {
+            currentPosition = it.next();
+            rankingList[i] = (i + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "         " + currentPosition.getDate();
+            ++i;
+        }
+        return rankingList;
+    }
+
+    public static String[] getRankingHard() {
+        ArrayList<Posicio> llista = r.getLlistaPosicio(levelHard);
+        String rankingList[] = new String[llista.size()];
+        int i = 0;
+        Posicio currentPosition = null;
+        ListIterator<Posicio> it = llista.listIterator();
+        while (i < llista.size()) {
+            currentPosition = it.next();
+            rankingList[i] = (i + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "         " + currentPosition.getDate();
+            ++i;
+        }
+        return rankingList;
+    }
+
+    public static String[] getFilterByUsername(String username, int level) {
+        List<String> rankingList = new ArrayList<String>();
+        Posicio currentPosition = null;
+        int i, j;
+        i = j = 0;
+        if (level == levelEasy) {
+            ArrayList<Posicio> llista = r.getLlistaPosicio(levelEasy);
+            ListIterator<Posicio> it = llista.listIterator();
+            while (i < llista.size()) {
+                currentPosition = it.next();
+                if ((currentPosition.getUsername().equals(username))) {
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    ++j;
+                }
+                ++i;
+            }
+        }
+        if (level == levelInter) {
+            ArrayList<Posicio> llista = r.getLlistaPosicio(levelInter);
+            ListIterator<Posicio> it = llista.listIterator();
+            while (i < llista.size()) {
+                currentPosition = it.next();
+                if ((currentPosition.getUsername().equals(username))) {
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    ++j;
+                }
+                ++i;
+            }
+        }
+        if (level == levelHard) {
+            ArrayList<Posicio> llista = r.getLlistaPosicio(levelHard);
+            ListIterator<Posicio> it = llista.listIterator();
+            while (i < llista.size()) {
+                currentPosition = it.next();
+                if ((currentPosition.getUsername().equals(username))) {
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    ++j;
+                }
+                ++i;
+            }
+        }
+        String[] result = rankingList.toArray(new String[0]);
+        return result;
+    }
+
+    public static void deteleUserRanking(String nom) {
+        r.deleteUserRanking(nom);
+        saveRanking(r);
+    }
+
+    public static boolean existsUser(String nom) {
+        return r.existsUser(nom);
+    }
+
+    public static String[] getFilterByDate(String date, int level) {
+        LocalDate localDate = LocalDate.parse(date);
+        List<String> rankingList = new ArrayList<String>();
+        Posicio currentPosition = null;
+        int i, j;
+        i = j = 0;
+        if (level == levelEasy) {
+            ArrayList<Posicio> llista = r.getLlistaPosicio(levelEasy);
+            ListIterator<Posicio> it = llista.listIterator();
+            while (i < llista.size()) {
+                currentPosition = it.next();
+                if ((currentPosition.getDate().equals(localDate))) {
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    ++j;
+                }
+                ++i;
+            }
+        }
+        if (level == levelInter) {
+            ArrayList<Posicio> llista = r.getLlistaPosicio(levelInter);
+            ListIterator<Posicio> it = llista.listIterator();
+            while (i < llista.size()) {
+                currentPosition = it.next();
+                if ((currentPosition.getDate().equals(localDate))) {
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    ++j;
+                }
+                ++i;
+            }
+        }
+        if (level == levelHard) {
+            ArrayList<Posicio> llista = r.getLlistaPosicio(levelHard);
+            ListIterator<Posicio> it = llista.listIterator();
+            while (i < llista.size()) {
+                currentPosition = it.next();
+                if ((currentPosition.getDate().equals(localDate))) {
+                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    ++j;
+                }
+                ++i;
+            }
+        }
+        String[] result = rankingList.toArray(new String[0]);
+        return result;
+    }
+
+    public static boolean existsDate(String date) {
+        return r.existsDate(date);
+    }
+
+    
 }

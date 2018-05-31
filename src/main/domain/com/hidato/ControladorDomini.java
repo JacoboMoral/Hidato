@@ -1,5 +1,6 @@
 package main.domain.com.hidato;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.Random;
 import java.util.Vector;
@@ -14,7 +15,8 @@ public class ControladorDomini {
     private Partida partidaEnCurs = null;
     private Hidato hidatoGenerat = null;
     private ControladorPersistencia controladorPersistence = ControladorPersistencia.getInstance();
-
+    private Usuari currentUser;
+    
     public static ControladorDomini getInstance() {
         if (instance == null) {
             instance = new ControladorDomini();
@@ -246,4 +248,90 @@ public class ControladorDomini {
     public String[] getAllHidatoNames() {
         return controladorPersistence.getAllHidatoFileNames();
     }
+
+    public void saveScore(int dif, int score, String username) {
+        controladorPersistence.saveScoreDB(dif, score, username);
+    }
+
+    public String[] getRankingEasy() {
+        return controladorPersistence.getRankingEasy();
+    }    
+
+    public String[] getRankingInter() {
+        return controladorPersistence.getRankingInter();
+    }
+
+    public String[] getRankingHard() {
+        return controladorPersistence.getRankingHard();
+    }
+
+    public void loadRanking() {
+        controladorPersistence.loadRanking();
+    }
+
+    public Ranking getRanking() {
+        return controladorPersistence.getRanking();
+    }
+
+    public String[] getFilterByUsername(String username, int level) {
+        return controladorPersistence.getFilterByUsername(username, level);
+    }
+
+    public void deteleUserRanking(String nom) {
+       controladorPersistence.deteleUserRanking(nom);
+    }
+
+    public boolean existsUser(String nom) {
+        return controladorPersistence.existsUser(nom);
+    }
+
+    public String[] getFilterByDate(String date, int level) {
+        return controladorPersistence.getFilterByDate(date, level);
+    }
+
+    public boolean existsDate(String date) {
+        return controladorPersistence.existsDate(date);
+    }
+
+    public boolean loginUsuari(String username, String password) throws IOException {
+        return controladorPersistence.loginUsuari(username, password);
+        /*if (controladorPersistence.loginUsuari(username, password)) {
+            currentUser = new Usuari(username, password);
+        }
+        else {
+            return false;
+        }
+        return true;*/
+    }
+
+    public boolean afegirUsuari(String username, String password) throws IOException {
+        return controladorPersistence.afegirUsuari(username, password);
+    }
+
+    public boolean editUseranme(String currentUsername, String newUsername) {
+        return controladorPersistence.editUseranme(currentUsername, newUsername);
+    }
+
+    public boolean changePass(String currentPass, String newPass) throws IOException {
+        return controladorPersistence.changePass(currentPass, newPass);
+    }
+
+    public boolean deleteUser(String pass) {
+        System.out.println("estic a cPers");
+        return controladorPersistence.deleteUer(pass);
+    }
+
+    public String getUsername() {
+        return controladorPersistence.getUsername();
+    }
+
+    public Usuari getUser() {
+        return controladorPersistence.getUser();
+    }
+
+    public String getPassword() {
+        return controladorPersistence.getPassword();
+    }
+    
+
 }

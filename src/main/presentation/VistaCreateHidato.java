@@ -21,8 +21,7 @@ import java.awt.event.ComponentEvent;
  */
 public class VistaCreateHidato extends javax.swing.JFrame {
 
-    CtrlVista cv;
-    
+    private ControladorPresentacio cp = ControladorPresentacio.getInstance();
     ControladorHidatoGrafic creacio;
     private int seguentMoviment = 1;
     private int mostrant = 0;
@@ -35,9 +34,8 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     }
 
 
-    public VistaCreateHidato(CtrlVista cv, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int altura, int amplada) {
+    public VistaCreateHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int altura, int amplada) {
         initComponents();
-        this.cv = cv;
         creacio = new ControladorCreateHidato();
         creacio.setView(this);
         hidatoPanel = creacio.createHidato(tipusCella, tipusAdjacencia, altura , amplada);
@@ -72,12 +70,12 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         controlPanel.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setText("1");
+        jLabel1.setText("s");
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton1.setText(">");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
@@ -85,14 +83,14 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton2.setText("<");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anterior.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
@@ -101,7 +99,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
         });
@@ -109,7 +107,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         b_almoadilla.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         b_almoadilla.setText("#");
         b_almoadilla.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 b_almoadillaMouseClicked(evt);
             }
         });
@@ -122,7 +120,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         b_estrella.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         b_estrella.setText("*");
         b_estrella.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 b_estrellaMouseClicked(evt);
             }
         });
@@ -135,7 +133,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         b_num.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         b_num.setText("Num");
         b_num.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 b_numMouseClicked(evt);
             }
         });
@@ -164,7 +162,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(saveGame)
-                .addGap(201, 201, 201)
+                .addGap(172, 172, 172)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(controlPanelLayout.createSequentialGroup()
                         .addComponent(b_almoadilla)
@@ -181,7 +179,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
                     .addComponent(b_estrella))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
                 .addComponent(b_play)
-                .addGap(85, 85, 85))
+                .addGap(114, 114, 114))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,9 +192,9 @@ public class VistaCreateHidato extends javax.swing.JFrame {
                         .addComponent(saveGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(45, 45, 45))
             .addGroup(controlPanelLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(controlPanelLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jButton2)
@@ -207,7 +205,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
                             .addComponent(b_estrella)
                             .addComponent(b_num)))
                     .addGroup(controlPanelLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addGap(29, 29, 29)
                         .addComponent(b_play)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -234,7 +232,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        VistaMenuPrincipal v = new VistaMenuPrincipal(cv);
+        VistaMenuPrincipal v = new VistaMenuPrincipal();
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked

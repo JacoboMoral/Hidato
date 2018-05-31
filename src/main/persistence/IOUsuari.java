@@ -5,23 +5,23 @@
  */
 package main.persistence;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import main.domain.com.hidato.Usuari;
 
 /**
  *
  * @author admin
  */
 public class IOUsuari {
-    /*
-    ---------------------------------------------------------
-    |                                                       |
-    |                   GESTIONAR USER                      |                        
-    |                                                       |
-    ---------------------------------------------------------
-    */
+    
+    private static Usuari currentUser;
+    
     public static boolean usernameExists(String username) {
         File temp = new File("DB/Usuaris/" + username);
         return temp.exists();
@@ -57,4 +57,87 @@ public class IOUsuari {
         }
         return false;
     }
+
+    public static boolean loginUsuari(String username, String password) throws FileNotFoundException, IOException {
+        boolean userPassMatch = false;
+        String contingut_password;
+        File temp = new File("DB/Usuaris/" + username);
+        if (temp.exists()) {
+            FileReader fr = new FileReader("DB/Usuaris/" + username + "/password.txt");
+            BufferedReader br = new BufferedReader(fr);
+            contingut_password = br.readLine();
+            br.close();
+            fr.close();
+            if (contingut_password.equals(password)) {
+                userPassMatch = true;
+                currentUser = new Usuari(username, password);
+            }
+        }
+        return userPassMatch;
+    }
+
+    public static boolean afegirUsuari(String username, String password) throws IOException {
+        boolean successful = false;
+        File temp = new File("DB/Usuaris/" + username);
+        if (!temp.exists()) {
+            temp.mkdirs();          //fem varies carpetes
+            File temp2 = new File("DB/Usuaris/" + username + "/", "password.txt");
+            temp2.createNewFile();
+            FileWriter esc = new FileWriter("DB/Usuaris/" + username + "/password.txt", true);
+            BufferedWriter bw = new BufferedWriter(esc);
+            bw.write(password);
+            bw.close();
+            esc.close();
+            successful = true;
+        }
+        return successful;
+    }
+
+    public static boolean editUseranme(String currentUsername, String newUsername) {
+        boolean successful = false;
+        if (!usernameExists(newUsername) && currentUsername.equals(currentUser.getUsername())) {
+            Usuari newCurrent = new Usuari(newUsername, currentUser.getPassword());
+            successful = changeUsername(currentUsername, newUsername);
+            if (successful) {
+                currentUser = newCurrent;
+            }
+        }
+        return successful;
+    }
+
+    public static boolean changePass(String currentPass, String newPass) throws IOException {
+        boolean successful = false;
+        if (currentPass.equals(currentUser.getPassword())) {
+            Usuari newCurrent = new Usuari(currentUser.getUsername(), newPass);
+            successful = changePassword(newCurrent.getUsername(), newPass);
+            if (successful) {
+                currentUser = newCurrent;
+            }
+        }
+        return successful;
+    }
+
+    public static boolean deleteUer(String pass) {
+        System.out.println(currentUser.getPassword());
+        System.out.println(pass);
+        if (pass.equals(currentUser.getPassword())) {
+            System.out.println("IOOO");
+            return deleteUser(currentUser.getUsername());
+        }
+        return false;
+    }
+
+    public static Usuari getUser() {
+        return currentUser;
+    }
+
+    public static String getUsername() {
+        return currentUser.getUsername();
+    }
+
+    public static String getPassword() {
+        return currentUser.getPassword();
+    }
+    
+    
 }

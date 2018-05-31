@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -17,8 +18,10 @@ import javax.swing.JTextField;
 import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
+import main.domain.com.hidato.Ranking;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
+import main.domain.com.hidato.Usuari;
 
 public class ControladorPresentacio {
 
@@ -128,6 +131,90 @@ public class ControladorPresentacio {
 
     public String[] getAllHidatoNames() {
         return domini.getAllHidatoNames();
+    }
+
+    public void saveScore(int dif, String username, int score) {
+        domini.saveScore(dif, score, username);
+    }
+
+    public String[] getRankingEasy() {
+        return domini.getRankingEasy();
+    }
+
+    public String[] getRankingInter() {
+        return domini.getRankingInter();
+    }
+
+    public String[] getRankingHard() {
+        return domini.getRankingHard();
+    }
+
+    public void loadRanking() {
+        domini.loadRanking();
+    }
+
+    public Ranking getRanking() {
+        return domini.getRanking();
+    }
+
+    public String[] getFilterByUsername(String username, int level) {
+        return domini.getFilterByUsername(username, level);
+    }
+
+    public void deteleUserRanking(String nom) {
+        domini.deteleUserRanking(nom);
+    }
+
+    public boolean existsUser(String nom) {
+        return domini.existsUser(nom);
+    }
+
+    public String[] getFilterByDate(String date, int level) {
+        return domini.getFilterByDate(date, level);
+    }
+
+    public boolean existsDate(String date) {
+        return domini.existsDate(date);
+    }
+
+    public boolean loginUsuari(String username, String password) throws IOException {
+        if (domini.loginUsuari(username, password)) {
+            //login success
+        }
+        else {
+            //login fault
+            return false;
+        }
+        return true;
+    }
+
+    public boolean afegirUsuari(String username, String password) throws IOException {
+        return domini.afegirUsuari(username, password);
+    }
+
+    public boolean editUseranme(String currentUsername, String newUsername) {
+        return domini.editUseranme(currentUsername, newUsername);
+    }
+
+    public boolean changePass(String currentPass, String newPass) throws IOException {
+        return domini.changePass(currentPass, newPass);
+    }
+
+    public boolean deleteUser(String pass) {
+        System.out.println("estic a cp");
+        return domini.deleteUser(pass);
+    }
+
+    public String getUsername() {
+        return domini.getUsername();
+    }
+
+    public Usuari getUser() {
+        return domini.getUser();
+    }
+
+    public String getPassword() {
+        return domini.getPassword();
     }
 
 
