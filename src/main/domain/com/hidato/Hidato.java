@@ -22,11 +22,15 @@ public abstract class Hidato {
 
     protected Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
 		this.tipusAdjacencia = tipusAdjacencia;
-
+		nombresEscrits = new Vector<Integer>();
+		nombresDonats = new Vector<Integer>();
         matriuHidato = new int[matriu.length][matriu[0].length];
-        copy(matriu, matriu);
+        matriuOriginal = new int[matriu.length][matriu[0].length];
+
+        copy(matriuHidato, matriu);
         
-        makeCopyOriginal(matriuHidato);
+        copy(matriuOriginal, matriu);
+        
         calcPossiblesMoviments();
     }
 
@@ -217,17 +221,6 @@ public abstract class Hidato {
         return true; 										//else
     }
 
-    private void makeCopyOriginal(int[][] matriuHidato) {
-        int y = matriuHidato.length;
-        int x = matriuHidato[0].length;
-        matriuOriginal = new int[y][x];
-        for (int i = 0; i < y; ++i) {
-            for (int j = 0; j < x; ++j) {
-                matriuOriginal[i][j] = matriuHidato[i][j];
-            }
-        }
-    }
-
     private void calcPossiblesMoviments() {
     	possiblesMoviments = new Vector<Integer>();
     	int cellesNumeriques = matriuHidato.length * matriuHidato[0].length;
@@ -241,7 +234,9 @@ public abstract class Hidato {
     	}
     	
     	for (int i = 1; i <= cellesNumeriques; ++i) {
-    		if (!nombresEscrits.contains(i)) possiblesMoviments.add(i);
+    		if (!nombresEscrits.contains(i)) {
+    			possiblesMoviments.add(i);
+    		}
     	}
     	
 		Collections.sort(possiblesMoviments);
@@ -264,4 +259,5 @@ public abstract class Hidato {
             }
         }
     }
+    
 }

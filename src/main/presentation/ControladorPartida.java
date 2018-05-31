@@ -134,4 +134,5 @@ public class ControladorPartida extends ControladorHidatoGrafic{
         controller.guardarPartida();
     }
 
+    
 }

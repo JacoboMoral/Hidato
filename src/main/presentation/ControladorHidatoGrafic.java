@@ -94,4 +94,8 @@ public abstract class ControladorHidatoGrafic {
 
 	public void setView(VistaCreateHidato vistaCreateHidato) {		
 	}
+
+
+	public void guardarHidato() {
+	}
 }

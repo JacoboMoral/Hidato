@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Vector;
 
@@ -158,6 +159,18 @@ public class ControladorPresentacio {
 			
 		}
         else JOptionPane.showMessageDialog(null, "Actualment no disposes de cap partida en curs");
+	}
+
+	public void guardarHidatoCreat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuCreacio, String nomHidato) {
+		if (!domini.esResoluble(tipusCella, tipusAdjacencia, matriuCreacio)) JOptionPane.showMessageDialog(null, "L'hidato proposat no es resoluble");
+		else {
+			try {
+				domini.guardarHidato(tipusCella, tipusAdjacencia, matriuCreacio, nomHidato);
+				JOptionPane.showMessageDialog(null, "S'ha guardat el teu hidato amb el nom '" + nomHidato + "'.");
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null, "Hi ha hagut un error al guardar l'hidato: " + e.getMessage());
+			}
+		}
 	}
 
 }
