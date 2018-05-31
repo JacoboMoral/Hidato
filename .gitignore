@@ -9,24 +9,4 @@
 .classpath
 
 .project
-src/domain/com/hidato/Main.java
-*.class
-/nbproject/private/
-/build/
-nbproject/project.properties
-nbproject/project.properties
-*.properties
-bin/domain/JOCSDEPROVA/Hidatos.txt
-bin/domain/JOCSDEPROVA/Joc_de_prova_DriverControladorDomini.txt
-bin/domain/JOCSDEPROVA/Joc_de_prova_DriverHidato.txt
 
-bin/domain/Image/editIcon.png
-bin/domain/Image/userProfile.png
-bin/domain/main/presentation/Inici.form
-bin/domain/main/presentation/VistaDificultat.form
-*.form
-
-bin/domain/Image/loginIcon.png
-bin/domain/Image/userIcon.png
-bin/domain/Image/wallpaper.jpg
-bin/domain/main/domain/com/hidato/Hidato.class
