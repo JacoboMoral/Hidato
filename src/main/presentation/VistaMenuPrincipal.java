@@ -131,7 +131,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         b_autogenerar = new javax.swing.JButton();
         b_fromtxt = new javax.swing.JButton();
         b_back = new javax.swing.JButton();
-        b_custom1 = new javax.swing.JButton();
+        b_custom = new javax.swing.JButton();
         createCustomPanel = new javax.swing.JPanel();
         tipologia = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -634,12 +634,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_custom1.setBackground(new java.awt.Color(0, 204, 204));
-        b_custom1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        b_custom1.setText("Custom ");
-        b_custom1.addActionListener(new java.awt.event.ActionListener() {
+        b_custom.setBackground(new java.awt.Color(0, 204, 204));
+        b_custom.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        b_custom.setText("Custom ");
+        b_custom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_custom1ActionPerformed(evt);
+                b_customActionPerformed(evt);
             }
         });
 
@@ -655,7 +655,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGap(262, 262, 262)
                 .addGroup(typeCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(b_fromtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_custom1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_custom, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_autogenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(275, Short.MAX_VALUE))
         );
@@ -665,7 +665,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(112, Short.MAX_VALUE)
                 .addComponent(b_autogenerar)
                 .addGap(28, 28, 28)
-                .addComponent(b_custom1)
+                .addComponent(b_custom)
                 .addGap(31, 31, 31)
                 .addComponent(b_fromtxt)
                 .addGap(76, 76, 76)
@@ -1653,9 +1653,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_viewHidatoActionPerformed
 
-    private void b_custom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_custom1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_custom1ActionPerformed
+    private void b_customActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_customActionPerformed
+       parentPanel.removeAll();
+        parentPanel.add(createCustomPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_b_customActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1708,7 +1711,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton b_cancel;
     private javax.swing.JButton b_cancel1;
     private javax.swing.JButton b_create;
-    private javax.swing.JButton b_custom1;
+    private javax.swing.JButton b_custom;
     private javax.swing.JButton b_delete;
     private javax.swing.JButton b_fromtxt;
     private javax.swing.JButton b_generate;
