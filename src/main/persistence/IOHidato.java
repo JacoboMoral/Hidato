@@ -106,7 +106,7 @@ public class IOHidato {
         }
     }
 
-    public static void carregarHidatoImportat(String nomHidato) throws Exception {
+    public static void carregarHidatoImportat(String nomHidato) throws IOException {
         FileReader fr = new FileReader("DB/HidatosImportats/" + nomHidato + ".txt");
         BufferedReader b = new BufferedReader(fr);
         String cadena = b.readLine();

@@ -55,7 +55,6 @@ public class ControladorPartida extends ControladorHidatoGrafic{
         return partida;
     }
 	
-	
 	public boolean ferMoviment(int y, int x, int value) {
         return controller.ferMoviment(y, x, value);
     }

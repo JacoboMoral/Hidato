@@ -810,6 +810,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(0, 204, 204));
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton6.setText("Play");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(0, 204, 204));
         jButton7.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -1551,7 +1556,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jButton4ActionPerformed
-        controller.cargarPartidaGuardada(this);
+        if (controller.cargarPartidaGuardada()) this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void b_cpstom1ActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -1666,6 +1671,21 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.repaint();
         parentPanel.revalidate();
     }//GEN-LAST:event_b_customActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    	System.out.println("play importat");
+
+    	String nomHidato = selectedHidato.getText();
+    	
+    	try {
+			if (controller.jugarPartidaImportada(nomHidato)) this.dispose();
+    	} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Hi ha hagut un problema per cargar l'hidato seleccionat: " + e.getMessage());
+			e.printStackTrace();
+		}
+
+    	
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

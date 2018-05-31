@@ -215,7 +215,7 @@ public class ControladorDomini {
         return null;
     }
 
-    public int[][] getMatiu(String nomHidato) throws Exception {
+    public int[][] getMatriu(String nomHidato) throws Exception {
     	controladorPersistencia.carregarHidatoImportat(nomHidato);
         return controladorPersistencia.getMatriuHidato();
     }
@@ -237,7 +237,15 @@ public class ControladorDomini {
 	public TipusCella getTipusCellaPartida() {
 		return partidaEnCurs.getTipusCella();
 	}
+	
 
+	public boolean carregarPartida(String nomHidato) throws IOException {
+		controladorPersistencia.carregarHidatoImportat(nomHidato);
+		Hidato hidato = HidatoFactory.createHidato(controladorPersistencia.getTipusCellaHidato(), controladorPersistencia.getTipusAdjacenciaHidato(), controladorPersistencia.getMatriuHidato());
+		partidaEnCurs = new Partida(hidato, currentUser);
+		return (partidaEnCurs.esSolucionable());
+	}
+	
 	public void carregarPartida(){
 		controladorPersistencia.carregarPartida(currentUser.getUsername());
 				
@@ -401,5 +409,6 @@ public class ControladorDomini {
 	public boolean comprovarHidatotxtResoluble() {
 		return esResoluble(controladorPersistencia.getTipusCellaHidato(), controladorPersistencia.getTipusAdjacenciaHidato(), controladorPersistencia.getMatriuHidato());
 	}
+
 
 }

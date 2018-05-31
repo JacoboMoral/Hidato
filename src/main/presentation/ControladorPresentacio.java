@@ -120,7 +120,7 @@ public class ControladorPresentacio {
     }
 
     public int[][] getMatriu(String nomHidato) throws Exception {
-        return domini.getMatiu(nomHidato);
+        return domini.getMatriu(nomHidato);
     }
 
     public TipusAdjacencia getTipusAdjacencia(String nomHidato) throws Exception {
@@ -156,7 +156,7 @@ public class ControladorPresentacio {
 		return domini.hiHaPartidaGuardada();
 	}
 
-	public void cargarPartidaGuardada(VistaMenuPrincipal vistaAnterior) {
+	public boolean cargarPartidaGuardada() {
 		if (hiHaPartidaGuardada()) {
 			domini.carregarPartida();
 			TipusCella tipusCella = domini.getTipusCellaPartida();
@@ -165,9 +165,26 @@ public class ControladorPresentacio {
 			
 			v = new VistaPartida(hidatoPanel);
 	        v.setVisible(true);
-	        vistaAnterior.dispose();
+	        return true;
 		}
         else JOptionPane.showMessageDialog(null, "Actualment no disposes de cap partida en curs");
+		return false;
+	}
+	
+	public boolean jugarPartidaImportada(String nomHidato) throws IOException {
+		boolean solucionable = domini.carregarPartida(nomHidato);
+		if (!solucionable) {
+			JOptionPane.showMessageDialog(null, "L'hidato que vols carregar no es solucionable");
+			return false;
+		}
+		else {
+			TipusCella tipusCella = domini.getTipusCellaPartida();
+			int[][] matriuHidato = domini.getMatriuHidatoDePartida();
+			JPanel hidatoPanel = controladorPartida.partidaCarregada(tipusCella, matriuHidato);
+			VistaPartida v = new VistaPartida(hidatoPanel);
+			v.setVisible(true);
+			return true;
+		}
 	}
 	
 	public void saveScore(int dif, String username, int score) {
@@ -256,7 +273,9 @@ public class ControladorPresentacio {
 			}
 			else JOptionPane.showMessageDialog(null, "Hidato proposat no es resoluble");
 			
-		} else JOptionPane.showMessageDialog(null, "Format no vàlid");
+		} else JOptionPane.showMessageDialog(null, "Format no vï¿½lid");
 	}
+
+
 
 }
