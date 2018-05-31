@@ -26,7 +26,7 @@ public class ControladorDomini {
     }
 
     public boolean jugarHidatoImportat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
-        partidaEnCurs = new Partida(HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato));
+        partidaEnCurs = new Partida(HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato), currentUser);
         if (!partidaEnCurs.esSolucionable()) {
             partidaEnCurs = null;
             return false;
@@ -37,7 +37,7 @@ public class ControladorDomini {
 
     public void jugarHidatoGenerat() {
         if (hidatoGenerat != null) {
-            partidaEnCurs = new Partida(hidatoGenerat);
+            partidaEnCurs = new Partida(hidatoGenerat, currentUser);
             partidaEnCurs.esSolucionable();
         }
     }

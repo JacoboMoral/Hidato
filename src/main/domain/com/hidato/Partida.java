@@ -16,13 +16,14 @@ public class Partida {
     private int temps;
     private Usuari usuari;
 
-    public Partida(Hidato hidato) {
+    public Partida(Hidato hidato, Usuari user) {
         this.hidato = hidato;
         dificultat = hidato.getDificultat();
         status = 0;
         puntuacio = 0;
         contador = new Contador();
         temps = -1;
+        usuari = user;
 
         //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
         iniciarPartida();
@@ -137,8 +138,7 @@ public class Partida {
     }
 
     public String getNomUsuari() {
-        return "aaa";
-        //return usuari.getUsername();
+        return usuari.getUsername();
     }
 
     public boolean esSolucionable() {

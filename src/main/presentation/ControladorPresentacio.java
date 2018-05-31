@@ -34,69 +34,71 @@ public class ControladorPresentacio {
     }
 
     public static ControladorPresentacio getInstance() {
-        if (instance == null) instance = new ControladorPresentacio(); 
-    	return instance;
+        if (instance == null) {
+            instance = new ControladorPresentacio();
+        }
+        return instance;
     }
 
-	public void launchPartidaScreen(){
-		
-	}
-	
-	public boolean ferMoviment(int i, int j, int value) {
-		return domini.ferMoviment(i, j, value);
-	}
-	
-	public boolean desferMoviment(int i, int j) {
-		return domini.desferMoviment(i, j);
-	}
-	
-	public boolean partidaCompletada() {
-		return domini.partidaCompletada();
-	}
-	
-	public void launchLogin() {
+    public void launchPartidaScreen() {
+
+    }
+
+    public boolean ferMoviment(int i, int j, int value) {
+        return domini.ferMoviment(i, j, value);
+    }
+
+    public boolean desferMoviment(int i, int j) {
+        return domini.desferMoviment(i, j);
+    }
+
+    public boolean partidaCompletada() {
+        return domini.partidaCompletada();
+    }
+
+    public void launchLogin() {
         Inici inici = new Inici();
-		inici.run();
-	}
+        inici.run();
+    }
 
-	public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
-		return domini.autoGenerar(tipusCella, dificultat);
-	}
-	
-	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
-		return domini.autoGenerar(tipusCella, tipusAdjacencia, dificultat);
-	}
-	
-	public boolean autoGenerar(Dificultat dificultat) {
-		return domini.autoGenerar(dificultat);
-	}
+    public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
+        return domini.autoGenerar(tipusCella, dificultat);
+    }
 
-	public void jugarHidatoGenerat() {
-		domini.jugarHidatoGenerat();
-	}
+    public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
+        return domini.autoGenerar(tipusCella, tipusAdjacencia, dificultat);
+    }
 
-	public int[][] getMatriuHidatoDePartida() {
-		return domini.getMatriuHidatoDePartida();
-	}
+    public boolean autoGenerar(Dificultat dificultat) {
+        return domini.autoGenerar(dificultat);
+    }
 
-	public Vector<Integer> getNombresPerDefecte() {
-		return domini.getNombresPerDefecte();
-	}
+    public void jugarHidatoGenerat() {
+        domini.jugarHidatoGenerat();
+    }
 
-	public Vector<Integer> getPossiblesMoviments() {
-		return domini.getPossiblesMoviments();
-	}
+    public int[][] getMatriuHidatoDePartida() {
+        return domini.getMatriuHidatoDePartida();
+    }
 
-	public void reset() {
-		domini.resetMatriuEnPartida();
-	}
+    public Vector<Integer> getNombresPerDefecte() {
+        return domini.getNombresPerDefecte();
+    }
 
-	public void guardarPartida() {
-		domini.guardarPartida();		
-	}
+    public Vector<Integer> getPossiblesMoviments() {
+        return domini.getPossiblesMoviments();
+    }
 
-	public boolean sobreesciure() {
-		int input = JOptionPane.showOptionDialog(null, "Ja hi ha una partida guardada. La vols sobreescriure?", "Ja hi ha una partida guardada",
+    public void reset() {
+        domini.resetMatriuEnPartida();
+    }
+
+    public void guardarPartida() {
+        domini.guardarPartida();
+    }
+
+    public boolean sobreesciure() {
+        int input = JOptionPane.showOptionDialog(null, "Ja hi ha una partida guardada. La vols sobreescriure?", "Ja hi ha una partida guardada",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
         if (input == JOptionPane.OK_OPTION) {
@@ -174,14 +176,13 @@ public class ControladorPresentacio {
     }
 
     public boolean existsDate(Ranking r, String date) {
-        return domini.existsDate(r,date);
+        return domini.existsDate(r, date);
     }
 
     public boolean loginUsuari(String username, String password) throws IOException {
         if (domini.loginUsuari(username, password)) {
             //login success
-        }
-        else {
+        } else {
             //login fault
             return false;
         }
@@ -215,6 +216,5 @@ public class ControladorPresentacio {
     public String getPassword() {
         return domini.getPassword();
     }
-
 
 }
