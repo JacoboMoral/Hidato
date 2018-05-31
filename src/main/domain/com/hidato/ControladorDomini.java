@@ -17,7 +17,7 @@ public class ControladorDomini {
     private Partida partidaEnCurs = null;
     private Hidato hidatoGenerat = null;
     private Usuari currentUser;
-    private Ranking ranking;
+    private Ranking ranking = Ranking.getInstance();
 
   public static ControladorDomini getInstance() {
 		if (instance == null) instance = new ControladorDomini();

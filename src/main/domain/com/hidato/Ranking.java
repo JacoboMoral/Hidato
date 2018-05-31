@@ -5,6 +5,7 @@
  */
 package main.domain.com.hidato;
 
+import main.persistence.ControladorPersistencia;
 import main.presentation.VistaRanking;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,7 +27,16 @@ public class Ranking {
     private ArrayList<Posicio> rankingInter = new ArrayList<Posicio>();
     private ArrayList<Posicio> rankingHard = new ArrayList<Posicio>();
 
-        
+    private static Ranking instance = null;
+
+    public static Ranking getInstance() {
+        if (instance == null) {
+            instance = new Ranking();
+        }
+        return instance;
+    }
+   
+    
     public ArrayList<Posicio> getLlistaPosicio(int dificultat) {
         switch (dificultat) {
             case levelEasy:
