@@ -10,6 +10,7 @@ import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 import main.domain.com.hidato.Usuari;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -23,6 +24,8 @@ import main.domain.com.hidato.HidatoIO;
  */
 public class VistaMenuPrincipal extends javax.swing.JFrame {
 
+  
+    ControladorPresentacio controller = ControladorPresentacio.getInstance();
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
@@ -1521,10 +1524,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_b_saveActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        VistaPartida v = new VistaPartida(levelEasy, randomType, cp.getUsername());
-        v.setVisible(true);
-        this.dispose();
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jButton4ActionPerformed
+        controller.cargarPartidaGuardada(cv,this);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void b_cpstom1ActionPerformed(java.awt.event.ActionEvent evt) {                                          

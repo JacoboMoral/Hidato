@@ -48,13 +48,18 @@ public class Algorismes {
 
         Collections.sort(given);
 
-        if (given.get(0) != 1) {
-            return false; //comprova que sempre ens donin el primer numero (i.e. 1)
+        if (given.size() == 0) {
+        		return false; 					//ens ha de donar minim 2 numeros
         }
 
-        if (given.get(given.size() - 1) != casellesNumeriques) {
-            return false; //comprova que sempre ens donin el ultimo numero
+        if (given.get(0) != 1) {
+            return false;					//comprova que sempre ens donin el primer numero (i.e. 1)
         }
+        
+        if (given.get(given.size() - 1) != casellesNumeriques) {
+            return false; 					//comprova que sempre ens donin el ultimo numero
+        }
+        
         return solucionador(row1, column1, 1, 0, matriu);
     }
 

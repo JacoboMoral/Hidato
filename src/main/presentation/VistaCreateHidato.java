@@ -9,11 +9,10 @@ import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
-import static main.presentation.ControladorPresentacio.panelPartida;
-
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -96,7 +95,14 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         });
 
         saveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
+        saveGame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            		saveGameMouseClicked(evt);
+            }
 
+        });
+        
+        
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -271,6 +277,10 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     	mostrant = 0;
     }//GEN-LAST:event_b_numMouseClicked
 
+    private void saveGameMouseClicked(MouseEvent evt) {
+    		creacio.guardarHidato();
+	}
+    
     private void b_numActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_numActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_numActionPerformed

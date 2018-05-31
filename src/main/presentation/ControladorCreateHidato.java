@@ -2,6 +2,8 @@ package main.presentation;
 
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
@@ -15,6 +17,8 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 	private Vector<Integer> nombresPerDefecte;
 	private int currentWriteable = 0;
 	private int[][] matriuCreacio;
+	TipusCella tipusCella;
+	TipusAdjacencia tipusAdjacencia;
 
 	/*public static ControladorCreateHidato getInstance() {
         if (instance == null) instance = new ControladorCreateHidato();
@@ -24,6 +28,8 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 	public PanelPartida createHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int i, int j) {
 		this.cella = tipusCellaToCella(tipusCella);
 		matriuCreacio = new int[i][j];
+		this.tipusCella = tipusCella;
+		this.tipusAdjacencia = tipusAdjacencia;
 		partida = new PanelPartida(cella,matriuCreacio, true, this);
 		return partida;
 	}
@@ -119,6 +125,18 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 	@Override
 	public int getMinimMoviment() {
 		return possiblesMoviments.get(0);
+	}
+	
+	@Override
+	public void guardarHidato() {
+		if (controller.esResoluble(tipusCella, tipusAdjacencia, matriuCreacio)) {
+			String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
+		    if (hidatoName != null) controller.guardarHidatoCreat(tipusCella, tipusAdjacencia, matriuCreacio, hidatoName);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "L'hidato proposat no es resoluble");
+		}
+	    
 	}
 	
 }

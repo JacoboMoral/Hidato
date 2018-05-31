@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -17,6 +18,7 @@ import javax.swing.JTextField;
 
 import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
+import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.Ranking;
 import main.domain.com.hidato.TipusAdjacencia;
@@ -27,8 +29,11 @@ public class ControladorPresentacio {
 
     private static ControladorPresentacio instance = null;
     private static final ControladorDomini domini = ControladorDomini.getInstance();
-
+    private static final ControladorPartida controladorPartida = ControladorPartida.getInstance();
+    private VistaPartida v;
+    
     static JPanel panelPartida; //JPanel vs PanelPartida??? hi ha cap diferencia?'
+
 
     private ControladorPresentacio() {
     }
@@ -207,14 +212,47 @@ public class ControladorPresentacio {
 
     public String getUsername() {
         return domini.getUsername();
-    }
-
-    public Usuari getUser() {
-        return domini.getUser();
-    }
 
     public String getPassword() {
         return domini.getPassword();
     }
+
+   public void mostraPartidaGuardada() {
+		
+		JOptionPane.showMessageDialog(null, "La seva partida s'ha guardat correctament");		
+		
+	}
+	
+	public boolean hiHaPartidaGuardada() {
+		return domini.hiHaPartidaGuardada();
+	}
+
+	public void cargarPartidaGuardada(CtrlVista cv, VistaMenuPrincipal vistaAnterior) {
+		if (hiHaPartidaGuardada()) {
+			domini.carregarPartida("aaa");
+			TipusCella tipusCella = domini.getTipusCellaPartida();
+			int[][] matriuHidato = domini.getMatriuHidatoDePartida();
+			JPanel hidatoPanel = controladorPartida.partidaCarregada(tipusCella, matriuHidato);
+			
+			v = new VistaPartida(cv,hidatoPanel);
+	        v.setVisible(true);
+	        vistaAnterior.dispose();
+			
+		}
+        else JOptionPane.showMessageDialog(null, "Actualment no disposes de cap partida en curs");
+	}
+	
+	public boolean esResoluble(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuCreacio) {
+		return domini.esResoluble(tipusCella, tipusAdjacencia, matriuCreacio);
+	}
+
+	public void guardarHidatoCreat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuCreacio, String nomHidato) {
+		try {
+			domini.guardarHidato(tipusCella, tipusAdjacencia, matriuCreacio, nomHidato);
+			JOptionPane.showMessageDialog(null, "S'ha guardat el teu hidato amb el nom '" + nomHidato + "'.");
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Hi ha hagut un error al guardar l'hidato: " + e.getMessage());
+		}
+	}
 
 }
