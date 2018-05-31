@@ -74,6 +74,18 @@ public class ControladorPresentacio {
 	public boolean autoGenerar(Dificultat dificultat) {
 		return domini.autoGenerar(dificultat);
 	}
+	
+	public boolean autoGenerar(int altura, int amplada, int forats) {
+		return domini.autoGenerar(altura, amplada, forats);
+	}
+	
+	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int altura, int amplada, int forats) {
+		return domini.autoGenerar(tipusCella, tipusAdjacencia, altura, amplada, forats);
+	}
+	
+	public boolean autoGenerar(TipusCella tipusCella, int altura, int amplada, int forats) {
+		return domini.autoGenerar(tipusCella, altura, amplada, forats);
+	}
 
 	public void jugarHidatoGenerat() {
 		domini.jugarHidatoGenerat();
@@ -276,6 +288,8 @@ public class ControladorPresentacio {
 		} else JOptionPane.showMessageDialog(null, "Format no v�lid");
 	}
 
-
+	public TipusCella getTipusCellaPartida() {
+		return domini.getTipusCellaPartida();
+	}
 
 }

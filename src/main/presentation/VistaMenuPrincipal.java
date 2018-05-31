@@ -13,11 +13,15 @@ import main.domain.com.hidato.TipusCella;
 import main.domain.com.hidato.Usuari;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
+import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.HidatoIO;
 
@@ -38,6 +42,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     
     private ControladorMenuPrincipal cmp;
     private ControladorPresentacio cp = ControladorPresentacio.getInstance();
+    private ControladorPartida controladorPartida = ControladorPartida.getInstance();
     private static TipusCella tipusCella;
     private static TipusAdjacencia tipusAdjacencia;
     private static int[][] matriu;
@@ -71,6 +76,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         adjacenciaAuto.setSelectedItem("Costat");
         tipologiaAuto.setSelectedItem("Hexagon");
         showHidatoList();
+        
+        adjacenciaCheckBox.setEnabled(false);
 
     }
 
@@ -94,6 +101,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         levelsButtons = new javax.swing.ButtonGroup();
+        typeButtons = new javax.swing.ButtonGroup();
         topBarPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         b_userProfile = new javax.swing.JLabel();
@@ -174,6 +182,14 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         hardButton = new javax.swing.JRadioButton();
         easyButton = new javax.swing.JRadioButton();
         b_generate = new javax.swing.JButton();
+        generacioAltura = new javax.swing.JLabel();
+        generacioAmpladaSpinner = new javax.swing.JSpinner();
+        generacioAmplada = new javax.swing.JLabel();
+        generacioAlturaSpinner = new javax.swing.JSpinner();
+        caracteristiquesButton = new javax.swing.JRadioButton();
+        dificultatButton = new javax.swing.JRadioButton();
+        generacioForats = new javax.swing.JLabel();
+        generacioForatsSpinner = new javax.swing.JSpinner();
         editUsernamePanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         oldName = new javax.swing.JTextField();
@@ -694,7 +710,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel5.setText("Amplada");
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel6.setText("Altuar");
+        jLabel6.setText("Altura");
 
         altura.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
         altura.setModel(new javax.swing.SpinnerNumberModel(5, 3, 15, 1));
@@ -773,7 +789,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(amplada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createCustomPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(createCustomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1052,14 +1068,29 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         interButton.setBackground(new java.awt.Color(0, 153, 153));
         interButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         interButton.setText("Intermediate");
+        interButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                interButtonActionPerformed(evt);
+            }
+        });
 
         hardButton.setBackground(new java.awt.Color(0, 153, 153));
         hardButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         hardButton.setText("Hard");
+        hardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hardButtonActionPerformed(evt);
+            }
+        });
 
         easyButton.setBackground(new java.awt.Color(0, 153, 153));
         easyButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         easyButton.setText("Easy");
+        easyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                easyButtonActionPerformed(evt);
+            }
+        });
 
         b_generate.setBackground(new java.awt.Color(0, 204, 204));
         b_generate.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -1070,12 +1101,49 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        generacioAltura.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        generacioAltura.setText("Altura");
+
+        generacioAmpladaSpinner.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        generacioAmpladaSpinner.setModel(new javax.swing.SpinnerNumberModel(5, 3, 15, 1));
+
+        generacioAmplada.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        generacioAmplada.setText("Amplada");
+
+        generacioAlturaSpinner.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        generacioAlturaSpinner.setModel(new javax.swing.SpinnerNumberModel(5, 3, 15, 1));
+        generacioAlturaSpinner.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        typeButtons.add(caracteristiquesButton);
+        caracteristiquesButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        caracteristiquesButton.setText("Característiques");
+        caracteristiquesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caracteristiquesButtonActionPerformed(evt);
+            }
+        });
+
+        typeButtons.add(dificultatButton);
+        dificultatButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dificultatButton.setText("Dificultat");
+        dificultatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dificultatButtonActionPerformed(evt);
+            }
+        });
+
+        generacioForats.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        generacioForats.setText("Forats");
+
+        generacioForatsSpinner.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        generacioForatsSpinner.setModel(new javax.swing.SpinnerNumberModel(5, 0, null, 1));
+
         javax.swing.GroupLayout createAutoPanelLayout = new javax.swing.GroupLayout(createAutoPanel);
         createAutoPanel.setLayout(createAutoPanelLayout);
         createAutoPanelLayout.setHorizontalGroup(
             createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createAutoPanelLayout.createSequentialGroup()
-                .addContainerGap(177, Short.MAX_VALUE)
+                .addContainerGap(54, Short.MAX_VALUE)
                 .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAutoPanelLayout.createSequentialGroup()
                         .addComponent(b_generate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1084,17 +1152,29 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                         .addGap(19, 19, 19))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAutoPanelLayout.createSequentialGroup()
                         .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(generacioAmplada)
+                            .addComponent(generacioAltura)
+                            .addComponent(generacioAmpladaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(caracteristiquesButton)
+                            .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(generacioForats)
+                                    .addComponent(generacioForatsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(generacioAlturaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(31, 31, 31)
+                        .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dificultatButton)
                             .addComponent(easyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(interButton))
-                        .addGap(61, 61, 61)
+                        .addGap(46, 46, 46)
                         .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(adjacenciaCheckBox)
                             .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(tipologiaAuto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(adjacenciaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(tipologiaCheckBox))
-                        .addGap(143, 143, 143))))
+                        .addGap(84, 84, 84))))
         );
         createAutoPanelLayout.setVerticalGroup(
             createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1102,24 +1182,45 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGap(91, 91, 91)
                 .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(createAutoPanelLayout.createSequentialGroup()
-                        .addComponent(adjacenciaCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(adjacenciaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(tipologiaCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tipologiaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(createAutoPanelLayout.createSequentialGroup()
+                                .addComponent(caracteristiquesButton)
+                                .addGap(19, 19, 19)
+                                .addComponent(generacioAltura)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(generacioAmpladaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(generacioAmplada)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(generacioAlturaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17)
+                                .addComponent(generacioForats)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(generacioForatsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(createAutoPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(tipologiaCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tipologiaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(adjacenciaCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(adjacenciaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(103, 103, 103)))
+                        .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(b_generate)
+                            .addComponent(b_backTypeCreate1))
+                        .addGap(18, 18, 18))
                     .addGroup(createAutoPanelLayout.createSequentialGroup()
+                        .addComponent(dificultatButton)
+                        .addGap(18, 18, 18)
                         .addComponent(easyButton)
                         .addGap(31, 31, 31)
                         .addComponent(interButton)
                         .addGap(36, 36, 36)
-                        .addComponent(hardButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(b_generate)
-                    .addComponent(b_backTypeCreate1))
-                .addGap(18, 18, 18))
+                        .addComponent(hardButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         parentPanel.add(createAutoPanel, "card5");
@@ -1511,16 +1612,79 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         if (selectedItem.equalsIgnoreCase("COSTATS I ANGLES")) return TipusAdjacencia.COSTATSIANGLES;
         return TipusAdjacencia.COSTATS;
 	}
+    
+    private Dificultat stringToDificultat(String selectedItem) {
+        if (selectedItem.equalsIgnoreCase("DIFICIL")) return Dificultat.DIFICIL;
+        else if (selectedItem.equalsIgnoreCase("MIG")) return Dificultat.MIG;
+        return Dificultat.FACIL;
+	}
 
 	private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
-        esAuto = true;
-        parentPanel.removeAll();
-        parentPanel.add(previewHidatoPanel);
-        parentPanel.repaint();
-        parentPanel.revalidate();
-    }//GEN-LAST:event_b_generateActionPerformed
+		TipusCella tipusCella = null;
+		TipusAdjacencia tipusAdjacencia = null;
+		javax.swing.JPanel hidatoPanel = null;
+		
+		if (tipologiaCheckBox.isSelected()) {
+    		tipusCella = stringToTipusCella((String) (tipologiaAuto.getSelectedItem()));
+    	}
+		
+		if (adjacenciaCheckBox.isSelected()) {
+			tipusAdjacencia = stringToTipusAdjacencia((String) (adjacencia.getSelectedItem()));
+    	}
 
-    private void adjacenciaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjacenciaCheckBoxActionPerformed
+		if (tipologiaCheckBox.isSelected() && adjacenciaCheckBox.isSelected() && !compatibles(tipusCella, tipusAdjacencia)) {
+			JOptionPane.showMessageDialog(null, "Els tipus de casella i d'adjacencia no son compatibles");
+		}
+		
+		else {
+			if (dificultatButton.isSelected()) {
+	        	Dificultat dificultat = null;
+	        	if (interButton.isSelected()) dificultat = Dificultat.MIG;
+	        	else if (hardButton.isSelected()) dificultat = Dificultat.DIFICIL;
+	        	else if (easyButton.isSelected()) dificultat = Dificultat.FACIL;
+	        	if (dificultat == null) JOptionPane.showMessageDialog(null, "Has d'escollir una de les opcions de dificultat");
+	        	else {
+	        		if (tipusCella != null) {
+	        			if (tipusAdjacencia == null) hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, dificultat);
+	        			else hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, tipusAdjacencia, dificultat);
+	        		}
+	        		else {	//tipusAdjacencia i tipusCella aleatoris
+	        			hidatoPanel = controladorPartida.partidaAutogenerada(dificultat);
+	        		}
+	        	}
+	        }
+			
+	        else if (caracteristiquesButton.isSelected()) {
+	        	int altura, amplada, forats;
+	        	altura = (int)generacioAlturaSpinner.getValue();
+	        	amplada = (int)generacioAmpladaSpinner.getValue();
+	        	forats = (int)generacioForatsSpinner.getValue();
+	        	if (forats > (altura*amplada)) JOptionPane.showMessageDialog(null, "No pot haver més forats que caselles totals");
+	        	else {
+	        		if (tipusCella != null) {
+	        			if (tipusAdjacencia == null) hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, altura, amplada, forats);
+	        			else hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, tipusAdjacencia, altura, amplada, forats);
+	        		}
+	        		else {	//tipusAdjacencia i tipusCella aleatoris
+	        			hidatoPanel = controladorPartida.partidaAutogenerada(altura, amplada,forats);
+	        		}
+	        	}
+	        }
+	        else JOptionPane.showMessageDialog(null, "Has d'escollir una de les opcions, dificultat o característiques");
+			if (hidatoPanel != null) {
+				VistaPartida v = new VistaPartida(hidatoPanel);
+				v.setVisible(true);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "No s'ha pogut generar l'hidato, intenta-ho de nou");
+			}
+		}
+
+        
+    }//GEN-LAST:event_b_generateActionPerformed
+	
+
+	private void adjacenciaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjacenciaCheckBoxActionPerformed
         if (adjacenciaCheckBox.isSelected()) {
             adjacenciaAuto.setEnabled(true);
         } else {
@@ -1531,8 +1695,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private void tipologiaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipologiaCheckBoxActionPerformed
         if (tipologiaCheckBox.isSelected()) {
             tipologiaAuto.setEnabled(true);
+            adjacenciaCheckBox.setEnabled(true);
         } else {
             tipologiaAuto.setEnabled(false);
+            adjacenciaCheckBox.setEnabled(false);
         }
     }//GEN-LAST:event_tipologiaCheckBoxActionPerformed
 
@@ -1687,6 +1853,51 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     	
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void caracteristiquesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caracteristiquesButtonActionPerformed
+    	generacioAltura.setEnabled(true);
+    	generacioAmplada.setEnabled(true);
+    	generacioForats.setEnabled(true);
+    	
+    	generacioAlturaSpinner.setEnabled(true);
+    	generacioAmpladaSpinner.setEnabled(true);
+    	generacioForatsSpinner.setEnabled(true);
+
+    	
+    	interButton.setEnabled(false);
+    	hardButton.setEnabled(false);
+    	easyButton.setEnabled(false);
+    	
+    }//GEN-LAST:event_caracteristiquesButtonActionPerformed
+
+    private void dificultatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dificultatButtonActionPerformed
+    	generacioAltura.setEnabled(false);
+    	generacioAmplada.setEnabled(false);
+    	generacioForats.setEnabled(false);
+    	
+    	generacioAlturaSpinner.setEnabled(false);
+    	generacioAmpladaSpinner.setEnabled(false);
+    	generacioForatsSpinner.setEnabled(false);
+    	
+    	interButton.setEnabled(true);
+    	hardButton.setEnabled(true);
+    	easyButton.setEnabled(true);
+    }//GEN-LAST:event_dificultatButtonActionPerformed
+
+    private void easyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyButtonActionPerformed
+    	dificultatButton.setSelected(true);
+    	dificultatButtonActionPerformed(null);
+    }//GEN-LAST:event_easyButtonActionPerformed
+
+    private void interButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_interButtonActionPerformed
+    	dificultatButton.setSelected(true);
+    	dificultatButtonActionPerformed(null);
+    }//GEN-LAST:event_interButtonActionPerformed
+
+    private void hardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardButtonActionPerformed
+    	dificultatButton.setSelected(true);
+    	dificultatButtonActionPerformed(null);
+    }//GEN-LAST:event_hardButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1748,12 +1959,20 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton b_save1;
     private javax.swing.JButton b_signout;
     private javax.swing.JLabel b_userProfile;
+    private javax.swing.JRadioButton caracteristiquesButton;
     private javax.swing.JPanel createAutoPanel;
     private javax.swing.JPanel createCustomPanel;
     private javax.swing.JPanel deleteAccountPanel;
+    private javax.swing.JRadioButton dificultatButton;
     private javax.swing.JRadioButton easyButton;
     private javax.swing.JPanel editPasswordPanel;
     private javax.swing.JPanel editUsernamePanel;
+    private javax.swing.JLabel generacioAltura;
+    private javax.swing.JSpinner generacioAlturaSpinner;
+    private javax.swing.JLabel generacioAmplada;
+    private javax.swing.JSpinner generacioAmpladaSpinner;
+    private javax.swing.JLabel generacioForats;
+    private javax.swing.JSpinner generacioForatsSpinner;
     private javax.swing.JRadioButton hardButton;
     private javax.swing.JList<String> hidatoList;
     private javax.swing.JPanel importPanel;
@@ -1814,6 +2033,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> tipologiaAuto;
     private javax.swing.JCheckBox tipologiaCheckBox;
     private javax.swing.JPanel topBarPanel;
+    private javax.swing.ButtonGroup typeButtons;
     private javax.swing.JPanel typeCreatePanel;
     private javax.swing.JButton viewHidato;
     // End of variables declaration//GEN-END:variables

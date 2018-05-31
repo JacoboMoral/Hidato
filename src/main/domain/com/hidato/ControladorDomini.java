@@ -37,7 +37,7 @@ public class ControladorDomini {
     public void jugarHidatoGenerat() {
         if (hidatoGenerat != null) {
             partidaEnCurs = new Partida(hidatoGenerat, currentUser);
-            partidaEnCurs.esSolucionable();
+            System.out.println(partidaEnCurs.esSolucionable());
         }
     }
 
@@ -63,7 +63,7 @@ public class ControladorDomini {
 
 	public boolean autoGenerar(Dificultat dificultat) {
 		TipusCella tipusCella = getRandomTipusCella();
-		TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia();
+		TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia(tipusCella);
 		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
 		boolean generat = hidatoGenerat.autogenerar(dificultat);
 		if (generat) return true;
@@ -74,19 +74,25 @@ public class ControladorDomini {
 	}
 
 	public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
-		if (tipusCella == TipusCella.QUADRAT) {
-			TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia();
-			hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
-		}
-		else {
-			hidatoGenerat = HidatoFactory.createHidato(tipusCella, TipusAdjacencia.COSTATS); //es crea hidato sense matriu
-		}
+		TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia(tipusCella);
+		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
 		boolean generat = hidatoGenerat.autogenerar(dificultat);
 		if (generat) return true;
 		else{
 			hidatoGenerat = null;
 			return false;
 		}
+	}
+	
+	public boolean autoGenerar(TipusCella tipusCella, int altura, int amplada, int forats) {
+		TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia(tipusCella);
+		return autoGenerar(tipusCella, tipusAdjacencia, altura, amplada, forats);
+	}
+	
+	public boolean autoGenerar(int altura, int amplada, int forats) {
+		TipusCella tipusCella = getRandomTipusCella();
+		TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia(tipusCella);
+		return autoGenerar(tipusCella, tipusAdjacencia, altura, amplada, forats);
 	}
 
 	public int[][] getMatriuHidatoOriginalDePartida(){
@@ -175,27 +181,24 @@ public class ControladorDomini {
     public boolean esPotSolucionar() {
         return partidaEnCurs.esSolucionable();
     }
-
+    
     private TipusCella getRandomTipusCella() {
-        Random random = new Random();
-        int tc = random.nextInt(3);
-        if (tc == 0) {
-            return TipusCella.QUADRAT;
-        }
-        if (tc == 1) {
-            return TipusCella.TRIANGLE;
-        }
-        return TipusCella.HEXAGON;
-    }
+		Random rand = new Random();
+    	int randomValue = rand.nextInt(3);
+    	if (randomValue == 0) return TipusCella.QUADRAT;
+    	if (randomValue == 1) return TipusCella.HEXAGON;
+    	return TipusCella.TRIANGLE;
 
-    private TipusAdjacencia getRandomTipusAdjacencia() {
-        Random random = new Random();
-        int ta = random.nextInt(2);
-        if (ta == 0) {
-            return TipusAdjacencia.COSTATS;
-        }
-        return TipusAdjacencia.COSTATSIANGLES;
-    }
+	}
+	
+    private TipusAdjacencia getRandomTipusAdjacencia(TipusCella tipusCella) {
+    	if (tipusCella == TipusCella.QUADRAT) {
+    		Random rand = new Random();
+        	int randomValue = rand.nextInt(2);
+        	if (randomValue == 0) return TipusAdjacencia.COSTATSIANGLES;
+    	}
+		return TipusAdjacencia.COSTATS;
+	}
 
     public void finalitzarPartida() {
         //presentacio.finalitzarPartida();
@@ -280,6 +283,8 @@ public class ControladorDomini {
 
 		
 	}
+	
+	
 
     public String[] getAllHidatoNames() {
         return controladorPersistencia.getAllHidatoFileNames();
@@ -409,6 +414,8 @@ public class ControladorDomini {
 	public boolean comprovarHidatotxtResoluble() {
 		return esResoluble(controladorPersistencia.getTipusCellaHidato(), controladorPersistencia.getTipusAdjacenciaHidato(), controladorPersistencia.getMatriuHidato());
 	}
+
+	
 
 
 }
