@@ -26,18 +26,11 @@ public class IORanking {
     private static final int levelInter = 2;
     private static final int levelHard = 3;
     
-    private static Ranking r;
-    
-    
-    public static Ranking getRanking() {
-        return r = IORanking.readRanking();
-    }
-    
-    static void saveScoreDB(int dif, int score, String username) {
+    static void saveScoreDB(Ranking ranking, int dif, int score, String username) {
         LocalDate date = LocalDate.now();
         Posicio p = new Posicio(username, score, date);
-        r.insertPosition(p, dif);
-        saveRanking(r);
+        ranking.insertPosition(p, dif);
+        saveRanking(ranking);
     }
     
     public static void saveRanking(Ranking r) {
@@ -147,7 +140,7 @@ public class IORanking {
         return r;
     }
 
-    public static String[] getRankingEasy() {
+    public static String[] getRankingEasy(Ranking r) {
         ArrayList<Posicio> llista = r.getLlistaPosicio(levelEasy);
         String rankingList[] = new String[llista.size()];
         int i = 0;
@@ -161,7 +154,7 @@ public class IORanking {
         return rankingList;
     }
 
-    public static String[] getRankingInter() {
+    public static String[] getRankingInter(Ranking r) {
         ArrayList<Posicio> llista = r.getLlistaPosicio(levelInter);
         String rankingList[] = new String[llista.size()];
         int i = 0;
@@ -175,7 +168,7 @@ public class IORanking {
         return rankingList;
     }
 
-    public static String[] getRankingHard() {
+    public static String[] getRankingHard(Ranking r) {
         ArrayList<Posicio> llista = r.getLlistaPosicio(levelHard);
         String rankingList[] = new String[llista.size()];
         int i = 0;
@@ -189,7 +182,7 @@ public class IORanking {
         return rankingList;
     }
 
-    public static String[] getFilterByUsername(String username, int level) {
+    public static String[] getFilterByUsername(Ranking r, String username, int level) {
         List<String> rankingList = new ArrayList<String>();
         Posicio currentPosition = null;
         int i, j;
@@ -234,16 +227,16 @@ public class IORanking {
         return result;
     }
 
-    public static void deteleUserRanking(String nom) {
+    public static void deteleUserRanking(Ranking r, String nom) {
         r.deleteUserRanking(nom);
         saveRanking(r);
     }
 
-    public static boolean existsUser(String nom) {
+    public static boolean existsUser(Ranking r, String nom) {
         return r.existsUser(nom);
     }
 
-    public static String[] getFilterByDate(String date, int level) {
+    public static String[] getFilterByDate(Ranking r, String date, int level) {
         LocalDate localDate = LocalDate.parse(date);
         List<String> rankingList = new ArrayList<String>();
         Posicio currentPosition = null;
@@ -289,7 +282,7 @@ public class IORanking {
         return result;
     }
 
-    public static boolean existsDate(String date) {
+    public static boolean existsDate(Ranking r, String date) {
         return r.existsDate(date);
     }
 

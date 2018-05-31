@@ -133,48 +133,48 @@ public class ControladorPresentacio {
         return domini.getAllHidatoNames();
     }
 
-    public void saveScore(int dif, String username, int score) {
-        domini.saveScore(dif, score, username);
+    public void saveScore(Ranking ranking, int dif, String username, int score) {
+        domini.saveScore(ranking, dif, score, username);
     }
 
-    public String[] getRankingEasy() {
-        return domini.getRankingEasy();
+    public String[] getRankingEasy(Ranking r) {
+        return domini.getRankingEasy(r);
     }
 
-    public String[] getRankingInter() {
-        return domini.getRankingInter();
+    public String[] getRankingInter(Ranking r) {
+        return domini.getRankingInter(r);
     }
 
-    public String[] getRankingHard() {
-        return domini.getRankingHard();
+    public String[] getRankingHard(Ranking r) {
+        return domini.getRankingHard(r);
     }
 
-    public void loadRanking() {
-        domini.loadRanking();
+    public Ranking loadRanking() {
+        return domini.loadRanking();
     }
 
     public Ranking getRanking() {
         return domini.getRanking();
     }
 
-    public String[] getFilterByUsername(String username, int level) {
-        return domini.getFilterByUsername(username, level);
+    public String[] getFilterByUsername(Ranking r, String username, int level) {
+        return domini.getFilterByUsername(r, username, level);
     }
 
-    public void deteleUserRanking(String nom) {
-        domini.deteleUserRanking(nom);
+    public void deteleUserRanking(Ranking r, String nom) {
+        domini.deteleUserRanking(r, nom);
     }
 
-    public boolean existsUser(String nom) {
-        return domini.existsUser(nom);
+    public boolean existsUser(Ranking r, String nom) {
+        return domini.existsUser(r, nom);
     }
 
-    public String[] getFilterByDate(String date, int level) {
-        return domini.getFilterByDate(date, level);
+    public String[] getFilterByDate(Ranking r, String date, int level) {
+        return domini.getFilterByDate(r, date, level);
     }
 
-    public boolean existsDate(String date) {
-        return domini.existsDate(date);
+    public boolean existsDate(Ranking r, String date) {
+        return domini.existsDate(r,date);
     }
 
     public boolean loginUsuari(String username, String password) throws IOException {
@@ -201,7 +201,6 @@ public class ControladorPresentacio {
     }
 
     public boolean deleteUser(String pass) {
-        System.out.println("estic a cp");
         return domini.deleteUser(pass);
     }
 

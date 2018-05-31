@@ -21,6 +21,8 @@ import main.domain.com.hidato.Usuari;
 public class IOUsuari {
     
     private static Usuari currentUser;
+    private static String currentUsername;
+    private static String currentPassword;
     
     public static boolean usernameExists(String username) {
         File temp = new File("DB/Usuaris/" + username);
@@ -70,7 +72,8 @@ public class IOUsuari {
             fr.close();
             if (contingut_password.equals(password)) {
                 userPassMatch = true;
-                currentUser = new Usuari(username, password);
+                currentUsername = username;
+                currentPassword = password;
             }
         }
         return userPassMatch;
@@ -80,7 +83,7 @@ public class IOUsuari {
         boolean successful = false;
         File temp = new File("DB/Usuaris/" + username);
         if (!temp.exists()) {
-            temp.mkdirs();          //fem varies carpetes
+            temp.mkdirs();          
             File temp2 = new File("DB/Usuaris/" + username + "/", "password.txt");
             temp2.createNewFile();
             FileWriter esc = new FileWriter("DB/Usuaris/" + username + "/password.txt", true);
@@ -93,13 +96,12 @@ public class IOUsuari {
         return successful;
     }
 
-    public static boolean editUseranme(String currentUsername, String newUsername) {
+    public static boolean editUseranme(String currentname, String newUsername) {
         boolean successful = false;
-        if (!usernameExists(newUsername) && currentUsername.equals(currentUser.getUsername())) {
-            Usuari newCurrent = new Usuari(newUsername, currentUser.getPassword());
+        if (!usernameExists(newUsername) && currentname.equals(currentUsername)) {
             successful = changeUsername(currentUsername, newUsername);
             if (successful) {
-                currentUser = newCurrent;
+                currentUsername = currentname;
             }
         }
         return successful;
@@ -107,22 +109,18 @@ public class IOUsuari {
 
     public static boolean changePass(String currentPass, String newPass) throws IOException {
         boolean successful = false;
-        if (currentPass.equals(currentUser.getPassword())) {
-            Usuari newCurrent = new Usuari(currentUser.getUsername(), newPass);
-            successful = changePassword(newCurrent.getUsername(), newPass);
+        if (currentPass.equals(currentPassword)) {
+            successful = changePassword(currentPassword, newPass);
             if (successful) {
-                currentUser = newCurrent;
+                currentPassword = newPass;
             }
         }
         return successful;
     }
 
     public static boolean deleteUer(String pass) {
-        System.out.println(currentUser.getPassword());
-        System.out.println(pass);
-        if (pass.equals(currentUser.getPassword())) {
-            System.out.println("IOOO");
-            return deleteUser(currentUser.getUsername());
+        if (pass.equals(currentPassword)) {
+            return deleteUser(currentUsername);
         }
         return false;
     }

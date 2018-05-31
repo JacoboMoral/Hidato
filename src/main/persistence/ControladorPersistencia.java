@@ -126,48 +126,45 @@ public class ControladorPersistencia {
         return IOHidato.nomHidatosImportats();
     }
 
-    public void saveScoreDB(int dif, int score, String username) {
-        IORanking.saveScoreDB(dif, score, username);
+    public void saveScoreDB(Ranking ranking, int dif, int score, String username) {
+        IORanking.saveScoreDB(ranking, dif, score, username);
     }
 
-    public String[] getRankingEasy() {
-        return IORanking.getRankingEasy();
+    public String[] getRankingEasy(Ranking r) {
+        return IORanking.getRankingEasy(r);
     }
 
-    public String[] getRankingInter() {
-        return IORanking.getRankingInter();
+    public String[] getRankingInter(Ranking r) {
+        return IORanking.getRankingInter(r);
     }
 
-    public String[] getRankingHard() {
-        return IORanking.getRankingHard();
+    public String[] getRankingHard(Ranking r) {
+        return IORanking.getRankingHard(r);
     }
 
-    public void loadRanking() {
-        IORanking.readRanking();
+    public Ranking loadRanking() {
+        return IORanking.readRanking();
     }
 
-    public Ranking getRanking() {
-        return IORanking.getRanking();
+
+    public String[] getFilterByUsername(Ranking r, String username, int level) {
+        return IORanking.getFilterByUsername(r, username, level);
     }
 
-    public String[] getFilterByUsername(String username, int level) {
-        return IORanking.getFilterByUsername(username, level);
+    public void deteleUserRanking(Ranking r, String nom) {
+        IORanking.deteleUserRanking(r, nom);
     }
 
-    public void deteleUserRanking(String nom) {
-        IORanking.deteleUserRanking(nom);
+    public boolean existsUser(Ranking r, String nom) {
+        return IORanking.existsUser(r, nom);
     }
 
-    public boolean existsUser(String nom) {
-        return IORanking.existsUser(nom);
+    public String[] getFilterByDate(Ranking r, String date, int level) {
+        return IORanking.getFilterByDate(r, date, level);
     }
 
-    public String[] getFilterByDate(String date, int level) {
-        return IORanking.getFilterByDate(date, level);
-    }
-
-    public boolean existsDate(String date) {
-        return IORanking.existsDate(date);
+    public boolean existsDate(Ranking r, String date) {
+        return IORanking.existsDate(r, date);
     }
 
     public boolean loginUsuari(String username, String password) throws IOException {
@@ -187,7 +184,6 @@ public class ControladorPersistencia {
     }
 
     public boolean deleteUer(String pass) {
-        System.out.println("estic a Persistencia");
         return IOUsuari.deleteUer(pass);
     }
 

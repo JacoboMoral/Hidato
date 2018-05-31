@@ -169,8 +169,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         b_generate = new javax.swing.JButton();
         editUsernamePanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        oldName = new javax.swing.JTextField();
+        newName = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         b_save = new javax.swing.JButton();
         b_cancel = new javax.swing.JButton();
@@ -1105,13 +1105,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel11.setText("Old username");
 
-        jTextField1.setBackground(new java.awt.Color(0, 153, 153));
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        oldName.setBackground(new java.awt.Color(0, 153, 153));
+        oldName.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        oldName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTextField2.setBackground(new java.awt.Color(0, 153, 153));
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        newName.setBackground(new java.awt.Color(0, 153, 153));
+        newName.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        newName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel12.setText("New username");
@@ -1152,8 +1152,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel11)))
                 .addGap(58, 58, 58)
                 .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oldName, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newName, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_cancel))
                 .addContainerGap(185, Short.MAX_VALUE))
         );
@@ -1162,11 +1162,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             .addGroup(editUsernamePanelLayout.createSequentialGroup()
                 .addGap(114, 114, 114)
                 .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(26, 26, 26)
                 .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addGap(73, 73, 73)
                 .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1316,9 +1316,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_b_backTypeCreate1ActionPerformed
 
     private void b_saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_saveMouseClicked
-        String oldname = jTextField1.getText();
-        String newname = jTextField2.getText();
-        if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty()) {
+        String oldname = oldName.getText();
+        String newname = newName.getText();
+        if (oldName.getText().isEmpty() || newName.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter your name");
         } else {
             boolean successful = cp.editUseranme(oldname, newname);
@@ -1326,6 +1326,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Your username has changed correctly");
                 l_username.setText(cp.getUsername());
                 l_username1.setText(cp.getUsername());
+                oldName.setText("");
+                newName.setText("");
                 parentPanel.removeAll();
                 parentPanel.add(profilePanel);
                 parentPanel.repaint();
@@ -1335,7 +1337,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
-                    jTextField2.setText("");
+                    newName.setText("");
                 }
             }
         }
@@ -1379,6 +1381,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 if (successful) {
                     JOptionPane.showMessageDialog(null, "Your password has changed correctly!");
                     l_password.setText(cp.getPassword());
+                    t_oldpass.setText("");
+                    t_newpass.setText("");
+                    t_rpass.setText("");
                     parentPanel.removeAll();
                     parentPanel.add(profilePanel);
                     parentPanel.repaint();
@@ -1728,13 +1733,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel l_password;
     private javax.swing.JLabel l_username;
     private javax.swing.JLabel l_username1;
     private javax.swing.ButtonGroup levelsButtons;
     private javax.swing.JPanel menuPrincipalPanel;
+    private javax.swing.JTextField newName;
+    private javax.swing.JTextField oldName;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JPanel previewHidatoPanel;
     private javax.swing.JPanel profilePanel;

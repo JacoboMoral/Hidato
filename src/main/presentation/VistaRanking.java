@@ -30,31 +30,30 @@ public class VistaRanking extends javax.swing.JFrame {
 
     public VistaRanking() {
         initComponents();
-        r = cp.getRanking();
         
         filterType.add(filterByDate);
         filterType.add(filterByUsername);
-
+        r = cp.loadRanking();
         
 
-        cp.saveScore(1, "Jia", 10);
-        cp.saveScore(2, "Jia2", 1450);
-        cp.saveScore(3, "Jia3", 14350);
-        cp.saveScore(1, "Jia2", 13242);
-        cp.saveScore(2, "Jia3", 11233);
-        cp.saveScore(3, "Jia2", 11235);
-        cp.saveScore(1, "Jia", 131);
-        cp.saveScore(2, "Jia2", 112);
-        cp.saveScore(3, "Jia3", 14234);
-        cp.saveScore(1, "Jia", 10235);
-        cp.saveScore(2, "Jia2", 110);
-        cp.saveScore(3, "Jia3", 1120);
-        cp.saveScore(1, "Jia2", 16212);
-        cp.saveScore(2, "Jia", 14563);
-        cp.saveScore(3, "Jia2", 14564356);
-        cp.saveScore(1, "Jia3", 161);
-        cp.saveScore(2, "Jia", 143562);
-        cp.saveScore(3, "Jia3", 13454);
+        cp.saveScore(r, 1, "Jia", 10);
+        cp.saveScore(r, 2, "Jia2", 1450);
+        cp.saveScore(r, 3, "Jia3", 14350);
+        cp.saveScore(r, 1, "Jia2", 13242);
+        cp.saveScore(r, 2, "Jia3", 11233);
+        cp.saveScore(r, 3, "Jia2", 11235);
+        cp.saveScore(r, 1, "Jia", 131);
+        cp.saveScore(r, 2, "Jia2", 112);
+        cp.saveScore(r, 3, "Jia3", 14234);
+        cp.saveScore(r, 1, "Jia", 10235);
+        cp.saveScore(r, 2, "Jia2", 110);
+        cp.saveScore(r, 3, "Jia3", 1120);
+        cp.saveScore(r, 1, "Jia2", 16212);
+        cp.saveScore(r, 2, "Jia", 14563);
+        cp.saveScore(r, 3, "Jia2", 14564356);
+        cp.saveScore(r, 1, "Jia3", 161);
+        cp.saveScore(r, 2, "Jia", 143562);
+        cp.saveScore(r, 3, "Jia3", 13454);
         showRankingList();
     }
 
@@ -62,9 +61,9 @@ public class VistaRanking extends javax.swing.JFrame {
         DefaultListModel model = new DefaultListModel();
         DefaultListModel model1 = new DefaultListModel();
         DefaultListModel model2 = new DefaultListModel();
-        String[] rankEasy = cp.getRankingEasy();
-        String[] rankInter = cp.getRankingInter();
-        String[] rankHard = cp.getRankingHard();
+        String[] rankEasy = cp.getRankingEasy(r);
+        String[] rankInter = cp.getRankingInter(r);
+        String[] rankHard = cp.getRankingHard(r);
         for (int i = 0; i < rankEasy.length; ++i) {
             model.addElement(rankEasy[i]);
         }
@@ -86,13 +85,13 @@ public class VistaRanking extends javax.swing.JFrame {
         DefaultListModel model2 = new DefaultListModel();
 
         if (filterByUsername.isSelected()) {
-            if (!cp.existsUser(input)) {
+            if (!cp.existsUser(r, input)) {
                 int message = JOptionPane.showOptionDialog(null, "Username not exists in the Datebase", "Error message",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
             } else {
-                String[] rankEasy = cp.getFilterByUsername(input, levelEasy);
-                String[] rankInter = cp.getFilterByUsername(input, levelInter);
-                String[] rankHard = cp.getFilterByUsername(input, levelHard);
+                String[] rankEasy = cp.getFilterByUsername(r, input, levelEasy);
+                String[] rankInter = cp.getFilterByUsername(r, input, levelInter);
+                String[] rankHard = cp.getFilterByUsername(r, input, levelHard);
                 for (int i = 0; i < rankEasy.length; ++i) {
                     model.addElement(rankEasy[i]);
                 }
@@ -106,13 +105,13 @@ public class VistaRanking extends javax.swing.JFrame {
         }
         if (filterByDate.isSelected()) {
             if (validDate(input)) {
-                if (!cp.existsDate(input)) {
+                if (!cp.existsDate(r, input)) {
                     int message = JOptionPane.showOptionDialog(null, "Date not exists in the Datebase", "Error message",
                             JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                 } else {
-                    String[] rankEasy = cp.getFilterByDate(input, levelEasy);
-                    String[] rankInter = cp.getFilterByDate(input, levelInter);
-                    String[] rankHard = cp.getFilterByDate(input, levelHard);
+                    String[] rankEasy = cp.getFilterByDate(r, input, levelEasy);
+                    String[] rankInter = cp.getFilterByDate(r, input, levelInter);
+                    String[] rankHard = cp.getFilterByDate(r, input, levelHard);
                     for (int i = 0; i < rankEasy.length; ++i) {
                         model.addElement(rankEasy[i]);
                     }
@@ -568,10 +567,10 @@ public class VistaRanking extends javax.swing.JFrame {
         if (username.equals("")) {
             JOptionPane.showMessageDialog(null, "Enter the username that you want to delete");
         } else {
-            if (!cp.existsUser(username)) {
+            if (!cp.existsUser(r, username)) {
                 JOptionPane.showMessageDialog(null, "The user: " + username + " not exists in any ranking");
             }
-            cp.deteleUserRanking(username);
+            cp.deteleUserRanking(r, username);
             user_to_delete.setText("");
             showRankingList();
             repaint();
