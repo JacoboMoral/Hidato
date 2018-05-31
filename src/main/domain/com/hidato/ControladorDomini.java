@@ -1,5 +1,6 @@
 package main.domain.com.hidato;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Random;
@@ -274,4 +275,13 @@ public class ControladorDomini {
     public String[] getAllHidatoNames() {
         return controladorPersistencia.getAllHidatoFileNames();
     }
+    
+	public void guardarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato, String nomHidato) throws IOException { //es un hidato resoluble
+		controladorPersistencia.importarHidato(matriuHidato, tipusCella, tipusAdjacencia, nomHidato);
+	}
+
+	public boolean esResoluble(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuCreacio) {
+		Hidato hidatoPerComprovar = HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuCreacio);
+		return hidatoPerComprovar.teSolucio();
+	}
 }
