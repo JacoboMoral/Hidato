@@ -157,7 +157,7 @@ public class ControladorPresentacio {
 
 	public void cargarPartidaGuardada(VistaMenuPrincipal vistaAnterior) {
 		if (hiHaPartidaGuardada()) {
-			domini.carregarPartida("aaa");
+			domini.carregarPartida();
 			TipusCella tipusCella = domini.getTipusCellaPartida();
 			int[][] matriuHidato = domini.getMatriuHidatoDePartida();
 			JPanel hidatoPanel = controladorPartida.partidaCarregada(tipusCella, matriuHidato);

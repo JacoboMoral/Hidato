@@ -231,15 +231,15 @@ public class ControladorDomini {
     }
 
 	public boolean hiHaPartidaGuardada() {
-		return controladorPersistencia.hiHaPartida("aaa");
+		return controladorPersistencia.hiHaPartida(currentUser.getUsername());
 	}
 	
 	public TipusCella getTipusCellaPartida() {
 		return partidaEnCurs.getTipusCella();
 	}
 
-	public void carregarPartida(String nomUsuari){
-		controladorPersistencia.carregarPartida(nomUsuari);
+	public void carregarPartida(){
+		controladorPersistencia.carregarPartida(currentUser.getUsername());
 				
 		Hidato hidato = HidatoFactory.carregarHidato(controladorPersistencia.getTipusCellaPartida(),
 				controladorPersistencia.getTipusAdjacenciaPartida(),
