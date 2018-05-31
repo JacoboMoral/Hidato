@@ -1526,7 +1526,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jButton4ActionPerformed
-        controller.cargarPartidaGuardada(cv,this);
+        controller.cargarPartidaGuardada(this);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void b_cpstom1ActionPerformed(java.awt.event.ActionEvent evt) {                                          

@@ -77,8 +77,7 @@ public class VistaPartida extends javax.swing.JFrame {
         this.validate();
     }
     
-    public VistaPartida(CtrlVista v, javax.swing.JPanel hidatoPanel) {
-    	cv = v;
+    public VistaPartida(javax.swing.JPanel hidatoPanel) {
     	initComponents();
         partida.setView(this);
         this.hidatoPanel = hidatoPanel;

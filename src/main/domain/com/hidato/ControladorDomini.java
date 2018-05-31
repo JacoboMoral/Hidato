@@ -249,7 +249,7 @@ public class ControladorDomini {
 				controladorPersistencia.getNombresEscritsPartida()
 				);
 
-		partidaEnCurs = new Partida(hidato);
+		partidaEnCurs = new Partida(hidato, currentUser);
 		partidaEnCurs.setStatus(controladorPersistencia.getStatusPartida());
 		partidaEnCurs.setPuntuacio(controladorPersistencia.getPuntuacioPartida());
 		partidaEnCurs.setDataInici(controladorPersistencia.getDataIniPartida());
@@ -288,58 +288,58 @@ public class ControladorDomini {
     
     /*-----------------------------RANKING------------------------------*/
 
-    public void saveScore(Ranking ranking, int dif, int score, String username) {
-        controladorPersistence.saveScoreDB(ranking, dif, score, username);
+    public void saveScore(int dif, int score, String username) {
+        controladorPersistencia.saveScoreDB(ranking, dif, score, username);
     }
 
-    public String[] getRankingEasy(Ranking r) {
-        return controladorPersistence.getRankingEasy(r);
+    public String[] getRankingEasy() {
+        return controladorPersistencia.getRankingEasy(ranking);
     }    
 
-    public String[] getRankingInter(Ranking r) {
-        return controladorPersistence.getRankingInter(r);
+    public String[] getRankingInter() {
+        return controladorPersistencia.getRankingInter(ranking);
     }
 
-    public String[] getRankingHard(Ranking r) {
-        return controladorPersistence.getRankingHard(r);
+    public String[] getRankingHard() {
+        return controladorPersistencia.getRankingHard(ranking);
     }
 
     public Ranking loadRanking() {
-        return controladorPersistence.loadRanking();
+        return controladorPersistencia.loadRanking();
     }
 
     public Ranking getRanking() {
-        //return controladorPersistence.getRanking();
+        //return controladorPersistencia.getRanking();
         
         return ranking;
     }
 
-    public String[] getFilterByUsername(Ranking r, String username, int level) {
-        return controladorPersistence.getFilterByUsername(r, username, level);
+    public String[] getFilterByUsername(String username, int level) {
+        return controladorPersistencia.getFilterByUsername(ranking, username, level);
     }
 
-    public void deteleUserRanking(Ranking r, String nom) {
-       controladorPersistence.deteleUserRanking(r, nom);
+    public void deteleUserRanking(String nom) {
+       controladorPersistencia.deteleUserRanking(ranking, nom);
     }
 
-    public boolean existsUser(Ranking r, String nom) {
-        return controladorPersistence.existsUser(r, nom);
+    public boolean existsUser(String nom) {
+        return controladorPersistencia.existsUser(ranking, nom);
     }
 
-    public String[] getFilterByDate(Ranking r, String date, int level) {
-        return controladorPersistence.getFilterByDate(r,date, level);
+    public String[] getFilterByDate(String date, int level) {
+        return controladorPersistencia.getFilterByDate(ranking, date, level);
     }
 
-    public boolean existsDate(Ranking r, String date) {
-        return controladorPersistence.existsDate(r, date);
+    public boolean existsDate(String date) {
+        return controladorPersistencia.existsDate(ranking, date);
     }
 
     /*-----------------------------USER------------------------------*/
 
     
     public boolean loginUsuari(String username, String password) throws IOException {
-        //return controladorPersistence.loginUsuari(username, password);
-        if (controladorPersistence.loginUsuari(username, password)) {
+        //return controladorPersistencia.loginUsuari(username, password);
+        if (controladorPersistencia.loginUsuari(username, password)) {
             currentUser = new Usuari(username, password);
         }
         else return false;
@@ -347,12 +347,12 @@ public class ControladorDomini {
     }
 
     public boolean afegirUsuari(String username, String password) throws IOException {
-        return controladorPersistence.afegirUsuari(username, password);
+        return controladorPersistencia.afegirUsuari(username, password);
     }
 
     public boolean editUseranme(String currentUsername, String newUsername) {
-        //return controladorPersistence.editUseranme(currentUsername, newUsername);
-        if (controladorPersistence.editUseranme(currentUsername, newUsername)) {
+        //return controladorPersistencia.editUseranme(currentUsername, newUsername);
+        if (controladorPersistencia.editUseranme(currentUsername, newUsername)) {
             currentUser.setUsername(newUsername);
         }
         else return false;
@@ -360,8 +360,8 @@ public class ControladorDomini {
     }
 
     public boolean changePass(String currentPass, String newPass) throws IOException {
-        //return controladorPersistence.changePass(currentPass, newPass);
-        if (controladorPersistence.changePass(currentPass, newPass)) {
+        //return controladorPersistencia.changePass(currentPass, newPass);
+        if (controladorPersistencia.changePass(currentPass, newPass)) {
             currentUser.setPassword(newPass);
         }
         else return false;
@@ -370,7 +370,7 @@ public class ControladorDomini {
 
     public boolean deleteUser(String pass) {
         currentUser = null;
-        return controladorPersistence.deleteUer(pass);
+        return controladorPersistencia.deleteUer(pass);
     }
 
     public String getUsername() {
