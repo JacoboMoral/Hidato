@@ -160,16 +160,17 @@ public class ControladorPresentacio {
 		}
         else JOptionPane.showMessageDialog(null, "Actualment no disposes de cap partida en curs");
 	}
+	
+	public boolean esResoluble(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuCreacio) {
+		return domini.esResoluble(tipusCella, tipusAdjacencia, matriuCreacio);
+	}
 
 	public void guardarHidatoCreat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuCreacio, String nomHidato) {
-		if (!domini.esResoluble(tipusCella, tipusAdjacencia, matriuCreacio)) JOptionPane.showMessageDialog(null, "L'hidato proposat no es resoluble");
-		else {
-			try {
-				domini.guardarHidato(tipusCella, tipusAdjacencia, matriuCreacio, nomHidato);
-				JOptionPane.showMessageDialog(null, "S'ha guardat el teu hidato amb el nom '" + nomHidato + "'.");
-			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null, "Hi ha hagut un error al guardar l'hidato: " + e.getMessage());
-			}
+		try {
+			domini.guardarHidato(tipusCella, tipusAdjacencia, matriuCreacio, nomHidato);
+			JOptionPane.showMessageDialog(null, "S'ha guardat el teu hidato amb el nom '" + nomHidato + "'.");
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Hi ha hagut un error al guardar l'hidato: " + e.getMessage());
 		}
 	}
 

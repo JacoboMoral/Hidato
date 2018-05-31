@@ -129,8 +129,14 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 	
 	@Override
 	public void guardarHidato() {
-	    String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
-	    if (hidatoName != null) controller.guardarHidatoCreat(tipusCella, tipusAdjacencia, matriuCreacio, hidatoName);
+		if (controller.esResoluble(tipusCella, tipusAdjacencia, matriuCreacio)) {
+			String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
+		    if (hidatoName != null) controller.guardarHidatoCreat(tipusCella, tipusAdjacencia, matriuCreacio, hidatoName);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "L'hidato proposat no es resoluble");
+		}
+	    
 	}
 	
 }
