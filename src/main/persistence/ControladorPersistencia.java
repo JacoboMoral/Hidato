@@ -20,6 +20,7 @@ import main.domain.com.hidato.Ranking;
 
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
+import main.domain.com.hidato.Usuari;
 
 public class ControladorPersistencia {
 
@@ -117,37 +118,85 @@ public class ControladorPersistencia {
         return IOPartida.getNombresEscrits();
     }
 
-    /*---------------------------------------------------------------------------------------------------*/
-    public boolean usernameExists(String username) {
-        return IOUsuari.usernameExists(username);
-    }
-
-    public boolean changeUsername(String currentUsername, String newUsername) {
-        return IOUsuari.changeUsername(currentUsername, newUsername);
-    }
-
-    public boolean deleteUser(String username) {
-        return IOUsuari.deleteUser(username);
-    }
-
-    public boolean changePassword(String currentUsername, String newPassword) throws IOException {
-        return IOUsuari.changePassword(currentUsername, newPassword);
-    }
-
-    public static void saveRanking(Ranking r) {
-        IORanking.saveRanking(r);
-    }
-
-    public static Ranking readRanking() {
-        return IORanking.readRanking();
-    }
 
     public String[] getHidatos() {
         return null;
     }
 
     public String[] getAllHidatoFileNames() {
-        return IOHidato.getAllHidatoFileNames();
+        return IOHidato.nomHidatosImportats();
     }
 
+    public void saveScoreDB(Ranking ranking, int dif, int score, String username) {
+        IORanking.saveScoreDB(ranking, dif, score, username);
+    }
+
+    public String[] getRankingEasy(Ranking r) {
+        return IORanking.getRankingEasy(r);
+    }
+
+    public String[] getRankingInter(Ranking r) {
+        return IORanking.getRankingInter(r);
+    }
+
+    public String[] getRankingHard(Ranking r) {
+        return IORanking.getRankingHard(r);
+    }
+
+    public Ranking loadRanking() {
+        return IORanking.readRanking();
+    }
+
+
+    public String[] getFilterByUsername(Ranking r, String username, int level) {
+        return IORanking.getFilterByUsername(r, username, level);
+    }
+
+    public void deteleUserRanking(Ranking r, String nom) {
+        IORanking.deteleUserRanking(r, nom);
+    }
+
+    public boolean existsUser(Ranking r, String nom) {
+        return IORanking.existsUser(r, nom);
+    }
+
+    public String[] getFilterByDate(Ranking r, String date, int level) {
+        return IORanking.getFilterByDate(r, date, level);
+    }
+
+    public boolean existsDate(Ranking r, String date) {
+        return IORanking.existsDate(r, date);
+    }
+
+    public boolean loginUsuari(String username, String password) throws IOException {
+        return IOUsuari.loginUsuari(username, password);
+    }
+
+    public boolean afegirUsuari(String username, String password) throws IOException {
+        return IOUsuari.afegirUsuari(username, password);
+    }
+
+    public boolean editUseranme(String currentUsername, String newUsername) {
+        return IOUsuari.editUseranme(currentUsername, newUsername);
+    }
+
+    public boolean changePass(String currentPass, String newPass) throws IOException {
+        return IOUsuari.changePass(currentPass, newPass);
+    }
+
+    public boolean deleteUer(String pass) {
+        return IOUsuari.deleteUer(pass);
+    }
+
+    public String getUsername() {
+        return IOUsuari.getUsername();
+
+    }
+    public Usuari getUser() {
+        return IOUsuari.getUser();
+    }
+
+    public String getPassword() {
+        return IOUsuari.getPassword();
+    }
 }

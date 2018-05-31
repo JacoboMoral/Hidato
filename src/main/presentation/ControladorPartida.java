@@ -11,10 +11,11 @@ import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
 public class ControladorPartida extends ControladorHidatoGrafic{
-
-	private static ControladorPartida instance = null;
+    
+    private static ControladorPartida instance = null;
     private VistaPartida view;
     private PanelPartida partida;
+
 
     public static ControladorPartida getInstance() {
         if (instance == null) {

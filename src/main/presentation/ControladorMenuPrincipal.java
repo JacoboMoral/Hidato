@@ -27,10 +27,6 @@ public class ControladorMenuPrincipal {
         return instance;
     }
     
-    public String[] getHidatosGuardats() {
-        return controller.getHidatos();
-    }
-
     public int[][] getMatriuHidatoSeleccionat(String nomHidato) throws Exception {
         return controller.getMatriu(nomHidato);
     }

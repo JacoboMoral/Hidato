@@ -20,8 +20,10 @@ import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.Hidato;
+import main.domain.com.hidato.Ranking;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
+import main.domain.com.hidato.Usuari;
 
 public class ControladorPresentacio {
 
@@ -37,69 +39,71 @@ public class ControladorPresentacio {
     }
 
     public static ControladorPresentacio getInstance() {
-        if (instance == null) instance = new ControladorPresentacio(); 
-    	return instance;
+        if (instance == null) {
+            instance = new ControladorPresentacio();
+        }
+        return instance;
     }
 
-	public void launchPartidaScreen(){
-		
-	}
-	
-	public boolean ferMoviment(int i, int j, int value) {
-		return domini.ferMoviment(i, j, value);
-	}
-	
-	public boolean desferMoviment(int i, int j) {
-		return domini.desferMoviment(i, j);
-	}
-	
-	public boolean partidaCompletada() {
-		return domini.partidaCompletada();
-	}
-	
-	public void launchLogin() {
+    public void launchPartidaScreen() {
+
+    }
+
+    public boolean ferMoviment(int i, int j, int value) {
+        return domini.ferMoviment(i, j, value);
+    }
+
+    public boolean desferMoviment(int i, int j) {
+        return domini.desferMoviment(i, j);
+    }
+
+    public boolean partidaCompletada() {
+        return domini.partidaCompletada();
+    }
+
+    public void launchLogin() {
         Inici inici = new Inici();
-		inici.run();
-	}
+        inici.run();
+    }
 
-	public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
-		return domini.autoGenerar(tipusCella, dificultat);
-	}
-	
-	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
-		return domini.autoGenerar(tipusCella, tipusAdjacencia, dificultat);
-	}
-	
-	public boolean autoGenerar(Dificultat dificultat) {
-		return domini.autoGenerar(dificultat);
-	}
+    public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
+        return domini.autoGenerar(tipusCella, dificultat);
+    }
 
-	public void jugarHidatoGenerat() {
-		domini.jugarHidatoGenerat();
-	}
+    public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
+        return domini.autoGenerar(tipusCella, tipusAdjacencia, dificultat);
+    }
 
-	public int[][] getMatriuHidatoDePartida() {
-		return domini.getMatriuHidatoDePartida();
-	}
+    public boolean autoGenerar(Dificultat dificultat) {
+        return domini.autoGenerar(dificultat);
+    }
 
-	public Vector<Integer> getNombresPerDefecte() {
-		return domini.getNombresPerDefecte();
-	}
+    public void jugarHidatoGenerat() {
+        domini.jugarHidatoGenerat();
+    }
 
-	public Vector<Integer> getPossiblesMoviments() {
-		return domini.getPossiblesMoviments();
-	}
+    public int[][] getMatriuHidatoDePartida() {
+        return domini.getMatriuHidatoDePartida();
+    }
 
-	public void reset() {
-		domini.resetMatriuEnPartida();
-	}
+    public Vector<Integer> getNombresPerDefecte() {
+        return domini.getNombresPerDefecte();
+    }
 
-	public void guardarPartida() {
-		domini.guardarPartida();		
-	}
+    public Vector<Integer> getPossiblesMoviments() {
+        return domini.getPossiblesMoviments();
+    }
 
-	public boolean sobreesciure() {
-		int input = JOptionPane.showOptionDialog(null, "Ja hi ha una partida guardada. La vols sobreescriure?", "Ja hi ha una partida guardada",
+    public void reset() {
+        domini.resetMatriuEnPartida();
+    }
+
+    public void guardarPartida() {
+        domini.guardarPartida();
+    }
+
+    public boolean sobreesciure() {
+        int input = JOptionPane.showOptionDialog(null, "Ja hi ha una partida guardada. La vols sobreescriure?", "Ja hi ha una partida guardada",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
         if (input == JOptionPane.OK_OPTION) {
@@ -136,7 +140,84 @@ public class ControladorPresentacio {
         return domini.getAllHidatoNames();
     }
 
-	public void mostraPartidaGuardada() {
+    public void saveScore(Ranking ranking, int dif, String username, int score) {
+        domini.saveScore(ranking, dif, score, username);
+    }
+
+    public String[] getRankingEasy(Ranking r) {
+        return domini.getRankingEasy(r);
+    }
+
+    public String[] getRankingInter(Ranking r) {
+        return domini.getRankingInter(r);
+    }
+
+    public String[] getRankingHard(Ranking r) {
+        return domini.getRankingHard(r);
+    }
+
+    public Ranking loadRanking() {
+        return domini.loadRanking();
+    }
+
+    public Ranking getRanking() {
+        return domini.getRanking();
+    }
+
+    public String[] getFilterByUsername(Ranking r, String username, int level) {
+        return domini.getFilterByUsername(r, username, level);
+    }
+
+    public void deteleUserRanking(Ranking r, String nom) {
+        domini.deteleUserRanking(r, nom);
+    }
+
+    public boolean existsUser(Ranking r, String nom) {
+        return domini.existsUser(r, nom);
+    }
+
+    public String[] getFilterByDate(Ranking r, String date, int level) {
+        return domini.getFilterByDate(r, date, level);
+    }
+
+    public boolean existsDate(Ranking r, String date) {
+        return domini.existsDate(r, date);
+    }
+
+    public boolean loginUsuari(String username, String password) throws IOException {
+        if (domini.loginUsuari(username, password)) {
+            //login success
+        } else {
+            //login fault
+            return false;
+        }
+        return true;
+    }
+
+    public boolean afegirUsuari(String username, String password) throws IOException {
+        return domini.afegirUsuari(username, password);
+    }
+
+    public boolean editUseranme(String currentUsername, String newUsername) {
+        return domini.editUseranme(currentUsername, newUsername);
+    }
+
+    public boolean changePass(String currentPass, String newPass) throws IOException {
+        return domini.changePass(currentPass, newPass);
+    }
+
+    public boolean deleteUser(String pass) {
+        return domini.deleteUser(pass);
+    }
+
+    public String getUsername() {
+        return domini.getUsername();
+
+    public String getPassword() {
+        return domini.getPassword();
+    }
+
+   public void mostraPartidaGuardada() {
 		
 		JOptionPane.showMessageDialog(null, "La seva partida s'ha guardat correctament");		
 		

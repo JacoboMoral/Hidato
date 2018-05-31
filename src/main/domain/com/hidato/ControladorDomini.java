@@ -13,32 +13,33 @@ public class ControladorDomini {
 
     private static ControladorDomini instance = null;
     private ControladorPresentacio presentacio = ControladorPresentacio.getInstance();
-	private Partida partidaEnCurs = null;
-	private Hidato hidatoGenerat = null;
-	private ControladorPersistencia controladorPersistencia = ControladorPersistencia.getInstance();
+  	private ControladorPersistencia controladorPersistencia = ControladorPersistencia.getInstance();
+    private Partida partidaEnCurs = null;
+    private Hidato hidatoGenerat = null;
+    private Usuari currentUser;
+    private Ranking ranking;
 
-
-
-	public static ControladorDomini getInstance() {
+  public static ControladorDomini getInstance() {
 		if (instance == null) instance = new ControladorDomini();
     	return instance;
     }
+  
+    public boolean jugarHidatoImportat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
+        partidaEnCurs = new Partida(HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato), currentUser);
+        if (!partidaEnCurs.esSolucionable()) {
+            partidaEnCurs = null;
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-	public boolean jugarHidatoImportat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato) {
-		partidaEnCurs = new Partida (HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuHidato));
-		if (!partidaEnCurs.esSolucionable()) {
-			partidaEnCurs = null;
-			return false;
-		}
-		else return true;
-	}
-
-	public void jugarHidatoGenerat() {
-		if (hidatoGenerat != null) {
-			partidaEnCurs = new Partida(hidatoGenerat);
-			partidaEnCurs.esSolucionable();
-		}
-	}
+    public void jugarHidatoGenerat() {
+        if (hidatoGenerat != null) {
+            partidaEnCurs = new Partida(hidatoGenerat, currentUser);
+            partidaEnCurs.esSolucionable();
+        }
+    }
 
 	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int tamanyi, int tamanyj, int forats) {
 		hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
@@ -275,8 +276,8 @@ public class ControladorDomini {
     public String[] getAllHidatoNames() {
         return controladorPersistencia.getAllHidatoFileNames();
     }
-    
-	public void guardarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato, String nomHidato) throws IOException { //es un hidato resoluble
+  
+  public void guardarHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuHidato, String nomHidato) throws IOException { //es un hidato resoluble
 		controladorPersistencia.importarHidato(matriuHidato, tipusCella, tipusAdjacencia, nomHidato);
 	}
 
@@ -284,4 +285,104 @@ public class ControladorDomini {
 		Hidato hidatoPerComprovar = HidatoFactory.createHidato(tipusCella, tipusAdjacencia, matriuCreacio);
 		return hidatoPerComprovar.teSolucio();
 	}
+    
+    /*-----------------------------RANKING------------------------------*/
+
+    public void saveScore(Ranking ranking, int dif, int score, String username) {
+        controladorPersistence.saveScoreDB(ranking, dif, score, username);
+    }
+
+    public String[] getRankingEasy(Ranking r) {
+        return controladorPersistence.getRankingEasy(r);
+    }    
+
+    public String[] getRankingInter(Ranking r) {
+        return controladorPersistence.getRankingInter(r);
+    }
+
+    public String[] getRankingHard(Ranking r) {
+        return controladorPersistence.getRankingHard(r);
+    }
+
+    public Ranking loadRanking() {
+        return controladorPersistence.loadRanking();
+    }
+
+    public Ranking getRanking() {
+        //return controladorPersistence.getRanking();
+        
+        return ranking;
+    }
+
+    public String[] getFilterByUsername(Ranking r, String username, int level) {
+        return controladorPersistence.getFilterByUsername(r, username, level);
+    }
+
+    public void deteleUserRanking(Ranking r, String nom) {
+       controladorPersistence.deteleUserRanking(r, nom);
+    }
+
+    public boolean existsUser(Ranking r, String nom) {
+        return controladorPersistence.existsUser(r, nom);
+    }
+
+    public String[] getFilterByDate(Ranking r, String date, int level) {
+        return controladorPersistence.getFilterByDate(r,date, level);
+    }
+
+    public boolean existsDate(Ranking r, String date) {
+        return controladorPersistence.existsDate(r, date);
+    }
+
+    /*-----------------------------USER------------------------------*/
+
+    
+    public boolean loginUsuari(String username, String password) throws IOException {
+        //return controladorPersistence.loginUsuari(username, password);
+        if (controladorPersistence.loginUsuari(username, password)) {
+            currentUser = new Usuari(username, password);
+        }
+        else return false;
+        return true;
+    }
+
+    public boolean afegirUsuari(String username, String password) throws IOException {
+        return controladorPersistence.afegirUsuari(username, password);
+    }
+
+    public boolean editUseranme(String currentUsername, String newUsername) {
+        //return controladorPersistence.editUseranme(currentUsername, newUsername);
+        if (controladorPersistence.editUseranme(currentUsername, newUsername)) {
+            currentUser.setUsername(newUsername);
+        }
+        else return false;
+        return true;
+    }
+
+    public boolean changePass(String currentPass, String newPass) throws IOException {
+        //return controladorPersistence.changePass(currentPass, newPass);
+        if (controladorPersistence.changePass(currentPass, newPass)) {
+            currentUser.setPassword(newPass);
+        }
+        else return false;
+        return true;
+    }
+
+    public boolean deleteUser(String pass) {
+        currentUser = null;
+        return controladorPersistence.deleteUer(pass);
+    }
+
+    public String getUsername() {
+        return currentUser.getUsername();
+    }
+
+    public Usuari getUser() {
+        return currentUser;
+    }
+
+    public String getPassword() {
+        return currentUser.getPassword();
+    }
+
 }
