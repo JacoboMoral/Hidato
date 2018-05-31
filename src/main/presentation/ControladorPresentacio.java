@@ -21,6 +21,7 @@ import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.Hidato;
+import main.domain.com.hidato.Ranking;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
@@ -30,77 +31,78 @@ public class ControladorPresentacio {
     private static final ControladorDomini domini = ControladorDomini.getInstance();
     private static final ControladorPartida controladorPartida = ControladorPartida.getInstance();
     private VistaPartida v;
-    
-    static JPanel panelPartida; //JPanel vs PanelPartida??? hi ha cap diferencia?'
 
+    static JPanel panelPartida; //JPanel vs PanelPartida??? hi ha cap diferencia?'
 
     private ControladorPresentacio() {
     }
 
     public static ControladorPresentacio getInstance() {
-        if (instance == null) instance = new ControladorPresentacio(); 
-    	return instance;
+        if (instance == null) {
+            instance = new ControladorPresentacio();
+        }
+        return instance;
     }
 
-	public void launchPartidaScreen(){
-		
-	}
-	
-	public boolean ferMoviment(int i, int j, int value) {
-		return domini.ferMoviment(i, j, value);
-	}
-	
-	public boolean desferMoviment(int i, int j) {
-		return domini.desferMoviment(i, j);
-	}
-	
-	public boolean partidaCompletada() {
-		return domini.partidaCompletada();
-	}
-	
-	public void launchLogin() {
+    public void launchPartidaScreen() {
+
+    }
+
+    public boolean ferMoviment(int i, int j, int value) {
+        return domini.ferMoviment(i, j, value);
+    }
+
+    public boolean desferMoviment(int i, int j) {
+        return domini.desferMoviment(i, j);
+    }
+
+    public boolean partidaCompletada() {
+        return domini.partidaCompletada();
+    }
+
+    public void launchLogin() {
         Inici inici = new Inici();
-		inici.run();
-	}
+        inici.run();
+    }
 
-	public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
-		return domini.autoGenerar(tipusCella, dificultat);
-	}
-	
-	public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
-		return domini.autoGenerar(tipusCella, tipusAdjacencia, dificultat);
-	}
-	
-	public boolean autoGenerar(Dificultat dificultat) {
-		return domini.autoGenerar(dificultat);
-	}
+    public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
+        return domini.autoGenerar(tipusCella, dificultat);
+    }
 
-	public void jugarHidatoGenerat() {
-		domini.jugarHidatoGenerat();
-	}
+    public boolean autoGenerar(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
+        return domini.autoGenerar(tipusCella, tipusAdjacencia, dificultat);
+    }
 
-	public int[][] getMatriuHidatoDePartida() {
-		return domini.getMatriuHidatoDePartida();
-	}
+    public boolean autoGenerar(Dificultat dificultat) {
+        return domini.autoGenerar(dificultat);
+    }
 
-	public Vector<Integer> getNombresPerDefecte() {
-		return domini.getNombresPerDefecte();
-	}
+    public void jugarHidatoGenerat() {
+        domini.jugarHidatoGenerat();
+    }
 
-	public Vector<Integer> getPossiblesMoviments() {
-		return domini.getPossiblesMoviments();
-	}
+    public int[][] getMatriuHidatoDePartida() {
+        return domini.getMatriuHidatoDePartida();
+    }
 
-	public void reset() {
-		domini.resetMatriuEnPartida();
-	}
+    public Vector<Integer> getNombresPerDefecte() {
+        return domini.getNombresPerDefecte();
+    }
 
-	public void guardarPartida() {
-		domini.guardarPartida();		
-	}
+    public Vector<Integer> getPossiblesMoviments() {
+        return domini.getPossiblesMoviments();
+    }
 
-	public boolean sobreesciure() {
-		int input = JOptionPane.showOptionDialog(null, "Ja hi ha una partida guardada. La vols sobreescriure?", "Ja hi ha una partida guardada",
+    public void reset() {
+        domini.resetMatriuEnPartida();
+    }
+
+    public void guardarPartida() {
+        domini.guardarPartida();
+    }
+
+    public boolean sobreesciure() {
+        int input = JOptionPane.showOptionDialog(null, "Ja hi ha una partida guardada. La vols sobreescriure?", "Ja hi ha una partida guardada",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
         if (input == JOptionPane.OK_OPTION) {
@@ -135,42 +137,43 @@ public class ControladorPresentacio {
         return domini.getAllHidatoNames();
     }
 
-	public void mostraPartidaGuardada() {
-		JOptionPane.showMessageDialog(null, "La seva partida s'ha guardat correctament");		
-	}
-	
-	public boolean esResoluble(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuCreacio) {
-		return domini.esResoluble(tipusCella, tipusAdjacencia, matriuCreacio);
-	}
-	
-	public void guardarHidatoCreat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuCreacio, String nomHidato) {
-		try {
-			domini.guardarHidato(tipusCella, tipusAdjacencia, matriuCreacio, nomHidato);
-			JOptionPane.showMessageDialog(null, "S'ha guardat el teu hidato amb el nom '" + nomHidato + "'.");
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Hi ha hagut un error al guardar l'hidato: " + e.getMessage());
-		 	}
-	}
-	
-	public boolean hiHaPartidaGuardada() {
-		return domini.hiHaPartidaGuardada();
-	}
+    public void mostraPartidaGuardada() {
+        JOptionPane.showMessageDialog(null, "La seva partida s'ha guardat correctament");
+    }
 
-	public void cargarPartidaGuardada(VistaMenuPrincipal vistaAnterior) {
-		if (hiHaPartidaGuardada()) {
-			domini.carregarPartida();
-			TipusCella tipusCella = domini.getTipusCellaPartida();
-			int[][] matriuHidato = domini.getMatriuHidatoDePartida();
-			JPanel hidatoPanel = controladorPartida.partidaCarregada(tipusCella, matriuHidato);
-			
-			v = new VistaPartida(hidatoPanel);
-	        v.setVisible(true);
-	        vistaAnterior.dispose();
-		}
-        else JOptionPane.showMessageDialog(null, "Actualment no disposes de cap partida en curs");
-	}
-	
-	public void saveScore(int dif, String username, int score) {
+    public boolean esResoluble(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuCreacio) {
+        return domini.esResoluble(tipusCella, tipusAdjacencia, matriuCreacio);
+    }
+
+    public void guardarHidatoCreat(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int[][] matriuCreacio, String nomHidato) {
+        try {
+            domini.guardarHidato(tipusCella, tipusAdjacencia, matriuCreacio, nomHidato);
+            JOptionPane.showMessageDialog(null, "S'ha guardat el teu hidato amb el nom '" + nomHidato + "'.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Hi ha hagut un error al guardar l'hidato: " + e.getMessage());
+        }
+    }
+
+    public boolean hiHaPartidaGuardada() {
+        return domini.hiHaPartidaGuardada();
+    }
+
+    public void cargarPartidaGuardada(VistaMenuPrincipal vistaAnterior) {
+        if (hiHaPartidaGuardada()) {
+            domini.carregarPartida();
+            TipusCella tipusCella = domini.getTipusCellaPartida();
+            int[][] matriuHidato = domini.getMatriuHidatoDePartida();
+            JPanel hidatoPanel = controladorPartida.partidaCarregada(tipusCella, matriuHidato);
+
+            v = new VistaPartida(hidatoPanel);
+            v.setVisible(true);
+            vistaAnterior.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Actualment no disposes de cap partida en curs");
+        }
+    }
+
+    public void saveScore(int dif, String username, int score) {
         domini.saveScore(dif, score, username);
     }
 
@@ -186,8 +189,8 @@ public class ControladorPresentacio {
         return domini.getRankingHard();
     }
 
-    public void loadRanking() {
-        domini.loadRanking();
+    public Ranking loadRanking() {
+        return domini.loadRanking();
     }
 
     public String[] getFilterByUsername(String username, int level) {
@@ -213,24 +216,23 @@ public class ControladorPresentacio {
     public boolean loginUsuari(String username, String password) throws IOException {
         if (domini.loginUsuari(username, password)) {
             //login success
-        }
-        else {
+        } else {
             //login fault
             return false;
         }
         return true;
     }
 
-    public boolean afegirUsuari(String username, String password) throws IOException{
-		return domini.afegirUsuari(username, password);
+    public boolean afegirUsuari(String username, String password) throws IOException {
+        return domini.afegirUsuari(username, password);
     }
 
     public boolean editUseranme(String currentUsername, String newUsername) {
         return domini.editUseranme(currentUsername, newUsername);
     }
 
-    public boolean changePass(String currentPass, String newPass) throws IOException{
-    	return domini.changePass(currentPass, newPass);
+    public boolean changePass(String currentPass, String newPass) throws IOException {
+        return domini.changePass(currentPass, newPass);
     }
 
     public boolean deleteUser(String pass) {
@@ -246,13 +248,15 @@ public class ControladorPresentacio {
         return domini.getPassword();
     }
 
-	public void importarHidatotxt(String ruta) throws Exception {
-		if (domini.comprovarHidatotxt(ruta)) {
-			JOptionPane.showMessageDialog(null, "Format correcte");
-			String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
-			domini.guardarHidatotxt(hidatoName);
-			JOptionPane.showMessageDialog(null, "Hidato guardat amb el nom: " + hidatoName);
-		} else JOptionPane.showMessageDialog(null, "Format no vàlid");
-	}
+    public void importarHidatotxt(String ruta) throws Exception {
+        if (domini.comprovarHidatotxt(ruta)) {
+            JOptionPane.showMessageDialog(null, "Format correcte");
+            String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
+            domini.guardarHidatotxt(hidatoName);
+            JOptionPane.showMessageDialog(null, "Hidato guardat amb el nom: " + hidatoName);
+        } else {
+            JOptionPane.showMessageDialog(null, "Format no vï¿½lid");
+        }
+    }
 
 }

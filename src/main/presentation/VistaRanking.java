@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 public class VistaRanking extends javax.swing.JFrame {
     
     private ControladorPresentacio cp = ControladorPresentacio.getInstance();
+    private static Ranking ranking = Ranking.getInstance();
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
@@ -31,8 +32,8 @@ public class VistaRanking extends javax.swing.JFrame {
         initComponents();
         
         filterType.add(filterByDate);
-        filterType.add(filterByUsername);        
-
+        filterType.add(filterByUsername);
+                
         cp.saveScore(1, "Jia", 10);
         cp.saveScore(2, "Jia2", 1450);
         cp.saveScore(3, "Jia3", 14350);

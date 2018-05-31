@@ -26,12 +26,14 @@ public class Ranking {
     private ArrayList<Posicio> rankingEasy = new ArrayList<Posicio>();
     private ArrayList<Posicio> rankingInter = new ArrayList<Posicio>();
     private ArrayList<Posicio> rankingHard = new ArrayList<Posicio>();
+    
 
     private static Ranking instance = null;
 
     public static Ranking getInstance() {
         if (instance == null) {
             instance = new Ranking();
+            
         }
         return instance;
     }
