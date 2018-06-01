@@ -28,28 +28,24 @@ public class Partida {
         //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
         iniciarPartida();
     }
-    
-    
+
     public void setDataInici(Date dataIni) {
-    	this.dataIni = dataIni;
+        this.dataIni = dataIni;
     }
 
-	public void setTemps(int temps) {
-	    this.temps = temps;
-	}
-	
-	public void setPuntuacio(int puntuacio) {
-		this.puntuacio = puntuacio;
-	}
-	
-	public void setStatus(int status) {
-		this.status = status;
-	}
+    public void setTemps(int temps) {
+        this.temps = temps;
+    }
 
+    public void setPuntuacio(int puntuacio) {
+        this.puntuacio = puntuacio;
+    }
 
-    
-   
-	private void acabarPartida() {
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    private void acabarPartida() {
         contador.detener();
         temps = contador.getSegons();
         status = -1;
@@ -131,8 +127,8 @@ public class Partida {
         return hidato.getMatriu();
     }
 
-    public int[][] getHidatoOriginal(){
-    	return hidato.getMatriuOriginal();
+    public int[][] getHidatoOriginal() {
+        return hidato.getMatriuOriginal();
 
     }
 
@@ -174,8 +170,8 @@ public class Partida {
         return null;
     }
 
-	public TipusCella getTipusCella() {
-		return hidato.getTipusCella();
-	}
+    public TipusCella getTipusCella() {
+        return hidato.getTipusCella();
+    }
 
 }

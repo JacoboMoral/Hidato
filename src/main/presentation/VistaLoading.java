@@ -113,7 +113,7 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
     @Override
     public void run() {
         while(tiempo != null){
-            try {
+  
                 
                 tiempo = null;
                 if (level == levelEasy) {
@@ -134,14 +134,12 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
                 }
                 else {
                     VistaPartida v = new VistaPartida(levelHard, 1, cp.getUsername());
-                    Thread.sleep(1000);
+                    //Thread.sleep(1000);
                     v.setVisible(true);
                     vMP.dispose();
                     this.dispose();
                 }
-            } catch (InterruptedException ex) {
-                
-            }
+            
         }
     }
 }
