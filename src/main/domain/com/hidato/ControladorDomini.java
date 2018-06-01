@@ -39,7 +39,6 @@ public class ControladorDomini {
     public void jugarHidatoGenerat() {
         if (hidatoGenerat != null) {
             partidaEnCurs = new Partida(hidatoGenerat, currentUser);
-            System.out.println("domini: es solucionable?: " + partidaEnCurs.esSolucionable());
         }
     }
 
@@ -98,7 +97,6 @@ public class ControladorDomini {
     public boolean autoGenerar(int altura, int amplada, int forats) {
         TipusCella tipusCella = getRandomTipusCella();
         TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia(tipusCella);
-        System.out.println(altura + " " + amplada + " " + forats + " " + tipusCella + " " + tipusAdjacencia); 
         return autoGenerar(tipusCella, tipusAdjacencia, altura, amplada, forats);
     }
 
@@ -287,18 +285,6 @@ public class ControladorDomini {
         partidaEnCurs.setPuntuacio(controladorPersistencia.getPuntuacioPartida());
         partidaEnCurs.setDataInici(controladorPersistencia.getDataIniPartida());
         partidaEnCurs.setTemps(controladorPersistencia.getTempsPartida());
-
-        /*System.out.println(partidaEnCurs.getNomUsuari());
-
-		System.out.println(partidaEnCurs.getPuntuacio());
-		System.out.println(partidaEnCurs.getTemps());
-		System.out.println(partidaEnCurs.getDataInici());
-		System.out.println(partidaEnCurs.getNombresEscrits());
-		System.out.println(partidaEnCurs.getNombresPerDefecte());
-		System.out.println(partidaEnCurs.getTipusAdjacencia());
-		System.out.println(partidaEnCurs.getTipusCella());
-		HidatoIO.writeHidatoMatrixToOutput(partidaEnCurs.getHidato());
-		HidatoIO.writeHidatoMatrixToOutput(partidaEnCurs.getHidatoOriginal());*/
 
     }
 

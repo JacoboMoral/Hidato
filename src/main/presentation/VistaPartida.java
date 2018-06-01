@@ -45,7 +45,6 @@ public class VistaPartida extends javax.swing.JFrame {
         partida.setView(this);
         if (level == levelEasy) {
             if (type == 1) {
-                System.out.println("estoy en hexagon");
                 hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
             }
             if (type == 2) {

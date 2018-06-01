@@ -58,7 +58,6 @@ public class PanelPartida extends JPanel {
     private void setup() {
 
         nombresPerDefecte = controller.getNombresPerDefecte();
-        System.out.println(nombresPerDefecte);
         boardHeight = matriuHidato[0].length;
         boardWidth = matriuHidato.length;
         setPossiblesMoviments();
