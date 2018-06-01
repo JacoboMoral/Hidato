@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
+import main.domain.com.hidato.Contador;
 
 /**
  *
@@ -25,8 +26,11 @@ public class VistaPartida extends javax.swing.JFrame {
     private static final int levelInter = 2;
     private static final int levelHard = 3;
     ControladorPartida partida = ControladorPartida.getInstance();
+    ControladorNavegacio cn = ControladorNavegacio.getInstance();
     private String currentUsername;
     private String seguentMoviment = " ";
+    private Contador cont = new Contador();
+        
 
     /**
      * Creates new form NewJFrame
@@ -37,6 +41,11 @@ public class VistaPartida extends javax.swing.JFrame {
 
     public VistaPartida(int level, int type, String username) {
         initComponents();
+        
+        for (int i = 0; i < 100000; ++i) {
+            System.out.println("hola");
+        }
+        
         this.currentUsername = username;
         partida.setView(this);
         if (level == levelEasy) {
@@ -75,6 +84,7 @@ public class VistaPartida extends javax.swing.JFrame {
         jLabel1.setText(seguentMoviment);
         
         this.validate();
+
     }
     
     public VistaPartida(javax.swing.JPanel hidatoPanel) {
@@ -105,6 +115,9 @@ public class VistaPartida extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         saveGame = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        time = new javax.swing.JLabel();
+        stopTimer = new javax.swing.JButton();
+        startTimer = new javax.swing.JButton();
         hidatoPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -141,17 +154,28 @@ public class VistaPartida extends javax.swing.JFrame {
         });
 
         saveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
-        saveGame.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-            	saveGameMouseClicked(evt);
-            }
 
-        });
-        
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
+            }
+        });
+
+        time.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        time.setText("jLabel4");
+
+        stopTimer.setText("Stop");
+        stopTimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopTimerActionPerformed(evt);
+            }
+        });
+
+        startTimer.setText("Star");
+        startTimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startTimerActionPerformed(evt);
             }
         });
 
@@ -175,27 +199,45 @@ public class VistaPartida extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addComponent(jButton1)))
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                        .addComponent(startTimer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(stopTimer)
+                        .addGap(86, 86, 86))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(controlPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(23, 23, 23)
-                .addComponent(jButton3)
-                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(saveGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(45, 45, 45))
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(startTimer, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(jButton2)
+                                .addComponent(jButton1)
+                                .addComponent(stopTimer)))
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(controlPanelLayout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jButton3))
+                            .addGroup(controlPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(saveGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(45, 45, 45))))
         );
 
         getContentPane().add(controlPanel, java.awt.BorderLayout.PAGE_END);
@@ -220,8 +262,7 @@ public class VistaPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        VistaMenuPrincipal v = new VistaMenuPrincipal();
-        v.setVisible(true);
+        cn.openMenuView();
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
@@ -242,6 +283,17 @@ public class VistaPartida extends javax.swing.JFrame {
             jLabel1.setText(Integer.toString(seguentMov));
         }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void stopTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopTimerActionPerformed
+        cont.detener();
+    }//GEN-LAST:event_stopTimerActionPerformed
+
+    private void startTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTimerActionPerformed
+        cont.iniciar();
+
+        time.setText(cont.getTempsActual());
+        
+    }//GEN-LAST:event_startTimerActionPerformed
 
     private String getCurrentUsername() {
         return currentUsername;
@@ -315,5 +367,8 @@ public class VistaPartida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel saveGame;
+    private javax.swing.JButton startTimer;
+    private javax.swing.JButton stopTimer;
+    private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
 }

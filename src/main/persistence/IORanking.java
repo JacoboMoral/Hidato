@@ -22,17 +22,18 @@ import main.domain.com.hidato.Ranking;
  * @author admin
  */
 public class IORanking {
+
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
-    
-    static void saveScoreDB(Ranking ranking, int dif, int score, String username) {
+
+    public static void saveScoreDB(Ranking ranking, int dif, int score, String username) {
         LocalDate date = LocalDate.now();
         Posicio p = new Posicio(username, score, date);
         ranking.insertPosition(p, dif);
         saveRanking(ranking);
     }
-    
+
     public static void saveRanking(Ranking r) {
         try {
             ArrayList<Posicio> rankingEasy = r.getLlistaPosicio(levelEasy);
@@ -40,21 +41,29 @@ public class IORanking {
             ArrayList<Posicio> rankingHard = r.getLlistaPosicio(levelHard);
 
             File temp = new File("DB/Ranking");
-            if (!temp.exists()) temp.mkdirs();
-            
+            if (!temp.exists()) {
+                temp.mkdirs();
+            }
+
             File easyFile = new File("DB/Ranking/", "easy.txt");
-            if (!easyFile.exists()) easyFile.createNewFile();
-            
+            if (!easyFile.exists()) {
+                easyFile.createNewFile();
+            }
+
             File interFile = new File("DB/Ranking/", "inter.txt");
-            if (!interFile.exists()) interFile.createNewFile();
-            
+            if (!interFile.exists()) {
+                interFile.createNewFile();
+            }
+
             File hardFIle = new File("DB/Ranking/", "hard.txt");
-            if (!hardFIle.exists()) hardFIle.createNewFile();
+            if (!hardFIle.exists()) {
+                hardFIle.createNewFile();
+            }
 
             FileWriter createFile = new FileWriter("DB/Ranking/easy.txt");
             BufferedWriter bw = new BufferedWriter(createFile);
             String positionContent = null;
-            
+
             for (int i = 0; i < rankingEasy.size(); ++i) {
                 positionContent = rankingEasy.get(i).getUsername() + " " + rankingEasy.get(i).getScore() + " " + rankingEasy.get(i).getDate() + " ";
                 bw.write(positionContent);
@@ -65,7 +74,7 @@ public class IORanking {
             createFile = new FileWriter("DB/Ranking/inter.txt");
             bw = new BufferedWriter(createFile);
             for (int i = 0; i < rankingInter.size(); ++i) {
-                positionContent = rankingInter.get(i).getUsername() + " " + rankingInter.get(i).getScore() + " " + rankingEasy.get(i).getDate() + " ";
+                positionContent = rankingInter.get(i).getUsername() + " " + rankingInter.get(i).getScore() + " " + rankingInter.get(i).getDate() + " ";
                 bw.write(positionContent);
             }
             bw.close();
@@ -74,12 +83,12 @@ public class IORanking {
             createFile = new FileWriter("DB/Ranking/hard.txt");
             bw = new BufferedWriter(createFile);
             for (int i = 0; i < rankingHard.size(); ++i) {
-                positionContent = rankingHard.get(i).getUsername() + " " + rankingHard.get(i).getScore() + " " + rankingEasy.get(i).getDate() + " ";
+                positionContent = rankingHard.get(i).getUsername() + " " + rankingHard.get(i).getScore() + " " + rankingHard.get(i).getDate() + " ";
                 bw.write(positionContent);
             }
             bw.close();
             createFile.close();
-            
+
         } catch (IOException ex) {
 
         }
@@ -286,5 +295,4 @@ public class IORanking {
         return r.existsDate(date);
     }
 
-    
 }

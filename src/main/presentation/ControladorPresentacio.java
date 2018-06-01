@@ -197,7 +197,7 @@ public class ControladorPresentacio {
         return domini.getFilterByUsername(username, level);
     }
 
-    public void deteleUserRanking(String nom) {
+    public void deleteUserRanking(String nom) {
         domini.deteleUserRanking(nom);
     }
 

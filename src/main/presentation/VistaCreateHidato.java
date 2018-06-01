@@ -21,6 +21,7 @@ import java.awt.event.MouseEvent;
 public class VistaCreateHidato extends javax.swing.JFrame {
 
     private ControladorPresentacio cp = ControladorPresentacio.getInstance();
+    private ControladorNavegacio cn = ControladorNavegacio.getInstance();
     ControladorHidatoGrafic creacio;
     private int seguentMoviment = 1;
     private int mostrant = 0;
@@ -238,8 +239,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        VistaMenuPrincipal v = new VistaMenuPrincipal();
-        v.setVisible(true);
+        cn.openMenuView();
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 

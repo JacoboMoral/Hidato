@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 public class Inici extends javax.swing.JFrame {
 
     ControladorPresentacio cp = ControladorPresentacio.getInstance();
+    ControladorNavegacio cn = ControladorNavegacio.getInstance();
     
     public Inici() {
         initComponents();
@@ -202,8 +203,7 @@ public class Inici extends javax.swing.JFrame {
                 Logger.getLogger(Inici.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (userPassMatch) {
-                VistaMenuPrincipal v = new VistaMenuPrincipal();
-                v.setVisible(true);
+                cn.openMenuView();
                 this.dispose();
             } else {
                 int input = JOptionPane.showOptionDialog(null, "Username and password doesn't match, please enter again.", "Error message",
@@ -216,8 +216,7 @@ public class Inici extends javax.swing.JFrame {
     }//GEN-LAST:event_b_loginMouseClicked
 
     private void b_registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_registerMouseClicked
-        VistaRegistrar v = new VistaRegistrar();
-        v.setVisible(true);
+        cn.openRegisterView();
         this.dispose();
     }//GEN-LAST:event_b_registerMouseClicked
 

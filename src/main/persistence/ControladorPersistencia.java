@@ -203,4 +203,5 @@ public class ControladorPersistencia {
     public String getPassword() {
         return IOUsuari.getPassword();
     }
+
 }

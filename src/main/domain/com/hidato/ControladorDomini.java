@@ -299,7 +299,7 @@ public class ControladorDomini {
 
     /*-----------------------------RANKING------------------------------*/
     public void saveScore(int dif, int score, String username) {
-        ranking = presentacio.loadRanking();
+        ranking = controladorPersistencia.loadRanking();
         controladorPersistencia.saveScoreDB(ranking, dif, score, username);
     }
 
@@ -317,12 +317,6 @@ public class ControladorDomini {
 
     public Ranking loadRanking() {
         return controladorPersistencia.loadRanking();
-    }
-
-    public Ranking getRanking() {
-        //return controladorPersistencia.getRanking();
-
-        return ranking;
     }
 
     public String[] getFilterByUsername(String username, int level) {

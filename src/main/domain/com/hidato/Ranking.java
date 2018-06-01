@@ -26,19 +26,17 @@ public class Ranking {
     private ArrayList<Posicio> rankingEasy = new ArrayList<Posicio>();
     private ArrayList<Posicio> rankingInter = new ArrayList<Posicio>();
     private ArrayList<Posicio> rankingHard = new ArrayList<Posicio>();
-    
 
     private static Ranking instance = null;
 
     public static Ranking getInstance() {
         if (instance == null) {
             instance = new Ranking();
-            
+
         }
         return instance;
     }
-   
-    
+
     public ArrayList<Posicio> getLlistaPosicio(int dificultat) {
         switch (dificultat) {
             case levelEasy:
@@ -67,7 +65,7 @@ public class Ranking {
             Collections.sort(rankingHard, new CustomCompare().reversed());
         }
     }
-    
+
     public static class CustomCompare implements Comparator<Posicio> {
 
         @Override
@@ -101,7 +99,7 @@ public class Ranking {
         }
         return trobat;
     }
-    
+
     public boolean existsDate(String date) {
         ListIterator<Posicio> it_easy = rankingEasy.listIterator();
         ListIterator<Posicio> it_inter = rankingInter.listIterator();
@@ -128,81 +126,7 @@ public class Ranking {
         }
         return trobat;
     }
-    
 
-    public void deleteByUsername(int dificultat, String date) {
-        boolean trobat = false;
-        int i = 0;
-        switch (dificultat) {
-            case levelEasy:
-                while (i < rankingEasy.size() && !trobat) {
-                    if (rankingEasy.get(i).getUsername().equals(date)) {
-                        System.out.println(rankingEasy.get(i).getUsername());
-                        rankingEasy.remove(i);
-                        trobat = true;
-                    }
-                    i++;
-                }
-                if (!trobat) {
-                    System.out.println("No trobat");
-                }
-                break;
-            case levelInter:
-                while (i < rankingInter.size() && !trobat) {
-                    if (rankingInter.get(i).getUsername().equals(date)) {
-                        System.out.println(rankingInter.get(i).getUsername());
-                        rankingInter.remove(i);
-                        trobat = true;
-                    }
-                    i++;
-                }
-                if (!trobat) {
-                    System.out.println("No trobat");
-                }
-                break;
-            case levelHard:
-                while (i < rankingHard.size() && !trobat) {
-                    if (rankingHard.get(i).getUsername().equals(date)) {
-                        System.out.println(rankingHard.get(i).getUsername());
-                        rankingHard.remove(i);
-                        trobat = true;
-                    }
-                    i++;
-                }
-                if (!trobat) {
-                    System.out.println("No trobat");
-                }
-                break;
-        }
-    }
-
-    public void delete_by_position(int index, int dificultat) {
-        switch (dificultat) {
-            case levelEasy:
-                rankingEasy.remove(index);
-                break;
-            case levelInter:
-                rankingInter.remove(index);
-                break;
-            case levelHard:
-                rankingHard.remove(index);
-                break;
-        }
-
-    }
-
-    /*
-    public void delete_by_date(LocalDate date) {
-            int i = 0;
-            while (i < llistaPosicions.size()) {
-                    if (llistaPosicions.get(i).getDate().equals(date)) {
-                            System.out.println(llistaPosicions.get(i).getDate());
-                            llistaPosicions.remove(i);
-                    }
-                    i++;
-            }
-    }*/
-    
     public ArrayList<Posicio> filterByUsername(String date, int dificultat) {
         int i = 0;
         ArrayList<Posicio> aux = new ArrayList<Posicio>();
@@ -273,7 +197,6 @@ public class Ranking {
         return ap;
     }
 
-    
     public ArrayList<Integer> getScore(String user, int dificultat) {
         ArrayList<Integer> ap = new ArrayList<Integer>();
         ListIterator<Posicio> it;
@@ -318,7 +241,8 @@ public class Ranking {
 
     public void deleteUserRanking(String user) {
         ListIterator<Posicio> it;
-
+        ListIterator<Posicio> it2;
+        ListIterator<Posicio> it3;
         it = rankingEasy.listIterator();
         while (it.hasNext()) {
             if (it.next().getUsername().equals(user)) {
@@ -326,17 +250,17 @@ public class Ranking {
             }
         }
 
-        it = rankingInter.listIterator();
-        while (it.hasNext()) {
-            if (it.next().getUsername().equals(user)) {
-                it.remove();
+        it2 = rankingInter.listIterator();
+        while (it2.hasNext()) {
+            if (it2.next().getUsername().equals(user)) {
+                it2.remove();
             }
         }
 
-        it = rankingHard.listIterator();
-        while (it.hasNext()) {
-            if (it.next().getUsername().equals(user)) {
-                it.remove();
+        it3 = rankingHard.listIterator();
+        while (it3.hasNext()) {
+            if (it3.next().getUsername().equals(user)) {
+                it3.remove();
             }
         }
     }

@@ -23,10 +23,12 @@ import javax.swing.JOptionPane;
 public class VistaRanking extends javax.swing.JFrame {
     
     private ControladorPresentacio cp = ControladorPresentacio.getInstance();
+    private ControladorNavegacio cn = ControladorNavegacio.getInstance();
     private static Ranking ranking = Ranking.getInstance();
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
+    
 
     public VistaRanking() {
         initComponents();
@@ -285,6 +287,10 @@ public class VistaRanking extends javax.swing.JFrame {
         optionsPanel.setLayout(optionsPanelLayout);
         optionsPanelLayout.setHorizontalGroup(
             optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(optionsPanelLayout.createSequentialGroup()
+                .addGap(224, 224, 224)
+                .addComponent(b_back, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionsPanelLayout.createSequentialGroup()
                 .addContainerGap(108, Short.MAX_VALUE)
                 .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,10 +321,6 @@ public class VistaRanking extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(b_filterByUsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35))
-            .addGroup(optionsPanelLayout.createSequentialGroup()
-                .addGap(224, 224, 224)
-                .addComponent(b_back, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         optionsPanelLayout.setVerticalGroup(
             optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -554,8 +556,8 @@ public class VistaRanking extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_backMouseClicked
-        VistaMenuPrincipal v = new VistaMenuPrincipal();
-        v.setVisible(true);
+
+        cn.openMenuView();
         this.dispose();
 
     }//GEN-LAST:event_b_backMouseClicked
@@ -568,7 +570,7 @@ public class VistaRanking extends javax.swing.JFrame {
             if (!cp.existsUser(username)) {
                 JOptionPane.showMessageDialog(null, "The user: " + username + " not exists in any ranking");
             }
-            cp.deteleUserRanking(username);
+            cp.deleteUserRanking(username);
             user_to_delete.setText("");
             showRankingList();
             repaint();
