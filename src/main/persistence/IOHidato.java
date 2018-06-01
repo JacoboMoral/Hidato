@@ -35,6 +35,7 @@ public class IOHidato {
     }
 
     public static void importarHidatoDeFitxer(String file, String nom) throws IOException {
+    	CrearCarpetaSiNoExisteix();
         //ABANS FER CARREGAR HIDATO  I SOLUCIONARLO PER COMPROVAR QUE ES CORRECTA
         FileReader fr = new FileReader(file);
         BufferedReader b = new BufferedReader(fr);
@@ -107,6 +108,7 @@ public class IOHidato {
     }
 
     public static void carregarHidatoImportat(String nomHidato) throws IOException {
+    	CrearCarpetaSiNoExisteix();
         FileReader fr = new FileReader("DB/HidatosImportats/" + nomHidato + ".txt");
         BufferedReader b = new BufferedReader(fr);
         String cadena = b.readLine();
@@ -137,6 +139,7 @@ public class IOHidato {
     }
 
     public static void importarHidatoCreat(int[][] matriu, TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, String nomHidato) throws IOException {
+    	CrearCarpetaSiNoExisteix();
         File arxiu = new File("DB/HidatosImportats/"+ nomHidato + ".txt");
         arxiu.createNewFile();
         PrintStream fitxerOutput = new PrintStream(arxiu);
@@ -147,6 +150,7 @@ public class IOHidato {
     }
 
     public static String[] nomHidatosImportats() {
+    	CrearCarpetaSiNoExisteix();
         File carpeta = new File("DB/HidatosImportats");
         ArrayList<String> llistaFitxers = new ArrayList<String>();
         for (File fitxer : carpeta.listFiles()) {
@@ -220,12 +224,18 @@ public class IOHidato {
     }
 
 	public static void importarHidatoCreat(String nomHidato) throws IOException {
+		CrearCarpetaSiNoExisteix();
 		File arxiu = new File("DB/HidatosImportats/"+ nomHidato + ".txt");
         arxiu.createNewFile();
         PrintStream fitxerOutput = new PrintStream(arxiu);
         
         writeMatriu(matriu, tipusCella, tipusAdjacencia, fitxerOutput);
         fitxerOutput.close();
+	}
+	
+	private static void CrearCarpetaSiNoExisteix() {
+		File temp = new File("DB/HidatosImportats");
+        if (!temp.exists()) temp.mkdirs(); 
 	}
 
     /*public static void main(String[] args) throws Exception {
