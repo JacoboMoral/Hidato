@@ -9,7 +9,7 @@ import javafx.util.converter.LocalDateTimeStringConverter;
 
 public class Contador {
 
-    private int segons;
+    private int milisegons;
     private Timer cronometro;
     private String tempsActual;
     private boolean acabat;
@@ -17,7 +17,7 @@ public class Contador {
     private class Incrementador extends TimerTask {
 
         public void run() {
-            segons++;
+            milisegons++;
             //Get current date time
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -27,13 +27,13 @@ public class Contador {
     }
 
     public Contador() {
-        segons = 0;
+    	milisegons = 0;
         acabat = false;
     }
 
     public void iniciar() {
         cronometro = new Timer();
-        cronometro.schedule(new Incrementador(), 0, 1000);
+        cronometro.schedule(new Incrementador(), 0, 1);
     }
 
     public void detener() {
@@ -42,7 +42,11 @@ public class Contador {
     }
 
     public int getSegons() {
-        return segons;
+        return milisegons/1000;
+    }
+    
+    public int getMilisegons() {
+    	return milisegons;
     }
     
     public String getTempsActual() {
