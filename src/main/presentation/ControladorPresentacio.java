@@ -285,7 +285,7 @@ public class ControladorPresentacio {
 			}
 			else JOptionPane.showMessageDialog(null, "Hidato proposat no es resoluble");
 			
-		} else JOptionPane.showMessageDialog(null, "Format no v�lid");
+		} else JOptionPane.showMessageDialog(null, "Format no valid");
 	}
 
 	public TipusCella getTipusCellaPartida() {

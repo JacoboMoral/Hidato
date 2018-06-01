@@ -95,6 +95,7 @@ public class ControladorPartida extends ControladorHidatoGrafic{
 
 	public PanelPartida partidaAutogenerada(int altura, int amplada, int forats) {
         int[][] matriuHidato = generarMatriuHidato(altura, amplada, forats);
+        HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
         TipusCella tipusCella = controller.getTipusCellaPartida();
 		this.cella = tipusCellaToCella(tipusCella);
 		if (matriuHidato != null) {

@@ -60,7 +60,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         tipologia.addItem("Triangle");
         adjacencia.addItem("Costats");
         adjacencia.addItem("Costats i angles");
-        adjacencia.setSelectedItem("Costat");
+        adjacencia.setSelectedItem("Costats");
         tipologia.setSelectedItem("Hexagon");
 
         levelsButtons.add(easyButton);
@@ -71,9 +71,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         tipologiaAuto.addItem("Quadrat");
         tipologiaAuto.addItem("Triangle");
         adjacenciaAuto.setEnabled(false);
-        adjacenciaAuto.addItem("Costat");
-        adjacenciaAuto.addItem("Costat i angles");
-        adjacenciaAuto.setSelectedItem("Costat");
+        adjacenciaAuto.addItem("Costats");
+        adjacenciaAuto.addItem("Costats i angles");
+        adjacenciaAuto.setSelectedItem("Costats");
         tipologiaAuto.setSelectedItem("Hexagon");
         showHidatoList();
         
@@ -1105,13 +1105,14 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         generacioAltura.setText("Altura");
 
         generacioAmpladaSpinner.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        generacioAmpladaSpinner.setModel(new javax.swing.SpinnerNumberModel(5, 3, 15, 1));
+        generacioAmpladaSpinner.setModel(new javax.swing.SpinnerNumberModel(5, 2, null, 1));
+        generacioAmpladaSpinner.setToolTipText("");
 
         generacioAmplada.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         generacioAmplada.setText("Amplada");
 
         generacioAlturaSpinner.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        generacioAlturaSpinner.setModel(new javax.swing.SpinnerNumberModel(5, 3, 15, 1));
+        generacioAlturaSpinner.setModel(new javax.swing.SpinnerNumberModel(5, 2, null, 1));
         generacioAlturaSpinner.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         typeButtons.add(caracteristiquesButton);
@@ -1623,13 +1624,16 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 		TipusCella tipusCella = null;
 		TipusAdjacencia tipusAdjacencia = null;
 		javax.swing.JPanel hidatoPanel = null;
+		int input = JOptionPane.OK_OPTION;
 		
 		if (tipologiaCheckBox.isSelected()) {
     		tipusCella = stringToTipusCella((String) (tipologiaAuto.getSelectedItem()));
     	}
 		
 		if (adjacenciaCheckBox.isSelected()) {
-			tipusAdjacencia = stringToTipusAdjacencia((String) (adjacencia.getSelectedItem()));
+			tipusAdjacencia = stringToTipusAdjacencia((String) (adjacenciaAuto.getSelectedItem()));
+			System.out.println((String) (adjacencia.getSelectedItem()));
+
     	}
 
 		if (tipologiaCheckBox.isSelected() && adjacenciaCheckBox.isSelected() && !compatibles(tipusCella, tipusAdjacencia)) {
@@ -1661,11 +1665,15 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 	        	forats = (int)generacioForatsSpinner.getValue();
 	        	if (forats > (altura*amplada)) JOptionPane.showMessageDialog(null, "No pot haver més forats que caselles totals");
 	        	else {
-	        		if (tipusCella != null) {
+	        		if ((altura*amplada - forats) > 80) {
+	        			input = JOptionPane.showOptionDialog(null, "Si esculls hidato massa grans, el programa pot trigar molt en generar-los, desitges continuar?", "Advertencia",
+		                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+	        		}
+	        		if (tipusCella != null && input == JOptionPane.OK_OPTION) {
 	        			if (tipusAdjacencia == null) hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, altura, amplada, forats);
 	        			else hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, tipusAdjacencia, altura, amplada, forats);
 	        		}
-	        		else {	//tipusAdjacencia i tipusCella aleatoris
+	        		else if (input == JOptionPane.OK_OPTION){	//tipusAdjacencia i tipusCella aleatoris
 	        			hidatoPanel = controladorPartida.partidaAutogenerada(altura, amplada,forats);
 	        		}
 	        	}
@@ -1674,8 +1682,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 			if (hidatoPanel != null) {
 				VistaPartida v = new VistaPartida(hidatoPanel);
 				v.setVisible(true);
+				this.dispose();
 			}
 			else {
+				if (input != JOptionPane.CANCEL_OPTION)
 				JOptionPane.showMessageDialog(null, "No s'ha pogut generar l'hidato, intenta-ho de nou");
 			}
 		}
