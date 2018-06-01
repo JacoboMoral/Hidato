@@ -4,7 +4,9 @@ import java.awt.Dimension;
 import java.util.Vector;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
+import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
@@ -15,7 +17,6 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     private static ControladorPartida instance = null;
     private VistaPartida view;
     private PanelPartida partida;
-
 
     public static ControladorPartida getInstance() {
         if (instance == null) {
@@ -28,26 +29,34 @@ public class ControladorPartida extends ControladorHidatoGrafic{
         this.dificultat = dificultat;
         this.cella = tipusCellaToCella(tipusCella);
         int[][] matriuHidato = generarMatriuHidato(tipusCella, dificultat);
-        partida = new PanelPartida(cella, matriuHidato);
-        return partida;
+        if (matriuHidato != null) {
+        	partida = new PanelPartida(cella, matriuHidato);
+            return partida;
+        }
+        return null;
     }
 
     public PanelPartida partidaAutogenerada(Dificultat dificultat) {
         this.dificultat = dificultat;
         int[][] matriuHidato = generarMatriuHidato(dificultat);
-        TipusCella tipusCella = controller.getTipusCellaPartida();
-        //falta generar cella random
-        this.cella = tipusCellaToCella(tipusCella);
-        partida = new PanelPartida(cella, matriuHidato);
-        return partida;
+        if (matriuHidato != null) {
+        	TipusCella tipusCella = controller.getTipusCellaPartida();
+        	this.cella = tipusCellaToCella(tipusCella);
+            partida = new PanelPartida(cella, matriuHidato);
+            return partida;
+        }
+        return null;
     }
 
     public PanelPartida partidaAutogenerada(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
         this.dificultat = dificultat;
         this.cella = tipusCellaToCella(tipusCella);
         int[][] matriuHidato = generarMatriuHidato(tipusCella, tipusAdjacencia, dificultat);
-        partida = new PanelPartida(cella, matriuHidato);
-        return partida;
+        if (matriuHidato != null) {
+        	partida = new PanelPartida(cella, matriuHidato);
+            return partida;
+        }
+        return null;
     }
 	
 	public PanelPartida partidaCarregada(TipusCella tipusCella, int[][] matriuHidato) {
@@ -95,10 +104,9 @@ public class ControladorPartida extends ControladorHidatoGrafic{
 
 	public PanelPartida partidaAutogenerada(int altura, int amplada, int forats) {
         int[][] matriuHidato = generarMatriuHidato(altura, amplada, forats);
-        HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
-        TipusCella tipusCella = controller.getTipusCellaPartida();
-		this.cella = tipusCellaToCella(tipusCella);
 		if (matriuHidato != null) {
+			TipusCella tipusCella = controller.getTipusCellaPartida();
+			this.cella = tipusCellaToCella(tipusCella);
         	partida = new PanelPartida(cella, matriuHidato);
     		return partida;
         }
@@ -107,6 +115,7 @@ public class ControladorPartida extends ControladorHidatoGrafic{
 	
 	private int[][] generarMatriuHidato(int altura, int amplada, int forats) {
 		if (controller.autoGenerar(altura, amplada, forats)) {
+			ControladorDomini c = ControladorDomini.getInstance();
 	        controller.jugarHidatoGenerat();
 	        return controller.getMatriuHidatoDePartida();
 		}
