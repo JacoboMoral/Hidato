@@ -13,6 +13,8 @@ import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.domain.com.hidato.Contador;
 
 /**
@@ -20,31 +22,60 @@ import main.domain.com.hidato.Contador;
  * @author admin
  */
 public class VistaPartida extends javax.swing.JFrame {
-
+    
     private ControladorPresentacio cp = ControladorPresentacio.getInstance();
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
     ControladorPartida partida = ControladorPartida.getInstance();
     ControladorNavegacio cn = ControladorNavegacio.getInstance();
-    private String currentUsername;
     private String seguentMoviment = " ";
-    private Contador cont = new Contador();
-        
+    int hora = 0;
+    int min = 0;
+    int segons = 0;
+    
+    Thread cronometre = new Thread() {
+        @Override public void run() {
+            
+            for (;;) {
+            for (hora = 0; hora < 60; hora++) {
+                for (min = 0; min < 60; min++) {
+                    for (segons = 0; segons < 60; segons++) {
+                        try {
+                            if (segons < 10 && min < 10 && hora < 10) crono.setText("0" + hora + ":" + "0" + min + ":" + "0" + segons);
+                            else if (segons < 10 && min >= 10 && hora < 10) crono.setText("0" + hora + ":" + min + ":" + "0" + segons);                           
+                            else if (segons >= 10) crono.setText("0" + hora + ":" + "0" + min + ":" + segons);
+                            else if (segons >= 10 && min >= 10) crono.setText("0" + hora + ":" + min + ":" + segons);
+                            else if (segons < 10 && min < 10 && hora >= 10) crono.setText(hora + ":" + "0" + min + ":" + "0" + segons);
+                            else if (segons < 10 && min >= 10 && hora >= 10) crono.setText(hora + ":" + min + ":" + "0" + segons);
+                            else if (segons >= 10 && min >= 10 && hora >= 10) crono.setText(hora + ":" + min + ":" + segons);
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(VistaPartida.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            }
+        }
+        }
+    };
+    
 
     /**
      * Creates new form NewJFrame
      */
     public VistaPartida() {
         initComponents();
+        
     }
-
+    
     public VistaPartida(int level, int type, String username) {
         initComponents();
-        this.currentUsername = username;
+        
         partida.setView(this);
         if (level == levelEasy) {
             if (type == 1) {
+                System.out.println("estoy en hexagon");
                 hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
             }
             if (type == 2) {
@@ -78,17 +109,17 @@ public class VistaPartida extends javax.swing.JFrame {
         jLabel1.setText(seguentMoviment);
         
         this.validate();
-
+        
     }
     
     public VistaPartida(javax.swing.JPanel hidatoPanel) {
-    	initComponents();
+        initComponents();
         partida.setView(this);
         this.hidatoPanel = hidatoPanel;
         this.add(this.hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
         jLabel1.setText(seguentMoviment);
-
+        
         this.validate();
     }
 
@@ -101,7 +132,7 @@ public class VistaPartida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        controlPanel = new javax.swing.JPanel();
+        optionPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -109,14 +140,13 @@ public class VistaPartida extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         saveGame = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        time = new javax.swing.JLabel();
-        stopTimer = new javax.swing.JButton();
-        startTimer = new javax.swing.JButton();
+        playButton = new javax.swing.JButton();
+        crono = new javax.swing.JLabel();
         hidatoPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        controlPanel.setBackground(new java.awt.Color(0, 153, 153));
+        optionPanel.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setText("s");
@@ -149,11 +179,11 @@ public class VistaPartida extends javax.swing.JFrame {
 
         saveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
         saveGame.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-            	saveGameMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                saveGameMousePressed(evt);
             }
         });
-        
+
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -161,28 +191,23 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
 
-        time.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        time.setText("jLabel4");
-
-        stopTimer.setText("Stop");
-        stopTimer.addActionListener(new java.awt.event.ActionListener() {
+        playButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        playButton.setText("PLAY");
+        playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stopTimerActionPerformed(evt);
+                playButtonActionPerformed(evt);
             }
         });
 
-        startTimer.setText("Star");
-        startTimer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startTimerActionPerformed(evt);
-            }
-        });
+        crono.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        crono.setText("00:00:00");
+        crono.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
-        controlPanel.setLayout(controlPanelLayout);
-        controlPanelLayout.setHorizontalGroup(
-            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(controlPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout optionPanelLayout = new javax.swing.GroupLayout(optionPanel);
+        optionPanel.setLayout(optionPanelLayout);
+        optionPanelLayout.setHorizontalGroup(
+            optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(optionPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
@@ -190,56 +215,47 @@ public class VistaPartida extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(saveGame)
                 .addGap(201, 201, 201)
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(controlPanelLayout.createSequentialGroup()
+                    .addGroup(optionPanelLayout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addGap(42, 42, 42)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
-                        .addComponent(startTimer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(stopTimer)
-                        .addGap(86, 86, 86))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
-                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(crono)
+                    .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
-        controlPanelLayout.setVerticalGroup(
-            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+        optionPanelLayout.setVerticalGroup(
+            optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(controlPanelLayout.createSequentialGroup()
-                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(startTimer, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1)
-                                .addComponent(jButton2)
-                                .addComponent(jButton1)
-                                .addComponent(stopTimer)))
-                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(controlPanelLayout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jButton3))
-                            .addGroup(controlPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(20, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
-                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionPanelLayout.createSequentialGroup()
+                        .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(saveGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(45, 45, 45))))
+                        .addGap(45, 45, 45))
+                    .addGroup(optionPanelLayout.createSequentialGroup()
+                        .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(playButton)
+                            .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(jButton2)
+                                .addComponent(jButton1)))
+                        .addGap(18, 18, 18)
+                        .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(crono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
 
-        getContentPane().add(controlPanel, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(optionPanel, java.awt.BorderLayout.PAGE_END);
 
         hidatoPanel.setBackground(new java.awt.Color(0, 204, 204));
 
@@ -251,7 +267,7 @@ public class VistaPartida extends javax.swing.JFrame {
         );
         hidatoPanelLayout.setVerticalGroup(
             hidatoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 694, Short.MAX_VALUE)
+            .addGap(0, 688, Short.MAX_VALUE)
         );
 
         getContentPane().add(hidatoPanel, java.awt.BorderLayout.CENTER);
@@ -283,20 +299,14 @@ public class VistaPartida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void stopTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopTimerActionPerformed
-        cont.detener();
-    }//GEN-LAST:event_stopTimerActionPerformed
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        cronometre.start();
 
-    private void startTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTimerActionPerformed
-        cont.iniciar();
+    }//GEN-LAST:event_playButtonActionPerformed
 
-        time.setText(cont.getTempsActual());
-        
-    }//GEN-LAST:event_startTimerActionPerformed
-
-    private String getCurrentUsername() {
-        return currentUsername;
-    }
+    private void saveGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveGameMousePressed
+        partida.guardarPartida();
+    }//GEN-LAST:event_saveGameMousePressed
 
     /**
      * @param args the command line arguments
@@ -330,34 +340,31 @@ public class VistaPartida extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VistaPartida().setVisible(true);
+                
             }
         });
     }
     
-    private void saveGameMouseClicked(MouseEvent evt) {  	
-    	partida.guardarPartida();
-	}
-   
     public void incrementarSeguentMoviment() {
         int seguentMov = partida.incrementarSeguentMoviment();
         if (seguentMov != -1) {
             jLabel1.setText(Integer.toString(seguentMov));
         }
     }
-
+    
     public void decrementarSeguentMoviment() {
         int seguentMov = partida.decrementarSeguentMoviment();
         if (seguentMov != -1) {
             jLabel1.setText(Integer.toString(seguentMov));
         }
     }
-
+    
     public void updateSeguentMoviment(String moviment) {
         jLabel1.setText(moviment);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel controlPanel;
+    private javax.swing.JLabel crono;
     private javax.swing.JPanel hidatoPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -365,9 +372,8 @@ public class VistaPartida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel optionPanel;
+    private javax.swing.JButton playButton;
     private javax.swing.JLabel saveGame;
-    private javax.swing.JButton startTimer;
-    private javax.swing.JButton stopTimer;
-    private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
 }
