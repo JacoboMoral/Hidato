@@ -39,7 +39,7 @@ public class ControladorDomini {
     public void jugarHidatoGenerat() {
         if (hidatoGenerat != null) {
             partidaEnCurs = new Partida(hidatoGenerat, currentUser);
-            System.out.println(partidaEnCurs.esSolucionable());
+            partidaEnCurs.esSolucionable();
         }
     }
 
@@ -287,23 +287,6 @@ public class ControladorDomini {
         partidaEnCurs.setDataInici(controladorPersistencia.getDataIniPartida());
         partidaEnCurs.setTemps(controladorPersistencia.getTempsPartida());
 
-        /*System.out.println(partidaEnCurs.getNomUsuari());
-
-		System.out.println(partidaEnCurs.getPuntuacio());
-		System.out.println(partidaEnCurs.getTemps());
-		System.out.println(partidaEnCurs.getDataInici());
-		System.out.println(partidaEnCurs.getNombresEscrits());
-		System.out.println(partidaEnCurs.getNombresPerDefecte());
-		System.out.println(partidaEnCurs.getTipusAdjacencia());
-		System.out.println(partidaEnCurs.getTipusCella());
-		HidatoIO.writeHidatoMatrixToOutput(partidaEnCurs.getHidato());
-		HidatoIO.writeHidatoMatrixToOutput(partidaEnCurs.getHidatoOriginal());*/
-        System.out.println(partidaEnCurs.getNombresEscrits());
-        System.out.println(partidaEnCurs.getNombresPerDefecte());
-
-        System.out.println(partidaEnCurs.getNombresEscrits());
-        System.out.println(partidaEnCurs.getNombresPerDefecte());
-
     }
 
     public String[] getAllHidatoNames() {
@@ -434,5 +417,10 @@ public class ControladorDomini {
     public boolean comprovarHidatotxtResoluble() {
         return esResoluble(controladorPersistencia.getTipusCellaHidato(), controladorPersistencia.getTipusAdjacenciaHidato(), controladorPersistencia.getMatriuHidato());
     }
+
+	public int[][] solucionarPartida() {
+		if (partidaEnCurs != null) return partidaEnCurs.getSolucio(true);
+		return null;
+	}
 
 }

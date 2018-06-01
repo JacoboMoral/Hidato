@@ -116,6 +116,12 @@ public class Algorismes {
         }
         return matriuSolucio;
     }
+    
+	public int[][] getSolucio(int[][] matriu) {
+		matriuSolucio = matriu;
+		if (solucionar()) return matriuSolucio;
+		return null;
+	}
 
     //es igual que encara no s'hagi solucionat --> per tests
     public int[][] getMatriuSolucioForce() {

@@ -123,6 +123,10 @@ public class Partida {
         return hidato.getSolucio();
     }
 
+	public int[][] getSolucio(boolean solucioRespecteMatriuHidato) {
+		return hidato.getSolucio(solucioRespecteMatriuHidato);
+	}
+
     public int[][] getHidato() {
         return hidato.getMatriu();
     }
@@ -170,8 +174,7 @@ public class Partida {
         return null;
     }
 
-    public TipusCella getTipusCella() {
-        return hidato.getTipusCella();
-    }
-
+	public TipusCella getTipusCella() {
+		return hidato.getTipusCella();
+	}
 }

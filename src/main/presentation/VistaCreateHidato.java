@@ -13,6 +13,8 @@ import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,6 +27,8 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     ControladorHidatoGrafic creacio;
     private int seguentMoviment = 1;
     private int mostrant = 0;
+    private boolean nextPressed = false;
+    private boolean previousPressed = false;
 
     /**
      * Creates new form NewJFrame
@@ -70,21 +74,27 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         controlPanel.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setText("s");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jLabel1MouseWheelMoved(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton1.setText(">");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton1MousePressed(evt);
             }
         });
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton2.setText("<");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton2MousePressed(evt);
             }
         });
 
@@ -98,12 +108,10 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         saveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
         saveGame.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-            		saveGameMouseClicked(evt);
+                saveGameMousePressed(evt);
             }
-
         });
-        
-        
+
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -170,17 +178,14 @@ public class VistaCreateHidato extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(saveGame)
                 .addGap(172, 172, 172)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(b_almoadilla)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(controlPanelLayout.createSequentialGroup()
-                        .addComponent(b_almoadilla)
-                        .addGap(18, 18, 18)
-                        .addComponent(b_num)
-                        .addGap(23, 23, 23))
-                    .addGroup(controlPanelLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(b_num, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addComponent(b_estrella))
@@ -254,13 +259,6 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    	if (seguentMoviment < creacio.getMaximMoviment()) {
-        	seguentMoviment = creacio.incrementarSeguentMoviment();
-            jLabel1.setText(Integer.toString(seguentMoviment));
-        }
-    }//GEN-LAST:event_jButton1MouseClicked
-
     private void b_almoadillaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_almoadillaMouseClicked
     	creacio.setAlmoadilla();
     	mostrant = -2;
@@ -276,10 +274,6 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     	creacio.setNumero();
     	mostrant = 0;
     }//GEN-LAST:event_b_numMouseClicked
-
-    private void saveGameMouseClicked(MouseEvent evt) {
-    		creacio.guardarHidato();
-	}
     
     private void b_numActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_numActionPerformed
         // TODO add your handling code here:
@@ -296,6 +290,39 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     private void b_playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_playActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_playActionPerformed
+
+    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+        if (seguentMoviment < creacio.getMaximMoviment()) {
+        	seguentMoviment = creacio.incrementarSeguentMoviment();
+        	jLabel1.setText(Integer.toString(seguentMoviment));
+        }
+    }//GEN-LAST:event_jButton1MousePressed
+
+    private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
+    	if (seguentMoviment > creacio.getMinimMoviment()) {
+        	seguentMoviment = creacio.decrementarSeguentMoviment();
+            jLabel1.setText(Integer.toString(seguentMoviment));
+        }
+    }//GEN-LAST:event_jButton2MousePressed
+
+    private void jLabel1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jLabel1MouseWheelMoved
+        if (evt.getWheelRotation() < 0) {
+        	if (seguentMoviment < creacio.getMaximMoviment()) {
+            	seguentMoviment = creacio.incrementarSeguentMoviment();
+            	jLabel1.setText(Integer.toString(seguentMoviment));
+            }
+        }
+        else {
+        	if (seguentMoviment > creacio.getMinimMoviment()) {
+            	seguentMoviment = creacio.decrementarSeguentMoviment();
+                jLabel1.setText(Integer.toString(seguentMoviment));
+            }
+        }
+    }//GEN-LAST:event_jLabel1MouseWheelMoved
+
+    private void saveGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveGameMousePressed
+    	creacio.guardarHidato();
+    }//GEN-LAST:event_saveGameMousePressed
 
     /**
      * @param args the command line arguments

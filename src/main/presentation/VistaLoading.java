@@ -25,15 +25,15 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
     /**
      * Creates new form VistaLoading
      */
-    public VistaLoading(int dificultat) {
-        
+
+    public VistaLoading() {
+    	initComponents();
+        tiempo = new Thread(this);
+        tiempo.start();
+        this.setOpacity((float) 0.5);
     }
 
-    private VistaLoading() {
-        
-    }
-
-    VistaLoading(int dificultat, VistaMenuPrincipal aThis) {
+    public VistaLoading(int dificultat, VistaMenuPrincipal aThis) {
         initComponents();
         level = dificultat;
         tiempo = new Thread(this);
@@ -57,14 +57,30 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 50)); // NOI18N
         jLabel1.setText("Carregant...");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 10, 300, 64));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/cargando.gif"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 10, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel3)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         setSize(new java.awt.Dimension(401, 87));
         setLocationRelativeTo(null);
@@ -77,7 +93,7 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -113,33 +129,30 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
     @Override
     public void run() {
         while(tiempo != null){
-  
-                
                 tiempo = null;
-                if (level == levelEasy) {
-                    
-                    VistaPartida v = new VistaPartida(levelEasy, 1, cp.getUsername());
-                    //Thread.sleep(1000);
-                    v.setVisible(true);
-                    
-                    vMP.dispose();
-                    this.dispose();
-                }
-                else if (level == levelInter) {
-                    VistaPartida v = new VistaPartida(levelInter, 1, cp.getUsername());
-                    //Thread.sleep(1000);
-                    v.setVisible(true);
-                    vMP.dispose();
-                    this.dispose();
-                }
-                else {
-                    VistaPartida v = new VistaPartida(levelHard, 1, cp.getUsername());
-                    //Thread.sleep(1000);
-                    v.setVisible(true);
-                    vMP.dispose();
-                    this.dispose();
-                }
-            
+            if (level == levelEasy) {
+
+                VistaPartida v = new VistaPartida(levelEasy, 1, cp.getUsername());
+                //Thread.sleep(1000);
+                v.setVisible(true);
+
+                vMP.dispose();
+                this.dispose();
+            }
+            else if (level == levelInter) {
+                VistaPartida v = new VistaPartida(levelInter, 1, cp.getUsername());
+                //Thread.sleep(1000);
+                v.setVisible(true);
+                vMP.dispose();
+                this.dispose();
+            }
+            else {
+                VistaPartida v = new VistaPartida(levelHard, 1, cp.getUsername());
+                //Thread.sleep(1000);
+                v.setVisible(true);
+                vMP.dispose();
+                this.dispose();
+            }
         }
     }
 }

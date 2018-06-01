@@ -296,5 +296,9 @@ public class ControladorPresentacio {
 		return domini.getTipusCellaPartida();
 	}
 
+	public int[][] solucionarPartida() {
+		return domini.solucionarPartida();
+	}
+
 
 }

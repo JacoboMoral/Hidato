@@ -1403,7 +1403,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         File archivo = jf.getSelectedFile();
         if (archivo != null) {
             String ruta = archivo.getAbsolutePath();
-            System.out.println(ruta);
             try {
                 controller.importarHidatotxt(ruta);
                 showHidatoList();
@@ -1634,7 +1633,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 		
 		if (adjacenciaCheckBox.isSelected()) {
 			tipusAdjacencia = stringToTipusAdjacencia((String) (adjacenciaAuto.getSelectedItem()));
-			System.out.println((String) (adjacencia.getSelectedItem()));
 
     	}
 
@@ -1817,16 +1815,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private void viewHidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewHidatoActionPerformed
         String nomHidato = selectedHidato.getText();
-        System.out.println("Estic llegint: " + nomHidato);
         try {
             tipusCella = cmp.getTipusCellaHidatoSeleccionat(nomHidato);
 
             tipusAdjacencia = cmp.getTipusAdjacenciaHidatoSeleccionat(nomHidato);
 
             matriu = cmp.getMatriuHidatoSeleccionat(nomHidato);
-            System.out.println(tipusCella);
-            System.out.println(tipusAdjacencia);
-            HidatoIO.writeHidatoMatrixToOutput(matriu);
 
         } catch (FileNotFoundException ex) {
             int input = JOptionPane.showOptionDialog(null, "Hidato with name " + selectedHidato.getText() + " not exists!", "Error message",
@@ -1850,8 +1844,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_b_customActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-    	System.out.println("play importat");
-
     	String nomHidato = selectedHidato.getText();
     	
     	try {
