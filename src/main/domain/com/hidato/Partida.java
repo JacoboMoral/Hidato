@@ -126,6 +126,10 @@ public class Partida {
     public int[][] getSolucio() {
         return hidato.getSolucio();
     }
+    
+	public int[][] getSolucio(boolean solucioRespecteMatriuHidato) {
+		return hidato.getSolucio(solucioRespecteMatriuHidato);
+	}
 
     public int[][] getHidato() {
         return hidato.getMatriu();
@@ -177,5 +181,4 @@ public class Partida {
 	public TipusCella getTipusCella() {
 		return hidato.getTipusCella();
 	}
-
 }

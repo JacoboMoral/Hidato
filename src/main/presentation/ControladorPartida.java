@@ -208,5 +208,9 @@ public class ControladorPartida extends ControladorHidatoGrafic{
         controller.guardarPartida();
     }
 
-    
+	public void solucionarPartida() {
+		int[][] matriuSolucio = controller.solucionarPartida();
+		if (matriuSolucio != null) partida.solucionar(matriuSolucio);
+		
+	}    
 }

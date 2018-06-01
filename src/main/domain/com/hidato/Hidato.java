@@ -145,6 +145,16 @@ public abstract class Hidato {
         }
         return null;
     }
+    
+    public int[][] getSolucio(boolean solucioRespecteMatriuHidato) {
+    	HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
+    	if (!solucioRespecteMatriuHidato) return getSolucio(); //opcio false
+    	int[][] matriu = copy(matriuHidato);
+        int [][] matriuResposta = al.getSolucio(matriu);
+        if (matriuResposta == null) return matriuSolucio; //si no es solucionable la matriuHidato
+    	HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
+        return matriuResposta;
+	}
 
     public boolean teSolucio() {
         if (solucionable == false) {
@@ -259,6 +269,16 @@ public abstract class Hidato {
                 destination[i][j] = source[i][j];
             }
         }
-    }
+    } 
     
+    private int[][] copy(int[][] source) {
+        //assumeix que destination i source tenen la mateixa mida
+    	int[][] matriu = new int[source.length][source[0].length];
+        for (int i = 0; i < source.length; ++i) {
+            for (int j = 0; j < source[0].length; ++j) {
+            	matriu[i][j] = source[i][j];
+            }
+        }
+        return matriu;
+    }
 }

@@ -15,6 +15,7 @@ public class PanelPartida extends JPanel {
     private int movimentIterator = 0;
     private int[][] matriuHidato = null;
     private final ControladorHidatoGrafic controller;
+    private boolean enCurs = true;
 
     int boardHeight = 0;
     int boardWidth = 0;
@@ -84,6 +85,7 @@ public class PanelPartida extends JPanel {
     
     public boolean tractaClick(int i, int j, int mouseButton) {
     	setPossiblesMoviments();
+    	if (!enCurs) return false;
     	if (movimentIterator >= possiblesMoviments.size()) return false;
 		if (tipusHidato == 0 && mouseButton == 0) { //partida i boto esquerre
 			boolean possible = ferMoviment(i,j,possiblesMoviments.get(movimentIterator));
@@ -184,6 +186,12 @@ public class PanelPartida extends JPanel {
 
 	public int getSeguentMoviment() {
 		return possiblesMoviments.get(movimentIterator);
+	}
+
+	public void solucionar(int[][] matriuSolucio) {
+		enCurs = false;
+		matriuHidato = matriuSolucio;
+		panelHidato.updateMatriu(matriuSolucio);
 	}
 
 	

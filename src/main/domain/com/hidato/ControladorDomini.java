@@ -418,4 +418,9 @@ public class ControladorDomini {
         return esResoluble(controladorPersistencia.getTipusCellaHidato(), controladorPersistencia.getTipusAdjacenciaHidato(), controladorPersistencia.getMatriuHidato());
     }
 
+	public int[][] solucionarPartida() {
+		if (partidaEnCurs != null) return partidaEnCurs.getSolucio(true);
+		return null;
+	}
+
 }
