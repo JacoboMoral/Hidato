@@ -39,7 +39,7 @@ public class ControladorDomini {
     public void jugarHidatoGenerat() {
         if (hidatoGenerat != null) {
             partidaEnCurs = new Partida(hidatoGenerat, currentUser);
-            partidaEnCurs.esSolucionable();
+            System.out.println(partidaEnCurs.esSolucionable());
         }
     }
 
@@ -67,7 +67,7 @@ public class ControladorDomini {
 
     public boolean autoGenerar(Dificultat dificultat) {
         TipusCella tipusCella = getRandomTipusCella();
-        TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia();
+        TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia(tipusCella);
         hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
         boolean generat = hidatoGenerat.autogenerar(dificultat);
         if (generat) {
@@ -79,12 +79,8 @@ public class ControladorDomini {
     }
 
     public boolean autoGenerar(TipusCella tipusCella, Dificultat dificultat) {
-        if (tipusCella == TipusCella.QUADRAT) {
-            TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia();
-            hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
-        } else {
-            hidatoGenerat = HidatoFactory.createHidato(tipusCella, TipusAdjacencia.COSTATS); //es crea hidato sense matriu
-        }
+        TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia(tipusCella);
+        hidatoGenerat = HidatoFactory.createHidato(tipusCella, tipusAdjacencia); //es crea hidato sense matriu
         boolean generat = hidatoGenerat.autogenerar(dificultat);
         if (generat) {
             return true;
@@ -92,6 +88,17 @@ public class ControladorDomini {
             hidatoGenerat = null;
             return false;
         }
+    }
+
+    public boolean autoGenerar(TipusCella tipusCella, int altura, int amplada, int forats) {
+        TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia(tipusCella);
+        return autoGenerar(tipusCella, tipusAdjacencia, altura, amplada, forats);
+    }
+
+    public boolean autoGenerar(int altura, int amplada, int forats) {
+        TipusCella tipusCella = getRandomTipusCella();
+        TipusAdjacencia tipusAdjacencia = getRandomTipusAdjacencia(tipusCella);
+        return autoGenerar(tipusCella, tipusAdjacencia, altura, amplada, forats);
     }
 
     public int[][] getMatriuHidatoOriginalDePartida() {
@@ -191,24 +198,27 @@ public class ControladorDomini {
     }
 
     private TipusCella getRandomTipusCella() {
-        Random random = new Random();
-        int tc = random.nextInt(3);
-        if (tc == 0) {
+        Random rand = new Random();
+        int randomValue = rand.nextInt(3);
+        if (randomValue == 0) {
             return TipusCella.QUADRAT;
         }
-        if (tc == 1) {
-            return TipusCella.TRIANGLE;
+        if (randomValue == 1) {
+            return TipusCella.HEXAGON;
         }
-        return TipusCella.HEXAGON;
+        return TipusCella.TRIANGLE;
+
     }
 
-    private TipusAdjacencia getRandomTipusAdjacencia() {
-        Random random = new Random();
-        int ta = random.nextInt(2);
-        if (ta == 0) {
-            return TipusAdjacencia.COSTATS;
+    private TipusAdjacencia getRandomTipusAdjacencia(TipusCella tipusCella) {
+        if (tipusCella == TipusCella.QUADRAT) {
+            Random rand = new Random();
+            int randomValue = rand.nextInt(2);
+            if (randomValue == 0) {
+                return TipusAdjacencia.COSTATSIANGLES;
+            }
         }
-        return TipusAdjacencia.COSTATSIANGLES;
+        return TipusAdjacencia.COSTATS;
     }
 
     public void finalitzarPartida() {
@@ -229,8 +239,9 @@ public class ControladorDomini {
         return null;
     }
 
-    public int[][] getMatiu(String nomHidato) throws Exception {
+    public int[][] getMatriu(String nomHidato) throws Exception {
         controladorPersistencia.carregarHidatoImportat(nomHidato);
+
         return controladorPersistencia.getMatriuHidato();
     }
 
@@ -252,6 +263,13 @@ public class ControladorDomini {
         return partidaEnCurs.getTipusCella();
     }
 
+    public boolean carregarPartida(String nomHidato) throws IOException {
+        controladorPersistencia.carregarHidatoImportat(nomHidato);
+        Hidato hidato = HidatoFactory.createHidato(controladorPersistencia.getTipusCellaHidato(), controladorPersistencia.getTipusAdjacenciaHidato(), controladorPersistencia.getMatriuHidato());
+        partidaEnCurs = new Partida(hidato, currentUser);
+        return (partidaEnCurs.esSolucionable());
+    }
+
     public void carregarPartida() {
         controladorPersistencia.carregarPartida(currentUser.getUsername());
 
@@ -270,6 +288,7 @@ public class ControladorDomini {
         partidaEnCurs.setTemps(controladorPersistencia.getTempsPartida());
 
         /*System.out.println(partidaEnCurs.getNomUsuari());
+
 		System.out.println(partidaEnCurs.getPuntuacio());
 		System.out.println(partidaEnCurs.getTemps());
 		System.out.println(partidaEnCurs.getDataInici());
@@ -279,6 +298,9 @@ public class ControladorDomini {
 		System.out.println(partidaEnCurs.getTipusCella());
 		HidatoIO.writeHidatoMatrixToOutput(partidaEnCurs.getHidato());
 		HidatoIO.writeHidatoMatrixToOutput(partidaEnCurs.getHidatoOriginal());*/
+        System.out.println(partidaEnCurs.getNombresEscrits());
+        System.out.println(partidaEnCurs.getNombresPerDefecte());
+
         System.out.println(partidaEnCurs.getNombresEscrits());
         System.out.println(partidaEnCurs.getNombresPerDefecte());
 
@@ -404,9 +426,13 @@ public class ControladorDomini {
         }
         return true;
     }
-
+    
     public void guardarHidatotxt(String nom) throws IOException {
-        controladorPersistencia.importarHidato(nom);
+		controladorPersistencia.importarHidato(nom);
+	}
+
+    public boolean comprovarHidatotxtResoluble() {
+        return esResoluble(controladorPersistencia.getTipusCellaHidato(), controladorPersistencia.getTipusAdjacenciaHidato(), controladorPersistencia.getMatriuHidato());
     }
 
 }

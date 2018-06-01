@@ -35,8 +35,9 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     public PanelPartida partidaAutogenerada(Dificultat dificultat) {
         this.dificultat = dificultat;
         int[][] matriuHidato = generarMatriuHidato(dificultat);
+        TipusCella tipusCella = controller.getTipusCellaPartida();
         //falta generar cella random
-        this.cella = cella;
+        this.cella = tipusCellaToCella(tipusCella);
         partida = new PanelPartida(cella, matriuHidato);
         return partida;
     }
@@ -55,7 +56,63 @@ public class ControladorPartida extends ControladorHidatoGrafic{
         return partida;
     }
 	
+	public PanelPartida partidaAutogenerada(TipusCella tipusCella, int altura, int amplada, int forats) {
+		this.cella = tipusCellaToCella(tipusCella);
+        int[][] matriuHidato = generarMatriuHidato(tipusCella, altura, amplada, forats);
+        if (matriuHidato != null) {
+        	partida = new PanelPartida(cella, matriuHidato);
+    		return partida;
+        }
+        return null;
+	}
+
+	private int[][] generarMatriuHidato(TipusCella tipusCella, int altura, int amplada, int forats) {
+		if (controller.autoGenerar(tipusCella, altura, amplada, forats)) {
+	        controller.jugarHidatoGenerat();
+	        return controller.getMatriuHidatoDePartida();
+		}
+		return null;
+	}
+
+	public PanelPartida partidaAutogenerada(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int altura, int amplada, int forats) {
+		this.cella = tipusCellaToCella(tipusCella);
+        int[][] matriuHidato = generarMatriuHidato(tipusCella, tipusAdjacencia, altura, amplada, forats);
+        if (matriuHidato != null) {
+        	partida = new PanelPartida(cella, matriuHidato);
+    		return partida;
+        }
+        return null;
+	}
 	
+	private int[][] generarMatriuHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int altura, int amplada,
+			int forats) {
+		if (controller.autoGenerar(tipusCella, tipusAdjacencia, altura, amplada, forats)) {
+	        controller.jugarHidatoGenerat();
+	        return controller.getMatriuHidatoDePartida();
+		}
+		return null;
+	}
+
+	public PanelPartida partidaAutogenerada(int altura, int amplada, int forats) {
+        int[][] matriuHidato = generarMatriuHidato(altura, amplada, forats);
+        HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
+        TipusCella tipusCella = controller.getTipusCellaPartida();
+		this.cella = tipusCellaToCella(tipusCella);
+		if (matriuHidato != null) {
+        	partida = new PanelPartida(cella, matriuHidato);
+    		return partida;
+        }
+        return null;
+	}
+	
+	private int[][] generarMatriuHidato(int altura, int amplada, int forats) {
+		if (controller.autoGenerar(altura, amplada, forats)) {
+	        controller.jugarHidatoGenerat();
+	        return controller.getMatriuHidatoDePartida();
+		}
+		return null;
+	}
+
 	public boolean ferMoviment(int y, int x, int value) {
         return controller.ferMoviment(y, x, value);
     }
@@ -69,21 +126,28 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     }
 
     private int[][] generarMatriuHidato(TipusCella tipusCella, Dificultat dificultat) {
-        if (controller.autoGenerar(tipusCella, dificultat));
-        controller.jugarHidatoGenerat();
-        return controller.getMatriuHidatoDePartida();
+        if (controller.autoGenerar(tipusCella, dificultat)) {
+        	controller.jugarHidatoGenerat();
+            return controller.getMatriuHidatoDePartida();
+        }
+        return null;
+        
     }
 
     private int[][] generarMatriuHidato(Dificultat dificultat) {
-        if (controller.autoGenerar(dificultat));
-        controller.jugarHidatoGenerat();
-        return controller.getMatriuHidatoDePartida();
+        if (controller.autoGenerar(dificultat)) {
+        	controller.jugarHidatoGenerat();
+            return controller.getMatriuHidatoDePartida();
+        }
+        return null;
     }
 
     private int[][] generarMatriuHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
-        if (controller.autoGenerar(tipusCella, tipusAdjacencia, dificultat));
-        controller.jugarHidatoGenerat();
-        return controller.getMatriuHidatoDePartida();
+        if (controller.autoGenerar(tipusCella, tipusAdjacencia, dificultat)) {
+        	controller.jugarHidatoGenerat();
+            return controller.getMatriuHidatoDePartida();
+        }
+        return null;
     }
 
     public int[][] getMatriuHidato() {

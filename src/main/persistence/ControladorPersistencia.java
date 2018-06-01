@@ -49,7 +49,7 @@ public class ControladorPersistencia {
         IOHidato.carregarHidatoFitxer(file);
     }
 
-    public void carregarHidatoImportat(String nomHidato) throws Exception {
+    public void carregarHidatoImportat(String nomHidato) throws IOException {
         IOHidato.carregarHidatoImportat(nomHidato);
     }
 
