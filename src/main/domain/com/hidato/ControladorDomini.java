@@ -39,6 +39,7 @@ public class ControladorDomini {
     public void jugarHidatoGenerat() {
         if (hidatoGenerat != null) {
             partidaEnCurs = new Partida(hidatoGenerat, currentUser);
+            partidaEnCurs.esSolucionable();
         }
     }
 
