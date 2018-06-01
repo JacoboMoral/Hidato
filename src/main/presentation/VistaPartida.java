@@ -41,11 +41,6 @@ public class VistaPartida extends javax.swing.JFrame {
 
     public VistaPartida(int level, int type, String username) {
         initComponents();
-        
-        for (int i = 0; i < 100000; ++i) {
-            System.out.println("hola");
-        }
-        
         this.currentUsername = username;
         partida.setView(this);
         if (level == levelEasy) {
