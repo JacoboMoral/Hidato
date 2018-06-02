@@ -83,12 +83,13 @@ public class IOUsuari {
 
     public static boolean afegirUsuari(String username, String password) throws IOException {
         boolean successful = false;
-        File temp = new File("DB/Usuaris/" + username);
+        String nospaceName = username.trim();
+        File temp = new File("DB/Usuaris/" + nospaceName);
         if (!temp.exists()) {
             temp.mkdirs();          
-            File temp2 = new File("DB/Usuaris/" + username + "/", "password.txt");
+            File temp2 = new File("DB/Usuaris/" + nospaceName + "/", "password.txt");
             temp2.createNewFile();
-            FileWriter esc = new FileWriter("DB/Usuaris/" + username + "/password.txt", true);
+            FileWriter esc = new FileWriter("DB/Usuaris/" + nospaceName + "/password.txt", true);
             BufferedWriter bw = new BufferedWriter(esc);
             bw.write(password);
             bw.close();

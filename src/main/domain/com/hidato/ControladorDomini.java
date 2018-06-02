@@ -19,6 +19,7 @@ public class ControladorDomini {
     private Usuari currentUser;
     private Ranking ranking = Ranking.getInstance();
     private boolean enPartidaCarregada = false;
+    private TipusAdjacencia ta;
 
     public static ControladorDomini getInstance() {
         if (instance == null) {
@@ -225,10 +226,16 @@ public class ControladorDomini {
             Random rand = new Random();
             int randomValue = rand.nextInt(2);
             if (randomValue == 0) {
+                ta = TipusAdjacencia.COSTATSIANGLES;
                 return TipusAdjacencia.COSTATSIANGLES;
             }
         }
+        ta = TipusAdjacencia.COSTATS;
         return TipusAdjacencia.COSTATS;
+    }
+    
+    public TipusAdjacencia getAdjacenciaQuickGame() {
+        return ta;
     }
 
     public void finalitzarPartida() {

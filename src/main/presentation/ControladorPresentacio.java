@@ -325,5 +325,9 @@ public class ControladorPresentacio {
         domini.getUpdate();
     }
 
+    public TipusAdjacencia getQuickGameAdj() {
+        return domini.getAdjacenciaQuickGame();
+    }
+
 
 }

@@ -133,26 +133,25 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
 
     @Override
     public void run() {
+        int tipologia = (int) (Math.random() * 3) + 1;
         while(tiempo != null){
                 tiempo = null;
             if (level == levelEasy) {
-
-                VistaPartida v = new VistaPartida(levelEasy, 1, cp.getUsername());
+                VistaPartida v = new VistaPartida(levelEasy, cp.getUsername());
                 //Thread.sleep(1000);
                 v.setVisible(true);
-
                 vMP.dispose();
                 this.dispose();
             }
             else if (level == levelInter) {
-                VistaPartida v = new VistaPartida(levelInter, 1, cp.getUsername());
+                VistaPartida v = new VistaPartida(levelInter, cp.getUsername());
                 //Thread.sleep(1000);
                 v.setVisible(true);
                 vMP.dispose();
                 this.dispose();
             }
             else {
-                VistaPartida v = new VistaPartida(levelHard, 1, cp.getUsername());
+                VistaPartida v = new VistaPartida(levelHard, cp.getUsername());
                 //Thread.sleep(1000);
                 v.setVisible(true);
                 vMP.dispose();

@@ -190,7 +190,7 @@ public class Inici extends javax.swing.JFrame {
 
     private void b_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_loginMouseClicked
         String name, password;
-        name = tf_username.getText();
+        name = tf_username.getText().trim();
         password = new String(tf_password.getPassword());
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please, enter your name!");
