@@ -50,7 +50,7 @@ public class ControladorPersistencia {
     }
     
     public void esborrarPartidaGuardada(String usuari) {
-    	IOPartida.esborrarPartidaGuardad(usuari);
+    	IOPartida.esborrarPartidaGuardada(usuari);
     }
 
     public void carregarHidatoImportat(String nomHidato) throws IOException {
