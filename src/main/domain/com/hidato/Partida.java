@@ -13,7 +13,8 @@ public class Partida {
     private Hidato hidato;
     private int status; //0 = sense començar; 1 = jugant; 2 = aturada; -1 finalitzada
     private Contador contador;
-    private int temps;
+    private int tempsSegons;
+    private long tempsNanosegons;
     private Usuari usuari;
 
     public Partida(Hidato hidato, Usuari user) {
@@ -22,7 +23,8 @@ public class Partida {
         status = 0;
         puntuacio = 0;
         contador = new Contador();
-        temps = -1;
+        tempsSegons = -1;
+        tempsNanosegons = -1;
         usuari = user;
 
         //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
@@ -35,7 +37,7 @@ public class Partida {
     }
 
 	public void setTemps(int temps) {
-	    this.temps = temps;
+	    this.tempsSegons = temps;
 	}
 	
 	public void setPuntuacio(int puntuacio) {
@@ -46,12 +48,10 @@ public class Partida {
 		this.status = status;
 	}
 
-
-    
-   
 	private void acabarPartida() {
         contador.detener();
-        temps = contador.getSegons();
+        tempsSegons += contador.getSegons();
+        tempsNanosegons += contador.getNanosegons();
         status = -1;
         dataFi = new Date();
         ControladorDomini.getInstance().finalitzarPartida();
@@ -61,6 +61,8 @@ public class Partida {
         contador.iniciar();
         dataIni = new Date();
         status = 1;
+        tempsSegons = 0;
+        tempsNanosegons = 0;
     }
 
     public void reset() {
@@ -120,7 +122,11 @@ public class Partida {
     }
 
     public int getTemps() {
-        return temps;
+        return tempsSegons;
+    }
+    
+    public long getTempsNano() {
+        return tempsNanosegons;
     }
 
     public int[][] getSolucio() {
@@ -128,7 +134,11 @@ public class Partida {
     }
     
 	public int[][] getSolucio(boolean solucioRespecteMatriuHidato) {
-		return hidato.getSolucio(solucioRespecteMatriuHidato);
+		//es "cancela" la partida actual
+		iniciarPartida();
+		int[][] matriu = hidato.getSolucio(solucioRespecteMatriuHidato);
+		acabarPartida();
+		return matriu;
 	}
 
     public int[][] getHidato() {

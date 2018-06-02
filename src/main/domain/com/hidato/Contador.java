@@ -9,44 +9,36 @@ import javafx.util.converter.LocalDateTimeStringConverter;
 
 public class Contador {
 
-    private int milisegons;
-    private Timer cronometro;
     private String tempsActual;
     private boolean acabat;
-
-    private class Incrementador extends TimerTask {
-
-        public void run() {
-            milisegons++;
-            //Get current date time
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-            tempsActual = now.format(formatter);
-            //System.out.println("After : " + tempsActual);
-        }
-    }
+    private long horaInici; //nanosegons
+    private long horaFi;	//nanosegons
 
     public Contador() {
-    	milisegons = 0;
         acabat = false;
     }
 
     public void iniciar() {
-        cronometro = new Timer();
-        cronometro.schedule(new Incrementador(), 0, 1);
+        horaInici = System.nanoTime();
     }
-
+    
     public void detener() {
-        acabat = true;
-        cronometro.cancel();
+    	horaFi = System.nanoTime();
+        acabat = true;        
     }
 
     public int getSegons() {
-        return milisegons/1000;
+        return (int) Math.ceil((double)getNanosegons()/1000000000);
     }
     
     public int getMilisegons() {
-    	return milisegons;
+    	return (int) Math.ceil((double)getNanosegons()/1000000);
+    }
+    
+    public long getNanosegons() {
+    	if (acabat) return (horaFi - horaInici);
+    	long temps = System.nanoTime() - horaInici;
+    	return temps;
     }
     
     public String getTempsActual() {

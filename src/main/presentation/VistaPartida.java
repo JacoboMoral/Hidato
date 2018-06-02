@@ -326,6 +326,20 @@ public class VistaPartida extends javax.swing.JFrame {
 
             if (input == JOptionPane.OK_OPTION) {
             	partida.solucionarPartida();
+            	long temps = partida.tempsSolucionarPartida();
+            	if (temps > 5000000) {
+            		temps = temps/1000000;
+                	JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " milisegons", "Informacio",1);
+            	}
+            	
+            	else if (temps > 5000) {
+            		temps = temps/1000;
+                	JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " microsegons", "Informacio",1);
+            	}
+            	else {
+                	JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " nanosegons", "Informacio",1);
+            	}
+            	
             	this.blockPartidaInputs();
             }
     	}

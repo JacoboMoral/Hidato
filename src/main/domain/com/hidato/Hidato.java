@@ -147,12 +147,12 @@ public abstract class Hidato {
     }
     
     public int[][] getSolucio(boolean solucioRespecteMatriuHidato) {
-    	HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
     	if (!solucioRespecteMatriuHidato) return getSolucio(); //opcio false
     	int[][] matriu = copy(matriuHidato);
         int [][] matriuResposta = al.getSolucio(matriu);
-        if (matriuResposta == null) return matriuSolucio; //si no es solucionable la matriuHidato
-    	HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
+        if (matriuResposta == null) {
+        	return matriuSolucio; //si no es solucionable la matriuHidato
+        }
         return matriuResposta;
 	}
 

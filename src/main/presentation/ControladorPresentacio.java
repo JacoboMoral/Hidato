@@ -300,5 +300,9 @@ public class ControladorPresentacio {
 		return domini.solucionarPartida();
 	}
 
+	public long getTempsSolucionarPartida() {
+		return domini.getTempsPartida();
+	}
+
 
 }
