@@ -204,7 +204,6 @@ public class ControladorPresentacio {
 	}
 	
 	public void saveScore(int dif, String username, int score) {
-
         domini.saveScore(dif, score, username);
     }
 
