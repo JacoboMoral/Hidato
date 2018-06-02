@@ -5,6 +5,7 @@
  */
 package main.presentation;
 
+import java.awt.Color;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
@@ -13,9 +14,12 @@ import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import main.domain.com.hidato.Contador;
@@ -37,6 +41,7 @@ public class VistaPartida extends javax.swing.JFrame {
     int min = 0;
     int segons = 0;
     private boolean inputsAllowed = true;
+    private boolean ajuda = false;
 
     Thread cronometre = new Thread() {
         @Override public void run() {
@@ -132,7 +137,7 @@ public class VistaPartida extends javax.swing.JFrame {
 		long temps = partida.tempsSolucionarPartida();
 		temps = temps/1000000;
 		double tempsSegons = (double)temps/1000;
-        JOptionPane.showMessageDialog(this, "El temps de partida ha estat: " + tempsSegons + " segons.\nLa puntuacio total es de " + puntuacio + " punts.", "Informacio",1);
+		JOptionPane.showMessageDialog(this, "El temps de partida ha estat: " + tempsSegons + " segons.\nLa puntuacio total es de " + puntuacio + " punts.", "Informacio",1);
 		blockPartidaInputs();
 	}
 
@@ -183,9 +188,15 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setBackground(new java.awt.Color(255, 204, 204));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton3.setText("Help");
+        jButton3.setToolTipText("Activar/desactivar ajut en el joc");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton3MousePressed(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anterior.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -338,6 +349,7 @@ public class VistaPartida extends javax.swing.JFrame {
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
             if (input == JOptionPane.OK_OPTION) {
+            	
             	partida.solucionarPartida();
             	long temps = partida.tempsSolucionarPartida();
             	if (temps > 5000000) {
@@ -371,6 +383,18 @@ public class VistaPartida extends javax.swing.JFrame {
     		}
         }
     }//GEN-LAST:event_jButton2MousePressed
+
+    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
+        if (ajuda == false){
+            ajuda = true;
+            jButton3.setBackground(new Color(219, 255, 204));
+        }
+        else{
+            ajuda = false;
+            jButton3.setBackground(new Color(255,204,204));
+        }
+        partida.setAjuda(ajuda);
+    }//GEN-LAST:event_jButton3MousePressed
 
     /**
      * @param args the command line arguments

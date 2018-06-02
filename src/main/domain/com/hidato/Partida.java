@@ -71,8 +71,8 @@ public class Partida {
         hidato.resetMatriu();
     }
 
-    public boolean ferJugada(int i, int j, int value) {
-        if (hidato.moviment(i, j, value)) {
+    public boolean ferJugada(int i, int j, int value, boolean ajuda) {
+        if (hidato.moviment(i, j, value, ajuda)) {
             if (hidato.getPossiblesMoviments().size() == 0 && hidato.completat()) {
                 acabarPartida();
             }

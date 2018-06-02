@@ -127,7 +127,7 @@ public class PanelHidato extends JPanel{
                 }
             }
         }
-    } 
+    }
     
 	public void setSeguentMoviment(int seguentMoviment) {
 		this.seguentMoviment = seguentMoviment;

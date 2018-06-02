@@ -77,8 +77,8 @@ public abstract class Hidato {
         return false;
     }
 
-    public boolean moviment(int i, int j, int value) {
-        if (comprovarMoviment(i, j, value)) {
+    public boolean moviment(int i, int j, int value, boolean ajuda) {
+        if (comprovarMoviment(i, j, value, ajuda)) {
             matriuHidato[i][j] = value;
             nombresEscrits.add(value);
             Collections.sort(nombresEscrits);
@@ -196,13 +196,12 @@ public abstract class Hidato {
     	return cellesNumeriques;
     }
 
-    
-    
-    private boolean comprovarMoviment(int i, int j, int value) {
-
+    private boolean comprovarMoviment(int i, int j, int value, boolean ajuda) {
+    	if (!ajuda) return true;
         if (matriuHidato[i][j] != 0) {
             return false;
         }
+        
         if (estaRepetit(value)) {
             return false;
         }

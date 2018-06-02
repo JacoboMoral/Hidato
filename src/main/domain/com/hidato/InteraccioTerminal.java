@@ -88,7 +88,7 @@ public class InteraccioTerminal {
 
     private void moviment() {
         int[] numbers = readNumbers(3);
-        boolean estatMoviment = controladorDomini.ferMoviment(numbers[0] - 1, numbers[1] - 1, numbers[2]); //peta amb 1 1 32, ja ho mirare
+        boolean estatMoviment = controladorDomini.ferMoviment(numbers[0] - 1, numbers[1] - 1, numbers[2], true); //peta amb 1 1 32, ja ho mirare
         if (estatMoviment) {
             System.out.println("\n\n Moviment valid, el hidato queda en el seguent estat:\n\n");
             HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
