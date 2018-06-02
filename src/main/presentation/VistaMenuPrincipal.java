@@ -1643,7 +1643,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 				VistaPartida v = new VistaPartida(hidatoPanel);
 				v.setVisible(true);
 				this.dispose();
-			} else {
+			} 
+			else {
 				if (input != JOptionPane.CANCEL_OPTION) {
 					JOptionPane.showMessageDialog(null, "No s'ha pogut generar l'hidato, intenta-ho de nou");
 				}
@@ -1655,18 +1656,16 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
 
 	private void adjacenciaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjacenciaCheckBoxActionPerformed
-		if (adjacenciaCheckBox.isSelected()) {
-			adjacenciaAuto.setEnabled(true);
-		} else {
-			adjacenciaAuto.setEnabled(false);
-		}
+		if (adjacenciaCheckBox.isSelected()) adjacenciaAuto.setEnabled(true);
+		else adjacenciaAuto.setEnabled(false);
 	}//GEN-LAST:event_adjacenciaCheckBoxActionPerformed
 
 	private void tipologiaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipologiaCheckBoxActionPerformed
 		if (tipologiaCheckBox.isSelected()) {
 			tipologiaAuto.setEnabled(true);
 			adjacenciaCheckBox.setEnabled(true);
-		} else {
+		} 
+		else {
 			tipologiaAuto.setEnabled(false);
 			adjacenciaCheckBox.setEnabled(false);
 		}
@@ -1692,9 +1691,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jButton4ActionPerformed
-		if (controller.cargarPartidaGuardada()) {
-			this.dispose();
-		}
+		if (controller.cargarPartidaGuardada()) this.dispose();
 	}//GEN-LAST:event_jButton4ActionPerformed
 
 	private void b_cpstom1ActionPerformed(java.awt.event.ActionEvent evt) {
