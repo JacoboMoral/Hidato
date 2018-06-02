@@ -126,6 +126,15 @@ public class VistaPartida extends javax.swing.JFrame {
 
         this.validate();
     }
+    
+	public void setPartidaAcabada() {
+		int puntuacio = partida.getPuntuacioPartida();
+		long temps = partida.tempsSolucionarPartida();
+		temps = temps/1000000;
+		double tempsSegons = (double)temps/1000;
+        JOptionPane.showMessageDialog(this, "El temps de partida ha estat: " + tempsSegons + " segons.\nLa puntuacio total es de " + puntuacio + " punts.", "Informacio",1);
+		blockPartidaInputs();
+	}
 
     /**
      * This method is called from within the constructor to initialize the form.

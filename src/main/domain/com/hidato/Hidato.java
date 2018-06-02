@@ -18,6 +18,7 @@ public abstract class Hidato {
     protected Vector<Integer> nombresDonats;
     protected Vector<Integer> possiblesMoviments = new Vector<Integer>();
     protected Algorismes al;
+    protected int cellesNumeriques;
 
 
     protected Hidato(TipusAdjacencia tipusAdjacencia, int[][] matriu){
@@ -190,7 +191,13 @@ public abstract class Hidato {
     private boolean estaDintreElsLimits(int i, int j) {
         return i >= 0 && i < matriuHidato.length && j >= 0 && j < matriuHidato[0].length;
     }
+    
+    public int getCellesNumeriques() {
+    	return cellesNumeriques;
+    }
 
+    
+    
     private boolean comprovarMoviment(int i, int j, int value) {
 
         if (matriuHidato[i][j] != 0) {
@@ -234,7 +241,7 @@ public abstract class Hidato {
 
     private void calcPossiblesMoviments() {
     	possiblesMoviments = new Vector<Integer>();
-    	int cellesNumeriques = matriuHidato.length * matriuHidato[0].length;
+    	cellesNumeriques = matriuHidato.length * matriuHidato[0].length;
     	for (int i = 0; i < matriuHidato.length; ++i) {
     		for (int j = 0; j < matriuHidato[0].length; ++j) {
     			int value = matriuHidato[i][j];
@@ -259,7 +266,10 @@ public abstract class Hidato {
     }
 
     public boolean completat() {
-        return possiblesMoviments.size() == 0;
+    	if (possiblesMoviments.size() == 0) {
+    		return al.esSolucionable(matriuHidato);
+    	}
+        return false;
     }
 
     private void copy(int[][] destination, int[][] source) {

@@ -27,7 +27,6 @@ public class Partida {
         tempsNanosegons = -1;
         usuari = user;
 
-        //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
         iniciarPartida();
     }
 
@@ -48,12 +47,16 @@ public class Partida {
     }
 
     private void acabarPartida() {
-        contador.detener();
-        tempsSegons += contador.getSegons();
-        tempsNanosegons += contador.getNanosegons();
-        status = -1;
-        dataFi = new Date();
-        ControladorDomini.getInstance().finalitzarPartida();
+    	if (status != -1) {
+    		status = -1;
+    		puntuacio += hidato.getCellesNumeriques()*5;
+    		contador.detener();
+            tempsSegons += contador.getSegons();
+            tempsNanosegons += contador.getNanosegons();
+            status = -1;
+            dataFi = new Date();
+            ControladorDomini.getInstance().finalitzarPartida();
+    	}
     }
 
     public void iniciarPartida() {
@@ -70,8 +73,7 @@ public class Partida {
 
     public boolean ferJugada(int i, int j, int value) {
         if (hidato.moviment(i, j, value)) {
-            puntuacio += 10;
-            if (hidato.getPossiblesMoviments().size() == 0) {
+            if (hidato.getPossiblesMoviments().size() == 0 && hidato.completat()) {
                 acabarPartida();
             }
             return true;
@@ -180,7 +182,11 @@ public class Partida {
     }
 
     public boolean completatHidato() {
-        return hidato.completat();
+    	if (hidato.completat()) {
+    		acabarPartida();
+    		return true;
+    	}
+        return false;
     }
 
     int[] seguentMoviment() {

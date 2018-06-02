@@ -98,4 +98,9 @@ public abstract class ControladorHidatoGrafic {
 
 	public void guardarHidato() {
 	}
+
+
+	public boolean partidaCompletada() {
+		return false;
+	}
 }

@@ -109,7 +109,6 @@ public class PanelHidato extends JPanel{
     public void updateMatriu(int[][] matriuHidato) {
     	this.matriuHidato = matriuHidato;
         repaint();
-        
     }
     
     public void paintComponent(Graphics g){    	
@@ -149,11 +148,6 @@ public class PanelHidato extends JPanel{
             if (p.x < 0 || p.y < 0 || p.x >= matriuHidato[0].length || p.y >= matriuHidato.length) return;
             if (SwingUtilities.isLeftMouseButton(e)) if (controller.tractaClick(p.y,p.x, 0)) matriuHidato = controller.getMatriu();
             if (SwingUtilities.isRightMouseButton(e)) if (controller.tractaClick(p.y,p.x, 1)) matriuHidato = controller.getMatriu();
-            /*boolean movimentPossible = controller.ferMoviment(p.y,p.x, seguentMoviment);
-            if (!movimentPossible) movimentPossible = controller.desferMoviment(p.y,p.x);
-            matriuHidato = controller.getMatriu();
-            
-            controller.updateSeguentMoviment();*/
 
             repaint();
         }		 

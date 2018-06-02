@@ -429,4 +429,8 @@ public class ControladorDomini {
 		return null;
 	}
 
+	public int getPuntuacioPartida() {
+		return partidaEnCurs.getPuntuacio();
+	}
+
 }

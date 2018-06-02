@@ -123,11 +123,19 @@ public class ControladorPartida extends ControladorHidatoGrafic{
 	}
 
 	public boolean ferMoviment(int y, int x, int value) {
-        return controller.ferMoviment(y, x, value);
+		boolean movimentPossible = controller.ferMoviment(y, x, value);
+		if (movimentPossible) {
+			return true;
+		}
+		return false;
     }
 
     public boolean partidaCompletada() {
-        return controller.partidaCompletada();
+        if (controller.partidaCompletada()) {
+        	view.setPartidaAcabada();
+        	return true;
+        }
+        return false;
     }
 
     public boolean desferMoviment(int y, int x) {
@@ -192,9 +200,8 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     }
 
     public void reset() {
-
-    		controller.reset();
-    		partida.updateMatriu(controller.getMatriuHidatoDePartida());
+    	controller.reset();
+    	partida.updateMatriu(controller.getMatriuHidatoDePartida());
     }    
     
     public Cella tipusCellaToCella(TipusCella tipusCella) {
@@ -216,6 +223,9 @@ public class ControladorPartida extends ControladorHidatoGrafic{
 
 	public long tempsSolucionarPartida() {
 		return controller.getTempsSolucionarPartida();
-
 	}    
+	
+	public int getPuntuacioPartida() {
+		return controller.getPuntuacioPartida();
+	}
 }

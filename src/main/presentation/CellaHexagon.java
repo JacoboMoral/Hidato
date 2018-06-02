@@ -115,11 +115,7 @@ public class CellaHexagon extends Cella{
         double distxf = ((x+1)*segonx - posx + (y%2)*primerx);
         double distxi = (posx - x*segonx - (y%2)*primerx);
         double distxc = (distxf - distxi)/2;
-        double distyf = ((y+1)*segony - posy);
         double distyi = (posy - y*segony);
-
-        double posiciox = (double) posx;
-        double posicioy = (double) posy;
 
         if (y%2 == 0) { //files parelles, on l'hexagon esta desplaçat cap a la dreta mig hexagon
         	int aux = (int) (posx - primerx);

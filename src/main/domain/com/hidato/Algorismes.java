@@ -122,6 +122,14 @@ public class Algorismes {
 		if (solucionar()) return matriuSolucio;
 		return null;
 	}
+	
+	public boolean esSolucionable(int[][] matriu) {
+		int[][] matriuAux = makeCopy(matriuSolucio);
+		matriuSolucio = makeCopy(matriu);
+		boolean solucionable = solucionar();
+		matriuSolucio = matriuAux;
+		return solucionable;
+	}
 
     //es igual que encara no s'hagi solucionat --> per tests
     public int[][] getMatriuSolucioForce() {
