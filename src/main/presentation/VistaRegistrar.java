@@ -51,15 +51,13 @@ public class VistaRegistrar extends javax.swing.JFrame {
         setBackground(new java.awt.Color(36, 67, 65));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(36, 67, 65));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Username:");
 
-        tf_username.setBackground(new java.awt.Color(36, 67, 65));
+        tf_username.setBackground(new java.awt.Color(204, 204, 204));
         tf_username.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        tf_username.setForeground(new java.awt.Color(255, 255, 255));
         tf_username.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tf_username.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         tf_username.addActionListener(new java.awt.event.ActionListener() {
@@ -69,14 +67,12 @@ public class VistaRegistrar extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password:");
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Repeat password:");
 
-        okRegistrar.setBackground(new java.awt.Color(0, 204, 204));
+        okRegistrar.setBackground(new java.awt.Color(255, 255, 255));
         okRegistrar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         okRegistrar.setText("Create");
         okRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -90,9 +86,8 @@ public class VistaRegistrar extends javax.swing.JFrame {
             }
         });
 
-        tf_password.setBackground(new java.awt.Color(36, 67, 65));
+        tf_password.setBackground(new java.awt.Color(204, 204, 204));
         tf_password.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        tf_password.setForeground(new java.awt.Color(255, 255, 255));
         tf_password.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tf_password.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         tf_password.addActionListener(new java.awt.event.ActionListener() {
@@ -101,18 +96,16 @@ public class VistaRegistrar extends javax.swing.JFrame {
             }
         });
 
-        tf_rpassword.setBackground(new java.awt.Color(36, 67, 65));
+        tf_rpassword.setBackground(new java.awt.Color(204, 204, 204));
         tf_rpassword.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        tf_rpassword.setForeground(new java.awt.Color(255, 255, 255));
         tf_rpassword.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tf_rpassword.setDisabledTextColor(new java.awt.Color(204, 204, 204));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Register");
 
-        okRegistrar1.setBackground(new java.awt.Color(0, 204, 204));
+        okRegistrar1.setBackground(new java.awt.Color(255, 255, 255));
         okRegistrar1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         okRegistrar1.setText("Back");
         okRegistrar1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -153,7 +146,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 78, Short.MAX_VALUE)))
+                                .addGap(0, 50, Short.MAX_VALUE)))
                         .addGap(155, 155, 155))))
         );
         jPanel1Layout.setVerticalGroup(

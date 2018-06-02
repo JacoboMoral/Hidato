@@ -44,7 +44,7 @@ public class PanelPartida extends JPanel {
         //createAndShowGUI();
         
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setBackground(new Color(0, 153, 153));
+        this.setBackground(new Color(204, 204, 204));
         this.setBorder(
                 BorderFactory.createEmptyBorder(50, 50, 50, 50));
         this.setLayout(new BorderLayout(50, 50));
@@ -138,7 +138,7 @@ public class PanelPartida extends JPanel {
     private void createAndShowGUI() {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setBackground(new Color(0, 153, 153));
+        this.setBackground(new Color(204, 204, 204));
         this.setBorder(
                 BorderFactory.createEmptyBorder(50, 50, 50, 50));
         this.setLayout(new BorderLayout(50, 50));

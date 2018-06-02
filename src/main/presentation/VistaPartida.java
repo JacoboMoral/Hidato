@@ -18,7 +18,6 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-
 import main.domain.com.hidato.Contador;
 
 /**
@@ -37,9 +36,7 @@ public class VistaPartida extends javax.swing.JFrame {
     int hora = 0;
     int min = 0;
     int segons = 0;
-
     private boolean inputsAllowed = true;
-
 
     Thread cronometre = new Thread() {
         @Override public void run() {
@@ -154,11 +151,12 @@ public class VistaPartida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        optionPanel.setBackground(new java.awt.Color(0, 153, 153));
+        optionPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton1.setText(">");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,6 +165,7 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton2.setText("<");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -175,6 +174,7 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton3.setText("Help");
 
@@ -199,6 +199,7 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
 
+        playButton.setBackground(new java.awt.Color(255, 255, 255));
         playButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         playButton.setText("PLAY");
         playButton.addActionListener(new java.awt.event.ActionListener() {
@@ -276,7 +277,7 @@ public class VistaPartida extends javax.swing.JFrame {
 
         getContentPane().add(optionPanel, java.awt.BorderLayout.PAGE_END);
 
-        hidatoPanel.setBackground(new java.awt.Color(0, 204, 204));
+        hidatoPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout hidatoPanelLayout = new javax.swing.GroupLayout(hidatoPanel);
         hidatoPanel.setLayout(hidatoPanelLayout);
@@ -304,11 +305,10 @@ public class VistaPartida extends javax.swing.JFrame {
         if (inputsAllowed) partida.reset();
     }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         cronometre.start();
 
-    }
-
+    }//GEN-LAST:event_playButtonActionPerformed
 
     private void saveGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveGameMousePressed
     	if (inputsAllowed) partida.guardarPartida();
@@ -349,7 +349,6 @@ public class VistaPartida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2MousePressed
 
-
     /**
      * @param args the command line arguments
      */
@@ -377,6 +376,8 @@ public class VistaPartida extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -386,7 +387,6 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
     }
-
 
     public void incrementarSeguentMoviment() {
         int seguentMov = partida.incrementarSeguentMoviment();

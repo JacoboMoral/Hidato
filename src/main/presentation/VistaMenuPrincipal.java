@@ -75,7 +75,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         adjacenciaAuto.setSelectedItem("Costats");
         tipologiaAuto.setSelectedItem("Hexagon");
         showHidatoList();
-        
+
         adjacenciaCheckBox.setEnabled(false);
 
     }
@@ -206,7 +206,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         setTitle("Hidato - Menu Principal");
         setResizable(false);
 
-        topBarPanel.setBackground(new java.awt.Color(0, 204, 204));
+        topBarPanel.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 50)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -257,9 +257,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.setForeground(new java.awt.Color(255, 255, 255));
         parentPanel.setLayout(new java.awt.CardLayout());
 
-        menuPrincipalPanel.setBackground(new java.awt.Color(0, 153, 153));
+        menuPrincipalPanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        b_play.setBackground(new java.awt.Color(0, 204, 204));
+        b_play.setBackground(new java.awt.Color(255, 255, 255));
         b_play.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_play.setText("Play");
         b_play.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -273,7 +273,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_create.setBackground(new java.awt.Color(0, 204, 204));
+        b_create.setBackground(new java.awt.Color(255, 255, 255));
         b_create.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_create.setText("Create Hidato");
         b_create.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -287,7 +287,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_ranking.setBackground(new java.awt.Color(0, 204, 204));
+        b_ranking.setBackground(new java.awt.Color(255, 255, 255));
         b_ranking.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_ranking.setText("Ranking");
         b_ranking.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -302,36 +302,37 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPrincipalPanelLayout.createSequentialGroup()
                 .addGap(270, 270, 270)
-                .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(b_play, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(b_create, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(b_ranking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(271, 271, 271))
+                .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(b_play, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(b_create, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addComponent(b_ranking, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)))
+                .addGap(260, 260, 260))
         );
         menuPrincipalPanelLayout.setVerticalGroup(
             menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPrincipalPanelLayout.createSequentialGroup()
                 .addGap(130, 130, 130)
-                .addComponent(b_play)
-                .addGap(18, 18, 18)
-                .addComponent(b_create)
-                .addGap(18, 18, 18)
-                .addComponent(b_ranking)
+                .addComponent(b_play, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(b_create, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(b_ranking, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         parentPanel.add(menuPrincipalPanel, "card5");
 
-        editPasswordPanel.setBackground(new java.awt.Color(0, 153, 153));
+        editPasswordPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel13.setText("Old password");
 
-        t_oldpass.setBackground(new java.awt.Color(0, 153, 153));
+        t_oldpass.setBackground(new java.awt.Color(204, 204, 204));
         t_oldpass.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         t_oldpass.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        t_newpass.setBackground(new java.awt.Color(0, 153, 153));
+        t_newpass.setBackground(new java.awt.Color(204, 204, 204));
         t_newpass.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         t_newpass.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -341,7 +342,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel15.setText("Confirm new password");
 
-        t_rpass.setBackground(new java.awt.Color(0, 153, 153));
+        t_rpass.setBackground(new java.awt.Color(204, 204, 204));
         t_rpass.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         t_rpass.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         t_rpass.addActionListener(new java.awt.event.ActionListener() {
@@ -350,7 +351,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_cancel1.setBackground(new java.awt.Color(0, 204, 204));
+        b_cancel1.setBackground(new java.awt.Color(255, 255, 255));
         b_cancel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_cancel1.setText("Cancel");
         b_cancel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -359,7 +360,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_save1.setBackground(new java.awt.Color(0, 204, 204));
+        b_save1.setBackground(new java.awt.Color(255, 255, 255));
         b_save1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_save1.setText("Save");
         b_save1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -422,7 +423,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(editPasswordPanel, "card9");
 
-        deleteAccountPanel.setBackground(new java.awt.Color(0, 153, 153));
+        deleteAccountPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel16.setText("Enter your password to delete your account!");
@@ -430,11 +431,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel17.setText("Password:");
 
-        t_password.setBackground(new java.awt.Color(0, 153, 153));
+        t_password.setBackground(new java.awt.Color(204, 204, 204));
         t_password.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         t_password.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton9.setBackground(new java.awt.Color(0, 204, 204));
+        jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton9.setText("Delete account");
         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -443,7 +444,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(0, 204, 204));
+        jButton10.setBackground(new java.awt.Color(255, 255, 255));
         jButton10.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton10.setText("Cancel");
         jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -495,9 +496,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(deleteAccountPanel, "card10");
 
-        profilePanel.setBackground(new java.awt.Color(0, 153, 153));
+        profilePanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        jButton8.setBackground(new java.awt.Color(0, 204, 204));
+        jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton8.setText("BACK");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -518,7 +519,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         l_password.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         l_password.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        b_delete.setBackground(new java.awt.Color(0, 204, 204));
+        b_delete.setBackground(new java.awt.Color(255, 255, 255));
         b_delete.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_delete.setText("DELETE ACCOUNT");
         b_delete.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -546,7 +547,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_signout.setBackground(new java.awt.Color(0, 204, 204));
+        b_signout.setBackground(new java.awt.Color(255, 255, 255));
         b_signout.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_signout.setText("Sign out");
         b_signout.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -621,9 +622,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(profilePanel, "card7");
 
-        typeCreatePanel.setBackground(new java.awt.Color(0, 153, 153));
+        typeCreatePanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        b_autogenerar.setBackground(new java.awt.Color(0, 204, 204));
+        b_autogenerar.setBackground(new java.awt.Color(255, 255, 255));
         b_autogenerar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_autogenerar.setText("Autogenerar");
         b_autogenerar.addActionListener(new java.awt.event.ActionListener() {
@@ -632,7 +633,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_fromtxt.setBackground(new java.awt.Color(0, 204, 204));
+        b_fromtxt.setBackground(new java.awt.Color(255, 255, 255));
         b_fromtxt.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_fromtxt.setText("from .txt ");
         b_fromtxt.addActionListener(new java.awt.event.ActionListener() {
@@ -641,7 +642,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_back.setBackground(new java.awt.Color(0, 204, 204));
+        b_back.setBackground(new java.awt.Color(255, 255, 255));
         b_back.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_back.setText("Back");
         b_back.addActionListener(new java.awt.event.ActionListener() {
@@ -650,7 +651,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_custom.setBackground(new java.awt.Color(0, 204, 204));
+        b_custom.setBackground(new java.awt.Color(255, 255, 255));
         b_custom.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_custom.setText("Custom ");
         b_custom.addActionListener(new java.awt.event.ActionListener() {
@@ -691,7 +692,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(typeCreatePanel, "card6");
 
-        createCustomPanel.setBackground(new java.awt.Color(0, 153, 153));
+        createCustomPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         tipologia.setBackground(new java.awt.Color(0, 153, 153));
         tipologia.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -720,7 +721,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setText("Create your hidato:");
 
-        b_backTypeCreate.setBackground(new java.awt.Color(0, 204, 204));
+        b_backTypeCreate.setBackground(new java.awt.Color(255, 255, 255));
         b_backTypeCreate.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_backTypeCreate.setText("Back");
         b_backTypeCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -729,7 +730,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_Create.setBackground(new java.awt.Color(0, 204, 204));
+        b_Create.setBackground(new java.awt.Color(255, 255, 255));
         b_Create.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_Create.setText("Create");
         b_Create.addActionListener(new java.awt.event.ActionListener() {
@@ -799,14 +800,14 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(createCustomPanel, "card4");
 
-        importPanel.setBackground(new java.awt.Color(0, 153, 153));
+        importPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         jScrollPane1.setViewportView(hidatoList);
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel20.setText("Select a Hidato:");
 
-        viewHidato.setBackground(new java.awt.Color(0, 204, 204));
+        viewHidato.setBackground(new java.awt.Color(255, 255, 255));
         viewHidato.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         viewHidato.setText("View Hidato");
         viewHidato.addActionListener(new java.awt.event.ActionListener() {
@@ -815,14 +816,14 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        selectedHidato.setBackground(new java.awt.Color(0, 153, 153));
+        selectedHidato.setBackground(new java.awt.Color(204, 204, 204));
         selectedHidato.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         selectedHidato.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel21.setText("Enter the name of the hidato:");
 
-        jButton6.setBackground(new java.awt.Color(0, 204, 204));
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton6.setText("Play");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -831,7 +832,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(0, 204, 204));
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton7.setText("Back");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -880,9 +881,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(importPanel, "card13");
 
-        seleccioPanel.setBackground(new java.awt.Color(0, 153, 153));
+        seleccioPanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        jButton2.setBackground(new java.awt.Color(0, 204, 204));
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton2.setText("Quick game");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -891,7 +892,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 204, 204));
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton3.setText("Import");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -900,7 +901,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 204, 204));
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jButton4.setText("Resume");
         jButton4.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -918,7 +919,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_back_menu.setBackground(new java.awt.Color(0, 204, 204));
+        b_back_menu.setBackground(new java.awt.Color(255, 255, 255));
         b_back_menu.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_back_menu.setText("Back");
         b_back_menu.addActionListener(new java.awt.event.ActionListener() {
@@ -959,9 +960,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(seleccioPanel, "card3");
 
-        quickLevelPanel.setBackground(new java.awt.Color(0, 153, 153));
+        quickLevelPanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        quickEasy.setBackground(new java.awt.Color(0, 204, 204));
+        quickEasy.setBackground(new java.awt.Color(255, 255, 255));
         quickEasy.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         quickEasy.setText("Easy");
         quickEasy.addActionListener(new java.awt.event.ActionListener() {
@@ -970,7 +971,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        quickInter.setBackground(new java.awt.Color(0, 204, 204));
+        quickInter.setBackground(new java.awt.Color(255, 255, 255));
         quickInter.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         quickInter.setText("Intermediate");
         quickInter.addActionListener(new java.awt.event.ActionListener() {
@@ -979,7 +980,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        quickHard.setBackground(new java.awt.Color(0, 204, 204));
+        quickHard.setBackground(new java.awt.Color(255, 255, 255));
         quickHard.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         quickHard.setText("Hard");
         quickHard.addActionListener(new java.awt.event.ActionListener() {
@@ -988,7 +989,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_back_menu1.setBackground(new java.awt.Color(0, 204, 204));
+        b_back_menu1.setBackground(new java.awt.Color(255, 255, 255));
         b_back_menu1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_back_menu1.setText("Back");
         b_back_menu1.addActionListener(new java.awt.event.ActionListener() {
@@ -1029,9 +1030,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(quickLevelPanel, "card11");
 
-        createAutoPanel.setBackground(new java.awt.Color(0, 153, 153));
+        createAutoPanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        b_backTypeCreate1.setBackground(new java.awt.Color(0, 204, 204));
+        b_backTypeCreate1.setBackground(new java.awt.Color(255, 255, 255));
         b_backTypeCreate1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_backTypeCreate1.setText("Back");
         b_backTypeCreate1.addActionListener(new java.awt.event.ActionListener() {
@@ -1040,7 +1041,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        tipologiaCheckBox.setBackground(new java.awt.Color(0, 153, 153));
+        tipologiaCheckBox.setBackground(new java.awt.Color(204, 204, 204));
         tipologiaCheckBox.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         tipologiaCheckBox.setText("Tipologia (Optional)");
         tipologiaCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -1049,7 +1050,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        adjacenciaCheckBox.setBackground(new java.awt.Color(0, 153, 153));
+        adjacenciaCheckBox.setBackground(new java.awt.Color(204, 204, 204));
         adjacenciaCheckBox.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         adjacenciaCheckBox.setText("Adjacencia (Optional)");
         adjacenciaCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -1064,7 +1065,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         tipologiaAuto.setBackground(new java.awt.Color(0, 153, 153));
         tipologiaAuto.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
 
-        interButton.setBackground(new java.awt.Color(0, 153, 153));
+        interButton.setBackground(new java.awt.Color(204, 204, 204));
         interButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         interButton.setText("Intermediate");
         interButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1073,7 +1074,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        hardButton.setBackground(new java.awt.Color(0, 153, 153));
+        hardButton.setBackground(new java.awt.Color(204, 204, 204));
         hardButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         hardButton.setText("Hard");
         hardButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1082,7 +1083,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        easyButton.setBackground(new java.awt.Color(0, 153, 153));
+        easyButton.setBackground(new java.awt.Color(204, 204, 204));
         easyButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         easyButton.setText("Easy");
         easyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1091,7 +1092,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_generate.setBackground(new java.awt.Color(0, 204, 204));
+        b_generate.setBackground(new java.awt.Color(255, 255, 255));
         b_generate.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_generate.setText("Generate");
         b_generate.addActionListener(new java.awt.event.ActionListener() {
@@ -1114,6 +1115,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         generacioAlturaSpinner.setModel(new javax.swing.SpinnerNumberModel(5, 2, null, 1));
         generacioAlturaSpinner.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        caracteristiquesButton.setBackground(new java.awt.Color(204, 204, 204));
         typeButtons.add(caracteristiquesButton);
         caracteristiquesButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         caracteristiquesButton.setText("Característiques");
@@ -1123,6 +1125,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        dificultatButton.setBackground(new java.awt.Color(204, 204, 204));
         typeButtons.add(dificultatButton);
         dificultatButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         dificultatButton.setText("Dificultat");
@@ -1225,23 +1228,23 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(createAutoPanel, "card5");
 
-        editUsernamePanel.setBackground(new java.awt.Color(0, 153, 153));
+        editUsernamePanel.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel11.setText("Old username");
 
-        oldName.setBackground(new java.awt.Color(0, 153, 153));
+        oldName.setBackground(new java.awt.Color(204, 204, 204));
         oldName.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         oldName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        newName.setBackground(new java.awt.Color(0, 153, 153));
+        newName.setBackground(new java.awt.Color(204, 204, 204));
         newName.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         newName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel12.setText("New username");
 
-        b_save.setBackground(new java.awt.Color(0, 204, 204));
+        b_save.setBackground(new java.awt.Color(255, 255, 255));
         b_save.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_save.setText("Save");
         b_save.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1255,7 +1258,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        b_cancel.setBackground(new java.awt.Color(0, 204, 204));
+        b_cancel.setBackground(new java.awt.Color(255, 255, 255));
         b_cancel.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_cancel.setText("Cancel");
         b_cancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1302,7 +1305,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(editUsernamePanel, "card8");
 
-        previewHidatoPanel.setBackground(new java.awt.Color(0, 153, 153));
+        previewHidatoPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         saveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
 
@@ -1613,93 +1616,81 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         }
         return TipusAdjacencia.COSTATS;
 
-	}
-    
+    }
+
     private Dificultat stringToDificultat(String selectedItem) {
-        if (selectedItem.equalsIgnoreCase("DIFICIL")) return Dificultat.DIFICIL;
-        else if (selectedItem.equalsIgnoreCase("MIG")) return Dificultat.MIG;
+        if (selectedItem.equalsIgnoreCase("DIFICIL")) {
+            return Dificultat.DIFICIL;
+        } else if (selectedItem.equalsIgnoreCase("MIG")) {
+            return Dificultat.MIG;
+        }
         return Dificultat.FACIL;
-	}
+    }
 
 	private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
-		TipusCella tipusCella = null;
-		TipusAdjacencia tipusAdjacencia = null;
-		javax.swing.JPanel hidatoPanel = null;
-		int input = JOptionPane.OK_OPTION;
-		
-		if (tipologiaCheckBox.isSelected()) {
-    		tipusCella = stringToTipusCella((String) (tipologiaAuto.getSelectedItem()));
-    	}
-		
-		if (adjacenciaCheckBox.isSelected()) {
-			tipusAdjacencia = stringToTipusAdjacencia((String) (adjacenciaAuto.getSelectedItem()));
+            TipusCella tipusCella = null;
+            TipusAdjacencia tipusAdjacencia = null;
+            javax.swing.JPanel hidatoPanel = null;
+            int input = JOptionPane.OK_OPTION;
 
-    	}
+            if (tipologiaCheckBox.isSelected()) {
+                tipusCella = stringToTipusCella((String) (tipologiaAuto.getSelectedItem()));
+            }
 
-		if (tipologiaCheckBox.isSelected() && adjacenciaCheckBox.isSelected() && !compatibles(tipusCella, tipusAdjacencia)) {
-			JOptionPane.showMessageDialog(null, "Els tipus de casella i d'adjacencia no son compatibles");
-		}
-		
-		else {
-			if (dificultatButton.isSelected()) {
-	        	Dificultat dificultat = null;
-	        	if (interButton.isSelected()) dificultat = Dificultat.MIG;
-	        	else if (hardButton.isSelected()) dificultat = Dificultat.DIFICIL;
-	        	else if (easyButton.isSelected()) dificultat = Dificultat.FACIL;
-	        	if (dificultat == null) JOptionPane.showMessageDialog(null, "Has d'escollir una de les opcions de dificultat");
-	        	else {
-	        		if (tipusCella != null) {
-	        			if (tipusAdjacencia == null) hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, dificultat);
-	        			else hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, tipusAdjacencia, dificultat);
-	        		}
-	        		else {	//tipusAdjacencia i tipusCella aleatoris
-	        			hidatoPanel = controladorPartida.partidaAutogenerada(dificultat);
-	        		}
-	        	}
-	        }
-			
-	        else if (caracteristiquesButton.isSelected()) {
-	        	int altura, amplada, forats;
-	        	altura = (int)generacioAlturaSpinner.getValue();
-	        	amplada = (int)generacioAmpladaSpinner.getValue();
-	        	forats = (int)generacioForatsSpinner.getValue();
-	        	if (forats > (altura*amplada)) JOptionPane.showMessageDialog(null, "No pot haver més forats que caselles totals");
-	        	else {
-	        		if ((altura*amplada - forats) > 80) {
-	        			input = JOptionPane.showOptionDialog(null, "Si esculls hidato massa grans, el programa pot trigar molt en generar-los, desitges continuar?", "Advertencia",
-		                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-	        		}
-	        		if (tipusCella != null && input == JOptionPane.OK_OPTION) {
-	        			if (tipusAdjacencia == null) hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, altura, amplada, forats);
-	        			else hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, tipusAdjacencia, altura, amplada, forats);
-	        		}
-	        		else if (input == JOptionPane.OK_OPTION){	//tipusAdjacencia i tipusCella aleatoris
-	        			hidatoPanel = controladorPartida.partidaAutogenerada(altura, amplada,forats);
-	        		}
-	        	}
-	        }
-	        else JOptionPane.showMessageDialog(null, "Has d'escollir una de les opcions, dificultat o característiques");
-			if (hidatoPanel != null) {
-				VistaPartida v = new VistaPartida(hidatoPanel);
-				v.setVisible(true);
-				this.dispose();
-			}
-			else {
-				if (input != JOptionPane.CANCEL_OPTION)
-				JOptionPane.showMessageDialog(null, "No s'ha pogut generar l'hidato, intenta-ho de nou");
-			}
-		}
+            if (adjacenciaCheckBox.isSelected()) {
+                tipusAdjacencia = stringToTipusAdjacencia((String) (adjacenciaAuto.getSelectedItem()));
 
-        
+            }
+
+            if (tipologiaCheckBox.isSelected() && adjacenciaCheckBox.isSelected() && !compatibles(tipusCella, tipusAdjacencia)) {
+                JOptionPane.showMessageDialog(null, "Els tipus de casella i d'adjacencia no son compatibles");
+            } else {
+                if (dificultatButton.isSelected()) {
+                    Dificultat dificultat = null;
+                    if (interButton.isSelected()) {
+                        dificultat = Dificultat.MIG;
+                    } else if (hardButton.isSelected()) {
+                        dificultat = Dificultat.DIFICIL;
+                    } else if (easyButton.isSelected()) {
+                        dificultat = Dificultat.FACIL;
+                    }
+                    if (dificultat == null) {
+                        JOptionPane.showMessageDialog(null, "Has d'escollir una de les opcions de dificultat");
+                    } else {
+                        if (tipusCella != null) {
+                            if (tipusAdjacencia == null) {
+                                hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, dificultat);
+                            } else {
+                                hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, tipusAdjacencia, dificultat);
+                            }
+                        } else {	//tipusAdjacencia i tipusCella aleatoris
+                            hidatoPanel = controladorPartida.partidaAutogenerada(dificultat);
+                        }
+                    }
+                } else if (caracteristiquesButton.isSelected()) {
+                    JOptionPane.showMessageDialog(null, "Has d'escollir una de les opcions, dificultat o característiques");
+                }
+                if (hidatoPanel != null) {
+                    VistaPartida v = new VistaPartida(hidatoPanel);
+                    v.setVisible(true);
+                    this.dispose();
+                } else {
+                    if (input != JOptionPane.CANCEL_OPTION) {
+                        JOptionPane.showMessageDialog(null, "No s'ha pogut generar l'hidato, intenta-ho de nou");
+                    }
+                }
+            }
+
+
     }//GEN-LAST:event_b_generateActionPerformed
-	
+
 
 	private void adjacenciaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjacenciaCheckBoxActionPerformed
-        if (adjacenciaCheckBox.isSelected()) {
-            adjacenciaAuto.setEnabled(true);
-        } else {
-            adjacenciaAuto.setEnabled(false);
-        }
+            if (adjacenciaCheckBox.isSelected()) {
+                adjacenciaAuto.setEnabled(true);
+            } else {
+                adjacenciaAuto.setEnabled(false);
+            }
     }//GEN-LAST:event_adjacenciaCheckBoxActionPerformed
 
     private void tipologiaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipologiaCheckBoxActionPerformed
@@ -1732,7 +1723,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jButton4ActionPerformed
-        if (controller.cargarPartidaGuardada()) this.dispose();
+        if (controller.cargarPartidaGuardada()) {
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void b_cpstom1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1844,61 +1837,62 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_b_customActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-    	String nomHidato = selectedHidato.getText();
-    	
-    	try {
-			if (controller.jugarPartidaImportada(nomHidato)) this.dispose();
-    	} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Hi ha hagut un problema per cargar l'hidato seleccionat: " + e.getMessage());
-			e.printStackTrace();
-		}
+        String nomHidato = selectedHidato.getText();
 
-    	
+        try {
+            if (controller.jugarPartidaImportada(nomHidato)) {
+                this.dispose();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Hi ha hagut un problema per cargar l'hidato seleccionat: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void caracteristiquesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caracteristiquesButtonActionPerformed
-    	generacioAltura.setEnabled(true);
-    	generacioAmplada.setEnabled(true);
-    	generacioForats.setEnabled(true);
-    	
-    	generacioAlturaSpinner.setEnabled(true);
-    	generacioAmpladaSpinner.setEnabled(true);
-    	generacioForatsSpinner.setEnabled(true);
+        generacioAltura.setEnabled(true);
+        generacioAmplada.setEnabled(true);
+        generacioForats.setEnabled(true);
 
-    	
-    	interButton.setEnabled(false);
-    	hardButton.setEnabled(false);
-    	easyButton.setEnabled(false);
-    	
+        generacioAlturaSpinner.setEnabled(true);
+        generacioAmpladaSpinner.setEnabled(true);
+        generacioForatsSpinner.setEnabled(true);
+
+        interButton.setEnabled(false);
+        hardButton.setEnabled(false);
+        easyButton.setEnabled(false);
+
     }//GEN-LAST:event_caracteristiquesButtonActionPerformed
 
     private void dificultatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dificultatButtonActionPerformed
-    	generacioAltura.setEnabled(false);
-    	generacioAmplada.setEnabled(false);
-    	generacioForats.setEnabled(false);
-    	
-    	generacioAlturaSpinner.setEnabled(false);
-    	generacioAmpladaSpinner.setEnabled(false);
-    	generacioForatsSpinner.setEnabled(false);
-    	
-    	interButton.setEnabled(true);
-    	hardButton.setEnabled(true);
-    	easyButton.setEnabled(true);
+        generacioAltura.setEnabled(false);
+        generacioAmplada.setEnabled(false);
+        generacioForats.setEnabled(false);
+
+        generacioAlturaSpinner.setEnabled(false);
+        generacioAmpladaSpinner.setEnabled(false);
+        generacioForatsSpinner.setEnabled(false);
+
+        interButton.setEnabled(true);
+        hardButton.setEnabled(true);
+        easyButton.setEnabled(true);
     }//GEN-LAST:event_dificultatButtonActionPerformed
 
     private void easyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyButtonActionPerformed
-    	dificultatButton.setSelected(true);
-    	dificultatButtonActionPerformed(null);
+        dificultatButton.setSelected(true);
+        dificultatButtonActionPerformed(null);
     }//GEN-LAST:event_easyButtonActionPerformed
 
     private void interButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_interButtonActionPerformed
-    	dificultatButton.setSelected(true);
-    	dificultatButtonActionPerformed(null);
+        dificultatButton.setSelected(true);
+        dificultatButtonActionPerformed(null);
     }//GEN-LAST:event_interButtonActionPerformed
 
     private void hardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardButtonActionPerformed
-    	dificultatButton.setSelected(true);
-    	dificultatButtonActionPerformed(null);
+        dificultatButton.setSelected(true);
+        dificultatButtonActionPerformed(null);
     }//GEN-LAST:event_hardButtonActionPerformed
 
     /**
