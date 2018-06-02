@@ -108,6 +108,13 @@ public class IOPartida {
             }
         }
     }
+    
+    public static void esborrarPartidaGuardada(String usuari) {
+    	File arxiu = new File("DB/Usuaris/" + usuari + "/partida.txt");
+        if (arxiu.exists()) {
+        	arxiu.delete();
+        }
+	}
 
     public static boolean hiHaPartida(String usuari) {
         File arxiu = new File("DB/Usuaris/" + usuari + "/partida.txt");
@@ -238,4 +245,6 @@ public class IOPartida {
 		 if (ta.equals("CA")) return TipusAdjacencia.COSTATSIANGLES;
 		 return null;
 	}
+
+	
 }
