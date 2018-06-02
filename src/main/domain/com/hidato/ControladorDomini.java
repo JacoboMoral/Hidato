@@ -18,6 +18,7 @@ public class ControladorDomini {
     private Hidato hidatoGenerat = null;
     private Usuari currentUser;
     private Ranking ranking = Ranking.getInstance();
+    private boolean enPartidaCarregada = false;
 
     public static ControladorDomini getInstance() {
         if (instance == null) {
@@ -187,7 +188,16 @@ public class ControladorDomini {
     }
 
     public boolean partidaCompletada() {
-        return partidaEnCurs.completatHidato();
+    	boolean completada = partidaEnCurs.completada();
+        if (completada) {
+        	if (enPartidaCarregada) {
+        		enPartidaCarregada = false;
+            	System.out.println("PARTIDA CARREGADA ACABADA --------> ES CRIDA FUNCIO ESBORRAR PARTIDA D'USUARI");
+            	controladorPersistencia.esborrarPartidaGuardada(currentUser.getUsername());
+        	}
+        	return true;
+        }
+        return false;
     }
 
     public void demanarPista() {
@@ -234,7 +244,7 @@ public class ControladorDomini {
     }
 
     public String[] getHidatos() throws Exception {
-        controladorPersistencia.carregarHidatoFitxer("hidato1");
+        //controladorPersistencia.carregarHidatoFitxer("hidato1");
         int[][] matriu = controladorPersistencia.getMatriuHidato();
         return null;
     }
@@ -286,6 +296,7 @@ public class ControladorDomini {
         partidaEnCurs.setPuntuacio(controladorPersistencia.getPuntuacioPartida());
         partidaEnCurs.setDataInici(controladorPersistencia.getDataIniPartida());
         partidaEnCurs.setTemps(controladorPersistencia.getTempsPartida());
+        if (partidaEnCurs != null) enPartidaCarregada = true;
 
     }
 

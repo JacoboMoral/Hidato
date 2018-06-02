@@ -181,7 +181,7 @@ public class Partida {
         return hidato.teSolucio();
     }
 
-    public boolean completatHidato() {
+    public boolean completada() {
     	if (hidato.completat()) {
     		acabarPartida();
     		return true;
