@@ -30,25 +30,24 @@ public class Partida {
         //NO SE SI AIXO HAURIA D'ANAR AQUI, ESTA FICAT PERQUE FUNCIONI**********************************
         iniciarPartida();
     }
-    
-    
+
     public void setDataInici(Date dataIni) {
-    	this.dataIni = dataIni;
+        this.dataIni = dataIni;
     }
 
-	public void setTemps(int temps) {
-	    this.tempsSegons = temps;
-	}
-	
-	public void setPuntuacio(int puntuacio) {
-		this.puntuacio = puntuacio;
-	}
-	
-	public void setStatus(int status) {
-		this.status = status;
-	}
+    public void setTemps(int temps) {
+        this.temps = temps;
+    }
 
-	private void acabarPartida() {
+    public void setPuntuacio(int puntuacio) {
+        this.puntuacio = puntuacio;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    private void acabarPartida() {
         contador.detener();
         tempsSegons += contador.getSegons();
         tempsNanosegons += contador.getNanosegons();
@@ -124,7 +123,7 @@ public class Partida {
     public int getTemps() {
         return tempsSegons;
     }
-    
+
     public long getTempsNano() {
         return tempsNanosegons;
     }
@@ -132,7 +131,7 @@ public class Partida {
     public int[][] getSolucio() {
         return hidato.getSolucio();
     }
-    
+
 	public int[][] getSolucio(boolean solucioRespecteMatriuHidato) {
 		//es "cancela" la partida actual
 		iniciarPartida();
@@ -145,8 +144,8 @@ public class Partida {
         return hidato.getMatriu();
     }
 
-    public int[][] getHidatoOriginal(){
-    	return hidato.getMatriuOriginal();
+    public int[][] getHidatoOriginal() {
+        return hidato.getMatriuOriginal();
 
     }
 

@@ -180,13 +180,13 @@ public class VistaRanking extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        optionsPanel.setBackground(new java.awt.Color(0, 153, 153));
+        optionsPanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        user_to_delete.setBackground(new java.awt.Color(0, 153, 153));
+        user_to_delete.setBackground(new java.awt.Color(204, 204, 204));
         user_to_delete.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         user_to_delete.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        b_deleteUsr.setBackground(new java.awt.Color(0, 204, 204));
+        b_deleteUsr.setBackground(new java.awt.Color(255, 255, 255));
         b_deleteUsr.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         b_deleteUsr.setText("Delete");
         b_deleteUsr.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -201,11 +201,11 @@ public class VistaRanking extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel12.setText("Input:");
 
-        t_input.setBackground(new java.awt.Color(0, 153, 153));
+        t_input.setBackground(new java.awt.Color(204, 204, 204));
         t_input.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         t_input.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        b_filter.setBackground(new java.awt.Color(0, 204, 204));
+        b_filter.setBackground(new java.awt.Color(255, 255, 255));
         b_filter.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         b_filter.setText("Filter");
         b_filter.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,7 +220,7 @@ public class VistaRanking extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel10.setText("Username:");
 
-        b_back.setBackground(new java.awt.Color(0, 204, 204));
+        b_back.setBackground(new java.awt.Color(255, 255, 255));
         b_back.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         b_back.setText("Back");
         b_back.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -234,7 +234,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
-        showInterRanking.setBackground(new java.awt.Color(0, 204, 204));
+        showInterRanking.setBackground(new java.awt.Color(255, 255, 255));
         showInterRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         showInterRanking.setText("Intermediate");
         showInterRanking.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +243,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
-        showEasyRanking.setBackground(new java.awt.Color(0, 204, 204));
+        showEasyRanking.setBackground(new java.awt.Color(255, 255, 255));
         showEasyRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         showEasyRanking.setText("Easy");
         showEasyRanking.addActionListener(new java.awt.event.ActionListener() {
@@ -252,7 +252,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
-        showHardRanking.setBackground(new java.awt.Color(0, 204, 204));
+        showHardRanking.setBackground(new java.awt.Color(255, 255, 255));
         showHardRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         showHardRanking.setText("Hard");
         showHardRanking.addActionListener(new java.awt.event.ActionListener() {
@@ -261,7 +261,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
-        b_filterByUsr1.setBackground(new java.awt.Color(0, 204, 204));
+        b_filterByUsr1.setBackground(new java.awt.Color(255, 255, 255));
         b_filterByUsr1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         b_filterByUsr1.setText("Show all");
         b_filterByUsr1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -270,7 +270,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
-        filterByUsername.setBackground(new java.awt.Color(0, 153, 153));
+        filterByUsername.setBackground(new java.awt.Color(204, 204, 204));
         filterByUsername.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         filterByUsername.setText("Username");
         filterByUsername.addActionListener(new java.awt.event.ActionListener() {
@@ -279,7 +279,7 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
-        filterByDate.setBackground(new java.awt.Color(0, 153, 153));
+        filterByDate.setBackground(new java.awt.Color(204, 204, 204));
         filterByDate.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         filterByDate.setText("Date (Format: YYYY-MM-DD)");
 
@@ -366,7 +366,7 @@ public class VistaRanking extends javax.swing.JFrame {
 
         rankingPanel.setLayout(new java.awt.CardLayout());
 
-        easyPanel.setBackground(new java.awt.Color(0, 204, 204));
+        easyPanel.setBackground(new java.awt.Color(204, 204, 204));
         easyPanel.setPreferredSize(new java.awt.Dimension(600, 470));
 
         title.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N

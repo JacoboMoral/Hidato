@@ -25,7 +25,7 @@ import main.domain.com.hidato.Contador;
  * @author admin
  */
 public class VistaPartida extends javax.swing.JFrame {
-    
+
     private ControladorPresentacio cp = ControladorPresentacio.getInstance();
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
@@ -37,17 +37,17 @@ public class VistaPartida extends javax.swing.JFrame {
     int min = 0;
     int segons = 0;
     private boolean inputsAllowed = true;
-    
+
     Thread cronometre = new Thread() {
         @Override public void run() {
-            
+
             for (;;) {
             for (hora = 0; hora < 60; hora++) {
                 for (min = 0; min < 60; min++) {
                     for (segons = 0; segons < 60; segons++) {
                         try {
                             if (segons < 10 && min < 10 && hora < 10) crono.setText("0" + hora + ":" + "0" + min + ":" + "0" + segons);
-                            else if (segons < 10 && min >= 10 && hora < 10) crono.setText("0" + hora + ":" + min + ":" + "0" + segons);                           
+                            else if (segons < 10 && min >= 10 && hora < 10) crono.setText("0" + hora + ":" + min + ":" + "0" + segons);
                             else if (segons >= 10) crono.setText("0" + hora + ":" + "0" + min + ":" + segons);
                             else if (segons >= 10 && min >= 10) crono.setText("0" + hora + ":" + min + ":" + segons);
                             else if (segons < 10 && min < 10 && hora >= 10) crono.setText(hora + ":" + "0" + min + ":" + "0" + segons);
@@ -63,19 +63,19 @@ public class VistaPartida extends javax.swing.JFrame {
         }
         }
     };
-    
+
 
     /**
      * Creates new form NewJFrame
      */
     public VistaPartida() {
         initComponents();
-        
+
     }
-    
+
     public VistaPartida(int level, int type, String username) {
         initComponents();
-        
+
         partida.setView(this);
         if (level == levelEasy) {
             if (type == 1) {
@@ -111,11 +111,11 @@ public class VistaPartida extends javax.swing.JFrame {
         this.add(hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
         jLabel1.setText(seguentMoviment);
-        
+
         this.validate();
-        
+
     }
-    
+
     public VistaPartida(javax.swing.JPanel hidatoPanel) {
         initComponents();
         partida.setView(this);
@@ -123,7 +123,7 @@ public class VistaPartida extends javax.swing.JFrame {
         this.add(this.hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
         jLabel1.setText(seguentMoviment);
-        
+
         this.validate();
     }
 
@@ -151,11 +151,12 @@ public class VistaPartida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        optionPanel.setBackground(new java.awt.Color(0, 153, 153));
+        optionPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton1.setText(">");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -164,6 +165,7 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton2.setText("<");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -172,6 +174,7 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton3.setText("Help");
 
@@ -196,6 +199,7 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
 
+        playButton.setBackground(new java.awt.Color(255, 255, 255));
         playButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         playButton.setText("PLAY");
         playButton.addActionListener(new java.awt.event.ActionListener() {
@@ -273,7 +277,7 @@ public class VistaPartida extends javax.swing.JFrame {
 
         getContentPane().add(optionPanel, java.awt.BorderLayout.PAGE_END);
 
-        hidatoPanel.setBackground(new java.awt.Color(0, 204, 204));
+        hidatoPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout hidatoPanelLayout = new javax.swing.GroupLayout(hidatoPanel);
         hidatoPanel.setLayout(hidatoPanelLayout);
@@ -350,7 +354,7 @@ public class VistaPartida extends javax.swing.JFrame {
 	}
 
 	private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
-    	
+
     	if (inputsAllowed) {
     		int seguentMov = partida.decrementarSeguentMoviment();
     		if (seguentMov != -1) {
@@ -366,7 +370,7 @@ public class VistaPartida extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -386,30 +390,32 @@ public class VistaPartida extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VistaPartida().setVisible(true);
-                
+
             }
         });
     }
-    
+
     public void incrementarSeguentMoviment() {
         int seguentMov = partida.incrementarSeguentMoviment();
         if (seguentMov != -1) {
             jLabel1.setText(Integer.toString(seguentMov));
         }
     }
-    
+
     public void decrementarSeguentMoviment() {
         int seguentMov = partida.decrementarSeguentMoviment();
         if (seguentMov != -1) {
             jLabel1.setText(Integer.toString(seguentMov));
         }
     }
-    
+
     public void updateSeguentMoviment(String moviment) {
         jLabel1.setText(moviment);
     }
