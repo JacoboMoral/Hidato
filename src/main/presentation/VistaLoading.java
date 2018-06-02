@@ -41,6 +41,10 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
         vMP = aThis;
         this.setOpacity((float) 0.5);
     }
+    
+    public void close() {
+    	this.dispose();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

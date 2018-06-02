@@ -135,8 +135,8 @@ public class ControladorDomini {
         return partidaEnCurs.getPossiblesMoviments();
     }
 
-    public boolean ferMoviment(int i, int j, int value) {
-        if (partidaEnCurs.ferJugada(i, j, value)) {
+    public boolean ferMoviment(int i, int j, int value, boolean ajuda) {
+        if (partidaEnCurs.ferJugada(i, j, value, ajuda)) {
             return true;
         }
         return false;

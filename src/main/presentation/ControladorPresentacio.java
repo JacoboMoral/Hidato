@@ -48,8 +48,8 @@ public class ControladorPresentacio {
 
     }
 
-    public boolean ferMoviment(int i, int j, int value) {
-        return domini.ferMoviment(i, j, value);
+    public boolean ferMoviment(int i, int j, int value, boolean ajuda) {
+        return domini.ferMoviment(i, j, value, ajuda);
     }
 
     public boolean desferMoviment(int i, int j) {

@@ -35,7 +35,6 @@ public abstract class ControladorHidatoGrafic {
 
 
 	public boolean ferMoviment(int y, int x, int proximMoviment) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

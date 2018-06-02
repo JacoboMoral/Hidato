@@ -17,6 +17,7 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     private static ControladorPartida instance = null;
     private VistaPartida view;
     private PanelPartida partida;
+    private boolean ajuda = false;
 
     public static ControladorPartida getInstance() {
         if (instance == null) {
@@ -123,7 +124,7 @@ public class ControladorPartida extends ControladorHidatoGrafic{
 	}
 
 	public boolean ferMoviment(int y, int x, int value) {
-		boolean movimentPossible = controller.ferMoviment(y, x, value);
+		boolean movimentPossible = controller.ferMoviment(y, x, value, ajuda);
 		if (movimentPossible) {
 			return true;
 		}
@@ -227,5 +228,9 @@ public class ControladorPartida extends ControladorHidatoGrafic{
 	
 	public int getPuntuacioPartida() {
 		return controller.getPuntuacioPartida();
+	}
+
+	public void setAjuda(boolean ajuda) {
+		this.ajuda = ajuda;
 	}
 }
