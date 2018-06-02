@@ -197,7 +197,6 @@ public abstract class Hidato {
     }
 
     private boolean comprovarMoviment(int i, int j, int value, boolean ajuda) {
-    	if (!ajuda) return true;
         if (matriuHidato[i][j] != 0) {
             return false;
         }
@@ -205,6 +204,8 @@ public abstract class Hidato {
         if (estaRepetit(value)) {
             return false;
         }
+
+    	if (!ajuda) return true;
 
         boolean anterior = nombresEscrits.contains(value - 1);
         boolean posterior = nombresEscrits.contains(value + 1);
