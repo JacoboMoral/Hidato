@@ -284,8 +284,10 @@ public class ControladorPresentacio {
 			JOptionPane.showMessageDialog(null, "Format correcte");
 			if(domini.comprovarHidatotxtResoluble()) {
 				String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
-				domini.guardarHidatotxt(hidatoName);
-				JOptionPane.showMessageDialog(null, "Hidato guardat amb el nom: " + hidatoName);				
+				if(hidatoName != null) {
+					domini.guardarHidatotxt(hidatoName);
+					JOptionPane.showMessageDialog(null, "Hidato guardat amb el nom: " + hidatoName);
+				}			
 			}
 			else JOptionPane.showMessageDialog(null, "Hidato proposat no es resoluble");
 			
