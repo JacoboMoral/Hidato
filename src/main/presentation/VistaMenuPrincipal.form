@@ -386,6 +386,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_save1MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_save1ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1203,10 +1204,8 @@
                       <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButton4" pref="181" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jButton3" max="32767" attributes="0"/>
-                              <Component id="jButton2" pref="181" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jButton3" max="32767" attributes="0"/>
+                          <Component id="jButton2" pref="181" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="290" max="-2" attributes="0"/>
                   </Group>
@@ -1312,10 +1311,8 @@
                       <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="quickEasy" pref="173" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="quickHard" pref="173" max="32767" attributes="0"/>
-                              <Component id="quickInter" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="quickHard" pref="173" max="32767" attributes="0"/>
+                          <Component id="quickInter" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="294" max="32767" attributes="0"/>
                   </Group>
@@ -1692,7 +1689,7 @@
                   <SpinnerModel initial="5" minimum="2" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Cursor Por defecto"/>
+                  <Color id="Default Cursor"/>
                 </Property>
               </Properties>
             </Component>

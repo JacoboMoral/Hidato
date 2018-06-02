@@ -370,8 +370,8 @@ public class ControladorDomini {
     }
 
     public boolean changePass(String currentPass, String newPass) throws IOException {
-        //return controladorPersistencia.changePass(currentPass, newPass);
         if (controladorPersistencia.changePass(currentPass, newPass)) {
+            System.out.println("entro en domini change pass");
             currentUser.setPassword(newPass);
         } else {
             return false;
