@@ -22,6 +22,7 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
     private int level;
     ControladorPresentacio cp = ControladorPresentacio.getInstance();
     VistaMenuPrincipal vMP;
+    
     /**
      * Creates new form VistaLoading
      */

@@ -309,5 +309,21 @@ public class ControladorPresentacio {
 		return domini.getPuntuacioPartida();
 	}
 
+    public int getRankingEasySize() {
+        return domini.getRankingEasySize();
+    }
+
+    public int getRankingInterSize() {
+        return domini.getRankingInterSize();
+    }
+
+    public int getRankingHardSize() {
+        return domini.getRankingHardSize();
+    }
+
+    void getUpdate() {
+        domini.getUpdate();
+    }
+
 
 }

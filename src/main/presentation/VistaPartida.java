@@ -40,35 +40,44 @@ public class VistaPartida extends javax.swing.JFrame {
     int hora = 0;
     int min = 0;
     int segons = 0;
+    private int nivellPartida;
     private boolean inputsAllowed = true;
     private boolean ajuda = false;
 
     Thread cronometre = new Thread() {
-        @Override public void run() {
+        @Override
+        public void run() {
 
             for (;;) {
-            for (hora = 0; hora < 60; hora++) {
-                for (min = 0; min < 60; min++) {
-                    for (segons = 0; segons < 60; segons++) {
-                        try {
-                            if (segons < 10 && min < 10 && hora < 10) crono.setText("0" + hora + ":" + "0" + min + ":" + "0" + segons);
-                            else if (segons < 10 && min >= 10 && hora < 10) crono.setText("0" + hora + ":" + min + ":" + "0" + segons);
-                            else if (segons >= 10) crono.setText("0" + hora + ":" + "0" + min + ":" + segons);
-                            else if (segons >= 10 && min >= 10) crono.setText("0" + hora + ":" + min + ":" + segons);
-                            else if (segons < 10 && min < 10 && hora >= 10) crono.setText(hora + ":" + "0" + min + ":" + "0" + segons);
-                            else if (segons < 10 && min >= 10 && hora >= 10) crono.setText(hora + ":" + min + ":" + "0" + segons);
-                            else if (segons >= 10 && min >= 10 && hora >= 10) crono.setText(hora + ":" + min + ":" + segons);
-                            Thread.sleep(1000);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(VistaPartida.class.getName()).log(Level.SEVERE, null, ex);
+                for (hora = 0; hora < 60; hora++) {
+                    for (min = 0; min < 60; min++) {
+                        for (segons = 0; segons < 60; segons++) {
+                            try {
+                                if (segons < 10 && min < 10 && hora < 10) {
+                                    tipusAdjacencies.setText("0" + hora + ":" + "0" + min + ":" + "0" + segons);
+                                } else if (segons < 10 && min >= 10 && hora < 10) {
+                                    tipusAdjacencies.setText("0" + hora + ":" + min + ":" + "0" + segons);
+                                } else if (segons >= 10) {
+                                    tipusAdjacencies.setText("0" + hora + ":" + "0" + min + ":" + segons);
+                                } else if (segons >= 10 && min >= 10) {
+                                    tipusAdjacencies.setText("0" + hora + ":" + min + ":" + segons);
+                                } else if (segons < 10 && min < 10 && hora >= 10) {
+                                    tipusAdjacencies.setText(hora + ":" + "0" + min + ":" + "0" + segons);
+                                } else if (segons < 10 && min >= 10 && hora >= 10) {
+                                    tipusAdjacencies.setText(hora + ":" + min + ":" + "0" + segons);
+                                } else if (segons >= 10 && min >= 10 && hora >= 10) {
+                                    tipusAdjacencies.setText(hora + ":" + min + ":" + segons);
+                                }
+                                Thread.sleep(1000);
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(VistaPartida.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }
                 }
             }
         }
-        }
     };
-
 
     /**
      * Creates new form NewJFrame
@@ -80,11 +89,10 @@ public class VistaPartida extends javax.swing.JFrame {
 
     public VistaPartida(int level, int type, String username) {
         initComponents();
-
+        nivellPartida = level;
         partida.setView(this);
         if (level == levelEasy) {
             if (type == 1) {
-                System.out.println("estoy en hexagon");
                 hidatoPanel = partida.partidaAutogenerada(TipusCella.HEXAGON, Dificultat.FACIL);
             }
             if (type == 2) {
@@ -131,15 +139,17 @@ public class VistaPartida extends javax.swing.JFrame {
 
         this.validate();
     }
-    
-	public void setPartidaAcabada() {
-		int puntuacio = partida.getPuntuacioPartida();
-		long temps = partida.tempsSolucionarPartida();
-		temps = temps/1000000;
-		double tempsSegons = (double)temps/1000;
-		JOptionPane.showMessageDialog(this, "El temps de partida ha estat: " + tempsSegons + " segons.\nLa puntuacio total es de " + puntuacio + " punts.", "Informacio",1);
-		blockPartidaInputs();
-	}
+
+    public void setPartidaAcabada() {
+        int puntuacio = partida.getPuntuacioPartida();
+        long temps = partida.tempsSolucionarPartida();
+        String currentUsername = cp.getUsername();
+        temps = temps / 1000000;
+        double tempsSegons = (double) temps / 1000;
+        JOptionPane.showMessageDialog(this, "El temps de partida ha estat: " + tempsSegons + " segons.\nLa puntuacio total es de " + puntuacio + " punts.", "Informacio", 1);
+        cp.saveScore(nivellPartida, currentUsername, puntuacio);
+        blockPartidaInputs();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -159,7 +169,7 @@ public class VistaPartida extends javax.swing.JFrame {
         saveGame = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         playButton = new javax.swing.JButton();
-        crono = new javax.swing.JLabel();
+        tipusAdjacencies = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         hidatoPanel = new javax.swing.JPanel();
 
@@ -190,9 +200,12 @@ public class VistaPartida extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 204, 204));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jButton3.setText("Help");
+        jButton3.setText("Ajuda");
         jButton3.setToolTipText("Activar/desactivar ajut en el joc");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton3MousePressed(evt);
             }
@@ -228,9 +241,9 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
 
-        crono.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        crono.setText("00:00:00");
-        crono.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tipusAdjacencies.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        tipusAdjacencies.setText("00:00:00");
+        tipusAdjacencies.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bombilla.png"))); // NOI18N
         jLabel4.setToolTipText("");
@@ -264,7 +277,7 @@ public class VistaPartida extends javax.swing.JFrame {
                         .addComponent(jButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(crono)
+                    .addComponent(tipusAdjacencies)
                     .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
@@ -291,7 +304,7 @@ public class VistaPartida extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(crono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(tipusAdjacencies, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(14, Short.MAX_VALUE))))
         );
 
@@ -322,7 +335,9 @@ public class VistaPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        if (inputsAllowed) partida.reset();
+        if (inputsAllowed) {
+            partida.reset();
+        }
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
@@ -331,70 +346,72 @@ public class VistaPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void saveGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveGameMousePressed
-    	if (inputsAllowed) partida.guardarPartida();
+        if (inputsAllowed) {
+            partida.guardarPartida();
+        }
     }//GEN-LAST:event_saveGameMousePressed
 
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
-    	if (inputsAllowed) {
-	    	int seguentMov = partida.incrementarSeguentMoviment();
-	        if (seguentMov != -1) {
-	            jLabel1.setText(Integer.toString(seguentMov));
-	        }
-    	}
+        if (inputsAllowed) {
+            int seguentMov = partida.incrementarSeguentMoviment();
+            if (seguentMov != -1) {
+                jLabel1.setText(Integer.toString(seguentMov));
+            }
+        }
     }//GEN-LAST:event_jButton1MousePressed
 
     private void jLabel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MousePressed
-    	if (inputsAllowed) {
-    		int input = JOptionPane.showOptionDialog(null, "Si decideixes solucionar la partida, no et contarà com feta. Vols solucionar-la igualment?","Advertencia",
+        if (inputsAllowed) {
+            int input = JOptionPane.showOptionDialog(null, "Si decideixes solucionar la partida, no et contarà com feta. Vols solucionar-la igualment?", "Advertencia",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
             if (input == JOptionPane.OK_OPTION) {
-            	
-            	partida.solucionarPartida();
-            	long temps = partida.tempsSolucionarPartida();
-            	if (temps > 5000000) {
-            		temps = temps/1000000;
-                	JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " milisegons", "Informacio",1);
-            	}
-            	
-            	else if (temps > 5000) {
-            		temps = temps/1000;
-                	JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " microsegons", "Informacio",1);
-            	}
-            	else {
-                	JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " nanosegons", "Informacio",1);
-            	}
-            	
-            	this.blockPartidaInputs();
+
+                partida.solucionarPartida();
+                long temps = partida.tempsSolucionarPartida();
+                if (temps > 5000000) {
+                    temps = temps / 1000000;
+                    JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " milisegons", "Informacio", 1);
+                } else if (temps > 5000) {
+                    temps = temps / 1000;
+                    JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " microsegons", "Informacio", 1);
+                } else {
+                    JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " nanosegons", "Informacio", 1);
+                }
+
+                this.blockPartidaInputs();
             }
-    	}
+        }
     }//GEN-LAST:event_jLabel4MousePressed
 
     private void blockPartidaInputs() {
-    	inputsAllowed = false;
-	}
+        inputsAllowed = false;
+    }
 
 	private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
 
-    	if (inputsAllowed) {
-    		int seguentMov = partida.decrementarSeguentMoviment();
-    		if (seguentMov != -1) {
-    			jLabel1.setText(Integer.toString(seguentMov));
-    		}
-        }
+            if (inputsAllowed) {
+                int seguentMov = partida.decrementarSeguentMoviment();
+                if (seguentMov != -1) {
+                    jLabel1.setText(Integer.toString(seguentMov));
+                }
+            }
     }//GEN-LAST:event_jButton2MousePressed
 
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
-        if (ajuda == false){
+        if (ajuda == false) {
             ajuda = true;
             jButton3.setBackground(new Color(219, 255, 204));
-        }
-        else{
+        } else {
             ajuda = false;
-            jButton3.setBackground(new Color(255,204,204));
+            jButton3.setBackground(new Color(255, 204, 204));
         }
         partida.setAjuda(ajuda);
     }//GEN-LAST:event_jButton3MousePressed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -454,7 +471,6 @@ public class VistaPartida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel crono;
     private javax.swing.JPanel hidatoPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -466,5 +482,6 @@ public class VistaPartida extends javax.swing.JFrame {
     private javax.swing.JPanel optionPanel;
     private javax.swing.JButton playButton;
     private javax.swing.JLabel saveGame;
+    private javax.swing.JLabel tipusAdjacencies;
     // End of variables declaration//GEN-END:variables
 }

@@ -37,6 +37,17 @@ public class Ranking {
         return instance;
     }
 
+    public int getRankingEasySize() {
+        return rankingEasy.size();
+    }
+    
+    public int getRankingInterSize() {
+        return rankingInter.size();
+    }
+    public int getRankingHardSize() {
+        return rankingHard.size();
+    }
+    
     public ArrayList<Posicio> getLlistaPosicio(int dificultat) {
         switch (dificultat) {
             case levelEasy:
@@ -157,86 +168,6 @@ public class Ranking {
                 return aux;
         }
         return null;
-    }
-
-    public ArrayList<Integer> getPos(String user, int dificultat) {
-        ArrayList<Integer> ap = new ArrayList<Integer>();
-        ListIterator<Posicio> it;
-
-        switch (dificultat) {
-            case levelEasy:
-                it = rankingEasy.listIterator();
-                while (it.hasNext()) {
-                    if (it.next().getUsername().equals(user)) {
-                        ap.add(it.previousIndex());
-                    }
-                }
-                break;
-
-            case levelInter:
-                it = rankingInter.listIterator();
-                while (it.hasNext()) {
-                    if (it.next().getUsername().equals(user)) {
-                        ap.add(it.previousIndex());
-                    }
-                }
-                break;
-
-            case levelHard:
-                it = rankingHard.listIterator();
-                while (it.hasNext()) {
-                    if (it.next().getUsername().equals(user)) {
-                        ap.add(it.previousIndex());
-                    }
-                }
-                break;
-
-            default:
-                break;
-        }
-        return ap;
-    }
-
-    public ArrayList<Integer> getScore(String user, int dificultat) {
-        ArrayList<Integer> ap = new ArrayList<Integer>();
-        ListIterator<Posicio> it;
-        Posicio pis;
-
-        switch (dificultat) {
-            case levelEasy:
-                it = rankingEasy.listIterator();
-                while (it.hasNext()) {
-                    pis = it.next();
-                    if (pis.getUsername().equals(user)) {
-                        ap.add(pis.getScore());
-                    }
-                }
-                break;
-
-            case levelInter:
-                it = rankingInter.listIterator();
-                while (it.hasNext()) {
-                    pis = it.next();
-                    if (pis.getUsername().equals(user)) {
-                        ap.add(pis.getScore());
-                    }
-                }
-                break;
-
-            case levelHard:
-                it = rankingHard.listIterator();
-                while (it.hasNext()) {
-                    pis = it.next();
-                    if (pis.getUsername().equals(user)) {
-                        ap.add(pis.getScore());
-                    }
-                }
-                break;
-
-            default:
-                break;
-        }
-        return ap;
     }
 
     public void deleteUserRanking(String user) {
