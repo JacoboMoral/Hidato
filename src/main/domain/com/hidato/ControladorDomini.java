@@ -435,6 +435,10 @@ public class ControladorDomini {
     
 	public int[][] solucionarPartida() {
 		if (partidaEnCurs != null) {
+			if (enPartidaCarregada) {
+        		enPartidaCarregada = false;
+            	controladorPersistencia.esborrarPartidaGuardada(currentUser.getUsername());
+        	}
 			return partidaEnCurs.getSolucio(true);
 		}
 		return null;
