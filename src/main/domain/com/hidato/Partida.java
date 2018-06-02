@@ -36,7 +36,7 @@ public class Partida {
     }
 
     public void setTemps(int temps) {
-        this.temps = temps;
+        this.tempsSegons = temps;
     }
 
     public void setPuntuacio(int puntuacio) {
