@@ -48,6 +48,10 @@ public class ControladorPersistencia {
     public void carregarHidatoFitxer(String file) throws Exception {
         IOHidato.carregarHidatoFitxer(file);
     }
+    
+    public void esborrarPartidaGuardada(String usuari) {
+    	IOPartida.esborrarPartidaGuardada(usuari);
+    }
 
     public void carregarHidatoImportat(String nomHidato) throws IOException {
         IOHidato.carregarHidatoImportat(nomHidato);

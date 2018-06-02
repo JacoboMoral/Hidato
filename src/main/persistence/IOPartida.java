@@ -108,6 +108,13 @@ public class IOPartida {
             }
         }
     }
+    
+    public static void esborrarPartidaGuardada(String usuari) {
+    	File arxiu = new File("DB/Usuaris/" + usuari + "/partida.txt");
+        if (arxiu.exists()) {
+        	arxiu.delete();
+        }
+	}
 
     public static boolean hiHaPartida(String usuari) {
         File arxiu = new File("DB/Usuaris/" + usuari + "/partida.txt");
@@ -137,6 +144,7 @@ public class IOPartida {
 			output.println(";");
 			bw.write(status + ";" + puntuacio + ";" + nombresDonats + ";"+ nombresEscrits +";" + date + ";" + temps +";");
 			bw.close();
+			output.close();
 			fileWriter.close();
 
 		} catch(IOException ex){ex.printStackTrace();}
@@ -204,6 +212,8 @@ public class IOPartida {
 			nombresEscrits = stringToVector(linea[3]);
 			dataIni = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(linea[4]);
 			temps = Integer.parseInt(linea[5]);
+			fr.close();
+			b.close();
 
 			
 		} catch (IOException e) {
@@ -238,4 +248,6 @@ public class IOPartida {
 		 if (ta.equals("CA")) return TipusAdjacencia.COSTATSIANGLES;
 		 return null;
 	}
+
+	
 }
