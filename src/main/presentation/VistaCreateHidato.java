@@ -69,6 +69,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         hidatoPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(904, 650));
         addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
                 formMouseWheelMoved(evt);
@@ -81,11 +82,6 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("1");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                jLabel1MouseWheelMoved(evt);
-            }
-        });
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton1.setText(">");
@@ -185,7 +181,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(controlPanelLayout.createSequentialGroup()
                         .addComponent(b_estrella, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(saveGame)
@@ -229,16 +225,16 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         hidatoPanel.setLayout(hidatoPanelLayout);
         hidatoPanelLayout.setHorizontalGroup(
             hidatoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 904, Short.MAX_VALUE)
+            .addGap(0, 870, Short.MAX_VALUE)
         );
         hidatoPanelLayout.setVerticalGroup(
             hidatoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 672, Short.MAX_VALUE)
+            .addGap(0, 547, Short.MAX_VALUE)
         );
 
         getContentPane().add(hidatoPanel, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(920, 864));
+        setSize(new java.awt.Dimension(886, 739));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -300,26 +296,12 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2MousePressed
 
-    private void jLabel1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jLabel1MouseWheelMoved
-        if (evt.getWheelRotation() < 0) {
-        	if (seguentMoviment < creacio.getMaximMoviment()) {
-            	seguentMoviment = creacio.incrementarSeguentMoviment();
-            	jLabel1.setText(Integer.toString(seguentMoviment));
-            }
-        }
-        else {
-        	if (seguentMoviment > creacio.getMinimMoviment()) {
-            	seguentMoviment = creacio.decrementarSeguentMoviment();
-                jLabel1.setText(Integer.toString(seguentMoviment));
-            }
-        }
-    }//GEN-LAST:event_jLabel1MouseWheelMoved
-
     private void saveGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveGameMousePressed
     	creacio.guardarHidato();
     }//GEN-LAST:event_saveGameMousePressed
 
     private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
+    	evt.consume(); //per evitar que es cridi dos cops a cada "tick" de la roda
         if (evt.getWheelRotation() < 0) {
         	if (seguentMoviment < creacio.getMaximMoviment()) {
             	seguentMoviment = creacio.incrementarSeguentMoviment();
