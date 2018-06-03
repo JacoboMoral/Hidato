@@ -20,7 +20,6 @@ import main.domain.com.hidato.Usuari;
  */
 public class IOUsuari {
     
-    private static Usuari currentUser;
     private static String currentUsername;
     private static String currentPassword;
     
@@ -41,17 +40,15 @@ public class IOUsuari {
     
     public static boolean deleteUser(String username) {
         File temp = new File("DB/Usuaris/" + username);
-        File temp2 = new File("Usuaris/" + username + "/password.txt");
+        File temp2 = new File("DB/Usuaris/" + username + "/password.txt");
         temp2.delete();
         temp.delete();
         return true;
     }
     
     public static boolean changePassword(String currentUsername, String newPassword) throws IOException {
-        System.out.println("Entro en canviar password");
         File temp = new File("DB/Usuaris/" + currentUsername);
         if (temp.exists()) {
-            System.out.println("Entro en canviar password" + currentUsername + " " + newPassword);
             FileWriter fw = new FileWriter("DB/Usuaris/" + currentUsername + "/password.txt");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(newPassword);
@@ -113,7 +110,6 @@ public class IOUsuari {
     public static boolean changePass(String currentPass, String newPass) throws IOException {
         boolean successful = false;
         if (currentPass.equals(currentPassword)) {
-            System.out.println("entro aqui");
             successful = changePassword(currentUsername, newPass);
             if (successful) {
                 currentPassword = newPass;
@@ -129,7 +125,7 @@ public class IOUsuari {
         return false;
     }
 
-    public static Usuari getUser() {
+    /*public static Usuari getUser() {
         return currentUser;
     }
 
@@ -139,7 +135,5 @@ public class IOUsuari {
 
     public static String getPassword() {
         return currentUser.getPassword();
-    }
-    
-    
+    }*/
 }

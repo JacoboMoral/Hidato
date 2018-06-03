@@ -110,6 +110,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         b_play = new javax.swing.JButton();
         b_create = new javax.swing.JButton();
         b_ranking = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         editPasswordPanel = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         t_oldpass = new javax.swing.JPasswordField();
@@ -170,6 +171,29 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         quickInter = new javax.swing.JButton();
         quickHard = new javax.swing.JButton();
         b_back_menu1 = new javax.swing.JButton();
+        tipsPanel = new javax.swing.JPanel();
+        contentPanel = new javax.swing.JPanel();
+        informationPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel30 = new javax.swing.JLabel();
+        instruccionsPanel = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        changePanel = new javax.swing.JPanel();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
         createAutoPanel = new javax.swing.JPanel();
         b_backTypeCreate1 = new javax.swing.JButton();
         tipologiaCheckBox = new javax.swing.JCheckBox();
@@ -296,17 +320,33 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/information (2).png"))); // NOI18N
+        jButton5.setText("Tips");
+        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 204)));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuPrincipalPanelLayout = new javax.swing.GroupLayout(menuPrincipalPanel);
         menuPrincipalPanel.setLayout(menuPrincipalPanelLayout);
         menuPrincipalPanelLayout.setHorizontalGroup(
             menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPrincipalPanelLayout.createSequentialGroup()
-                .addGap(265, 265, 265)
                 .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(b_play, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(b_create, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(b_ranking, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(menuPrincipalPanelLayout.createSequentialGroup()
+                        .addGap(265, 265, 265)
+                        .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(b_play, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(b_create, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(b_ranking, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(menuPrincipalPanelLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(265, Short.MAX_VALUE))
         );
         menuPrincipalPanelLayout.setVerticalGroup(
@@ -318,7 +358,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(b_create, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(b_ranking, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
         parentPanel.add(menuPrincipalPanel, "card5");
@@ -480,17 +522,15 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
                     .addGroup(deleteAccountPanelLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(deleteAccountPanelLayout.createSequentialGroup()
-                                .addComponent(jButton9)
-                                .addGap(14, 14, 14)
-                                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(deleteAccountPanelLayout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(jLabel17)
-                                .addGap(33, 33, 33)
-                                .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(45, 45, 45)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(deleteAccountPanelLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel17)
+                        .addGap(33, 33, 33)
+                        .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(116, Short.MAX_VALUE))
         );
         deleteAccountPanelLayout.setVerticalGroup(
@@ -1091,6 +1131,207 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         parentPanel.add(quickLevelPanel, "card11");
 
+        tipsPanel.setBackground(new java.awt.Color(204, 204, 204));
+        tipsPanel.setLayout(new java.awt.BorderLayout());
+
+        contentPanel.setLayout(new java.awt.CardLayout());
+
+        informationPanel.setBackground(new java.awt.Color(204, 204, 204));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jLabel30.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel30.setText("Informacio del joc:");
+
+        javax.swing.GroupLayout informationPanelLayout = new javax.swing.GroupLayout(informationPanel);
+        informationPanel.setLayout(informationPanelLayout);
+        informationPanelLayout.setHorizontalGroup(
+            informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(informationPanelLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel30)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(185, Short.MAX_VALUE))
+        );
+        informationPanelLayout.setVerticalGroup(
+            informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informationPanelLayout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(jLabel30)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+
+        contentPanel.add(informationPanel, "card5");
+
+        instruccionsPanel.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bombilla.png"))); // NOI18N
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
+
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
+
+        jLabel25.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel25.setText("NUM");
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jButton1.setText("<");
+
+        jButton11.setBackground(new java.awt.Color(255, 255, 255));
+        jButton11.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jButton11.setText(">");
+
+        jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel22.setText("Borrar els numeros posats");
+
+        jLabel24.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel24.setText("Guardar la partida");
+
+        jLabel26.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel26.setText("Solucionar el hidato");
+
+        jLabel27.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel27.setText("El numero que posaras");
+
+        jLabel28.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel28.setText("Anterior numero");
+
+        jLabel29.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel29.setText("Seguent nuemro");
+
+        javax.swing.GroupLayout instruccionsPanelLayout = new javax.swing.GroupLayout(instruccionsPanel);
+        instruccionsPanel.setLayout(instruccionsPanelLayout);
+        instruccionsPanelLayout.setHorizontalGroup(
+            instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(instruccionsPanelLayout.createSequentialGroup()
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(instruccionsPanelLayout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel18))
+                        .addGap(57, 57, 57)
+                        .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel22)))
+                    .addGroup(instruccionsPanelLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton11))
+                        .addGap(50, 50, 50)
+                        .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel28)
+                            .addComponent(jLabel27)
+                            .addComponent(jLabel29))))
+                .addContainerGap(353, Short.MAX_VALUE))
+        );
+        instruccionsPanelLayout.setVerticalGroup(
+            instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(instruccionsPanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel22))
+                .addGap(18, 18, 18)
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, instruccionsPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addGap(8, 8, 8)))
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(instruccionsPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel18))
+                    .addGroup(instruccionsPanelLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel26)))
+                .addGap(32, 32, 32)
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel27))
+                .addGap(23, 23, 23)
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel28))
+                .addGap(18, 18, 18)
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton11)
+                    .addComponent(jLabel29))
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+
+        contentPanel.add(instruccionsPanel, "card6");
+
+        tipsPanel.add(contentPanel, java.awt.BorderLayout.LINE_END);
+
+        changePanel.setBackground(new java.awt.Color(204, 204, 204));
+        changePanel.setPreferredSize(new java.awt.Dimension(700, 60));
+
+        jButton13.setBackground(new java.awt.Color(255, 255, 255));
+        jButton13.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jButton13.setText("Information");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jButton14.setBackground(new java.awt.Color(255, 255, 255));
+        jButton14.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jButton14.setText("Tornar");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        jButton15.setBackground(new java.awt.Color(255, 255, 255));
+        jButton15.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jButton15.setText("Instruccio");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout changePanelLayout = new javax.swing.GroupLayout(changePanel);
+        changePanel.setLayout(changePanelLayout);
+        changePanelLayout.setHorizontalGroup(
+            changePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePanelLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
+        );
+        changePanelLayout.setVerticalGroup(
+            changePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(changePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35))
+        );
+
+        tipsPanel.add(changePanel, java.awt.BorderLayout.PAGE_END);
+
+        parentPanel.add(tipsPanel, "card13");
+
         createAutoPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         b_backTypeCreate1.setBackground(new java.awt.Color(255, 255, 255));
@@ -1265,7 +1506,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         createAutoPanelLayout.setVerticalGroup(
             createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createAutoPanelLayout.createSequentialGroup()
-                .addGap(0, 96, Short.MAX_VALUE)
+                .addContainerGap(96, Short.MAX_VALUE)
                 .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(createAutoPanelLayout.createSequentialGroup()
                         .addComponent(tipologiaCheckBox)
@@ -1566,8 +1807,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             if (pass1.length() == 0) {
                 JOptionPane.showMessageDialog(null, "Enter your password please");
             } else {
-                boolean ok = cp.deleteUser(pass1);
-                if (!ok) {
+                boolean successful = cp.deleteUser(pass1);
+                if (!successful) {
                     JOptionPane.showMessageDialog(null, "Wrong password!");
                 } else {
                     JOptionPane.showMessageDialog(null, "Account deleted");
@@ -1933,6 +2174,34 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        parentPanel.removeAll();
+        parentPanel.add(tipsPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        contentPanel.removeAll();
+        contentPanel.add(informationPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        parentPanel.removeAll();
+        parentPanel.add(menuPrincipalPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        contentPanel.removeAll();
+        contentPanel.add(instruccionsPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jButton15ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1995,6 +2264,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton b_signout;
     private javax.swing.JLabel b_userProfile;
     private javax.swing.JRadioButton caracteristiquesButton;
+    private javax.swing.JPanel changePanel;
+    private javax.swing.JPanel contentPanel;
     private javax.swing.JPanel createAutoPanel;
     private javax.swing.JPanel createCustomPanel;
     private javax.swing.JPanel deleteAccountPanel;
@@ -2011,11 +2282,19 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JRadioButton hardButton;
     private javax.swing.JList<String> hidatoList;
     private javax.swing.JPanel importPanel;
+    private javax.swing.JPanel informationPanel;
+    private javax.swing.JPanel instruccionsPanel;
     private javax.swing.JRadioButton interButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -2029,10 +2308,21 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2040,6 +2330,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel l_password;
     private javax.swing.JLabel l_username;
     private javax.swing.JLabel l_username1;
@@ -2062,6 +2354,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> tipologia;
     private javax.swing.JComboBox<String> tipologiaAuto;
     private javax.swing.JCheckBox tipologiaCheckBox;
+    private javax.swing.JPanel tipsPanel;
     private javax.swing.JPanel topBarPanel;
     private javax.swing.ButtonGroup typeButtons;
     private javax.swing.JPanel typeCreatePanel;

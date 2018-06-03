@@ -266,7 +266,6 @@ public class ControladorPresentacio {
     }
 
     public boolean deleteUser(String pass) {
-        System.out.println("estic a cp");
         return domini.deleteUser(pass);
     }
 

@@ -35,6 +35,7 @@ public class ControladorNavegacio {
     public void openMenuView() {
         VistaMenuPrincipal v = new VistaMenuPrincipal();
         v.setVisible(true);
+       
     }
 
     public void openRankingView() {

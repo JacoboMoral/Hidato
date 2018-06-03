@@ -60,6 +60,7 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 204));
         setUndecorated(true);
         setResizable(false);
 

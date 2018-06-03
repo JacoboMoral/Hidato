@@ -196,7 +196,7 @@ public class ControladorPersistencia {
         return IOUsuari.deleteUer(pass);
     }
 
-    public String getUsername() {
+    /*public String getUsername() {
         return IOUsuari.getUsername();
 
     }
@@ -206,6 +206,6 @@ public class ControladorPersistencia {
 
     public String getPassword() {
         return IOUsuari.getPassword();
-    }
+    }*/
 
 }

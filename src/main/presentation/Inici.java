@@ -206,6 +206,7 @@ public class Inici extends javax.swing.JFrame {
             if (userPassMatch) {
                 cn.openMenuView();
                 this.dispose();
+                
             } else {
                 int input = JOptionPane.showOptionDialog(null, "Username and password doesn't match, please enter again.", "Error message",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
