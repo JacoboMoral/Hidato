@@ -144,7 +144,6 @@ public class VistaRanking extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         filterType = new javax.swing.ButtonGroup();
         optionsPanel = new javax.swing.JPanel();
