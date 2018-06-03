@@ -84,7 +84,6 @@ public class PanelPartida extends JPanel {
     }
     
     public boolean tractaClick(int i, int j, int mouseButton) {
-    	//setPossiblesMoviments();
     	if (!enCurs) return false;
 		if (tipusHidato == 0 && mouseButton == 0) { //partida i boto esquerre
 			boolean possible = desferMoviment(i,j);
@@ -97,22 +96,19 @@ public class PanelPartida extends JPanel {
 			}
 			if (possible) updateSeguentMoviment();
 			return possible;
-			/*boolean possible = ferMoviment(i,j,possiblesMoviments.get(movimentIterator));
-			if (possible) {
-				panelHidato.updateMatriu(controller.getMatriuHidato());
-				//controller.partidaCompletada();
-			}
-			else possible = desferMoviment(i,j);
-			if (possible) updateSeguentMoviment();
-			return possible;*/
 		}
 		else if (tipusHidato == 1) {
 			if (mouseButton == 0) {
-		    	if (movimentIterator >= possiblesMoviments.size()) return false;
-		    	int next = possiblesMoviments.get(movimentIterator);
-				tractaMatriu(i,j,possiblesMoviments.get(movimentIterator));
-				setPossiblesMoviments();
-				controller.setSeguentMovimentVista(next);
+				int currentWriteable = controller.getCurrentWriteable();
+				if (currentWriteable < 0) tractaMatriu(i,j,currentWriteable);
+				else {
+					if (movimentIterator >= possiblesMoviments.size()) return false;
+			    	int next = possiblesMoviments.get(movimentIterator);
+					tractaMatriu(i,j,possiblesMoviments.get(movimentIterator));
+					setPossiblesMoviments();
+					controller.setSeguentMovimentVista(next);
+				}
+		    	
 
 				return true;
 			}
@@ -193,7 +189,6 @@ public class PanelPartida extends JPanel {
     	}
     	return -1;
     }
-
 
 	public int getSeguentMoviment() {
 		return possiblesMoviments.get(movimentIterator);

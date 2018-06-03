@@ -98,6 +98,10 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 		}	
 	}
 	
+	public int getCurrentWriteable() {
+		return currentWriteable;
+	}
+	
 	public void setSeguentMovimentVista(int seguentMoviment) {
 		if (seguentMoviment > 0) view.setSeguentMoviment(seguentMoviment);
 	}

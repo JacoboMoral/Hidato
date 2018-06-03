@@ -102,4 +102,9 @@ public abstract class ControladorHidatoGrafic {
 	public boolean partidaCompletada() {
 		return false;
 	}
+
+
+	public int getCurrentWriteable() {
+		return 0;
+	}
 }
