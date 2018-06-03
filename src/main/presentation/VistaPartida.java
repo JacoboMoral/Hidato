@@ -133,11 +133,6 @@ public class VistaPartida extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                jLabel1MouseWheelMoved(evt);
-            }
-        });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
@@ -355,23 +350,6 @@ public class VistaPartida extends javax.swing.JFrame {
         }
         partida.setAjuda(ajuda);
     }//GEN-LAST:event_jButton3MousePressed
-
-    private void jLabel1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jLabel1MouseWheelMoved
-        if (inputsAllowed){
-            if (evt.getWheelRotation() < 0) {
-        	int seguentMov = partida.incrementarSeguentMoviment();
-                if (seguentMov != -1) {
-                    jLabel1.setText(Integer.toString(seguentMov));
-                }
-            }
-            else {
-        	int seguentMov = partida.decrementarSeguentMoviment();
-                if (seguentMov != -1) {
-                    jLabel1.setText(Integer.toString(seguentMov));
-                }
-            }
-        }
-    }//GEN-LAST:event_jLabel1MouseWheelMoved
 
     private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
        if (inputsAllowed){

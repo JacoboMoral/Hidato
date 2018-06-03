@@ -50,7 +50,7 @@ public class PanelPartida extends JPanel {
         this.setLayout(new BorderLayout(50, 50));
 
         panelHidato = new PanelHidato(cella, matriuHidato, this);
-        panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
+        //panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
 
         this.add(panelHidato);
 
@@ -84,9 +84,7 @@ public class PanelPartida extends JPanel {
     }
     
     public boolean tractaClick(int i, int j, int mouseButton) {
-    	setPossiblesMoviments();
     	if (!enCurs) return false;
-    	//if (movimentIterator >= possiblesMoviments.size()) return false;
 		if (tipusHidato == 0 && mouseButton == 0) { //partida i boto esquerre
 			boolean possible = desferMoviment(i,j);
 			if (!possible) {
@@ -98,20 +96,22 @@ public class PanelPartida extends JPanel {
 			}
 			if (possible) updateSeguentMoviment();
 			return possible;
-			/*boolean possible = ferMoviment(i,j,possiblesMoviments.get(movimentIterator));
-			if (possible) {
-				panelHidato.updateMatriu(controller.getMatriuHidato());
-				//controller.partidaCompletada();
-			}
-			else possible = desferMoviment(i,j);
-			if (possible) updateSeguentMoviment();
-			return possible;*/
 		}
 		else if (tipusHidato == 1) {
 			if (mouseButton == 0) {
-				tractaMatriu(i,j,possiblesMoviments.get(movimentIterator));
-				setPossiblesMoviments();
-				controller.setSeguentMovimentVista(possiblesMoviments.get(movimentIterator));
+				int currentWriteable = controller.getCurrentWriteable();
+				if (currentWriteable < 0) tractaMatriu(i,j,currentWriteable);
+				else {
+					if (movimentIterator >= possiblesMoviments.size()) return false;
+					tractaMatriu(i,j,possiblesMoviments.get(movimentIterator));
+					setPossiblesMoviments();
+					if (possiblesMoviments.size() > 0) controller.setSeguentMovimentVista(possiblesMoviments.get(movimentIterator));
+					else {
+						controller.setSeguentMovimentVista(0);
+					}
+					//System.out.println(possiblesMoviments.get(movimentIterator));
+			    	//int next = possiblesMoviments.get(movimentIterator);
+				}
 				return true;
 			}
 			else if (mouseButton == 1) {
@@ -125,7 +125,7 @@ public class PanelPartida extends JPanel {
 	}
 
     private void tractaMatriu(int i, int j, int value) {
-    		matriuHidato[i][j] = value;
+    	matriuHidato[i][j] = value;
     }
     
     private void tractaMatriu(int i, int j, boolean esborra) {
@@ -141,7 +141,6 @@ public class PanelPartida extends JPanel {
 	    	panelHidato.updateMatriu(matriu);
 	    	setPossiblesMoviments();
 	    	movimentIterator = 0;
-	    	panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
 	    	updateSeguentMoviment();
     }
 
@@ -158,9 +157,6 @@ public class PanelPartida extends JPanel {
         this.setLayout(new BorderLayout(50, 50));
 
         panelHidato = new PanelHidato(cella, matriuHidato, nombresPerDefecte, this);
-
-        panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
-
         
         this.add(panelHidato);
 
@@ -173,16 +169,16 @@ public class PanelPartida extends JPanel {
                 --movimentIterator;
             }
             controller.updateSeguentMoviment(Integer.toString(possiblesMoviments.get(movimentIterator)));
-            panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
         } else {
             controller.updateSeguentMoviment(" ");
         }
     }
     
     public int incrementarMovimentIterator(){
+    	System.out.println("moviment iterator antes: " + movimentIterator);
     	if ((movimentIterator+1) < possiblesMoviments.size()) {
     		++movimentIterator;
-            panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
+        	System.out.println("moviment iterator antes: " + movimentIterator);
     		return possiblesMoviments.get(movimentIterator);
     	}
     	return -1;
@@ -191,12 +187,10 @@ public class PanelPartida extends JPanel {
     public int decrementarMovimentIterator(){
     	if ((movimentIterator-1) >= 0) {
     		--movimentIterator;
-            panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
     		return possiblesMoviments.get(movimentIterator);
     	}
     	return -1;
     }
-
 
 	public int getSeguentMoviment() {
 		return possiblesMoviments.get(movimentIterator);
@@ -207,7 +201,4 @@ public class PanelPartida extends JPanel {
 		matriuHidato = matriuSolucio;
 		panelHidato.updateMatriu(matriuSolucio);
 	}
-
-	
-
 }
