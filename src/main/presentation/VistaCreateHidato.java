@@ -69,11 +69,17 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         hidatoPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                formMouseWheelMoved(evt);
+            }
+        });
 
         controlPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("1");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
@@ -192,7 +198,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -312,6 +318,21 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     private void saveGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveGameMousePressed
     	creacio.guardarHidato();
     }//GEN-LAST:event_saveGameMousePressed
+
+    private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
+        if (evt.getWheelRotation() < 0) {
+        	if (seguentMoviment < creacio.getMaximMoviment()) {
+            	seguentMoviment = creacio.incrementarSeguentMoviment();
+            	jLabel1.setText(Integer.toString(seguentMoviment));
+            }
+        }
+        else {
+        	if (seguentMoviment > creacio.getMinimMoviment()) {
+            	seguentMoviment = creacio.decrementarSeguentMoviment();
+                jLabel1.setText(Integer.toString(seguentMoviment));
+            }
+        }
+    }//GEN-LAST:event_formMouseWheelMoved
 
     /**
      * @param args the command line arguments

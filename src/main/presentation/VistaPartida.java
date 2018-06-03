@@ -43,7 +43,6 @@ public class VistaPartida extends javax.swing.JFrame {
    
     public VistaPartida() {
         initComponents();
-
     }
 
     public VistaPartida(int level, String username) {
@@ -124,6 +123,11 @@ public class VistaPartida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 400));
+        addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                formMouseWheelMoved(evt);
+            }
+        });
 
         optionPanel.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -369,6 +373,23 @@ public class VistaPartida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel1MouseWheelMoved
 
+    private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
+       if (inputsAllowed){
+            if (evt.getWheelRotation() < 0) {
+        	int seguentMov = partida.incrementarSeguentMoviment();
+                if (seguentMov != -1) {
+                    jLabel1.setText(Integer.toString(seguentMov));
+                }
+            }
+            else {
+        	int seguentMov = partida.decrementarSeguentMoviment();
+                if (seguentMov != -1) {
+                    jLabel1.setText(Integer.toString(seguentMov));
+                }
+            }
+        }
+    }//GEN-LAST:event_formMouseWheelMoved
+
     /**
      * @param args the command line arguments
      */
@@ -406,20 +427,6 @@ public class VistaPartida extends javax.swing.JFrame {
 
             }
         });
-    }
-
-    public void incrementarSeguentMoviment() {
-        int seguentMov = partida.incrementarSeguentMoviment();
-        if (seguentMov != -1) {
-            jLabel1.setText(Integer.toString(seguentMov));
-        }
-    }
-
-    public void decrementarSeguentMoviment() {
-        int seguentMov = partida.decrementarSeguentMoviment();
-        if (seguentMov != -1) {
-            jLabel1.setText(Integer.toString(seguentMov));
-        }
     }
 
     public void updateSeguentMoviment(String moviment) {
