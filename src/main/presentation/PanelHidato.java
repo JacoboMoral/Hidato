@@ -35,7 +35,6 @@ public class PanelHidato extends JPanel{
     private double screenHeight;
     private int matriuHidatoWidth;
     private int matriuHidatoHeight;
-    private int seguentMoviment = -1;
     private int ultim = 1;
     
     //necessita que el creador faci panel.setPreferredSize(dim);
@@ -129,10 +128,6 @@ public class PanelHidato extends JPanel{
         }
     }
     
-	public void setSeguentMoviment(int seguentMoviment) {
-		this.seguentMoviment = seguentMoviment;
-	}
-    
     public void setUltim(int ultim) {
     	this.ultim = ultim;
     	repaint();
@@ -148,7 +143,6 @@ public class PanelHidato extends JPanel{
             if (p.x < 0 || p.y < 0 || p.x >= matriuHidato[0].length || p.y >= matriuHidato.length) return;
             if (SwingUtilities.isLeftMouseButton(e)) if (controller.tractaClick(p.y,p.x, 0)) matriuHidato = controller.getMatriu();
             if (SwingUtilities.isRightMouseButton(e)) if (controller.tractaClick(p.y,p.x, 1)) matriuHidato = controller.getMatriu();
-
             repaint();
         }		 
     }
