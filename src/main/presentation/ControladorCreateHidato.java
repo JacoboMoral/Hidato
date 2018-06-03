@@ -70,32 +70,18 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 	private void calcPossiblesMoviments() {
 		possiblesMoviments = new Vector<Integer>();
 		nombresPerDefecte = new Vector<Integer>();
-		int celesNumeriques = 0;
+		int cellesNumeriques = 0;
 		for (int i = 0; i < matriuCreacio.length; ++i) {
 			for (int j = 0; j < matriuCreacio[0].length; ++j) {
 				if (matriuCreacio[i][j] >= 0) {
-					++celesNumeriques;
+					++cellesNumeriques;
 					nombresPerDefecte.add(matriuCreacio[i][j]);
 				}
 			}
 		}
-		if (currentWriteable == 0) {
-			for (int i = 1; i <= celesNumeriques; ++i) {
-				if (!nombresPerDefecte.contains(i)) possiblesMoviments.add(i); //si no esta posat, es un possible moviment
-			}
+		for (int i = 1; i <= cellesNumeriques; ++i) {
+			if (!nombresPerDefecte.contains(i)) possiblesMoviments.add(i); //si no esta posat, es un possible moviment
 		}
-
-		else if (currentWriteable == -1) {
-			for (int i = 1; i <= celesNumeriques; ++i) {
-				possiblesMoviments.add(-1); //si no esta posat, es un possible moviment
-			}
-		}
-
-		else if (currentWriteable == -2) {
-			for (int i = 1; i <= celesNumeriques; ++i) {
-				possiblesMoviments.add(-2); //si no esta posat, es un possible moviment
-			}
-		}	
 	}
 	
 	public int getCurrentWriteable() {
@@ -104,6 +90,9 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 	
 	public void setSeguentMovimentVista(int seguentMoviment) {
 		if (seguentMoviment > 0) view.setSeguentMoviment(seguentMoviment);
+		else {
+			view.setSeguentMoviment(0);
+		}
 	}
 	
 	public void reset() {
@@ -133,7 +122,8 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 	
 	@Override
 	public void guardarHidato() {
-		if (controller.esResoluble(tipusCella, tipusAdjacencia, matriuCreacio)) {
+		if (getCellesLliures() == 0) JOptionPane.showMessageDialog(null, "Ha d'haver minim una casella lliure");
+		else if (controller.esResoluble(tipusCella, tipusAdjacencia, matriuCreacio)) {
 			String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
 		    if (hidatoName != null) controller.guardarHidatoCreat(tipusCella, tipusAdjacencia, matriuCreacio, hidatoName);
 		}
@@ -141,6 +131,18 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 			JOptionPane.showMessageDialog(null, "L'hidato proposat no es resoluble");
 		}
 	    
+	}
+
+	private int getCellesLliures() {
+		int lliures = 0;
+		for (int i = 0; i < matriuCreacio.length; ++i) {
+			for (int j = 0; j < matriuCreacio[0].length; ++j) {
+				if (matriuCreacio[i][j] == 0) {
+					++lliures;
+				}
+			}
+		}
+		return lliures;
 	}
 	
 }

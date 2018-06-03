@@ -353,8 +353,14 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     }
     
     public void setSeguentMoviment(int seguentMoviment) {
-		this.seguentMoviment = seguentMoviment;
-        jLabel1.setText(Integer.toString(seguentMoviment));
+    	if (seguentMoviment != 0) {
+    		this.seguentMoviment = seguentMoviment;
+            jLabel1.setText(Integer.toString(seguentMoviment));
+    	}
+    	else {
+    		jLabel1.setText(" ");
+    	}
+		
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
