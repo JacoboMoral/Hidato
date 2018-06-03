@@ -75,7 +75,7 @@ public class IOHidato {
         String cadena = b.readLine();
         String[] cabecera = cadena.split(",");
         if (cabecera.length != 4) {
-            throw new Exception("Cabecera del fitxer" + file + " no es correcte (te mes de 4 coses)");
+            throw new Exception("El format no es correcte");
         }
         tipusCella = stringToTipusCella(cabecera[0]);
         tipusAdjacencia = stringToTipusAdjacencia(cabecera[1]);
