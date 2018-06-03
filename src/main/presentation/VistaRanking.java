@@ -144,6 +144,7 @@ public class VistaRanking extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         filterType = new javax.swing.ButtonGroup();
         optionsPanel = new javax.swing.JPanel();
@@ -399,40 +400,36 @@ public class VistaRanking extends javax.swing.JFrame {
         easyPanelLayout.setHorizontalGroup(
             easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(easyPanelLayout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(easyPanelLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(easyPanelLayout.createSequentialGroup()
-                                .addComponent(title)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(184, 184, 184)
+                        .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(title)
                             .addGroup(easyPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
+                                .addGap(23, 23, 23)
                                 .addComponent(jLabel8)
-                                .addGap(45, 45, 45)
+                                .addGap(28, 28, 28)
                                 .addComponent(jLabel6)
-                                .addGap(83, 83, 83)
-                                .addComponent(jLabel7)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(145, 145, 145))
+                                .addGap(66, 66, 66)
+                                .addComponent(jLabel7))))
+                    .addGroup(easyPanelLayout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(154, 154, 154))
         );
         easyPanelLayout.setVerticalGroup(
             easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(easyPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(title)
-                .addGap(18, 18, 18)
-                .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel8)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         rankingPanel.add(easyPanel, "card4");
@@ -538,8 +535,7 @@ public class VistaRanking extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(interPanelLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(titleInter)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(titleInter))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(149, 149, 149))
         );
