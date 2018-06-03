@@ -43,8 +43,6 @@ public class VistaPartida extends javax.swing.JFrame {
     private int nivellPartida;
     private boolean inputsAllowed = true;
     private boolean ajuda = false;
-    private String adj;
-
     /*Thread cronometre = new Thread() {
         @Override
         public void run() {
@@ -107,24 +105,19 @@ public class VistaPartida extends javax.swing.JFrame {
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
         jLabel1.setText(seguentMoviment);
 
-        if (cp.getQuickGameAdj() == TipusAdjacencia.COSTATS) {
-            adj = "Costats";
-        } else {
-            adj = "Costats i angles";
-        }
-        tipusAdjacencia.setText(adj);
+        tipusAdjacencia.setText(TipusAdjacenciaToString(cp.getTipusAdjacenciaPartida()));
         this.validate();
 
     }
 
-    public VistaPartida(javax.swing.JPanel hidatoPanel) {
+	public VistaPartida(javax.swing.JPanel hidatoPanel) {
         initComponents();
         partida.setView(this);
         this.hidatoPanel = hidatoPanel;
         this.add(this.hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
         jLabel1.setText(seguentMoviment);
-
+        tipusAdjacencia.setText(TipusAdjacenciaToString(cp.getTipusAdjacenciaPartida()));
         this.validate();
     }
 
@@ -139,6 +132,12 @@ public class VistaPartida extends javax.swing.JFrame {
         blockPartidaInputs();
     }
 
+    private String TipusAdjacenciaToString(TipusAdjacencia tipusAdjacencia) {
+    	if (tipusAdjacencia == TipusAdjacencia.COSTATS) return "Costats";
+    	if (tipusAdjacencia == TipusAdjacencia.COSTATSIANGLES) return "Costats i angles";
+		return " ";
+	}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -162,6 +161,7 @@ public class VistaPartida extends javax.swing.JFrame {
         hidatoPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(400, 400));
         setPreferredSize(new java.awt.Dimension(869, 700));
 
         optionPanel.setBackground(new java.awt.Color(204, 204, 204));
@@ -247,7 +247,7 @@ public class VistaPartida extends javax.swing.JFrame {
                 .addComponent(saveGame)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addGap(140, 140, 140)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(optionPanelLayout.createSequentialGroup()
@@ -256,7 +256,7 @@ public class VistaPartida extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tipusAdjacencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
