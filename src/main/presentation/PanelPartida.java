@@ -96,6 +96,7 @@ public class PanelPartida extends JPanel {
 					controller.partidaCompletada();
 				}
 			}
+			if (possible) updateSeguentMoviment();
 			return possible;
 			/*boolean possible = ferMoviment(i,j,possiblesMoviments.get(movimentIterator));
 			if (possible) {
