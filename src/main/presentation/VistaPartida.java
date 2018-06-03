@@ -124,7 +124,6 @@ public class VistaPartida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 400));
-        setPreferredSize(new java.awt.Dimension(869, 700));
 
         optionPanel.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -149,14 +148,12 @@ public class VistaPartida extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 204, 204));
+        jButton3.setBackground(new java.awt.Color(255, 135, 135));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jButton3.setText("Ajuda");
         jButton3.setToolTipText("Activar/desactivar ajut en el joc");
+        jButton3.setFocusPainted(false);
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton3MousePressed(evt);
             }
@@ -342,17 +339,13 @@ public class VistaPartida extends javax.swing.JFrame {
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
         if (ajuda == false) {
             ajuda = true;
-            jButton3.setBackground(new Color(219, 255, 204));
+            jButton3.setBackground(new Color(135, 255, 137));
         } else {
             ajuda = false;
-            jButton3.setBackground(new Color(255, 204, 204));
+            jButton3.setBackground(new Color(255, 135, 135));
         }
         partida.setAjuda(ajuda);
     }//GEN-LAST:event_jButton3MousePressed
-
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
