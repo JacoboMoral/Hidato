@@ -225,17 +225,13 @@ public class ControladorDomini {
         if (tipusCella == TipusCella.QUADRAT) {
             Random rand = new Random();
             int randomValue = rand.nextInt(2);
-            if (randomValue == 0) {
-                ta = TipusAdjacencia.COSTATSIANGLES;
-                return TipusAdjacencia.COSTATSIANGLES;
-            }
+            if (randomValue == 0) return TipusAdjacencia.COSTATSIANGLES;
         }
-        ta = TipusAdjacencia.COSTATS;
         return TipusAdjacencia.COSTATS;
     }
     
-    public TipusAdjacencia getAdjacenciaQuickGame() {
-        return ta;
+    public TipusAdjacencia getAdjacenciaPartida() {
+        return partidaEnCurs.getTipusAdjacencia();
     }
 
     public void finalitzarPartida() {

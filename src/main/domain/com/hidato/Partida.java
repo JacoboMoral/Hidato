@@ -50,6 +50,7 @@ public class Partida {
     	if (status != -1) {
     		status = -1;
     		puntuacio += hidato.getCellesNumeriques()*5;
+    		if (puntuacio < 0) puntuacio = 1;
     		contador.detener();
             tempsSegons += contador.getSegons();
             tempsNanosegons += contador.getNanosegons();

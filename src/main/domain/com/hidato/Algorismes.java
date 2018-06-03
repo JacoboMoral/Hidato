@@ -28,7 +28,11 @@ public class Algorismes {
         int casellesNumeriques = 0;
 
         int[][] matriu = new int[matriuSolucio.length][matriuSolucio[0].length];
-
+        given = new Vector<Integer>();
+        
+        HidatoIO.writeHidatoMatrixToOutput(matriu);
+        HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
+        
         //fem una copia de matriu solucio mentre cerquem el valor de row1 i column1
         for (int i = 0; i < matriuSolucio.length; ++i) {
             for (int j = 0; j < matriuSolucio[0].length; ++j) {
@@ -60,6 +64,14 @@ public class Algorismes {
             return false; 					//comprova que sempre ens donin el ultimo numero
         }
         
+        System.out.println("algorismes: enviat per solucionar");
+       /* HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
+        HidatoIO.writeHidatoMatrixToOutput(matriu);
+
+        System.out.println(given);
+        System.out.println(row1);
+        System.out.println(column1);*/
+
         return solucionador(row1, column1, 1, 0, matriu);
     }
 
@@ -89,6 +101,9 @@ public class Algorismes {
                     if (solucionador(r + i, c + j, n + 1, next, matriuSolucio)) {
                         if (n == 1) {
                             tractarMatriuSolucio(matriuSolucio);
+                            System.out.println("algorismes: solucionat");
+                            HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
+
                         }
                         return true;
                     }
