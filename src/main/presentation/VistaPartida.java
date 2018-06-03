@@ -37,52 +37,10 @@ public class VistaPartida extends javax.swing.JFrame {
     ControladorPartida partida = ControladorPartida.getInstance();
     ControladorNavegacio cn = ControladorNavegacio.getInstance();
     private String seguentMoviment = " ";
-    int hora = 0;
-    int min = 0;
-    int segons = 0;
     private int nivellPartida;
     private boolean inputsAllowed = true;
     private boolean ajuda = false;
-    /*Thread cronometre = new Thread() {
-        @Override
-        public void run() {
-
-            for (;;) {
-                for (hora = 0; hora < 60; hora++) {
-                    for (min = 0; min < 60; min++) {
-                        for (segons = 0; segons < 60; segons++) {
-                            try {
-                                if (segons < 10 && min < 10 && hora < 10) {
-                                    time.setText("0" + hora + ":" + "0" + min + ":" + "0" + segons);
-                                } else if (segons < 10 && min >= 10 && hora < 10) {
-                                    time.setText("0" + hora + ":" + min + ":" + "0" + segons);
-                                } else if (segons >= 10) {
-                                    time.setText("0" + hora + ":" + "0" + min + ":" + segons);
-                                } else if (segons >= 10 && min >= 10) {
-                                    time.setText("0" + hora + ":" + min + ":" + segons);
-                                } else if (segons < 10 && min < 10 && hora >= 10) {
-                                    time.setText(hora + ":" + "0" + min + ":" + "0" + segons);
-                                } else if (segons < 10 && min >= 10 && hora >= 10) {
-                                    time.setText(hora + ":" + min + ":" + "0" + segons);
-                                } else if (segons >= 10 && min >= 10 && hora >= 10) {
-                                    time.setText(hora + ":" + min + ":" + segons);
-                                }
-                                Thread.sleep(1000);
-                            } catch (InterruptedException ex) {
-                                Logger.getLogger(VistaPartida.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    };
-    
-    SI VOLEM EL CRONOMETRE NOMES CAL CREAR UN LABEL QUE ES DIGUI time
-     */
-    /**
-     * Creates new form NewJFrame
-     */
+   
     public VistaPartida() {
         initComponents();
 
@@ -127,7 +85,11 @@ public class VistaPartida extends javax.swing.JFrame {
         String currentUsername = cp.getUsername();
         temps = temps / 1000000;
         double tempsSegons = (double) temps / 1000;
-        JOptionPane.showMessageDialog(this, "El temps de partida ha estat: " + tempsSegons + " segons.\nLa puntuacio total es de " + puntuacio + " punts.", "Informacio", 1);
+        int segons = (int) Math.floor(tempsSegons);
+        double milisegons = tempsSegons - segons;
+        milisegons *= 1000;
+
+        JOptionPane.showMessageDialog(this, "El temps de partida ha estat: " + segons + "," + (int)milisegons + " segons.\nLa puntuacio total es de " + puntuacio + " punts.", "Informacio", 1);
         cp.saveScore(nivellPartida, currentUsername, puntuacio);
         blockPartidaInputs();
     }
