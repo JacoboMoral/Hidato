@@ -153,9 +153,7 @@ public class IOHidato {
     	CrearCarpetaSiNoExisteix();
         File carpeta = new File("DB/HidatosImportats");
         ArrayList<String> llistaFitxers = new ArrayList<String>();
-        for (File fitxer : carpeta.listFiles()) {
-            System.out.println(fitxer.getName());
-            
+        for (File fitxer : carpeta.listFiles()) {            
             String[] aux = fitxer.getName().split("\\.");
             
             llistaFitxers.add(aux[0]);

@@ -27,9 +27,8 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     private ControladorNavegacio cn = ControladorNavegacio.getInstance();
     ControladorHidatoGrafic creacio;
     private int seguentMoviment = 1;
-    private int mostrant = 0;
-    private boolean nextPressed = false;
-    private boolean previousPressed = false;
+    private boolean inputsAllowed = true;
+
 
     /**
      * Creates new form NewJFrame
@@ -229,74 +228,93 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        cn.openMenuView();
-        this.dispose();
+    	if (inputsAllowed) {
+	    	cn.openMenuView();
+	        this.dispose();
+    	}
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        creacio.reset();
+    	if (inputsAllowed) {
+    		creacio.reset();
+    	}
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        if (seguentMoviment > creacio.getMinimMoviment()) {
-        	seguentMoviment = creacio.decrementarSeguentMoviment();
-            jLabel1.setText(Integer.toString(seguentMoviment));
-        }
+    	if (inputsAllowed) {
+	    	if (seguentMoviment > creacio.getMinimMoviment()) {
+	        	seguentMoviment = creacio.decrementarSeguentMoviment();
+	            jLabel1.setText(Integer.toString(seguentMoviment));
+	        }
+    	}
     }//GEN-LAST:event_jButton2MouseClicked
     
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
-        if (seguentMoviment < creacio.getMaximMoviment()) {
-        	seguentMoviment = creacio.incrementarSeguentMoviment();
-        	jLabel1.setText(Integer.toString(seguentMoviment));
-        }
+    	if (inputsAllowed) {
+	    	if (seguentMoviment < creacio.getMaximMoviment()) {
+	        	seguentMoviment = creacio.incrementarSeguentMoviment();
+	        	jLabel1.setText(Integer.toString(seguentMoviment));
+	        }
+    	}
     }//GEN-LAST:event_jButton1MousePressed
 
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
-    	if (seguentMoviment > creacio.getMinimMoviment()) {
-        	seguentMoviment = creacio.decrementarSeguentMoviment();
-            jLabel1.setText(Integer.toString(seguentMoviment));
-        }
+    	if (inputsAllowed) {
+	    	if (seguentMoviment > creacio.getMinimMoviment()) {
+	        	seguentMoviment = creacio.decrementarSeguentMoviment();
+	            jLabel1.setText(Integer.toString(seguentMoviment));
+	    	}	
+    	}
     }//GEN-LAST:event_jButton2MousePressed
 
     private void saveGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveGameMousePressed
-    	creacio.guardarHidato();
+    	if (inputsAllowed) {
+    		inputsAllowed = false;
+    		creacio.guardarHidato();
+    	}
     }//GEN-LAST:event_saveGameMousePressed
 
     private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
     	evt.consume(); //per evitar que es cridi dos cops a cada "tick" de la roda
-        if (evt.getWheelRotation() < 0) {
-        	if (seguentMoviment < creacio.getMaximMoviment()) {
-            	seguentMoviment = creacio.incrementarSeguentMoviment();
-            	jLabel1.setText(Integer.toString(seguentMoviment));
-            }
-        }
-        else {
-        	if (seguentMoviment > creacio.getMinimMoviment()) {
-            	seguentMoviment = creacio.decrementarSeguentMoviment();
-                jLabel1.setText(Integer.toString(seguentMoviment));
-            }
-        }
+    	if (inputsAllowed) {
+    		if (evt.getWheelRotation() < 0) {
+	        	if (seguentMoviment < creacio.getMaximMoviment()) {
+	            	seguentMoviment = creacio.incrementarSeguentMoviment();
+	            	jLabel1.setText(Integer.toString(seguentMoviment));
+	            }
+	        }
+	        else {
+	        	if (seguentMoviment > creacio.getMinimMoviment()) {
+	            	seguentMoviment = creacio.decrementarSeguentMoviment();
+	                jLabel1.setText(Integer.toString(seguentMoviment));
+	            }
+	        }
+    	}
+	        
     }//GEN-LAST:event_formMouseWheelMoved
 
     private void b_almoadillaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_almoadillaMousePressed
-        creacio.setAlmoadilla();
-    	mostrant = -2;
-        clearButtonsColor();
-        b_almoadilla.setBackground(new Color(119, 196, 255));
+        if (inputsAllowed) {
+        	creacio.setAlmoadilla();
+            clearButtonsColor();
+            b_almoadilla.setBackground(new Color(119, 196, 255));
+        }
     }//GEN-LAST:event_b_almoadillaMousePressed
 
     private void b_numMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_numMousePressed
-        creacio.setNumero();
-    	mostrant = 0;
-        clearButtonsColor();
-        b_num.setBackground(new Color(119, 196, 255));
+    	if (inputsAllowed) {
+	    	creacio.setNumero();
+	        clearButtonsColor();
+	        b_num.setBackground(new Color(119, 196, 255));
+    	}
     }//GEN-LAST:event_b_numMousePressed
 
     private void b_estrellaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_estrellaMousePressed
-        creacio.setAsterisc();
-    	mostrant = -1;
-        clearButtonsColor();
-        b_estrella.setBackground(new Color(119, 196, 255));
+    	if (inputsAllowed) {
+	    	creacio.setAsterisc();
+	        clearButtonsColor();
+	        b_estrella.setBackground(new Color(119, 196, 255));
+    	}
        
     }//GEN-LAST:event_b_estrellaMousePressed
 
@@ -337,20 +355,6 @@ public class VistaCreateHidato extends javax.swing.JFrame {
             }
         });
     }
-
-    public void incrementarSeguentMoviment() {
-        /*int seguentMov = partida.incrementarSeguentMoviment();
-        if (seguentMov != -1) {
-            jLabel1.setText(Integer.toString(seguentMov));
-        }*/
-    }
-
-    public void decrementarSeguentMoviment() {
-      /*  int seguentMov = partida.decrementarSeguentMoviment();
-        if (seguentMov != -1) {
-            jLabel1.setText(Integer.toString(seguentMov));
-        }*/
-    }
     
     public void setSeguentMoviment(int seguentMoviment) {
     	if (seguentMoviment != 0) {
@@ -360,7 +364,6 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     	else {
     		jLabel1.setText(" ");
     	}
-		
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -383,5 +386,10 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         b_almoadilla.setBackground(new Color(255,255,255));
 
     }
+
+
+	public void allowInputs() {
+		inputsAllowed = true;
+	}
     
 }

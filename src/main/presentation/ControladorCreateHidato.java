@@ -123,14 +123,18 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 	@Override
 	public void guardarHidato() {
 		if (getCellesLliures() == 0) JOptionPane.showMessageDialog(null, "Ha d'haver minim una casella lliure");
-		else if (controller.esResoluble(tipusCella, tipusAdjacencia, matriuCreacio)) {
+		new CheckResolubleWorker(tipusCella, tipusAdjacencia, matriuCreacio, this).execute();
+	}
+	
+	public void setResoluble(boolean resoluble) {
+		if (resoluble) {
 			String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
 		    if (hidatoName != null) controller.guardarHidatoCreat(tipusCella, tipusAdjacencia, matriuCreacio, hidatoName);
+		    view.allowInputs();
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "L'hidato proposat no es resoluble");
 		}
-	    
 	}
 
 	private int getCellesLliures() {

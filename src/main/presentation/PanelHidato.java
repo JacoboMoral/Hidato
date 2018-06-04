@@ -128,11 +128,6 @@ public class PanelHidato extends JPanel{
         }
     }
     
-    public void setUltim(int ultim) {
-    	this.ultim = ultim;
-    	repaint();
-    }
-    
     public void setPossiblesMoviments(Vector<Integer> nombresPerDefecte) {
     	this.nombresPerDefecte = nombresPerDefecte;
     }

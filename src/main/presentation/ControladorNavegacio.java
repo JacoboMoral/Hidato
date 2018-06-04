@@ -15,9 +15,11 @@ import main.domain.com.hidato.TipusCella;
 public class ControladorNavegacio {
     
     private static ControladorNavegacio instance = null;
-    private final int levelEasy = 1;
-    private final int levelInter = 2;
-    private final int levelHard = 3;
+    private VistaRegistrar registre;
+    private VistaMenuPrincipal menuPrincipal;
+    private Inici inici;
+    private VistaRanking ranking;
+    private VistaCreateHidato createHidato;
     
     
     public static ControladorNavegacio getInstance() {
@@ -28,45 +30,40 @@ public class ControladorNavegacio {
     }
 
     public void openRegisterView() {
-        VistaRegistrar v = new VistaRegistrar();
-        v.setVisible(true);
+    	registre = new VistaRegistrar();
+    	registre.setVisible(true);
     }
 
     public void openMenuView() {
-        VistaMenuPrincipal v = new VistaMenuPrincipal();
-        v.setVisible(true);
-       
+    	menuPrincipal = new VistaMenuPrincipal();
+    	menuPrincipal.setVisible(true);
     }
 
     public void openRankingView() {
-        VistaRanking v = new VistaRanking();
-        v.setVisible(true);
+    	ranking = new VistaRanking();
+        ranking.setVisible(true);
     }
     
     public void openInicialView() {
-        Inici v = new Inici();
-        v.setVisible(true);
+    	inici = new Inici();
+    	inici.setVisible(true);
     }
 
-    void openLoadingView(int level, VistaMenuPrincipal aThis) {
-        if (level == levelEasy) {
-             VistaLoading v = new VistaLoading(levelEasy, aThis);
-             v.setVisible(true);
-        }
-        else if (level == levelInter) {
-            VistaLoading v = new VistaLoading(levelInter, aThis);
-            v.setVisible(true);
-        }
-        else {
-            VistaLoading v = new VistaLoading(levelHard, aThis);
-            v.setVisible(true);
-        }
+    public void openCreateHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int alturaHidato, int ampladaHidato) {
+    	createHidato = new VistaCreateHidato(tipusCella, tipusAdjacencia, alturaHidato, ampladaHidato);
+    	createHidato.setVisible(true);
     }
 
-    void openCreateHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int alturaHidato, int ampladaHidato) {
-        VistaCreateHidato v = new VistaCreateHidato(tipusCella, tipusAdjacencia, alturaHidato, ampladaHidato);
-        v.setVisible(true);
+    public void closeMenuPrincipal() {
+    	menuPrincipal.dispose();
     }
-    
+
+	public void enableMenuPrincipal() {
+		menuPrincipal.setEnabled(true);
+	}
+	
+	public void disableMenuPrincipal() {
+		menuPrincipal.setEnabled(false);
+	}
     
 }
