@@ -30,14 +30,10 @@ import main.domain.com.hidato.Contador;
  */
 public class VistaPartida extends javax.swing.JFrame {
 
-    private ControladorPresentacio cp = ControladorPresentacio.getInstance();
-    private static final int levelEasy = 1;
-    private static final int levelInter = 2;
-    private static final int levelHard = 3;
+    private ControladorPresentacio controladorPresentacio = ControladorPresentacio.getInstance();
     ControladorPartida partida = ControladorPartida.getInstance();
     ControladorNavegacio cn = ControladorNavegacio.getInstance();
     private String seguentMoviment = " ";
-    private int nivellPartida;
     private boolean inputsAllowed = true;
     private boolean ajuda = false;
     int textHora = 0;
@@ -86,29 +82,19 @@ public class VistaPartida extends javax.swing.JFrame {
 	public VistaPartida(javax.swing.JPanel hidatoPanel) {
         initComponents();
         cronometre.start();
-        Dificultat dif = cp.getDificultatPartida();
-        if (dif == Dificultat.FACIL) {
-            nivellPartida = levelEasy;
-        }
-        if (dif == Dificultat.MIG) {
-            nivellPartida = levelInter;
-        }
-        if (dif == Dificultat.DIFICIL) {
-            nivellPartida = levelHard;
-        }
         partida.setView(this);
         this.hidatoPanel = hidatoPanel;
         this.add(this.hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
         jLabel1.setText(seguentMoviment);
-        tipusAdjacencia.setText(TipusAdjacenciaToString(cp.getTipusAdjacenciaPartida()));
+        tipusAdjacencia.setText(TipusAdjacenciaToString(controladorPresentacio.getTipusAdjacenciaPartida()));
         this.validate();
     }
 
     public void setPartidaAcabada() {
         int puntuacio = partida.getPuntuacioPartida();
         long temps = partida.tempsSolucionarPartida();
-        String currentUsername = cp.getUsername();
+        String currentUsername = controladorPresentacio.getUsername();
         temps = temps / 1000000;
         double tempsSegons = (double) temps / 1000;
         int segons = (int) Math.floor(tempsSegons);
@@ -116,7 +102,7 @@ public class VistaPartida extends javax.swing.JFrame {
         milisegons *= 1000;
 
         JOptionPane.showMessageDialog(this, "El temps de partida ha estat: " + segons + "," + (int)milisegons + " segons.\nLa puntuacio total es de " + puntuacio + " punts.", "Informacio", 1);
-        cp.saveScore(nivellPartida, currentUsername, puntuacio);
+        controladorPresentacio.saveScore(controladorPresentacio.getDificultatPartida(), currentUsername, puntuacio);
         blockPartidaInputs();
     }
 

@@ -317,10 +317,10 @@ public class ControladorDomini {
     }
 
     /*-----------------------------RANKING------------------------------*/
-    public void saveScore(int dif, int score, String username) {
+    public void saveScore(Dificultat dificultat, int score, String username) {
         ranking = controladorPersistencia.loadRanking();
         System.out.println("ENTRO Controlador domini");
-        controladorPersistencia.saveScoreDB(ranking, dif, score, username);
+        controladorPersistencia.saveScoreDB(ranking, dificultatToInt(dificultat), score, username);
     }
 
     public String[] getRankingEasy() {
@@ -470,6 +470,12 @@ public class ControladorDomini {
 
     public Dificultat getDificultatPartida() {
         return partidaEnCurs.getDificultat();
+    }
+    
+    public int dificultatToInt(Dificultat dificultat) {
+    	if (dificultat == Dificultat.FACIL) return 1;
+    	else if (dificultat == Dificultat.MIG) return 2;
+    	return 3;
     }
 
 

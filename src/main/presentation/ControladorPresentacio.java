@@ -203,8 +203,8 @@ public class ControladorPresentacio {
 		}
 	}
 	
-	public void saveScore(int dif, String username, int score) {
-        domini.saveScore(dif, score, username);
+	public void saveScore(Dificultat dificultat, String username, int score) {
+        domini.saveScore(dificultat, score, username);
     }
 
     public String[] getRankingEasy() {
