@@ -319,6 +319,7 @@ public class ControladorDomini {
     /*-----------------------------RANKING------------------------------*/
     public void saveScore(int dif, int score, String username) {
         ranking = controladorPersistencia.loadRanking();
+        System.out.println("ENTRO Controlador domini");
         controladorPersistencia.saveScoreDB(ranking, dif, score, username);
     }
 
@@ -466,5 +467,10 @@ public class ControladorDomini {
     public void getUpdate() {
         ranking = controladorPersistencia.loadRanking();
     }
+
+    public Dificultat getDificultatPartida() {
+        return partidaEnCurs.getDificultat();
+    }
+
 
 }

@@ -204,6 +204,7 @@ public class ControladorPresentacio {
 	}
 	
 	public void saveScore(int dif, String username, int score) {
+            System.out.println("ENTRO Controlador persistencia");
         domini.saveScore(dif, score, username);
     }
 
@@ -326,6 +327,10 @@ public class ControladorPresentacio {
 
     public TipusAdjacencia getTipusAdjacenciaPartida() {
         return domini.getAdjacenciaPartida();
+    }
+
+    public Dificultat getDificultatPartida() {
+        return domini.getDificultatPartida();
     }
 
 
