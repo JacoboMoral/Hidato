@@ -10,7 +10,7 @@ public class Algorismes {
     private int[][] matriuSolucio;
     boolean solucionat = false;
     private Hidato hidato;
-    private Vector<Integer> given = new Vector<Integer>();
+    private Vector<Integer> nombresDonats = new Vector<Integer>();
     private Random randomSeed;
 
     public Algorismes(Hidato hidato) {
@@ -28,7 +28,7 @@ public class Algorismes {
         int casellesNumeriques = 0;
 
         int[][] matriu = new int[matriuSolucio.length][matriuSolucio[0].length];
-        given = new Vector<Integer>();
+        nombresDonats = new Vector<Integer>();
         
         //fem una copia de matriu solucio mentre cerquem el valor de row1 i column1
         for (int i = 0; i < matriuSolucio.length; ++i) {
@@ -39,7 +39,7 @@ public class Algorismes {
                     column1 = j;
                 }
                 if (matriu[i][j] > 0) { //valor igual a un numero
-                    given.addElement(matriu[i][j]);
+                    nombresDonats.addElement(matriu[i][j]);
                 }
                 if (matriu[i][j] > -1) {
                     casellesNumeriques++;
@@ -47,48 +47,42 @@ public class Algorismes {
             }
         }
 
-        Collections.sort(given);
+        Collections.sort(nombresDonats);
 
-        if (given.size() == 0) {
+        if (nombresDonats.size() == 0) {
         		return false; 					//ens ha de donar minim 2 numeros
         }
 
-        if (given.get(0) != 1) {
+        if (nombresDonats.get(0) != 1) {
             return false;					//comprova que sempre ens donin el primer numero (i.e. 1)
         }
         
-        if (given.get(given.size() - 1) != casellesNumeriques) {
+        if (nombresDonats.get(nombresDonats.size() - 1) != casellesNumeriques) {
             return false; 					//comprova que sempre ens donin el ultimo numero
         }
         
         return solucionador(row1, column1, 1, 0, matriu);
     }
 
-    private boolean solucionador(int r, int c, int n, int next, int[][] matriuSolucio) {
-        if (n > given.get(given.size() - 1)) {
-            return true;
-        }
+    private boolean solucionador(int fila, int columna, int profunditat, int seg, int[][] matriuSolucio) {
+    	
+        if (profunditat > nombresDonats.get(nombresDonats.size() - 1)) return true;
 
-        if (matriuSolucio[r][c] != 0 && matriuSolucio[r][c] != n) {
-            return false;
-        }
+        if (matriuSolucio[fila][columna] != 0 && matriuSolucio[fila][columna] != profunditat) return false;
 
-        if (matriuSolucio[r][c] == 0 && given.get(next) == n) {
-            return false;
-        }
+        if (matriuSolucio[fila][columna] == 0 && nombresDonats.get(seg) == profunditat) return false;
 
-        int back = matriuSolucio[r][c];
-        if (back == n) {
-            next++;
-        }
+        int anterior = matriuSolucio[fila][columna];
+        
+        if (anterior == profunditat) seg++;
 
-        matriuSolucio[r][c] = n;
+        matriuSolucio[fila][columna] = profunditat;
 
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
-                if (hidato.posicioValida(i, j, r, c) && dinsLimits(r + i, c + j, matriuSolucio.length, matriuSolucio[0].length)) {
-                    if (solucionador(r + i, c + j, n + 1, next, matriuSolucio)) {
-                        if (n == 1) {
+                if (hidato.posicioValida(i, j, fila, columna) && dinsLimits(fila + i, columna + j, matriuSolucio.length, matriuSolucio[0].length)) {
+                    if (solucionador(fila + i, columna + j, profunditat + 1, seg, matriuSolucio)) {
+                        if (profunditat == 1) {
                             tractarMatriuSolucio(matriuSolucio);
                         }
                         return true;
@@ -97,14 +91,13 @@ public class Algorismes {
             }
         }
 
-        matriuSolucio[r][c] = back;
+        matriuSolucio[fila][columna] = anterior;
         return false;
     }
 
     private void tractarMatriuSolucio(int[][] matriu) {
         matriuSolucio = matriu;
         solucionat = true;
-
     }
 
     public int[][] getMatriuSolucio() {
@@ -152,7 +145,7 @@ public class Algorismes {
         if (!solucionat) {
             this.solucionar();
         }
-        return given;
+        return nombresDonats;
     }
 
     private boolean generarComplet(int r, int c, int celesBuides, int n, ArrayList<Integer> escrits, int[][] matriu, int seed) {
@@ -374,10 +367,10 @@ public class Algorismes {
         for (int i = 0; i < matriu.length; ++i) {
             for (int j = 0; j < matriu[0].length; ++j) {
                 if (matriu[i][j] > 0) { //valor igual a un numero
-                    given.addElement(matriu[i][j]);
+                    nombresDonats.addElement(matriu[i][j]);
                 }
             }
         }
-        Collections.sort(given);
+        Collections.sort(nombresDonats);
     }
 }

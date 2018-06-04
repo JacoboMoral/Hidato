@@ -124,11 +124,11 @@ public class Partida {
     }
 
     public int getTemps() {
-        return tempsSegons;
+        return contador.getSegons() + tempsSegons;
     }
 
     public long getTempsNano() {
-        return tempsNanosegons;
+        return contador.getNanosegons() + tempsNanosegons;
     }
 
     public int[][] getSolucio() {
