@@ -166,25 +166,13 @@ public class VistaRanking extends javax.swing.JFrame {
         rankingPanel = new javax.swing.JPanel();
         easyPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         hardPanel = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         title1 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList<>();
         interPanel = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         titleInter = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
@@ -235,7 +223,7 @@ public class VistaRanking extends javax.swing.JFrame {
 
         b_back.setBackground(new java.awt.Color(255, 255, 255));
         b_back.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        b_back.setText("Cancel.lar");
+        b_back.setText("Enrere");
         b_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 b_backMouseClicked(evt);
@@ -380,18 +368,7 @@ public class VistaRanking extends javax.swing.JFrame {
         title.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         title.setText("Ranking-Facil");
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel5.setText("Pos");
-
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel8.setText("Punts");
-
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel6.setText("Nom");
-
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel7.setText("Data");
-
+        jList1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout easyPanelLayout = new javax.swing.GroupLayout(easyPanel);
@@ -399,36 +376,22 @@ public class VistaRanking extends javax.swing.JFrame {
         easyPanelLayout.setHorizontalGroup(
             easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(easyPanelLayout.createSequentialGroup()
-                .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(easyPanelLayout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(title)
-                            .addGroup(easyPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel8)
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel6)
-                                .addGap(66, 66, 66)
-                                .addComponent(jLabel7))))
-                    .addGroup(easyPanelLayout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(154, 154, 154))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(easyPanelLayout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(title)
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         easyPanelLayout.setVerticalGroup(
             easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(easyPanelLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(title)
-                .addGroup(easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         rankingPanel.add(easyPanel, "card4");
@@ -436,21 +399,10 @@ public class VistaRanking extends javax.swing.JFrame {
         hardPanel.setBackground(new java.awt.Color(204, 204, 204));
         hardPanel.setPreferredSize(new java.awt.Dimension(579, 430));
 
-        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel13.setText("Pos");
-
-        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel14.setText("Punst");
-
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel15.setText("Nom");
-
-        jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel16.setText("Data");
-
         title1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         title1.setText("Ranking-Dificil");
 
+        jList3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jScrollPane4.setViewportView(jList3);
 
         javax.swing.GroupLayout hardPanelLayout = new javax.swing.GroupLayout(hardPanel);
@@ -458,39 +410,22 @@ public class VistaRanking extends javax.swing.JFrame {
         hardPanelLayout.setHorizontalGroup(
             hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hardPanelLayout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(hardPanelLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(title1))
-                    .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, hardPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel13)
-                            .addGap(32, 32, 32)
-                            .addComponent(jLabel14)
-                            .addGap(40, 40, 40)
-                            .addComponent(jLabel15)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel16))
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane4)
+                .addContainerGap())
+            .addGroup(hardPanelLayout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(title1)
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         hardPanelLayout.setVerticalGroup(
             hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hardPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(title1)
-                .addGap(18, 18, 18)
-                .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel13)
-                        .addComponent(jLabel14))
-                    .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel16)
-                        .addComponent(jLabel15)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         rankingPanel.add(hardPanel, "card2");
@@ -498,60 +433,33 @@ public class VistaRanking extends javax.swing.JFrame {
         interPanel.setBackground(new java.awt.Color(204, 204, 204));
         interPanel.setPreferredSize(new java.awt.Dimension(579, 430));
 
-        jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel20.setText("Data");
-
-        jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel19.setText("Nom");
-
-        jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel18.setText("Punts");
-
-        jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel17.setText("Pos");
-
         titleInter.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         titleInter.setText("Ranking-Mig");
 
+        jList2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jScrollPane2.setViewportView(jList2);
 
         javax.swing.GroupLayout interPanelLayout = new javax.swing.GroupLayout(interPanel);
         interPanel.setLayout(interPanelLayout);
         interPanelLayout.setHorizontalGroup(
             interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, interPanelLayout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
-                .addGroup(interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, interPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel17)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel18)
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel19)
-                        .addGap(82, 82, 82)
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(interPanelLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(titleInter))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(149, 149, 149))
+            .addGroup(interPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+            .addGroup(interPanelLayout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(titleInter)
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         interPanelLayout.setVerticalGroup(
             interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(interPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(titleInter)
-                .addGap(30, 30, 30)
-                .addGroup(interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         rankingPanel.add(interPanel, "card3");
@@ -686,18 +594,6 @@ public class VistaRanking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;

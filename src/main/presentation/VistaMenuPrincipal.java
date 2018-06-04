@@ -13,6 +13,7 @@ import main.domain.com.hidato.TipusCella;
 import main.domain.com.hidato.Usuari;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,7 +54,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         l_username.setText(cp.getUsername());
         l_username1.setText(cp.getUsername());
-        l_password.setText(cp.getPassword());
+        int passwordSize = cp.getPassword().length();
+        char c = '*';
+        char[] chars = new char[passwordSize];
+        Arrays.fill(chars, c);
+        String s = new String(chars);   
+        l_password.setText(s);
+        
         tipologia.addItem("Hexagon");
         tipologia.addItem("Quadrat");
         tipologia.addItem("Triangle");
@@ -190,6 +197,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
         changePanel = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
@@ -231,7 +240,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Hidato");
 
-        b_userProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/userIcon.png"))); // NOI18N
+        b_userProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user.png"))); // NOI18N
         b_userProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 b_userProfileMouseClicked(evt);
@@ -248,10 +257,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             .addGroup(topBarPanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 470, Short.MAX_VALUE)
                 .addComponent(b_userProfile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(l_username, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(l_username)
                 .addContainerGap())
         );
         topBarPanelLayout.setVerticalGroup(
@@ -260,8 +269,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(topBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(b_userProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_username, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addGroup(topBarPanelLayout.createSequentialGroup()
+                        .addComponent(l_username, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)))
                 .addGap(27, 27, 27))
         );
 
@@ -1205,6 +1216,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel29.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel29.setText("Seguent nuemro");
 
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user.png"))); // NOI18N
+
+        jLabel32.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel32.setText("Entrar en el teu perfil");
+
         javax.swing.GroupLayout instruccionsPanelLayout = new javax.swing.GroupLayout(instruccionsPanel);
         instruccionsPanel.setLayout(instruccionsPanelLayout);
         instruccionsPanelLayout.setHorizontalGroup(
@@ -1215,59 +1231,64 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                         .addGap(88, 88, 88)
                         .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel23)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel18))
+                            .addComponent(jLabel19))
                         .addGap(57, 57, 57)
                         .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel26)
-                            .addComponent(jLabel24)
-                            .addComponent(jLabel22)))
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel24)))
                     .addGroup(instruccionsPanelLayout.createSequentialGroup()
                         .addGap(86, 86, 86)
-                        .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton11))
+                        .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel31)
+                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel18))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(50, 50, 50)
                         .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel28)
                             .addComponent(jLabel27)
-                            .addComponent(jLabel29))))
+                            .addComponent(jLabel29)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel26))))
                 .addContainerGap(353, Short.MAX_VALUE))
         );
         instruccionsPanelLayout.setVerticalGroup(
             instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(instruccionsPanelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(13, 13, 13)
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel23)
                     .addComponent(jLabel22))
                 .addGap(18, 18, 18)
-                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel19)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, instruccionsPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addGap(8, 8, 8)))
+                    .addComponent(jLabel24))
+                .addGap(17, 17, 17)
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel18))
                 .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(instruccionsPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel18))
-                    .addGroup(instruccionsPanelLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel26)))
-                .addGap(32, 32, 32)
-                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel27))
-                .addGap(23, 23, 23)
-                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel28))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, instruccionsPanelLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel32)))
                 .addGap(18, 18, 18)
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel25))
+                .addGap(15, 15, 15)
+                .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton11)
                     .addComponent(jLabel29))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         contentPanel.add(instruccionsPanel, "card6");
@@ -1786,7 +1807,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                     }
                     if (successful) {
                         JOptionPane.showMessageDialog(null, "Your password has changed correctly!");
-                        l_password.setText(cp.getPassword());
+                        int passwordSize = cp.getPassword().length();
+                        char c = '*';
+                        char[] chars = new char[passwordSize];
+                        Arrays.fill(chars, c);
+                        String s = new String(chars);   
+                        l_password.setText(s);
                         t_oldpass.setText("");
                         t_newpass.setText("");
                         t_rpass.setText("");
@@ -2323,6 +2349,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
