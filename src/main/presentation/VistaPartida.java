@@ -47,6 +47,7 @@ public class VistaPartida extends javax.swing.JFrame {
 
     public VistaPartida(int level, String username) {
         initComponents();
+        
         nivellPartida = level;
         partida.setView(this);
         if (level == levelEasy) {
@@ -69,6 +70,10 @@ public class VistaPartida extends javax.swing.JFrame {
 
 	public VistaPartida(javax.swing.JPanel hidatoPanel) {
         initComponents();
+        Dificultat dif = cp.getDificultatPartida();
+        if (dif == Dificultat.FACIL) nivellPartida = levelEasy;
+        if (dif == Dificultat.MIG) nivellPartida = levelInter;
+        if (dif == Dificultat.DIFICIL) nivellPartida = levelHard;
         partida.setView(this);
         this.hidatoPanel = hidatoPanel;
         this.add(this.hidatoPanel);
@@ -89,6 +94,10 @@ public class VistaPartida extends javax.swing.JFrame {
         milisegons *= 1000;
 
         JOptionPane.showMessageDialog(this, "El temps de partida ha estat: " + segons + "," + (int)milisegons + " segons.\nLa puntuacio total es de " + puntuacio + " punts.", "Informacio", 1);
+        System.out.println("GUARDO SCORE");
+        System.out.println("Nivell de partida" + nivellPartida);
+        System.out.println("Useranme" + currentUsername);
+        System.out.println("Puntacio" + puntuacio);
         cp.saveScore(nivellPartida, currentUsername, puntuacio);
         blockPartidaInputs();
     }

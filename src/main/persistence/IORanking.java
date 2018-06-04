@@ -31,6 +31,10 @@ public class IORanking {
         LocalDate date = LocalDate.now();
         Posicio p = new Posicio(username, score, date);
         ranking.insertPosition(p, dif);
+        System.out.println("ENTRO Controlador ioRanking");
+        System.out.println("Useranme" + username);
+        System.out.println("punts" + score);
+        System.out.println("dificultat" + dif);
         saveRanking(ranking);
     }
 
@@ -40,6 +44,10 @@ public class IORanking {
             ArrayList<Posicio> rankingInter = r.getLlistaPosicio(levelInter);
             ArrayList<Posicio> rankingHard = r.getLlistaPosicio(levelHard);
 
+            for (int i = 0; i < rankingEasy.size(); ++i) {
+                System.out.println("Username" + rankingEasy.get(i).getUsername() + " "  + "Score" + rankingEasy.get(i).getScore() + "\n");
+            }
+            
             File temp = new File("DB/Ranking");
             if (!temp.exists()) {
                 temp.mkdirs();
