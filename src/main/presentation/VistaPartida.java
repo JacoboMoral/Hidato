@@ -45,29 +45,6 @@ public class VistaPartida extends javax.swing.JFrame {
         initComponents();
     }
 
-    public VistaPartida(int level, String username) {
-        initComponents();
-        
-        nivellPartida = level;
-        partida.setView(this);
-        if (level == levelEasy) {
-            hidatoPanel = partida.partidaAutogenerada(Dificultat.FACIL);
-        }
-        if (level == levelInter) {
-            hidatoPanel = partida.partidaAutogenerada(Dificultat.MIG);
-        }
-        if (level == levelHard) {
-            hidatoPanel = partida.partidaAutogenerada(Dificultat.DIFICIL);
-        }
-        this.add(hidatoPanel);
-        seguentMoviment = Integer.toString(partida.getSeguentMoviment());
-        jLabel1.setText(seguentMoviment);
-
-        tipusAdjacencia.setText(TipusAdjacenciaToString(cp.getTipusAdjacenciaPartida()));
-        this.validate();
-
-    }
-
 	public VistaPartida(javax.swing.JPanel hidatoPanel) {
         initComponents();
         Dificultat dif = cp.getDificultatPartida();
@@ -94,10 +71,6 @@ public class VistaPartida extends javax.swing.JFrame {
         milisegons *= 1000;
 
         JOptionPane.showMessageDialog(this, "El temps de partida ha estat: " + segons + "," + (int)milisegons + " segons.\nLa puntuacio total es de " + puntuacio + " punts.", "Informacio", 1);
-        System.out.println("GUARDO SCORE");
-        System.out.println("Nivell de partida" + nivellPartida);
-        System.out.println("Useranme" + currentUsername);
-        System.out.println("Puntacio" + puntuacio);
         cp.saveScore(nivellPartida, currentUsername, puntuacio);
         blockPartidaInputs();
     }
@@ -317,26 +290,19 @@ public class VistaPartida extends javax.swing.JFrame {
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
             if (input == JOptionPane.OK_OPTION) {
-
-                partida.solucionarPartida();
-                long temps = partida.tempsSolucionarPartida();
-                if (temps > 5000000) {
-                    temps = temps / 1000000;
-                    JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " milisegons", "Informacio", 1);
-                } else if (temps > 5000) {
-                    temps = temps / 1000;
-                    JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " microsegons", "Informacio", 1);
-                } else {
-                    JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " nanosegons", "Informacio", 1);
-                }
-
                 this.blockPartidaInputs();
+                partida.solucionarPartida();
             }
         }
     }//GEN-LAST:event_jLabel4MousePressed
 
+    
     private void blockPartidaInputs() {
         inputsAllowed = false;
+    }
+    
+    private void allowPartidaInputs() {
+        inputsAllowed = true;
     }
 
 	private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
@@ -434,4 +400,18 @@ public class VistaPartida extends javax.swing.JFrame {
     private javax.swing.JLabel saveGame;
     private javax.swing.JLabel tipusAdjacencia;
     // End of variables declaration//GEN-END:variables
+
+	public void solucionat() {
+		long temps = partida.tempsSolucionarPartida();
+        if (temps > 5000000) {
+            temps = temps / 1000000;
+            JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " milisegons", "Informacio", 1);
+        } else if (temps > 5000) {
+            temps = temps / 1000;
+            JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " microsegons", "Informacio", 1);
+        } else {
+            JOptionPane.showMessageDialog(this, "El temps que s'ha tardat en solucionar aquest hidato ha estat: " + temps + " nanosegons", "Informacio", 1);
+        }
+        allowPartidaInputs();
+	}
 }

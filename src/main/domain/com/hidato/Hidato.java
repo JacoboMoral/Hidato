@@ -57,7 +57,6 @@ public abstract class Hidato {
             copy(matriuOriginal, matriuHidato);
             al.modificarHidato(this);
             dificultat = al.obtenirDificultat();
-        	HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
             return true;
         }
         matriuHidato = null;

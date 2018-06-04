@@ -204,7 +204,6 @@ public class ControladorPresentacio {
 	}
 	
 	public void saveScore(int dif, String username, int score) {
-            System.out.println("ENTRO Controlador persistencia");
         domini.saveScore(dif, score, username);
     }
 
@@ -280,18 +279,27 @@ public class ControladorPresentacio {
 
 	public void importarHidatotxt(String ruta) throws Exception {
 		if (domini.comprovarHidatotxt(ruta)) {
-			JOptionPane.showMessageDialog(null, "Format correcte");
-			if(domini.comprovarHidatotxtResoluble()) {
-				String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
-				if(hidatoName != null) {
-					domini.guardarHidatotxt(hidatoName);
-					JOptionPane.showMessageDialog(null, "Hidato guardat amb el nom: " + hidatoName);
-				}			
-			}
-			else JOptionPane.showMessageDialog(null, "Hidato proposat no es resoluble");
-			
-		} else JOptionPane.showMessageDialog(null, "Format no valid");
+			JOptionPane.showMessageDialog(null, "Format correcte, ara es revisara que sigui resoluble");
+        	new ImportWorker(ruta).execute();
+		}
+		else JOptionPane.showMessageDialog(null, "Format no valid");
 	}
+	
+	public void setHidatoGeneratFromTxtResoluble(Boolean resoluble) {
+		if(resoluble) {
+			String hidatoName = JOptionPane.showInputDialog("", "Entra el nom que li vols posar a l'hidato");
+			if(hidatoName != null) {
+				try {
+					domini.guardarHidatotxt(hidatoName);
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null, "Hi ha hagut un problema a l'hora de guardar el teu hidato");
+				}
+				JOptionPane.showMessageDialog(null, "Hidato guardat amb el nom: " + hidatoName);
+			}
+		}
+		else JOptionPane.showMessageDialog(null, "Hidato proposat no es resoluble");
+		
+	} 
 
 	public TipusCella getTipusCellaPartida() {
 		return domini.getTipusCellaPartida();
@@ -332,6 +340,4 @@ public class ControladorPresentacio {
     public Dificultat getDificultatPartida() {
         return domini.getDificultatPartida();
     }
-
-
 }

@@ -13,13 +13,8 @@ import java.util.logging.Logger;
  *
  * @author admin
  */
-public class VistaLoading extends javax.swing.JFrame implements Runnable{
+public class VistaLoading extends javax.swing.JFrame{
 
-    private Thread tiempo = null;
-    private static final int levelEasy = 1;
-    private static final int levelInter = 2;
-    private static final int levelHard = 3;
-    private int level;
     ControladorPresentacio cp = ControladorPresentacio.getInstance();
     VistaMenuPrincipal vMP;
     
@@ -29,17 +24,6 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
 
     public VistaLoading() {
     	initComponents();
-        tiempo = new Thread(this);
-        tiempo.start();
-        this.setOpacity((float) 0.5);
-    }
-
-    public VistaLoading(int dificultat, VistaMenuPrincipal aThis) {
-        initComponents();
-        level = dificultat;
-        tiempo = new Thread(this);
-        tiempo.start();
-        vMP = aThis;
         this.setOpacity((float) 0.5);
     }
     
@@ -132,32 +116,4 @@ public class VistaLoading extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void run() {
-        int tipologia = (int) (Math.random() * 3) + 1;
-        while(tiempo != null){
-                tiempo = null;
-            if (level == levelEasy) {
-                VistaPartida v = new VistaPartida(levelEasy, cp.getUsername());
-                //Thread.sleep(1000);
-                v.setVisible(true);
-                vMP.dispose();
-                this.dispose();
-            }
-            else if (level == levelInter) {
-                VistaPartida v = new VistaPartida(levelInter, cp.getUsername());
-                //Thread.sleep(1000);
-                v.setVisible(true);
-                vMP.dispose();
-                this.dispose();
-            }
-            else {
-                VistaPartida v = new VistaPartida(levelHard, cp.getUsername());
-                //Thread.sleep(1000);
-                v.setVisible(true);
-                vMP.dispose();
-                this.dispose();
-            }
-        }
-    }
 }
