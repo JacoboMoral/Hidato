@@ -30,9 +30,6 @@ public class Algorismes {
         int[][] matriu = new int[matriuSolucio.length][matriuSolucio[0].length];
         given = new Vector<Integer>();
         
-        HidatoIO.writeHidatoMatrixToOutput(matriu);
-        HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
-        
         //fem una copia de matriu solucio mentre cerquem el valor de row1 i column1
         for (int i = 0; i < matriuSolucio.length; ++i) {
             for (int j = 0; j < matriuSolucio[0].length; ++j) {
@@ -64,14 +61,6 @@ public class Algorismes {
             return false; 					//comprova que sempre ens donin el ultimo numero
         }
         
-        System.out.println("algorismes: enviat per solucionar");
-       /* HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
-        HidatoIO.writeHidatoMatrixToOutput(matriu);
-
-        System.out.println(given);
-        System.out.println(row1);
-        System.out.println(column1);*/
-
         return solucionador(row1, column1, 1, 0, matriu);
     }
 
@@ -101,9 +90,6 @@ public class Algorismes {
                     if (solucionador(r + i, c + j, n + 1, next, matriuSolucio)) {
                         if (n == 1) {
                             tractarMatriuSolucio(matriuSolucio);
-                            System.out.println("algorismes: solucionat");
-                            HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
-
                         }
                         return true;
                     }
@@ -170,7 +156,7 @@ public class Algorismes {
     }
 
     private boolean generarComplet(int r, int c, int celesBuides, int n, ArrayList<Integer> escrits, int[][] matriu, int seed) {
-        if (n > celesBuides) {
+    	if (n > celesBuides) {
             return true;
         }
 
@@ -215,9 +201,10 @@ public class Algorismes {
                     }
                 }
             }
-        } else {
-            for (int i = 1; i > 2; i--) {
-                for (int j = 1; j > 2; j--) {
+        } 
+        else if (seed == 3){
+            for (int i = 1; i > -2; i--) {
+                for (int j = 1; j > -2; j--) {
                     if (hidato.posicioValida(i, j, r, c) && dinsLimits(r + i, c + j, matriu.length, matriu[0].length)) {
                         if (generarComplet(r + i, c + j, celesBuides, n + 1, escrits, matriu, randomSeed.nextInt(4))) {
                             return true;
@@ -272,7 +259,7 @@ public class Algorismes {
         int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
 
         for (int i = 0; i < 10; ++i) { //10 intents per generar un hidato, cadascun amb un forat mes (mes facil cada cop)
-            generat = generarMatriuCompleta(forats + i, matriu);
+            generat = generarMatriuCompleta(forats, matriu);
             if (generat) {
                 emplenarForats(matriu);
                 matriuSolucio = makeCopy(matriu);
@@ -281,6 +268,7 @@ public class Algorismes {
                 emplenarGiven(matriu);
                 return matriu;
             }
+            ++forats;
         }
         return null;
     }
@@ -346,7 +334,6 @@ public class Algorismes {
         }
         Collections.shuffle(initialNumberi);
         Collections.shuffle(initialNumberj);
-
         ArrayList<Integer> escrits;
         randomSeed = new Random();
 
