@@ -126,12 +126,11 @@ public class Partida {
     }
 
     public int getTemps() {
-        System.out.println("Estic a Partida.java " + "El valor del temps es " + tempsSegons);
-        return tempsSegons;
+        return contador.getSegons();
     }
 
     public long getTempsNano() {
-        return tempsNanosegons;
+        return contador.getNanosegons();
     }
 
     public int[][] getSolucio() {
