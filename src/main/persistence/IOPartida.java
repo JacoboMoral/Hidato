@@ -108,13 +108,13 @@ public class IOPartida {
             }
         }
     }
-    
+
     public static void esborrarPartidaGuardada(String usuari) {
-    	File arxiu = new File("DB/Usuaris/" + usuari + "/partida.txt");
+        File arxiu = new File("DB/Usuaris/" + usuari + "/partida.txt");
         if (arxiu.exists()) {
-        	arxiu.delete();
+            arxiu.delete();
         }
-	}
+    }
 
     public static boolean hiHaPartida(String usuari) {
         File arxiu = new File("DB/Usuaris/" + usuari + "/partida.txt");
@@ -129,125 +129,140 @@ public class IOPartida {
 
         SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String date = DATE_FORMAT.format(dataIni);
-		
-		try {
-					
-			File arxiu = new File("DB/Usuaris/" + nomUsuari + "/partida.txt");
-			arxiu.delete();
-			arxiu.createNewFile();
-			FileWriter fileWriter = new FileWriter("DB/Usuaris/" + nomUsuari + "/partida.txt", true);
-			BufferedWriter bw = new BufferedWriter(fileWriter);
-			PrintStream output = new PrintStream(arxiu);
-			writeHidato(cella, tipusAdj, matriu, output);
-			output.println(";");
-			writeHidato(cella, tipusAdj, matriuOriginal, output);
-			output.println(";");
-			bw.write(status + ";" + puntuacio + ";" + nombresDonats + ";"+ nombresEscrits +";" + date + ";" + temps +";");
-			bw.close();
-			output.close();
-			fileWriter.close();
 
-		} catch(IOException ex){ex.printStackTrace();}
+        try {
 
-	}
+            File arxiu = new File("DB/Usuaris/" + nomUsuari + "/partida.txt");
+            arxiu.delete();
+            arxiu.createNewFile();
+            FileWriter fileWriter = new FileWriter("DB/Usuaris/" + nomUsuari + "/partida.txt", true);
+            BufferedWriter bw = new BufferedWriter(fileWriter);
+            PrintStream output = new PrintStream(arxiu);
+            writeHidato(cella, tipusAdj, matriu, output);
+            output.println(";");
+            writeHidato(cella, tipusAdj, matriuOriginal, output);
+            output.println(";");
+            bw.write(status + ";" + puntuacio + ";" + nombresDonats + ";" + nombresEscrits + ";" + date + ";" + temps + ";");
+            bw.close();
+            output.close();
+            fileWriter.close();
 
-	public static void carregarPartida(String usuari) {
-		try {
-			FileReader fr = new FileReader("DB/Usuaris/" + usuari + "/partida.txt");
-			BufferedReader b = new BufferedReader(fr);
-			String cadena = b.readLine();
-			String[] cabecera = cadena.split(",");
-			tipusCella = stringToTipusCella(cabecera[0]);
-			if (tipusCella == null); //ficar missatge
-			tipusAdjacencia = stringToTipusAdjacencia(cabecera[1]);
-			matriu = new int[Integer.parseInt(cabecera[2])][Integer.parseInt(cabecera[3])];
-			matriuOriginal = new int[Integer.parseInt(cabecera[2])][Integer.parseInt(cabecera[3])];
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
-			int i = 0;
-			
-			//Matriu partida
+    }
 
-			cadena = b.readLine();
-			String[] linea = cadena.split(",");
-			while (cadena != null && linea.length == Integer.parseInt(cabecera[3])) {
-				for (int j = 0; j < linea.length; ++j) {
-					if (linea[j].equals("*")) matriu[i][j] = -1;
-					else if (linea[j].equals("#")) matriu[i][j] = -2;
-					else if (linea[j].equals("?")) matriu[i][j] = 0;
-					else matriu[i][j] = Integer.parseInt(linea[j]);
-				}
-				++i;
-				cadena = b.readLine();
-				linea = cadena.split(",");
-			}
-			
-			
-			//Matriu original
-			
-			cadena = b.readLine();
-			cadena = b.readLine();
-			
-			linea = cadena.split(",");
-			i = 0;
-			while (cadena != null && linea.length == Integer.parseInt(cabecera[3])) {
-				for (int j = 0; j < linea.length; ++j) {
-					if (linea[j].equals("*")) matriuOriginal[i][j] = -1;
-					else if (linea[j].equals("#")) matriuOriginal[i][j] = -2;
-					else if (linea[j].equals("?")) matriuOriginal[i][j] = 0;
-					else matriuOriginal[i][j] = Integer.parseInt(linea[j]);
-				}
-				++i;
-				cadena = b.readLine();
-				linea = cadena.split(",");
-			}
-			
-			cadena = b.readLine();
-			linea = cadena.split(";");
-			
-			
-		    
-			status = Integer.parseInt(linea[0]);
-			puntuacio = Integer.parseInt(linea[1]);
-			nombresDonats = stringToVector(linea[2]);
-			nombresEscrits = stringToVector(linea[3]);
-			dataIni = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(linea[4]);
-			temps = Integer.parseInt(linea[5]);
-			fr.close();
-			b.close();
+    public static void carregarPartida(String usuari) {
+        try {
+            FileReader fr = new FileReader("DB/Usuaris/" + usuari + "/partida.txt");
+            BufferedReader b = new BufferedReader(fr);
+            String cadena = b.readLine();
+            String[] cabecera = cadena.split(",");
+            tipusCella = stringToTipusCella(cabecera[0]);
+            if (tipusCella == null); //ficar missatge
+            tipusAdjacencia = stringToTipusAdjacencia(cabecera[1]);
+            matriu = new int[Integer.parseInt(cabecera[2])][Integer.parseInt(cabecera[3])];
+            matriuOriginal = new int[Integer.parseInt(cabecera[2])][Integer.parseInt(cabecera[3])];
 
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-			//ex.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-	}
+            int i = 0;
 
-	private static Vector<Integer> stringToVector(String vectorInput) {
-		Vector<Integer> vectorOutput = new Vector<Integer>();
-		vectorInput = vectorInput.replace(" ","");
-		vectorInput = vectorInput.replace("[","");
-		vectorInput = vectorInput.replace("]","");
-		String[] linea = vectorInput.split(",");
-		for(int i = 0; i < linea.length; ++i) {
-			vectorOutput.add(Integer.parseInt(linea[i]));
-		}
-		return vectorOutput;
-	}
+            //Matriu partida
+            cadena = b.readLine();
+            String[] linea = cadena.split(",");
+            while (cadena != null && linea.length == Integer.parseInt(cabecera[3])) {
+                for (int j = 0; j < linea.length; ++j) {
+                    if (linea[j].equals("*")) {
+                        matriu[i][j] = -1;
+                    } else if (linea[j].equals("#")) {
+                        matriu[i][j] = -2;
+                    } else if (linea[j].equals("?")) {
+                        matriu[i][j] = 0;
+                    } else {
+                        matriu[i][j] = Integer.parseInt(linea[j]);
+                    }
+                }
+                ++i;
+                cadena = b.readLine();
+                linea = cadena.split(",");
+            }
 
-	private static TipusCella stringToTipusCella(String tc) {
-		if (tc.equals("Q")) return TipusCella.QUADRAT;
-		if (tc.equals("T")) return TipusCella.TRIANGLE;
-		if (tc.equals("H")) return TipusCella.HEXAGON;
-		return null;
-	}
+            //Matriu original
+            cadena = b.readLine();
+            cadena = b.readLine();
 
-	private static TipusAdjacencia stringToTipusAdjacencia(String ta) {
-		 if (ta.equals("C")) return TipusAdjacencia.COSTATS;
-		 if (ta.equals("CA")) return TipusAdjacencia.COSTATSIANGLES;
-		 return null;
-	}
+            linea = cadena.split(",");
+            i = 0;
+            while (cadena != null && linea.length == Integer.parseInt(cabecera[3])) {
+                for (int j = 0; j < linea.length; ++j) {
+                    if (linea[j].equals("*")) {
+                        matriuOriginal[i][j] = -1;
+                    } else if (linea[j].equals("#")) {
+                        matriuOriginal[i][j] = -2;
+                    } else if (linea[j].equals("?")) {
+                        matriuOriginal[i][j] = 0;
+                    } else {
+                        matriuOriginal[i][j] = Integer.parseInt(linea[j]);
+                    }
+                }
+                ++i;
+                cadena = b.readLine();
+                linea = cadena.split(",");
+            }
 
-	
+            cadena = b.readLine();
+            linea = cadena.split(";");
+
+            status = Integer.parseInt(linea[0]);
+            puntuacio = Integer.parseInt(linea[1]);
+            nombresDonats = stringToVector(linea[2]);
+            nombresEscrits = stringToVector(linea[3]);
+            dataIni = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(linea[4]);
+            temps = Integer.parseInt(linea[5]);
+            fr.close();
+            b.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            //ex.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Vector<Integer> stringToVector(String vectorInput) {
+        Vector<Integer> vectorOutput = new Vector<Integer>();
+        vectorInput = vectorInput.replace(" ", "");
+        vectorInput = vectorInput.replace("[", "");
+        vectorInput = vectorInput.replace("]", "");
+        String[] linea = vectorInput.split(",");
+        for (int i = 0; i < linea.length; ++i) {
+            vectorOutput.add(Integer.parseInt(linea[i]));
+        }
+        return vectorOutput;
+    }
+
+    private static TipusCella stringToTipusCella(String tc) {
+        if (tc.equals("Q")) {
+            return TipusCella.QUADRAT;
+        }
+        if (tc.equals("T")) {
+            return TipusCella.TRIANGLE;
+        }
+        if (tc.equals("H")) {
+            return TipusCella.HEXAGON;
+        }
+        return null;
+    }
+
+    private static TipusAdjacencia stringToTipusAdjacencia(String ta) {
+        if (ta.equals("C")) {
+            return TipusAdjacencia.COSTATS;
+        }
+        if (ta.equals("CA")) {
+            return TipusAdjacencia.COSTATSIANGLES;
+        }
+        return null;
+    }
+
 }

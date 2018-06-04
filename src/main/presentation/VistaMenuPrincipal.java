@@ -32,7 +32,7 @@ import main.domain.com.hidato.HidatoIO;
  */
 public class VistaMenuPrincipal extends javax.swing.JFrame {
 
-    ControladorPresentacio controller = ControladorPresentacio.getInstance();
+    
     ControladorNavegacio cn = ControladorNavegacio.getInstance();
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
@@ -42,7 +42,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private int randomType = (int) (Math.random() * 3) + 1;
 
     private ControladorMenuPrincipal cmp;
-    private ControladorPresentacio cp = ControladorPresentacio.getInstance();
+    ControladorPresentacio cp = ControladorPresentacio.getInstance();
     private ControladorPartida controladorPartida = ControladorPartida.getInstance();
     private static TipusCella tipusCella;
     private static TipusAdjacencia tipusAdjacencia;
@@ -1705,7 +1705,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             if (archivo != null) {
                 String ruta = archivo.getAbsolutePath();
                 try {
-                    controller.importarHidatotxt(ruta);
+                    cp.importarHidatotxt(ruta);
                     showHidatoList();
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
@@ -2041,7 +2041,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jButton4ActionPerformed
-            if (controller.cargarPartidaGuardada()) {
+            if (cp.cargarPartidaGuardada()) {
                 this.dispose();
             }
 	}//GEN-LAST:event_jButton4ActionPerformed
@@ -2118,7 +2118,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             String nomHidato = selectedHidato.getText();
 
             try {
-                if (controller.jugarPartidaImportada(nomHidato)) {
+                if (cp.jugarPartidaImportada(nomHidato)) {
                     this.dispose();
                 }
             } catch (Exception e) {

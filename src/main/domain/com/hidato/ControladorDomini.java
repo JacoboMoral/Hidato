@@ -173,6 +173,7 @@ public class ControladorDomini {
                 Vector<Integer> nombresEscrits = partidaEnCurs.getNombresEscrits();
                 String nomUsuari = partidaEnCurs.getNomUsuari();
                 TipusCella cella = partidaEnCurs.getTipusCella();
+                System.out.println("Estic a Capa de domini " + "El temps es " + partidaEnCurs.getTemps());
                 Date dataIni = partidaEnCurs.getDataInici();
                 int temps = partidaEnCurs.getTemps();
                 controladorPersistencia.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
@@ -298,6 +299,7 @@ public class ControladorDomini {
         partidaEnCurs.setStatus(controladorPersistencia.getStatusPartida());
         partidaEnCurs.setPuntuacio(controladorPersistencia.getPuntuacioPartida());
         partidaEnCurs.setDataInici(controladorPersistencia.getDataIniPartida());
+        System.out.println("TEMPS DE LA PARTIDA " + controladorPersistencia.getTempsPartida());
         partidaEnCurs.setTemps(controladorPersistencia.getTempsPartida());
         if (partidaEnCurs != null) enPartidaCarregada = true;
 

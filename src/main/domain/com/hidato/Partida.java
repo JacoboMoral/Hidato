@@ -47,17 +47,19 @@ public class Partida {
     }
 
     private void acabarPartida() {
-    	if (status != -1) {
-    		status = -1;
-    		puntuacio += hidato.getCellesNumeriques()*5;
-    		if (puntuacio < 0) puntuacio = 1;
-    		contador.detener();
+        if (status != -1) {
+            status = -1;
+            puntuacio += hidato.getCellesNumeriques() * 5;
+            if (puntuacio < 0) {
+                puntuacio = 1;
+            }
+            contador.detener();
             tempsSegons += contador.getSegons();
             tempsNanosegons += contador.getNanosegons();
             status = -1;
             dataFi = new Date();
             ControladorDomini.getInstance().finalitzarPartida();
-    	}
+        }
     }
 
     public void iniciarPartida() {
@@ -124,6 +126,7 @@ public class Partida {
     }
 
     public int getTemps() {
+        System.out.println("Estic a Partida.java " + "El valor del temps es " + tempsSegons);
         return tempsSegons;
     }
 
@@ -135,13 +138,13 @@ public class Partida {
         return hidato.getSolucio();
     }
 
-	public int[][] getSolucio(boolean solucioRespecteMatriuHidato) {
-		//es "cancela" la partida actual
-		iniciarPartida();
-		int[][] matriu = hidato.getSolucio(solucioRespecteMatriuHidato);
-		acabarPartida();
-		return matriu;
-	}
+    public int[][] getSolucio(boolean solucioRespecteMatriuHidato) {
+        //es "cancela" la partida actual
+        iniciarPartida();
+        int[][] matriu = hidato.getSolucio(solucioRespecteMatriuHidato);
+        acabarPartida();
+        return matriu;
+    }
 
     public int[][] getHidato() {
         return hidato.getMatriu();
@@ -183,10 +186,10 @@ public class Partida {
     }
 
     public boolean completada() {
-    	if (hidato.completat()) {
-    		acabarPartida();
-    		return true;
-    	}
+        if (hidato.completat()) {
+            acabarPartida();
+            return true;
+        }
         return false;
     }
 
@@ -194,7 +197,7 @@ public class Partida {
         return null;
     }
 
-	public TipusCella getTipusCella() {
-		return hidato.getTipusCella();
-	}
+    public TipusCella getTipusCella() {
+        return hidato.getTipusCella();
+    }
 }
