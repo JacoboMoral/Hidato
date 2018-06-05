@@ -21,6 +21,7 @@ public class Inici extends javax.swing.JFrame {
     
     public Inici() {
         initComponents();
+        this.setTitle("Hidato");
     }
     
     public void run() {

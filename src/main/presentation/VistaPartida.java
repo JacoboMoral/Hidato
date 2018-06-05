@@ -85,6 +85,7 @@ public class VistaPartida extends javax.swing.JFrame {
 
     public VistaPartida(int level, String username) {
         initComponents();
+        this.setTitle("Partida");
         cronometre.start();
         nivellPartida = level;
         partida.setView(this);
@@ -108,6 +109,7 @@ public class VistaPartida extends javax.swing.JFrame {
 
     public VistaPartida(javax.swing.JPanel hidatoPanel) {
         initComponents();
+        this.setTitle("Partida");
         cronometre.start();
         Dificultat dif = cp.getDificultatPartida();
         if (dif == Dificultat.FACIL) {
@@ -139,10 +141,6 @@ public class VistaPartida extends javax.swing.JFrame {
         milisegons *= 1000;
 
         JOptionPane.showMessageDialog(this, "El temps de partida ha estat: " + segons + "," + (int) milisegons + " segons.\nLa puntuacio total es de " + puntuacio + " punts.", "Informacio", 1);
-        System.out.println("GUARDO SCORE");
-        System.out.println("Nivell de partida" + nivellPartida);
-        System.out.println("Useranme" + currentUsername);
-        System.out.println("Puntacio" + puntuacio);
         cp.saveScore(nivellPartida, currentUsername, puntuacio);
         blockPartidaInputs();
     }
@@ -276,14 +274,14 @@ public class VistaPartida extends javax.swing.JFrame {
                 .addComponent(saveGame)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(optionPanelLayout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addGap(107, 107, 107)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -312,10 +310,11 @@ public class VistaPartida extends javax.swing.JFrame {
                     .addGroup(optionPanelLayout.createSequentialGroup()
                         .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(optionPanelLayout.createSequentialGroup()
-                                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton1))
+                                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jButton2)
+                                        .addComponent(jButton1)))
                                 .addGap(29, 29, 29)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(optionPanelLayout.createSequentialGroup()
@@ -365,6 +364,8 @@ public class VistaPartida extends javax.swing.JFrame {
     private void saveGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveGameMousePressed
         if (inputsAllowed) {
             partida.guardarPartida();
+            cn.openMenuView();
+            this.dispose();
         }
     }//GEN-LAST:event_saveGameMousePressed
 

@@ -68,5 +68,10 @@ public class ControladorNavegacio {
         v.setVisible(true);
     }
     
+    void openInstruccions() {
+        VistaInstruccions v = new VistaInstruccions();
+        v.setVisible(true);
+    }
+    
     
 }

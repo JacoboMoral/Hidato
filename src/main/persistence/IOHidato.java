@@ -58,9 +58,6 @@ public class IOHidato {
         for (int i = 0; i < altura; i++) {
             cadena = b.readLine();
             o.println(cadena);
-            if (cadena.split(",").length != anchura) {
-                System.out.println("Error");
-            }
         }
 
         bw.close();
@@ -154,7 +151,6 @@ public class IOHidato {
         File carpeta = new File("DB/HidatosImportats");
         ArrayList<String> llistaFitxers = new ArrayList<String>();
         for (File fitxer : carpeta.listFiles()) {
-            System.out.println(fitxer.getName());
             
             String[] aux = fitxer.getName().split("\\.");
             

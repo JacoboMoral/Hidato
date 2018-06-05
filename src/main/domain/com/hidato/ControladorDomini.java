@@ -194,7 +194,7 @@ public class ControladorDomini {
         if (completada) {
         	if (enPartidaCarregada) {
         		enPartidaCarregada = false;
-            	System.out.println("PARTIDA CARREGADA ACABADA --------> ES CRIDA FUNCIO ESBORRAR PARTIDA D'USUARI");
+            	System.out.println("Estic a la capa de domini PARTIDA CARREGADA ACABADA --------> ES CRIDA FUNCIO ESBORRAR PARTIDA D'USUARI");
             	controladorPersistencia.esborrarPartidaGuardada(currentUser.getUsername());
         	}
         	return true;
@@ -321,7 +321,6 @@ public class ControladorDomini {
     /*-----------------------------RANKING------------------------------*/
     public void saveScore(int dif, int score, String username) {
         ranking = controladorPersistencia.loadRanking();
-        System.out.println("ENTRO Controlador domini");
         controladorPersistencia.saveScoreDB(ranking, dif, score, username);
     }
 
@@ -388,7 +387,6 @@ public class ControladorDomini {
 
     public boolean changePass(String currentPass, String newPass) throws IOException {
         if (controladorPersistencia.changePass(currentPass, newPass)) {
-            System.out.println("entro en domini change pass");
             currentUser.setPassword(newPass);
         } else {
             return false;

@@ -23,6 +23,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
      */
     public VistaRegistrar() {
         initComponents();
+        this.setTitle("Registrar");
     }
 
     /**

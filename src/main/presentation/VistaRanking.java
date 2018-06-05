@@ -32,19 +32,11 @@ public class VistaRanking extends javax.swing.JFrame {
 
     public VistaRanking() {
         initComponents();
-
+        this.setTitle("Ranking");
         filterType.add(filterByDate);
         filterType.add(filterByUsername);
 
-        /*cp.saveScore(1, "Jia", 10);
-        cp.saveScore(2, "Jia2", 1450);
-        cp.saveScore(3, "Jia3", 14350);
-        cp.saveScore(1, "Jia2", 13242);
-        cp.saveScore(2, "Jia3", 11233);
-        cp.saveScore(3, "Jia2", 11235);
-        cp.saveScore(1, "Jia", 131);
-        cp.saveScore(2, "Jia2", 112);
-        cp.saveScore(3, "Jia3", 14234);*/
+       
         cp.getUpdate();
         
         if (cp.getRankingEasySize() > 0) {

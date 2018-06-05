@@ -203,7 +203,6 @@ public class ControladorPresentacio {
     }
 
     public void saveScore(int dif, String username, int score) {
-        System.out.println("ENTRO Controlador persistencia");
         domini.saveScore(dif, score, username);
     }
 
