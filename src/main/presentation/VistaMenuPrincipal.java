@@ -5,12 +5,9 @@
  */
 package main.presentation;
 
-import java.awt.HeadlessException;
 import java.io.File;
-import java.io.FileNotFoundException;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
-import main.domain.com.hidato.Usuari;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -18,14 +15,11 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import main.domain.com.hidato.Dificultat;
-import main.domain.com.hidato.Hidato;
-import main.domain.com.hidato.HidatoIO;
 
 /**
  *
@@ -33,39 +27,27 @@ import main.domain.com.hidato.HidatoIO;
  */
 public class VistaMenuPrincipal extends javax.swing.JFrame {
 
-    
-    ControladorNavegacio cn = ControladorNavegacio.getInstance();
-    private static final int levelEasy = 1;
-    private static final int levelInter = 2;
-    private static final int levelHard = 3;
-    private boolean esAuto = false;
-    private boolean esCustom = false;
-    private int randomType = (int) (Math.random() * 3) + 1;
-
-    private ControladorMenuPrincipal cmp;
-    ControladorPresentacio cp = ControladorPresentacio.getInstance();
+    private ControladorPresentacio controladorPresentacio = ControladorPresentacio.getInstance();
+    private ControladorNavegacio controladorNavegacio = ControladorNavegacio.getInstance();
+    private ControladorMenuPrincipal controladorMenuPrincipal;
     private ControladorPartida controladorPartida = ControladorPartida.getInstance();
-    private static TipusCella tipusCella;
-    private static TipusAdjacencia tipusAdjacencia;
-    private static int[][] matriu;
-    private String title;
+
 
     public VistaMenuPrincipal() {
-        
+
         initComponents();
-        title = "Menu";
-        this.setTitle(title);
-        
-        cmp = new ControladorMenuPrincipal();
-        l_username.setText(cp.getUsername());
-        l_username1.setText(cp.getUsername());
-        int passwordSize = cp.getPassword().length();
+        controladorMenuPrincipal = new ControladorMenuPrincipal();
+
+        l_username.setText(controladorPresentacio.getUsername());
+        l_username1.setText(controladorPresentacio.getUsername());
+        l_password.setText(controladorPresentacio.getPassword());
+        int passwordSize = controladorPresentacio.getPassword().length();
         char c = '*';
         char[] chars = new char[passwordSize];
         Arrays.fill(chars, c);
-        String s = new String(chars);   
+        String s = new String(chars);
         l_password.setText(s);
-        
+
         tipologia.addItem("Hexagon");
         tipologia.addItem("Quadrat");
         tipologia.addItem("Triangle");
@@ -93,8 +75,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     }
 
     private void showHidatoList() {
-        DefaultListModel model = new DefaultListModel();
-        String[] fitxers = cmp.getAllHidatoNames();
+        DefaultListModel<String> model = new DefaultListModel<String>();
+        String[] fitxers = controladorMenuPrincipal.getAllHidatoNames();
 
         for (int i = 0; i < fitxers.length; ++i) {
             model.addElement(fitxers[i]);
@@ -1752,7 +1734,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 	}//GEN-LAST:event_b_createActionPerformed
 
 	private void b_rankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_rankingMouseClicked
-            cn.openRankingView();
+            controladorNavegacio.openRankingView();
             this.dispose();
 	}//GEN-LAST:event_b_rankingMouseClicked
 
@@ -1763,8 +1745,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             if (archivo != null) {
                 String ruta = archivo.getAbsolutePath();
                 try {
-                    cp.importarHidatotxt(ruta);
-                    showHidatoList();
+                    controladorPresentacio.importarHidatotxt(ruta);
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     JOptionPane.showMessageDialog(null, "hi ha hagut un error: " + e.getMessage());
@@ -1790,7 +1771,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             parentPanel.removeAll();
             parentPanel.add(menuPrincipalPanel);
             parentPanel.repaint();
-            parentPanel.revalidate();            
+            parentPanel.revalidate();
 	}//GEN-LAST:event_b_back_menuActionPerformed
 
 	private void b_backTypeCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_backTypeCreate1ActionPerformed
@@ -1806,11 +1787,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             if (oldName.getText().isEmpty() || newName.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Enter your name");
             } else {
-                boolean successful = cp.editUseranme(oldname, newname);
+                boolean successful = controladorPresentacio.editUseranme(oldname, newname);
                 if (successful) {
                     JOptionPane.showMessageDialog(null, "Your username has changed correctly");
-                    l_username.setText(cp.getUsername());
-                    l_username1.setText(cp.getUsername());
+                    l_username.setText(controladorPresentacio.getUsername());
+                    l_username1.setText(controladorPresentacio.getUsername());
                     oldName.setText("");
                     newName.setText("");
                     parentPanel.removeAll();
@@ -1859,17 +1840,18 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 } else {
                     boolean successful = false;
                     try {
-                        successful = cp.changePass(oldPassword, rnewPassword);
+                        successful = controladorPresentacio.changePass(oldPassword, rnewPassword);
                     } catch (IOException ex) {
                         Logger.getLogger(VistaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     if (successful) {
                         JOptionPane.showMessageDialog(null, "Your password has changed correctly!");
-                        int passwordSize = cp.getPassword().length();
+
+                        int passwordSize = controladorPresentacio.getPassword().length();
                         char c = '*';
                         char[] chars = new char[passwordSize];
                         Arrays.fill(chars, c);
-                        String s = new String(chars);   
+                        String s = new String(chars);
                         l_password.setText(s);
                         t_oldpass.setText("");
                         t_newpass.setText("");
@@ -1891,12 +1873,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             if (pass1.length() == 0) {
                 JOptionPane.showMessageDialog(null, "Enter your password please");
             } else {
-                boolean successful = cp.deleteUser(pass1);
+                boolean successful = controladorPresentacio.deleteUser(pass1);
                 if (!successful) {
                     JOptionPane.showMessageDialog(null, "Wrong password!");
                 } else {
                     JOptionPane.showMessageDialog(null, "Account deleted");
-                    cn.openInicialView();
+                    controladorNavegacio.openInicialView();
                     this.dispose();
                 }
             }
@@ -1911,7 +1893,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
 	private void quickEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickEasyActionPerformed
             this.setEnabled(false);
-            cn.openLoadingView(levelEasy, this);
+			controladorPartida.partidaAutogenerada(Dificultat.FACIL);
 	}//GEN-LAST:event_quickEasyActionPerformed
 
 	private void b_back_menu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_back_menu1ActionPerformed
@@ -1923,16 +1905,15 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
 	private void quickInterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickInterActionPerformed
             this.setEnabled(false);
-            cn.openLoadingView(levelInter, this);
+            controladorPartida.partidaAutogenerada(Dificultat.MIG);
 	}//GEN-LAST:event_quickInterActionPerformed
 
 	private void quickHardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickHardActionPerformed
             this.setEnabled(false);
-            cn.openLoadingView(levelHard, this);
+            controladorPartida.partidaAutogenerada(Dificultat.DIFICIL);
 	}//GEN-LAST:event_quickHardActionPerformed
 
 	private void b_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_CreateActionPerformed
-            esCustom = true;
             TipusCella tipusCella = stringToTipusCella((String) tipologia.getSelectedItem());
             TipusAdjacencia tipusAdjacencia = stringToTipusAdjacencia((String) adjacencia.getSelectedItem());
             int alturaHidato = (int) altura.getValue();
@@ -1941,7 +1922,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             if (!compatibles(tipusCella, tipusAdjacencia)) {
                 JOptionPane.showMessageDialog(null, "El tipus de cella i el tipus d'adjacencia no son compatibles");
             } else {
-                cn.openCreateHidato(tipusCella, tipusAdjacencia, alturaHidato, ampladaHidato);
+                controladorNavegacio.openCreateHidato(tipusCella, tipusAdjacencia, alturaHidato, ampladaHidato);
                 this.dispose();
             }
 	}//GEN-LAST:event_b_CreateActionPerformed
@@ -1984,7 +1965,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 	private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
             TipusCella tipusCella = null;
             TipusAdjacencia tipusAdjacencia = null;
-            javax.swing.JPanel hidatoPanel = null;
             int input = JOptionPane.OK_OPTION;
 
             if (tipologiaCheckBox.isSelected()) {
@@ -2012,12 +1992,15 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                     } else {
                         if (tipusCella != null) {
                             if (tipusAdjacencia == null) {
-                                hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, dificultat);
+                                controladorPartida.partidaAutogenerada(tipusCella, dificultat);
+                            	this.setEnabled(false);
                             } else {
-                                hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, tipusAdjacencia, dificultat);
+                                controladorPartida.partidaAutogenerada(tipusCella, tipusAdjacencia, dificultat);
+                            	this.setEnabled(false);
                             }
                         } else {	//tipusAdjacencia i tipusCella aleatoris
-                            hidatoPanel = controladorPartida.partidaAutogenerada(dificultat);
+                            controladorPartida.partidaAutogenerada(dificultat);
+                        	this.setEnabled(false);
                         }
                     }
                 } else if (caracteristiquesButton.isSelected()) {
@@ -2034,26 +2017,19 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                         }
                         if (tipusCella != null && input == JOptionPane.OK_OPTION) {
                             if (tipusAdjacencia == null) {
-                                hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, altura, amplada, forats);
+                                controladorPartida.partidaAutogenerada(tipusCella, altura, amplada, forats);
+                            	this.setEnabled(false);
                             } else {
-                                hidatoPanel = controladorPartida.partidaAutogenerada(tipusCella, tipusAdjacencia, altura, amplada, forats);
+                                controladorPartida.partidaAutogenerada(tipusCella, tipusAdjacencia, altura, amplada, forats);
+                            	this.setEnabled(false);
                             }
                         } else if (input == JOptionPane.OK_OPTION) {	//tipusAdjacencia i tipusCella aleatoris
-                            hidatoPanel = controladorPartida.partidaAutogenerada(altura, amplada, forats);
+                            controladorPartida.partidaAutogenerada(altura, amplada, forats);
+                        	this.setEnabled(false);
                         }
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Has d'escollir una de les opcions, dificultat o característiques");
-                }
-
-                if (hidatoPanel != null) {
-                    VistaPartida v = new VistaPartida(hidatoPanel);
-                    v.setVisible(true);
-                    this.dispose();
-                } else {
-                    if (input != JOptionPane.CANCEL_OPTION) {
-                        JOptionPane.showMessageDialog(null, "No s'ha pogut generar l'hidato, intenta-ho de nou");
-                    }
                 }
             }
 
@@ -2099,13 +2075,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jButton4ActionPerformed
-            if (cp.cargarPartidaGuardada()) {
+            if (controladorPresentacio.cargarPartidaGuardada()) {
                 this.dispose();
             }
 	}//GEN-LAST:event_jButton4ActionPerformed
 
-    private void b_cpstom1ActionPerformed(java.awt.event.ActionEvent evt) {
-        //VistaCreateHidato v = new VistaCreateHidato(cp, levelEasy);
+    private void b_controladorPresentaciostom1ActionPerformed(java.awt.event.ActionEvent evt) {
+        //VistaCreateHidato v = new VistaCreateHidato(controladorPresentacio, levelEasy);
         //v.setVisible(true);
     }
 
@@ -2122,7 +2098,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 	}//GEN-LAST:event_b_signoutActionPerformed
 
 	private void b_signoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_signoutMouseClicked
-            cn.openInicialView();
+            controladorNavegacio.openInicialView();
             this.dispose();
 	}//GEN-LAST:event_b_signoutMouseClicked
 
@@ -2176,7 +2152,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             String nomHidato = selectedHidato.getText();
 
             try {
-                if (cp.jugarPartidaImportada(nomHidato)) {
+                if (controladorPresentacio.jugarPartidaImportada(nomHidato)) {
                     this.dispose();
                 }
             } catch (Exception e) {

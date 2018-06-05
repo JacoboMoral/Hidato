@@ -173,7 +173,6 @@ public class ControladorDomini {
                 Vector<Integer> nombresEscrits = partidaEnCurs.getNombresEscrits();
                 String nomUsuari = partidaEnCurs.getNomUsuari();
                 TipusCella cella = partidaEnCurs.getTipusCella();
-                System.out.println("Estic a Capa de domini " + "El temps es " + partidaEnCurs.getTemps());
                 Date dataIni = partidaEnCurs.getDataInici();
                 int temps = partidaEnCurs.getTemps();
                 controladorPersistencia.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
@@ -230,7 +229,7 @@ public class ControladorDomini {
         }
         return TipusAdjacencia.COSTATS;
     }
-    
+
     public TipusAdjacencia getAdjacenciaPartida() {
         return partidaEnCurs.getTipusAdjacencia();
     }
@@ -299,7 +298,6 @@ public class ControladorDomini {
         partidaEnCurs.setStatus(controladorPersistencia.getStatusPartida());
         partidaEnCurs.setPuntuacio(controladorPersistencia.getPuntuacioPartida());
         partidaEnCurs.setDataInici(controladorPersistencia.getDataIniPartida());
-        System.out.println("TEMPS DE LA PARTIDA " + controladorPersistencia.getTempsPartida());
         partidaEnCurs.setTemps(controladorPersistencia.getTempsPartida());
         if (partidaEnCurs != null) enPartidaCarregada = true;
 
@@ -319,9 +317,9 @@ public class ControladorDomini {
     }
 
     /*-----------------------------RANKING------------------------------*/
-    public void saveScore(int dif, int score, String username) {
+    public void saveScore(Dificultat dificultat, int score, String username) {
         ranking = controladorPersistencia.loadRanking();
-        controladorPersistencia.saveScoreDB(ranking, dif, score, username);
+        controladorPersistencia.saveScoreDB(ranking, dificultatToInt(dificultat), score, username);
     }
 
     public String[] getRankingEasy() {
@@ -424,7 +422,7 @@ public class ControladorDomini {
         }
         return true;
     }
-    
+
     public void guardarHidatotxt(String nom) throws IOException {
 		controladorPersistencia.importarHidato(nom);
 	}
@@ -436,7 +434,7 @@ public class ControladorDomini {
     public long getTempsPartida() {
     	return partidaEnCurs.getTempsNano();
     }
-    
+
 	public int[][] solucionarPartida() {
 		if (partidaEnCurs != null) {
 			if (enPartidaCarregada) {
@@ -470,6 +468,12 @@ public class ControladorDomini {
 
     public Dificultat getDificultatPartida() {
         return partidaEnCurs.getDificultat();
+    }
+
+    public int dificultatToInt(Dificultat dificultat) {
+    	if (dificultat == Dificultat.FACIL) return 1;
+    	else if (dificultat == Dificultat.MIG) return 2;
+    	return 3;
     }
 
 

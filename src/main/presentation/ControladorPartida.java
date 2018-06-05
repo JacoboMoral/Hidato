@@ -1,8 +1,10 @@
 package main.presentation;
 
 import java.awt.Dimension;
+import java.util.Random;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -17,7 +19,9 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     private static ControladorPartida instance = null;
     private VistaPartida view;
     private PanelPartida partida;
+    private ControladorNavegacio controladorNavegacio = ControladorNavegacio.getInstance();
     private boolean ajuda = false;
+	private boolean allowInputs = true;
 
     public static ControladorPartida getInstance() {
         if (instance == null) {
@@ -25,105 +29,52 @@ public class ControladorPartida extends ControladorHidatoGrafic{
         }
         return instance;
     }
-
-    public PanelPartida partidaAutogenerada(TipusCella tipusCella, Dificultat dificultat) {
-        this.dificultat = dificultat;
-        this.cella = tipusCellaToCella(tipusCella);
-        int[][] matriuHidato = generarMatriuHidato(tipusCella, dificultat);
-        if (matriuHidato != null) {
-        	partida = new PanelPartida(cella, matriuHidato);
-            return partida;
-        }
-        return null;
-    }
-
-    public PanelPartida partidaAutogenerada(Dificultat dificultat) {
-        this.dificultat = dificultat;
-        int[][] matriuHidato = generarMatriuHidato(dificultat);
-        if (matriuHidato != null) {
-        	TipusCella tipusCella = controller.getTipusCellaPartida();
-        	this.cella = tipusCellaToCella(tipusCella);
-            partida = new PanelPartida(cella, matriuHidato);
-            return partida;
-        }
-        return null;
-    }
-
-    public PanelPartida partidaAutogenerada(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
-        this.dificultat = dificultat;
-        this.cella = tipusCellaToCella(tipusCella);
-        int[][] matriuHidato = generarMatriuHidato(tipusCella, tipusAdjacencia, dificultat);
-        if (matriuHidato != null) {
-        	partida = new PanelPartida(cella, matriuHidato);
-            return partida;
-        }
-        return null;
-    }
+    
 	
 	public PanelPartida partidaCarregada(TipusCella tipusCella, int[][] matriuHidato) {
         this.cella = tipusCellaToCella(tipusCella);
         partida = new PanelPartida(cella, matriuHidato);
         return partida;
     }
-	
-	public PanelPartida partidaAutogenerada(TipusCella tipusCella, int altura, int amplada, int forats) {
+
+    public void partidaAutogenerada(TipusCella tipusCella, Dificultat dificultat) {
+        this.dificultat = dificultat;
+        this.cella = tipusCellaToCella(tipusCella);
+        new GeneratorWorker(tipusCella, getRandomTipusAdjacencia(tipusCella), dificultat).execute();
+    }
+
+    public void partidaAutogenerada(Dificultat dificultat) {
+        this.dificultat = dificultat;
+        TipusCella tipusCella = getRandomTipusCella();
 		this.cella = tipusCellaToCella(tipusCella);
-        int[][] matriuHidato = generarMatriuHidato(tipusCella, altura, amplada, forats);
-        if (matriuHidato != null) {
-        	partida = new PanelPartida(cella, matriuHidato);
-    		return partida;
-        }
-        return null;
-	}
+        new GeneratorWorker(tipusCella, getRandomTipusAdjacencia(tipusCella), dificultat).execute();
+    }
 
-	private int[][] generarMatriuHidato(TipusCella tipusCella, int altura, int amplada, int forats) {
-		if (controller.autoGenerar(tipusCella, altura, amplada, forats)) {
-	        controller.jugarHidatoGenerat();
-	        return controller.getMatriuHidatoDePartida();
-		}
-		return null;
-	}
-
-	public PanelPartida partidaAutogenerada(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int altura, int amplada, int forats) {
+    public void partidaAutogenerada(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
+        this.dificultat = dificultat;
+        this.cella = tipusCellaToCella(tipusCella);
+        new GeneratorWorker(tipusCella, tipusAdjacencia, dificultat).execute();
+    }
+	
+	public void partidaAutogenerada(TipusCella tipusCella, int altura, int amplada, int forats) {
 		this.cella = tipusCellaToCella(tipusCella);
-        int[][] matriuHidato = generarMatriuHidato(tipusCella, tipusAdjacencia, altura, amplada, forats);
-        if (matriuHidato != null) {
-        	partida = new PanelPartida(cella, matriuHidato);
-    		return partida;
-        }
-        return null;
-	}
-	
-	private int[][] generarMatriuHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int altura, int amplada,
-			int forats) {
-		if (controller.autoGenerar(tipusCella, tipusAdjacencia, altura, amplada, forats)) {
-	        controller.jugarHidatoGenerat();
-	        return controller.getMatriuHidatoDePartida();
-		}
-		return null;
+        new GeneratorWorker(tipusCella, getRandomTipusAdjacencia(tipusCella), altura, amplada, forats).execute();
 	}
 
-	public PanelPartida partidaAutogenerada(int altura, int amplada, int forats) {
-        int[][] matriuHidato = generarMatriuHidato(altura, amplada, forats);
-		if (matriuHidato != null) {
-			TipusCella tipusCella = controller.getTipusCellaPartida();
-			this.cella = tipusCellaToCella(tipusCella);
-        	partida = new PanelPartida(cella, matriuHidato);
-    		return partida;
-        }
-        return null;
+
+	public void partidaAutogenerada(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int altura, int amplada, int forats) {
+		this.cella = tipusCellaToCella(tipusCella);
+		new GeneratorWorker(tipusCella, tipusAdjacencia, altura, amplada, forats).execute();
 	}
-	
-	private int[][] generarMatriuHidato(int altura, int amplada, int forats) {
-		if (controller.autoGenerar(altura, amplada, forats)) {
-			ControladorDomini c = ControladorDomini.getInstance();
-	        controller.jugarHidatoGenerat();
-	        return controller.getMatriuHidatoDePartida();
-		}
-		return null;
+
+	public void partidaAutogenerada(int altura, int amplada, int forats) {
+		TipusCella tipusCella = getRandomTipusCella();
+		this.cella = tipusCellaToCella(tipusCella);
+        new GeneratorWorker(tipusCella, getRandomTipusAdjacencia(tipusCella), altura, amplada, forats).execute();
 	}
 
 	public boolean ferMoviment(int y, int x, int value) {
+		if (!allowInputs) return false;
 		boolean movimentPossible = controller.ferMoviment(y, x, value, ajuda);
 		if (movimentPossible) {
 			return true;
@@ -140,32 +91,8 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     }
 
     public boolean desferMoviment(int y, int x) {
+		if (!allowInputs) return false;
         return controller.desferMoviment(y, x);
-    }
-
-    private int[][] generarMatriuHidato(TipusCella tipusCella, Dificultat dificultat) {
-        if (controller.autoGenerar(tipusCella, dificultat)) {
-        	controller.jugarHidatoGenerat();
-            return controller.getMatriuHidatoDePartida();
-        }
-        return null;
-        
-    }
-
-    private int[][] generarMatriuHidato(Dificultat dificultat) {
-        if (controller.autoGenerar(dificultat)) {
-        	controller.jugarHidatoGenerat();
-            return controller.getMatriuHidatoDePartida();
-        }
-        return null;
-    }
-
-    private int[][] generarMatriuHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
-        if (controller.autoGenerar(tipusCella, tipusAdjacencia, dificultat)) {
-        	controller.jugarHidatoGenerat();
-            return controller.getMatriuHidatoDePartida();
-        }
-        return null;
     }
 
     public int[][] getMatriuHidato() {
@@ -217,9 +144,8 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     }
 
 	public void solucionarPartida() {
-		int[][] matriuSolucio = controller.solucionarPartida();
-		if (matriuSolucio != null) partida.solucionar(matriuSolucio);
-		
+		allowInputs = false;
+		new SolverWorker().execute();		
 	}
 
 	public long tempsSolucionarPartida() {
@@ -232,5 +158,50 @@ public class ControladorPartida extends ControladorHidatoGrafic{
 
 	public void setAjuda(boolean ajuda) {
 		this.ajuda = ajuda;
+	}
+
+	public void setMatriuGenerada(int[][] matriu) {
+		if (matriu != null) {
+        	partida = new PanelPartida(cella, matriu);
+    		VistaPartida v = new VistaPartida(partida);
+    		v.setVisible(true);
+            controladorNavegacio.closeMenuPrincipal();
+        }
+		else {
+            controladorNavegacio.enableMenuPrincipal();
+			JOptionPane.showMessageDialog(null, "No s'ha pogut generar l'hidato, intenta-ho de nou");
+		}
+	}
+	
+	private TipusCella getRandomTipusCella() {
+        Random rand = new Random();
+        int randomValue = rand.nextInt(3);
+        if (randomValue == 0) {
+            return TipusCella.QUADRAT;
+        }
+        if (randomValue == 1) {
+            return TipusCella.HEXAGON;
+        }
+        return TipusCella.TRIANGLE;
+
+    }
+
+    private TipusAdjacencia getRandomTipusAdjacencia(TipusCella tipusCella) {
+        if (tipusCella == TipusCella.QUADRAT) {
+            Random rand = new Random();
+            int randomValue = rand.nextInt(2);
+            if (randomValue == 0) return TipusAdjacencia.COSTATSIANGLES;
+        }
+        return TipusAdjacencia.COSTATS;
+    }
+
+
+	public void setMatriuResolta(int[][] matriuResolta) {
+		if (matriuResolta != null) {
+			partida.solucionar(matriuResolta);
+			view.solucionat();
+			allowInputs   = true;
+		}
+        //controladorNavegacio.enableMenuPrincipal();
 	}
 }

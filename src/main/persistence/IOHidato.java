@@ -151,9 +151,8 @@ public class IOHidato {
         File carpeta = new File("DB/HidatosImportats");
         ArrayList<String> llistaFitxers = new ArrayList<String>();
         for (File fitxer : carpeta.listFiles()) {
-            
             String[] aux = fitxer.getName().split("\\.");
-            
+
             llistaFitxers.add(aux[0]);
         }
         return (llistaFitxers.toArray(new String[0]));
@@ -213,7 +212,7 @@ public class IOHidato {
         }
         return null;
     }
-    
+
     private static boolean compatibles(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia) {
         if (tipusCella == TipusCella.QUADRAT) return true;
         else return (tipusAdjacencia == TipusAdjacencia.COSTATS);
@@ -224,28 +223,28 @@ public class IOHidato {
 		File arxiu = new File("DB/HidatosImportats/"+ nomHidato + ".txt");
         arxiu.createNewFile();
         PrintStream fitxerOutput = new PrintStream(arxiu);
-        
+
         writeMatriu(matriu, tipusCella, tipusAdjacencia, fitxerOutput);
         fitxerOutput.close();
 	}
-	
+
 	private static void CrearCarpetaSiNoExisteix() {
 		File temp = new File("DB/HidatosImportats");
-        if (!temp.exists()) temp.mkdirs(); 
+        if (!temp.exists()) temp.mkdirs();
 	}
 
     /*public static void main(String[] args) throws Exception {
-		
+
 		String[] hidatos = nomHidatosImportats();
 		for(int i = 0; i < hidatos.length; ++i) {
 			System.out.println(hidatos[i]);
 		}
-		
+
 		carregarHidatoImportat(hidatos[0]);
-		
+
 		System.out.println(getTipusCella());
 		System.out.println(getTipusAdjacencia());
 		HidatoIO.writeHidatoMatrixToOutput(getMatriu());
 	}*/
-    
+
 }
