@@ -163,7 +163,6 @@ public class ControladorDomini {
             }
 
             if (guardar) {
-
                 int status = partidaEnCurs.status();
                 int puntuacio = partidaEnCurs.getPuntuacio();
                 TipusAdjacencia tipusAdj = partidaEnCurs.getTipusAdjacencia();
@@ -174,7 +173,8 @@ public class ControladorDomini {
                 String nomUsuari = partidaEnCurs.getNomUsuari();
                 TipusCella cella = partidaEnCurs.getTipusCella();
                 Date dataIni = partidaEnCurs.getDataInici();
-                int temps = partidaEnCurs.getTemps();
+                int temps = (int) partidaEnCurs.getTemps();
+                System.out.println("La partida sha guardat temps: " + temps);
                 controladorPersistencia.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
 
                 presentacio.mostraPartidaGuardada();
@@ -432,7 +432,9 @@ public class ControladorDomini {
     }
 
     public long getTempsPartida() {
-    	return partidaEnCurs.getTempsNano();
+    	long temps = partidaEnCurs.getTempsNano() + (long) partidaEnCurs.gettempsPartidaGuardada() * 1000000000;
+    	System.out.println("TOTAL  :  " + temps);
+    	return temps;
     }
 
 	public int[][] solucionarPartida() {

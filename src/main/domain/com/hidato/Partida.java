@@ -54,8 +54,8 @@ public class Partida {
                 puntuacio = 1;
             }
             contador.detener();
-            tempsSegons += contador.getSegons();
-            tempsNanosegons += contador.getNanosegons();
+            //tempsSegons += contador.getSegons();
+            //tempsNanosegons += contador.getNanosegons();
             status = -1;
             dataFi = new Date();
             ControladorDomini.getInstance().finalitzarPartida();
@@ -124,13 +124,19 @@ public class Partida {
     public Vector<Integer> getPossiblesMoviments() {
         return hidato.getPossiblesMoviments();
     }
+    
+    public int gettempsPartidaGuardada() {
+    	if(tempsSegons != -1) return tempsSegons;
+    	return 0;
+    }
+    
 
     public int getTemps() {
-        return contador.getSegons() + tempsSegons;
+        return contador.getSegons();
     }
 
     public long getTempsNano() {
-        return contador.getNanosegons() + tempsNanosegons;
+        return contador.getNanosegons();
     }
 
     public int[][] getSolucio() {
