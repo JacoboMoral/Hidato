@@ -56,10 +56,6 @@ public class Solver {
 
 	//POR MEJORAR:
 	//PODRIA NO AÑADIR A LAS ADYACENCIAS DE UN "NODO", SUS "NODOS" ADYACENTES CUYO VALOR SEA -2,-1 U OTRO VALOR NO SIGUIENTE
-	
-	//POR MEJORAR:
-	//PODRIA MIRAR TODAS LAS POSIBILIDADES INICIALES Y RELLENAR AQUELLAS QUE SOLO TENGAN UNA POSIBILIDAD
-	// O SINO, HACER ESTO PARA CADA VUELTA (QUIZAS COMPARAR AMBAS OPCIONES VS NINGUNA?)
 	private static void setUp() {
 		matriuAdjacencies = new ArrayList<Pair<Pair<Integer,Integer>, ArrayList<Pair<Integer,Integer>>>>();
 		nombresDonats = new Vector<Integer>();
