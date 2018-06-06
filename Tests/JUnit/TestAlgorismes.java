@@ -407,7 +407,7 @@ public class TestAlgorismes {
 		algorismes = new Algorismes(hidato);
 		algorismes.solucionar();
 		fillGivenTest();
-		assertEquals(givenTest , algorismes.getGiven() );
+		assertEquals(givenTest , algorismes.getNombresDonats() );
 	}
 	
 	@Test
