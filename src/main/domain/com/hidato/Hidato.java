@@ -160,14 +160,14 @@ public abstract class Hidato {
         if (solucionable == false) {
             if (al.getMatriuSolucio() != null) {
                 matriuSolucio = al.getMatriuSolucio();
-                nombresDonats = new Vector<Integer>(al.getGiven());
-                nombresEscrits = new Vector<Integer>(al.getGiven());
+                nombresDonats = new Vector<Integer>(al.getNombresDonats());
+                nombresEscrits = new Vector<Integer>(al.getNombresDonats());
                 calcPossiblesMoviments();
                 solucionable = true;
             } else {
                 solucionable = al.solucionar();
-                nombresDonats = new Vector<Integer>(al.getGiven());
-                nombresEscrits = new Vector<Integer>(al.getGiven());
+                nombresDonats = new Vector<Integer>(al.getNombresDonats());
+                nombresEscrits = new Vector<Integer>(al.getNombresDonats());
                 matriuSolucio = al.getMatriuSolucio();
                 calcPossiblesMoviments();
             }

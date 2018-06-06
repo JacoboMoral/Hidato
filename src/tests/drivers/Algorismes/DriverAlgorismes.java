@@ -198,7 +198,7 @@ public class DriverAlgorismes {
 		v.add(11);
 		System.out.println(v);
 		
-		Vector<Integer> donats = algorismes.getGiven();
+		Vector<Integer> donats = algorismes.getNombresDonats();
 		System.out.println("S'espera el seguent vector de nombres donats:");
 		System.out.println(donats);
 		

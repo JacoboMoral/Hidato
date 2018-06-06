@@ -41,7 +41,7 @@ public class AlgorismesStub extends Algorismes{
 		return true;
 	}
 
-	public Vector<Integer> getGiven() {
+	public Vector<Integer> getNombresDonats() {
 		Vector<Integer> v = new Vector<Integer>(4);
     	v.add(1);
     	v.add(5);
