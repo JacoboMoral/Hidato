@@ -51,7 +51,7 @@ public class VistaPartida extends javax.swing.JFrame {
         this.hidatoPanel = hidatoPanel;
         this.add(this.hidatoPanel);
         seguentMoviment = Integer.toString(partida.getSeguentMoviment());
-        jLabel1.setText(seguentMoviment);
+        numActual.setText(seguentMoviment);
         tipusAdjacencia.setText(TipusAdjacenciaToString(controladorPresentacio.getTipusAdjacenciaPartida()));
         this.validate();
     }
@@ -91,14 +91,14 @@ public class VistaPartida extends javax.swing.JFrame {
     private void initComponents() {
 
         optionPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        saveGame = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        numActual = new javax.swing.JLabel();
+        seguentNum = new javax.swing.JButton();
+        anteriorNum = new javax.swing.JButton();
+        help = new javax.swing.JButton();
+        back = new javax.swing.JLabel();
+        guardarPartida = new javax.swing.JLabel();
+        borrarNumeros = new javax.swing.JLabel();
+        solucionarHidato = new javax.swing.JLabel();
         tipusAdjacencia = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         hidatoPanel = new javax.swing.JPanel();
@@ -113,64 +113,64 @@ public class VistaPartida extends javax.swing.JFrame {
 
         optionPanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numActual.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        numActual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jButton1.setText(">");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        seguentNum.setBackground(new java.awt.Color(255, 255, 255));
+        seguentNum.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        seguentNum.setText(">");
+        seguentNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton1MousePressed(evt);
+                seguentNumMousePressed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jButton2.setText("<");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        anteriorNum.setBackground(new java.awt.Color(255, 255, 255));
+        anteriorNum.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        anteriorNum.setText("<");
+        anteriorNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton2MousePressed(evt);
+                anteriorNumMousePressed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 135, 135));
-        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jButton3.setText("Ajuda");
-        jButton3.setToolTipText("Activar/desactivar ajut en el joc");
-        jButton3.setFocusPainted(false);
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        help.setBackground(new java.awt.Color(255, 135, 135));
+        help.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        help.setText("Ajuda");
+        help.setToolTipText("Activar/desactivar ajut en el joc");
+        help.setFocusPainted(false);
+        help.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton3MousePressed(evt);
+                helpMousePressed(evt);
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anterior.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anterior.png"))); // NOI18N
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                backMouseClicked(evt);
             }
         });
 
-        saveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
-        saveGame.addMouseListener(new java.awt.event.MouseAdapter() {
+        guardarPartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
+        guardarPartida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                saveGameMousePressed(evt);
+                guardarPartidaMousePressed(evt);
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        borrarNumeros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
+        borrarNumeros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                borrarNumerosMouseClicked(evt);
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bombilla.png"))); // NOI18N
-        jLabel4.setToolTipText("");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        solucionarHidato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bombilla.png"))); // NOI18N
+        solucionarHidato.setToolTipText("");
+        solucionarHidato.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel4MousePressed(evt);
+                solucionarHidatoMousePressed(evt);
             }
         });
 
@@ -185,22 +185,22 @@ public class VistaPartida extends javax.swing.JFrame {
             optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(optionPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel2)
+                .addComponent(back)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(borrarNumeros)
                 .addGap(18, 18, 18)
-                .addComponent(saveGame)
+                .addComponent(guardarPartida)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(solucionarHidato)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(help, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(optionPanelLayout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(anteriorNum)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(numActual, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(seguentNum)))
                 .addGap(94, 94, 94)
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -215,19 +215,19 @@ public class VistaPartida extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionPanelLayout.createSequentialGroup()
                         .addGap(10, 58, Short.MAX_VALUE)
                         .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(saveGame, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(borrarNumeros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(guardarPartida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(solucionarHidato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(45, 45, 45))
                     .addGroup(optionPanelLayout.createSequentialGroup()
                         .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numActual, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton2)
-                                .addComponent(jButton1)))
+                                .addComponent(anteriorNum)
+                                .addComponent(seguentNum)))
                         .addGap(29, 29, 29)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -258,35 +258,35 @@ public class VistaPartida extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         cn.openMenuView();
         this.dispose();
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_backMouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void borrarNumerosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarNumerosMouseClicked
         if (inputsAllowed) {
             partida.reset();
         }
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_borrarNumerosMouseClicked
 
-    private void saveGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveGameMousePressed
+    private void guardarPartidaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarPartidaMousePressed
         if (inputsAllowed) {
             partida.guardarPartida();
             cn.openMenuView();
             this.dispose();
         }
-    }//GEN-LAST:event_saveGameMousePressed
+    }//GEN-LAST:event_guardarPartidaMousePressed
 
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+    private void seguentNumMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seguentNumMousePressed
         if (inputsAllowed) {
             int seguentMov = partida.incrementarSeguentMoviment();
             if (seguentMov != -1) {
-                jLabel1.setText(Integer.toString(seguentMov));
+                numActual.setText(Integer.toString(seguentMov));
             }
         }
-    }//GEN-LAST:event_jButton1MousePressed
+    }//GEN-LAST:event_seguentNumMousePressed
 
-    private void jLabel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MousePressed
+    private void solucionarHidatoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_solucionarHidatoMousePressed
         if (inputsAllowed) {
             int input = JOptionPane.showOptionDialog(null, "Si decideixes solucionar la partida, no et contarà com feta. Vols solucionar-la igualment?", "Advertencia",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
@@ -296,7 +296,7 @@ public class VistaPartida extends javax.swing.JFrame {
                 partida.solucionarPartida();
             }
         }
-    }//GEN-LAST:event_jLabel4MousePressed
+    }//GEN-LAST:event_solucionarHidatoMousePressed
 
     private void blockPartidaInputs() {
         inputsAllowed = false;
@@ -306,38 +306,38 @@ public class VistaPartida extends javax.swing.JFrame {
         inputsAllowed = true;
     }
 
-	private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
+	private void anteriorNumMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorNumMousePressed
 
             if (inputsAllowed) {
                 int seguentMov = partida.decrementarSeguentMoviment();
                 if (seguentMov != -1) {
-                    jLabel1.setText(Integer.toString(seguentMov));
+                    numActual.setText(Integer.toString(seguentMov));
                 }
             }
-    }//GEN-LAST:event_jButton2MousePressed
+    }//GEN-LAST:event_anteriorNumMousePressed
 
-    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
+    private void helpMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpMousePressed
         if (ajuda == false) {
             ajuda = true;
-            jButton3.setBackground(new Color(135, 255, 137));
+            help.setBackground(new Color(135, 255, 137));
         } else {
             ajuda = false;
-            jButton3.setBackground(new Color(255, 135, 135));
+            help.setBackground(new Color(255, 135, 135));
         }
         partida.setAjuda(ajuda);
-    }//GEN-LAST:event_jButton3MousePressed
+    }//GEN-LAST:event_helpMousePressed
 
     private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
         if (inputsAllowed) {
             if (evt.getWheelRotation() < 0) {
                 int seguentMov = partida.incrementarSeguentMoviment();
                 if (seguentMov != -1) {
-                    jLabel1.setText(Integer.toString(seguentMov));
+                    numActual.setText(Integer.toString(seguentMov));
                 }
             } else {
                 int seguentMov = partida.decrementarSeguentMoviment();
                 if (seguentMov != -1) {
-                    jLabel1.setText(Integer.toString(seguentMov));
+                    numActual.setText(Integer.toString(seguentMov));
                 }
             }
         }
@@ -383,21 +383,21 @@ public class VistaPartida extends javax.swing.JFrame {
     }
 
     public void updateSeguentMoviment(String moviment) {
-        jLabel1.setText(moviment);
+        numActual.setText(moviment);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton anteriorNum;
+    private javax.swing.JLabel back;
+    private javax.swing.JLabel borrarNumeros;
+    private javax.swing.JLabel guardarPartida;
+    private javax.swing.JButton help;
     private javax.swing.JPanel hidatoPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel numActual;
     private javax.swing.JPanel optionPanel;
-    private javax.swing.JLabel saveGame;
+    private javax.swing.JButton seguentNum;
+    private javax.swing.JLabel solucionarHidato;
     private javax.swing.JLabel tipusAdjacencia;
     // End of variables declaration//GEN-END:variables
 

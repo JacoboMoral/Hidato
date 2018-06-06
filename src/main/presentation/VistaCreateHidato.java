@@ -58,16 +58,16 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     private void initComponents() {
 
         controlPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        saveGame = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        b_almoadilla = new javax.swing.JButton();
-        b_estrella = new javax.swing.JButton();
-        b_num = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        actualNum = new javax.swing.JLabel();
+        seguentNum = new javax.swing.JButton();
+        antNum = new javax.swing.JButton();
+        back = new javax.swing.JLabel();
+        guardarHidato = new javax.swing.JLabel();
+        borrarNumPosats = new javax.swing.JLabel();
+        cellaBuida = new javax.swing.JButton();
+        cellaInvalida = new javax.swing.JButton();
+        seleccionarNum = new javax.swing.JButton();
+        instruccionIcon = new javax.swing.JLabel();
         hidatoPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,81 +79,81 @@ public class VistaCreateHidato extends javax.swing.JFrame {
 
         controlPanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("1");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        actualNum.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        actualNum.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        actualNum.setText("1");
+        actualNum.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jButton1.setText(">");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        seguentNum.setBackground(new java.awt.Color(255, 255, 255));
+        seguentNum.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        seguentNum.setText(">");
+        seguentNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton1MousePressed(evt);
+                seguentNumMousePressed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jButton2.setText("<");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        antNum.setBackground(new java.awt.Color(255, 255, 255));
+        antNum.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        antNum.setText("<");
+        antNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton2MousePressed(evt);
+                antNumMousePressed(evt);
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anterior.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anterior.png"))); // NOI18N
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                backMouseClicked(evt);
             }
         });
 
-        saveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
-        saveGame.addMouseListener(new java.awt.event.MouseAdapter() {
+        guardarHidato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
+        guardarHidato.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                saveGameMousePressed(evt);
+                guardarHidatoMousePressed(evt);
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        borrarNumPosats.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/resetIcon.png"))); // NOI18N
+        borrarNumPosats.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                borrarNumPosatsMouseClicked(evt);
             }
         });
 
-        b_almoadilla.setBackground(new java.awt.Color(255, 255, 255));
-        b_almoadilla.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        b_almoadilla.setText("#");
-        b_almoadilla.addMouseListener(new java.awt.event.MouseAdapter() {
+        cellaBuida.setBackground(new java.awt.Color(255, 255, 255));
+        cellaBuida.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        cellaBuida.setText("#");
+        cellaBuida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                b_almoadillaMousePressed(evt);
+                cellaBuidaMousePressed(evt);
             }
         });
 
-        b_estrella.setBackground(new java.awt.Color(255, 255, 255));
-        b_estrella.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        b_estrella.setText("*");
-        b_estrella.addMouseListener(new java.awt.event.MouseAdapter() {
+        cellaInvalida.setBackground(new java.awt.Color(255, 255, 255));
+        cellaInvalida.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        cellaInvalida.setText("*");
+        cellaInvalida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                b_estrellaMousePressed(evt);
+                cellaInvalidaMousePressed(evt);
             }
         });
 
-        b_num.setBackground(new java.awt.Color(119, 196, 255));
-        b_num.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        b_num.setText("Num");
-        b_num.addMouseListener(new java.awt.event.MouseAdapter() {
+        seleccionarNum.setBackground(new java.awt.Color(119, 196, 255));
+        seleccionarNum.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        seleccionarNum.setText("Num");
+        seleccionarNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                b_numMousePressed(evt);
+                seleccionarNumMousePressed(evt);
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/help.png"))); // NOI18N
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        instruccionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/help.png"))); // NOI18N
+        instruccionIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                instruccionIconMouseClicked(evt);
             }
         });
 
@@ -163,25 +163,25 @@ public class VistaCreateHidato extends javax.swing.JFrame {
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel2)
+                .addComponent(back)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(borrarNumPosats)
                 .addGap(18, 18, 18)
-                .addComponent(saveGame)
+                .addComponent(guardarHidato)
                 .addGap(188, 188, 188)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_almoadilla, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(antNum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cellaBuida, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(b_num))
+                    .addComponent(actualNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(seleccionarNum))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_estrella, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(seguentNum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cellaInvalida, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
-                .addComponent(jLabel4)
+                .addComponent(instruccionIcon)
                 .addGap(26, 26, 26))
         );
         controlPanelLayout.setVerticalGroup(
@@ -189,23 +189,23 @@ public class VistaCreateHidato extends javax.swing.JFrame {
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(antNum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(seguentNum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(actualNum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(b_almoadilla, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(b_estrella, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(b_num, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
+                        .addComponent(cellaBuida, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cellaInvalida, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(seleccionarNum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(back)
+                    .addComponent(instruccionIcon))
                 .addGap(28, 28, 28))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveGame, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(borrarNumPosats, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(guardarHidato, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(46, 46, 46))
         );
 
@@ -230,52 +230,52 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
     	if (inputsAllowed) {
 	    	cn.openMenuView();
 	        this.dispose();
     	}
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_backMouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void borrarNumPosatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarNumPosatsMouseClicked
     	if (inputsAllowed) {
     		creacio.reset();
     	}
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_borrarNumPosatsMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
     	if (inputsAllowed) {
 	    	if (seguentMoviment > creacio.getMinimMoviment()) {
 	        	seguentMoviment = creacio.decrementarSeguentMoviment();
-	            jLabel1.setText(Integer.toString(seguentMoviment));
+	            actualNum.setText(Integer.toString(seguentMoviment));
 	        }
     	}
     }//GEN-LAST:event_jButton2MouseClicked
     
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+    private void seguentNumMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seguentNumMousePressed
     	if (inputsAllowed) {
 	    	if (seguentMoviment < creacio.getMaximMoviment()) {
 	        	seguentMoviment = creacio.incrementarSeguentMoviment();
-	        	jLabel1.setText(Integer.toString(seguentMoviment));
+	        	actualNum.setText(Integer.toString(seguentMoviment));
 	        }
     	}
-    }//GEN-LAST:event_jButton1MousePressed
+    }//GEN-LAST:event_seguentNumMousePressed
 
-    private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
+    private void antNumMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_antNumMousePressed
     	if (inputsAllowed) {
 	    	if (seguentMoviment > creacio.getMinimMoviment()) {
 	        	seguentMoviment = creacio.decrementarSeguentMoviment();
-	            jLabel1.setText(Integer.toString(seguentMoviment));
+	            actualNum.setText(Integer.toString(seguentMoviment));
 	    	}	
     	}
-    }//GEN-LAST:event_jButton2MousePressed
+    }//GEN-LAST:event_antNumMousePressed
 
-    private void saveGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveGameMousePressed
+    private void guardarHidatoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarHidatoMousePressed
     	if (inputsAllowed) {
     		inputsAllowed = false;
     		creacio.guardarHidato();
     	}
-    }//GEN-LAST:event_saveGameMousePressed
+    }//GEN-LAST:event_guardarHidatoMousePressed
 
     private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
     	evt.consume(); //per evitar que es cridi dos cops a cada "tick" de la roda
@@ -283,47 +283,47 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     		if (evt.getWheelRotation() < 0) {
 	        	if (seguentMoviment < creacio.getMaximMoviment()) {
 	            	seguentMoviment = creacio.incrementarSeguentMoviment();
-	            	jLabel1.setText(Integer.toString(seguentMoviment));
+	            	actualNum.setText(Integer.toString(seguentMoviment));
 	            }
 	        }
 	        else {
 	        	if (seguentMoviment > creacio.getMinimMoviment()) {
 	            	seguentMoviment = creacio.decrementarSeguentMoviment();
-	                jLabel1.setText(Integer.toString(seguentMoviment));
+	                actualNum.setText(Integer.toString(seguentMoviment));
 	            }
 	        }
     	}
 	        
     }//GEN-LAST:event_formMouseWheelMoved
 
-    private void b_almoadillaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_almoadillaMousePressed
+    private void cellaBuidaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cellaBuidaMousePressed
         if (inputsAllowed) {
         	creacio.setAlmoadilla();
             clearButtonsColor();
-            b_almoadilla.setBackground(new Color(119, 196, 255));
+            cellaBuida.setBackground(new Color(119, 196, 255));
         }
-    }//GEN-LAST:event_b_almoadillaMousePressed
+    }//GEN-LAST:event_cellaBuidaMousePressed
 
-    private void b_numMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_numMousePressed
+    private void seleccionarNumMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seleccionarNumMousePressed
     	if (inputsAllowed) {
 	    	creacio.setNumero();
 	        clearButtonsColor();
-	        b_num.setBackground(new Color(119, 196, 255));
+	        seleccionarNum.setBackground(new Color(119, 196, 255));
     	}
-    }//GEN-LAST:event_b_numMousePressed
+    }//GEN-LAST:event_seleccionarNumMousePressed
 
-    private void b_estrellaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_estrellaMousePressed
+    private void cellaInvalidaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cellaInvalidaMousePressed
     	if (inputsAllowed) {
 	    	creacio.setAsterisc();
 	        clearButtonsColor();
-	        b_estrella.setBackground(new Color(119, 196, 255));
+	        cellaInvalida.setBackground(new Color(119, 196, 255));
     	}
        
-    }//GEN-LAST:event_b_estrellaMousePressed
+    }//GEN-LAST:event_cellaInvalidaMousePressed
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void instruccionIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_instruccionIconMouseClicked
         cn.openInstruccions();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_instruccionIconMouseClicked
 
     /**
      * @param args the command line arguments
@@ -366,32 +366,32 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     public void setSeguentMoviment(int seguentMoviment) {
     	if (seguentMoviment != 0) {
     		this.seguentMoviment = seguentMoviment;
-            jLabel1.setText(Integer.toString(seguentMoviment));
+            actualNum.setText(Integer.toString(seguentMoviment));
     	}
     	else {
-    		jLabel1.setText(" ");
+    		actualNum.setText(" ");
     	}
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton b_almoadilla;
-    private javax.swing.JButton b_estrella;
-    private javax.swing.JButton b_num;
+    private javax.swing.JLabel actualNum;
+    private javax.swing.JButton antNum;
+    private javax.swing.JLabel back;
+    private javax.swing.JLabel borrarNumPosats;
+    private javax.swing.JButton cellaBuida;
+    private javax.swing.JButton cellaInvalida;
     private javax.swing.JPanel controlPanel;
+    private javax.swing.JLabel guardarHidato;
     private javax.swing.JPanel hidatoPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel saveGame;
+    private javax.swing.JLabel instruccionIcon;
+    private javax.swing.JButton seguentNum;
+    private javax.swing.JButton seleccionarNum;
     // End of variables declaration//GEN-END:variables
 
     private void clearButtonsColor() {
-        b_num.setBackground(new Color(255,255,255));
-        b_estrella.setBackground(new Color(255,255,255));
-        b_almoadilla.setBackground(new Color(255,255,255));
+        seleccionarNum.setBackground(new Color(255,255,255));
+        cellaInvalida.setBackground(new Color(255,255,255));
+        cellaBuida.setBackground(new Color(255,255,255));
 
     }
 

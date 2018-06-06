@@ -21,3 +21,5 @@ bin/domain/JOCSDEPROVA/Joc_de_prova_DriverControladorDomini.txt
 bin/domain/JOCSDEPROVA/Joc_de_prova_DriverHidato.txt
 
 bin/domain/main/domain/com/hidato/Hidato.class
+
+*.ucls

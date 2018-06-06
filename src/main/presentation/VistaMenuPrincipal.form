@@ -49,9 +49,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="title" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="470" max="32767" attributes="0"/>
-                  <Component id="b_userProfile" min="-2" max="-2" attributes="0"/>
+                  <Component id="userProfileIcon" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="l_username" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -63,8 +63,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="21" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="b_userProfile" min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="userProfileIcon" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="title" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="l_username" min="-2" pref="25" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -76,7 +76,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="title">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="50" style="0"/>
@@ -88,14 +88,14 @@
             <Property name="text" type="java.lang.String" value="Hidato"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="b_userProfile">
+        <Component class="javax.swing.JLabel" name="userProfileIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Image/user.png"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_userProfileMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userProfileIconMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="l_username">
@@ -150,16 +150,16 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="265" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="b_play" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="jugar" min="-2" pref="170" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="b_create" max="32767" attributes="0"/>
-                                      <Component id="b_ranking" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                      <Component id="crearHidato" max="32767" attributes="0"/>
+                                      <Component id="ranking" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="tipsButton" min="-2" pref="106" max="-2" attributes="0"/>
+                              <Component id="tips" min="-2" pref="106" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="265" max="32767" attributes="0"/>
@@ -170,20 +170,20 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                      <Component id="b_play" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="jugar" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="b_create" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="crearHidato" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="b_ranking" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="ranking" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace pref="60" max="32767" attributes="0"/>
-                      <Component id="tipsButton" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="tips" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="b_play">
+            <Component class="javax.swing.JButton" name="jugar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -203,11 +203,11 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_playMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_playActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jugarMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jugarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_create">
+            <Component class="javax.swing.JButton" name="crearHidato">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -227,11 +227,11 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_createMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_createActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="crearHidatoMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearHidatoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_ranking">
+            <Component class="javax.swing.JButton" name="ranking">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -251,10 +251,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_rankingMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rankingMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="tipsButton">
+            <Component class="javax.swing.JButton" name="tips">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -275,7 +275,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipsButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipsActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -300,17 +300,17 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="b_save1" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="guardarPassword" min="-2" pref="170" max="-2" attributes="0"/>
                                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                                      <Component id="t_rpass" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="repeatPassword" min="-2" pref="150" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                      <Component id="b_cancel1" min="-2" pref="170" max="-2" attributes="0"/>
+                                      <Component id="cancelPassword" min="-2" pref="170" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -321,8 +321,8 @@
                               </Group>
                               <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="t_oldpass" pref="150" max="32767" attributes="0"/>
-                                  <Component id="t_newpass" max="32767" attributes="0"/>
+                                  <Component id="oldPassword" pref="150" max="32767" attributes="0"/>
+                                  <Component id="newPassword" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -336,22 +336,22 @@
                       <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel13" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="t_oldpass" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="oldPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="22" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel14" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="t_newpass" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="newPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="t_rpass" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="repeatPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel15" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="b_save1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="b_cancel1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="guardarPassword" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="cancelPassword" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
@@ -367,7 +367,7 @@
                 <Property name="text" type="java.lang.String" value="Contrasenya antiga"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="t_oldpass">
+            <Component class="javax.swing.JPasswordField" name="oldPassword">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -382,7 +382,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="t_newpass">
+            <Component class="javax.swing.JPasswordField" name="newPassword">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -413,7 +413,7 @@
                 <Property name="text" type="java.lang.String" value="Confirma nova contrasenya"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="t_rpass">
+            <Component class="javax.swing.JPasswordField" name="repeatPassword">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -428,10 +428,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="t_rpassActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="repeatPasswordActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_cancel1">
+            <Component class="javax.swing.JButton" name="cancelPassword">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -450,10 +450,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_cancel1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelPasswordMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_save1">
+            <Component class="javax.swing.JButton" name="guardarPassword">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -472,8 +472,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_save1MouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_save1ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="guardarPasswordMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarPasswordActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -499,15 +499,15 @@
                           <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="jButton9" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="confirmDeleteUser" min="-2" pref="170" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="jButton10" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="cancelDeleteUser" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="t_password" min="-2" pref="149" max="-2" attributes="0"/>
+                              <Component id="passwordToDeleteAcc" min="-2" pref="149" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="116" max="32767" attributes="0"/>
@@ -522,12 +522,12 @@
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="t_password" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="passwordToDeleteAcc" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton10" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jButton9" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="cancelDeleteUser" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="confirmDeleteUser" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                   </Group>
@@ -551,7 +551,7 @@
                 <Property name="text" type="java.lang.String" value="Contrasenya:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="t_password">
+            <Component class="javax.swing.JPasswordField" name="passwordToDeleteAcc">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -566,7 +566,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton9">
+            <Component class="javax.swing.JButton" name="confirmDeleteUser">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -584,11 +584,11 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton9MouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="confirmDeleteUserMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmDeleteUserActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton10">
+            <Component class="javax.swing.JButton" name="cancelDeleteUser">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -599,8 +599,8 @@
                 <Property name="text" type="java.lang.String" value="Cancel.lar "/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton10MouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelDeleteUserMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelDeleteUserActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -627,8 +627,8 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="272" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="b_delete" min="-2" max="-2" attributes="0"/>
-                                          <Component id="b_signout" min="-2" pref="173" max="-2" attributes="0"/>
+                                          <Component id="eliminarCompte" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tancarSessio" min="-2" pref="173" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -644,13 +644,13 @@
                                           </Group>
                                       </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="l_password" min="-2" pref="123" max="-2" attributes="0"/>
-                                          <Component id="l_username1" min="-2" pref="123" max="-2" attributes="0"/>
+                                          <Component id="showPassword" min="-2" pref="123" max="-2" attributes="0"/>
+                                          <Component id="showUsername" min="-2" pref="123" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel10" min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Component id="jLabel9" min="-2" pref="17" max="-2" attributes="0"/>
+                                          <Component id="editarNom" min="-2" pref="27" max="-2" attributes="0"/>
+                                          <Component id="editarPassword" min="-2" pref="17" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -658,7 +658,7 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jButton8" min="-2" pref="173" max="-2" attributes="0"/>
+                              <Component id="back" min="-2" pref="173" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -675,31 +675,31 @@
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="l_password" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="showPassword" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel10" min="-2" pref="21" max="-2" attributes="0"/>
-                                  <Component id="l_username1" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="editarNom" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="showUsername" min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel9" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="editarPassword" min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                      <Component id="b_delete" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="eliminarCompte" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="b_signout" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="tancarSessio" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="jButton8" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="back" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton8">
+            <Component class="javax.swing.JButton" name="back">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -710,7 +710,7 @@
                 <Property name="text" type="java.lang.String" value="Enrere"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton8MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="backMouseClicked"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
@@ -729,7 +729,7 @@
                 <Property name="text" type="java.lang.String" value="Contrasenya"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="l_username1">
+            <Component class="javax.swing.JLabel" name="showUsername">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="18" style="0"/>
@@ -741,7 +741,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="l_password">
+            <Component class="javax.swing.JLabel" name="showPassword">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="18" style="0"/>
@@ -753,7 +753,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="b_delete">
+            <Component class="javax.swing.JButton" name="eliminarCompte">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -764,31 +764,31 @@
                 <Property name="text" type="java.lang.String" value="Eliminar compte"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_deleteMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_deleteActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="eliminarCompteMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarCompteActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel9">
+            <Component class="javax.swing.JLabel" name="editarPassword">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Image/editIcon.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel9MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editarPasswordMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel10">
+            <Component class="javax.swing.JLabel" name="editarNom">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Image/editIcon.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel10MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editarNomMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_signout">
+            <Component class="javax.swing.JButton" name="tancarSessio">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -799,8 +799,8 @@
                 <Property name="text" type="java.lang.String" value="Tancar sessio"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_signoutMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_signoutActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tancarSessioMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tancarSessioActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -826,14 +826,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="265" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="b_fromtxt" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="b_custom" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="importarDesdeFitxer" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="personalitzat" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="265" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="b_back" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="back2" min="-2" pref="170" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -842,18 +842,18 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                      <Component id="b_custom" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="personalitzat" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="b_fromtxt" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="importarDesdeFitxer" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
-                      <Component id="b_back" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="back2" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="b_fromtxt">
+            <Component class="javax.swing.JButton" name="importarDesdeFitxer">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -873,10 +873,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_fromtxtActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="importarDesdeFitxerActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_back">
+            <Component class="javax.swing.JButton" name="back2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -887,10 +887,10 @@
                 <Property name="text" type="java.lang.String" value="Enrere"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_backActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back2ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_custom">
+            <Component class="javax.swing.JButton" name="personalitzat">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -901,7 +901,7 @@
                 <Property name="text" type="java.lang.String" value="Personalitzat "/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_customActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="personalitzatActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -935,7 +935,7 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="b_Create" min="-2" pref="170" max="-2" attributes="0"/>
+                                          <Component id="crearHidatoCustom" min="-2" pref="170" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -962,7 +962,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="b_backTypeCreate" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="back3" min="-2" pref="170" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -993,9 +993,9 @@
                           <Component id="amplada" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="b_Create" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="crearHidatoCustom" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace pref="42" max="32767" attributes="0"/>
-                      <Component id="b_backTypeCreate" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="back3" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1094,7 +1094,7 @@
                 <Property name="text" type="java.lang.String" value="Crea el teu hidato:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="b_backTypeCreate">
+            <Component class="javax.swing.JButton" name="back3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1105,10 +1105,10 @@
                 <Property name="text" type="java.lang.String" value="Enrere"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_backTypeCreateActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back3ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_Create">
+            <Component class="javax.swing.JButton" name="crearHidatoCustom">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1119,7 +1119,7 @@
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_CreateActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearHidatoCustomActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1155,9 +1155,9 @@
                               <EmptySpace min="0" pref="262" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jButton6" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="jugarHidatoImportat" min="-2" pref="170" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jButton7" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="back5" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -1177,8 +1177,8 @@
                       <Component id="selectedHidato" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton6" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jButton7" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="jugarHidatoImportat" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="back5" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
@@ -1242,7 +1242,7 @@
                 <Property name="text" type="java.lang.String" value="Introdueix el nom del Hidato:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton6">
+            <Component class="javax.swing.JButton" name="jugarHidatoImportat">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1253,10 +1253,10 @@
                 <Property name="text" type="java.lang.String" value="Jugar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jugarHidatoImportatActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton7">
+            <Component class="javax.swing.JButton" name="back5">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1267,7 +1267,7 @@
                 <Property name="text" type="java.lang.String" value="Enrere"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back5ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1295,18 +1295,18 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButton3" max="32767" attributes="0"/>
-                                  <Component id="jButton2" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="importat" max="32767" attributes="0"/>
+                                  <Component id="jocRapid" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton4" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="b_autogenerar" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="repren" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="autogenerar" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="80" max="32767" attributes="0"/>
-                              <Component id="b_back_menu" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="back6" min="-2" pref="170" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1317,19 +1317,19 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="jocRapid" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="importat" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jButton4" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="repren" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="b_autogenerar" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="autogenerar" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="b_back_menu" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="back6" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1338,7 +1338,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="jocRapid">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1358,10 +1358,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jocRapidActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="importat">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1381,10 +1381,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="importatActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton4">
+            <Component class="javax.swing.JButton" name="repren">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1404,11 +1404,11 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jButton4AncestorAdded"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="reprenAncestorAdded"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reprenActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_back_menu">
+            <Component class="javax.swing.JButton" name="back6">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1431,10 +1431,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_back_menuActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back6ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_autogenerar">
+            <Component class="javax.swing.JButton" name="autogenerar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1445,7 +1445,7 @@
                 <Property name="text" type="java.lang.String" value="Autogenerar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_autogenerarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="autogenerarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1471,15 +1471,15 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="265" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="quickEasy" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="quickHard" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="quickInter" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="facilGame" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="dificilGame" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="migGame" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="265" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="b_back_menu1" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="back7" min="-2" pref="170" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1488,20 +1488,20 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                      <Component id="quickEasy" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="facilGame" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="quickInter" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="migGame" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="quickHard" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="dificilGame" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                      <Component id="b_back_menu1" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="back7" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="quickEasy">
+            <Component class="javax.swing.JButton" name="facilGame">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1528,10 +1528,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quickEasyActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="facilGameActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="quickInter">
+            <Component class="javax.swing.JButton" name="migGame">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1558,10 +1558,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quickInterActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="migGameActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="quickHard">
+            <Component class="javax.swing.JButton" name="dificilGame">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1588,10 +1588,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quickHardActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dificilGameActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_back_menu1">
+            <Component class="javax.swing.JButton" name="back7">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1605,7 +1605,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_back_menu1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back7ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1678,7 +1678,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea1">
+                        <Component class="javax.swing.JTextArea" name="textInformacio">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
@@ -2021,12 +2021,12 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                          <Component id="jButton13" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="information" min="-2" pref="170" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton15" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="instruccio" min="-2" pref="170" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton14" min="-2" pref="170" max="-2" attributes="0"/>
-                          <EmptySpace pref="88" max="32767" attributes="0"/>
+                          <Component id="back8" min="-2" pref="170" max="-2" attributes="0"/>
+                          <EmptySpace pref="194" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2035,9 +2035,9 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton13" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="jButton14" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="jButton15" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="information" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="back8" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="instruccio" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
@@ -2045,7 +2045,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButton13">
+                <Component class="javax.swing.JButton" name="information">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -2056,10 +2056,10 @@
                     <Property name="text" type="java.lang.String" value="Information"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton13ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="informationActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton14">
+                <Component class="javax.swing.JButton" name="back8">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -2070,10 +2070,10 @@
                     <Property name="text" type="java.lang.String" value="Tornar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back8ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton15">
+                <Component class="javax.swing.JButton" name="instruccio">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -2084,7 +2084,7 @@
                     <Property name="text" type="java.lang.String" value="Instruccio"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton15ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="instruccioActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -2154,7 +2154,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="b_generate" min="-2" pref="170" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                              <Component id="b_backTypeCreate1" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="back9" min="-2" pref="170" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -2210,7 +2210,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="b_backTypeCreate1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="back9" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="b_generate" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
@@ -2219,7 +2219,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="b_backTypeCreate1">
+            <Component class="javax.swing.JButton" name="back9">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -2233,7 +2233,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_backTypeCreate1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back9ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="tipologiaCheckBox">
@@ -2483,16 +2483,16 @@
                       </Group>
                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="oldName" pref="146" max="32767" attributes="0"/>
-                          <Component id="newName" alignment="0" pref="146" max="32767" attributes="0"/>
+                          <Component id="oldUsername" pref="146" max="32767" attributes="0"/>
+                          <Component id="newUseranme" alignment="0" pref="146" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="199" max="32767" attributes="0"/>
-                      <Component id="b_save" min="-2" pref="145" max="-2" attributes="0"/>
+                      <Component id="saveUseranme" min="-2" pref="145" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="b_cancel" min="-2" pref="146" max="-2" attributes="0"/>
+                      <Component id="cancelUseranme" min="-2" pref="146" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="192" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -2502,18 +2502,18 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="oldName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="oldUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="newName" min="-2" max="-2" attributes="0"/>
+                          <Component id="newUseranme" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="b_save" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                          <Component id="b_cancel" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="saveUseranme" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="cancelUseranme" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="72" max="32767" attributes="0"/>
                   </Group>
@@ -2529,7 +2529,7 @@
                 <Property name="text" type="java.lang.String" value="Username antic"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="oldName">
+            <Component class="javax.swing.JTextField" name="oldUsername">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -2544,7 +2544,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="newName">
+            <Component class="javax.swing.JTextField" name="newUseranme">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -2567,7 +2567,7 @@
                 <Property name="text" type="java.lang.String" value="Nou username"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="b_save">
+            <Component class="javax.swing.JButton" name="saveUseranme">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="ff" red="0" type="rgb"/>
@@ -2578,11 +2578,11 @@
                 <Property name="text" type="java.lang.String" value="Guardar"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_saveMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_saveActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="saveUseranmeMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveUseranmeActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="b_cancel">
+            <Component class="javax.swing.JButton" name="cancelUseranme">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -2593,7 +2593,7 @@
                 <Property name="text" type="java.lang.String" value="Cancel"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="b_cancelMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelUseranmeMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>

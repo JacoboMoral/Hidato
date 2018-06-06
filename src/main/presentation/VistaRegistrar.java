@@ -37,15 +37,15 @@ public class VistaRegistrar extends javax.swing.JFrame {
 
         jSeparator3 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        tf_username = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        okRegistrar = new javax.swing.JButton();
-        tf_password = new javax.swing.JPasswordField();
-        tf_rpassword = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
-        okRegistrar1 = new javax.swing.JButton();
+        label = new javax.swing.JLabel();
+        usernameField = new javax.swing.JTextField();
+        label2 = new javax.swing.JLabel();
+        label3 = new javax.swing.JLabel();
+        crearUsuariButton = new javax.swing.JButton();
+        passwordField = new javax.swing.JPasswordField();
+        fieldRepeatPasword = new javax.swing.JPasswordField();
+        registrationTitle = new javax.swing.JLabel();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hidato - Register");
@@ -54,69 +54,69 @@ public class VistaRegistrar extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel1.setText("Nom:");
+        label.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        label.setText("Nom:");
 
-        tf_username.setBackground(new java.awt.Color(204, 204, 204));
-        tf_username.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        tf_username.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tf_username.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        tf_username.addActionListener(new java.awt.event.ActionListener() {
+        usernameField.setBackground(new java.awt.Color(204, 204, 204));
+        usernameField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        usernameField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        usernameField.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        usernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_usernameActionPerformed(evt);
+                usernameFieldActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel2.setText("Contrasenya:");
+        label2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        label2.setText("Contrasenya:");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel3.setText("Repetir contrasenya:");
+        label3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        label3.setText("Repetir contrasenya:");
 
-        okRegistrar.setBackground(new java.awt.Color(255, 255, 255));
-        okRegistrar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        okRegistrar.setText("Crear");
-        okRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        crearUsuariButton.setBackground(new java.awt.Color(255, 255, 255));
+        crearUsuariButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        crearUsuariButton.setText("Crear");
+        crearUsuariButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                okRegistrarMouseClicked(evt);
+                crearUsuariButtonMouseClicked(evt);
             }
         });
-        okRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        crearUsuariButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okRegistrarActionPerformed(evt);
+                crearUsuariButtonActionPerformed(evt);
             }
         });
 
-        tf_password.setBackground(new java.awt.Color(204, 204, 204));
-        tf_password.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        tf_password.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tf_password.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        tf_password.addActionListener(new java.awt.event.ActionListener() {
+        passwordField.setBackground(new java.awt.Color(204, 204, 204));
+        passwordField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        passwordField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        passwordField.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_passwordActionPerformed(evt);
+                passwordFieldActionPerformed(evt);
             }
         });
 
-        tf_rpassword.setBackground(new java.awt.Color(204, 204, 204));
-        tf_rpassword.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        tf_rpassword.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tf_rpassword.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        fieldRepeatPasword.setBackground(new java.awt.Color(204, 204, 204));
+        fieldRepeatPasword.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        fieldRepeatPasword.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        fieldRepeatPasword.setDisabledTextColor(new java.awt.Color(204, 204, 204));
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Registrar");
+        registrationTitle.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        registrationTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        registrationTitle.setText("Registrar");
 
-        okRegistrar1.setBackground(new java.awt.Color(255, 255, 255));
-        okRegistrar1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        okRegistrar1.setText("Cancel.lar");
-        okRegistrar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancelButton.setBackground(new java.awt.Color(255, 255, 255));
+        cancelButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        cancelButton.setText("Cancel.lar");
+        cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                okRegistrar1MouseClicked(evt);
+                cancelButtonMouseClicked(evt);
             }
         });
-        okRegistrar1.addActionListener(new java.awt.event.ActionListener() {
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okRegistrar1ActionPerformed(evt);
+                cancelButtonActionPerformed(evt);
             }
         });
 
@@ -126,43 +126,42 @@ public class VistaRegistrar extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(176, 176, 176)
-                .addComponent(jLabel4)
+                .addComponent(registrationTitle)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(162, 162, 162)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(okRegistrar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tf_username)
-                        .addComponent(tf_password)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel3)
-                        .addComponent(tf_rpassword)
-                        .addComponent(okRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(usernameField)
+                    .addComponent(passwordField)
+                    .addComponent(label2)
+                    .addComponent(label)
+                    .addComponent(label3)
+                    .addComponent(fieldRepeatPasword)
+                    .addComponent(crearUsuariButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(198, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jLabel4)
+                .addComponent(registrationTitle)
                 .addGap(53, 53, 53)
-                .addComponent(jLabel1)
+                .addComponent(label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addComponent(jLabel2)
+                .addComponent(label2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(label3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tf_rpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fieldRepeatPasword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(okRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(crearUsuariButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(okRegistrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
@@ -183,29 +182,29 @@ public class VistaRegistrar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void okRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okRegistrar1ActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_okRegistrar1ActionPerformed
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void okRegistrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okRegistrar1MouseClicked
+    private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
         Inici v = new Inici();
         v.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_okRegistrar1MouseClicked
+    }//GEN-LAST:event_cancelButtonMouseClicked
 
-    private void tf_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_passwordActionPerformed
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_passwordActionPerformed
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
-    private void okRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okRegistrarActionPerformed
+    private void crearUsuariButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearUsuariButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_okRegistrarActionPerformed
+    }//GEN-LAST:event_crearUsuariButtonActionPerformed
 
-    private void okRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okRegistrarMouseClicked
+    private void crearUsuariButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearUsuariButtonMouseClicked
         String name, password, rPassword;
-        name = tf_username.getText();
-        password = new String(tf_password.getPassword());
-        rPassword = new String(tf_rpassword.getPassword());
+        name = usernameField.getText();
+        password = new String(passwordField.getPassword());
+        rPassword = new String(fieldRepeatPasword.getPassword());
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter your name please!");
         }
@@ -243,9 +242,9 @@ public class VistaRegistrar extends javax.swing.JFrame {
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
-                    tf_username.setText("");
-                    tf_password.setText("");
-                    tf_rpassword.setText("");
+                    usernameField.setText("");
+                    passwordField.setText("");
+                    fieldRepeatPasword.setText("");
                 }
 
             }
@@ -255,15 +254,15 @@ public class VistaRegistrar extends javax.swing.JFrame {
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
             if (input == JOptionPane.OK_OPTION) {
-                tf_rpassword.setText("");
+                fieldRepeatPasword.setText("");
             }
 
         }
-    }//GEN-LAST:event_okRegistrarMouseClicked
+    }//GEN-LAST:event_crearUsuariButtonMouseClicked
 
-    private void tf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_usernameActionPerformed
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_usernameActionPerformed
+    }//GEN-LAST:event_usernameFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,16 +300,16 @@ public class VistaRegistrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JButton crearUsuariButton;
+    private javax.swing.JPasswordField fieldRepeatPasword;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JButton okRegistrar;
-    private javax.swing.JButton okRegistrar1;
-    private javax.swing.JPasswordField tf_password;
-    private javax.swing.JPasswordField tf_rpassword;
-    private javax.swing.JTextField tf_username;
+    private javax.swing.JLabel label;
+    private javax.swing.JLabel label2;
+    private javax.swing.JLabel label3;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel registrationTitle;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,9 +19,9 @@ import java.util.ListIterator;
  */
 public class Ranking {
 
-    private static final int levelEasy = 1;
-    private static final int levelInter = 2;
-    private static final int levelHard = 3;
+    private final int levelEasy = 1;
+    private final int levelInter = 2;
+    private final int levelHard = 3;
 
     private ArrayList<Posicio> rankingEasy = new ArrayList<Posicio>();
     private ArrayList<Posicio> rankingInter = new ArrayList<Posicio>();

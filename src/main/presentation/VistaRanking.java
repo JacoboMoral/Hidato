@@ -58,7 +58,7 @@ public class VistaRanking extends javax.swing.JFrame {
         for (int i = 0; i < rankEasy.length; ++i) {
             model.addElement(rankEasy[i]);
         }
-        jList1.setModel(model);
+        easyRanking.setModel(model);
 
     }
 
@@ -68,7 +68,7 @@ public class VistaRanking extends javax.swing.JFrame {
         for (int i = 0; i < rankInter.length; ++i) {
             model1.addElement(rankInter[i]);
         }
-        jList2.setModel(model1);
+        interRanking.setModel(model1);
     }
 
     private void showHardRanking() {
@@ -79,7 +79,7 @@ public class VistaRanking extends javax.swing.JFrame {
         for (int i = 0; i < rankHard.length; ++i) {
             model2.addElement(rankHard[i]);
         }
-        jList3.setModel(model2);
+        hardRanking.setModel(model2);
     }
 
     private void showFilteredRank(String input) {
@@ -128,9 +128,9 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         }
 
-        jList1.setModel(model);
-        jList2.setModel(model1);
-        jList3.setModel(model2);
+        easyRanking.setModel(model);
+        interRanking.setModel(model1);
+        hardRanking.setModel(model2);
     }
 
     @SuppressWarnings("unchecked")
@@ -139,19 +139,19 @@ public class VistaRanking extends javax.swing.JFrame {
 
         filterType = new javax.swing.ButtonGroup();
         optionsPanel = new javax.swing.JPanel();
-        user_to_delete = new javax.swing.JTextField();
-        b_deleteUsr = new javax.swing.JButton();
+        usernameToDelete = new javax.swing.JTextField();
+        eliminarUsuari = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         t_input = new javax.swing.JTextField();
-        b_filter = new javax.swing.JButton();
+        filtrar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        b_back = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         showInterRanking = new javax.swing.JButton();
         showEasyRanking = new javax.swing.JButton();
         showHardRanking = new javax.swing.JButton();
-        b_filterByUsr1 = new javax.swing.JButton();
+        showAllRanking = new javax.swing.JButton();
         filterByUsername = new javax.swing.JRadioButton();
         filterByDate = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -159,15 +159,15 @@ public class VistaRanking extends javax.swing.JFrame {
         easyPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        easyRanking = new javax.swing.JList<>();
         hardPanel = new javax.swing.JPanel();
         title1 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        hardRanking = new javax.swing.JList<>();
         interPanel = new javax.swing.JPanel();
         titleInter = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        interRanking = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 650));
@@ -175,16 +175,16 @@ public class VistaRanking extends javax.swing.JFrame {
 
         optionsPanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        user_to_delete.setBackground(new java.awt.Color(204, 204, 204));
-        user_to_delete.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        user_to_delete.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        usernameToDelete.setBackground(new java.awt.Color(204, 204, 204));
+        usernameToDelete.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        usernameToDelete.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        b_deleteUsr.setBackground(new java.awt.Color(255, 255, 255));
-        b_deleteUsr.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        b_deleteUsr.setText("Eliminar");
-        b_deleteUsr.addMouseListener(new java.awt.event.MouseAdapter() {
+        eliminarUsuari.setBackground(new java.awt.Color(255, 255, 255));
+        eliminarUsuari.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        eliminarUsuari.setText("Eliminar");
+        eliminarUsuari.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                b_deleteUsrMouseClicked(evt);
+                eliminarUsuariMouseClicked(evt);
             }
         });
 
@@ -198,12 +198,12 @@ public class VistaRanking extends javax.swing.JFrame {
         t_input.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         t_input.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        b_filter.setBackground(new java.awt.Color(255, 255, 255));
-        b_filter.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        b_filter.setText("Filtrar");
-        b_filter.addMouseListener(new java.awt.event.MouseAdapter() {
+        filtrar.setBackground(new java.awt.Color(255, 255, 255));
+        filtrar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        filtrar.setText("Filtrar");
+        filtrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                b_filterMouseClicked(evt);
+                filtrarMouseClicked(evt);
             }
         });
 
@@ -213,17 +213,17 @@ public class VistaRanking extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel10.setText("Nom:");
 
-        b_back.setBackground(new java.awt.Color(255, 255, 255));
-        b_back.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        b_back.setText("Enrere");
-        b_back.addMouseListener(new java.awt.event.MouseAdapter() {
+        back.setBackground(new java.awt.Color(255, 255, 255));
+        back.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        back.setText("Enrere");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                b_backMouseClicked(evt);
+                backMouseClicked(evt);
             }
         });
-        b_back.addActionListener(new java.awt.event.ActionListener() {
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_backActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
 
@@ -254,12 +254,12 @@ public class VistaRanking extends javax.swing.JFrame {
             }
         });
 
-        b_filterByUsr1.setBackground(new java.awt.Color(255, 255, 255));
-        b_filterByUsr1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        b_filterByUsr1.setText("Mostrar tot");
-        b_filterByUsr1.addMouseListener(new java.awt.event.MouseAdapter() {
+        showAllRanking.setBackground(new java.awt.Color(255, 255, 255));
+        showAllRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        showAllRanking.setText("Mostrar tot");
+        showAllRanking.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                b_filterByUsr1MouseClicked(evt);
+                showAllRankingMouseClicked(evt);
             }
         });
 
@@ -292,9 +292,9 @@ public class VistaRanking extends javax.swing.JFrame {
                     .addGroup(optionsPanelLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addComponent(user_to_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(usernameToDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(b_deleteUsr))
+                        .addComponent(eliminarUsuari))
                     .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(optionsPanelLayout.createSequentialGroup()
                             .addComponent(showEasyRanking)
@@ -307,13 +307,13 @@ public class VistaRanking extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(t_input, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(32, 32, 32)
-                            .addComponent(b_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(b_filterByUsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(showAllRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(68, 68, 68))
             .addGroup(optionsPanelLayout.createSequentialGroup()
                 .addGap(200, 200, 200)
-                .addComponent(b_back, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator1)
         );
@@ -331,8 +331,8 @@ public class VistaRanking extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(user_to_delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_deleteUsr))
+                    .addComponent(usernameToDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eliminarUsuari))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -342,11 +342,11 @@ public class VistaRanking extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(t_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_filter)
-                    .addComponent(b_filterByUsr1)
+                    .addComponent(filtrar)
+                    .addComponent(showAllRanking)
                     .addComponent(jLabel12))
                 .addGap(18, 18, 18)
-                .addComponent(b_back)
+                .addComponent(back)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -360,8 +360,8 @@ public class VistaRanking extends javax.swing.JFrame {
         title.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         title.setText("Ranking-Facil");
 
-        jList1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+        easyRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jScrollPane1.setViewportView(easyRanking);
 
         javax.swing.GroupLayout easyPanelLayout = new javax.swing.GroupLayout(easyPanel);
         easyPanel.setLayout(easyPanelLayout);
@@ -394,8 +394,8 @@ public class VistaRanking extends javax.swing.JFrame {
         title1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         title1.setText("Ranking-Dificil");
 
-        jList3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jScrollPane4.setViewportView(jList3);
+        hardRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jScrollPane4.setViewportView(hardRanking);
 
         javax.swing.GroupLayout hardPanelLayout = new javax.swing.GroupLayout(hardPanel);
         hardPanel.setLayout(hardPanelLayout);
@@ -428,8 +428,8 @@ public class VistaRanking extends javax.swing.JFrame {
         titleInter.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         titleInter.setText("Ranking-Mig");
 
-        jList2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jScrollPane2.setViewportView(jList2);
+        interRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jScrollPane2.setViewportView(interRanking);
 
         javax.swing.GroupLayout interPanelLayout = new javax.swing.GroupLayout(interPanel);
         interPanel.setLayout(interPanelLayout);
@@ -462,15 +462,15 @@ public class VistaRanking extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void b_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_backMouseClicked
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
 
         cn.openMenuView();
         this.dispose();
 
-    }//GEN-LAST:event_b_backMouseClicked
+    }//GEN-LAST:event_backMouseClicked
 
-    private void b_deleteUsrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_deleteUsrMouseClicked
-        String username = user_to_delete.getText();
+    private void eliminarUsuariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarUsuariMouseClicked
+        String username = usernameToDelete.getText();
         if (username.equals("")) {
             JOptionPane.showMessageDialog(null, "Enter the username that you want to delete");
         } else {
@@ -478,15 +478,15 @@ public class VistaRanking extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "The user: " + username + " not exists in any ranking");
             }
             cp.deleteUserRanking(username);
-            user_to_delete.setText("");
+            usernameToDelete.setText("");
             showEasyRanking();
             showInterRanking();
             showHardRanking();
             repaint();
         }
-    }//GEN-LAST:event_b_deleteUsrMouseClicked
+    }//GEN-LAST:event_eliminarUsuariMouseClicked
 
-    private void b_filterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_filterMouseClicked
+    private void filtrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filtrarMouseClicked
         String input = t_input.getText();
         if (!filterByDate.isSelected() && !filterByUsername.isSelected()) {
             int message = JOptionPane.showOptionDialog(null, "Choose the variable that you want to filter", "Error message",
@@ -497,11 +497,11 @@ public class VistaRanking extends javax.swing.JFrame {
         } else {
             showFilteredRank(input);
         }
-    }//GEN-LAST:event_b_filterMouseClicked
+    }//GEN-LAST:event_filtrarMouseClicked
 
-    private void b_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_backActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_b_backActionPerformed
+    }//GEN-LAST:event_backActionPerformed
 
     private void showEasyRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEasyRankingActionPerformed
         rankingPanel.removeAll();
@@ -524,12 +524,12 @@ public class VistaRanking extends javax.swing.JFrame {
         rankingPanel.revalidate();
     }//GEN-LAST:event_showHardRankingActionPerformed
 
-    private void b_filterByUsr1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_filterByUsr1MouseClicked
+    private void showAllRankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showAllRankingMouseClicked
         showEasyRanking();
         showInterRanking();
         showHardRanking();
         t_input.setText("");
-    }//GEN-LAST:event_b_filterByUsr1MouseClicked
+    }//GEN-LAST:event_showAllRankingMouseClicked
 
     private void filterByUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterByUsernameActionPerformed
         // TODO add your handling code here:
@@ -573,29 +573,29 @@ public class VistaRanking extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton b_back;
-    private javax.swing.JButton b_deleteUsr;
-    private javax.swing.JButton b_filter;
-    private javax.swing.JButton b_filterByUsr1;
+    private javax.swing.JButton back;
     private javax.swing.JPanel easyPanel;
+    private javax.swing.JList<String> easyRanking;
+    private javax.swing.JButton eliminarUsuari;
     private javax.swing.JRadioButton filterByDate;
     private javax.swing.JRadioButton filterByUsername;
     private javax.swing.ButtonGroup filterType;
+    private javax.swing.JButton filtrar;
     private javax.swing.JPanel hardPanel;
+    private javax.swing.JList<String> hardRanking;
     private javax.swing.JPanel interPanel;
+    private javax.swing.JList<String> interRanking;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel optionsPanel;
     private javax.swing.JPanel rankingPanel;
+    private javax.swing.JButton showAllRanking;
     private javax.swing.JButton showEasyRanking;
     private javax.swing.JButton showHardRanking;
     private javax.swing.JButton showInterRanking;
@@ -603,7 +603,7 @@ public class VistaRanking extends javax.swing.JFrame {
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
     private javax.swing.JLabel titleInter;
-    private javax.swing.JTextField user_to_delete;
+    private javax.swing.JTextField usernameToDelete;
     // End of variables declaration//GEN-END:variables
 
     private boolean validDate(String input) {
