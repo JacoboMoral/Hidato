@@ -1737,7 +1737,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             String oldname = oldUsername.getText();
             String newname = newUseranme.getText();
             if (oldUsername.getText().isEmpty() || newUseranme.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Introdueix el teu nom");
+                JOptionPane.showMessageDialog(null, "Introdueix el teu nom antic i el nom nou!");
             } else {
                 boolean successful = controladorPresentacio.editUseranme(oldname, newname);
                 if (successful) {
