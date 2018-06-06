@@ -83,6 +83,7 @@ public class Algorismes {
     	if (nombresDonats.size() == 0) return false; //no ens donen cap numero
     	if (!equals(nombresDonats.get(0), 1)) return false; //precondicio de hidato: ha d'existir el primer numero
     	if (!equals(getLastOf(nombresDonats), nombreCellesNumeriques)) return false; //precondicio de hidato: ha d'existir l'ultim numero
+
 		return true;
 	}
 
@@ -90,6 +91,7 @@ public class Algorismes {
 		adjacencies = new HashMap<Pair<Integer,Integer>,ArrayList<Pair<Integer,Integer>>>();
 		nombresDonats = new Vector<Integer>();
 		visitats = new int[matriuSolucio.length][matriuSolucio[0].length];
+		nombreCellesNumeriques = 0;
 		
 		for (int i = 0; i < matriuSolucio.length; ++i) {
 			for (int j = 0; j < matriuSolucio[0].length; ++j) {
