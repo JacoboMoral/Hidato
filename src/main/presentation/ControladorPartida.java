@@ -22,6 +22,7 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     private ControladorNavegacio controladorNavegacio = ControladorNavegacio.getInstance();
     private boolean ajuda = false;
 	private boolean allowInputs = true;
+	private long tempsInicial;
 
     public static ControladorPartida getInstance() {
         if (instance == null) {
@@ -41,6 +42,7 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     public void partidaAutogenerada(TipusCella tipusCella, Dificultat dificultat) {
         this.dificultat = dificultat;
         this.cella = tipusCellaToCella(tipusCella);
+        tempsInicial = System.nanoTime();
         new GeneratorWorker(tipusCella, getRandomTipusAdjacencia(tipusCella), dificultat).execute();
     }
 
@@ -48,29 +50,34 @@ public class ControladorPartida extends ControladorHidatoGrafic{
         this.dificultat = dificultat;
         TipusCella tipusCella = getRandomTipusCella();
 		this.cella = tipusCellaToCella(tipusCella);
+        tempsInicial = System.nanoTime();
         new GeneratorWorker(tipusCella, getRandomTipusAdjacencia(tipusCella), dificultat).execute();
     }
 
     public void partidaAutogenerada(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, Dificultat dificultat) {
         this.dificultat = dificultat;
         this.cella = tipusCellaToCella(tipusCella);
+        tempsInicial = System.nanoTime();
         new GeneratorWorker(tipusCella, tipusAdjacencia, dificultat).execute();
     }
 	
 	public void partidaAutogenerada(TipusCella tipusCella, int altura, int amplada, int forats) {
 		this.cella = tipusCellaToCella(tipusCella);
+        tempsInicial = System.nanoTime();
         new GeneratorWorker(tipusCella, getRandomTipusAdjacencia(tipusCella), altura, amplada, forats).execute();
 	}
 
 
 	public void partidaAutogenerada(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int altura, int amplada, int forats) {
 		this.cella = tipusCellaToCella(tipusCella);
+        tempsInicial = System.nanoTime();
 		new GeneratorWorker(tipusCella, tipusAdjacencia, altura, amplada, forats).execute();
 	}
 
 	public void partidaAutogenerada(int altura, int amplada, int forats) {
 		TipusCella tipusCella = getRandomTipusCella();
 		this.cella = tipusCellaToCella(tipusCella);
+        tempsInicial = System.nanoTime();
         new GeneratorWorker(tipusCella, getRandomTipusAdjacencia(tipusCella), altura, amplada, forats).execute();
 	}
 
@@ -163,6 +170,13 @@ public class ControladorPartida extends ControladorHidatoGrafic{
 
 	public void setMatriuGenerada(int[][] matriu) {
 		if (matriu != null) {
+			long temps = (System.nanoTime() - tempsInicial);
+			String keyword = "milisegons";
+			if (temps>1000000000) {
+				keyword = "segons";
+				temps/=1000;
+			}
+			JOptionPane.showMessageDialog(null, "Hidato generat. El temps que ha trigat ha set: " + temps/1000000 + " " + keyword);
         	partida = new PanelPartida(cella, matriu);
     		VistaPartida v = new VistaPartida(partida);
     		ajuda = false;

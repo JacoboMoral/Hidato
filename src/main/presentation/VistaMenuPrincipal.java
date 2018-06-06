@@ -2097,9 +2097,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             String nomHidato = selectedHidato.getText();
 
             try {
-                if (controladorPresentacio.jugarPartidaImportada(nomHidato)) {
-                    this.dispose();
-                }
+                controladorPresentacio.jugarPartidaImportada(nomHidato);
+                this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Hi ha hagut un problema per cargar l'hidato seleccionat: " + e.getMessage());
                 e.printStackTrace();
