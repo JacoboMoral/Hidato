@@ -688,6 +688,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         importarDesdeFitxer.setBackground(new java.awt.Color(255, 255, 255));
         importarDesdeFitxer.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        importarDesdeFitxer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/folder.png"))); // NOI18N
         importarDesdeFitxer.setText("Des de un .txt ");
         importarDesdeFitxer.setMaximumSize(new java.awt.Dimension(147, 31));
         importarDesdeFitxer.setMinimumSize(new java.awt.Dimension(147, 31));
@@ -720,16 +721,16 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         typeCreatePanel.setLayout(typeCreatePanelLayout);
         typeCreatePanelLayout.setHorizontalGroup(
             typeCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(typeCreatePanelLayout.createSequentialGroup()
-                .addGap(265, 265, 265)
-                .addGroup(typeCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(importarDesdeFitxer, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(personalitzat, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(265, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typeCreatePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(520, Short.MAX_VALUE)
                 .addComponent(back2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(typeCreatePanelLayout.createSequentialGroup()
+                .addGap(252, 252, 252)
+                .addGroup(typeCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(importarDesdeFitxer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(personalitzat, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         typeCreatePanelLayout.setVerticalGroup(
             typeCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1789,11 +1790,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             String oldname = oldUsername.getText();
             String newname = newUseranme.getText();
             if (oldUsername.getText().isEmpty() || newUseranme.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Enter your name");
+                JOptionPane.showMessageDialog(null, "Introdueix el teu nom");
             } else {
                 boolean successful = controladorPresentacio.editUseranme(oldname, newname);
                 if (successful) {
-                    JOptionPane.showMessageDialog(null, "Your username has changed correctly");
+                    JOptionPane.showMessageDialog(null, "El teu nom s'ha canviat correctament!");
                     l_username.setText(controladorPresentacio.getUsername());
                     showUsername.setText(controladorPresentacio.getUsername());
                     oldUsername.setText("");
@@ -1803,7 +1804,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                     parentPanel.repaint();
                     parentPanel.revalidate();
                 } else {
-                    int input = JOptionPane.showOptionDialog(null, "Old username is not correct or the username not exisits in the DB", "Error message",
+                    int input = JOptionPane.showOptionDialog(null, "El nom vell no es correcte o el nom nou ja existeix!", "Error message",
                             JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                     if (input == JOptionPane.OK_OPTION) {
@@ -1832,10 +1833,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             String newPassword = new String(this.newPassword.getPassword());
             String rnewPassword = new String(repeatPassword.getPassword());
             if (oldPassword.length() == 0 || newPassword.length() == 0 || rnewPassword.length() == 0) {
-                JOptionPane.showMessageDialog(null, "Enter your password please!");
+                JOptionPane.showMessageDialog(null, "Introdueix la teva contransenya!");
             } else {
                 if (!newPassword.equals(rnewPassword)) {
-                    int input = JOptionPane.showOptionDialog(null, "Password not equals, try it again!", "Error message",
+                    int input = JOptionPane.showOptionDialog(null, "Les contrasenyes no son iguals, prova un altre cop!", "Error message",
                             JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                     if (input == JOptionPane.OK_OPTION) {
@@ -1849,7 +1850,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                         Logger.getLogger(VistaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     if (successful) {
-                        JOptionPane.showMessageDialog(null, "Your password has changed correctly!");
+                        JOptionPane.showMessageDialog(null, "La teva contrasenya s'ha canviat correctament!");
 
                         int passwordSize = controladorPresentacio.getPassword().length();
                         char c = '*';
@@ -1866,7 +1867,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                         parentPanel.revalidate();
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "Your password hasn't changed correctly");
+                        JOptionPane.showMessageDialog(null, "La teva contrasenya no s'ha pogut canviar!");
                     }
                 }
             }
@@ -1875,13 +1876,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 	private void confirmDeleteUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmDeleteUserMouseClicked
             String pass1 = new String(passwordToDeleteAcc.getPassword());
             if (pass1.length() == 0) {
-                JOptionPane.showMessageDialog(null, "Enter your password please");
+                JOptionPane.showMessageDialog(null, "Introdueix la teva contrasenya per eliminar la teva compte!");
             } else {
                 boolean successful = controladorPresentacio.deleteUser(pass1);
                 if (!successful) {
-                    JOptionPane.showMessageDialog(null, "Wrong password!");
+                    JOptionPane.showMessageDialog(null, "Contransenya incorrecte!");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Account deleted");
+                    JOptionPane.showMessageDialog(null, "La teva compte ha sigut eliminat correctament!");
                     controladorNavegacio.openInicialView();
                     this.dispose();
                 }

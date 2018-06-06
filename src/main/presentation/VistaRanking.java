@@ -89,7 +89,7 @@ public class VistaRanking extends javax.swing.JFrame {
 
         if (filterByUsername.isSelected()) {
             if (!cp.existsUser(input)) {
-                int message = JOptionPane.showOptionDialog(null, "Username not exists in the Datebase", "Error message",
+                int message = JOptionPane.showOptionDialog(null, "L'usuari no te cap puntuacio en el Ranking!", "Error message",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
             } else {
                 String[] rankEasy = cp.getFilterByUsername(input, levelEasy);
@@ -109,7 +109,7 @@ public class VistaRanking extends javax.swing.JFrame {
         if (filterByDate.isSelected()) {
             if (validDate(input)) {
                 if (!cp.existsDate(input)) {
-                    int message = JOptionPane.showOptionDialog(null, "Date not exists in the Datebase", "Error message",
+                    int message = JOptionPane.showOptionDialog(null, "No hi ha cap puntuacio feta en aquesta data!", "Error message",
                             JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                 } else {
                     String[] rankEasy = cp.getFilterByDate(input, levelEasy);
@@ -472,10 +472,10 @@ public class VistaRanking extends javax.swing.JFrame {
     private void eliminarUsuariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarUsuariMouseClicked
         String username = usernameToDelete.getText();
         if (username.equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter the username that you want to delete");
+            JOptionPane.showMessageDialog(null, "Introdueix el nom que desitjes eliminar!");
         } else {
             if (!cp.existsUser(username)) {
-                JOptionPane.showMessageDialog(null, "The user: " + username + " not exists in any ranking");
+                JOptionPane.showMessageDialog(null, "L'usuari: " + username + " no te cap puntuacio!");
             }
             cp.deleteUserRanking(username);
             usernameToDelete.setText("");
@@ -489,10 +489,10 @@ public class VistaRanking extends javax.swing.JFrame {
     private void filtrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filtrarMouseClicked
         String input = t_input.getText();
         if (!filterByDate.isSelected() && !filterByUsername.isSelected()) {
-            int message = JOptionPane.showOptionDialog(null, "Choose the variable that you want to filter", "Error message",
+            int message = JOptionPane.showOptionDialog(null, "Escull quin criteri vols faci el filtratge!", "Error message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
         } else if ((filterByDate.isSelected() || filterByUsername.isSelected()) && input.equals("")) {
-            int message = JOptionPane.showOptionDialog(null, "Enter a input to filter!", "Error message",
+            int message = JOptionPane.showOptionDialog(null, "Introduix quelcom per ser el variable del filtratge!", "Error message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
         } else {
             showFilteredRank(input);

@@ -206,13 +206,13 @@ public class VistaRegistrar extends javax.swing.JFrame {
         password = new String(passwordField.getPassword());
         rPassword = new String(fieldRepeatPasword.getPassword());
         if (name.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter your name please!");
+            JOptionPane.showMessageDialog(null, "Introdueix el teu nom!");
         }
         else if (password.length() == 0) {
-            JOptionPane.showMessageDialog(null, "Enter your password please!");
+            JOptionPane.showMessageDialog(null, "Introdueix la teva contrasenya!");
         }
         else if (rPassword.length() == 0) {
-            JOptionPane.showMessageDialog(null, "Enter again your password please!");
+            JOptionPane.showMessageDialog(null, "Introdueix un altre cop la teva contrasenya!");
         }
         else if (password.equals(rPassword) && !password.isEmpty() && !rPassword.isEmpty()) {
             boolean successful = false;
@@ -223,7 +223,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
             }
           
             if (successful) {
-                int input = JOptionPane.showOptionDialog(null, "Registration done!", "Message",
+                int input = JOptionPane.showOptionDialog(null, "Registrat!", "Message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
@@ -238,7 +238,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
                 }
 
             } else {
-                int input = JOptionPane.showOptionDialog(null, "The user is already exists, please try it again!", "Error message",
+                int input = JOptionPane.showOptionDialog(null, "Aquest nom ja esta escullit, intenta un altre nom!", "Error message",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
@@ -250,7 +250,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
             }
         }
         else {
-            int input = JOptionPane.showOptionDialog(null, "The passwords not match! Correct it.", "Error message",
+            int input = JOptionPane.showOptionDialog(null, "Les contrasenyes son diferents, intenta un altre cop!", "Error message",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
             if (input == JOptionPane.OK_OPTION) {
