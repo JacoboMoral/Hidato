@@ -168,9 +168,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         tipsPanel = new javax.swing.JPanel();
         contentPanel = new javax.swing.JPanel();
         informationPanel = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        textInformacio = new javax.swing.JTextArea();
         jLabel30 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        aboutUsPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
         instruccionsPanel = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -190,6 +194,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         information = new javax.swing.JButton();
         back8 = new javax.swing.JButton();
         instruccio = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         createAutoPanel = new javax.swing.JPanel();
         back9 = new javax.swing.JButton();
         tipologiaCheckBox = new javax.swing.JCheckBox();
@@ -1139,12 +1144,14 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         informationPanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        textInformacio.setColumns(20);
-        textInformacio.setRows(5);
-        jScrollPane2.setViewportView(textInformacio);
-
         jLabel30.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel30.setText("Informacio del joc:");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Hidato és un joc de trencaclosques lògic inventat pel Dr. Gyora M. \nBenedek, un matemàtic israelià. L'objectiu d'Hidato és omplir \nla xarxa amb números consecutius que es connecten horitzontalment, \nverticalment o diagonalmente. \nLa nostra aplicació a part de permetre jugar, crear i \nsolucionar hidatos també proporcionem un sistema de ranking \nque podeu compatir amb els amics i gaudir del joc Hidato.\n");
+        jScrollPane3.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout informationPanelLayout = new javax.swing.GroupLayout(informationPanel);
         informationPanel.setLayout(informationPanelLayout);
@@ -1153,21 +1160,58 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             .addGroup(informationPanelLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel30))
-                .addContainerGap(123, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(informationPanelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel30)))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         informationPanelLayout.setVerticalGroup(
             informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informationPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(jLabel30)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         contentPanel.add(informationPanel, "card5");
+
+        aboutUsPanel.setBackground(new java.awt.Color(204, 204, 204));
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jTextArea2.setText("Som alumnes de la Facultat Informatica de Barcelona de la \nUniversitat Politecnica de Catalunya, el nostre grup de treball esta\ncomposta de:\nJacobo bla bla bla\nAlbert blblbblblbl\nJia Xiang Cheng\n\n");
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel3.setText("Qui som?");
+
+        javax.swing.GroupLayout aboutUsPanelLayout = new javax.swing.GroupLayout(aboutUsPanel);
+        aboutUsPanel.setLayout(aboutUsPanelLayout);
+        aboutUsPanelLayout.setHorizontalGroup(
+            aboutUsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutUsPanelLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(aboutUsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(aboutUsPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)))
+                .addContainerGap(135, Short.MAX_VALUE))
+        );
+        aboutUsPanelLayout.setVerticalGroup(
+            aboutUsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutUsPanelLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        contentPanel.add(aboutUsPanel, "card4");
 
         instruccionsPanel.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -1216,7 +1260,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         instruccionsPanelLayout.setHorizontalGroup(
             instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(instruccionsPanelLayout.createSequentialGroup()
-                .addGap(183, 183, 183)
+                .addGap(228, 228, 228)
                 .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(instruccionsPanelLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -1247,7 +1291,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         instruccionsPanelLayout.setVerticalGroup(
             instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, instruccionsPanelLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23)
                     .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -1255,7 +1299,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel19)
                     .addComponent(jLabel24))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(instruccionsPanelLayout.createSequentialGroup()
                         .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1313,27 +1357,41 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jButton2.setText("Sobre Nosaltres");
+        jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout changePanelLayout = new javax.swing.GroupLayout(changePanel);
         changePanel.setLayout(changePanelLayout);
         changePanelLayout.setHorizontalGroup(
             changePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePanelLayout.createSequentialGroup()
                 .addGap(74, 74, 74)
-                .addComponent(information, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(information)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(instruccio, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(back8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addComponent(instruccio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(back8)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         changePanelLayout.setVerticalGroup(
             changePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(changePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(information, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(back8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(instruccio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(changePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(changePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(information, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(instruccio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(back8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35))
         );
 
@@ -2206,6 +2264,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         parentPanel.revalidate();
     }//GEN-LAST:event_instruccioActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        contentPanel.removeAll();
+        contentPanel.add(aboutUsPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2242,6 +2307,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel aboutUsPanel;
     private javax.swing.JComboBox<String> adjacencia;
     private javax.swing.JComboBox<String> adjacenciaAuto;
     private javax.swing.JCheckBox adjacenciaCheckBox;
@@ -2297,6 +2363,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JRadioButton interButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -2318,6 +2385,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -2328,6 +2396,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton jocRapid;
     private javax.swing.JButton jugar;
     private javax.swing.JButton jugarHidatoImportat;
@@ -2353,7 +2424,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel showPassword;
     private javax.swing.JLabel showUsername;
     private javax.swing.JButton tancarSessio;
-    private javax.swing.JTextArea textInformacio;
     private javax.swing.JComboBox<String> tipologia;
     private javax.swing.JComboBox<String> tipologiaAuto;
     private javax.swing.JCheckBox tipologiaCheckBox;
