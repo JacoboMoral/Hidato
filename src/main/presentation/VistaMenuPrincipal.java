@@ -761,10 +761,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel6.setText("Altura");
 
         altura.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        altura.setModel(new javax.swing.SpinnerNumberModel(5, 3, 15, 1));
+        altura.setModel(new javax.swing.SpinnerNumberModel(5, 2, null, 1));
 
         amplada.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        amplada.setModel(new javax.swing.SpinnerNumberModel(5, 3, 15, 1));
+        amplada.setModel(new javax.swing.SpinnerNumberModel(5, 2, null, 1));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setText("Crea el teu hidato:");
@@ -1963,7 +1963,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                     if (forats > (altura * amplada)) {
                         JOptionPane.showMessageDialog(null, "No pot haver més forats que caselles totals");
                     } else {
-                        if ((altura * amplada - forats) > 80) {
+                        if ((altura * amplada - forats) > 60) {
                             input = JOptionPane.showOptionDialog(null, "Si esculls hidato massa grans, el programa pot trigar molt en generar-los, desitges continuar?", "Advertencia",
                                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                         }
