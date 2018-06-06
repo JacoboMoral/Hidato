@@ -15,6 +15,7 @@ public class Algorismes {
     private Hidato hidato;
     private Vector<Integer> nombresDonats = new Vector<Integer>();
 	private HashMap<Pair<Integer,Integer>,ArrayList<Pair<Integer,Integer>>> adjacencies;
+	private int nombreCellesNumeriques = 0;
 	private int[][] visitats;
 	private Pair<Integer,Integer> posicioInicial;
     
@@ -31,7 +32,8 @@ public class Algorismes {
 
     public boolean solucionar() {
         setUp();
-        solucionat = solver(posicioInicial, 1, 0);
+        solucionat = comprovar();
+        if (solucionat) solucionat = solver(posicioInicial, 1, 0);
         return solucionat;
         
        /* int row1 = -1;
@@ -77,7 +79,14 @@ public class Algorismes {
         
     }
     
-    private void setUp() {
+    private boolean comprovar() {
+    	if (nombresDonats.size() == 0) return false; //no ens donen cap numero
+    	if (!equals(nombresDonats.get(0), 1)) return false; //precondicio de hidato: ha d'existir el primer numero
+    	if (!equals(getLastOf(nombresDonats), nombreCellesNumeriques)) return false; //precondicio de hidato: ha d'existir l'ultim numero
+		return true;
+	}
+
+	private void setUp() {
 		adjacencies = new HashMap<Pair<Integer,Integer>,ArrayList<Pair<Integer,Integer>>>();
 		nombresDonats = new Vector<Integer>();
 		visitats = new int[matriuSolucio.length][matriuSolucio[0].length];
@@ -85,6 +94,7 @@ public class Algorismes {
 		for (int i = 0; i < matriuSolucio.length; ++i) {
 			for (int j = 0; j < matriuSolucio[0].length; ++j) {
 				if (matriuSolucio[i][j] < 0) continue;
+				++nombreCellesNumeriques;
 				if (matriuSolucio[i][j] > 0) {
 					int index = Collections.binarySearch(nombresDonats, matriuSolucio[i][j]);
 					if (index < 0) index = (index * -1) - 1;
