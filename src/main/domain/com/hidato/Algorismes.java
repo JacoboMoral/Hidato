@@ -2,8 +2,11 @@ package main.domain.com.hidato;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Vector;
+
+import javafx.util.Pair;
 
 public class Algorismes {
 
@@ -11,10 +14,14 @@ public class Algorismes {
     boolean solucionat = false;
     private Hidato hidato;
     private Vector<Integer> nombresDonats = new Vector<Integer>();
+	private HashMap<Pair<Integer,Integer>,ArrayList<Pair<Integer,Integer>>> adjacencies;
+	private int[][] visitats;
+	private Pair<Integer,Integer> posicioInicial;
+    
     private Random randomSeed;
 
     public Algorismes(Hidato hidato) {
-        this.matriuSolucio = hidato.getMatriu();
+        this.matriuSolucio = copy(hidato.getMatriu());
         this.hidato = hidato;
     }
 
@@ -23,48 +30,90 @@ public class Algorismes {
     }
 
     public boolean solucionar() {
-        int row1 = -1;
-        int column1 = -1; //fila i columna on es troba el numero 1
-        int casellesNumeriques = 0;
-
-        int[][] matriu = new int[matriuSolucio.length][matriuSolucio[0].length];
-        nombresDonats = new Vector<Integer>();
-        
-        //fem una copia de matriu solucio mentre cerquem el valor de row1 i column1
-        for (int i = 0; i < matriuSolucio.length; ++i) {
-            for (int j = 0; j < matriuSolucio[0].length; ++j) {
-                matriu[i][j] = matriuSolucio[i][j];
-                if (matriu[i][j] == 1) {
-                    row1 = i;
-                    column1 = j;
-                }
-                if (matriu[i][j] > 0) { //valor igual a un numero
-                    nombresDonats.addElement(matriu[i][j]);
-                }
-                if (matriu[i][j] > -1) {
-                    casellesNumeriques++;
-                }
-            }
-        }
-
-        Collections.sort(nombresDonats);
-
-        if (nombresDonats.size() == 0) {
-        		return false; 					//ens ha de donar minim 2 numeros
-        }
-
-        if (nombresDonats.get(0) != 1) {
-            return false;					//comprova que sempre ens donin el primer numero (i.e. 1)
-        }
-        
-        if (nombresDonats.get(nombresDonats.size() - 1) != casellesNumeriques) {
-            return false; 					//comprova que sempre ens donin el ultimo numero
-        }
-        
-        return solucionador(row1, column1, 1, 0, matriu);
+        setUp();
+        return true;
     }
+    
+    private void setUp() {
+		adjacencies = new HashMap<Pair<Integer,Integer>,ArrayList<Pair<Integer,Integer>>>();
+		nombresDonats = new Vector<Integer>();
+		visitats = new int[matriuSolucio.length][matriuSolucio[0].length];
+		
+		for (int i = 0; i < matriuSolucio.length; ++i) {
+			for (int j = 0; j < matriuSolucio[0].length; ++j) {
+				if (matriuSolucio[i][j] < 0) continue;
+				if (matriuSolucio[i][j] > 0) {
+					System.out.println(nombresDonats);
+					System.out.println(matriuSolucio[i][j]);
+					int index = Collections.binarySearch(nombresDonats, matriuSolucio[i][j]);
+					if (index < 0) index = (index * -1) - 1;
+					nombresDonats.add(index,matriuSolucio[i][j]);
+					
+					if (matriuSolucio[i][j] == 1) posicioInicial = new Pair<Integer,Integer>(i,j); //aixo ha de passar un i nomes un cop
+				}
 
-    private boolean solucionador(int fila, int columna, int profunditat, int seg, int[][] matriuSolucio) {
+				Pair<Integer,Integer> posicioElement = new Pair<Integer,Integer>(i,j);
+				ArrayList<Pair<Integer,Integer>> posicionsAdjacents = new ArrayList<Pair<Integer,Integer>>();
+				int valuePosicio = getValue(matriuSolucio,posicioElement);
+				boolean trobatSeguent = false;
+				for (int ii = -1; ii < 2; ii++) {
+					for (int jj = -1; jj < 2 && trobatSeguent == false; jj++) {
+						Pair<Integer,Integer> posicioAdjacent = new Pair<Integer,Integer>(i+ii,j+jj);
+						if (hidato.posicioValida(ii, jj, i, j) && dinsLimits(i + ii, j + jj, matriuSolucio.length, matriuSolucio[0].length) && matriuSolucio[i+ii][j+jj] > -1) {
+							int valuePosicioAdjacent = getValue(matriuSolucio,posicioAdjacent);
+							
+							//si trobem el seguent nombre, posem aquest com a unica posicio adjacent
+							if (valuePosicioAdjacent-getValue(matriuSolucio,posicioElement) == 1 && valuePosicio != 1 && valuePosicioAdjacent != 1) {
+								trobatSeguent = true;		
+								posicionsAdjacents = new ArrayList<Pair<Integer,Integer>>();
+								posicionsAdjacents.add(new Pair<Integer,Integer>(i+ii,j+jj));
+								continue;
+							}
+
+							//si dues caselles amb valor diferent de 0 son adjacents pero no son una la seguent de l'altra, no es posa com que son adjacents
+							else if (!(valuePosicioAdjacent != 0 && valuePosicio != 0 && Math.abs(valuePosicioAdjacent-getValue(matriuSolucio,posicioElement)) != 1)) {
+								posicionsAdjacents.add(posicioAdjacent);
+							}
+						}
+					}
+				}
+				adjacencies.put(posicioElement, posicionsAdjacents);
+			}
+		}
+	}
+    
+    
+    private boolean solver(Pair<Integer,Integer> posicioActual, int nivell, int nombresDonatsVists) {
+
+		//HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
+		//System.out.println(posicioActual + "   " + nombresDonatsVists + " " + nivell + "     " +  getLastOf(nombresDonats));
+        if (nivell > getLastOf(nombresDonats)) return true;
+		
+        int valuePosicioActual = getValue(matriuSolucio,posicioActual);
+		if (!equals(valuePosicioActual,0) && !equals(valuePosicioActual, nivell)) return false;
+		if (equals(valuePosicioActual, 0) && equals(getValue(nombresDonats, nombresDonatsVists), nivell)) return false;
+		
+		//setValue(visitats,posicioActual, 1);	
+		
+		int reserva = getValue(matriuSolucio,posicioActual);
+		if (equals(reserva,nivell)) {
+			//System.out.println("augmentem nombres donats visitats");
+			nombresDonatsVists++;
+		}
+		setValue(matriuSolucio,posicioActual, nivell);
+
+		for (Pair<Integer,Integer> posicioAdjacent: adjacencies.get(posicioActual)) {
+			if (solver(posicioAdjacent, nivell+1, nombresDonatsVists)) return true;
+			//solver(posicioAdjacent, nivell+1);
+
+		}
+
+		setValue(matriuSolucio,posicioActual,reserva);
+		return false;
+	}
+    
+
+    /*private boolean solucionador(int fila, int columna, int profunditat, int seg, int[][] matriuSolucio) {
     	
         if (profunditat > nombresDonats.get(nombresDonats.size() - 1)) return true;
 
@@ -93,7 +142,33 @@ public class Algorismes {
 
         matriuSolucio[fila][columna] = anterior;
         return false;
-    }
+    }*/
+    
+    
+    private static boolean dinsLimits(int posicioVertical, int posicioHoritzontal, int altura, int amplada) {
+		if (posicioVertical >= 0 && posicioVertical < altura && posicioHoritzontal >= 0 && posicioHoritzontal < amplada) return true;
+		return false;
+	}
+	
+	private static int getValue(int[][] matriu, Pair<Integer, Integer> posicio) {
+		return matriu[posicio.getKey()][posicio.getValue()];
+	}
+
+	private static int getValue(Vector<Integer> vector, int index) {
+		return vector.get(index); 
+	}
+	
+	private static void setValue(int[][] matriu, Pair<Integer, Integer> posicio, int value) {
+		matriu[posicio.getKey()][posicio.getValue()] = value;
+	}
+	
+	private static boolean equals(int value1, int value2) {
+		return (value1 == value2);
+	}
+
+	private static int getLastOf(Vector<Integer> vector) {
+		return vector.get(vector.size()-1);
+	}
 
     private void tractarMatriuSolucio(int[][] matriu) {
         matriuSolucio = matriu;
@@ -118,8 +193,8 @@ public class Algorismes {
 	}
 	
 	public boolean esSolucionable(int[][] matriu) {
-		int[][] matriuAux = makeCopy(matriuSolucio);
-		matriuSolucio = makeCopy(matriu);
+		int[][] matriuAux = copy(matriuSolucio);
+		matriuSolucio = copy(matriu);
 		boolean solucionable = solucionar();
 		matriuSolucio = matriuAux;
 		return solucionable;
@@ -211,7 +286,7 @@ public class Algorismes {
         return false;
     }
 
-    private boolean dinsLimits(int i, int j, int tamanyi, int tamanyj) {
+    /*private boolean dinsLimits(int i, int j, int tamanyi, int tamanyj) {
         if (i < 0) {
             return false;
         }
@@ -225,7 +300,7 @@ public class Algorismes {
             return false;
         }
         return true;
-    }
+    }*/
 
     public int[][] generarHidato(int tamanyi, int tamanyj, int forats) {
         int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
@@ -233,7 +308,7 @@ public class Algorismes {
         generat = generarMatriuCompleta(forats, matriu);
         if (generat) {
             emplenarForats(matriu);
-            matriuSolucio = makeCopy(matriu);
+            matriuSolucio = copy(matriu);
             solucionat = true;
             extreureNombres(forats, matriu);
             emplenarGiven(matriu);
@@ -255,7 +330,7 @@ public class Algorismes {
             generat = generarMatriuCompleta(forats, matriu);
             if (generat) {
                 emplenarForats(matriu);
-                matriuSolucio = makeCopy(matriu);
+                matriuSolucio = copy(matriu);
                 solucionat = true;
                 extreureNombres(forats, matriu);
                 emplenarGiven(matriu);
@@ -351,7 +426,7 @@ public class Algorismes {
         }
     }
 
-    private int[][] makeCopy(int[][] matriuOriginal) {
+    private int[][] copy(int[][] matriuOriginal) {
         int y = matriuOriginal.length;
         int x = matriuOriginal[0].length;
         int[][] matriuNova = new int[y][x];

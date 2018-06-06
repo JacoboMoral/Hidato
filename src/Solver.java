@@ -31,7 +31,7 @@ public class Solver {
 		{5,0,0}
 	};
 	
-	private static ArrayList<Integer> nombresDonats;
+	private static Vector<Integer> nombresDonats;
 	private static HashMap<Pair<Integer,Integer>,ArrayList<Pair<Integer,Integer>>> adjacencies;
 	private static int[][] visitats;
 	private static Pair<Integer,Integer> posicioInicial;
@@ -94,7 +94,7 @@ public class Solver {
 	//añadir como condicion del bucle mas interno (trobatSeguent == false) para no tener que recorrer vueltas innecesarias
 	private static void setUp() {
 		adjacencies = new HashMap<Pair<Integer,Integer>,ArrayList<Pair<Integer,Integer>>>();
-		nombresDonats = new ArrayList<Integer>();
+		nombresDonats = new Vector<Integer>();
 		visitats = new int[matriuHidato.length][matriuHidato[0].length];
 		
 		for (int i = 0; i < matriuHidato.length; ++i) {
@@ -154,8 +154,8 @@ public class Solver {
 		return matriu[posicio.getKey()][posicio.getValue()];
 	}
 
-	private static int getValue(ArrayList<Integer> list, int index) {
-		return list.get(index); 
+	private static int getValue(Vector<Integer> vector, int index) {
+		return vector.get(index); 
 	}
 	
 	private static void setValue(int[][] matriu, Pair<Integer, Integer> posicio, int value) {
@@ -166,8 +166,8 @@ public class Solver {
 		return (value1 == value2);
 	}
 
-	private static int getLastOf(ArrayList<Integer> list) {
-		return list.get(list.size()-1);
+	private static int getLastOf(Vector<Integer> vector) {
+		return vector.get(vector.size()-1);
 	}
 
 }
