@@ -32,6 +32,7 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     
 	
 	public PanelPartida partidaCarregada(TipusCella tipusCella, int[][] matriuHidato) {
+		ajuda = false;
         this.cella = tipusCellaToCella(tipusCella);
         partida = new PanelPartida(cella, matriuHidato);
         return partida;
