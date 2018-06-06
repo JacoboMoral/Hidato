@@ -188,20 +188,13 @@ public class ControladorPresentacio {
 		return false;
 	}
 
-	public boolean jugarPartidaImportada(String nomHidato) throws IOException {
-		boolean solucionable = domini.carregarPartida(nomHidato);
-		if (!solucionable) {
-			JOptionPane.showMessageDialog(null, "L'hidato que vols carregar no es solucionable");
-			return false;
-		}
-		else {
-			TipusCella tipusCella = domini.getTipusCellaPartida();
-			int[][] matriuHidato = domini.getMatriuHidatoDePartida();
-			JPanel hidatoPanel = controladorPartida.partidaCarregada(tipusCella, matriuHidato);
-			VistaPartida v = new VistaPartida(hidatoPanel);
-			v.setVisible(true);
-			return true;
-		}
+	public void jugarPartidaImportada(String nomHidato) throws IOException {
+		domini.carregarPartida(nomHidato);
+		TipusCella tipusCella = domini.getTipusCellaPartida();
+		int[][] matriuHidato = domini.getMatriuHidatoDePartida();
+		JPanel hidatoPanel = controladorPartida.partidaCarregada(tipusCella, matriuHidato);
+		VistaPartida v = new VistaPartida(hidatoPanel);
+		v.setVisible(true);
 	}
 
 	public void saveScore(Dificultat dificultat, String username, int score) {

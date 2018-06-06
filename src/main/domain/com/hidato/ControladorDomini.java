@@ -277,11 +277,10 @@ public class ControladorDomini {
         return partidaEnCurs.getTipusCella();
     }
 
-    public boolean carregarPartida(String nomHidato) throws IOException {
+    public void carregarPartida(String nomHidato) throws IOException {
         controladorPersistencia.carregarHidatoImportat(nomHidato);
         Hidato hidato = HidatoFactory.createHidato(controladorPersistencia.getTipusCellaHidato(), controladorPersistencia.getTipusAdjacenciaHidato(), controladorPersistencia.getMatriuHidato());
         partidaEnCurs = new Partida(hidato, currentUser);
-        return (partidaEnCurs.esSolucionable());
     }
 
     public void carregarPartida() {

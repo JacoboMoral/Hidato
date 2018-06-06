@@ -247,6 +247,7 @@ public abstract class Hidato {
     			if (value < 0) {
     				--cellesNumeriques;
     			}
+    			if (matriuOriginal[i][j] > 0) nombresDonats.add(matriuOriginal[i][j]);
     		}
     	}
     	
@@ -257,7 +258,7 @@ public abstract class Hidato {
     	}
     	
 		Collections.sort(possiblesMoviments);
-
+		Collections.sort(nombresDonats);
     }
 
     private boolean notPerDefecte(int i, int j) {
