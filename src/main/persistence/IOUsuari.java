@@ -19,15 +19,15 @@ import main.domain.com.hidato.Usuari;
  * @author admin
  */
 public class IOUsuari {
-    
+
     private static String currentUsername;
     private static String currentPassword;
-    
+
     public static boolean usernameExists(String username) {
         File temp = new File("DB/Usuaris/" + username);
         return temp.exists();
     }
-    
+
     public static boolean changeUsername(String currentUsername, String newUsername) {
         File temp = new File("DB/Usuaris/" + currentUsername);
         if (temp.exists()) {
@@ -37,7 +37,7 @@ public class IOUsuari {
         }
         return false;
     }
-    
+
     public static boolean deleteUser(String username) {
         File temp = new File("DB/Usuaris/" + username);
         File temp2 = new File("DB/Usuaris/" + username + "/password.txt");
@@ -45,7 +45,7 @@ public class IOUsuari {
         temp.delete();
         return true;
     }
-    
+
     public static boolean changePassword(String currentUsername, String newPassword) throws IOException {
         File temp = new File("DB/Usuaris/" + currentUsername);
         if (temp.exists()) {
@@ -83,7 +83,7 @@ public class IOUsuari {
         String nospaceName = username.trim();
         File temp = new File("DB/Usuaris/" + nospaceName);
         if (!temp.exists()) {
-            temp.mkdirs();          
+            temp.mkdirs();
             File temp2 = new File("DB/Usuaris/" + nospaceName + "/", "password.txt");
             temp2.createNewFile();
             FileWriter esc = new FileWriter("DB/Usuaris/" + nospaceName + "/password.txt", true);
@@ -124,16 +124,4 @@ public class IOUsuari {
         }
         return false;
     }
-
-    /*public static Usuari getUser() {
-        return currentUser;
-    }
-
-    public static String getUsername() {
-        return currentUser.getUsername();
-    }
-
-    public static String getPassword() {
-        return currentUser.getPassword();
-    }*/
 }

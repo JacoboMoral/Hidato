@@ -39,10 +39,10 @@ public class IORanking {
             ArrayList<Posicio> rankingEasy = r.getLlistaPosicio(levelEasy);
             ArrayList<Posicio> rankingInter = r.getLlistaPosicio(levelInter);
             ArrayList<Posicio> rankingHard = r.getLlistaPosicio(levelHard);
-            
-            File temp = new File("DB/Ranking");
-            if (!temp.exists()) {
-                temp.mkdirs();
+
+            File rankingFolder = new File("DB/Ranking");
+            if (!rankingFolder.exists()) {
+                rankingFolder.mkdirs();
             }
 
             File easyFile = new File("DB/Ranking/", "easy.txt");
@@ -92,7 +92,6 @@ public class IORanking {
         } catch (IOException ex) {
 
         }
-
     }
 
     public static Ranking readRanking() {
@@ -149,50 +148,23 @@ public class IORanking {
         return r;
     }
 
-    public static String[] getRankingEasy(Ranking r) {
+    public static ArrayList<Posicio> getRankingEasy(Ranking r) {
         ArrayList<Posicio> llista = r.getLlistaPosicio(levelEasy);
-        String rankingList[] = new String[llista.size()];
-        int i = 0;
-        Posicio currentPosition = null;
-        ListIterator<Posicio> it = llista.listIterator();
-        while (i < llista.size()) {
-            currentPosition = it.next();
-            rankingList[i] = (i + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "         " + currentPosition.getDate();
-            ++i;
-        }
-        return rankingList;
+        return llista;
     }
 
-    public static String[] getRankingInter(Ranking r) {
+    public static ArrayList<Posicio> getRankingInter(Ranking r) {
         ArrayList<Posicio> llista = r.getLlistaPosicio(levelInter);
-        String rankingList[] = new String[llista.size()];
-        int i = 0;
-        Posicio currentPosition = null;
-        ListIterator<Posicio> it = llista.listIterator();
-        while (i < llista.size()) {
-            currentPosition = it.next();
-            rankingList[i] = (i + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "         " + currentPosition.getDate();
-            ++i;
-        }
-        return rankingList;
+        return llista;
     }
 
-    public static String[] getRankingHard(Ranking r) {
+    public static ArrayList<Posicio> getRankingHard(Ranking r) {
         ArrayList<Posicio> llista = r.getLlistaPosicio(levelHard);
-        String rankingList[] = new String[llista.size()];
-        int i = 0;
-        Posicio currentPosition = null;
-        ListIterator<Posicio> it = llista.listIterator();
-        while (i < llista.size()) {
-            currentPosition = it.next();
-            rankingList[i] = (i + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "         " + currentPosition.getDate();
-            ++i;
-        }
-        return rankingList;
+        return llista;
     }
 
-    public static String[] getFilterByUsername(Ranking r, String username, int level) {
-        List<String> rankingList = new ArrayList<String>();
+    public static ArrayList<Posicio> getFilterByUsername(Ranking r, String username, int level) {
+        ArrayList<Posicio> rankingList = new ArrayList<Posicio>();
         Posicio currentPosition = null;
         int i, j;
         i = j = 0;
@@ -202,7 +174,7 @@ public class IORanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getUsername().equals(username))) {
-                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    rankingList.add(currentPosition);
                     ++j;
                 }
                 ++i;
@@ -214,7 +186,7 @@ public class IORanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getUsername().equals(username))) {
-                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    rankingList.add(currentPosition);
                     ++j;
                 }
                 ++i;
@@ -226,14 +198,13 @@ public class IORanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getUsername().equals(username))) {
-                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    rankingList.add(currentPosition);
                     ++j;
                 }
                 ++i;
             }
         }
-        String[] result = rankingList.toArray(new String[0]);
-        return result;
+        return rankingList;
     }
 
     public static void deteleUserRanking(Ranking r, String nom) {
@@ -245,9 +216,9 @@ public class IORanking {
         return r.existsUser(nom);
     }
 
-    public static String[] getFilterByDate(Ranking r, String date, int level) {
+    public static ArrayList<Posicio> getFilterByDate(Ranking r, String date, int level) {
         LocalDate localDate = LocalDate.parse(date);
-        List<String> rankingList = new ArrayList<String>();
+        ArrayList<Posicio> rankingList = new ArrayList<Posicio>();
         Posicio currentPosition = null;
         int i, j;
         i = j = 0;
@@ -257,7 +228,7 @@ public class IORanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getDate().equals(localDate))) {
-                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    rankingList.add(currentPosition);
                     ++j;
                 }
                 ++i;
@@ -269,7 +240,7 @@ public class IORanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getDate().equals(localDate))) {
-                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    rankingList.add(currentPosition);
                     ++j;
                 }
                 ++i;
@@ -281,14 +252,13 @@ public class IORanking {
             while (i < llista.size()) {
                 currentPosition = it.next();
                 if ((currentPosition.getDate().equals(localDate))) {
-                    rankingList.add((j + 1) + "          " + Integer.toString(currentPosition.getScore()) + "          " + currentPosition.getUsername() + "          " + currentPosition.getDate());
+                    rankingList.add(currentPosition);
                     ++j;
                 }
                 ++i;
             }
         }
-        String[] result = rankingList.toArray(new String[0]);
-        return result;
+        return rankingList;
     }
 
     public static boolean existsDate(Ranking r, String date) {

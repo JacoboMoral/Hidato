@@ -57,7 +57,7 @@ public class Inici extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("     HIDATO");
         jPanel1.add(jLabel2);

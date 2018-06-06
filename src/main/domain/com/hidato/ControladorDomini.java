@@ -2,6 +2,7 @@ package main.domain.com.hidato;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import java.util.Vector;
@@ -322,15 +323,15 @@ public class ControladorDomini {
         controladorPersistencia.saveScoreDB(ranking, dificultatToInt(dificultat), score, username);
     }
 
-    public String[] getRankingEasy() {
+    public ArrayList<Posicio> getRankingEasy() {
         return controladorPersistencia.getRankingEasy(ranking);
     }
 
-    public String[] getRankingInter() {
+    public ArrayList<Posicio> getRankingInter() {
         return controladorPersistencia.getRankingInter(ranking);
     }
 
-    public String[] getRankingHard() {
+    public ArrayList<Posicio> getRankingHard() {
         return controladorPersistencia.getRankingHard(ranking);
     }
 
@@ -338,7 +339,7 @@ public class ControladorDomini {
         return controladorPersistencia.loadRanking();
     }
 
-    public String[] getFilterByUsername(String username, int level) {
+    public ArrayList<Posicio> getFilterByUsername(String username, int level) {
         return controladorPersistencia.getFilterByUsername(ranking, username, level);
     }
 
@@ -350,7 +351,7 @@ public class ControladorDomini {
         return controladorPersistencia.existsUser(ranking, nom);
     }
 
-    public String[] getFilterByDate(String date, int level) {
+    public ArrayList<Posicio> getFilterByDate(String date, int level) {
         return controladorPersistencia.getFilterByDate(ranking, date, level);
     }
 
@@ -374,7 +375,6 @@ public class ControladorDomini {
     }
 
     public boolean editUseranme(String currentUsername, String newUsername) {
-        //return controladorPersistencia.editUseranme(currentUsername, newUsername);
         if (controladorPersistencia.editUseranme(currentUsername, newUsername)) {
             currentUser.setUsername(newUsername);
         } else {

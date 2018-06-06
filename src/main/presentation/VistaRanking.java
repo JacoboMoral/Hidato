@@ -10,11 +10,13 @@ import main.domain.com.hidato.Posicio;
 import main.domain.com.hidato.Usuari;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -36,11 +38,9 @@ public class VistaRanking extends javax.swing.JFrame {
         filterType.add(filterByDate);
         filterType.add(filterByUsername);
 
-       
         cp.getUpdate();
-        
+
         if (cp.getRankingEasySize() > 0) {
-            
             showEasyRanking();
         }
         if (cp.getRankingInterSize() > 0) {
@@ -53,56 +53,86 @@ public class VistaRanking extends javax.swing.JFrame {
     }
 
     private void showEasyRanking() {
-        DefaultListModel model = new DefaultListModel();
-        String[] rankEasy = cp.getRankingEasy();
-        for (int i = 0; i < rankEasy.length; ++i) {
-            model.addElement(rankEasy[i]);
+        DefaultTableModel model = (DefaultTableModel) easyRanking.getModel();
+        model.setRowCount(0);
+        Object rowData[] = new Object[4];
+        ArrayList<Posicio> rankEasy = cp.getRankingEasy();
+        for (int i = 0; i < rankEasy.size(); ++i) {
+            rowData[0] = i + 1;
+            rowData[1] = rankEasy.get(i).getScore();
+            rowData[2] = rankEasy.get(i).getUsername();
+            rowData[3] = rankEasy.get(i).getDate();
+            model.addRow(rowData);
         }
         easyRanking.setModel(model);
-
     }
 
     private void showInterRanking() {
-        DefaultListModel model1 = new DefaultListModel();
-        String[] rankInter = cp.getRankingInter();
-        for (int i = 0; i < rankInter.length; ++i) {
-            model1.addElement(rankInter[i]);
+        DefaultTableModel model = (DefaultTableModel) interRanking.getModel();
+        model.setRowCount(0);
+        Object rowData[] = new Object[4];
+        ArrayList<Posicio> rankInter = cp.getRankingInter();
+        for (int i = 0; i < rankInter.size(); ++i) {
+            rowData[0] = i + 1;
+            rowData[1] = rankInter.get(i).getScore();
+            rowData[2] = rankInter.get(i).getUsername();
+            rowData[3] = rankInter.get(i).getDate();
+            model.addRow(rowData);
         }
-        interRanking.setModel(model1);
+        interRanking.setModel(model);
     }
 
     private void showHardRanking() {
-        DefaultListModel model2 = new DefaultListModel();
-
-        String[] rankHard = cp.getRankingHard();
-
-        for (int i = 0; i < rankHard.length; ++i) {
-            model2.addElement(rankHard[i]);
+        DefaultTableModel model = (DefaultTableModel) hardRanking.getModel();
+        model.setRowCount(0);
+        Object rowData[] = new Object[4];
+        ArrayList<Posicio> rankHard = cp.getRankingHard();
+        for (int i = 0; i < rankHard.size(); ++i) {
+            rowData[0] = i + 1;
+            rowData[1] = rankHard.get(i).getScore();
+            rowData[2] = rankHard.get(i).getUsername();
+            rowData[3] = rankHard.get(i).getDate();
+            model.addRow(rowData);
         }
-        hardRanking.setModel(model2);
+        hardRanking.setModel(model);
     }
 
     private void showFilteredRank(String input) {
-        DefaultListModel model = new DefaultListModel();
-        DefaultListModel model1 = new DefaultListModel();
-        DefaultListModel model2 = new DefaultListModel();
-
+        DefaultTableModel model = (DefaultTableModel) easyRanking.getModel();
+        DefaultTableModel model2 = (DefaultTableModel) interRanking.getModel();
+        DefaultTableModel model3 = (DefaultTableModel) hardRanking.getModel();
+        model.setRowCount(0);
+        model2.setRowCount(0);
+        model3.setRowCount(0);
+        Object rowData[] = new Object[4];
         if (filterByUsername.isSelected()) {
             if (!cp.existsUser(input)) {
                 int message = JOptionPane.showOptionDialog(null, "L'usuari no te cap puntuacio en el Ranking!", "Error message",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
             } else {
-                String[] rankEasy = cp.getFilterByUsername(input, levelEasy);
-                String[] rankInter = cp.getFilterByUsername(input, levelInter);
-                String[] rankHard = cp.getFilterByUsername(input, levelHard);
-                for (int i = 0; i < rankEasy.length; ++i) {
-                    model.addElement(rankEasy[i]);
+                ArrayList<Posicio> rankEasy = cp.getFilterByUsername(input, levelEasy);
+                ArrayList<Posicio> rankInter = cp.getFilterByUsername(input, levelInter);
+                ArrayList<Posicio> rankHard = cp.getFilterByUsername(input, levelHard);
+                for (int i = 0; i < rankEasy.size(); ++i) {
+                    rowData[0] = i + 1;
+                    rowData[1] = rankEasy.get(i).getScore();
+                    rowData[2] = rankEasy.get(i).getUsername();
+                    rowData[3] = rankEasy.get(i).getDate();
+                    model.addRow(rowData);
                 }
-                for (int i = 0; i < rankInter.length; ++i) {
-                    model1.addElement(rankInter[i]);
+                for (int i = 0; i < rankInter.size(); ++i) {
+                    rowData[0] = i + 1;
+                    rowData[1] = rankInter.get(i).getScore();
+                    rowData[2] = rankInter.get(i).getUsername();
+                    rowData[3] = rankInter.get(i).getDate();
+                    model.addRow(rowData);
                 }
-                for (int i = 0; i < rankHard.length; ++i) {
-                    model2.addElement(rankHard[i]);
+                for (int i = 0; i < rankHard.size(); ++i) {
+                    rowData[0] = i + 1;
+                    rowData[1] = rankHard.get(i).getScore();
+                    rowData[2] = rankHard.get(i).getUsername();
+                    rowData[3] = rankHard.get(i).getDate();
+                    model.addRow(rowData);
                 }
             }
         }
@@ -112,25 +142,36 @@ public class VistaRanking extends javax.swing.JFrame {
                     int message = JOptionPane.showOptionDialog(null, "No hi ha cap puntuacio feta en aquesta data!", "Error message",
                             JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                 } else {
-                    String[] rankEasy = cp.getFilterByDate(input, levelEasy);
-                    String[] rankInter = cp.getFilterByDate(input, levelInter);
-                    String[] rankHard = cp.getFilterByDate(input, levelHard);
-                    for (int i = 0; i < rankEasy.length; ++i) {
-                        model.addElement(rankEasy[i]);
+                    ArrayList<Posicio> rankEasy = cp.getFilterByDate(input, levelEasy);
+                    ArrayList<Posicio> rankInter = cp.getFilterByDate(input, levelInter);
+                    ArrayList<Posicio> rankHard = cp.getFilterByDate(input, levelHard);
+                    for (int i = 0; i < rankEasy.size(); ++i) {
+                        rowData[0] = i + 1;
+                        rowData[1] = rankEasy.get(i).getScore();
+                        rowData[2] = rankEasy.get(i).getUsername();
+                        rowData[3] = rankEasy.get(i).getDate();
+                        model.addRow(rowData);
                     }
-                    for (int i = 0; i < rankInter.length; ++i) {
-                        model1.addElement(rankInter[i]);
+                    for (int i = 0; i < rankInter.size(); ++i) {
+                        rowData[0] = i + 1;
+                        rowData[1] = rankInter.get(i).getScore();
+                        rowData[2] = rankInter.get(i).getUsername();
+                        rowData[3] = rankInter.get(i).getDate();
+                        model.addRow(rowData);
                     }
-                    for (int i = 0; i < rankHard.length; ++i) {
-                        model2.addElement(rankHard[i]);
+                    for (int i = 0; i < rankHard.size(); ++i) {
+                        rowData[0] = i + 1;
+                        rowData[1] = rankHard.get(i).getScore();
+                        rowData[2] = rankHard.get(i).getUsername();
+                        rowData[3] = rankHard.get(i).getDate();
+                        model.addRow(rowData);
                     }
                 }
             }
         }
-
         easyRanking.setModel(model);
-        interRanking.setModel(model1);
-        hardRanking.setModel(model2);
+        interRanking.setModel(model2);
+        hardRanking.setModel(model3);
     }
 
     @SuppressWarnings("unchecked")
@@ -158,16 +199,16 @@ public class VistaRanking extends javax.swing.JFrame {
         rankingPanel = new javax.swing.JPanel();
         easyPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        easyRanking = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        easyRanking = new javax.swing.JTable();
         hardPanel = new javax.swing.JPanel();
         title1 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        hardRanking = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        hardRanking = new javax.swing.JTable();
         interPanel = new javax.swing.JPanel();
         titleInter = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        interRanking = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        interRanking = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 650));
@@ -360,30 +401,51 @@ public class VistaRanking extends javax.swing.JFrame {
         title.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         title.setText("Ranking-Facil");
 
-        easyRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jScrollPane1.setViewportView(easyRanking);
+        easyRanking.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Posicio", "Puntuacio", "Nom", "Data"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(easyRanking);
+        if (easyRanking.getColumnModel().getColumnCount() > 0) {
+            easyRanking.getColumnModel().getColumn(0).setResizable(false);
+            easyRanking.getColumnModel().getColumn(1).setResizable(false);
+            easyRanking.getColumnModel().getColumn(2).setResizable(false);
+            easyRanking.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout easyPanelLayout = new javax.swing.GroupLayout(easyPanel);
         easyPanel.setLayout(easyPanelLayout);
         easyPanelLayout.setHorizontalGroup(
             easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(easyPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(easyPanelLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
+                .addGap(172, 172, 172)
                 .addComponent(title)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, easyPanelLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
         );
         easyPanelLayout.setVerticalGroup(
             easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(easyPanelLayout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(264, 264, 264))
         );
 
         rankingPanel.add(easyPanel, "card4");
@@ -394,30 +456,38 @@ public class VistaRanking extends javax.swing.JFrame {
         title1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         title1.setText("Ranking-Dificil");
 
-        hardRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jScrollPane4.setViewportView(hardRanking);
+        hardRanking.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(hardRanking);
 
         javax.swing.GroupLayout hardPanelLayout = new javax.swing.GroupLayout(hardPanel);
         hardPanel.setLayout(hardPanelLayout);
         hardPanelLayout.setHorizontalGroup(
             hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hardPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4)
-                .addContainerGap())
-            .addGroup(hardPanelLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(title1)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(hardPanelLayout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(title1))
+                    .addGroup(hardPanelLayout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         hardPanelLayout.setVerticalGroup(
             hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hardPanelLayout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(title1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
         );
 
         rankingPanel.add(hardPanel, "card2");
@@ -428,30 +498,41 @@ public class VistaRanking extends javax.swing.JFrame {
         titleInter.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         titleInter.setText("Ranking-Mig");
 
-        interRanking.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jScrollPane2.setViewportView(interRanking);
+        interRanking.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(interRanking);
 
         javax.swing.GroupLayout interPanelLayout = new javax.swing.GroupLayout(interPanel);
         interPanel.setLayout(interPanelLayout);
         interPanelLayout.setHorizontalGroup(
             interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(interPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
-            .addGroup(interPanelLayout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(titleInter)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addGroup(interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(interPanelLayout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(titleInter))
+                    .addGroup(interPanelLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         interPanelLayout.setVerticalGroup(
             interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(interPanelLayout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(titleInter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
 
         rankingPanel.add(interPanel, "card3");
@@ -575,22 +656,22 @@ public class VistaRanking extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JPanel easyPanel;
-    private javax.swing.JList<String> easyRanking;
+    private javax.swing.JTable easyRanking;
     private javax.swing.JButton eliminarUsuari;
     private javax.swing.JRadioButton filterByDate;
     private javax.swing.JRadioButton filterByUsername;
     private javax.swing.ButtonGroup filterType;
     private javax.swing.JButton filtrar;
     private javax.swing.JPanel hardPanel;
-    private javax.swing.JList<String> hardRanking;
+    private javax.swing.JTable hardRanking;
     private javax.swing.JPanel interPanel;
-    private javax.swing.JList<String> interRanking;
+    private javax.swing.JTable interRanking;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel optionsPanel;

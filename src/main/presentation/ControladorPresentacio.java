@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -21,6 +22,7 @@ import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.Hidato;
+import main.domain.com.hidato.Posicio;
 import main.domain.com.hidato.Ranking;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
@@ -206,15 +208,15 @@ public class ControladorPresentacio {
         domini.saveScore(dificultat, score, username);
     }
 
-    public String[] getRankingEasy() {
+    public ArrayList<Posicio> getRankingEasy() {
         return domini.getRankingEasy();
     }
 
-    public String[] getRankingInter() {
+    public ArrayList<Posicio> getRankingInter() {
         return domini.getRankingInter();
     }
 
-    public String[] getRankingHard() {
+    public ArrayList<Posicio> getRankingHard() {
         return domini.getRankingHard();
     }
 
@@ -222,7 +224,7 @@ public class ControladorPresentacio {
         return domini.loadRanking();
     }
 
-    public String[] getFilterByUsername(String username, int level) {
+    public ArrayList<Posicio> getFilterByUsername(String username, int level) {
         return domini.getFilterByUsername(username, level);
     }
 
@@ -234,7 +236,7 @@ public class ControladorPresentacio {
         return domini.existsUser(nom);
     }
 
-    public String[] getFilterByDate(String date, int level) {
+    public ArrayList<Posicio> getFilterByDate(String date, int level) {
         return domini.getFilterByDate(date, level);
     }
 

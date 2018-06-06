@@ -139,15 +139,15 @@ public class ControladorPersistencia {
         IORanking.saveScoreDB(ranking, dif, score, username);
     }
 
-    public String[] getRankingEasy(Ranking r) {
+    public ArrayList<Posicio> getRankingEasy(Ranking r) {
         return IORanking.getRankingEasy(r);
     }
 
-    public String[] getRankingInter(Ranking r) {
+    public ArrayList<Posicio> getRankingInter(Ranking r) {
         return IORanking.getRankingInter(r);
     }
 
-    public String[] getRankingHard(Ranking r) {
+    public ArrayList<Posicio> getRankingHard(Ranking r) {
         return IORanking.getRankingHard(r);
     }
 
@@ -156,7 +156,7 @@ public class ControladorPersistencia {
     }
 
 
-    public String[] getFilterByUsername(Ranking r, String username, int level) {
+    public ArrayList<Posicio> getFilterByUsername(Ranking r, String username, int level) {
         return IORanking.getFilterByUsername(r, username, level);
     }
 
@@ -168,7 +168,7 @@ public class ControladorPersistencia {
         return IORanking.existsUser(r, nom);
     }
 
-    public String[] getFilterByDate(Ranking r, String date, int level) {
+    public ArrayList<Posicio> getFilterByDate(Ranking r, String date, int level) {
         return IORanking.getFilterByDate(r, date, level);
     }
 
