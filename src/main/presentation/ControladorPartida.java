@@ -164,6 +164,7 @@ public class ControladorPartida extends ControladorHidatoGrafic{
 		if (matriu != null) {
         	partida = new PanelPartida(cella, matriu);
     		VistaPartida v = new VistaPartida(partida);
+    		ajuda = false;
     		v.setVisible(true);
             controladorNavegacio.closeMenuPrincipal();
         }
