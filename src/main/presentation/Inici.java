@@ -54,15 +54,16 @@ public class Inici extends javax.swing.JFrame {
         setTitle("Hidato");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
+        jLabel2.setBackground(new java.awt.Color(204, 204, 204));
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("     HIDATO");
         jPanel1.add(jLabel2);
 
-        jPanel2.setBackground(new java.awt.Color(36, 67, 65));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -76,7 +77,7 @@ public class Inici extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nom");
 
-        tf_username.setBackground(new java.awt.Color(36, 67, 65));
+        tf_username.setBackground(new java.awt.Color(153, 153, 153));
         tf_username.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         tf_username.setForeground(new java.awt.Color(255, 255, 255));
         tf_username.setBorder(null);
@@ -87,7 +88,7 @@ public class Inici extends javax.swing.JFrame {
             }
         });
 
-        b_register.setBackground(new java.awt.Color(0, 204, 204));
+        b_register.setBackground(new java.awt.Color(255, 255, 255));
         b_register.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_register.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/adduserIcon.png"))); // NOI18N
         b_register.setText("Registrar");
@@ -97,7 +98,7 @@ public class Inici extends javax.swing.JFrame {
             }
         });
 
-        b_login.setBackground(new java.awt.Color(0, 204, 204));
+        b_login.setBackground(new java.awt.Color(255, 255, 255));
         b_login.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         b_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/loginIcon.png"))); // NOI18N
         b_login.setText("Iniciar");
@@ -112,7 +113,7 @@ public class Inici extends javax.swing.JFrame {
             }
         });
 
-        tf_password.setBackground(new java.awt.Color(36, 67, 65));
+        tf_password.setBackground(new java.awt.Color(153, 153, 153));
         tf_password.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         tf_password.setForeground(new java.awt.Color(255, 255, 255));
         tf_password.setBorder(null);

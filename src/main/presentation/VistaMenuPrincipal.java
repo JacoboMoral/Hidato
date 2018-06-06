@@ -276,6 +276,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jugar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/console.png"))); // NOI18N
         jugar.setText("Jugar");
+        jugar.setFocusPainted(false);
         jugar.setMaximumSize(new java.awt.Dimension(147, 31));
         jugar.setMinimumSize(new java.awt.Dimension(147, 31));
         jugar.setPreferredSize(new java.awt.Dimension(147, 31));
@@ -1250,9 +1251,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, instruccionsPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel22)))
+                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(instruccionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel19)

@@ -37,7 +37,8 @@ public class VistaRanking extends javax.swing.JFrame {
         this.setTitle("Ranking");
         filterType.add(filterByDate);
         filterType.add(filterByUsername);
-
+        
+        
         cp.getUpdate();
 
         if (cp.getRankingEasySize() > 0) {
@@ -433,19 +434,19 @@ public class VistaRanking extends javax.swing.JFrame {
                 .addGap(172, 172, 172)
                 .addComponent(title)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, easyPanelLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+            .addGroup(easyPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+                .addContainerGap())
         );
         easyPanelLayout.setVerticalGroup(
             easyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(easyPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(title)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(264, 264, 264))
+                .addGap(272, 272, 272))
         );
 
         rankingPanel.add(easyPanel, "card4");
@@ -461,33 +462,46 @@ public class VistaRanking extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Posicio", "Puntuacio", "Nom", "Data"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(hardRanking);
+        if (hardRanking.getColumnModel().getColumnCount() > 0) {
+            hardRanking.getColumnModel().getColumn(0).setResizable(false);
+            hardRanking.getColumnModel().getColumn(1).setResizable(false);
+            hardRanking.getColumnModel().getColumn(2).setResizable(false);
+            hardRanking.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout hardPanelLayout = new javax.swing.GroupLayout(hardPanel);
         hardPanel.setLayout(hardPanelLayout);
         hardPanelLayout.setHorizontalGroup(
             hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hardPanelLayout.createSequentialGroup()
-                .addGroup(hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(hardPanelLayout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(title1))
-                    .addGroup(hardPanelLayout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(164, 164, 164)
+                .addComponent(title1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(hardPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+                .addContainerGap())
         );
         hardPanelLayout.setVerticalGroup(
             hardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hardPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(title1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         rankingPanel.add(hardPanel, "card2");
@@ -500,30 +514,40 @@ public class VistaRanking extends javax.swing.JFrame {
 
         interRanking.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Posicio", "Puntuacio", "Nom", "Data"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(interRanking);
+        if (interRanking.getColumnModel().getColumnCount() > 0) {
+            interRanking.getColumnModel().getColumn(0).setResizable(false);
+            interRanking.getColumnModel().getColumn(1).setResizable(false);
+            interRanking.getColumnModel().getColumn(2).setResizable(false);
+            interRanking.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout interPanelLayout = new javax.swing.GroupLayout(interPanel);
         interPanel.setLayout(interPanelLayout);
         interPanelLayout.setHorizontalGroup(
             interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(interPanelLayout.createSequentialGroup()
-                .addGroup(interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(interPanelLayout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(titleInter))
-                    .addGroup(interPanelLayout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addGap(167, 167, 167)
+                .addComponent(titleInter)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(interPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+                .addContainerGap())
         );
         interPanelLayout.setVerticalGroup(
             interPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
