@@ -24,11 +24,23 @@ public class IOUsuari {
     private static String currentPassword;
     
     public static boolean usernameExists(String username) {
+    	crearCarpetesSiNoExisteixen();
         File temp = new File("DB/Usuaris/" + username);
         return temp.exists();
     }
     
-    public static boolean changeUsername(String currentUsername, String newUsername) {
+    private static void crearCarpetesSiNoExisteixen() {
+    	File temp = new File("DB");
+        if (!temp.exists()) temp.mkdirs();
+        File temp2 = new File("DB/Usuaris");
+        if (!temp2.exists()) temp2.mkdirs();
+        File temp3 = new File("DB/Ranking");
+        if (!temp3.exists()) temp3.mkdirs();
+        File temp4 = new File("DB/HidatosImportats");
+        if (!temp4.exists()) temp4.mkdirs();
+	}
+
+	public static boolean changeUsername(String currentUsername, String newUsername) {
         File temp = new File("DB/Usuaris/" + currentUsername);
         if (temp.exists()) {
             File temp2 = new File("DB/Usuaris/" + newUsername);
@@ -60,6 +72,7 @@ public class IOUsuari {
     }
 
     public static boolean loginUsuari(String username, String password) throws FileNotFoundException, IOException {
+    	crearCarpetesSiNoExisteixen();
         boolean userPassMatch = false;
         String contingut_password;
         File temp = new File("DB/Usuaris/" + username);
