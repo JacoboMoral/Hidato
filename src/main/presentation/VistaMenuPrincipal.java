@@ -223,7 +223,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         topBarPanel.setBackground(new java.awt.Color(153, 153, 153));
 
         title.setFont(new java.awt.Font("Century Gothic", 0, 50)); // NOI18N
-        title.setForeground(new java.awt.Color(255, 255, 255));
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("Hidato");
 
