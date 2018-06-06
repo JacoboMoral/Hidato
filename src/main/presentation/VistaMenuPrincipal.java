@@ -280,6 +280,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         jugar.setBackground(new java.awt.Color(255, 255, 255));
         jugar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/console.png"))); // NOI18N
         jugar.setText("Jugar");
         jugar.setMaximumSize(new java.awt.Dimension(147, 31));
         jugar.setMinimumSize(new java.awt.Dimension(147, 31));
@@ -297,6 +298,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         crearHidato.setBackground(new java.awt.Color(255, 255, 255));
         crearHidato.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        crearHidato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/create.png"))); // NOI18N
         crearHidato.setText("Crear hidato");
         crearHidato.setMaximumSize(new java.awt.Dimension(147, 31));
         crearHidato.setMinimumSize(new java.awt.Dimension(147, 31));
@@ -314,6 +316,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         ranking.setBackground(new java.awt.Color(255, 255, 255));
         ranking.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        ranking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ranking-cup.png"))); // NOI18N
         ranking.setText("Ranking");
         ranking.setMaximumSize(new java.awt.Dimension(147, 31));
         ranking.setMinimumSize(new java.awt.Dimension(147, 31));
@@ -324,11 +327,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        tips.setBackground(new java.awt.Color(255, 255, 255));
+        tips.setBackground(new java.awt.Color(255, 255, 204));
         tips.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         tips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/information (2).png"))); // NOI18N
         tips.setText("Tips");
-        tips.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 204)));
+        tips.setBorder(null);
         tips.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipsActionPerformed(evt);
@@ -343,15 +346,14 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(menuPrincipalPanelLayout.createSequentialGroup()
                         .addGap(265, 265, 265)
-                        .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(crearHidato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ranking, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(crearHidato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jugar, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                            .addComponent(ranking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(menuPrincipalPanelLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(tips, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(265, Short.MAX_VALUE))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
         menuPrincipalPanelLayout.setVerticalGroup(
             menuPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,7 +373,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         editPasswordPanel.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel13.setText("Contrasenya antiga");
 
         oldPassword.setBackground(new java.awt.Color(204, 204, 204));
@@ -382,11 +384,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         newPassword.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         newPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel14.setText("Nova contrasenya");
 
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel15.setText("Confirma nova contrasenya");
+        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel15.setText("Confirma la nova contrasenya");
 
         repeatPassword.setBackground(new java.awt.Color(204, 204, 204));
         repeatPassword.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -401,7 +403,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         cancelPassword.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         cancelPassword.setText("Cancel.lar ");
         cancelPassword.setActionCommand("");
-        cancelPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+        cancelPassword.setBorder(null);
         cancelPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancelPasswordMouseClicked(evt);
@@ -412,7 +414,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         guardarPassword.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         guardarPassword.setText("Guardar");
         guardarPassword.setActionCommand("");
-        guardarPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 0)));
+        guardarPassword.setBorder(null);
         guardarPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 guardarPasswordMouseClicked(evt);
@@ -428,50 +430,46 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         editPasswordPanel.setLayout(editPasswordPanelLayout);
         editPasswordPanelLayout.setHorizontalGroup(
             editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editPasswordPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(guardarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cancelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(169, 169, 169))
             .addGroup(editPasswordPanelLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editPasswordPanelLayout.createSequentialGroup()
-                        .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(guardarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15))
-                        .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(editPasswordPanelLayout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(repeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(editPasswordPanelLayout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(cancelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editPasswordPanelLayout.createSequentialGroup()
-                        .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14))
-                        .addGap(122, 122, 122)
-                        .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(oldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(newPassword))))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addGap(102, 102, 102)
+                .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15))
+                .addGap(50, 50, 50)
+                .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(repeatPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(oldPassword)
+                        .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         editPasswordPanelLayout.setVerticalGroup(
             editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editPasswordPanelLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addContainerGap(89, Short.MAX_VALUE)
                 .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(oldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(repeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(repeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
                 .addGroup(editPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45))
+                .addGap(78, 78, 78))
         );
 
         parentPanel.add(editPasswordPanel, "card9");
@@ -479,19 +477,19 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         deleteAccountPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel16.setText("Introdueix la teva contrasenya per eliminar el compte:");
+        jLabel16.setText("Introdueix la teva contrasenya per eliminar el compte");
 
-        jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel17.setText("Contrasenya:");
+        jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel17.setText("Contrasenya");
 
         passwordToDeleteAcc.setBackground(new java.awt.Color(204, 204, 204));
         passwordToDeleteAcc.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         passwordToDeleteAcc.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        confirmDeleteUser.setBackground(new java.awt.Color(255, 255, 255));
+        confirmDeleteUser.setBackground(new java.awt.Color(255, 51, 51));
         confirmDeleteUser.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         confirmDeleteUser.setText("Eliminar el compte");
-        confirmDeleteUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51)));
+        confirmDeleteUser.setBorder(null);
         confirmDeleteUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 confirmDeleteUserMouseClicked(evt);
@@ -522,35 +520,37 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         deleteAccountPanelLayout.setHorizontalGroup(
             deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deleteAccountPanelLayout.createSequentialGroup()
-                .addGap(106, 106, 106)
                 .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
                     .addGroup(deleteAccountPanelLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(confirmDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(cancelDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(106, 106, 106)
+                        .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addGroup(deleteAccountPanelLayout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addComponent(jLabel17)
+                                .addGap(33, 33, 33)
+                                .addComponent(passwordToDeleteAcc, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(deleteAccountPanelLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel17)
-                        .addGap(33, 33, 33)
-                        .addComponent(passwordToDeleteAcc, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(116, Short.MAX_VALUE))
+                        .addGap(255, 255, 255)
+                        .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cancelDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(confirmDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         deleteAccountPanelLayout.setVerticalGroup(
             deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deleteAccountPanelLayout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
+                .addContainerGap(111, Short.MAX_VALUE)
                 .addComponent(jLabel16)
                 .addGap(48, 48, 48)
                 .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(passwordToDeleteAcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(deleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirmDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(91, 91, 91))
+                .addGap(40, 40, 40)
+                .addComponent(confirmDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cancelDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
 
         parentPanel.add(deleteAccountPanel, "card10");
@@ -870,7 +870,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(hidatoList);
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel20.setText("Selecciona un Hidato:");
+        jLabel20.setText("Selecciona un Hidato");
 
         selectedHidato.setBackground(new java.awt.Color(204, 204, 204));
         selectedHidato.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -882,7 +882,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         });
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel21.setText("Introdueix el nom del Hidato:");
+        jLabel21.setText("Introdueix el nom del Hidato");
 
         jugarHidatoImportat.setBackground(new java.awt.Color(255, 255, 255));
         jugarHidatoImportat.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -1406,7 +1406,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         });
 
         tipologiaCheckBox.setBackground(new java.awt.Color(204, 204, 204));
-        tipologiaCheckBox.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tipologiaCheckBox.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         tipologiaCheckBox.setText("Tipologia (Opcional)");
         tipologiaCheckBox.setToolTipText("");
         tipologiaCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -1416,7 +1416,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         });
 
         adjacenciaCheckBox.setBackground(new java.awt.Color(204, 204, 204));
-        adjacenciaCheckBox.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        adjacenciaCheckBox.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         adjacenciaCheckBox.setText("Adjacencia (Opcional)");
         adjacenciaCheckBox.setToolTipText("");
         adjacenciaCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -1491,7 +1491,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         caracteristiquesButton.setBackground(new java.awt.Color(204, 204, 204));
         typeButtons.add(caracteristiquesButton);
-        caracteristiquesButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        caracteristiquesButton.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         caracteristiquesButton.setText("Caracteristiques");
         caracteristiquesButton.setToolTipText("");
         caracteristiquesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1502,7 +1502,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         dificultatButton.setBackground(new java.awt.Color(204, 204, 204));
         typeButtons.add(dificultatButton);
-        dificultatButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        dificultatButton.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         dificultatButton.setText("Dificultat");
         dificultatButton.setToolTipText("");
         dificultatButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1524,32 +1524,39 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         createAutoPanelLayout.setHorizontalGroup(
             createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createAutoPanelLayout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
+                .addContainerGap(84, Short.MAX_VALUE)
                 .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAutoPanelLayout.createSequentialGroup()
-                        .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(b_generate, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(back9, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAutoPanelLayout.createSequentialGroup()
+                        .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(createAutoPanelLayout.createSequentialGroup()
-                                .addComponent(generacioAltura)
-                                .addGap(38, 38, 38)
-                                .addComponent(generacioAmpladaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(caracteristiquesButton)
-                            .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(createAutoPanelLayout.createSequentialGroup()
-                                    .addComponent(generacioForats)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(generacioForatsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(createAutoPanelLayout.createSequentialGroup()
-                                    .addComponent(generacioAmplada)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(generacioAlturaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(74, 74, 74)
+                                .addComponent(caracteristiquesButton)
+                                .addGap(69, 69, 69))
+                            .addGroup(createAutoPanelLayout.createSequentialGroup()
+                                .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(createAutoPanelLayout.createSequentialGroup()
+                                        .addComponent(generacioAltura)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(generacioAmpladaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(createAutoPanelLayout.createSequentialGroup()
+                                            .addComponent(generacioForats)
+                                            .addGap(44, 44, 44)
+                                            .addComponent(generacioForatsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(createAutoPanelLayout.createSequentialGroup()
+                                            .addComponent(generacioAmplada)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(generacioAlturaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(68, 68, 68)))
                         .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAutoPanelLayout.createSequentialGroup()
-                                .addComponent(dificultatButton)
-                                .addGap(10, 10, 10))
                             .addComponent(easyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(interButton)
-                            .addComponent(hardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(hardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dificultatButton))
                         .addGap(53, 53, 53)
                         .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(adjacenciaCheckBox)
@@ -1557,52 +1564,47 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                                 .addComponent(tipologiaAuto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(adjacenciaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(tipologiaCheckBox))
-                        .addGap(52, 52, 52))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAutoPanelLayout.createSequentialGroup()
-                        .addComponent(b_generate, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(back9, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))))
+                        .addGap(41, 41, 41))))
         );
         createAutoPanelLayout.setVerticalGroup(
             createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createAutoPanelLayout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
                 .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(createAutoPanelLayout.createSequentialGroup()
-                        .addComponent(tipologiaCheckBox)
+                        .addComponent(caracteristiquesButton)
                         .addGap(18, 18, 18)
-                        .addComponent(tipologiaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(adjacenciaCheckBox)
-                        .addGap(18, 18, 18)
-                        .addComponent(adjacenciaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(createAutoPanelLayout.createSequentialGroup()
-                        .addComponent(dificultatButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(easyButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(interButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(hardButton))
-                    .addGroup(createAutoPanelLayout.createSequentialGroup()
-                        .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(createAutoPanelLayout.createSequentialGroup()
-                                .addComponent(caracteristiquesButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(generacioAmpladaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(createAutoPanelLayout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(generacioAltura)))
-                        .addGap(16, 16, 16)
                         .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(generacioAmplada)
-                            .addComponent(generacioAlturaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
+                            .addComponent(generacioAmpladaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(generacioAltura))
+                        .addGap(23, 23, 23)
+                        .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(generacioAlturaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(generacioAmplada))
+                        .addGap(18, 18, 18)
                         .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(generacioForats)
-                            .addComponent(generacioForatsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(75, 75, 75)
+                            .addComponent(generacioForatsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(createAutoPanelLayout.createSequentialGroup()
+                        .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(createAutoPanelLayout.createSequentialGroup()
+                                .addComponent(tipologiaCheckBox)
+                                .addGap(18, 18, 18)
+                                .addComponent(tipologiaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26))
+                            .addGroup(createAutoPanelLayout.createSequentialGroup()
+                                .addComponent(dificultatButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(easyButton)
+                                .addGap(18, 18, 18)))
+                        .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(adjacenciaCheckBox)
+                            .addComponent(interButton))
+                        .addGap(18, 18, 18)
+                        .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(adjacenciaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hardButton))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(createAutoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_generate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1627,9 +1629,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel12.setText("Nou username");
 
-        saveUseranme.setBackground(new java.awt.Color(0, 255, 102));
+        saveUseranme.setBackground(new java.awt.Color(255, 255, 255));
         saveUseranme.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         saveUseranme.setText("Guardar");
+        saveUseranme.setBorder(null);
         saveUseranme.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveUseranmeMouseClicked(evt);
@@ -1641,9 +1644,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        cancelUseranme.setBackground(new java.awt.Color(255, 0, 0));
+        cancelUseranme.setBackground(new java.awt.Color(255, 255, 255));
         cancelUseranme.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         cancelUseranme.setText("Cancel");
+        cancelUseranme.setBorder(null);
         cancelUseranme.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancelUseranmeMouseClicked(evt);
@@ -1684,9 +1688,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel12))
                 .addGap(73, 73, 73)
                 .addGroup(editUsernamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveUseranme, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelUseranme, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                    .addComponent(saveUseranme, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelUseranme, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         parentPanel.add(editUsernamePanel, "card8");
