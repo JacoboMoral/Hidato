@@ -1,10 +1,7 @@
 package main.presentation;
 
 import java.util.Vector;
-
 import javax.swing.JOptionPane;
-
-import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 

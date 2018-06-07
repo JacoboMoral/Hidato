@@ -1,7 +1,6 @@
 package main.domain.com.hidato;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;

@@ -261,6 +261,10 @@ public class ControladorPresentacio {
 		}
 		else JOptionPane.showMessageDialog(null, "Format no valid");
 	}
+	
+	public boolean comprovarHidatotxtResoluble() {
+		return domini.comprovarHidatotxtResoluble();
+	}
 
 	public void setHidatoGeneratFromTxtResoluble(Boolean resoluble) {
 		if(resoluble) {

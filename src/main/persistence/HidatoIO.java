@@ -1,8 +1,11 @@
-package main.domain.com.hidato;
+package main.persistence;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
+
+import main.domain.com.hidato.TipusAdjacencia;
+import main.domain.com.hidato.TipusCella;
 
 //"static" class
 public final class HidatoIO {

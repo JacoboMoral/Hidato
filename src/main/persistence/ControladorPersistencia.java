@@ -1,26 +1,14 @@
 package main.persistence;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.Date;
-import java.io.PrintStream;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Vector;
-import main.domain.com.hidato.Hidato;
-import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.Posicio;
 import main.domain.com.hidato.Ranking;
 
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
-import main.domain.com.hidato.Usuari;
 
 public class ControladorPersistencia {
 

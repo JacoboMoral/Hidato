@@ -1,14 +1,7 @@
 package main.presentation;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
-
 import javax.swing.SwingWorker;
-
-import main.domain.com.hidato.ControladorDomini;
-import main.domain.com.hidato.Dificultat;
-import main.domain.com.hidato.TipusAdjacencia;
-import main.domain.com.hidato.TipusCella;
 
 public class ImportWorker extends SwingWorker<Boolean, Void>{
 
@@ -23,7 +16,7 @@ public class ImportWorker extends SwingWorker<Boolean, Void>{
 	
 	@Override
 	protected Boolean doInBackground() throws Exception {
-		return ControladorDomini.getInstance().comprovarHidatotxtResoluble();
+		return controller.comprovarHidatotxtResoluble();
 	}
 
 	@Override

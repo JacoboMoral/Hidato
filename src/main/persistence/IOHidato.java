@@ -3,16 +3,11 @@ package main.persistence;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-
-import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
@@ -58,7 +53,6 @@ public class IOHidato {
             cadena = b.readLine();
             o.println(cadena);
         }
-
         bw.close();
         b.close();
         fileWriter.close();
@@ -103,7 +97,6 @@ public class IOHidato {
         }
         b.close();
         fr.close();
-        
     }
 
     public static void carregarHidatoImportat(String nomHidato) throws IOException {

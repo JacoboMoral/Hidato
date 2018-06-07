@@ -1,9 +1,7 @@
 package main.presentation;
 
 import java.util.Vector;
-
 import javax.swing.JPanel;
-
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
