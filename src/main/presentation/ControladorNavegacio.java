@@ -20,6 +20,7 @@ public class ControladorNavegacio {
     private VistaInici inici;
     private VistaRanking ranking;
     private VistaCreateHidato createHidato;
+    private VistaInstruccions instruccions;
 
 
     public static ControladorNavegacio getInstance() {
@@ -60,8 +61,8 @@ public class ControladorNavegacio {
 
 
     public void openInstruccions() {
-        VistaInstruccions v = new VistaInstruccions();
-        v.setVisible(true);
+        instruccions = new VistaInstruccions();
+        instruccions.setVisible(true);
     }
 
 
