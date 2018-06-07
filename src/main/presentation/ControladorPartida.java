@@ -147,8 +147,8 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     	return null;
     }
   
-    public void guardarPartida() {
-        controller.guardarPartida();
+    public boolean guardarPartida() {
+        return controller.guardarPartida();
     }
 
 	public void solucionarPartida() {

@@ -95,8 +95,8 @@ public class ControladorPresentacio {
         domini.resetMatriuEnPartida();
     }
 
-    public void guardarPartida() {
-        domini.guardarPartida();
+    public boolean guardarPartida() {
+        return domini.guardarPartida();
     }
 
     public boolean sobreesciure() {

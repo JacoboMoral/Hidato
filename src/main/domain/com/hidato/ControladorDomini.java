@@ -151,10 +151,10 @@ public class ControladorDomini {
         return false;
     }
 
-    public void guardarPartida() {
-        if (partidaEnCurs != null) {
+    public boolean guardarPartida() {
+        boolean guardar = false;
+    	if (partidaEnCurs != null) {
 
-            boolean guardar = false;
 
             if (!controladorPersistencia.hiHaPartida(partidaEnCurs.getNomUsuari())) {
                 guardar = true;
@@ -176,12 +176,10 @@ public class ControladorDomini {
                 int temps = (int) partidaEnCurs.getTemps();
                 System.out.println("La partida sha guardat temps: " + temps);
                 controladorPersistencia.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
-
                 presentacio.mostraPartidaGuardada();
             }
-
         }
-        // status = 0; puntuacio = 0; TipusAdjacencia tipusAdjacencia, int[][] matriu, int[][] matriuOriginal Vector<Integer> nombresEscrits, Vector<Integer> nombresDonats
+    	return guardar;
     }
 
     public boolean enPartida() {

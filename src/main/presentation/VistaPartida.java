@@ -254,10 +254,11 @@ public class VistaPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarNumerosMouseClicked
 
     private void guardarPartidaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarPartidaMousePressed
-        if (inputsAllowed) {
-            partida.guardarPartida();
-            controladorNavegacio.openMenuView();
-            this.dispose();
+    	if (inputsAllowed) {
+    		if (partida.guardarPartida()) {
+    			controladorNavegacio.openMenuView();
+				this.dispose();
+            };
         }
     }//GEN-LAST:event_guardarPartidaMousePressed
 
