@@ -34,8 +34,6 @@ public class ControladorPresentacio {
     private static final ControladorPartida controladorPartida = ControladorPartida.getInstance();
     private VistaPartida v;
 
-    static JPanel panelPartida; //JPanel vs PanelPartida??? hi ha cap diferencia?'
-
     private ControladorPresentacio() {
     }
 
