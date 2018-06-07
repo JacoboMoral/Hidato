@@ -14,8 +14,6 @@ import java.util.logging.Logger;
  * @author admin
  */
 public class VistaLoading extends javax.swing.JFrame{
-
-    ControladorPresentacio controladorPresentacio = ControladorPresentacio.getInstance();
     
     /**
      * Creates new form VistaLoading

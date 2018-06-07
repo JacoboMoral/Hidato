@@ -17,8 +17,8 @@ import main.domain.com.hidato.TipusCella;
 public class ControladorPresentacio {
 
     private static ControladorPresentacio instance = null;
-    private final ControladorDomini domini = ControladorDomini.getInstance();
-    private final ControladorPartida controladorPartida = ControladorPartida.getInstance();
+    private static final ControladorDomini domini = ControladorDomini.getInstance();
+    private static final ControladorPartida controladorPartida = ControladorPartida.getInstance();
     private VistaPartida vistaPartida;
 
     private ControladorPresentacio() {
