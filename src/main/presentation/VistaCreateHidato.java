@@ -23,9 +23,9 @@ import java.util.logging.Logger;
  */
 public class VistaCreateHidato extends javax.swing.JFrame {
 
-    private ControladorPresentacio cp = ControladorPresentacio.getInstance();
-    private ControladorNavegacio cn = ControladorNavegacio.getInstance();
-    ControladorHidatoGrafic creacio;
+    private ControladorPresentacio controladorPresentacio = ControladorPresentacio.getInstance();
+    private ControladorNavegacio controladorNavegacio = ControladorNavegacio.getInstance();
+    private ControladorHidatoGrafic creacio;
     private int seguentMoviment = 1;
     private boolean inputsAllowed = true;
 
@@ -232,7 +232,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
     	if (inputsAllowed) {
-	    	cn.openMenuView();
+	    	controladorNavegacio.openMenuView();
 	        this.dispose();
     	}
     }//GEN-LAST:event_backMouseClicked
@@ -322,7 +322,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
     }//GEN-LAST:event_cellaInvalidaMousePressed
 
     private void instruccionIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_instruccionIconMouseClicked
-        cn.openInstruccions();
+        controladorNavegacio.openInstruccions();
     }//GEN-LAST:event_instruccionIconMouseClicked
 
     /**
