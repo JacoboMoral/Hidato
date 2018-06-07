@@ -23,9 +23,8 @@ import java.util.logging.Logger;
  */
 public class VistaCreateHidato extends javax.swing.JFrame {
 
-    private ControladorPresentacio controladorPresentacio = ControladorPresentacio.getInstance();
     private ControladorNavegacio controladorNavegacio = ControladorNavegacio.getInstance();
-    private ControladorHidatoGrafic creacio;
+    private ControladorCreateHidato creacio;
     private int seguentMoviment = 1;
     private boolean inputsAllowed = true;
 

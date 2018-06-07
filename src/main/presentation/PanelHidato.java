@@ -17,13 +17,11 @@ import javax.swing.SwingUtilities;
 
 public class PanelHidato extends JPanel{		
 
-	PanelPartida controller;
-	Cella cella;
-
+	private PanelPartida controller;
+	private Cella cella;
 	private double cellaHeight;
-	Vector<Integer> nombresPerDefecte;
-	int[][] matriuHidato;
-
+	private Vector<Integer> nombresPerDefecte;
+	private int[][] matriuHidato;
 	private double screenWidth;
 	private double screenHeight;
 	private int matriuHidatoWidth;

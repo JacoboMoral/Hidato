@@ -317,4 +317,12 @@ public class ControladorPresentacio {
     public Dificultat getDificultatPartida() {
         return domini.getDificultatPartida();
     }
+
+	public void setMatriuResolta(int[][] matriuResolta) {
+		controladorPartida.setMatriuResolta(matriuResolta);
+	}
+
+	public void setMatriuGenerada(int[][] matriuGenerada) {
+		controladorPartida.setMatriuGenerada(matriuGenerada);
+	}
 }
