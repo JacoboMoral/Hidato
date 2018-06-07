@@ -11,15 +11,10 @@ public class PanelPartida extends JPanel {
 
     private Vector<Integer> possiblesMoviments = new Vector<Integer>();
     private Vector<Integer> nombresPerDefecte = new Vector<Integer>();
-
     private int movimentIterator = 0;
     private int[][] matriuHidato = null;
     private final ControladorHidatoGrafic controller;
     private boolean enCurs = true;
-
-    int boardHeight = 0;
-    int boardWidth = 0;
-
     private PanelHidato panelHidato;
     private Cella cella;
     
@@ -31,38 +26,25 @@ public class PanelPartida extends JPanel {
         controller = ControladorPartida.getInstance();
         setup();
         createAndShowGUI();
-
     }
     
     public PanelPartida(Cella cella, int[][] matriuHidato, boolean creacio, ControladorHidatoGrafic controller) {
         this.cella = cella;
         this.matriuHidato = matriuHidato;
         tipusHidato = 1;
-        //controller = ControladorCreateHidato.getInstance();
         this.controller = controller;
-        setup();
-        //createAndShowGUI();
-        
+        setup();        
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(new Color(204, 204, 204));
-        this.setBorder(
-                BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        this.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
         this.setLayout(new BorderLayout(50, 50));
-
         panelHidato = new PanelHidato(cella, matriuHidato, this);
-        //panelHidato.setSeguentMoviment(possiblesMoviments.get(movimentIterator));
-
         this.add(panelHidato);
-
     }
 
     private void setup() {
-
         nombresPerDefecte = controller.getNombresPerDefecte();
-        boardHeight = matriuHidato[0].length;
-        boardWidth = matriuHidato.length;
         setPossiblesMoviments();
-
     }
 
     private boolean ferMoviment(int y, int x, int proximMoviment) {
@@ -113,9 +95,6 @@ public class PanelPartida extends JPanel {
 					} catch (ArrayIndexOutOfBoundsException e){
 					
 					}
-					
-					//System.out.println(possiblesMoviments.get(movimentIterator));
-			    	//int next = possiblesMoviments.get(movimentIterator);
 				}
 				return true;
 			}
@@ -158,14 +137,10 @@ public class PanelPartida extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(new Color(204, 204, 204));
         this.setBorder(
-                BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        BorderFactory.createEmptyBorder(50, 50, 50, 50));
         this.setLayout(new BorderLayout(50, 50));
-
         panelHidato = new PanelHidato(cella, matriuHidato, nombresPerDefecte, this);
-        
         this.add(panelHidato);
-
-
     }
 
     private void updateSeguentMoviment() {
