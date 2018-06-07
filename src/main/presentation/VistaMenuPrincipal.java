@@ -29,15 +29,12 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private ControladorPresentacio controladorPresentacio = ControladorPresentacio.getInstance();
     private ControladorNavegacio controladorNavegacio = ControladorNavegacio.getInstance();
-    private ControladorMenuPrincipal controladorMenuPrincipal;
     private ControladorPartida controladorPartida = ControladorPartida.getInstance();
 
 
     public VistaMenuPrincipal() {
 
         initComponents();
-        controladorMenuPrincipal = new ControladorMenuPrincipal();
-
         l_username.setText(controladorPresentacio.getUsername());
         showUsername.setText(controladorPresentacio.getUsername());
         showPassword.setText(controladorPresentacio.getPassword());
@@ -76,7 +73,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     private void showHidatoList() {
         DefaultListModel<String> model = new DefaultListModel<String>();
-        String[] fitxers = controladorMenuPrincipal.getAllHidatoNames();
+        String[] fitxers = controladorPresentacio.getAllHidatoNames();
 
         for (int i = 0; i < fitxers.length; ++i) {
             model.addElement(fitxers[i]);
