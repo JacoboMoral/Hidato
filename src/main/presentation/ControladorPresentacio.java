@@ -3,10 +3,8 @@ package main.presentation;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.Posicio;

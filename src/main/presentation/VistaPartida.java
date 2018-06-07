@@ -6,24 +6,8 @@
 package main.presentation;
 
 import java.awt.Color;
-import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.TipusAdjacencia;
-import main.domain.com.hidato.TipusCella;
-
-import java.awt.Dimension;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.MouseEvent;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
-import main.domain.com.hidato.Contador;
-
 /**
  *
  * @author admin
