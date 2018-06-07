@@ -1881,13 +1881,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 	private void confirmDeleteUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmDeleteUserMouseClicked
             String pass1 = new String(passwordToDeleteAcc.getPassword());
             if (pass1.length() == 0) {
-                JOptionPane.showMessageDialog(null, "Introdueix la teva contrasenya per eliminar la teva compte!");
+                JOptionPane.showMessageDialog(null, "Introdueix la teva contrasenya per eliminar el teu compte!");
             } else {
                 boolean successful = controladorPresentacio.deleteUser(pass1);
                 if (!successful) {
-                    JOptionPane.showMessageDialog(null, "Contransenya incorrecte!");
+                    JOptionPane.showMessageDialog(null, "Contransenya incorrecta!");
                 } else {
-                    JOptionPane.showMessageDialog(null, "La teva compte ha sigut eliminat correctament!");
+                    JOptionPane.showMessageDialog(null, "El teu compte ha sigut eliminat correctament!");
                     controladorNavegacio.openInicialView();
                     this.dispose();
                 }
@@ -2018,8 +2018,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                     altura = (int) generacioAlturaSpinner.getValue();
                     amplada = (int) generacioAmpladaSpinner.getValue();
                     forats = (int) generacioForatsSpinner.getValue();
-                    if (forats > (altura * amplada)) {
-                        JOptionPane.showMessageDialog(null, "No pot haver més forats que caselles totals");
+                    if ((forats > (altura * amplada)-3)) {
+                        JOptionPane.showMessageDialog(null, "Ha d'haver almenys tres caselles lliures");
                     } else {
                         if ((altura * amplada - forats) > 60) {
                             input = JOptionPane.showOptionDialog(null, "Si esculls hidato massa grans, el programa pot trigar molt en generar-los, desitges continuar?", "Advertencia",
