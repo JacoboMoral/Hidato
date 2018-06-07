@@ -79,7 +79,7 @@ public class Ranking {
         }
     }
 
-    public static class CustomCompare implements Comparator<Posicio> {
+    private static class CustomCompare implements Comparator<Posicio> {
 
         @Override
         public int compare(Posicio p1, Posicio p2) {
