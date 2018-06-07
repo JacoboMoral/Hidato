@@ -16,7 +16,6 @@ public class Algorismes {
 	private Vector<Integer> nombresDonats = new Vector<Integer>();
 	private HashMap<Pair<Integer,Integer>,ArrayList<Pair<Integer,Integer>>> adjacencies;
 	private int nombreCellesNumeriques = 0;
-	private int[][] visitats;
 	private Pair<Integer,Integer> posicioInicial;
 
 	private Random randomSeed;
@@ -47,7 +46,6 @@ public class Algorismes {
 	private void setUp() {
 		adjacencies = new HashMap<Pair<Integer,Integer>,ArrayList<Pair<Integer,Integer>>>();
 		nombresDonats = new Vector<Integer>();
-		visitats = new int[matriuSolucio.length][matriuSolucio[0].length];
 		nombreCellesNumeriques = 0;
 
 		for (int i = 0; i < matriuSolucio.length; ++i) {
