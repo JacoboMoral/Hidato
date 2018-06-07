@@ -12,7 +12,6 @@ import main.domain.com.hidato.TipusCella;
 public class SolverWorker extends SwingWorker<int[][], Boolean>{
 
 	private ControladorPresentacio controller = ControladorPresentacio.getInstance();
-	private ControladorPartida partida = ControladorPartida.getInstance();
 	private VistaLoading loading;
 
 	public SolverWorker() {
@@ -32,8 +31,7 @@ public class SolverWorker extends SwingWorker<int[][], Boolean>{
 	protected void done() {
 		loading.dispose();
 		try {
-			System.out.println("generator done");
-			partida.setMatriuResolta(get());
+			controller.setMatriuResolta(get());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -12,7 +12,6 @@ import main.domain.com.hidato.TipusCella;
 public class GeneratorWorker extends SwingWorker<int[][], Void>{
 
 	private ControladorPresentacio controller = ControladorPresentacio.getInstance();
-	private ControladorPartida partida = ControladorPartida.getInstance();
 	private VistaLoading loading;
 	
 	private TipusCella tipusCella = null; 
@@ -65,8 +64,7 @@ public class GeneratorWorker extends SwingWorker<int[][], Void>{
 	protected void done() {
 		loading.dispose();
 		try {
-			System.out.println("generator done");
-			partida.setMatriuGenerada(get());
+			controller.setMatriuGenerada(get());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

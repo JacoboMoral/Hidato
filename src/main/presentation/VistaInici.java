@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class VistaInici extends javax.swing.JFrame {
 
-    ControladorPresentacio cp = ControladorPresentacio.getInstance();
-    ControladorNavegacio cn = ControladorNavegacio.getInstance();
+    ControladorPresentacio controladorPresentacio = ControladorPresentacio.getInstance();
+    ControladorNavegacio controladorNavegacio = ControladorNavegacio.getInstance();
     
     public VistaInici() {
         initComponents();
@@ -211,12 +211,12 @@ public class VistaInici extends javax.swing.JFrame {
         } else {
             boolean userPassMatch = false;
             try {
-                userPassMatch = cp.loginUsuari(name, password);
+                userPassMatch = controladorPresentacio.loginUsuari(name, password);
             } catch (IOException ex) {
                 Logger.getLogger(VistaInici.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (userPassMatch) {
-                cn.openMenuView();
+                controladorNavegacio.openMenuView();
                 this.dispose();
                 
             } else {
@@ -230,7 +230,7 @@ public class VistaInici extends javax.swing.JFrame {
     }//GEN-LAST:event_b_loginMouseClicked
 
     private void b_registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_registerMouseClicked
-        cn.openRegisterView();
+        controladorNavegacio.openRegisterView();
         this.dispose();
     }//GEN-LAST:event_b_registerMouseClicked
 
