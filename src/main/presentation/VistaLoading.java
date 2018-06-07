@@ -15,8 +15,7 @@ import java.util.logging.Logger;
  */
 public class VistaLoading extends javax.swing.JFrame{
 
-    ControladorPresentacio cp = ControladorPresentacio.getInstance();
-    VistaMenuPrincipal vMP;
+    ControladorPresentacio controladorPresentacio = ControladorPresentacio.getInstance();
     
     /**
      * Creates new form VistaLoading
