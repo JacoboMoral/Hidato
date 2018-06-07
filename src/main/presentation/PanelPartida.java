@@ -105,10 +105,15 @@ public class PanelPartida extends JPanel {
 					if (movimentIterator >= possiblesMoviments.size()) return false;
 					tractaMatriu(i,j,possiblesMoviments.get(movimentIterator));
 					setPossiblesMoviments();
-					if (possiblesMoviments.size() > 0) controller.setSeguentMovimentVista(possiblesMoviments.get(movimentIterator));
-					else {
-						controller.setSeguentMovimentVista(0);
+					try{
+						if (possiblesMoviments.size() > 0) controller.setSeguentMovimentVista(possiblesMoviments.get(movimentIterator));
+						else {
+							controller.setSeguentMovimentVista(0);
+						}
+					} catch (ArrayIndexOutOfBoundsException e){
+					
 					}
+					
 					//System.out.println(possiblesMoviments.get(movimentIterator));
 			    	//int next = possiblesMoviments.get(movimentIterator);
 				}
