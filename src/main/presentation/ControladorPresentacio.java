@@ -1,27 +1,14 @@
 package main.presentation;
 
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.HeadlessException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
-import main.domain.com.hidato.HidatoIO;
-import main.domain.com.hidato.Hidato;
 import main.domain.com.hidato.Posicio;
 import main.domain.com.hidato.Ranking;
 import main.domain.com.hidato.TipusAdjacencia;
@@ -30,9 +17,9 @@ import main.domain.com.hidato.TipusCella;
 public class ControladorPresentacio {
 
     private static ControladorPresentacio instance = null;
-    private static final ControladorDomini domini = ControladorDomini.getInstance();
-    private static final ControladorPartida controladorPartida = ControladorPartida.getInstance();
-    private VistaPartida v;
+    private final ControladorDomini domini = ControladorDomini.getInstance();
+    private final ControladorPartida controladorPartida = ControladorPartida.getInstance();
+    private VistaPartida vistaPartida;
 
     private ControladorPresentacio() {
     }
@@ -178,8 +165,8 @@ public class ControladorPresentacio {
 			int[][] matriuHidato = domini.getMatriuHidatoDePartida();
 			JPanel hidatoPanel = controladorPartida.partidaCarregada(tipusCella, matriuHidato);
 
-			v = new VistaPartida(hidatoPanel);
-	        v.setVisible(true);
+			vistaPartida = new VistaPartida(hidatoPanel);
+	        vistaPartida.setVisible(true);
 	        return true;
 		}
         else JOptionPane.showMessageDialog(null, "Actualment no disposes de cap partida en curs");
