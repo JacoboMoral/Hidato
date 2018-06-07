@@ -195,17 +195,4 @@ public class ControladorPersistencia {
     public boolean deleteUer(String pass) {
         return IOUsuari.deleteUer(pass);
     }
-
-    /*public String getUsername() {
-        return IOUsuari.getUsername();
-
-    }
-    public Usuari getUser() {
-        return IOUsuari.getUser();
-    }
-
-    public String getPassword() {
-        return IOUsuari.getPassword();
-    }*/
-
 }

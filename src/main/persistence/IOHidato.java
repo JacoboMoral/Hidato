@@ -36,7 +36,6 @@ public class IOHidato {
 
     public static void importarHidatoDeFitxer(String file, String nom) throws IOException {
     	CrearCarpetaSiNoExisteix();
-        //ABANS FER CARREGAR HIDATO  I SOLUCIONARLO PER COMPROVAR QUE ES CORRECTA
         FileReader fr = new FileReader(file);
         BufferedReader b = new BufferedReader(fr);
         File arxiu = new File("DB/HidatosImportats/"+ nom + ".txt");
@@ -232,19 +231,4 @@ public class IOHidato {
 		File temp = new File("DB/HidatosImportats");
         if (!temp.exists()) temp.mkdirs();
 	}
-
-    /*public static void main(String[] args) throws Exception {
-
-		String[] hidatos = nomHidatosImportats();
-		for(int i = 0; i < hidatos.length; ++i) {
-			System.out.println(hidatos[i]);
-		}
-
-		carregarHidatoImportat(hidatos[0]);
-
-		System.out.println(getTipusCella());
-		System.out.println(getTipusAdjacencia());
-		HidatoIO.writeHidatoMatrixToOutput(getMatriu());
-	}*/
-
 }
