@@ -17,7 +17,8 @@ import main.domain.com.hidato.Usuari;
  */
 public class VistaRegistrar extends javax.swing.JFrame {
 
-    ControladorPresentacio cp = ControladorPresentacio.getInstance();
+    ControladorPresentacio controladorPresentacio = ControladorPresentacio.getInstance();
+    ControladorNavegacio controladorNavegacio = ControladorNavegacio.getInstance();
     /**
      * Creates new form VistaRegistrar
      */
@@ -187,8 +188,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
-        VistaInici v = new VistaInici();
-        v.setVisible(true);
+        controladorNavegacio.openInicialView();
         this.dispose();
     }//GEN-LAST:event_cancelButtonMouseClicked
 
@@ -217,7 +217,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
         else if (password.equals(rPassword) && !password.isEmpty() && !rPassword.isEmpty()) {
             boolean successful = false;
             try {
-                successful = cp.afegirUsuari(name, password);
+                successful = controladorPresentacio.afegirUsuari(name, password);
             } catch (IOException ex) {
                 Logger.getLogger(VistaRegistrar.class.getName()).log(Level.SEVERE, null, ex);
             }
