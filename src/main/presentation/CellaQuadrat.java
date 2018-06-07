@@ -24,12 +24,12 @@ public class CellaQuadrat extends Cella{
         int y = y0 + borderTop;
         int x = x0 + borderLeft;  
 
-        int[] cx,cy;
+        int[] vertexsX,vertexsY;
 
-        cx = new int[] {x, x+roundToInt(altura), x+roundToInt(altura), x};
-        cy = new int[] {y, y, y+roundToInt(altura), y+roundToInt(altura)};
+        vertexsX = new int[] {x, x+roundToInt(altura), x+roundToInt(altura), x};
+        vertexsY = new int[] {y, y, y+roundToInt(altura), y+roundToInt(altura)};
 
-        return new Polygon(cx,cy,4);
+        return new Polygon(vertexsX,vertexsY,4);
     }
     
     @Override

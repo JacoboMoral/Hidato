@@ -26,21 +26,21 @@ public class CellaTriangle extends Cella{
 
     private Polygon cella (int x0, int y0, int i, int j) {
         int y = y0 + borderTop;
-        int x = x0 + borderLeft;  
+        int x = x0 + borderLeft;
 
-        int[] cx,cy;
+        int[] vertexsX,vertexsY;
 
         if (mateixaParitat(i,j)) { 		//o sigui, cella dreta, no de l'inreves
-            cy = new int[] {y+roundToInt(altura), y, y+roundToInt(altura)};
+            vertexsY = new int[] {y+roundToInt(altura), y, y+roundToInt(altura)};
         }
         
         else {
-        	cy = new int[] {y, y+roundToInt(altura), y};
+        	vertexsY = new int[] {y, y+roundToInt(altura), y};
         }     
 
-    	cx = new int[] {x, x+roundToInt(primerx), x+roundToInt(amplada)};
+        vertexsX = new int[] {x, x+roundToInt(primerx), x+roundToInt(amplada)};
 
-        return new Polygon(cx,cy,3);
+        return new Polygon(vertexsX,vertexsY,3);
     }
     
 

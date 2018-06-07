@@ -33,12 +33,12 @@ public class CellaHexagon extends Cella{
         int y = y0 + borderTop;
         int x = x0 + borderLeft;  
 
-        int[] cx,cy;
+        int[] vertexsX,vertexsY;
 
-        cx = new int[] {x+(int)Math.round(primerx),x+(int)Math.round(segonx),x+(int)Math.round(segonx),x+(int)Math.round(primerx),x,x};
-        cy = new int[] {y,y+(int)Math.round(primery),y+(int)Math.round(segony),y+(int)Math.round(altura),y+(int)Math.round(segony),y+(int)Math.round(primery)};
+        vertexsX = new int[] {x+(int)Math.round(primerx),x+(int)Math.round(segonx),x+(int)Math.round(segonx),x+(int)Math.round(primerx),x,x};
+        vertexsY = new int[] {y,y+(int)Math.round(primery),y+(int)Math.round(segony),y+(int)Math.round(altura),y+(int)Math.round(segony),y+(int)Math.round(primery)};
 
-        return new Polygon(cx,cy,6);
+        return new Polygon(vertexsX,vertexsY,6);
     }
 
     @Override
