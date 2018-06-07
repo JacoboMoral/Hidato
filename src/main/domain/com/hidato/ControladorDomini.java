@@ -20,7 +20,6 @@ public class ControladorDomini {
     private Usuari currentUser;
     private Ranking ranking = Ranking.getInstance();
     private boolean enPartidaCarregada = false;
-    private TipusAdjacencia ta;
 
     public static ControladorDomini getInstance() {
         if (instance == null) {
