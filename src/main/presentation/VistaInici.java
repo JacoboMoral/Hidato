@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author admin
  */
-public class Inici extends javax.swing.JFrame {
+public class VistaInici extends javax.swing.JFrame {
 
     ControladorPresentacio cp = ControladorPresentacio.getInstance();
     ControladorNavegacio cn = ControladorNavegacio.getInstance();
     
-    public Inici() {
+    public VistaInici() {
         initComponents();
         this.setTitle("Hidato");
     }
@@ -213,7 +213,7 @@ public class Inici extends javax.swing.JFrame {
             try {
                 userPassMatch = cp.loginUsuari(name, password);
             } catch (IOException ex) {
-                Logger.getLogger(Inici.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(VistaInici.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (userPassMatch) {
                 cn.openMenuView();
@@ -255,20 +255,21 @@ public class Inici extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaInici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaInici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaInici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaInici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inici().setVisible(true);
+                new VistaInici().setVisible(true);
             }
         });
     }

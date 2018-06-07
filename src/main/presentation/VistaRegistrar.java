@@ -187,7 +187,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
-        Inici v = new Inici();
+        VistaInici v = new VistaInici();
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelButtonMouseClicked
@@ -227,12 +227,12 @@ public class VistaRegistrar extends javax.swing.JFrame {
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 if (input == JOptionPane.OK_OPTION) {
-                    Inici v = new Inici();
+                    VistaInici v = new VistaInici();
                     v.setVisible(true);
                     this.dispose();
                 }
                 else {
-                    Inici v = new Inici();
+                    VistaInici v = new VistaInici();
                     v.setVisible(true);
                     this.dispose();
                 }

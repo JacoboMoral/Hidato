@@ -61,7 +61,7 @@ public class ControladorPresentacio {
     }
 
     public void launchLogin() {
-        Inici inici = new Inici();
+        VistaInici inici = new VistaInici();
 
         inici.run();
     }

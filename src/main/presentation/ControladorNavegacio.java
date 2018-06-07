@@ -17,7 +17,7 @@ public class ControladorNavegacio {
     private static ControladorNavegacio instance = null;
     private VistaRegistrar registre;
     private VistaMenuPrincipal menuPrincipal;
-    private Inici inici;
+    private VistaInici inici;
     private VistaRanking ranking;
     private VistaCreateHidato createHidato;
 
@@ -45,7 +45,7 @@ public class ControladorNavegacio {
     }
 
     public void openInicialView() {
-    	inici = new Inici();
+    	inici = new VistaInici();
     	inici.setVisible(true);
     }
 
