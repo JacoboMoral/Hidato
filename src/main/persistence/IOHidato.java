@@ -101,6 +101,9 @@ public class IOHidato {
             }
 
         }
+        b.close();
+        fr.close();
+        
     }
 
     public static void carregarHidatoImportat(String nomHidato) throws IOException {

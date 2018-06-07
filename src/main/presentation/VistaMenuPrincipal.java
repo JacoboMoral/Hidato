@@ -1793,6 +1793,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 	}//GEN-LAST:event_importarDesdeFitxerActionPerformed
 
 	private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
+            showHidatoList();
             parentPanel.removeAll();
             parentPanel.add(menuPrincipalPanel);
             parentPanel.repaint();
