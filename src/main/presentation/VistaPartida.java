@@ -16,7 +16,7 @@ public class VistaPartida extends javax.swing.JFrame {
 
     private ControladorPresentacio controladorPresentacio = ControladorPresentacio.getInstance();
     ControladorPartida partida = ControladorPartida.getInstance();
-    ControladorNavegacio cn = ControladorNavegacio.getInstance();
+    ControladorNavegacio controladorNavegacio = ControladorNavegacio.getInstance();
     private String seguentMoviment = " ";
     private boolean inputsAllowed = true;
     private boolean ajuda = false;
@@ -243,7 +243,7 @@ public class VistaPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        cn.openMenuView();
+        controladorNavegacio.openMenuView();
         this.dispose();
     }//GEN-LAST:event_backMouseClicked
 
@@ -256,7 +256,7 @@ public class VistaPartida extends javax.swing.JFrame {
     private void guardarPartidaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarPartidaMousePressed
         if (inputsAllowed) {
             partida.guardarPartida();
-            cn.openMenuView();
+            controladorNavegacio.openMenuView();
             this.dispose();
         }
     }//GEN-LAST:event_guardarPartidaMousePressed

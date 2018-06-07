@@ -12,18 +12,12 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 
 	private VistaCreateHidato view;
 	private PanelPartida partida;
-	private static ControladorCreateHidato instance = null;
 	private Vector<Integer> possiblesMoviments;
 	private Vector<Integer> nombresPerDefecte;
 	private int currentWriteable = 0;
 	private int[][] matriuCreacio;
-	TipusCella tipusCella;
-	TipusAdjacencia tipusAdjacencia;
-
-	/*public static ControladorCreateHidato getInstance() {
-        if (instance == null) instance = new ControladorCreateHidato();
-        return instance;
-    }*/
+	private TipusCella tipusCella;
+	private TipusAdjacencia tipusAdjacencia;
 
 	public PanelPartida createHidato(TipusCella tipusCella, TipusAdjacencia tipusAdjacencia, int i, int j) {
 		this.cella = tipusCellaToCella(tipusCella);
@@ -38,16 +32,13 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 		view = vistaCreateHidato;
 	}
 
-
 	public void setAlmoadilla() {
 		currentWriteable = -2;
 	}
 
-
 	public void setNumero() {
 		currentWriteable = 0;
 	}
-
 
 	public void setAsterisc() {	
 		currentWriteable = -1;
