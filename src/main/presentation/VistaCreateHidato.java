@@ -86,6 +86,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         seguentNum.setBackground(new java.awt.Color(255, 255, 255));
         seguentNum.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         seguentNum.setText(">");
+        seguentNum.setFocusPainted(false);
         seguentNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 seguentNumMousePressed(evt);
@@ -95,6 +96,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         antNum.setBackground(new java.awt.Color(255, 255, 255));
         antNum.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         antNum.setText("<");
+        antNum.setFocusPainted(false);
         antNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 antNumMousePressed(evt);
@@ -125,6 +127,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         cellaBuida.setBackground(new java.awt.Color(255, 255, 255));
         cellaBuida.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         cellaBuida.setText("#");
+        cellaBuida.setFocusPainted(false);
         cellaBuida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 cellaBuidaMousePressed(evt);
@@ -134,6 +137,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         cellaInvalida.setBackground(new java.awt.Color(255, 255, 255));
         cellaInvalida.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         cellaInvalida.setText("*");
+        cellaInvalida.setFocusPainted(false);
         cellaInvalida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 cellaInvalidaMousePressed(evt);
@@ -143,6 +147,7 @@ public class VistaCreateHidato extends javax.swing.JFrame {
         seleccionarNum.setBackground(new java.awt.Color(119, 196, 255));
         seleccionarNum.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         seleccionarNum.setText("Num");
+        seleccionarNum.setFocusPainted(false);
         seleccionarNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 seleccionarNumMousePressed(evt);

@@ -103,6 +103,7 @@ public class VistaPartida extends javax.swing.JFrame {
         seguentNum.setBackground(new java.awt.Color(255, 255, 255));
         seguentNum.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         seguentNum.setText(">");
+        seguentNum.setFocusPainted(false);
         seguentNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 seguentNumMousePressed(evt);
@@ -112,6 +113,7 @@ public class VistaPartida extends javax.swing.JFrame {
         anteriorNum.setBackground(new java.awt.Color(255, 255, 255));
         anteriorNum.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         anteriorNum.setText("<");
+        anteriorNum.setFocusPainted(false);
         anteriorNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 anteriorNumMousePressed(evt);
@@ -176,7 +178,7 @@ public class VistaPartida extends javax.swing.JFrame {
                 .addComponent(guardarPartida)
                 .addGap(18, 18, 18)
                 .addComponent(solucionarHidato)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(help, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(optionPanelLayout.createSequentialGroup()
@@ -185,7 +187,7 @@ public class VistaPartida extends javax.swing.JFrame {
                         .addComponent(numActual, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(seguentNum)))
-                .addGap(94, 94, 94)
+                .addGap(123, 123, 123)
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tipusAdjacencia, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))

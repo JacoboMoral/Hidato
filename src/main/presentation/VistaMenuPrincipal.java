@@ -399,7 +399,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         cancelPassword.setBackground(new java.awt.Color(255, 255, 255));
         cancelPassword.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        cancelPassword.setText("Cancel.lar ");
+        cancelPassword.setText("Cancel");
         cancelPassword.setActionCommand("");
         cancelPassword.setBorder(null);
         cancelPassword.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1210,7 +1210,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         contentPanel.add(aboutUsPanel, "card4");

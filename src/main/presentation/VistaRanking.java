@@ -385,9 +385,9 @@ public class VistaRanking extends javax.swing.JFrame {
                     .addComponent(filtrar)
                     .addComponent(showAllRanking)
                     .addComponent(jLabel12))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(back)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         getContentPane().add(optionsPanel, java.awt.BorderLayout.CENTER);

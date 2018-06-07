@@ -109,7 +109,7 @@ public class VistaRegistrar extends javax.swing.JFrame {
 
         cancelButton.setBackground(new java.awt.Color(255, 255, 255));
         cancelButton.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        cancelButton.setText("Cancel.lar");
+        cancelButton.setText("Cancel");
         cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancelButtonMouseClicked(evt);
