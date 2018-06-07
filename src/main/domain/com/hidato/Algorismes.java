@@ -252,10 +252,10 @@ public class Algorismes {
 
     public Dificultat obtenirDificultat() {
         int tamany = matriuSolucio.length * matriuSolucio[0].length;
-        if (tamany <= 18) {
+        if (tamany <= 16) {
             return Dificultat.FACIL;
         }
-        if (tamany < 50) {
+        if (tamany < 49) {
             return Dificultat.MIG;
         }
         return Dificultat.DIFICIL;
@@ -372,6 +372,7 @@ public class Algorismes {
         int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
 
         for (int i = 0; i < 10; ++i) { //10 intents per generar un hidato, cadascun amb un forat mes (mes facil cada cop)
+            System.out.println(hidato.getTipusCella() + "     " + tamanyi + " " + tamanyj + " " + forats);
             generat = generarMatriuCompleta(forats, matriu);
             if (generat) {
                 emplenarForats(matriu);
@@ -397,12 +398,12 @@ public class Algorismes {
             j = rand.nextInt(2) + 3;  //[3,4]
             f = rand.nextInt((i * j) / 5) + (i * j) / 5; //entre 20 i 40%
         } else if (dificultat == Dificultat.MIG) {
-            i = rand.nextInt(3) + 5; //[5,7]
-            j = rand.nextInt(3) + 5;  //[5,7]
+            i = rand.nextInt(2) + 5; //[5,6]
+            j = rand.nextInt(2) + 5;  //[5,6]
             f = rand.nextInt((i * j) / 5) + (i * j) / 10; //entre 10 i 30%
         } else { //DIFICIL
-            i = rand.nextInt(2) + 8; 	//[8,9]
-            j = rand.nextInt(2) + 8;  //[8,9]
+            i = rand.nextInt(2) + 7; 	//[7,8]
+            j = rand.nextInt(2) + 7;  //[7,8]
             f = rand.nextInt((i * j) / 5) + (i * j) / 10; //entre 10 i 30%
         }
         tamanys[0] = i;
