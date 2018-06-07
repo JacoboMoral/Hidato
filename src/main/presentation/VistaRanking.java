@@ -24,13 +24,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VistaRanking extends javax.swing.JFrame {
 
-    private ControladorPresentacio cp = ControladorPresentacio.getInstance();
-    private ControladorNavegacio cn = ControladorNavegacio.getInstance();
-    private static Ranking ranking = Ranking.getInstance();
+    private ControladorPresentacio controladorPresentacio = ControladorPresentacio.getInstance();
+    private ControladorNavegacio controladorNavegacio = ControladorNavegacio.getInstance();
     private static final int levelEasy = 1;
     private static final int levelInter = 2;
     private static final int levelHard = 3;
-    private static Ranking r = Ranking.getInstance();
 
     public VistaRanking() {
         initComponents();
@@ -39,15 +37,15 @@ public class VistaRanking extends javax.swing.JFrame {
         filterType.add(filterByUsername);
         
         
-        cp.getUpdate();
+        controladorPresentacio.getUpdate();
 
-        if (cp.getRankingEasySize() > 0) {
+        if (controladorPresentacio.getRankingEasySize() > 0) {
             showEasyRanking();
         }
-        if (cp.getRankingInterSize() > 0) {
+        if (controladorPresentacio.getRankingInterSize() > 0) {
             showInterRanking();
         }
-        if (cp.getRankingHardSize() > 0) {
+        if (controladorPresentacio.getRankingHardSize() > 0) {
             showHardRanking();
         }
 
@@ -57,7 +55,7 @@ public class VistaRanking extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) easyRanking.getModel();
         model.setRowCount(0);
         Object rowData[] = new Object[4];
-        ArrayList<Posicio> rankEasy = cp.getRankingEasy();
+        ArrayList<Posicio> rankEasy = controladorPresentacio.getRankingEasy();
         for (int i = 0; i < rankEasy.size(); ++i) {
             rowData[0] = i + 1;
             rowData[1] = rankEasy.get(i).getScore();
@@ -72,7 +70,7 @@ public class VistaRanking extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) interRanking.getModel();
         model.setRowCount(0);
         Object rowData[] = new Object[4];
-        ArrayList<Posicio> rankInter = cp.getRankingInter();
+        ArrayList<Posicio> rankInter = controladorPresentacio.getRankingInter();
         for (int i = 0; i < rankInter.size(); ++i) {
             rowData[0] = i + 1;
             rowData[1] = rankInter.get(i).getScore();
@@ -87,7 +85,7 @@ public class VistaRanking extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) hardRanking.getModel();
         model.setRowCount(0);
         Object rowData[] = new Object[4];
-        ArrayList<Posicio> rankHard = cp.getRankingHard();
+        ArrayList<Posicio> rankHard = controladorPresentacio.getRankingHard();
         for (int i = 0; i < rankHard.size(); ++i) {
             rowData[0] = i + 1;
             rowData[1] = rankHard.get(i).getScore();
@@ -107,13 +105,13 @@ public class VistaRanking extends javax.swing.JFrame {
         model3.setRowCount(0);
         Object rowData[] = new Object[4];
         if (filterByUsername.isSelected()) {
-            if (!cp.existsUser(input)) {
+            if (!controladorPresentacio.existsUser(input)) {
                 int message = JOptionPane.showOptionDialog(null, "L'usuari no te cap puntuacio en el Ranking!", "Error message",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
             } else {
-                ArrayList<Posicio> rankEasy = cp.getFilterByUsername(input, levelEasy);
-                ArrayList<Posicio> rankInter = cp.getFilterByUsername(input, levelInter);
-                ArrayList<Posicio> rankHard = cp.getFilterByUsername(input, levelHard);
+                ArrayList<Posicio> rankEasy = controladorPresentacio.getFilterByUsername(input, levelEasy);
+                ArrayList<Posicio> rankInter = controladorPresentacio.getFilterByUsername(input, levelInter);
+                ArrayList<Posicio> rankHard = controladorPresentacio.getFilterByUsername(input, levelHard);
                 for (int i = 0; i < rankEasy.size(); ++i) {
                     rowData[0] = i + 1;
                     rowData[1] = rankEasy.get(i).getScore();
@@ -139,13 +137,13 @@ public class VistaRanking extends javax.swing.JFrame {
         }
         if (filterByDate.isSelected()) {
             if (validDate(input)) {
-                if (!cp.existsDate(input)) {
+                if (!controladorPresentacio.existsDate(input)) {
                     int message = JOptionPane.showOptionDialog(null, "No hi ha cap puntuacio feta en aquesta data!", "Error message",
                             JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                 } else {
-                    ArrayList<Posicio> rankEasy = cp.getFilterByDate(input, levelEasy);
-                    ArrayList<Posicio> rankInter = cp.getFilterByDate(input, levelInter);
-                    ArrayList<Posicio> rankHard = cp.getFilterByDate(input, levelHard);
+                    ArrayList<Posicio> rankEasy = controladorPresentacio.getFilterByDate(input, levelEasy);
+                    ArrayList<Posicio> rankInter = controladorPresentacio.getFilterByDate(input, levelInter);
+                    ArrayList<Posicio> rankHard = controladorPresentacio.getFilterByDate(input, levelHard);
                     for (int i = 0; i < rankEasy.size(); ++i) {
                         rowData[0] = i + 1;
                         rowData[1] = rankEasy.get(i).getScore();
@@ -569,7 +567,7 @@ public class VistaRanking extends javax.swing.JFrame {
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
 
-        cn.openMenuView();
+        controladorNavegacio.openMenuView();
         this.dispose();
 
     }//GEN-LAST:event_backMouseClicked
@@ -579,10 +577,10 @@ public class VistaRanking extends javax.swing.JFrame {
         if (username.equals("")) {
             JOptionPane.showMessageDialog(null, "Introdueix el nom que desitjes eliminar!");
         } else {
-            if (!cp.existsUser(username)) {
+            if (!controladorPresentacio.existsUser(username)) {
                 JOptionPane.showMessageDialog(null, "L'usuari: " + username + " no te cap puntuacio!");
             }
-            cp.deleteUserRanking(username);
+            controladorPresentacio.deleteUserRanking(username);
             usernameToDelete.setText("");
             showEasyRanking();
             showInterRanking();
