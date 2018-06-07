@@ -2,9 +2,6 @@ package main.presentation;
 
 import java.awt.*;
 import javax.swing.*;
-
-import main.domain.com.hidato.HidatoIO;
-
 import java.util.Vector;
 
 public class PanelPartida extends JPanel {

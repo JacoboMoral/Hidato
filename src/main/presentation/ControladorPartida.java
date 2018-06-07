@@ -1,16 +1,9 @@
 package main.presentation;
 
-import java.awt.Dimension;
 import java.util.Random;
 import java.util.Vector;
-
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-
-import main.domain.com.hidato.ControladorDomini;
 import main.domain.com.hidato.Dificultat;
-import main.domain.com.hidato.HidatoIO;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 

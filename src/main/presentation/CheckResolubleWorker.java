@@ -1,12 +1,7 @@
 package main.presentation;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
-
-import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
-
-import main.domain.com.hidato.Dificultat;
 import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 

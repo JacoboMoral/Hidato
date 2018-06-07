@@ -209,9 +209,9 @@ public class DriverPartida {
 		
 		int[][] matriuRetornada = partida.getSolucio();
 		System.out.println("La matriu solucio esperada es:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuSolucio);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuSolucio);
 		System.out.println("La matriu obtinguda es:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuRetornada);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuRetornada);
 		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(matriuSolucio, matriuRetornada));
 		System.out.println();
 		if(java.util.Arrays.deepEquals(matriuSolucio, matriuRetornada))System.out.println("Driver GetSolucio executat correctament!");
@@ -229,9 +229,9 @@ public class DriverPartida {
 		
 		int[][] matriuRetornada = partida.getHidatoOriginal();
 		System.out.println("La matriu original esperada es:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuOriginal);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuOriginal);
 		System.out.println("La matriu obtinguda es:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuRetornada);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuRetornada);
 		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(matriuOriginal, matriuRetornada));
 		System.out.println();
 		if(java.util.Arrays.deepEquals(matriuOriginal, matriuRetornada)) System.out.println("Driver GetMatriuOriginal executat correctament!");
@@ -249,9 +249,9 @@ public class DriverPartida {
 		
 		int[][] matriuRetornada = partida.getHidato();
 		System.out.println("La matriu esperada es:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuHidato);
 		System.out.println("La matriu obtinguda es:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuRetornada);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuRetornada);
 		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(matriuHidato, matriuRetornada));
 		System.out.println();
 		if(java.util.Arrays.deepEquals(matriuHidato, matriuRetornada)) System.out.println("Driver GetMatriu executat correctament!");
@@ -339,13 +339,13 @@ public class DriverPartida {
 		Partida partida = new Partida(hidato);
 		
 		System.out.println("La matriu Original es:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuOriginal);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuOriginal);
 		System.out.println("La matriu hidato actual es:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuHidato);
 		System.out.println("Al fer reset la matriu hidato actual hauria de ser igual a la matriu Original");
 		partida.reset();
 		System.out.println("Despres de fer reset, la matriu hidato es:");
-		HidatoIO.writeHidatoMatrixToOutput(partida.getHidato());
+		HidatoWriterReader.writeHidatoMatrixToOutput(partida.getHidato());
 		System.out.println("Comprovacio de igualtat: " + java.util.Arrays.deepEquals(matriuOriginal, partida.getHidato()));
 		System.out.println();
 		if(java.util.Arrays.deepEquals(matriuOriginal, partida.getHidato()))System.out.println("Driver Reset executat correctament!");
