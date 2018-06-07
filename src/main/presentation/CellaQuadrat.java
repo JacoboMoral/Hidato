@@ -53,8 +53,9 @@ public class CellaQuadrat extends Cella{
             g2.setColor(Color.BLACK);
             g2.drawPolygon(cella(x,y));
         }
-        if (n > 0) {
-            g2.setColor(new Color(255, 219, 40));
+        
+        if (n == ultim || n == 1) {
+        		g2.setColor(new Color(255, 173, 105));
             g2.fillPolygon(cella(x,y));
             g2.setColor(Color.BLACK);
             g2.drawPolygon(cella(x,y));
@@ -63,8 +64,8 @@ public class CellaQuadrat extends Cella{
             g2.drawString(str, x+(int)Math.round(altura)/10+borderLeft, y+(int)Math.round(altura)/2+borderTop+4);
         }
         
-        if (n == ultim || n == 1) {
-        	g2.setColor(new Color(255, 173, 105));
+        else if (n > 0) {
+            g2.setColor(new Color(255, 219, 40));
             g2.fillPolygon(cella(x,y));
             g2.setColor(Color.BLACK);
             g2.drawPolygon(cella(x,y));
@@ -86,8 +87,7 @@ public class CellaQuadrat extends Cella{
         g2.drawPolygon(cella(x,y));
         g2.setColor(Color.BLACK);
         str = Integer.toString(n);
-        g2.drawString(str, x+(int)Math.round(altura)/10+borderLeft, y+(int)Math.round(altura)/2+borderTop+4);  
-        
+        g2.drawString(str, x+(int)Math.round(altura)/10+borderLeft, y+(int)Math.round(altura)/2+borderTop+4);         
     }
 
     @Override
