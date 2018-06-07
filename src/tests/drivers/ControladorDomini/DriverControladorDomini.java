@@ -92,7 +92,7 @@ public class DriverControladorDomini {
 			boolean continua = true;
 			while (continua) {
 				System.out.println("Aquest es l'hidato actual de la partida:");
-				HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
+				HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
 				int[] coords = null;
 				while (coords == null) {
 					System.out.println("Escriu la posicio on vols fer el moviment i el valor que vols ficar: [i j x]\n");
@@ -101,7 +101,7 @@ public class DriverControladorDomini {
 				boolean correcte = controladorDomini.ferMoviment(coords[0], coords[1], coords[2]);
 				if (correcte) {
 					System.out.println("Moviment fet correctament, aixi queda la matriu:\n");
-					HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
+					HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
 					
 				}
 				else {
@@ -125,7 +125,7 @@ public class DriverControladorDomini {
 		}
 		else {
 			System.out.println("Aquest es l'hidato actual de la partida:");
-			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
+			HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
 		}
 	}
 
@@ -137,7 +137,7 @@ public class DriverControladorDomini {
 		}
 		else {
 			System.out.println("Aquest es l'hidato original de la partida:");
-			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoOriginalDePartida());
+			HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoOriginalDePartida());
 		}		
 	}
 
@@ -149,7 +149,7 @@ public class DriverControladorDomini {
 		}
 		else {
 			System.out.println("Aquesta es la solucio de l'hidato de la partida en curs");
-			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoPartida());
+			HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoPartida());
 		}				
 	}
 
@@ -171,7 +171,7 @@ public class DriverControladorDomini {
 		else {
 			solucioHidatoGenerat = controladorDomini.solucionarHidatoGenerat();
 			System.out.println("Aquesta es la solucio de l'hidato que havies generat:");
-			HidatoIO.writeHidatoMatrixToOutput(solucioHidatoGenerat);
+			HidatoWriterReader.writeHidatoMatrixToOutput(solucioHidatoGenerat);
 		}		
 	}
 
@@ -192,7 +192,7 @@ public class DriverControladorDomini {
 		}
 		else {
 			System.out.println("Aquest es l'hidato que havies generat:");
-			HidatoIO.writeHidatoMatrixToOutput(hidatoGenerat);
+			HidatoWriterReader.writeHidatoMatrixToOutput(hidatoGenerat);
 		}
 	}
 
@@ -291,7 +291,7 @@ public class DriverControladorDomini {
 		else; //unexpected, en principi no pot passar
 		if (generatCorrectament) {
 			System.out.println("Molt be, aquest es l'hidato que s'ha generat");
-			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoGenerat());
+			HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoGenerat());
 		}
 		else System.out.println("No s'ha pogut generar un hidato amb les condicions especificades");
 	}
@@ -318,7 +318,7 @@ public class DriverControladorDomini {
 		int matriuHidato[][];
 		if (req == 1) {
 			System.out.println("Fes copi paste aqui:");
-			ArrayList<ArrayList<Integer>> entradaHidato = HidatoIO.readHidatoFromInputClipboard();
+			ArrayList<ArrayList<Integer>> entradaHidato = HidatoWriterReader.readHidatoFromInputClipboard();
 			matriuHidato = extreuMatriuHidato(entradaHidato);
 			tipusCella = extreuTipusCella(entradaHidato);
 			tipusAdjacencia = extreuTipusAdjacencia(entradaHidato);
@@ -339,11 +339,11 @@ public class DriverControladorDomini {
 				req = getNumero();
 				tipusAdjacencia = intToTipusAdjacencia(req);
 			}
-			matriuHidato = HidatoIO.readHidatoFromInput1x1();
+			matriuHidato = HidatoWriterReader.readHidatoFromInput1x1();
 		}
 		boolean resoluble = controladorDomini.jugarHidatoImportat(tipusCella, tipusAdjacencia, matriuHidato);
 		System.out.println("S'ha creat una nova partida amb el seguent hidato i s'ha comprovat que es pugui resoldre:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuHidato);
 		System.out.println("Es pot resoldre?: " + resoluble);
 		System.out.println("Comprovem ara que tenim una partida creada...: " + controladorDomini.enPartida());
 	}
@@ -366,7 +366,7 @@ public class DriverControladorDomini {
 		else {
 			solucioHidatoGenerat = controladorDomini.solucionarHidatoGenerat();
 			System.out.println("Aquest es l'hidato que havies generat:");
-			HidatoIO.writeHidatoMatrixToOutput(solucioHidatoGenerat);
+			HidatoWriterReader.writeHidatoMatrixToOutput(solucioHidatoGenerat);
 			controladorDomini.jugarHidatoGenerat();
 			System.out.println("\nS'ha creat una partida amb l'hidato generat");
 			System.out.println("\nComprovarem mitjançant el metode enPartida que tot hagi sortit be: " + controladorDomini.enPartida());
@@ -381,7 +381,7 @@ public class DriverControladorDomini {
 		}	
 		else {
 			System.out.println("Recordem la matriu de l'hidato que has escollit:");
-			HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
+			HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
 			System.out.println("Els nombres que inicialment estaven presents eren:");
 			System.out.println(controladorDomini.getNombresPerDefecte());
 		}

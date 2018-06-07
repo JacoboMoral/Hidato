@@ -3,7 +3,7 @@ package main.domain.com.hidato;
 import java.util.Comparator;
 import java.util.Scanner;
 
-import main.persistence.HidatoIO;
+import main.persistence.HidatoWriterReader;
 
 import java.util.ArrayList;
 
@@ -59,7 +59,7 @@ public class InteraccioTerminal {
         System.out.println("\n\n Respon [yes] o [no] \n\n");
         String resposta = readLine();
         if (resposta.equalsIgnoreCase("yes")) {
-            HidatoIO.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoGenerat());
+            HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoGenerat());
         } else if (resposta.equalsIgnoreCase("no")); else {
             noPartidaGenerada();
         }
@@ -75,7 +75,7 @@ public class InteraccioTerminal {
     private void solucio() {
         if (status.equals("jugant") || status.equals("movimentFet")) {
             System.out.println("\n\n La solucio del teu hidato es la seguent: \n\n");
-            HidatoIO.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoPartida());
+            HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.solucionarHidatoPartida());
         } else {
             System.out.println("No es pot donar la solucio");
         }
@@ -94,7 +94,7 @@ public class InteraccioTerminal {
         boolean estatMoviment = controladorDomini.ferMoviment(numbers[0] - 1, numbers[1] - 1, numbers[2], true); //peta amb 1 1 32, ja ho mirare
         if (estatMoviment) {
             System.out.println("\n\n Moviment valid, el hidato queda en el seguent estat:\n\n");
-            HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
+            HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
             System.out.println("\nPots fer un altre moviment si ho dessitges\n");
             status = "movimentFet";
             interactuar(readLine());
@@ -161,7 +161,7 @@ public class InteraccioTerminal {
 
         if (controladorDomini.autoGenerar(tc, ta, forats, tamanyi, tamanyj)) {
             System.out.println("Aquest es l'hidato que s'ha generat");
-            HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoGenerat());
+            HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoGenerat());
             System.out.println("Vols comen�ar una nova partida amb aquest?\n [yes] \n [no]\n\n");
             //FALTA DECIDIR YES/NO
             status = "generat";
@@ -188,9 +188,9 @@ public class InteraccioTerminal {
 
     private void importar() {
         System.out.println("\nEscriu el teu hidato per pantalla seguint el format estandar\n\n");
-        ArrayList<ArrayList<Integer>> entradaHidato = HidatoIO.readHidatoFromInputClipboard();
+        ArrayList<ArrayList<Integer>> entradaHidato = HidatoWriterReader.readHidatoFromInputClipboard();
         int[][] matriuHidato = extreuMatriuHidato(entradaHidato);
-        HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
+        HidatoWriterReader.writeHidatoMatrixToOutput(matriuHidato);
         TipusCella tipusCella = extreuTipusCella(entradaHidato);
         TipusAdjacencia tipusAdjacencia = extreuTipusAdjacencia(entradaHidato);
 
@@ -200,7 +200,7 @@ public class InteraccioTerminal {
         } else {
             if (controladorDomini.jugarHidatoImportat(tipusCella, tipusAdjacencia, matriuHidato)) {
                 System.out.println("\n\nHidato importat i validad correctament. El teu hidato es el seguent: \n");
-                HidatoIO.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
+                HidatoWriterReader.writeHidatoMatrixToOutput(controladorDomini.getMatriuHidatoDePartida());
                 status = "jugant";
                 interactuar(readLine());
             } else {

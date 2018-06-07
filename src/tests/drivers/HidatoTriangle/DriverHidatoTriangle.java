@@ -78,7 +78,7 @@ public class DriverHidatoTriangle {
 			System.out.println("Per provar el mètode posicioValida, has d'escollir una posicio de la seguent matriu,");
 			System.out.println("i despres una altra posicio, per comprovar si es pot accedir a la segona des de la primera.");
 			System.out.println("Tingues en compte que han de ser diferents, ja que aquesta comprovacio es fa en una altra classe\n");
-			HidatoIO.writeHidatoMatrixToOutput(matriuTest);
+			HidatoWriterReader.writeHidatoMatrixToOutput(matriuTest);
 			int r = -1;
 			while (r < 0 || r > 4) {
 				System.out.println("Escull la coordenada y/i de la primera posicio (0..4)");

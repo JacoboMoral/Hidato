@@ -128,7 +128,7 @@ public class DriverAlgorismes {
 			int[][] mat = algorismes.generarHidato(i,j,x);
 			if (mat != null) {
 				System.out.println("La matriu generada es la seguent:");
-				HidatoIO.writeHidatoMatrixToOutput(mat);
+				HidatoWriterReader.writeHidatoMatrixToOutput(mat);
 			}
 			else {
 				System.out.println("No s'ha pogut generar un hidato amb les condicions anteriors:");
@@ -165,7 +165,7 @@ public class DriverAlgorismes {
 			int[][] mat = algorismes.generarHidato(dificultat);
 			if (mat != null) {
 				System.out.println("La matriu generada es la seguent:");
-				HidatoIO.writeHidatoMatrixToOutput(mat);
+				HidatoWriterReader.writeHidatoMatrixToOutput(mat);
 			}
 			else {
 				System.out.println("No s'ha pogut generar un hidato amb les condicions anteriors:");
@@ -189,7 +189,7 @@ public class DriverAlgorismes {
 		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS,matriuHidato1);
 		Algorismes algorismes = new Algorismes(hidato);
 		System.out.println("S'ha creat una instancia algorismes amb un hidato amb la seguent matriu:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuHidato1);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuHidato1);
 		System.out.println("S'espera el seguent vector de nombres donats:");
 		Vector<Integer> v = new Vector<Integer>(4);
 		v.add(1);
@@ -216,7 +216,7 @@ public class DriverAlgorismes {
 		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS,matriuHidato1);
 		Algorismes algorismes = new Algorismes(hidato);
 		System.out.println("S'ha creat una instancia algorismes amb un hidato amb la seguent matriu:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuHidato1);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuHidato1);
 		System.out.println("S'espera la seguent dificultat: " + Dificultat.FACIL);
 		Dificultat difObtinguda = algorismes.obtenirDificultat();
 		System.out.println("S'ha obtes la seguent dificultat amb el metode: " + difObtinguda);
@@ -235,12 +235,12 @@ public class DriverAlgorismes {
 		Algorismes algorismes = new Algorismes(hidato);
 		System.out.println("S'ha creat una nova instancia algorismes");
 		System.out.println("S'ha creat una nova instancia hidato amb la seguent matriu:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuHidato1);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuHidato1);
 		System.out.println("Aquesta es la matriuSolucio esperada per l'hidato anterior:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuSolucio1);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuSolucio1);
 		int[][] mat = algorismes.getMatriuSolucio();
 		System.out.println("Aquesta es la matriuSolucio obtinguda amb el metode:");
-		HidatoIO.writeHidatoMatrixToOutput(mat);
+		HidatoWriterReader.writeHidatoMatrixToOutput(mat);
 		
 		boolean correcte = java.util.Arrays.deepEquals(mat, matriuSolucio1);
 		System.out.println("Comprovacio que les dues matrius siguin iguals: " + correcte);
@@ -257,7 +257,7 @@ public class DriverAlgorismes {
 		HidatoStub hidato = new HidatoStub(TipusAdjacencia.COSTATS, matriuHidato1);
 		Algorismes algorismes = new Algorismes(hidato);
 		System.out.println("S'ha creat una nova instancia hidato i algorismes amb la seguent matriu:");
-		HidatoIO.writeHidatoMatrixToOutput(matriuHidato1);
+		HidatoWriterReader.writeHidatoMatrixToOutput(matriuHidato1);
 		boolean correcte = algorismes.solucionar();
 		System.out.println("S'ha cridat el metode Solucionar. Te solucio?: " + correcte);
 		System.out.println("Comprovació de correctesa (s'esperava true): " + (correcte == true));
@@ -271,12 +271,12 @@ public class DriverAlgorismes {
 		System.out.println("S'ha creat una nova instancia hidato i algorismes");
 		System.out.println("Abans de modificar el hidato, aquesta es la seva matriu solucionada:");
 		int[][] mat1 = algorismes.getMatriuSolucio();
-		HidatoIO.writeHidatoMatrixToOutput(mat1);
+		HidatoWriterReader.writeHidatoMatrixToOutput(mat1);
 		HidatoStub hidato2 = new HidatoStub(TipusAdjacencia.COSTATS, matriuHidato2);
 		algorismes.modificarHidato(hidato2);
 		System.out.println("\nDespres de modificar el hidato amb un nou amb diferent matriu, aquesta es la seva matriu solucionada:");
 		int mat2[][] = algorismes.getMatriuSolucio();
-		HidatoIO.writeHidatoMatrixToOutput(mat2);
+		HidatoWriterReader.writeHidatoMatrixToOutput(mat2);
 		boolean correcte = java.util.Arrays.deepEquals(mat1, mat2);
 		System.out.println("Comprovacio que les dues matrius siguin diferents: " + correcte);
 		System.out.println();

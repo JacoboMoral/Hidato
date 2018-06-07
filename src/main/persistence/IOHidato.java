@@ -169,7 +169,7 @@ public class IOHidato {
         }
         primeraLinea += matriu.length + "," + matriu[0].length;
         output.println(primeraLinea);
-        HidatoIO.writeHidatoMatrixToOutput(matriu);
+        HidatoWriterReader.writeHidatoMatrixToOutput(matriu);
         for (int i = 0; i < matriu.length; ++i) {
             for (int j = 0; j < matriu[0].length; ++j) {
                 if (j < matriu[0].length - 1) {

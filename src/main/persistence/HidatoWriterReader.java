@@ -8,7 +8,7 @@ import main.domain.com.hidato.TipusAdjacencia;
 import main.domain.com.hidato.TipusCella;
 
 //"static" class
-public final class HidatoIO {
+public final class HidatoWriterReader {
 
     public static ArrayList<ArrayList<Integer>> readHidatoFromInputClipboard() {
 
@@ -88,7 +88,7 @@ public final class HidatoIO {
             if (matriuHidato[coords[0]][coords[1]] == 0) {
                 matriuHidato[coords[0]][coords[1]] = -1;
                 System.out.println("La matriu queda aixi per ara:");
-                HidatoIO.writeHidatoMatrixToOutput(matriuHidato);
+                HidatoWriterReader.writeHidatoMatrixToOutput(matriuHidato);
             } else {
                 System.out.println("No pots posar un forat aqui, ja hi havia un");
                 --i;
