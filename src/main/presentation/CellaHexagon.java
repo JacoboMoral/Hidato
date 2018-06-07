@@ -45,9 +45,9 @@ public class CellaHexagon extends Cella{
 	public void dibuixaCella(int i, int j, Graphics2D g2) {
 		int x = j * (int)Math.round(segonx) + (i%2)*(int)Math.round(segonx)/2;
 		int y = i * (int)Math.round(segony);
-		g2.setColor(new Color(255, 236, 150));
+		g2.setColor(REMOVABLE_YELLOW);
 		g2.fillPolygon(cella(x,y));
-		g2.setColor(Color.BLACK);
+		g2.setColor(BLACK);
 		g2.drawPolygon(cella(x,y));
 	}
 
@@ -57,28 +57,28 @@ public class CellaHexagon extends Cella{
 		int x = j * (int)Math.round(segonx) + (i%2)*(int)Math.round(segonx/2);
 		int y = i * (int)Math.round(segony);
 		if (n == -1) {
-			g2.setColor(new Color(193, 192, 174));
+			g2.setColor(GRAY);
 			g2.fillPolygon(cella(x,y));
-			g2.setColor(Color.BLACK);
+			g2.setColor(BLACK);
 			g2.drawPolygon(cella(x,y));
 		}
 
 		if (n == ultim || n == 1) {
-			g2.setColor(new Color(255, 173, 105));
+			g2.setColor(FIRST_LAST);
 			g2.fillPolygon(cella(x,y));
-			g2.setColor(Color.BLACK);
+			g2.setColor(BLACK);
 			g2.drawPolygon(cella(x,y));
-			g2.setColor(Color.BLACK);
+			g2.setColor(BLACK);
 			str = Integer.toString(n);
 			g2.drawString(str, x+(int)Math.round(altura)/10+borderLeft, y+(int)Math.round(altura)/2+borderTop+4);
 		}
 
 		else if (n > 0) {
-			g2.setColor(new Color(255, 219, 40));
+			g2.setColor(FIXED_YELLOW);
 			g2.fillPolygon(cella(x,y));
-			g2.setColor(Color.BLACK);
+			g2.setColor(BLACK);
 			g2.drawPolygon(cella(x,y));
-			g2.setColor(Color.BLACK);
+			g2.setColor(BLACK);
 			str = Integer.toString(n);
 			g2.drawString(str, x+(int)Math.round(altura)/10+borderLeft, y+(int)Math.round(altura)/2+borderTop+4);
 		}
@@ -92,9 +92,9 @@ public class CellaHexagon extends Cella{
 
 		g2.setColor(color);
 		g2.fillPolygon(cella(x,y));
-		g2.setColor(Color.BLACK);
+		g2.setColor(BLACK);
 		g2.drawPolygon(cella(x,y));
-		g2.setColor(Color.BLACK);
+		g2.setColor(BLACK);
 		str = Integer.toString(n);
 		g2.drawString(str, x+(int)Math.round(altura)/10+borderLeft, y+(int)Math.round(altura)/2+borderTop+4);  
 
