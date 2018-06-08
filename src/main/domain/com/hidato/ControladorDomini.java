@@ -173,7 +173,6 @@ public class ControladorDomini {
                 TipusCella cella = partidaEnCurs.getTipusCella();
                 Date dataIni = partidaEnCurs.getDataInici();
                 int temps = (int) partidaEnCurs.getTemps();
-                System.out.println("La partida sha guardat temps: " + temps);
                 controladorPersistencia.guardarPartida(dataIni, temps, status, puntuacio, cella, tipusAdj, matriu, matriuOriginal, nombresDonats, nombresEscrits, nomUsuari);
                 presentacio.mostraPartidaGuardada();
             }
@@ -190,7 +189,6 @@ public class ControladorDomini {
         if (completada) {
         	if (enPartidaCarregada) {
         		enPartidaCarregada = false;
-            	System.out.println("Estic a la capa de domini PARTIDA CARREGADA ACABADA --------> ES CRIDA FUNCIO ESBORRAR PARTIDA D'USUARI");
             	controladorPersistencia.esborrarPartidaGuardada(currentUser.getUsername());
         	}
         	return true;
@@ -428,7 +426,6 @@ public class ControladorDomini {
 
     public long getTempsPartida() {
     	long temps = partidaEnCurs.getTempsNano() + (long) partidaEnCurs.gettempsPartidaGuardada() * 1000000000;
-    	System.out.println("TOTAL  :  " + temps);
     	return temps;
     }
 

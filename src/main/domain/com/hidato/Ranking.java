@@ -61,8 +61,6 @@ public class Ranking {
     }
 
     public void insertPosition(Posicio pos, int dificultat) {
-        System.out.println("entra en Ranking");
-        System.out.println(pos.getScore() + " " + pos.getUsername());
         if (dificultat == levelEasy) {
             rankingEasy.add(pos);
             Collections.sort(rankingEasy, new CustomCompare().reversed());

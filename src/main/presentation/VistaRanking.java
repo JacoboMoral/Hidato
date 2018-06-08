@@ -124,14 +124,14 @@ public class VistaRanking extends javax.swing.JFrame {
                     rowData[1] = rankInter.get(i).getScore();
                     rowData[2] = rankInter.get(i).getUsername();
                     rowData[3] = rankInter.get(i).getDate();
-                    model.addRow(rowData);
+                    model2.addRow(rowData);
                 }
                 for (int i = 0; i < rankHard.size(); ++i) {
                     rowData[0] = i + 1;
                     rowData[1] = rankHard.get(i).getScore();
                     rowData[2] = rankHard.get(i).getUsername();
                     rowData[3] = rankHard.get(i).getDate();
-                    model.addRow(rowData);
+                    model3.addRow(rowData);
                 }
             }
         }
@@ -156,14 +156,14 @@ public class VistaRanking extends javax.swing.JFrame {
                         rowData[1] = rankInter.get(i).getScore();
                         rowData[2] = rankInter.get(i).getUsername();
                         rowData[3] = rankInter.get(i).getDate();
-                        model.addRow(rowData);
+                        model2.addRow(rowData);
                     }
                     for (int i = 0; i < rankHard.size(); ++i) {
                         rowData[0] = i + 1;
                         rowData[1] = rankHard.get(i).getScore();
                         rowData[2] = rankHard.get(i).getUsername();
                         rowData[3] = rankHard.get(i).getDate();
-                        model.addRow(rowData);
+                        model3.addRow(rowData);
                     }
                 }
             }
