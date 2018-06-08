@@ -93,7 +93,6 @@ public class CellaTriangle extends Cella{
 		int x = j * roundToInt(primerx);
 		int y = i * roundToInt(altura);
 
-		System.out.println(color);
 		g2.setColor(color);
 		g2.fillPolygon(cella(x,y,i,j));
 		g2.setColor(BLACK);

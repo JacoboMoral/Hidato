@@ -311,7 +311,6 @@ public class Algorismes {
 		int[][] matriu = new int[tamanyi][tamanyj]; //per defecte esta emplenada amb 0
 
 		for (int i = 0; i < 10; ++i) { //10 intents per generar un hidato, cadascun amb un forat mes (mes facil cada cop)
-			System.out.println(hidato.getTipusCella() + "     " + tamanyi + " " + tamanyj + " " + forats);
 			generat = generarMatriuCompleta(forats, matriu);
 			if (generat) {
 				emplenarForats(matriu);

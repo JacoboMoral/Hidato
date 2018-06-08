@@ -110,7 +110,6 @@ public class ControladorCreateHidato extends ControladorHidatoGrafic {
 	
 	@Override
 	public void guardarHidato() {
-		System.out.println("enviat per guardar");
 		if (getCellesLliures() == 0) JOptionPane.showMessageDialog(null, "Ha d'haver minim una casella lliure");
 		new CheckResolubleWorker(tipusCella, tipusAdjacencia, matriuCreacio, this).execute();
 	}
