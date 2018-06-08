@@ -141,6 +141,10 @@ public class ControladorPartida extends ControladorHidatoGrafic{
     }
   
     public boolean guardarPartida() {
+    		if (getPossiblesMoviments().size() == 0) {
+    			JOptionPane.showMessageDialog(null, "No pots guardar una partida amb l'hidato ple");
+    			return false;
+    		}
         return controller.guardarPartida();
     }
 

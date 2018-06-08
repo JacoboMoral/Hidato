@@ -3,6 +3,8 @@ package main.domain.com.hidato;
 import java.util.Collections;
 import java.util.Vector;
 
+import main.persistence.HidatoWriterReader;
+
 public abstract class Hidato {
 
 	protected TipusAdjacencia tipusAdjacencia;
@@ -151,7 +153,7 @@ public abstract class Hidato {
 		int[][] matriu = copy(matriuHidato);
 		int [][] matriuResposta = al.getSolucio(matriu);
 		if (matriuResposta == null) {
-			return matriuSolucio; //si no es solucionable la matriuHidato
+			return al.getSolucio(matriuOriginal); //si no es solucionable la matriuHidato
 		}
 		return matriuResposta;
 	}
